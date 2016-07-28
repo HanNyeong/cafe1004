@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ksmart02.cafe.repository.SubMapper">
+
+	<resultMap type="org.ksmart02.cafe.sub.model.Sub" id="subListMap">
+		<id property="subCode" column="sub_code"/>
+		<result property="subRegitDate" column="sub_regit_date"/>
+		<result property="subName" column="sub_name"/>
+		<result property="subKeeper" column="sub_keeper"/>
+		<result property="subTelephone" column="sub_telephone"/>
+		<result property="subAddr" column="sub_addr"/>
+		<result property="headStaffId" column="head_staff_id"/>
+	</resultMap>
+	
+	<!-- 가맹 하나를 조회하는 select쿼리 -->
+	<select id="selectSub"
+		resultMap="subListMap">
+		SELECT sub_code, sub_regit_date, sub_name, sub_keeper, sub_telephone, sub_addr, head_staff_id
+		FROM sub	
+		WHERE sub_code = #{subCode}
+	</select>
+	
+	<!-- 가맹 수정하는 update쿼리 -->
+	<update id="modifySub"
+		parameterType="org.ksmart02.cafe.sub.model.Sub">
+		UPDATE 
+			sub
+		SET
+			sub_name = #{subName},
+			sub_keeper = #{subKeeper},
+			sub_telephone = #{subTelephone},
+			sub_addr = #{subAddr},
+			head_staff_id = #{headStaffId}
+		WHERE 
+			sub_code = #{subCode}
+			
+	</update>
+	
+	
+</mapper>
