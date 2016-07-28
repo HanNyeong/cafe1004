@@ -28,4 +28,13 @@
 <!--  	<bean id="sqlSessionHeadStaff" class="org.mybatis.spring.SqlSessionTemplate"> -->
 <!--        <constructor-arg index="0" ref="sqlSessionFactoryHeadStaff" /> -->
 <!--      </bean> -->
+
+	<!-- 계약관리 -->
+		<bean id="sqlSessionFactoryContract" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			<property name="mapperLocations" value="classpath:com/cafe24/seoje1004/contract/repository/ContractMapper.xml" />
+		</bean>
+		<bean id="sqlSessionContract" class="org.mybatis.spring.SqlSessionTemplate">
+			<constructor-arg index="0" ref="sqlSessionFactoryContract" />
+		</bean>
 </beans>
