@@ -72,15 +72,6 @@ public class SubStaffDaoImpl implements SubStaffDao{
 	}
 
 	/**
-	 * 로그인을 처리를 하는 dao메서드입니다.
-	 */
-	@Override
-	public SubStaff loginSubStaff(SubStaff subStaff) {
-		System.out.println("SubStaffDaoImpl loginSubStaff실행");
-		return sqlSessionSubStaff.selectOne(NS+".loginSubStaff",subStaff);
-	}
-
-	/**
 	 * 가맹직원의 급여를 관리하는 dao 메서드입니다.
 	 * 급여정보를 수정합니다.
 	 * @param subStaff

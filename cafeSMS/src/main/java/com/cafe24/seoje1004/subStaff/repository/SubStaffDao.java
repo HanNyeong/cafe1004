@@ -51,13 +51,7 @@ public interface SubStaffDao {
 	 * @return
 	 */
 	int subModifySubStaffByResign(SubStaff subStaff);
-	/**
-	 * 가맹직원 로그인하는 메서드 입니다.
-	 * 입력정보가 일치하면 가맹직원정보 일부를 리턴합니다.
-	 * @param subStaff
-	 * @return
-	 */
-	SubStaff loginSubStaff(SubStaff subStaff);
+	
 	/**
 	 * 가맹직원의 급여를 관리하는 dao 메서드입니다.
 	 * 급여정보를 수정합니다.

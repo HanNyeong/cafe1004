@@ -3,7 +3,7 @@ package com.cafe24.seoje1004.subStaff.model;
 public class SubStaff {
 
 
-private String subStaffId;
+private String subStaffCode;
 private String subStaffPw;
 private String subStaffName;
 private String subStaffLevel;
@@ -15,11 +15,12 @@ private String totalAccountGroup;
 private String subStaffPermitDate;
 private String subCode;
 private String headStaffId;
-public String getSubStaffId() {
-	return subStaffId;
+
+public String getSubStaffCode() {
+	return subStaffCode;
 }
-public void setSubStaffId(String subStaffId) {
-	this.subStaffId = subStaffId;
+public void setSubStaffCode(String subStaffCode) {
+	this.subStaffCode = subStaffCode;
 }
 public String getSubStaffPw() {
 	return subStaffPw;
@@ -89,7 +90,7 @@ public void setHeadStaffId(String headStaffId) {
 }
 @Override
 public String toString() {
-	return "SubStaff [subStaffId=" + subStaffId + ", subStaffPw=" + subStaffPw + ", subStaffName=" + subStaffName
+	return "SubStaff [subStaffCode=" + subStaffCode + ", subStaffPw=" + subStaffPw + ", subStaffName=" + subStaffName
 			+ ", subStaffLevel=" + subStaffLevel + ", subStaffJoin=" + subStaffJoin + ", subStaffResign="
 			+ subStaffResign + ", subStaffRegitDate=" + subStaffRegitDate + ", subStaffSalary=" + subStaffSalary
 			+ ", totalAccountGroup=" + totalAccountGroup + ", subStaffPermitDate=" + subStaffPermitDate + ", subCode="

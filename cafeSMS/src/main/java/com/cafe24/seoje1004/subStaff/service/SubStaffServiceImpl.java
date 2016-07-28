@@ -93,25 +93,6 @@ public class SubStaffServiceImpl implements SubStaffService{
 		System.out.println(subStaff);
 		return subStaffDao.subModifySubStaffByResign(subStaff);
 	}
-	
-	/**
-	 * 가맹직원 로그인 서비스 메서드 입니다.
-	 * 매개변수로 로그인정보를 받아서 dao에 매개변수로 줍니다.
-	 */
-	@Override
-	public SubStaff loginSubStaffService(SubStaff subStaff) {
-		System.out.println("SubStaffServiceImpl loginSubStaffService실행");
-		
-		SubStaff reSubStaff = null;
-		
-		if(subStaffDao.loginSubStaff(subStaff) != null){
-			reSubStaff = subStaffDao.loginSubStaff(subStaff);
-		}
-		if(reSubStaff.getSubStaffResign()!= null){
-			reSubStaff = null;
-		}
-		return reSubStaff;
-	}
 	/**
      * 직원 급여를 관리하는 서비스 메서드 입니다.
      * 매개변수로 직원정보를 고 가맹정보를 업데이트하고

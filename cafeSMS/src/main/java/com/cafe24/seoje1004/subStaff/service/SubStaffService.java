@@ -48,15 +48,6 @@ public interface SubStaffService {
 	*/
    int subModifySubStaffByResignService(SubStaff subStaff);
    
-   
-   /**
-    *  가맹직원 로그인하는 서비스 메서드 입니다.
-    *  매개변수로 로그인 정보를 받아서 로그인 성공 유무를 판단하고 
-    *  결과를 리턴합니다.
-    * @param subStaff
-    * @return
-    */
-   SubStaff loginSubStaffService(SubStaff subStaff);
    /**
     * 직원 급여를 관리하는 서비스 메서드 입니다.
     * 매개변수로 직원정보를 고 가맹정보를 업데이트하고

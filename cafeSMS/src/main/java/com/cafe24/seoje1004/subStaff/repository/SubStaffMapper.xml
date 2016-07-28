@@ -2,10 +2,10 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.ksmart02.cafe.subStaff.repository.SubStaffMapper">
+<mapper namespace="com.cafe24.seoje1004.subStaff.repository.SubStaffMapper">
    
    <!-- POJO객체와 DB column명을 맞춰줍니다 -->
-   <resultMap type="org.ksmart02.cafe.subStaff.model.SubStaff" id="subStaffResultMap">
+   <resultMap type="com.cafe24.seoje1004.subStaff.model.SubStaff" id="subStaffResultMap">
       <id property="subStaffId" column="sub_staff_id"/>
       <result property="subStaffPw" column="sub_staff_pw"/>
       <result property="subStaffName" column="sub_staff_name"/>
@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    <!-- 가맹직원을 등록하는 inst 쿼리 자동으로 subStaffId를 생성해줌 -->
    <insert id="addSubStaff"
-      parameterType="org.ksmart02.cafe.subStaff.model.SubStaff"
+      parameterType="com.cafe24.seoje1004.subStaff.model.SubStaff"
       useGeneratedKeys="true"
       keyProperty="subStaffId">
       <selectKey resultType="hashmap" keyProperty="subStaffId,totalAccountGroup" order="BEFORE">
@@ -56,24 +56,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          #{subStaffSalary}
       )
    </insert>
-   <!-- 가맹직원 리스트를 뽑는 select 쿼리문 -->
-<!--    <select id="viewSubStaffList" -->
-<!--       resultMap="subStaffResultMap"> -->
-<!--       SELECT  -->
-<!--          sub_staff_id,  -->
-<!--          sub_staff_name,  -->
-<!--          sub_staff_level,  -->
-<!--          sub_staff_join,  -->
-<!--          sub_staff_resign,  -->
-<!--          total_account_group,  -->
-<!--          sub_staff_permit_date,  -->
-<!--          sub_code,  -->
-<!--          head_staff_id -->
-   
-<!--       FROM  -->
-<!--          sub_staff -->
-   
-<!--    </select> -->
    
    <select id="selectSubStaff"
       resultMap="subStaffResultMap">
@@ -93,7 +75,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          sub_staff_id = #{subStaffId}
    </select>
    <update id="modifySubStaff"
-      parameterType="org.ksmart02.cafe.subStaff.model.SubStaff">
+      parameterType="com.cafe24.seoje1004.subStaff.model.SubStaff">
       UPDATE 
          sub_staff
       SET
@@ -142,34 +124,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	<!-- 본사직원이 가맹직원 등록을 승인 하는 update 쿼리 -->
 	<update id="headModifySubStaffByPermit"
-		parameterType="org.ksmart02.cafe.subStaff.model.SubStaff">
+		parameterType="com.cafe24.seoje1004.subStaff.model.SubStaff">
 		UPDATE sub_staff
 		SET head_staff_id = #{headStaffId},sub_staff_permit_date = NOW()
 		WHERE sub_staff_id = #{subStaffId}
 	</update>
 	
 	<!-- 가맹직원 퇴사하는 update쿼리 -->
-	<update id="subModifySubStaffByResign" parameterType="org.ksmart02.cafe.subStaff.model.SubStaff">
+	<update id="subModifySubStaffByResign" 
+		parameterType="com.cafe24.seoje1004.subStaff.model.SubStaff">
 		UPDATE sub_staff
 		SET
 			sub_staff_resign = NOW()
 		WHERE 
 			sub_staff_id = #{subStaffId}
 	</update>
-   
-   <!-- 가맹 로그인하는 select쿼리 -->
-	<select id="loginSubStaff"
-		parameterType="org.ksmart02.cafe.subStaff.model.SubStaff"
-		resultMap="subStaffResultMap">
-		SELECT sub_staff_id, sub_staff_name, sub_staff_level, sub_code, sub_staff_resign
-		FROM sub_staff
-		WHERE 
-			sub_staff_id = #{subStaffId} and sub_staff_pw = #{subStaffPw}
-	</select>
 	
 	<!-- 가맹직원 급여 관리 update쿼리 -->
 	<update id="subStaffSalary"
-		parameterType="org.ksmart02.cafe.subStaff.model.SubStaff">
+		parameterType="com.cafe24.seoje1004.subStaff.model.SubStaff">
 		UPDATE sub_staff
 		SET
 			sub_staff_salary = #{subStaffSalary}
