@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.ksmart02.cafe.repository.SubMapper">
+<mapper namespace="com.cafe24.seoje1004.sub.repository.SubMapper">
 
-	<resultMap type="org.ksmart02.cafe.sub.model.Sub" id="subListMap">
+	<resultMap type="com.cafe24.seoje1004.sub.model.Sub" id="subListMap">
 		<id property="subCode" column="sub_code"/>
 		<result property="subRegitDate" column="sub_regit_date"/>
 		<result property="subName" column="sub_name"/>
@@ -24,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 가맹 수정하는 update쿼리 -->
 	<update id="modifySub"
-		parameterType="org.ksmart02.cafe.sub.model.Sub">
+		parameterType="com.cafe24.seoje1004.sub.model.Sub">
 		UPDATE 
 			sub
 		SET
