@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cafe24.seoje1004.subStaff.repository.SubStaffMapper">
+   
+   <!-- POJO객체와 DB column명을 맞춰줍니다 -->
+   <resultMap type="com.cafe24.seoje1004.subStaff.model.SubStaff" id="subStaffResultMap">
+      <id property="subStaffId" column="sub_staff_id"/>
+      <result property="subStaffPw" column="sub_staff_pw"/>
+      <result property="subStaffName" column="sub_staff_name"/>
+      <result property="subStaffLevel" column="sub_staff_level"/>
+      <result property="subStaffJoin" column="sub_staff_join"/>
+      <result property="subStaffResign" column="sub_staff_resign"/>
+      <result property="subStaffRegitDate" column="sub_staff_regit_date"/>
+      <result property="subStaffSalary" column="sub_staff_salary"/>
+      <result property="totalAccountGroup" column="total_account_group"/>
+      <result property="subStaffPermitDate" column="sub_staff_permit_date"/>
+      <result property="subCode" column="sub_code"/>
+      <result property="headStaffId" column="head_staff_id"/>
+   </resultMap>
+   
+   
+   <!-- 가맹직원을 등록하는 inst 쿼리 자동으로 subStaffId를 생성해줌 -->
+   <insert id="addSubStaff"
+      parameterType="com.cafe24.seoje1004.subStaff.model.SubStaff"
+      useGeneratedKeys="true"
+      keyProperty="subStaffId">
+      <selectKey resultType="hashmap" keyProperty="subStaffId,totalAccountGroup" order="BEFORE">
+         select if(isnull(sub_staff_id),'sub_staff1000', concat('sub_staff', MAX(CONVERT(SUBSTRING(sub_staff_id,10), UNSIGNED))+1)) as subStaffId, 
+         if(isnull(total_account_group),'total_account_group1000', concat('total_account_group', MAX(CONVERT (SUBSTRING(total_account_group,20), UNSIGNED))+1)) as totalAccountGroup 
+         from sub_staff
+      </selectKey>
+      
+      INSERT INTO 
+      	sub_staff(
+      		total_account_group,
+            sub_code,
+            sub_staff_id, 
+            sub_staff_pw, 
+            sub_staff_name, 
+            sub_staff_level, 
+            sub_staff_join, 
+            sub_staff_regit_date, 
+            sub_staff_salary
+         )
+      VALUES (
+      	 #{totalAccountGroup},
+         #{subCode},
+         #{subStaffId}, 
+         #{subStaffPw}, 
+         #{subStaffName}, 
+         #{subStaffLevel}, 
+         #{subStaffJoin}, 
+         NOW(), 
+         #{subStaffSalary}
+      )
+   </insert>
+   
+   <select id="selectSubStaff"
+      resultMap="subStaffResultMap">
+      SELECT 
+         sub_staff_id,
+         sub_staff_name, 
+         sub_code, 
+         sub_staff_level,
+         sub_staff_join,
+         head_staff_id,
+         sub_staff_permit_date,
+         sub_staff_regit_date,
+         sub_staff_salary         
+      FROM 
+         sub_staff
+      WHERE
+         sub_staff_id = #{subStaffId}
+   </select>
+   <update id="modifySubStaff"
+      parameterType="com.cafe24.seoje1004.subStaff.model.SubStaff">
+      UPDATE 
+         sub_staff
+      SET
+         sub_staff_name= #{subStaffName},
+         sub_staff_level= #{subStaffLevel},
+         sub_staff_salary= #{subStaffSalary}
+      WHERE 
+         sub_staff_id = #{subStaffId}
+   </update>
+   
+   <!-- 가맹 리스트를 컬럼별 조회하는 select쿼리 -->
+	<select id="viewSubStaffList"
+		parameterType="java.util.Map"
+		resultMap="subStaffResultMap">
+		SELECT 
+			sub_staff_id,
+	         sub_staff_name, 
+	         sub_code, 
+	         sub_staff_level,
+	         sub_staff_join,
+	         sub_staff_resign,
+	         head_staff_id,
+	         sub_staff_permit_date,
+	         sub_staff_regit_date,
+	         sub_staff_salary      
+		FROM 
+			sub_staff
+		
+		<where>
+			<if test="subStaffSearch.regitDateStart != null and subStaffSearch.regitDateEnd != null and subStaffSearch.regitDateStart !='' and subStaffSearch.regitDateEnd !=''">
+				<![CDATA[date(sub_staff_regit_date) >= #{subStaffSearch.regitDateStart} and date(sub_staff_regit_date) <= #{subStaffSearch.regitDateEnd}]]>  
+			</if>
+			<if test="subStaffSearch.searchKey != null and subStaffSearch.searchKey != '' and subStaffSearch.searchSubStaff != null and subStaffSearch.searchSubStaff != ''">
+					AND  ${subStaffSearch.searchKey} like CONCAT('%',#{subStaffSearch.searchSubStaff},'%') 
+			</if>
+			
+		</where>
+		<if test="subStaffSearch.criteria == null and subStaffSearch.upDown == null">
+			order by sub_staff_regit_date desc
+		</if>
+		<if test="subStaffSearch.criteria != null and subStaffSearch.upDown != null and subStaffSearch.criteria != null and subStaffSearch.upDown != ''">
+			order by ${subStaffSearch.criteria} ${subStaffSearch.upDown}
+		</if>
+
+	</select>
+		
+	<!-- 본사직원이 가맹직원 등록을 승인 하는 update 쿼리 -->
+	<update id="headModifySubStaffByPermit"
+		parameterType="com.cafe24.seoje1004.subStaff.model.SubStaff">
+		UPDATE sub_staff
+		SET head_staff_id = #{headStaffId},sub_staff_permit_date = NOW()
+		WHERE sub_staff_id = #{subStaffId}
+	</update>
+	
+	<!-- 가맹직원 퇴사하는 update쿼리 -->
+	<update id="subModifySubStaffByResign" 
+		parameterType="com.cafe24.seoje1004.subStaff.model.SubStaff">
+		UPDATE sub_staff
+		SET
+			sub_staff_resign = NOW()
+		WHERE 
+			sub_staff_id = #{subStaffId}
+	</update>
+	
+	<!-- 가맹직원 급여 관리 update쿼리 -->
+	<update id="subStaffSalary"
+		parameterType="com.cafe24.seoje1004.subStaff.model.SubStaff">
+		UPDATE sub_staff
+		SET
+			sub_staff_salary = #{subStaffSalary}
+		WHERE
+			sub_staff_id = #{subStaffId}	
+	</update>
+</mapper>
