@@ -37,4 +37,28 @@
 		<bean id="sqlSessionContract" class="org.mybatis.spring.SqlSessionTemplate">
 			<constructor-arg index="0" ref="sqlSessionFactoryContract" />
 		</bean>
+	<!-- 가맹거래처관리 -->
+		<bean id="sqlSessionFactorySubClient" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			<property name="mapperLocations" value="classpath:com/cafe24/seoje1004/subClient/repository/ContractMapper.xml" />
+		</bean>
+		<bean id="sqlSessionSubClient" class="org.mybatis.spring.SqlSessionTemplate">
+			<constructor-arg index="0" ref="sqlSessionFactorySubClient" />
+		</bean>
+	<!-- 가맹직원관리 -->
+		<bean id="sqlSessionFactorySubStaff" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			<property name="mapperLocations" value="classpath:com/cafe24/seoje1004/subStaff/repository/ContractMapper.xml" />
+		</bean>
+		<bean id="sqlSessionSubStaff" class="org.mybatis.spring.SqlSessionTemplate">
+			<constructor-arg index="0" ref="sqlSessionFactorySubStaff" />
+		</bean>
+	<!-- 가맹관리 -->
+		<bean id="sqlSessionFactorySub" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			<property name="mapperLocations" value="classpath:com/cafe24/seoje1004/sub/repository/ContractMapper.xml" />
+		</bean>
+		<bean id="sqlSessionSub" class="org.mybatis.spring.SqlSessionTemplate">
+			<constructor-arg index="0" ref="sqlSessionFactorySub" />
+		</bean>
 </beans>
