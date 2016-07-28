@@ -3,5 +3,61 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.seoje1004.contract.repository.ContractMapper">
+	
+	<!-- contract객체등록 -->
+	<resultMap type="com.cafe24.seoje1004.contract.model.Contract" id="contractListMap">
+		<id property="contractCode" column="contract_code"/>
+		<result property="contractName" column="contract_name"/>
+		<result property="contractRegitDate" column="contract_regit_date"/>
+		<result property="contractActualDate" column="contract_actual_date"/>
+		<result property="contractExpiryDate" column="contract_expiry_date"/>
+		<result property="contractDeposit" column="contract_deposit"/>
+		<result property="contractN" column="contract_n"/>
+		<result property="contractExpireDate" column="contract_expire_date"/>
+		<result property="headStaffId" column="head_staff_id"/>
+		<result property="subCode" column="sub_code"/>
+		<result property="reContractStatus" column="re_contract_status"/>
+	</resultMap>
+
+ 	<!-- 가맹이 해당가맹의 계약리스트를 리뷰 -->
+	<select id="subViewContractList"
+			parameterType="java.util.Map"
+			resultMap="contractListMap">
+		
+		SELECT
+			contract_code,
+			contract_name,
+			contract_regit_date,
+			contract_actual_date,
+			contract_expiry_date,
+			contract_n,
+			contract_expire_date,
+			sub_code,
+			re_contract_status
+		FROM
+			contract
+		
+		<where>
+			sub_code = #{subCode}
+			
+			<if test="contractSearch.regitDateStart != null and contractSearch.regitDateEnd != null and contractSearch.regitDateStart !='' and contractSearch.regitDateEnd !=''">
+							AND	<![CDATA[date(contract_regit_date) >= #{contractSearch.regitDateStart} and date(contract_regit_date) <= #{contractSearch.regitDateEnd}]]>  
+			</if>
+			<if test="contractSearch.searchKey != null and contractSearch.searchKey != '' and contractSearch.searchContract != null and contractSearch.searchContract != ''">
+				
+				AND  ${contractSearch.searchKey} like CONCAT('%',#{contractSearch.searchContract},'%') 
+			</if> 
+		</where> 
+		<trim prefix="ORDER BY">
+			<if test="contractSearch.criteria == null or contractSearch.criteria == ''">
+				contract_regit_date
+			</if>
+			<if test="contractSearch.criteria != null or contractSearch.criteria != ''">
+				${contractSearch.criteria} ${contractSearch.upDown}
+			</if>
+		</trim>
+		
+		
+	</select>
 
 </mapper>
