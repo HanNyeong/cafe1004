@@ -25,6 +25,7 @@ public class Contract {
 	private String headStaffId;						//본사 계약 담당 직원
 	private String subCode;							//가맹 대표 코드
 	private String reContractStatus;				//재계약을했는지 안했는지(했으면 Y)
+	private String headContractConfirm;				//본사확인여부 (기본값 N 승인하면 Y)				
 	public String getContractCode() {
 		return contractCode;
 	}
@@ -109,17 +110,23 @@ public class Contract {
 	public void setReContractStatus(String reContractStatus) {
 		this.reContractStatus = reContractStatus;
 	}
-	
+	public String getHeadContractConfirm() {
+		return headContractConfirm;
+	}
+	public void setHeadContractConfirm(String headContractConfirm) {
+		this.headContractConfirm = headContractConfirm;
+	}
 	@Override
 	public String toString() {
-		return "contract [contractCode=" + contractCode + ", contractName=" + contractName + ", contractRegitDate="
+		return "Contract [contractCode=" + contractCode + ", contractName=" + contractName + ", contractRegitDate="
 				+ contractRegitDate + ", contractActualDate=" + contractActualDate + ", contractExpiryDate="
 				+ contractExpiryDate + ", contractDeposit=" + contractDeposit + ", contractProfitPercent="
 				+ contractProfitPercent + ", contractFile=" + contractFile + ", contractN=" + contractN
 				+ ", contractExpireDate=" + contractExpireDate + ", contractExpireFile=" + contractExpireFile
 				+ ", headStaffId=" + headStaffId + ", subCode=" + subCode + ", reContractStatus=" + reContractStatus
-				+ "]";
+				+ ", headContractConfirm=" + headContractConfirm + "]";
 	}
+	
 	
 	
 	

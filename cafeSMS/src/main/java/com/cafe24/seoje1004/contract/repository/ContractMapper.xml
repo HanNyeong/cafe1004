@@ -17,7 +17,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="headStaffId" column="head_staff_id"/>
 		<result property="subCode" column="sub_code"/>
 		<result property="reContractStatus" column="re_contract_status"/>
+		<result property="headContractConfirm" column="head_contract_confirm"/>
+		<result property="contractProfitPercent" column="contract_profit_percent"/>
+		
 	</resultMap>
+	
+	<!-- contractFile객체등록 -->
+	<resultMap type="com.cafe24.seoje1004.contract.model.ContractFile" id="contractFileListMap">
+		<id property="contractFileCode" column="contract_file_code"/>
+		<result property="contractCode" column="contract_code"/>
+		<result property="contractFile" column="contract_file"/>
+		<result property="fileName" column="file_name"/>
+		<result property="randomName" column="random_name"/>
+		<result property="fileStatus" column="file_status"/>
+		
+	</resultMap>
+	
 
  	<!-- 가맹이 해당가맹의 계약리스트를 리뷰 -->
 	<select id="subViewContractList"
@@ -59,5 +74,228 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 		
 	</select>
-
+	
+	<!-- subCode가 있는지 중복체크 -->
+	<select id="subCodeCheck"
+			parameterType="String"
+			resultMap="contractListMap">
+		SELECT
+			contract_code
+		FROM
+			contract
+		WHERE
+			sub_code = #{subCode}
+	
+	</select>
+	
+	
+	<!-- 가맹이 계약을 신청 -->
+	<insert id="subAddContract"
+		parameterType="com.cafe24.seoje1004.contract.model.Contract">
+		<selectKey resultType="hashmap" keyProperty="contractCode" order="BEFORE">
+			select if(isnull(contract_code),'contract_code1', concat('contract_code',MAX(CONVERT(SUBSTRING(contract_code,14), UNSIGNED))+1))
+			as contractCode
+			from contract
+		</selectKey>	
+			INSERT INTO contract
+			(contract_code
+			,contract_name
+			,contract_regit_date
+			,contract_actual_date
+			,contract_expiry_date
+			,contract_deposit
+			,contract_profit_percent
+			,contract_n
+			,head_staff_id
+			,sub_code
+			)
+			
+			VALUES(
+			#{contractCode}
+			,#{contractName}
+			,NOW()
+			,#{contractActualDate}
+			,#{contractExpiryDate}
+			,#{contractDeposit}
+			,#{contractProfitPercent}
+			,#{contractN}
+			,#{headStaffId}
+			,#{subCode}
+			)
+			
+	
+	</insert>
+	
+	<!-- 랜덤네임이 존재하는지 여부를확인 (중복되지 않은것만 저장해야함) -->
+	<select id="selectContractFileByRandomName"
+			parameterType="String"
+			resultMap="contractListMap">
+		SELECT
+			contract_code,
+			file_name
+		FROM
+			contract_file
+		WHERE
+			random_name = #{randomName}		
+	
+	</select>
+	
+	<!-- 가맹이 계약파일정보 신청 -->
+	<insert id="subAddContractFile"
+		parameterType="com.cafe24.seoje1004.contract.model.ContractFile">
+		<selectKey resultType="hashmap" keyProperty="contractFileCode" order="BEFORE">
+			select if(isnull(contract_file_code),'contract_file_code1', concat('contract_file_code',MAX(CONVERT(SUBSTRING(contract_file_code,19), UNSIGNED))+1))
+			as contractFileCode
+			from contract_file
+		</selectKey>
+		INSERT INTO contract_file
+		(contract_file_code
+		,contract_code
+		,contract_file
+		,file_name
+		,random_name
+		)
+		VALUES
+		(#{contractFileCode}
+		,#{contractCode}
+		,#{contractFile}
+		,#{fileName}
+		,#{randomName}
+		)
+		
+	</insert>
+	
+	<!-- 가맹이 계약상세정보를 조회 -->
+	<select id="subViewContractContent"
+			parameterType="String"
+			resultMap="contractListMap">
+		SELECT
+			contract_code,
+			contract_name,
+			contract_regit_date,
+			contract_actual_date,
+			contract_expiry_date,
+			contract_deposit,
+			contract_profit_percent,
+			contract_n,
+			contract_expire_date,
+			head_staff_id,
+			sub_code,
+			re_contract_status,
+			head_contract_confirm	
+		FROM
+			contract
+		WHERE
+			contract_code = #{contractCode}
+	</select>
+	
+	<!-- 가맹이 해당 계약의 파일리스트를 리뷰 -->
+	<select id="subViewContractFile"
+			parameterType="String"
+			resultMap="contractFileListMap">
+		SELECT
+			contract_file_code,
+			contract_code,
+			contract_file,
+			file_name,
+			random_name,
+			file_status
+		FROM
+			contract_file
+		WHERE
+			contract_code = #{contractCode} and file_status ="N"
+	</select>
+	
+	<!-- 가맹이 해당계약의 파기 파일 사유서 파일 리스트를 리뷰 -->
+	<select id="subViewContractExpireFile"
+			parameterType="String"
+			resultMap="contractFileListMap">
+		SELECT
+			contract_file_code,
+			contract_code,
+			contract_file,
+			file_name,
+			random_name,
+			file_status
+		FROM
+			contract_file
+		WHERE
+			contract_code = #{contractCode} and file_status ="Y"
+	</select>
+	
+	<!-- 해당 contractCode에 해당하는 계약정보를 재계약 신청폼으로 -->
+	<select id="subSelectContract"
+			parameterType="String"
+			resultMap="contractListMap">
+		SELECT
+			contract_code,
+			contract_name,
+			contract_regit_date,
+			contract_actual_date,
+			contract_expiry_date,
+			contract_deposit,
+			contract_profit_percent,
+			contract_n,
+			contract_expire_date,
+			head_staff_id,
+			sub_code,
+			re_contract_status,
+			head_contract_confirm
+		FROM
+			contract
+		WHERE
+			contract_code = #{contractCode}
+	
+	</select>
+	
+	<!-- 쟤계약 신청 등록 -->
+	<insert id="subAddRecharterContract"
+				parameterType="com.cafe24.seoje1004.contract.model.Contract">
+		<selectKey resultType="hashmap" keyProperty="contractCode" order="BEFORE">
+			select if(isnull(contract_code),'contract_code1', concat('contract_code',MAX(CONVERT(SUBSTRING(contract_code,14), UNSIGNED))+1))
+			as contractCode
+			from contract
+		</selectKey>	
+			INSERT INTO contract
+			(contract_code
+			,contract_name
+			,contract_regit_date
+			,contract_actual_date
+			,contract_expiry_date
+			,contract_deposit
+			,contract_profit_percent
+			,contract_n
+			,head_staff_id
+			,sub_code
+			)
+			
+			VALUES(
+			#{contractCode}
+			,#{contractName}
+			,NOW()
+			,#{contractActualDate}
+			,#{contractExpiryDate}
+			,#{contractDeposit}
+			,#{contractProfitPercent}
+			,#{contractN}
+			,#{headStaffId}
+			,#{subCode}
+			)
+			
+	
+	</insert>
+	
+	<!-- 이전계약 상태 Y로 update -->
+	<update id="subUpdatePreContract"
+			parameterType="String">
+		UPDATE
+			contract
+		SET
+			re_contract_status = "Y"
+		WHERE
+			contract_code = #{contractCode}	
+	
+	</update>
+	
+	
 </mapper>

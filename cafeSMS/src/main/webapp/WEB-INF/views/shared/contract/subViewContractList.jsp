@@ -124,34 +124,47 @@
 		</form>
 	
 	<hr/>
-	<table border="1">
-		<tr>
-			<th>contractCode<span id="contractCodeUp">▲</span><span id="contractCodeDown">▼</span></th>
-			<th>contractName<span id="contractNameUp">▲</span><span id="contractNameDown">▼</span></th>
-			<th>contractRegitDate<span id="contractRegitDateUp">▲</span><span id="contractRegitDateDown">▼</span></th>
-			<th>contractActualDate<span id="contractActualDateUp">▲</span><span id="contractActualDateDown">▼</span></th>
-			<th>contractExpiryDate<span id="contractExpiryDateUp">▲</span><span id="contractExpiryDateDown">▼</span></th>
-			<th>contractN</th>
-			<th>contractExpireDate<span id="contractExpireDateUp">▲</span><span id="contractExpireDateDown">▼</span></th>
-			<th>subCode</th>
-			<th>reContractStatus</th>			
-		</tr>
+	<div>
+		<div>
+			contractCode<span id="contractCodeUp">▲</span><span id="contractCodeDown">▼</span>
+			contractName<span id="contractNameUp">▲</span><span id="contractNameDown">▼</span>
+			contractRegitDate<span id="contractRegitDateUp">▲</span><span id="contractRegitDateDown">▼</span>
+			contractActualDate<span id="contractActualDateUp">▲</span><span id="contractActualDateDown">▼</span>
+			contractExpiryDate<span id="contractExpiryDateUp">▲</span><span id="contractExpiryDateDown">▼</span>
+			contractN
+			contractExpireDate<span id="contractExpireDateUp">▲</span><span id="contractExpireDateDown">▼</span>
+			subCode
+			reContractStatus	
+			[상세보기]
+			[재계약]		
+		</div>
 		
 		<c:forEach var="subContractList" items="${subContractList}">
-			<tr>
-			<td>${subContractList.contractCode}</td>
-			<td>${subContractList.contractName}</td>
-			<td>${subContractList.contractRegitDate}</td>
-			<td>${subContractList.contractActualDate}</td>
-			<td>${subContractList.contractExpiryDate}</td>
-			<td>${subContractList.contractN}</td>
-			<td>${subContractList.contractExpireDate}</td>
-			<td>${subContractList.subCode}</td>
-			<td>${subContractList.reContractStatus}</td>
-			<tr/>
+			<div>
+			${subContractList.contractCode}
+			${subContractList.contractName}
+			${subContractList.contractRegitDate}
+			${subContractList.contractActualDate}
+			${subContractList.contractExpiryDate}
+			${subContractList.contractN}
+			${subContractList.contractExpireDate}
+			${subContractList.subCode}
+			${subContractList.reContractStatus}
+			<a href="/subViewContractContent?contractCode=${subContractList.contractCode}">[상세보기]</a>
+			
+			<c:if test="${subContractList.contractExpireDate ==null && subContractList.reContractStatus == 'N'}">
+				<a href="/subAddRecharterContract?contractCode=${subContractList.contractCode}">[재계약]</a>
+			</c:if>
+			
+			</div>
 		</c:forEach>
 	
-	</table>
+	</div>
+	<hr/>
+	<h1>계약등록 링크</h1>
+	<div>
+		<a href="/subAddContract">[계약등록]</a>
+	</div>
 	
 </body>
 </html>
