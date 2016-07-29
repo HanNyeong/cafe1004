@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cafe24.seoje1004.headItem.repository.HeadItemMapper">
+	<resultMap type="com.cafe24.seoje1004.headItem.model.HeadSearch" id="headItemResultMap">
+		<id property="hItemCode" column="h_item_code"/>
+		<result property="hItemName" column="h_item_name"/>
+		<result property="inteCode" column="inte_code"/>
+		<result property="hItemQuantity" column="h_item_quantity"/>
+		<result property="hItemUnit" column="h_item_unit"/>
+		<result property="hItemSellingPrice" column="h_item_selling_price"/>
+		<result property="hItemRegitDate" column="h_item_regit_date"/>
+		<result property="headStaffId" column="head_staff_id"/>
+		<result property="hItemRetailPrice" column="h_item_regit_price"/>
+	</resultMap>
+	<select id="viewHeadItemList"
+		parameterType="com.cafe24.seoje1004.headItem.model.HeadSearch"
+		resultMap="headItemResultMap">
+		SELECT h_item_code, h_item_name, inte_code, h_item_quantity, h_item_unit, h_item_selling_price, h_item_regit_date, head_staff_id, h_item_retail_price
+		FROM head_item
+		<where>
+			<if test="headSearch.regitDateStart != null and headSearch.regitDateEnd != null and headSearch.regitDateStart !='' and headSearch.regitDateEnd !=''">
+				AND <![CDATA[date(h_item_regit_date) >= #{headSearch.regitDateStart} and date(h_item_regit_date) <= #{headSearch.regitDateEnd}]]>  
+			</if>
+			<if test="headSearch.searchKey != null and headSearch.searchKey != '' and headSearch.searchsearchHeadItem != null and headSearch.searchHeadItem != ''">
+					AND  ${headSearch.searchKey} like CONCAT('%',#{headSearch.searchSubStaff},'%') 
+			</if>
+			
+		</where>
+		<if test="headSearch.criteria == null and headSearch.upDown == null">
+			order by sub_staff_regit_date desc
+		</if>
+		<if test="headSearch.criteria != null and headSearch.upDown != null and headSearch.criteria != null and headSearch.upDown != ''">
+			order by ${headSearch.criteria} ${headSearch.upDown}
+		</if>
+	</select>
+</mapper>

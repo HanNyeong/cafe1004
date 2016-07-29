@@ -57,7 +57,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </insert>
    
    <select id="selectSubStaff"
-      resultMap="subStaffResultMap">
+   		parameterType="com.cafe24.seoje1004.subStaff.model.SubStaff"
+     	resultMap="subStaffResultMap">
 	      SELECT 
 	         sub_staff_code,
 	         sub_staff_name, 
