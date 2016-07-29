@@ -23,6 +23,6 @@ public class ClientController {
 		System.out.println(subCode+"<-----subCode잘들어왔나 확인");
 		List<Client> clientList = clientService.viewClientListService(subCode);
 		model.addAttribute("clientList",clientList);
-		return "/sub/subClient/viewClientList";
+		return "/sub/subClient/subViewSubClientList";
 	}
 }
