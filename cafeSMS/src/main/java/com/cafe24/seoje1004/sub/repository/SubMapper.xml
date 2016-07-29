@@ -4,8 +4,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.seoje1004.sub.repository.SubMapper">
 
-	<resultMap type="com.cafe24.seoje1004.sub.model.Sub" id="subListMap">
+	<resultMap type="com.cafe24.seoje1004.sub.model.Sub" id="subResultMap">
 		<id property="subCode" column="sub_code"/>
+		<result property="subPassword" column="sub_password"/>
 		<result property="subRegitDate" column="sub_regit_date"/>
 		<result property="subName" column="sub_name"/>
 		<result property="subKeeper" column="sub_keeper"/>
@@ -14,9 +15,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="headStaffId" column="head_staff_id"/>
 	</resultMap>
 	
+	<!-- 가맹 등록 insert쿼리 
+		자동으로 sub_code값이 +1됩니다.-->
+	<insert id="addSub"
+		parameterType="com.cafe24.seoje1004.sub.model.Sub"
+		useGeneratedKeys="true"
+		keyProperty="subCode">
+		<selectKey resultType="hashmap" keyProperty="subCode" order="BEFORE">
+			select if(isnull(sub_code),'sub_code1000', concat('sub_code', MAX(CONVERT(SUBSTRING(sub_code,9), UNSIGNED))+1)) as subCode from sub
+		</selectKey>
+		INSERT INTO
+			sub(sub_code,sub_password,head_staff_id,sub_regit_date,sub_name,sub_keeper,sub_telephone,sub_addr)
+			VALUES(
+				#{subCode},
+				#{subPassword},
+				#{headStaffId},
+				NOW(),
+				#{subName},
+				#{subKeeper},
+				#{subTelephone},
+				#{subAddr})
+	</insert>
+	
 	<!-- 가맹 하나를 조회하는 select쿼리 -->
 	<select id="selectSub"
-		resultMap="subListMap">
+		resultMap="subResultMap">
 		SELECT sub_code, sub_regit_date, sub_name, sub_keeper, sub_telephone, sub_addr, head_staff_id
 		FROM sub	
 		WHERE sub_code = #{subCode}
@@ -38,5 +61,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			
 	</update>
 	
-	
+	<!-- 가맹 로그인하는 select쿼리 -->
+	<select id="loginSub"
+		parameterType="com.cafe24.seoje1004.sub.model.Sub"
+		resultMap="subResultMap">
+		SELECT sub_code,sub_name,sub_keeper
+		FROM sub
+		WHERE 
+			sub_code = #{subCode} and sub_password = #{subPassword}
+	</select>
 </mapper>

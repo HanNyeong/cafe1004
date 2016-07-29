@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    <!-- POJO객체와 DB column명을 맞춰줍니다 -->
    <resultMap type="com.cafe24.seoje1004.subStaff.model.SubStaff" id="subStaffResultMap">
-      <id property="subStaffId" column="sub_staff_id"/>
+      <id property="subStaffCode" column="sub_staff_code"/>
       <result property="subStaffPw" column="sub_staff_pw"/>
       <result property="subStaffName" column="sub_staff_name"/>
       <result property="subStaffLevel" column="sub_staff_level"/>
@@ -26,8 +26,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       parameterType="com.cafe24.seoje1004.subStaff.model.SubStaff"
       useGeneratedKeys="true"
       keyProperty="subStaffId">
-      <selectKey resultType="hashmap" keyProperty="subStaffId,totalAccountGroup" order="BEFORE">
-         select if(isnull(sub_staff_id),'sub_staff1000', concat('sub_staff', MAX(CONVERT(SUBSTRING(sub_staff_id,10), UNSIGNED))+1)) as subStaffId, 
+      <selectKey resultType="hashmap" keyProperty="subStaffCode,totalAccountGroup" order="BEFORE">
+         select if(isnull(sub_staff_code),'sub_staff_code1000', concat('sub_staff_code', MAX(CONVERT(SUBSTRING(sub_staff_code,15), UNSIGNED))+1)) as subStaffCode, 
          if(isnull(total_account_group),'total_account_group1000', concat('total_account_group', MAX(CONVERT (SUBSTRING(total_account_group,20), UNSIGNED))+1)) as totalAccountGroup 
          from sub_staff
       </selectKey>
@@ -36,7 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       	sub_staff(
       		total_account_group,
             sub_code,
-            sub_staff_id, 
+            sub_staff_code, 
             sub_staff_pw, 
             sub_staff_name, 
             sub_staff_level, 
@@ -60,7 +60,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <select id="selectSubStaff"
       resultMap="subStaffResultMap">
       SELECT 
-         sub_staff_id,
+         sub_staff_code,
          sub_staff_name, 
          sub_code, 
          sub_staff_level,
@@ -72,7 +72,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       FROM 
          sub_staff
       WHERE
-         sub_staff_id = #{subStaffId}
+         sub_staff_code = #{subStaffCode}
    </select>
    <update id="modifySubStaff"
       parameterType="com.cafe24.seoje1004.subStaff.model.SubStaff">
@@ -83,7 +83,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          sub_staff_level= #{subStaffLevel},
          sub_staff_salary= #{subStaffSalary}
       WHERE 
-         sub_staff_id = #{subStaffId}
+         sub_staff_code = #{subStaffCode}
    </update>
    
    <!-- 가맹 리스트를 컬럼별 조회하는 select쿼리 -->
@@ -91,19 +91,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		parameterType="java.util.Map"
 		resultMap="subStaffResultMap">
 		SELECT 
-			sub_staff_id,
-	         sub_staff_name, 
-	         sub_code, 
-	         sub_staff_level,
-	         sub_staff_join,
-	         sub_staff_resign,
-	         head_staff_id,
-	         sub_staff_permit_date,
-	         sub_staff_regit_date,
-	         sub_staff_salary      
+			sub_staff_code,sub_staff_name,sub_code, sub_staff_level,sub_staff_join,sub_staff_resign,head_staff_id,sub_staff_permit_date,sub_staff_regit_date,sub_staff_salary      
 		FROM 
 			sub_staff
-		
 		<where>
 			<if test="subStaffSearch.regitDateStart != null and subStaffSearch.regitDateEnd != null and subStaffSearch.regitDateStart !='' and subStaffSearch.regitDateEnd !=''">
 				<![CDATA[date(sub_staff_regit_date) >= #{subStaffSearch.regitDateStart} and date(sub_staff_regit_date) <= #{subStaffSearch.regitDateEnd}]]>  

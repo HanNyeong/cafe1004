@@ -15,7 +15,7 @@ public class SubStaffDaoImpl implements SubStaffDao{
 	@Autowired
 	private SqlSessionTemplate sqlSessionSubStaff;
 	
-	private final String NS = "org.ksmart02.cafe.subStaff.repository.SubStaffMapper";
+	private final String NS = "com.cafe24.seoje1004.subStaff.repository.SubStaffMapper";
 	/**
 	 * 가맹 직원 등록 메서드 입니다.
 	 * 매개변수로 가맹직원정보(subStaff)를 받아서

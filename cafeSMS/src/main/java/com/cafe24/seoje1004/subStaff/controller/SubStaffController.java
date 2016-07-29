@@ -14,7 +14,6 @@ import com.cafe24.seoje1004.subStaff.model.SubStaffSearch;
 import com.cafe24.seoje1004.subStaff.service.SubStaffService;
 
 @Controller
-@SessionAttributes("subStaffLogin")
 public class SubStaffController {
 	
 	@Autowired

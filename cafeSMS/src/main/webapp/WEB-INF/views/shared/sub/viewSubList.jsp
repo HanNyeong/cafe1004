@@ -9,30 +9,18 @@
 <script type="text/javascript" src="resources/js/subListPop.js"></script>
 </head>
 <body>
-	<table>
-	      <tr>
-		     	<th>가맹 대표 코드</th>
-				<th>본사 직원 ID</th>
-				<th>가맹 등록 날짜</th>
-				<th>가맹점 명</th>
-				<th>가맹 점주 명</th>
-				<th>연락처</th>
-				<th>주소</th>
-				<th></th>	         
-	      </tr>
-	      <tr>
-	         <td>${subList.subCode}</td>
-	         <td>${subList.headStaffId}</td>
-	         <td>${subList.subRegitDate}</td>
-	         <td>${subList.subName}</td>
-	         <td>${subList.subKeeper}</td>
-	         <td>${subList.subTelephone}</td>
-	         <td>${subList.subAddr}</td>
-	         <td>
-	            <a href="/headModifySub?subCode=${subList.subCode}"><input type="button" value="수정"/></a>
-	         </td>
-	      </tr>
-	</table>
-<a href="/">홈으로</a>
+	<div>
+
+		     	<div>가맹 대표 코드 : ${subList.subCode}</div>
+				<div>본사 직원 ID : ${subList.headStaffId}</div>
+				<div>가맹 등록 날짜 : ${subList.subRegitDate}</div>
+				<div>가맹점 명 : ${subList.subName}</div>
+				<div>가맹 점주 명 :${subList.subKeeper} </div>
+				<div>연락처 : ${subList.subTelephone}</div>
+				<div>주소 : ${subList.subAddr}</div>
+
+	            
+	</div>
+홈으로
 </body>
 </html>

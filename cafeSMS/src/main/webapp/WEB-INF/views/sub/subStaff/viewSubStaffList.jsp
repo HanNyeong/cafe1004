@@ -50,7 +50,7 @@
 				$('#subSalaryForm').submit();
 			}
 			
-			
+		
 		});
 	});
 </script>
@@ -78,56 +78,50 @@
 		<input type="text" id="searchSubStaff" name="searchSubStaff" value="${subStaffSearch.searchSubStaff}"/>
 		<input type="button" id="searchBtn" value="검색" /><a href="/viewSubStaffList"><input type="button" value="전체보기"/></a>
 	</form>
-   <div>
-      <a href="/subAddSubStaff"><input type="button" value="가맹등록"/></a>
-   </div>
-   <table>
-         <tr>
-            <th>가맹 직원 ID<span class="up">▲</span><span class="down">▼</span></th>
-            <th>직원 이름</th>
-            <th>가맹 대표 코드<span class="up">▲</span><span class="down">▼</span></th>
-            <th>직급</th>
-            <th>입사일<span class="up">▲</span><span class="down">▼</span></th>
-            <th>퇴사일<span class="up">▲</span><span class="down">▼</span></th>
-            <th>급여<span class="up">▲</span><span class="down">▼</span></th>
-           	<!-- 급여는 가맹만 조회가능 -->
-            <th>등록일자<span class="up">▲</span><span class="down">▼</span></th>
-            <th>본사 승인 직원 ID</th>
-            <th>승인 날짜<span class="up">▲</span><span class="down">▼</span></th>
-            <th></th>
-         </tr>
-      <c:forEach var="subStaffList" items="${subStaffList}">
-         <tr>
-            <td>${subStaffList.subStaffId}</td>
-            <td>${subStaffList.subStaffName}</td>
-            <td>${subStaffList.subCode}</td>
-            <td>${subStaffList.subStaffLevel}</td>
-            <td>${subStaffList.subStaffJoin}</td>
-            <td>${subStaffList.subStaffResign}</td>
-            <td>${subStaffList.subStaffSalary}</td>
-            <td>${subStaffList.subStaffRegitDate}</td>
-            <td>${subStaffList.headStaffId}</td>
-            <td>${subStaffList.subStaffPermitDate}</td>
-            <td>
-            	<c:if test="${subStaffLogin != null}">
-            		<a href="/subModifySubStaff?subStaffId=${subStaffList.subStaffId}"><input type="button" value="수정"/></a>
-            		<a href="/subModifySubStaffByRegsign?subStaffId=${subStaffList.subStaffId}"><input type="button" value="퇴사"/></a>
-            		<form action="" method="POST" class="subSalaryForm">
-            			<span class="subSalayYard"></span>
-	            		<input type="button" class="subSalary" name="subSalary" value="급여지급"/>
-            		</form>
-           		</c:if>
-            	<c:if test="${subStaffList.subStaffPermitDate == null and headStaffLogin != null}">
-	            	<a href="/headModifySubStaffByPermit?subStaffId=${subStaffList.subStaffId}"><input type="button" value="승인"></a>
-            	</c:if>
-            </td>
-         </tr>
-      </c:forEach>
-   </table>
-   <form action="/subStaffSalary" method="POST" id="subSalaryForm">
+	<div>
+		<a href="/subAddSubStaff"><input type="button" value="가맹등록"/></a>
+	</div>
+	<P>
+		가맹 직원 ID<span class="up">▲</span><span class="down">▼</span>
+		직원 이름
+		가맹 대표 코드<span class="up">▲</span><span class="down">▼</span>
+		직급
+		 입사일<span class="up">▲</span><span class="down">▼</span>
+		 퇴사일<span class="up">▲</span><span class="down">▼</span>
+		 급여<span class="up">▲</span><span class="down">▼</span>
+		 <!-- 급여는 가맹만 조회가능 -->
+		 등록일자<span class="up">▲</span><span class="down">▼</span>
+		 본사 승인 직원 ID
+		 승인 날짜<span class="up">▲</span><span class="down">▼</span>
+	 </P>        
+	<c:forEach var="subStaffList" items="${subStaffList}">
+		<p>
+			${subStaffList.subStaffId}
+			${subStaffList.subStaffName}
+			${subStaffList.subCode}
+			${subStaffList.subStaffLevel}
+			${subStaffList.subStaffJoin}
+			${subStaffList.subStaffResign}
+			${subStaffList.subStaffSalary}
+			${subStaffList.subStaffRegitDate}
+			${subStaffList.headStaffId}
+			${subStaffList.subStaffPermitDate}
+			<c:if test="${subLogin != null}">
+				<a href="/subModifySubStaff?subStaffId=${subStaffList.subStaffId}"><input type="button" value="수정"/></a>
+				<a href="/subModifySubStaffByRegsign?subStaffId=${subStaffList.subStaffId}"><input type="button" value="퇴사"/></a>
+				<form action="" method="POST" class="subSalaryForm">
+					<span class="subSalayYard"></span>
+					<input type="button" class="subSalary" name="subSalary" value="급여지급"/>
+				</form>
+			</c:if>
+			<c:if test="${subStaffList.subStaffPermitDate == null and headStaffLogin != null}">
+				<a href="/headModifySubStaffByPermit?subStaffId=${subStaffList.subStaffId}"><input type="button" value="승인"></a>
+			</c:if>
+		</p>
+	</c:forEach>
+	<form action="/subStaffSalary" method="POST" id="subSalaryForm">
 		<span id="subSalayYard"></span>
-   		<input type="button" id="subSalary" name="subSalary" value="급여지급"/>
+		<input type="button" id="subSalary" name="subSalary" value="급여지급"/>
 	</form>
-	
 </body>
 </html>
