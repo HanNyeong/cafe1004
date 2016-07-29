@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.cafe24.seoje1004.sub.model.SubLogin;
 import com.cafe24.seoje1004.subStaff.model.SubStaff;
 import com.cafe24.seoje1004.subStaff.model.SubStaffSearch;
 import com.cafe24.seoje1004.subStaff.service.SubStaffService;
@@ -57,10 +58,10 @@ public class SubStaffController {
 	 * @return
 	 */
 	@RequestMapping(value="/viewSubStaffList")
-	public String viewSubStaffList(Model model,SubStaffSearch subStaffSearch){
+	public String viewSubStaffList(Model model,SubStaffSearch subStaffSearch,SubLogin subLogin){
 		System.out.println("SubStaffController viewSubStaffList실행");
 		System.out.println(subStaffSearch);
-		model.addAttribute("subStaffList",subStaffService.viewSubStaffListService(subStaffSearch));
+		model.addAttribute("subStaffList",subStaffService.viewSubStaffListService(subStaffSearch,subLogin));
 		model.addAttribute("subStaffSearch",subStaffSearch);
 		return "/sub/subStaff/viewSubStaffList";
 	}
@@ -132,7 +133,7 @@ public class SubStaffController {
 	   public String subModifySubStaffByRegsign(Model model,SubStaff subStaff){
 		   System.out.println("SubStaffController subModifySubStaffByRegsign실행");
 		   subStaffService.subModifySubStaffByResignService(subStaff);
-		   return "redirect:/viewSubStaffList";
+		   return "redirect:/viewSubStaffList?subCode="+subStaff.getSubCode();
 	   }
 	   
 	   /**

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.cafe24.seoje1004.sub.model.Sub;
+import com.cafe24.seoje1004.sub.model.SubLogin;
 import com.cafe24.seoje1004.sub.service.SubService;
 
 @Controller
@@ -95,11 +96,11 @@ public class SubController {
 	public String loginSub(Model model ,Sub sub){
 		System.out.println("SubController loginSub실행");
 		String result = "";
-		Sub reSub = subService.loginSubService(sub);
-		if(reSub == null){
+		SubLogin subLogin = subService.loginSubService(sub);
+		if(subLogin == null){
 			result = "/home";
 		}else{
-			model.addAttribute("subLogin", reSub);
+			model.addAttribute("subLogin", subLogin);
 			result = "redirect:/";
 		}
 		return result;

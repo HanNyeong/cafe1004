@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cafe24.seoje1004.sub.model.Sub;
+import com.cafe24.seoje1004.sub.model.SubLogin;
 
 @Repository
 public class SubDaoImpl implements SubDao{
@@ -56,7 +57,7 @@ public class SubDaoImpl implements SubDao{
 	 * 로그인을 처리를 하는 dao메서드입니다.
 	 */
 	@Override
-	public Sub loginSub(Sub sub) {
+	public SubLogin loginSub(Sub sub) {
 		System.out.println("SubDaoImpl loginSub실행");
 		return sqlSessionSub.selectOne(NS+".loginSub",sub);
 	}

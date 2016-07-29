@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cafe24.seoje1004.sub.model.SubLogin;
 import com.cafe24.seoje1004.subStaff.model.SubStaff;
 import com.cafe24.seoje1004.subStaff.model.SubStaffSearch;
 import com.cafe24.seoje1004.subStaff.repository.SubStaffDao;
@@ -39,11 +40,15 @@ public class SubStaffServiceImpl implements SubStaffService{
 	 * @return
 	 */
 	@Override
-	public List<SubStaff> viewSubStaffListService(SubStaffSearch subStaffSearch) {
+	public List<SubStaff> viewSubStaffListService(SubStaffSearch subStaffSearch,SubLogin subLogin) {
 		System.out.println("SubStaffServiceImpl viewSubStaffListService실행");
 		System.out.println("SubServiceImpl viewSubListService. 조회 실행");
+		if(subStaffSearch.getSearchKey() == "joinPermit" || subStaffSearch.getSearchKey() == "part_time_job"){
+			subStaffSearch.setSearchKey("sub_staff_permit_date");
+		}
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("subStaffSearch", subStaffSearch);
+		map.put("subLogin", subLogin);
 		return subStaffDao.viewSubStaffList(map);
 	}
 	/**

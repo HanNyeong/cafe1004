@@ -2,6 +2,7 @@ package com.cafe24.seoje1004.subStaff.service;
 
 import java.util.List;
 
+import com.cafe24.seoje1004.sub.model.SubLogin;
 import com.cafe24.seoje1004.subStaff.model.SubStaff;
 import com.cafe24.seoje1004.subStaff.model.SubStaffSearch;
 
@@ -19,7 +20,7 @@ public interface SubStaffService {
 	 * 가맹직원 리스트를 리턴하는 서비스 메서드입니다.
 	 * @return
 	 */
-	List<SubStaff> viewSubStaffListService(SubStaffSearch subStaffSearch);
+	List<SubStaff> viewSubStaffListService(SubStaffSearch subStaffSearch,SubLogin subLogin);
 
    /**
     * 가맹 직원 수정을 하는 서비스메서드 입니다.

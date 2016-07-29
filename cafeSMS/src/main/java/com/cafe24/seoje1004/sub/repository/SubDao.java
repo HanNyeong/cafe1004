@@ -1,6 +1,7 @@
 package com.cafe24.seoje1004.sub.repository;
 
 import com.cafe24.seoje1004.sub.model.Sub;
+import com.cafe24.seoje1004.sub.model.SubLogin;
 
 public interface SubDao {
 
@@ -39,7 +40,7 @@ public interface SubDao {
 	 * @param subStaff
 	 * @return
 	 */
-	Sub loginSub(Sub sub);
+	SubLogin loginSub(Sub sub);
 	
 
 }

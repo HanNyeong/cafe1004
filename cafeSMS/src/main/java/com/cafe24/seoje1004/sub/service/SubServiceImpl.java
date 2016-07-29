@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cafe24.seoje1004.sub.model.Sub;
+import com.cafe24.seoje1004.sub.model.SubLogin;
 import com.cafe24.seoje1004.sub.repository.SubDao;
 
 @Service
@@ -63,16 +64,16 @@ public class SubServiceImpl implements SubService{
 	 * 매개변수로 로그인정보를 받아서 dao에 매개변수로 줍니다.
 	 */
 	@Override
-	public Sub loginSubService(Sub sub) {
+	public SubLogin loginSubService(Sub sub) {
 		System.out.println("SubServiceImpl loginSubService실행");
 		
-		Sub reSub = null;
+		SubLogin subLogin = null;
 		
 		if(subDao.loginSub(sub) != null){
-			reSub = subDao.loginSub(sub);
+			subLogin = subDao.loginSub(sub);
 		}
-		System.out.println(reSub);
-		return reSub;
+		System.out.println(subLogin);
+		return subLogin;
 	}
 	
 

@@ -15,6 +15,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="headStaffId" column="head_staff_id"/>
 	</resultMap>
 	
+	<resultMap type="com.cafe24.seoje1004.sub.model.SubLogin" id="subLoginResultMap">
+		<id property="subCode" column="sub_code"/>
+		<result property="subName" column="sub_name"/>
+		<result property="subKeeper" column="sub_keeper"/>
+	</resultMap>
 	<!-- 가맹 등록 insert쿼리 
 		자동으로 sub_code값이 +1됩니다.-->
 	<insert id="addSub"
@@ -64,7 +69,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 가맹 로그인하는 select쿼리 -->
 	<select id="loginSub"
 		parameterType="com.cafe24.seoje1004.sub.model.Sub"
-		resultMap="subResultMap">
+		resultMap="subLoginResultMap">
 		SELECT sub_code,sub_name,sub_keeper
 		FROM sub
 		WHERE 

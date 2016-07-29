@@ -64,7 +64,7 @@
 <a href="/subViewContractList">[계약조회]</a>
 <a href="/headAddSub">가맹 등록</a>
 <a href="/modifySub?subCode=${subLogin.subCode}">가맹수정</a>
-<a href="/viewSubStaffList">가맹 직원 조회</a>
+<a href="/viewSubStaffList?subCode=${subLogin.subCode}">가맹 직원 조회</a>
 
 
 </body>

@@ -1,6 +1,7 @@
 package com.cafe24.seoje1004.sub.service;
 
 import com.cafe24.seoje1004.sub.model.Sub;
+import com.cafe24.seoje1004.sub.model.SubLogin;
 
 public interface SubService {
 	
@@ -31,12 +32,12 @@ public interface SubService {
 	int modifySubService(Sub sub);
 
 	/**
-	    *  가맹 로그인하는 서비스 메서드 입니다.
-	    *  매개변수로 로그인 정보를 받아서 로그인 성공 유무를 판단하고 
-	    *  결과를 리턴합니다.
-	    * @param subStaff
-	    * @return
-	    */
-	   Sub loginSubService(Sub sub);
+	 *  가맹 로그인하는 서비스 메서드 입니다.
+	 *  매개변수로 로그인 정보를 받아서 로그인 성공 유무를 판단하고 
+	 *  결과를 리턴합니다.
+	 * @param subStaff
+	 * @return
+	 */
+	SubLogin loginSubService(Sub sub);
 	
 }
