@@ -1,1 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cafe24.seoje1004.menu.repository.MenuMapper">
+   
+   <!-- POJO객체와 DB column명을 맞춰줍니다 -->
+   <resultMap type="com.cafe24.seoje1004.menu.model.Menu" id="MenuResultMap">
+      <id property="menuCode" column="menu_code"/>
+      <result property="menuName" column="menu_name"/>
+      <result property="menuIngrePrice" column="menu_ingre_price"/>
+      <result property="menuSellingPrice" column="menu_selling_price"/>
+      <result property="menuRegitDate" column="menu_regit_date"/>
+      <result property="eventCode" column="event_code"/>
+      <result property="headStaffId" column="head_staff_id"/>
+   </resultMap>
+
+   <!-- 메뉴 컬럼별 조회하는 select쿼리 -->
+	<select id="subViewMenuList"
+		parameterType="java.util.Map"
+		resultMap="MenuResultMap">
+		SELECT 
+			menu_code,
+			menu_name,
+			menu_ingre_price,
+			menu_selling_price,
+			menu_regit_date,
+			event_code,
+			head_staff_id     
+		FROM 
+			menu
+		<where>
+			<if test="menuSearch.regitDateStart != null and menuSearch.regitDateEnd != null and menuSearch.regitDateStart !='' and menuSearch.regitDateEnd !=''">
+				AND <![CDATA[date(menu_regit_date) >= #{menuSearch.regitDateStart} and date(menu_regit_date) <= #{menuSearch.regitDateEnd}]]>  
+			</if>
+			<if test="menuSearch.searchKey != null and menuSearch.searchKey != '' and menuSearch.searchMenu != null and menuSearch.searchMenu != ''">
+					AND  ${menuSearch.searchKey} like CONCAT('%',#{menuSearch.searchMenu},'%') 
+			</if>
+			
+		</where>
+		<if test="menuSearch.criteria == null and menuSearch.upDown == null">
+			order by menu_regit_date desc
+		</if>
+		<if test="menuSearch.criteria != null and menuSearch.upDown != null and menuSearch.criteria != null and menuSearch.upDown != ''">
+			order by ${menuSearch.criteria} ${menuSearch.upDown}
+		</if>
+
+	</select>
+</mapper>

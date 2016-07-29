@@ -30,7 +30,7 @@ public class SubStaffDaoImpl implements SubStaffDao{
 	
 
 	/**
-	 * 가맹직원 라스트 조회 메서드 입니다.
+	 * 가맹직원 리스트 조회 메서드 입니다.
 	 */
 	@Override
 	public List<SubStaff> viewSubStaffList(Map<String,Object> map) {

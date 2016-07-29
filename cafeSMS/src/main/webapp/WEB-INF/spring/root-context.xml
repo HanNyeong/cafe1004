@@ -61,4 +61,12 @@
 		<bean id="sqlSessionSub" class="org.mybatis.spring.SqlSessionTemplate">
 			<constructor-arg index="0" ref="sqlSessionFactorySub" />
 		</bean>
+	<!-- 메뉴 관리 -->
+		<bean id="sqlSessionFactoryMenu" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			<property name="mapperLocations" value="classpath:com/cafe24/seoje1004/menu/repository/MenuMapper.xml" />
+		</bean>
+		<bean id="sqlSessionMenu" class="org.mybatis.spring.SqlSessionTemplate">
+			<constructor-arg index="0" ref="sqlSessionFactoryMenu" />
+		</bean>
 </beans>

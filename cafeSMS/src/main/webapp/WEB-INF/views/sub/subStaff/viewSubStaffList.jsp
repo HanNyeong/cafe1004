@@ -5,11 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>viewSubStaffList</title>
-<style>
-	table,tr,td{
-		border: 1px solid black;
-	}
-</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
 	$.list = function(upDown,criteria){

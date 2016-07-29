@@ -2,7 +2,7 @@ package com.cafe24.seoje1004.menu.model;
 
 public class Menu {
 	private String menuCode;
-	private String menu_name;
+	private String menuName;
 	private String menuIngrePrice;
 	private String menuSellingPrice;
 	private String menuRegitDate;
@@ -15,11 +15,11 @@ public class Menu {
 	public void setMenuCode(String menuCode) {
 		this.menuCode = menuCode;
 	}
-	public String getMenu_name() {
-		return menu_name;
+	public String getMenuName() {
+		return menuName;
 	}
-	public void setMenu_name(String menu_name) {
-		this.menu_name = menu_name;
+	public void setMenuName(String menu_name) {
+		this.menuName = menu_name;
 	}
 	public String getMenuIngrePrice() {
 		return menuIngrePrice;
@@ -53,7 +53,7 @@ public class Menu {
 	}
 	@Override
 	public String toString() {
-		return "Menu [menuCode=" + menuCode + ", menu_name=" + menu_name + ", menuIngrePrice=" + menuIngrePrice
+		return "Menu [menuCode=" + menuCode + ", menuName=" + menuName + ", menuIngrePrice=" + menuIngrePrice
 				+ ", menuSellingPrice=" + menuSellingPrice + ", menuRegitDate=" + menuRegitDate + ", eventCode="
 				+ eventCode + ", headStaffId=" + headStaffId + "]";
 	}
