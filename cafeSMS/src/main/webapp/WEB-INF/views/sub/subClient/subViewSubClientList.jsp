@@ -1,12 +1,39 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>subClientView</title>
 </head>
 <body>
-
+	<h1>가맹거래처목록</h1>
+	<c:forEach var="clientList" items="${clientList}">
+		<div>
+			거래처코드 : ${clientList.subClientCode}
+		</div>
+		<div>
+			거래처명 : <a href="">${clientList.subClientName}</a>
+		</div>
+		<div>
+			거래처등록일 : ${clientList.subClientRegitDate}
+		</div>
+		<div>
+			거래처담당자명 : ${clientList.subClientInCharge}
+		</div>
+		<!-- 존폐의 유무를 생각해보자 -->
+		<div>
+			거래처계약상태 : ${clientList.subClientContract}
+		</div>
+		<div>
+			거래처연락처 : ${clientList.subClientPhone}
+		</div>
+		<div>
+			거래처주소 : ${clientList.subClientAddr}
+		</div>
+		<div>
+			가맹담장직원명 : ${clientList.subStaffName}
+		</div>
+	</c:forEach>
 </body>
 </html>
