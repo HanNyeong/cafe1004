@@ -189,7 +189,7 @@
 	<hr/>
 	<h1>계약등록 링크</h1>
 	<div>
-		<a href="/subAddContract">[계약등록]</a>
+		<a href="/subAddContract?subCode=${subCode}">[계약등록]</a>
 	</div>
 	
 </body>

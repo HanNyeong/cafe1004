@@ -27,10 +27,10 @@
 		      success	: function(str) {
 					console.log("성공");
 					if(str.result=="true"){
-						alert('사용할 수 있는 아이디입니다');
+						alert('사용할 수 있는 가맹대표코드입니다');
 						id = "OK";
 					}else{ 
-						alert('이미 존재하는 아이디입니다');
+						alert('이미 계약한 가맹대표코드입니다');
 						id = "NO";
 					}
 		      }
