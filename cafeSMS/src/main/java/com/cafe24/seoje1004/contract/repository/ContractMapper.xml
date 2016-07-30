@@ -374,4 +374,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</trim>
 	</select>
 	
+	
+	<!-- 본사에서 계약 승인처리 -->
+	<update id="headApproveContract"
+			parameterType="String">
+		UPDATE
+			contract
+		SET
+			head_contract_confirm	=	"Y"
+		WHERE
+			contract_code = #{contractCode}	
+			
+	</update>
+	
+	
 </mapper>

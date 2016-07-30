@@ -397,4 +397,12 @@ public class ContractServiceImpl implements ContractService {
 		return contractDao.headViewContract(map);
 	}
 
+	//본사에서 계약 승인처리
+	@Override
+	public void headApproveContract(String contractCode) {
+		System.out.println("ContractServiceImpl headApproveContract 실행");
+		
+		contractDao.headApproveContract(contractCode);
+	}
+
 }

@@ -36,5 +36,6 @@ public interface ContractDao {
 	
 	
 	public List<Contract> headViewContract(Map<String,Object> map);			//본사에서 전체 계약진행 리스트 조회
+	public void headApproveContract(String contractCode);	//본사에서 계약 승인처리
 	
 }

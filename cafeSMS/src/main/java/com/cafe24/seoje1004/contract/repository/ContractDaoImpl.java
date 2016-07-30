@@ -147,4 +147,11 @@ public class ContractDaoImpl implements ContractDao {
 		return sqlSessionContract.selectList(NS+".headViewContract", map);
 	}
 	
+	//본사에서 계약 승인처리
+	@Override
+	public void headApproveContract(String contractCode) {
+		System.out.println("ContractDaoImpl headApproveContract 실행");
+		sqlSessionContract.update(NS+".headApproveContract", contractCode);
+	}
+	
 }

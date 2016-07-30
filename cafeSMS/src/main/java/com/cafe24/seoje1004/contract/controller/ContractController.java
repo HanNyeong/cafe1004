@@ -194,20 +194,28 @@ public class ContractController {
 	@RequestMapping(value="/headViewContractList")	
 	public String headViewContractList(Model model, ContractSearch contractSearch){
 		System.out.println("contractController headViewContractList");
-		//1.본사에서 전체 계약진행 리스트 조회
+		//본사에서 전체 계약진행 리스트 조회
 		List<Contract> headContractList = contractService.headViewContract(contractSearch);
 		System.out.println("headContractList : "+headContractList);
 		
-		//2.본사에서 전체 계약신청 리스트 조회
-		
-	
 		model.addAttribute("headContractList", headContractList);
 		
 		return "/shared/contract/headViewContractList";
 	}
 	
 	
-			
+	//본사에서 신청이 들어온 계약을 승인
+	@RequestMapping(value="/headApproveContract", method=RequestMethod.GET)
+	public String headApproveContract(@RequestParam(value="contractCode")String contractCode){
+		System.out.println("contractController headApproveContract 실행");
+		
+		//승인처리
+		//head_contract_confirm의 값을 Y로 업데이트
+		contractService.headApproveContract(contractCode);	
+		
+		
+		return "redirect:/headViewContractList";
+	}
 	
 	
 }

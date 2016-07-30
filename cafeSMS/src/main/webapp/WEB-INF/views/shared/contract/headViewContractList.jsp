@@ -211,7 +211,7 @@
 						${headContractList.reContractStatus}
 						${headContractList.headContractConfirm}
 						<a href="/subViewContractContent?contractCode=${headContractList.contractCode}">[상세보기]</a>
-						[계약승인]
+						<a href="/headApproveContract?contractCode=${headContractList.contractCode}">[계약승인]</a>
 					</c:if>	
 							
 						
