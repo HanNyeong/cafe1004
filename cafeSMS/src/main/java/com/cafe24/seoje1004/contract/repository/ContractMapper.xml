@@ -334,7 +334,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		,"Y"
 		)
 	</insert>
-
 	
+	
+	<!-- 본사에서 전체 계약진행 리스트 조회 -->
+	<select id="headViewContract"
+			parameterType="java.util.Map"
+			resultMap="contractListMap">
+		SELECT
+			contract_code,
+			contract_name,
+			contract_regit_date,
+			contract_actual_date,
+			contract_expiry_date,
+			contract_n,
+			contract_expire_date,
+			sub_code,
+			re_contract_status,
+			head_contract_confirm
+		FROM
+			contract
+		<where>
+			
+			
+			<if test="contractSearch.regitDateStart != null and contractSearch.regitDateEnd != null and contractSearch.regitDateStart !='' and contractSearch.regitDateEnd !=''">
+				<![CDATA[date(contract_regit_date) >= #{contractSearch.regitDateStart} and date(contract_regit_date) <= #{contractSearch.regitDateEnd}]]>  
+			</if>
+			<if test="contractSearch.searchKey != null and contractSearch.searchKey != '' and contractSearch.searchContract != null and contractSearch.searchContract != ''">
+				
+				AND  ${contractSearch.searchKey} like CONCAT('%',#{contractSearch.searchContract},'%') 
+			</if> 
+		</where> 
+		<trim prefix="ORDER BY">
+			<if test="contractSearch.criteria == null or contractSearch.criteria == ''">
+				contract_regit_date
+			</if>
+			<if test="contractSearch.criteria != null or contractSearch.criteria != ''">
+				${contractSearch.criteria} ${contractSearch.upDown}
+			</if>
+		</trim>
+	</select>
 	
 </mapper>

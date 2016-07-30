@@ -131,7 +131,6 @@
 	
 	<hr/>
 	<div>
-	<c:set var="now" value="<%=new java.util.Date()%>" />
 		<div>
 			[계약상태]
 			contractCode<span id="contractCodeUp">▲</span><span id="contractCodeDown">▼</span>
@@ -152,10 +151,12 @@
 		
 		<p>------------------------------------------------------------계약 진행 구간------------------------------------------------------------</p>
 		
-		<c:forEach var="subContractList" items="${subContractList}">
+		<!-- 날짜구하기 -->
+		<c:set var="now" value="<%=new java.util.Date()%>" />
 		<fmt:formatDate value="${now}" var="nows" pattern="yyyy-MM-dd"/>
-			
-			
+		
+		<c:forEach var="subContractList" items="${subContractList}">
+		
 			<div>
 				<c:if test="${subContractList.headContractConfirm == 'Y'}">
 					<c:if test="${subContractList.contractExpireDate != null}">
