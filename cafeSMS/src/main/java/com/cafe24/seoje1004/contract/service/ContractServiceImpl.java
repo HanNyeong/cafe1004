@@ -284,5 +284,97 @@ public class ContractServiceImpl implements ContractService {
 						}
 		
 	}
+	
+	//가맹계약파기
+	@Override
+	public void subExpireContract(Contract contract,HttpServletRequest request) {
+		System.out.println("ContractServiceImpl subExpireContract실행");
+		
+		//1.파기일 업데이트
+		contractDao.expireContract(contract);
+		
+		//2.파기사유서 파일 업로드	
+			String contractCode = contract.getContractCode();
+			System.out.println("contractCode : " + contractCode);
+			//파일은 배열안에있으므로 하나씩 꺼내다 작업하자.
+			for(int i =0; i<contract.getContractExpireFile().size(); i++){
+				//i번째 파일을 멀티파트파일에 담아주자
+				MultipartFile file = contract.getContractExpireFile().get(i);
+				//실제 주소를 path에 담자
+				String path = request.getServletContext().getRealPath("/");
+				System.out.println("path : "+path);	
+				//전체이름
+				String allName = contract.getContractExpireFile().get(i).getOriginalFilename();
+						
+				//잘라낼 크기를 구하자 
+				int pathLength = allName.length();	//전체길이
+				int cutLength = contract.getContractExpireFile().get(i).getOriginalFilename().lastIndexOf('\\')+1;	//잘라낼 시작점
+				System.out.println("pathLength : "+pathLength);
+				System.out.println("cutLength : "+cutLength);
+						
+				//사용할 파일명
+				String fileName = allName.substring(cutLength,pathLength);
+				System.out.println("allname : "+allName);
+				System.out.println("fileName: "+fileName);
+					
+				//확장자명
+				int pathLength2 = allName.length();	//전체길이
+				int cutLength2 = contract.getContractExpireFile().get(i).getOriginalFilename().lastIndexOf('.')+1;	//잘라낼 시작점
+				String mineType  = allName.substring(cutLength2,pathLength2);
+				System.out.println("mineType : "+ mineType);
+					
+				//이름 랜덤으로 생성하기 DB에 같은이름으로 저장되면 안되니...
+				String randomName = null;
+				StringBuffer buffer = new StringBuffer();
+				Random random = new Random();
+				String chars[] = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z".split(",");
+				for ( int j=0 ; j<20 ; j++ ) {
+					buffer.append(chars[random.nextInt(chars.length)]);
+				}
+				String ints[] = "1,2,3,4,5,6,7,8,9".split(",");
+				for (int j=0; j<10; j++){
+						buffer.append(ints[random.nextInt(ints.length)]);
+				}
+				//생성한 randomName을 담자
+				System.out.println("buffer.toString() : "+buffer.toString());
+				randomName = buffer.toString();
+							
+				//실제로 파일을 저장하기위해서 그리고 randomName으로 저장해야하니 아래와같이 랜덤네임으로 저장할 수 있도록 해주자
+				File destFile = new File(path+"resources/upload/"+randomName+"."+mineType);
+				System.out.println("destFile : "+path+"resources/upload/"+randomName+"."+mineType);
+				//랜덤네임이 중복되는 이름이 있으면 다시 새로운 랜덤네임으로 저장
+				if(contractDao.selectContractFileByRandomName(randomName) == (null)){
+					System.out.println("동일한 randomName 존재하지 않아요.");
+					ContractFile contractFile = new ContractFile();
+						
+					contractFile.setContractCode(contractCode);
+					contractFile.setContractFile("/resources/upload/"+randomName+"."+mineType);
+					contractFile.setFileName(fileName);									
+					contractFile.setRandomName(randomName);
+					System.out.println("contractFie : "+contractFile);
+								
+					//articleFile insert
+					contractDao.subAddContractExpireFile(contractFile);
+								
+					try {
+						//실제 resources/upload 폴더에 저장
+						file.transferTo(destFile);
+					} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+								
+								
+					}else{
+						System.out.println("동일한 randomName 존재합니다.");
+						subExpireContract(contract,request);	//재귀호출
+						//새로운 randomName으로 실행
+					}
+				}
+		
+	}
 
 }

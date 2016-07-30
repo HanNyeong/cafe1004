@@ -112,5 +112,19 @@ public class ContractDaoImpl implements ContractDao {
 		System.out.println("ContractDaoImpl subUpdatePreContract 실행");
 		sqlSessionContract.update(NS+".subUpdatePreContract", contractCode);
 	}
+
+	//파기일 업데이트	
+	@Override
+	public void expireContract(Contract contract) {
+		System.out.println("ContractDaoImpl expireContract 실행");
+		sqlSessionContract.update(NS+".expireContract", contract);
+	}
+
+	//파기사유서 파일 업로드
+	@Override
+	public void subAddContractExpireFile(ContractFile contractFile) {
+		System.out.println("ContractDaoImpl subAddContractExpireFile 실행");
+		sqlSessionContract.insert(NS+".subAddContractExpireFile", contractFile);
+	}
 	
 }

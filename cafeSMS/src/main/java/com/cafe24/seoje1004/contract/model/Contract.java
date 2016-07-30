@@ -1,5 +1,8 @@
 package com.cafe24.seoje1004.contract.model;
 
+import java.sql.Timestamp;
+import java.time.DateTimeException;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -20,7 +23,7 @@ public class Contract {
 	private int contractProfitPercent;				//이익 배분율
 	private List<MultipartFile> contractFile;			//계약서 첨부 파일
 	private int contractN;							//계약 차수
-	private String contractExpireDate;				//계약 파기일
+	private Timestamp contractExpireDate;				//계약 파기일
 	private List<MultipartFile> contractExpireFile;		//계약 파기 사유서
 	private String headStaffId;						//본사 계약 담당 직원
 	private String subCode;							//가맹 대표 코드
@@ -80,10 +83,10 @@ public class Contract {
 	public void setContractN(int contractN) {
 		this.contractN = contractN;
 	}
-	public String getContractExpireDate() {
+	public Timestamp getContractExpireDate() {
 		return contractExpireDate;
 	}
-	public void setContractExpireDate(String contractExpireDate) {
+	public void setContractExpireDate(Timestamp contractExpireDate) {
 		this.contractExpireDate = contractExpireDate;
 	}
 	public List<MultipartFile> getContractExpireFile() {
@@ -126,8 +129,6 @@ public class Contract {
 				+ ", headStaffId=" + headStaffId + ", subCode=" + subCode + ", reContractStatus=" + reContractStatus
 				+ ", headContractConfirm=" + headContractConfirm + "]";
 	}
-	
-	
 	
 	
 }

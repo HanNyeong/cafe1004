@@ -41,7 +41,7 @@ public class ContractController {
 		
 		
 		//가상의 sub_code
-		String subCode = "sub_code7";
+		String subCode = "sub_code3";
 		
 		//가맹의 계약리스트(subCode는 해당가맹, contractSearch는 검색 및 컬럼별조회기능)
 		List<Contract> subContractList = contractService.subViewContractList(subCode, contractSearch);
@@ -60,7 +60,7 @@ public class ContractController {
 		System.out.println("contractController subAddContract get실행");
 		
 		//가상의 sub_code
-		String subCode="sub_code7";
+		String subCode="sub_code3";
 		
 		model.addAttribute("subCode", subCode);
 		
@@ -156,9 +156,28 @@ public class ContractController {
 	
 	}
 				
+	//가맹이 계약파기를 신청폼
+	@RequestMapping(value="/subExpireContract", method=RequestMethod.GET)
+	public String subExpireContractForm(Model model,@RequestParam(value="contractCode")String contractCode){
+		System.out.println("contractController subExpireContract get 실행");
+		
+		model.addAttribute("contractCode", contractCode);
+		
+		return "/shared/contract/subExpireContract";
+	}
 	
-	
-	
+	//가맹이 계약파기를 신청
+		@RequestMapping(value="/subExpireContract", method=RequestMethod.POST)
+		public String subExpireContract(Contract contract, HttpServletRequest request){
+			System.out.println("contractController subExpireContract post 실행");
+			//1.해당 contractCode에 해당하는 계약의 계약파기일 update
+			//2.파기사유서첨부
+			System.out.println("contract : "+contract);
+			
+			contractService.subExpireContract(contract,request);
+			
+			return "redirect:/subViewContractList";
+		}
 	
 	
 	

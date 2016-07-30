@@ -23,4 +23,6 @@ public interface ContractDao {
 	public Contract subSelectContract(String contractCode);	//해당 contractCode에 해당하는 계약정보를 재계약 신청폼으로
 	public void subAddRecharterContract(Contract contract); 	//재계약 신청 등록 처리
 	public void subUpdatePreContract(String contractCode);		//이전계약 상태 Y로 update	
+	public void expireContract(Contract contract);	//파기일 업데이트
+	public void subAddContractExpireFile(ContractFile contractFile);	//파기사유서 파일 업로드
 }

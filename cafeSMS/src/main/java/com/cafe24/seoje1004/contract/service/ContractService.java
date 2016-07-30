@@ -19,4 +19,5 @@ public interface ContractService {
 	public Map<String,Object> subViewContractContent(String contractCode);	//가맹이 계약상세정보를 리뷰
 	public Contract subSelectContract(String contractCode);	//해당 contractCode에 해당하는 계약정보를 재계약 신청폼으로
 	public void subAddRecharterContract(Contract contract, HttpServletRequest request);			//재계약 신청 등록 처리
+	public void subExpireContract(Contract contract, HttpServletRequest request);	//가맹 계약파기
 }

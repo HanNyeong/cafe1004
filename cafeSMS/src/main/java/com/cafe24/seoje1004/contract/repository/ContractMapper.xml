@@ -297,5 +297,43 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	</update>
 	
+	<!-- 파기일 등록(업데이트) -->
+	<update id="expireContract"
+			parameterType="com.cafe24.seoje1004.contract.model.Contract">
+		UPDATE
+			contract
+		SET
+			contract_expire_date	=	NOW()
+		WHERE
+			contract_code = #{contractCode}
+	</update>
+	
+	<!-- 파기사유서 등록(업로드) -->
+	<insert id="subAddContractExpireFile"
+			parameterType="com.cafe24.seoje1004.contract.model.ContractFile">
+		<selectKey resultType="hashmap" keyProperty="contractFileCode" order="BEFORE">
+			select if(isnull(contract_file_code),'contract_file_code1', concat('contract_file_code',MAX(CONVERT(SUBSTRING(contract_file_code,19), UNSIGNED))+1))
+			as contractFileCode
+			from contract_file
+		</selectKey>
+		INSERT INTO contract_file
+		(contract_file_code
+		,contract_code
+		,contract_file
+		,file_name
+		,random_name
+		,file_status
+		)
+		VALUES
+		(#{contractFileCode}
+		,#{contractCode}
+		,#{contractFile}
+		,#{fileName}
+		,#{randomName}
+		,"Y"
+		)
+	</insert>
+
+	
 	
 </mapper>
