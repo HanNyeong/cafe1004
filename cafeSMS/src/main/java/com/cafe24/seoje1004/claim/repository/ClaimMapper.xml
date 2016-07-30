@@ -3,4 +3,57 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.seoje1004.claim.repository.ClaimMapper">
+	
+	
+	<!-- Claim객체등록 -->
+	<resultMap type="com.cafe24.seoje1004.claim.model.Claim" id="claimListMap">
+		<id property="claimCode" column="claim_code"/>
+		<result property="claimType" column="claim_type"/>
+		<result property="claimAskDate" column="claim_ask_date"/>
+		<result property="claimContent" column="claim_content"/>
+		<result property="claimAnswerDate" column="claim_answer_date"/>
+		<result property="claimAnswerContent" column="claim_answer_content"/>
+		<result property="subCode" column="sub_code"/>
+		<result property="customerName" column="customer_name"/>
+		<result property="customerPhone" column="customer_phone"/>
+		<result property="claimStatus" column="claim_status"/>
+		
+	</resultMap>
+	
+	
+	<!-- 본사가 전체클래임리스트 조회 -->
+	<select id="headViewClaimList"
+			parameterType="java.util.Map"
+			resultMap="claimListMap">
+		SELECT
+			claim_code,
+			claim_type,
+			claim_ask_date,
+			claim_content,
+			claim_answer_date,
+			claim_answer_content,
+			sub_code,
+			customer_name,
+			customer_phone,
+			claim_status
+		FROM
+			claim
+		<where>
+			<if test="claimSearch.regitDateStart != null and claimSearch.regitDateEnd != null and claimSearch.regitDateStart !='' and claimSearch.regitDateEnd !=''">
+				<![CDATA[date(claim_ask_date) >= #{claimSearch.regitDateStart} and date(claim_ask_date) <= #{claimSearch.regitDateEnd}]]>
+			</if>
+			<if test="claimSearch.searchKey != null and claimSearch.searchKey != '' and claimSearch.searchClaim != null and claimSearch.searchClaim != ''">
+				AND  ${claimSearch.searchKey} like CONCAT('%',#{claimSearch.searchClaim},'%')
+			</if> 
+		</where> 
+		<trim prefix="ORDER BY">
+			<if test="claimSearch.criteria == null or claimSearch.criteria == ''">
+				claim_ask_date
+			</if>
+			<if test="claimSearch.criteria != null or claimSearch.criteria != ''">
+				${claimSearch.criteria} ${claimSearch.upDown}
+			</if>
+		</trim>
+	</select>
+
 </mapper>
