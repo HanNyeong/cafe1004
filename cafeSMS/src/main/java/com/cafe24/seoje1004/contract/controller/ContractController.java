@@ -35,7 +35,7 @@ public class ContractController {
 	
 	//가맹점이 해당가맹점의 계약리스트를 리뷰
 	@RequestMapping(value = "/subViewContractList")
-	public String subViewContractList(Model model, ContractSearch contractSearch, @RequestParam(value="subCode")String subCode) {
+	public String subViewContractList(Model model, ContractSearch contractSearch, @RequestParam(value="subCode")String subCodes) {
 		System.out.println("contractController subViewContractList 실행!!");
 		//1.sub생성 (로그인 기능만 부여)
 		//2.계약등록 (이제 해당프로그램 사용가능) 이라는 전제로 한다.
@@ -43,7 +43,7 @@ public class ContractController {
 		
 		
 		//가상의 sub_code
-		//String subCode = "sub_code3";
+		String subCode = subCodes;
 		
 		//가맹의 계약리스트(subCode는 해당가맹, contractSearch는 검색 및 컬럼별조회기능)
 		List<Contract> subContractList = contractService.subViewContractList(subCode, contractSearch);
@@ -59,11 +59,11 @@ public class ContractController {
 	
 	//가맹점이 계약을 신청  폼
 	@RequestMapping(value="/subAddContract", method=RequestMethod.GET)
-	public String subAddContractForm(Model model, @RequestParam(value="subCode")String subCode){
+	public String subAddContractForm(Model model, @RequestParam(value="subCode")String subCodes){
 		System.out.println("contractController subAddContract get실행");
 		
 		//가상의 sub_code
-		//String subCode="sub_code3";
+		String subCode=subCodes;
 		
 		model.addAttribute("subCode", subCode);
 		
@@ -192,6 +192,7 @@ public class ContractController {
 	//본사에서 계약
 	@RequestMapping(value="/headViewContractList", method=RequestMethod.GET)	
 	public String headViewContractList(Model model){
+		System.out.println("contractController headViewContractList");
 		
 		return "/shared/contract/headViewContractList";
 	}

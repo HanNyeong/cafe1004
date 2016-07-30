@@ -102,13 +102,17 @@
 	});
 
 </script>
-
+<a href="/">home</a>
 	<h1>계약조회 페이지입니다.</h1><hr/>
+	
+	
 		<!-- 상품 검색 -->
 		<form name="contractList" id="contractList" action="/subViewContractList" method="post">
 			<!-- 오름차/내림차순 정렬을 위한 input 태그 -->
 			<input type="hidden" name="criteria" id="criteria" value=""/>
 			<input type="hidden" name="upDown" id="upDown" value=""/>
+			<input type="hidden" name="subCode" value="${subCode}"/>
+			
 		
 			등록 날짜: 
 			<input type="date" name="regitDateStart" value="${contractSearch.regitDateStart}"/> ~
@@ -128,7 +132,6 @@
 	<hr/>
 	<div>
 	<c:set var="now" value="<%=new java.util.Date()%>" />
-	
 		<div>
 			[계약상태]
 			contractCode<span id="contractCodeUp">▲</span><span id="contractCodeDown">▼</span>
@@ -142,54 +145,90 @@
 			reContractStatus	
 			[상세보기]
 			[재계약신청]	
-			[계약파기신청]	
+			[계약파기신청]
+			[본사승인여부]	
 		</div>
 		
 		
-			
+		<p>------------------------------------------------------------계약 진행 구간------------------------------------------------------------</p>
 		
 		<c:forEach var="subContractList" items="${subContractList}">
 		<fmt:formatDate value="${now}" var="nows" pattern="yyyy-MM-dd"/>
+			
+			
 			<div>
-			<c:if test="${subContractList.contractExpireDate != null}">
-	 				파기
-	 		</c:if>
-			<c:if test="${subContractList.contractExpireDate == null && subContractList.contractExpiryDate > nows}">
-	 				정상
-	 		</c:if>
-	 		<c:if test="${subContractList.contractExpiryDate <= nows}">
-	 				만료
-	 		</c:if>
-			${subContractList.contractCode}
-			${subContractList.contractName}
-			${subContractList.contractRegitDate}
-			${subContractList.contractActualDate}
-			${subContractList.contractExpiryDate}
-			${subContractList.contractN}
-			${subContractList.contractExpireDate}
-			${subContractList.subCode}
-			${subContractList.reContractStatus}
-			<a href="/subViewContractContent?contractCode=${subContractList.contractCode}">[상세보기]</a>
-			
-			<c:if test="${subContractList.reContractStatus == 'N'}">
-				<a href="/subAddRecharterContract?contractCode=${subContractList.contractCode}">[재계약신청]</a>
-			</c:if>
-			
-			<c:if test="${subContractList.contractExpireDate ==null && subContractList.reContractStatus == 'N'}">
-				<a href="/subExpireContract?contractCode=${subContractList.contractCode}">[계약파기신청]</a>
-			</c:if>
-			
-			
-			
+				<c:if test="${subContractList.headContractConfirm == 'Y'}">
+					<c:if test="${subContractList.contractExpireDate != null}">
+		 				파기
+			 		</c:if>
+					<c:if test="${subContractList.contractExpireDate == null && subContractList.contractExpiryDate > nows}">
+			 			정상
+			 		</c:if>
+			 		<c:if test="${subContractList.contractExpiryDate <= nows}">
+			 			만료
+			 		</c:if>
+					${subContractList.contractCode}
+					${subContractList.contractName}
+					${subContractList.contractRegitDate}
+					${subContractList.contractActualDate}
+					${subContractList.contractExpiryDate}
+					${subContractList.contractN}
+					${subContractList.contractExpireDate}
+					${subContractList.subCode}
+					${subContractList.reContractStatus}
+					${subContractList.headContractConfirm}
+					<a href="/subViewContractContent?contractCode=${subContractList.contractCode}">[상세보기]</a>
+					
+					<c:if test="${subContractList.reContractStatus == 'N'}">
+						<a href="/subAddRecharterContract?contractCode=${subContractList.contractCode}">[재계약신청]</a>
+					</c:if>
+					
+					<c:if test="${subContractList.contractExpireDate ==null && subContractList.reContractStatus == 'N'}">
+						<a href="/subExpireContract?contractCode=${subContractList.contractCode}">[계약파기신청]</a>
+					</c:if>			
+				</c:if>
 			</div>
 		</c:forEach>
 	
 	</div>
+	
+	<p>------------------------------------------------------------계약 신청 구간------------------------------------------------------------</p>
+	
+	<div>
+			<c:forEach var="subContractList" items="${subContractList}">
+				<div>
+					<c:if test="${subContractList.headContractConfirm == 'N'}">
+						[검토중]
+						${subContractList.contractCode}
+						${subContractList.contractName}
+						${subContractList.contractRegitDate}
+						${subContractList.contractActualDate}
+						${subContractList.contractExpiryDate}
+						${subContractList.contractN}
+						${subContractList.contractExpireDate}
+						${subContractList.subCode}
+						${subContractList.reContractStatus}
+						${subContractList.headContractConfirm}
+						<a href="/subViewContractContent?contractCode=${subContractList.contractCode}">[상세보기]</a>	
+						[NULL]
+						[NULL]
+						
+					</c:if>		
+				</div>
+			</c:forEach>
+	
+	
+	</div>
+	
+	
 	<hr/>
 	<h1>계약등록 링크</h1>
 	<div>
 		<a href="/subAddContract?subCode=${subCode}">[계약등록]</a>
 	</div>
+	
+	
+	
 	
 </body>
 </html>

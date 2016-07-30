@@ -48,7 +48,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			contract_n,
 			contract_expire_date,
 			sub_code,
-			re_contract_status
+			re_contract_status,
+			head_contract_confirm
 		FROM
 			contract
 		
