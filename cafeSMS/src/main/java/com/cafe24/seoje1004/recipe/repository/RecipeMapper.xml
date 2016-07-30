@@ -14,34 +14,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <result property="headStaffId" column="head_staff_id"/>
    </resultMap>
 
-   <!-- 메뉴 컬럼별 조회하는 select쿼리 -->
+   <!-- 레시피 컬럼별 조회하는 select쿼리 -->
 	<select id="subViewRecipeList"
-		parameterType="java.util.Map"
-		resultMap="RecipeResultMap">
-		SELECT 
-			recipe_code,
-			recipe_order,
-			recipe_act,
-			recipe_regit_date,
-			menu_code,
-			head_staff_id     
-		FROM 
-			recipe
-		<where>
-			<if test="recipeSearch.regitDateStart != null and recipeSearch.regitDateEnd != null and recipeSearch.regitDateStart !='' and recipeSearch.regitDateEnd !=''">
-				AND <![CDATA[date(recipe_regit_date) >= #{recipeSearch.regitDateStart} and date(recipe_regit_date) <= #{recipeSearch.regitDateEnd}]]>  
-			</if>
-			<if test="recipeSearch.searchKey != null and recipeSearch.searchKey != '' and recipeSearch.searchRecipe != null and recipeSearch.searchRecipe != ''">
-					AND  ${recipeSearch.searchKey} like CONCAT('%',#{recipeSearch.searchRecipe},'%') 
-			</if>
-			
-		</where>
-		<if test="recipeSearch.criteria == null and recipeSearch.upDown == null">
-			order by recipe_regit_date desc
-		</if>
-		<if test="recipeSearch.criteria != null and recipeSearch.upDown != null and recipeSearch.criteria != null and recipeSearch.upDown != ''">
-			order by ${recipeSearch.criteria} ${recipeSearch.upDown}
-		</if>
-
+	      parameterType="java.util.Map"
+	      resultMap="RecipeResultMap">
+	      SELECT 
+	         recipe_code,
+	         recipe_order,
+	         recipe_act,
+	         recipe_regit_date,
+	         menu_code,
+	         head_staff_id     
+	      FROM 
+	         recipe
+	      <where>
+	      
+	         menu_code = #{menuCode}
+	         <if test="recipeSearch.regitDateStart != null and recipeSearch.regitDateEnd != null and recipeSearch.regitDateStart !='' and recipeSearch.regitDateEnd !=''">
+	            AND <![CDATA[date(recipe_regit_date) >= #{recipeSearch.regitDateStart} and date(recipe_regit_date) <= #{recipeSearch.regitDateEnd}]]>  
+	         </if>
+	         <if test="recipeSearch.searchKey != null and recipeSearch.searchKey != '' and recipeSearch.searchRecipe != null and recipeSearch.searchRecipe != ''">
+	               AND  ${recipeSearch.searchKey} like CONCAT('%',#{recipeSearch.searchRecipe},'%') 
+	         </if>
+	         
+	      </where>
+	      <if test="recipeSearch.criteria == null and recipeSearch.upDown == null">
+	         order by recipe_regit_date desc
+	      </if>
+	      <if test="recipeSearch.criteria != null and recipeSearch.upDown != null and recipeSearch.criteria != null and recipeSearch.upDown != ''">
+	         order by ${recipeSearch.criteria} ${recipeSearch.upDown}
+	      </if>
+	
 	</select>
 </mapper>

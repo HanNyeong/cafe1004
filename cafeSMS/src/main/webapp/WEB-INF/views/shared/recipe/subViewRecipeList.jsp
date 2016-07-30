@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>subviewRecipeList</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
 	$.list = function(upDown,criteria){
 		$('#upDown').attr('value',upDown);
@@ -63,7 +64,7 @@
 		6:본사 승인 직원 ID
 
 	</P>        
-	<c:forEach var="recipeList" items="${subViewrecipeList}">	
+	<c:forEach var="recipeList" items="${subViewRecipeList}">	
 		<p>
 			1:${recipeList.recipeCode}
 			2:${recipeList.recipeOrder}

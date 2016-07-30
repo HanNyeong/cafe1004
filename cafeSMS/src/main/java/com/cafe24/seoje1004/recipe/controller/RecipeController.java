@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.seoje1004.recipe.model.RecipeSearch;
 import com.cafe24.seoje1004.recipe.service.RecipeService;
@@ -22,11 +23,13 @@ public class RecipeController {
 	 * @return
 	 */
 	@RequestMapping(value="/subViewRecipeList")
-	public String subViewRecipeList(Model model, RecipeSearch recipeSearch,SubLogin subLogin){
+	
+	public String subViewRecipeList(Model model, RecipeSearch recipeSearch,SubLogin subLogin,
+									@RequestParam("menuCode")String menuCode){
 		System.out.println("RecipeController subViewRecipeList실행");
 		System.out.println(recipeSearch);
-		model.addAttribute("subViewRecipeList", recipeService.subViewRecipeListService(recipeSearch,subLogin));
+		System.out.println(menuCode+"확인작업");
+		model.addAttribute("subViewRecipeList", recipeService.subViewRecipeListService(recipeSearch,subLogin,menuCode));
 		return "/shared/recipe/subViewRecipeList";
 	}
-
 }

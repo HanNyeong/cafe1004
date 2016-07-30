@@ -24,13 +24,14 @@ public class RecipeServiceImpl implements RecipeService {
 	 * @return
 	 */
 	@Override
-	public List<Recipe> subViewRecipeListService(RecipeSearch recipeSearch, SubLogin subLogin){
+	public List<Recipe> subViewRecipeListService(RecipeSearch recipeSearch, SubLogin subLogin, String menuCode){
 		System.out.println("RecipeServiceImpl subViewRecipeListService실행");
 		System.out.println("RecipeServiceImpl subViewRecipeListService. 조회 실행");
 	
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("recipeSearch",recipeSearch);
 		map.put("subLogin",subLogin);
+		map.put("menuCode", menuCode);
 		
 		return recipeDao.subViewRecipeList(map);
 	}
