@@ -144,10 +144,12 @@ public class SubStaffController {
 	    * @param subStaff
 	    * @return
 	    */
-	   @RequestMapping(value="/subStaffSalary",method=RequestMethod.GET)
+	   @RequestMapping(value="/subStaffSalary",method=RequestMethod.POST)
 	   public String subStaffSalary(SubStaff subStaff){
+		   System.out.println("SubStaffController subStaffSalary실행");
+		   System.out.println(subStaff);
 		   int result = subStaffService.subStaffSalaryService(subStaff);
-		   return "redirect:/viewSubStaffList";
+		   return "redirect:/viewSubStaffList?subCode="+subStaff.getSubCode();
 	   }
 	
 }

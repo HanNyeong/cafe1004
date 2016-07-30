@@ -12,11 +12,10 @@
 		$('#criteria').attr('value',criteria);
 		$('#subStaffList').submit();	
 	}
-	
 	$(document).ready(function(){
 		//컬럼 명 지정해주는 배열 
 		//자기입맛에 맛게 고쳐 쓰세요
-		var columnList = ['sub_staff_code','sub_staff_join','sub_staff_resign','sub_staff_salary','sub_staff_regit_date','sub_staff_permit_date']
+		var columnList = ['sub_staff_code','sub_staff_name','sub_staff_level','sub_staff_join','sub_staff_resign','sub_staff_salary','sub_staff_regit_date','head_staff_id','sub_staff_permit_date']
 
 		$('.up').each(function(index,item){
 			$(item).click(function(){
@@ -44,9 +43,13 @@
 			}else{
 				$('#subSalaryForm').submit();
 			}
-			
-		
 		});
+		$('.subSalaryBtn').each(function(index,item){
+			$(item).click(function(){
+				$('.subSalaryForm')[index].submit();
+			});	
+		});
+		
 	});
 </script>
 </head>
@@ -77,14 +80,14 @@
 	</div>
 	<P>
 		1:가맹 직원 코드<span class="up">▲</span><span class="down">▼</span>
-		2:직원 이름
-		3:직급
+		2:직원 이름<span class="up">▲</span><span class="down">▼</span>
+		3:직급<span class="up">▲</span><span class="down">▼</span>
 		4:입사일<span class="up">▲</span><span class="down">▼</span>
 		5: 퇴사일<span class="up">▲</span><span class="down">▼</span>
 		6:급여<span class="up">▲</span><span class="down">▼</span>
 		 <!-- 급여는 가맹만 조회가능 -->
 		7: 등록일자<span class="up">▲</span><span class="down">▼</span>
-		8:본사 승인 직원 ID
+		8:본사 승인 직원 ID<span class="up">▲</span><span class="down">▼</span>
 		9:승인 날짜<span class="up">▲</span><span class="down">▼</span>
 	</P>        
 	<c:forEach var="subStaffList" items="${subStaffList}">
@@ -103,9 +106,12 @@
 				<a href="/subModifySubStaff?subStaffCode=${subStaffList.subStaffCode}"><input type="button" value="수정"/></a>
 				<c:if test="${subStaffList.subStaffResign == null}">
 					<a href="/subModifySubStaffByRegsign?subStaffCode=${subStaffList.subStaffCode}&subCode=${subStaffList.subCode}"><input type="button" value="퇴사"/></a>
-					<form action="" method="POST" class="subSalaryForm">
-						<span class="subSalayYard"></span>
-						<input type="button" class="subSalary" name="subSalary" value="급여지급"/>
+					<form action="/subStaffSalary" method="POST" class="subSalaryForm">
+						<input type="hidden" name="subCode" value="${subLogin.subCode}"/>
+						<input type="hidden" name="subStaffCode" value="${subStaffList.subStaffCode}"/>
+						<input type="hidden" name="subStaffSalary" value="${subStaffList.subStaffSalary}"/>
+						<input type="hidden" name="subStaffSalary" value="${subStaffList.subStaffSalary}"/>
+						<input type="button" class="subSalaryBtn" value="급여지급"/>
 					</form>
 				</c:if>
 			</c:if>
