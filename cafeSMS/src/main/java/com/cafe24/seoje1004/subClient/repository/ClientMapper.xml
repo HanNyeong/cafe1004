@@ -3,21 +3,20 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.seoje1004.subClient.repository.ClientMapper">
-	<resultMap type="com.cafe24.seoje1004.subStaff.model.SubStaff" id="subClientResultMap">
+	<resultMap type="com.cafe24.seoje1004.subClient.model.Client" id="subClientResultMap">
       <id property="subClientCode" column="sub_client_code"/>
       <result property="subClientName" column="sub_client_name"/>    
-      <result property="subClientDate" column="sub_client_regit_date"/>
+      <result property="subClientRegitDate" column="sub_client_regit_date"/>
       <result property="subClientInCharge" column="sub_client_in_charge"/>
       <result property="subClientContract" column="sub_client_contract"/>
       <result property="subClientPhone" column="sub_client_phone"/>
       <result property="subClientAddr" column="sub_client_addr"/>
-      <result property="subStaffName" column="sub_staff_name"/>
       <result property="subCode" column="sub_code"/>
    </resultMap>   
    
-   <select id="selectSubClient"
-   			resultMap="subClientResultMap"
-   			parameterType="java.lang.String">
+   <select id="viewSubClient"
+   		resultMap="subClientResultMap"
+   		parameterType="java.util.Map">
 	select
 		sub_client_code,
 		sub_client_name,
@@ -26,10 +25,68 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		sub_client_contract,
 		sub_client_phone,
 		sub_client_addr,
-		sub_staff_name
+		sub_code
 	from
 		sub_client
 	where
 		sub_code = #{subCode}
    </select>
+   
+   <select id="selectSubClient"
+   		resultMap="subClientResultMap">
+	select
+		sub_client_code,
+		sub_client_name,
+		sub_client_regit_date,
+		sub_client_in_charge,
+		sub_client_contract,
+		sub_client_phone,
+		sub_client_addr,
+		sub_code
+	from
+		sub_client
+	where
+		sub_client_code = #{subClientCode}
+   </select>
+   
+   <insert id="insertClient"
+   		parameterType="com.cafe24.seoje1004.subClient.model.Client">
+   		<selectKey resultType="hashmap" keyProperty="subClientCode" order="BEFORE">
+        	select if(isnull(sub_client_code),'sub_client_code1000', concat('sub_client', MAX(CONVERT(SUBSTRING(sub_client_code,16), UNSIGNED))+1)) as subClientCode
+        	from sub_client
+      	</selectKey>
+      		INSERT INTO 
+      			sub_client (
+					sub_client_code, 
+					sub_client_name, 
+					sub_client_regit_date, 
+					sub_client_in_charge, 
+					sub_client_phone, 
+					sub_client_addr, 
+					sub_code
+					)
+				VALUES (
+					#{subClientCode},
+		 			#{subClientName}, 
+					 NOW(), 
+		 			#{subClientInCharge},
+		 			#{subClientPhone},
+		 			#{subClientAddr},
+		 			#{subCode}
+		 			)
+   </insert>
+   
+   
+   <update id="modifyClient"
+   		parameterType="java.util.Map">
+   		UPDATE
+   			sub_client
+		SET
+			sub_client_name= #{client.subClientName},
+			sub_client_in_charge= #{client.subClientInCharge},
+			sub_client_phone= #{client.subClientPhone},
+			sub_client_addr= #{client.subClientAddr}
+		WHERE
+			sub_client_code= #{subClientCode}
+   </update>
 </mapper>

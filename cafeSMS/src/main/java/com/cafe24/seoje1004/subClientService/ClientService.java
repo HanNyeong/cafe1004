@@ -8,4 +8,10 @@ public interface ClientService {
 
 	List<Client> viewClientListService(String subCode);
 
+	void addClientService(Client client);
+
+	Client selectClientService(Client client);
+
+	void modifyClientService(Client client,String subClientCode);
+
 }

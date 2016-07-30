@@ -9,4 +9,10 @@ public interface ClientDao {
 
 	List<Client> viewClientList(Map<String, Object> map);
 
+	void addClient(Client client);
+
+	Client selectClient(Client client);
+
+	void modifyClient(Map<String, Object> map);
+
 }

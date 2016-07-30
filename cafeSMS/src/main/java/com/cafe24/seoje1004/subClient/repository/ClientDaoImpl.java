@@ -15,12 +15,33 @@ public class ClientDaoImpl implements ClientDao{
 	@Autowired
 	private SqlSessionTemplate sqlSessionSubClient;
 	
-	private final String NS = "org.ksmart02.cafe.subClient.repository.ClientMapper";
+	private final String NS = "com.cafe24.seoje1004.subClient.repository.ClientMapper";
 	
+	//거래처 리스트 Dao 0729박효민
 	@Override
 	public List<Client> viewClientList(Map<String, Object> map) {
-		System.out.println("repository//viewClientList실행");
-		return sqlSessionSubClient.selectList(NS+".selectSubClient", map);
+		System.out.println("ClientDaoImpl//viewClientList실행");
+		return sqlSessionSubClient.selectList(NS+".viewSubClient", map);
+	}
+	
+	//거래처추가 Dao 0729박효민
+	@Override
+	public void addClient(Client client) {
+		System.out.println("ClientDaoImpl//addClient실행");
+		sqlSessionSubClient.insert(NS+".insertClient", client);
+	}
+	
+	//거래처 수정폼이동및값셋팅 Dao 0729 박효민
+	@Override
+	public Client selectClient(Client client) {
+		System.out.println("ClientDaoImpl//selectClient실행");
+		return sqlSessionSubClient.selectOne(NS+".selectSubClient",client);
 	}
 
+	//거래처 수정 Dao 0729박효민
+	@Override
+	public void modifyClient(Map<String, Object> map) {
+		System.out.println("ClientDaoImpl//modifyClient");
+		sqlSessionSubClient.update(NS+".modifyClient",map);
+	}
 }

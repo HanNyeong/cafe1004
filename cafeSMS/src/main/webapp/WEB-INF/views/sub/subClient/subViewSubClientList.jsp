@@ -31,9 +31,10 @@
 		<div>
 			거래처주소 : ${clientList.subClientAddr}
 		</div>
-		<div>
-			가맹담장직원명 : ${clientList.subStaffName}
-		</div>
+			<button><a href="/subModifySubClient?subClientCode=${clientList.subClientCode}">정보수정</a></button>
+		<hr><hr>
 	</c:forEach>
+	
+	<button><a href="/subAddSubClient">거래처추가</a></button>
 </body>
 </html>

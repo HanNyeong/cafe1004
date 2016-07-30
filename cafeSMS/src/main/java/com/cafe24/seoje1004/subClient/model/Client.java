@@ -8,7 +8,6 @@ public class Client {
 	private String subClientContract;
 	private String subClientPhone;
 	private String subClientAddr;
-	private String subStaffName;
 	private String subCode;
 	
 	public String getSubClientCode() {
@@ -54,12 +53,6 @@ public class Client {
 	public void setSubClientAddr(String subClientAddr) {
 		this.subClientAddr = subClientAddr;
 	}
-	public String getSubStaffName() {
-		return subStaffName;
-	}
-	public void setSubStaffName(String subStaffName) {
-		this.subStaffName = subStaffName;
-	}
 	public String getSubCode() {
 		return subCode;
 	}
@@ -72,7 +65,7 @@ public class Client {
 		return "Client [subClientCode=" + subClientCode + ", subClientName=" + subClientName + ", subClientRegitDate="
 				+ subClientRegitDate + ", subClientInCharge=" + subClientInCharge + ", subClientContract="
 				+ subClientContract + ", subClientPhone=" + subClientPhone + ", subClientAddr=" + subClientAddr
-				+ ", subStaffName=" + subStaffName + ", subCode=" + subCode + "]";
+				+ ", subCode=" + subCode + "]";
 	}
 	
 }
