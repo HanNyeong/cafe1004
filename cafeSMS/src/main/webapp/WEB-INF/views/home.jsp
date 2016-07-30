@@ -61,7 +61,8 @@
 </c:if>
 <P>  The time on the server is ${serverTime}. </P>
 <a href="/logout">로그아웃</a>
-<a href="/subViewContractList?subCode=${subLogin.subCode}">[계약조회]</a>
+<a href="/subViewContractList?subCode=${subLogin.subCode}">[가맹계약조회]</a>
+<a href="/headViewContractList">[본사계약조회]</a>
 <a href="/headAddSub">가맹 등록</a>
 <a href="/modifySub?subCode=${subLogin.subCode}">가맹수정</a>
 <a href="/viewSubStaffList?subCode=${subLogin.subCode}">가맹 직원 조회</a>

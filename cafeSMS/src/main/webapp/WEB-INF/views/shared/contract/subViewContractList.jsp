@@ -130,7 +130,6 @@
 	<c:set var="now" value="<%=new java.util.Date()%>" />
 	
 		<div>
-			[현재]
 			[계약상태]
 			contractCode<span id="contractCodeUp">▲</span><span id="contractCodeDown">▼</span>
 			contractName<span id="contractNameUp">▲</span><span id="contractNameDown">▼</span>

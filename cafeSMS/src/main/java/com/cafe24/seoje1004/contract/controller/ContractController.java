@@ -170,21 +170,31 @@ public class ContractController {
 	}
 	
 	//가맹이 계약파기를 신청
-		@RequestMapping(value="/subExpireContract", method=RequestMethod.POST)
-		public String subExpireContract(Contract contract, HttpServletRequest request){
-			System.out.println("contractController subExpireContract post 실행");
-			//1.해당 contractCode에 해당하는 계약의 계약파기일 update
-			//2.파기사유서첨부
-			System.out.println("contract : "+contract);
-			
-			contractService.subExpireContract(contract,request);
-			
-			return "redirect:/subViewContractList";
-		}
+	@RequestMapping(value="/subExpireContract", method=RequestMethod.POST)
+	public String subExpireContract(Contract contract, HttpServletRequest request){
+		System.out.println("contractController subExpireContract post 실행");
+		//1.해당 contractCode에 해당하는 계약의 계약파기일 update
+		//2.파기사유서첨부
+		System.out.println("contract : "+contract);
+		
+		contractService.subExpireContract(contract,request);
+		
+		return "redirect:/subViewContractList";
+	}
 	
-	
-	
-	
+	/*----------------------------------아래부터는 본사구간------------------------------------------------*/
+	/*----------------------------------아래부터는 본사구간------------------------------------------------*/
+	/*----------------------------------아래부터는 본사구간------------------------------------------------*/
+	/*----------------------------------아래부터는 본사구간------------------------------------------------*/
+	/*----------------------------------아래부터는 본사구간------------------------------------------------*/
+	/*----------------------------------아래부터는 본사구간------------------------------------------------*/
+
+	//본사에서 계약
+	@RequestMapping(value="/headViewContractList", method=RequestMethod.GET)	
+	public String headViewContractList(Model model){
+		
+		return "/shared/contract/headViewContractList";
+	}
 	
 	
 			
