@@ -28,8 +28,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		sub_code
 	from
 		sub_client
-	where
-		sub_code = #{subCode}
+	<where>
+		sub_code = #{subLogin.subCode}
+		<if test="clientSearch.regitDateStart != null and clientSearch.regitDateEnd != null and clientSearch.regitDateStart !='' and clientSearch.regitDateEnd !=''">
+			AND <![CDATA[date(sub_client_regit_date) >= #{clientSearch.regitDateStart} and date(sub_client_regit_date) <= #{clientSearch.regitDateEnd}]]>
+		</if>
+		<if test="clientSearch.searchKey != null and clientSearch.searchKey != '' and clientSearch.searchSubClient!= null and clientSearch.searchSubClient != ''">
+					AND  ${clientSearch.searchKey} like CONCAT('%',#{clientSearch.searchSubClient},'%') 
+		</if>
+	</where>
+		<if test="clientSearch.criteria == null and clientSearch.upDown == null">
+			order by sub_client_regit_date desc
+		</if>
+		<if test="clientSearch.criteria != null and clientSearch.upDown != null and clientSearch.criteria != null and clientSearch.upDown != ''">
+			order by ${clientSearch.criteria} ${clientSearch.upDown}
+		</if>
+		
    </select>
    
    <select id="selectSubClient"

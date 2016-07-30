@@ -7,7 +7,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cafe24.seoje1004.sub.model.SubLogin;
 import com.cafe24.seoje1004.subClient.model.Client;
+import com.cafe24.seoje1004.subClient.model.ClientSearch;
 import com.cafe24.seoje1004.subClient.repository.ClientDao;
 
 @Service
@@ -18,10 +20,11 @@ public class ClientServiceImpl implements ClientService{
 	
 	//거래처 리스트 service 0729박효민
 	@Override
-	public List<Client> viewClientListService(String subCode) {
+	public List<Client> viewClientListService(ClientSearch clientSearch, SubLogin subLogin) {
 		System.out.println("subClientService//viewClientListService실행");
 		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("subCode", subCode);
+		map.put("clientSearch", clientSearch);
+		map.put("subLogin", subLogin);
 		return clientDao.viewClientList(map);
 	}
 	

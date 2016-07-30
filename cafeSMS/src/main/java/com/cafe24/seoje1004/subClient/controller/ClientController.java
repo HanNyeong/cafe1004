@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.cafe24.seoje1004.sub.model.SubLogin;
 import com.cafe24.seoje1004.subClient.model.Client;
+import com.cafe24.seoje1004.subClient.model.ClientSearch;
 import com.cafe24.seoje1004.subClientService.ClientService;
 
 @Controller
@@ -20,11 +22,10 @@ public class ClientController {
 	
 	//거래처목록 불러오는 컨트롤러 0729 박효민 search추가후 수정
 	@RequestMapping(value="/subViewSubClientList")
-	public String viewClientList(Model model) {
+	public String viewClientList(Model model, ClientSearch clientSearch, SubLogin subLogin) {
 		System.out.println("ClientController//viewClientList실행");
-		String subCode = "sub_code1";
-		List<Client> clientList = clientService.viewClientListService(subCode);
-		model.addAttribute("clientList",clientList);
+		model.addAttribute(clientService.viewClientListService(clientSearch,subLogin));
+		model.addAttribute("clientSearch",clientSearch);
 		return "/sub/subClient/subViewSubClientList";
 	}
 	
