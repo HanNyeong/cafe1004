@@ -77,4 +77,12 @@
 		<bean id="sqlSessionHeadItem" class="org.mybatis.spring.SqlSessionTemplate">
 			<constructor-arg index="0" ref="sqlSessionFactoryHeadItem" />
 		</bean>
+	<!-- 본사상품 관리 -->
+		<bean id="sqlSessionFactoryClaim" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			<property name="mapperLocations" value="classpath:com/cafe24/seoje1004/claim/repository/ClaimMapper.xml" />
+		</bean>
+		<bean id="sqlSessionClaim" class="org.mybatis.spring.SqlSessionTemplate">
+			<constructor-arg index="0" ref="sqlSessionFactoryClaim" />
+		</bean>
 </beans>

@@ -7,8 +7,6 @@
 <title>subModifySubStaff</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
-window.opener.location.reload();
-	window.close();
 $(document).ready(function(){
     $('#headModifySubStaffBtn').click(function(){
     	
@@ -20,9 +18,9 @@ $(document).ready(function(){
 <body>
 <h1> 가맹 직원 정보 수정 </h1>
 <form action="/subModifySubStaff" method="POST" id="headModifySubStaffForm">
-   <input type="hidden" name="subStaffId" value="${reSubStaff.subStaffCode}" />
+   <input type="hidden" name="subStaffCode" value="${reSubStaff.subStaffCode}" />
    <input type="hidden" name="headStaffId" value="${headStaff.headStaffId}" />
-   <input type="hidden" name="subCode" value="${reSub.subCode}" />
+   <input type="hidden" name="subCode" value="${subLogin.subCode}" />
 <div>
    	<p>가맹 직원 ID : ${reSubStaff.subStaffCode}</p>
  	<p>이름 : <input type="text" id="subStaffName" name="subStaffName" value="${reSubStaff.subStaffName}"/></p>

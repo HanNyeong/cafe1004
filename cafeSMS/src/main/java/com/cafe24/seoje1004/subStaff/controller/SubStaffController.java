@@ -100,7 +100,7 @@ public class SubStaffController {
 	    	  model.addAttribute("subStaff",subStaff);
 	    	  result = "/sub/subStaff/subModifySubStaff";
 	      }else{
-	    	  result = "redirect:/viewSubStaffList";
+	    	  result = "redirect:/viewSubStaffList?subCode="+subStaff.getSubCode();
 	      }
 	      return result;
 	   }  
