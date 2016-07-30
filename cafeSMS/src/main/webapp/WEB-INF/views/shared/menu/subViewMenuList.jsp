@@ -64,6 +64,7 @@
 		5:등록 날짜<span class="up">▲</span><span class="down">▼</span>
 		6:행사코드<span class="up">▲</span><span class="down">▼</span>
 		7:본사 승인 직원 ID
+		8:레시피
 
 	</P>        
 	<c:forEach var="menuList" items="${subViewMenuList}">	
@@ -75,6 +76,7 @@
 			5:${menuList.menuRegitDate}
 			6:${menuList.eventCode}
 			7:${menuList.headStaffId}
+			<a href="subViewRecipeList?menuCode=${menuList.menuCode}">레시피 보기</a>
 		</p>	
 	</c:forEach>
 </body>

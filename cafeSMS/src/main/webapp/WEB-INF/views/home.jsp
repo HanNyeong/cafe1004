@@ -71,6 +71,7 @@
 <a href="/modifySub?subCode=${subLogin.subCode}">가맹수정</a>
 <a href="/viewSubStaffList?subCode=${subLogin.subCode}">가맹 직원 조회</a>
 <a href="/subViewMenuList">메뉴관리</a>
+<a href="/subViewRecipeList">레시피관리</a>
 
 
 </body>
