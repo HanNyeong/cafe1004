@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.cafe24.seoje1004.cart.model.Cart;
 import com.cafe24.seoje1004.cart.service.CartService;
 import com.cafe24.seoje1004.headItem.model.HeadItem;
 import com.cafe24.seoje1004.sub.model.SubLogin;
@@ -25,13 +26,11 @@ public class CartController {
 	 * @return
 	 */
 	@RequestMapping(value="/subAddCart",method=RequestMethod.POST)
-	public String addSubCart(Model model, SubLogin subLogin,HeadItem headItem){
+	public String addSubCart(Model model,Cart cart){
 		System.out.println("CartController addSubCart .POST 실행");
-		System.out.println(subLogin);
-		System.out.println(headItem);
-		cartService.addSubCartService(subLogin,headItem);
-		System.out.println(subLogin);
-		System.out.println(headItem);
+		System.out.println(cart);
+		cartService.addSubCartService(cart);
+		System.out.println(cart);
 		
 		return "/sub/cart/subViewCartList";
 	}

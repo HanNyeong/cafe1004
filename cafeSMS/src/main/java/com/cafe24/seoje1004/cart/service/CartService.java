@@ -1,7 +1,6 @@
 package com.cafe24.seoje1004.cart.service;
 
-import com.cafe24.seoje1004.headItem.model.HeadItem;
-import com.cafe24.seoje1004.sub.model.SubLogin;
+import com.cafe24.seoje1004.cart.model.Cart;
 
 public interface CartService {
 	/**
@@ -10,6 +9,6 @@ public interface CartService {
 	 * @param subLogin
 	 * @param headItem
 	 */
-	void addSubCartService(SubLogin subLogin, HeadItem headItem);
+	void addSubCartService(Cart cart);
 
 }

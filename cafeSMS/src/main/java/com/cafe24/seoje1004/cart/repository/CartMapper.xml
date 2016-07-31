@@ -8,15 +8,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="com.cafe24.seoje1004.cart.model.Cart" id="cartResultMap">
 		<id property="cartCode" column="cart_code"/>
 		<result property="cartQuantity" column="cart_quantity"/>
-		<result property="headItemCode" column="head_item_code"/>
+		<result property="hItemCode" column="h_item_code"/>
 		<result property="subCode" column="sub_code"/>
 	</resultMap>
   
 	<!-- 가맹직원을 등록하는 inst 쿼리 자동으로 subStaffId를 생성해줌 -->
 	<insert id="addCart"
-		parameterType="com.cafe24.seoje1004.cart.model.Cart"
+		parameterType="java.util.Map"
 		useGeneratedKeys="true"
-		keyProperty="cartId">
+		keyProperty="cartCode">
 	<selectKey resultType="hashmap" keyProperty="cartCode" order="BEFORE">
 		select if(isnull(cart_code),'cart_code1000', concat('cart_code', MAX(CONVERT(SUBSTRING(cart_code,10), UNSIGNED))+1)) as cartCode
 		from cart
@@ -26,14 +26,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		cart(
 			cart_code,
 			cart_quantity, 
-			head_item_code, 
+			h_item_code, 
 			sub_code
 		)
 	VALUES (
 		#{cartCode},
-		#{cartQuantity}, 
-		#{headItemCode}, 
-		#{subCode}
+		#{cart.cartQuantity}, 
+		#{cart.hItemCode}, 
+		#{cart.subCode}
 	)
 </insert>
 

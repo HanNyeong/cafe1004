@@ -85,6 +85,14 @@
 			7:${headItemList.hItemRegitDate}
 			8:${headItemList.headStaffId}
 			9:${headItemList.hItemRetailPrice}
+			<c:if test="${subLogin != null}">
+				<form action="/subAddCart" method="POST">
+					<input type="hidden" name="subCode" value="${subLogin.subCode}">
+					<input type="hidden" name="hItemCode" value="${headItemList.hItemCode}">
+					<input type="number" name="cartQuantity" min="1">
+					<button>장바구니 담기</button>
+				</form>
+			</c:if>
 		</p>	
 	</c:forEach>
 </body>
