@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>고객클래임접수등록</h1>
+	<h1>호갱님전용 클래임 리스트 페이지입니다.</h1>
 </body>
 </html>

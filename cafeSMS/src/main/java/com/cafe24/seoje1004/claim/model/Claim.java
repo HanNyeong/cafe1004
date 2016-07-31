@@ -9,10 +9,10 @@ import org.springframework.web.multipart.MultipartFile;
  * Claim객체
  */
 public class Claim {
-	private String claimCode;				//불만접수코드
-	private String claimType;				//불만종류
-	private String claimAskDate;			//불만 접수 날짜
-	private String claimContent;			//불만내용
+	private String claimCode;				//클래임접수코드
+	private String claimType;				//클래임종류
+	private String claimAskDate;			//클래임 접수 날짜
+	private String claimContent;			//클래임내용
 	private String claimAnswerDate;			//답변일자
 	private String claimAnswerContent;		//답변내용
 	private String subCode;					//가맹대표코드

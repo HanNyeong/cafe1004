@@ -114,14 +114,34 @@ public class ClaimController {
 	
 	
 	
-	//고객이 자신의 클래임을 조회 및 새로운 클래임 등록
-	@RequestMapping(value = "/customerViewClaimList", method=RequestMethod.GET)
+	//고객이 자신의 클래임을 조회 및 새로운 클래임 등록 링크 제공
+	@RequestMapping(value = "/customerViewClaimForm", method=RequestMethod.GET)
+	public String customerViewClaimListForm() {
+		System.out.println("contractController customerViewClaimForm 실행!!");
+		
+		
+		return "/shared/claim/customerViewClaimForm";
+	}	
+	
+	
+	//고객이 자신의 클래임을 조회
+	@RequestMapping(value = "/customerViewClaimList", method=RequestMethod.POST)
 	public String customerViewClaimList() {
 		System.out.println("contractController customerViewClaimList 실행!!");
-		//1.고객이 클래임등록
-		//2.고객이 자신의 불만리스트 조회 및 수정
 		
 		
 		return "/shared/claim/customerViewClaimList";
-	}		
+	}
+	
+	
+	//고객이 자신의 클래임을 조회 및 새로운 클래임 등록 링크 제공
+	@RequestMapping(value = "/customerAddClaim", method=RequestMethod.GET)
+	public String customerAddClaim() {
+		System.out.println("contractController customerAddClaim 실행!!");
+		
+		
+		return "/shared/claim/customerAddClaim";
+	}	
+	
+	
 }
