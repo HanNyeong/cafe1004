@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.seoje1004.headItem.repository.HeadItemMapper">
-	<resultMap type="com.cafe24.seoje1004.headItem.model.HeadSearch" id="headItemResultMap">
+	<resultMap type="com.cafe24.seoje1004.headItem.model.HeadItem" id="headItemResultMap">
 		<id property="hItemCode" column="h_item_code"/>
 		<result property="hItemName" column="h_item_name"/>
 		<result property="inteCode" column="inte_code"/>
@@ -14,25 +14,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="headStaffId" column="head_staff_id"/>
 		<result property="hItemRetailPrice" column="h_item_regit_price"/>
 	</resultMap>
+	
 	<select id="viewHeadItemList"
-		parameterType="com.cafe24.seoje1004.headItem.model.HeadSearch"
+		parameterType="java.util.Map"
 		resultMap="headItemResultMap">
-		SELECT h_item_code, h_item_name, inte_code, h_item_quantity, h_item_unit, h_item_selling_price, h_item_regit_date, head_staff_id, h_item_retail_price
+		SELECT h_item_code, 
+		h_item_name, 
+		inte_code, 
+		h_item_quantity, 
+		h_item_unit, 
+		h_item_selling_price, 
+		h_item_regit_date, 
+		head_staff_id, 
+		h_item_retail_price
 		FROM head_item
 		<where>
-			<if test="headSearch.regitDateStart != null and headSearch.regitDateEnd != null and headSearch.regitDateStart !='' and headSearch.regitDateEnd !=''">
-				AND <![CDATA[date(h_item_regit_date) >= #{headSearch.regitDateStart} and date(h_item_regit_date) <= #{headSearch.regitDateEnd}]]>  
+			<if test="headItemSearch.regitDateStart != null and headItemSearch.regitDateEnd != null and headItemSearch.regitDateStart !='' and headItemSearch.regitDateEnd !=''">
+				<![CDATA[date(h_item_regit_date) >= #{headItemSearch.regitDateStart} and date(h_item_regit_date) <= #{headItemSearch.regitDateEnd}]]>  
 			</if>
-			<if test="headSearch.searchKey != null and headSearch.searchKey != '' and headSearch.searchsearchHeadItem != null and headSearch.searchHeadItem != ''">
-					AND  ${headSearch.searchKey} like CONCAT('%',#{headSearch.searchSubStaff},'%') 
+			<if test="headItemSearch.searchKey != null and headItemSearch.searchKey != '' and headItemSearch.searchHeadItem != null and headItemSearch.searchHeadItem != ''">
+					AND  ${headItemSearch.searchKey} like CONCAT('%',#{headItemSearch.searchHeadItem},'%') 
 			</if>
-			
 		</where>
-		<if test="headSearch.criteria == null and headSearch.upDown == null">
-			order by sub_staff_regit_date desc
+		<if test="headItemSearch.criteria == null and headItemSearch.upDown == null">
+			order by h_item_regit_date desc
 		</if>
-		<if test="headSearch.criteria != null and headSearch.upDown != null and headSearch.criteria != null and headSearch.upDown != ''">
-			order by ${headSearch.criteria} ${headSearch.upDown}
+		<if test="headItemSearch.criteria != null and headItemSearch.upDown != null and headItemSearch.criteria != null and headItemSearch.upDown != ''">
+			order by ${headItemSearch.criteria} ${headItemSearch.upDown}
 		</if>
 	</select>
 </mapper>

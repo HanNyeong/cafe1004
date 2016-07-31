@@ -69,14 +69,6 @@
 		<bean id="sqlSessionMenu" class="org.mybatis.spring.SqlSessionTemplate">
 			<constructor-arg index="0" ref="sqlSessionFactoryMenu" />
 		</bean>
-	<!-- 레시피 관리 -->
-		<bean id="sqlSessionFactoryRecipe" class="org.mybatis.spring.SqlSessionFactoryBean">
-			<property name="dataSource" ref="dataSource" />
-			<property name="mapperLocations" value="classpath:com/cafe24/seoje1004/recipe/repository/RecipeMapper.xml" />
-		</bean>
-		<bean id="sqlSessionRecipe" class="org.mybatis.spring.SqlSessionTemplate">
-			<constructor-arg index="0" ref="sqlSessionFactoryRecipe" />
-		</bean>
 	<!-- 본사상품 관리 -->
 		<bean id="sqlSessionFactoryHeadItem" class="org.mybatis.spring.SqlSessionFactoryBean">
 			<property name="dataSource" ref="dataSource" />
@@ -90,15 +82,15 @@
 			<property name="dataSource" ref="dataSource" />
 			<property name="mapperLocations" value="classpath:com/cafe24/seoje1004/claim/repository/ClaimMapper.xml" />
 		</bean>
-			<bean id="sqlSessionClaim" class="org.mybatis.spring.SqlSessionTemplate">
+		<bean id="sqlSessionClaim" class="org.mybatis.spring.SqlSessionTemplate">
 			<constructor-arg index="0" ref="sqlSessionFactoryClaim" />
 		</bean>
-	<!-- 행사 관리 -->
-<!-- 		<bean id="sqlSessionFactoryEvent" class="org.mybatis.spring.SqlSessionFactoryBean"> -->
-<!-- 			<property name="dataSource" ref="dataSource" /> -->
-<!-- 			<property name="mapperLocations" value="classpath:com/cafe24/seoje1004/event/repository/EventMapper.xml" /> -->
-<!-- 		</bean> -->
-<!-- 			<bean id="sqlSessionEvent" class="org.mybatis.spring.SqlSessionTemplate"> -->
-<!-- 			<constructor-arg index="0" ref="sqlSessionFactoryEvent" /> -->
-<!-- 		</bean> -->
+	<!-- 레시피 관리 -->
+		<bean id="sqlSessionFactoryRecipe" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			<property name="mapperLocations" value="classpath:com/cafe24/seoje1004/recipe/repository/RecipeMapper.xml" />
+		</bean>
+		<bean id="sqlSessionRecipe" class="org.mybatis.spring.SqlSessionTemplate">
+			<constructor-arg index="0" ref="sqlSessionFactoryRecipe" />
+		</bean>
 </beans>
