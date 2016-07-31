@@ -3,6 +3,8 @@ package com.cafe24.seoje1004.claim.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.cafe24.seoje1004.claim.model.Claim;
 import com.cafe24.seoje1004.claim.model.ClaimSearch;
 
@@ -26,4 +28,5 @@ public interface ClaimService {
 	
 	
 	public List<Claim> customerViewClaimList(Claim claim, ClaimSearch claimSearch);	//고객이 자신의 클래임을 조회, 검색 및 정렬기능 추가
+	public void customerAddClaim(Claim claim, HttpServletRequest request);	//고객이 클래임 등록을 처리, 파일처리를 위해서 request가져오자
 }

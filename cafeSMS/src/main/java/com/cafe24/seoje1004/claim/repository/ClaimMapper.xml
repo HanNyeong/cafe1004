@@ -139,6 +139,73 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</trim>
 	</select>
 	
+	<!-- 고객이 클래임 등록을 처리 -->
+	<insert id="customerAddClaim"  
+			parameterType="com.cafe24.seoje1004.claim.model.Claim">
+			<selectKey resultType="hashmap" keyProperty="claimCode" order="BEFORE">
+			select if(isnull(claim_code),'claim_code1', concat('claim_code',MAX(CONVERT(SUBSTRING(claim_code,11), UNSIGNED))+1))
+			as claimCode
+			from claim
+			</selectKey>
+			INSERT INTO claim
+				(claim_code
+				,claim_type
+				,claim_ask_date
+				,claim_content
+				,sub_code
+				,customer_name
+				,customer_phone
+				)
+				
+				VALUES(
+				#{claimCode}
+				,#{claimType}
+				,NOW()
+				,#{claimContent}
+				,#{subCode}
+				,#{customerName}
+				,#{customerPhone}
+				)
 	
+	</insert>
+	
+	<!-- 랜덤네임이 중복되는 이름이 있으면 다시 새로운 랜덤네임으로 저장 -->
+	<select id="selectClaimFileByRandomName"
+			parameterType="String"
+			resultMap="claimFileListMap">
+		SELECT
+			claim_code,
+			file_name
+		FROM
+			claim_file
+		WHERE
+			random_name = #{randomName}	
+	</select>
+	
+	<!-- 고객이 클래임 파일을 등록 -->
+	<insert id="customerAddClaimFile"
+			parameterType="com.cafe24.seoje1004.claim.model.ClaimFile">
+			<selectKey resultType="hashmap" keyProperty="claimFileCode" order="BEFORE">
+				select if(isnull(claim_file_code),'claim_file_code1', concat('claim_file_code',MAX(CONVERT(SUBSTRING(claim_file_code,16), UNSIGNED))+1))
+				as claimFileCode
+				from claim_file
+			</selectKey>
+			INSERT INTO claim_file
+			(claim_file_code
+			,claim_code
+			,claim_file
+			,file_name
+			,random_name
+			)
+			VALUES
+			(#{claimFileCode}
+			,#{claimCode}
+			,#{claimFile}
+			,#{fileName}
+			,#{randomName}
+			)
+		
+	
+	</insert>
 
 </mapper>

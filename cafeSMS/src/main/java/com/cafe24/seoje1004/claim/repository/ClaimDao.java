@@ -23,4 +23,7 @@ public interface ClaimDao {
 	/*--------------------------------------------------구분선--------------------------------------------------*/
 	
 	public List<Claim> customerViewClaimList(Map<String,Object> map);	//고객이 자신의 클래임을 조회
-}
+	public void customerAddClaim(Claim claim);		//고객이 클래임 등록을 처리
+	public ClaimFile selectClaimFileByRandomName(String randomName);		//랜덤네임이 중복되는 이름이 있으면 다시 새로운 랜덤네임으로 저장	
+	public void customerAddClaimFile(ClaimFile claimFile);						//고객이 클래임 파일을 등록
+}			

@@ -3,6 +3,8 @@ package com.cafe24.seoje1004.claim.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +21,7 @@ import com.cafe24.seoje1004.contract.model.ContractSearch;
 @Controller
 public class ClaimController {
 	/**
-	 * 최종수정일 2016-07-30 오성현
+	 * 최종수정일 2016-07-31 오성현
 	 * 컨트롤러
 	 */
 	
@@ -141,13 +143,24 @@ public class ClaimController {
 	}
 	
 	
-	//고객이 자신의 클래임을 조회 및 새로운 클래임 등록 링크 제공
+	//고객이 클래임을 등록하는 폼
 	@RequestMapping(value = "/customerAddClaim", method=RequestMethod.GET)
-	public String customerAddClaim() {
-		System.out.println("contractController customerAddClaim 실행!!");
+	public String customerAddClaimForm() {
+		System.out.println("contractController customerAddClaimForm 실행!!");
 		
 		
 		return "/shared/claim/customerAddClaim";
+	}	
+	
+	//고객이 클래임 등록을 처리
+	@RequestMapping(value = "/customerAddClaim", method=RequestMethod.POST)
+	public String customerAddClaim(Claim claim, HttpServletRequest request) {
+		System.out.println("contractController customerAddClaim 실행!!");
+		System.out.println("claim :" +claim);
+		
+		claimService.customerAddClaim(claim,request);
+		
+		return "redirect:/customerViewClaimForm";
 	}	
 	
 	

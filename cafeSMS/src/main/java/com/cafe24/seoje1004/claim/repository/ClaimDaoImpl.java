@@ -63,5 +63,28 @@ public class ClaimDaoImpl implements ClaimDao {
 		System.out.println("map : "+map);
 		return sqlSessionClaim.selectList(NS+".customerViewClaimList", map);
 	}
+
+	//고객이 클래임 등록을 처리
+	@Override
+	public void customerAddClaim(Claim claim) {
+		System.out.println("ClaimDaoImpl customerViewClaimList 실행");
+		sqlSessionClaim.insert(NS+".customerAddClaim", claim);
+		
+	}
+
+	//랜덤네임이 중복되는 이름이 있으면 다시 새로운 랜덤네임으로 저장
+	@Override
+	public ClaimFile selectClaimFileByRandomName(String randomName) {
+		System.out.println("ClaimDaoImpl selectClaimFileByRandomName 실행");
+		return sqlSessionClaim.selectOne(NS+".selectClaimFileByRandomName", randomName);
+	}
+
+	//고객이 클래임 파일을 등록
+	@Override
+	public void customerAddClaimFile(ClaimFile claimFile) {
+		System.out.println("ClaimDaoImpl customerAddClaimFile");
+		sqlSessionClaim.insert(NS+".customerAddClaimFile", claimFile);
+		
+	}
 	
 }
