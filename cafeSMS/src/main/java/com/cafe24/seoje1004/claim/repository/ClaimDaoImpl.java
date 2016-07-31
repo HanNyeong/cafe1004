@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cafe24.seoje1004.claim.model.Claim;
+import com.cafe24.seoje1004.claim.model.ClaimFile;
 
 /**
  * 최종수정일 2016-07-30 오성현
@@ -29,6 +30,21 @@ public class ClaimDaoImpl implements ClaimDao {
 	public List<Claim> headViewClaimList(Map<String,Object> map) {
 		System.out.println("ClaimDaoImpl headViewClaimList실행");
 		return sqlSessionClaim.selectList(NS+".headViewClaimList", map);
+	}
+
+
+	//claimCode에 해당하는 클래임 상세정보출력
+	@Override
+	public Claim viewClaimContent(String claimCode) {
+		System.out.println("ClaimDaoImpl viewClaimContent 실행");
+		return sqlSessionClaim.selectOne(NS+".viewClaimContent", claimCode);
+	}
+
+	//해당클래임의 파일리스트
+	@Override
+	public List<ClaimFile> viewClaimFile(String claimCode) {
+		System.out.println("ClaimDaoImpl viewClaimFile 실행");
+		return sqlSessionClaim.selectList(NS+".viewClaimFile", claimCode);
 	}
 	
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cafe24.seoje1004.claim.model.Claim;
+import com.cafe24.seoje1004.claim.model.ClaimFile;
 import com.cafe24.seoje1004.claim.model.ClaimSearch;
 import com.cafe24.seoje1004.claim.repository.ClaimDao;
 
@@ -29,6 +30,23 @@ public class ClaimServiceImpl implements ClaimService {
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("claimSearch", claimSearch);
 		return claimDao.headViewClaimList(map);
+	}
+
+	//claimCode에 해당하는 클래임 상세정보출력
+	@Override
+	public Map<String, Object> viewClaimContent(String claimCode) {
+		System.out.println("ClaimServiceImpl viewClaimContent");
+		//1.클래임 상세정보  
+		Claim claimContent = claimDao.viewClaimContent(claimCode);
+		
+		//2.해당클래임의 파일리스트
+		List<ClaimFile>	claimFile = claimDao.viewClaimFile(claimCode);
+		
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("claimContent", claimContent);
+		map.put("claimFile", claimFile);
+		return map;
 	}
 	
 }

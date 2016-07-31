@@ -17,9 +17,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="customerName" column="customer_name"/>
 		<result property="customerPhone" column="customer_phone"/>
 		<result property="claimStatus" column="claim_status"/>
-		
 	</resultMap>
 	
+	<!-- ClaimFile객체등록 -->
+	<resultMap type="com.cafe24.seoje1004.claim.model.ClaimFile" id="claimFileListMap">
+		<id property="claimFileCode" column="claim_file_code"/>
+		<result property="claimCode" column="claim_code"/>
+		<result property="claimFile" column="claim_file"/>
+		<result property="fileName" column="file_name"/>
+		<result property="randomName" column="random_name"/>
+	</resultMap>
 	
 	<!-- 본사가 전체클래임리스트 조회 -->
 	<select id="headViewClaimList"
@@ -55,5 +62,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</trim>
 	</select>
+	
+	
+	<!-- claimCode에 해당하는 클래임 상세정보출력 -->
+	<select id="viewClaimContent"
+			parameterType="String"
+			resultMap="claimListMap">
+		SELECT
+			claim_code,
+			claim_type,
+			claim_ask_date,
+			claim_content,
+			claim_answer_date,
+			claim_answer_content,
+			sub_code,
+			customer_name,
+			customer_phone,
+			claim_status
+		FROM
+			claim
+		WHERE
+			claim_code = #{claimCode}
+		
+	</select>
+	
+	<!-- 해당클래임의 파일리스트 -->
+	<select id="viewClaimFile"
+			parameterType="String"
+			resultMap="claimFileListMap">
+		SELECT
+			claim_file_code,
+			claim_code,
+			claim_file,
+			file_name,
+			random_name
+		FROM
+			claim_file
+		WHERE
+			claim_code = #{claimCode}
+	</select>
+	
+	
+	
 
 </mapper>

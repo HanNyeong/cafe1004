@@ -160,6 +160,7 @@
 		customerName<span id="customerNameUp">▲</span><span id="customerNameDown">▼</span>
 		customerPhone<span id="customerPhoneUp">▲</span><span id="customerPhoneDown">▼</span>
 		claimStatus<span id="claimStatusUp">▲</span><span id="claimStatusDown">▼</span>
+		[상세보기]
 		
 	</div>
 	<div>
@@ -173,6 +174,7 @@
 				${claimList.customerName}
 				${claimList.customerPhone}
 				${claimList.claimStatus}
+				<a href="/viewClaimContent?claimCode=${claimList.claimCode}">[상세보기]</a>
 			</div>
 		</c:forEach>
 	</div>

@@ -1,6 +1,7 @@
 package com.cafe24.seoje1004.claim.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,6 +45,22 @@ public class ClaimController {
 		return "/shared/claim/headViewClaimList";
 	}
 	
+	//해당 클래임 상세내역 조회
+	@RequestMapping(value="/viewClaimContent",method=RequestMethod.GET)
+	public String viewClaimContent(Model model,@RequestParam(value="claimCode")String claimCode){
+		System.out.println("contractController viewClaimContent get실행");
+		
+		//claimCode에 해당하는 클래임 상세정보출력
+		//상세정보와 클래임 파일리스트를 받으므로 map에다 넣어주자
+		Map<String,Object> map = claimService.viewClaimContent(claimCode);
+		
+		
+		System.out.println("map : "+map);
+		
+		model.addAttribute("map", map);
+		
+		return "/shared/claim/viewClaimContent";
+	}
 	
 	
 	
