@@ -48,5 +48,27 @@ public class ClaimServiceImpl implements ClaimService {
 		map.put("claimFile", claimFile);
 		return map;
 	}
+
+
+	/*--------------------------------------------------구분선--------------------------------------------------*/
+	/*--------------------------------------------------구분선--------------------------------------------------*/	
+	/*--------------------------------------------------구분선--------------------------------------------------*/	
+	/*--------------------------------------------------구분선--------------------------------------------------*/
+	/*--------------------------------------------------구분선--------------------------------------------------*/
+	/*--------------------------------------------------구분선--------------------------------------------------*/
+	
+	
+	
+	
+	//고객이 자신의 클래임을 조회
+	@Override
+	public List<Claim> customerViewClaimList(Claim claim,ClaimSearch claimSearch) {
+		System.out.println("ClaimServiceImpl customerViewClaimList");
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("claim", claim);
+		map.put("claimSearch", claimSearch);
+		System.out.println("map : "+map);
+		return claimDao.customerViewClaimList(map);
+	}
 	
 }

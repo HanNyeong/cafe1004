@@ -46,5 +46,22 @@ public class ClaimDaoImpl implements ClaimDao {
 		System.out.println("ClaimDaoImpl viewClaimFile 실행");
 		return sqlSessionClaim.selectList(NS+".viewClaimFile", claimCode);
 	}
+
+	
+	/*--------------------------------------------------구분선--------------------------------------------------*/
+	/*--------------------------------------------------구분선--------------------------------------------------*/	
+	/*--------------------------------------------------구분선--------------------------------------------------*/	
+	/*--------------------------------------------------구분선--------------------------------------------------*/
+	/*--------------------------------------------------구분선--------------------------------------------------*/
+	/*--------------------------------------------------구분선--------------------------------------------------*/
+	
+	
+	//고객이 자신의 클래임을 조회
+	@Override
+	public List<Claim> customerViewClaimList(Map<String,Object> map) {
+		System.out.println("ClaimDaoImpl customerViewClaimList 실행");
+		System.out.println("map : "+map);
+		return sqlSessionClaim.selectList(NS+".customerViewClaimList", map);
+	}
 	
 }

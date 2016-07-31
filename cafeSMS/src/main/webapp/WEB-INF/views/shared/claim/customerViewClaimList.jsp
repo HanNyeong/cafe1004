@@ -1,12 +1,197 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script>
+	
+	$(document).ready(function(){
+		
+		/* 오름차/내림차순 정렬 설정 */
+		$('#claimCodeUp').click(function(){
+			
+			$('#criteria').attr('value','claim_code');
+			$('#upDown').attr('value','DESC');
+			$('#claimList').submit();
+		});
+		$('#claimCodeDown').click(function(){
+			
+			$('#criteria').attr('value','claim_code');
+			$('#upDown').attr('value','ASC');
+			$('#claimList').submit();
+		});
+		
+		
+		$('#claimTypeUp').click(function(){
+			
+			$('#criteria').attr('value','claim_type');
+			$('#upDown').attr('value','DESC');
+			$('#claimList').submit();
+		});
+		$('#claimTypeDown').click(function(){
+			
+			$('#criteria').attr('value','claim_type');
+			$('#upDown').attr('value','ASC');
+			$('#claimList').submit();
+		});
+		
+		
+		$('#claimAskDateUp').click(function(){
+			
+			$('#criteria').attr('value','claim_ask_date');
+			$('#upDown').attr('value','DESC');
+			$('#claimList').submit();
+		});
+		$('#claimAskDateDown').click(function(){
+			
+			$('#criteria').attr('value','claim_ask_date');
+			$('#upDown').attr('value','ASC');
+			$('#claimList').submit();
+		});
+		
+		
+		$('#claimAnswerDateUp').click(function(){
+			
+			$('#criteria').attr('value','claim_answer_date');
+			$('#upDown').attr('value','DESC');
+			$('#claimList').submit();
+		});
+		$('#claimAnswerDateDown').click(function(){
+			
+			$('#criteria').attr('value','claim_answer_date');
+			$('#upDown').attr('value','ASC');
+			$('#claimList').submit();
+		});
+		
+		
+		$('#subCodeUp').click(function(){
+			
+			$('#criteria').attr('value','sub_code');
+			$('#upDown').attr('value','DESC');
+			$('#claimList').submit();
+		});
+		$('#subCodeDown').click(function(){
+			
+			$('#criteria').attr('value','sub_code');
+			$('#upDown').attr('value','ASC');
+			$('#claimList').submit();
+		});
+		
+		$('#customerNameUp').click(function(){
+			
+			$('#criteria').attr('value','customer_name');
+			$('#upDown').attr('value','DESC');
+			$('#claimList').submit();
+		});
+		$('#customerNameDown').click(function(){
+			
+			$('#criteria').attr('value','customer_name');
+			$('#upDown').attr('value','ASC');
+			$('#claimList').submit();
+		});
+		
+		$('#customerPhoneUp').click(function(){
+			
+			$('#criteria').attr('value','customer_phone');
+			$('#upDown').attr('value','DESC');
+			$('#claimList').submit();
+		});
+		$('#customerPhoneDown').click(function(){
+			
+			$('#criteria').attr('value','customer_phone');
+			$('#upDown').attr('value','ASC');
+			$('#claimList').submit();
+		});
+		
+		$('#claimStatusUp').click(function(){
+			
+			$('#criteria').attr('value','claim_status');
+			$('#upDown').attr('value','DESC');
+			$('#claimList').submit();
+		});
+		$('#claimStatusDown').click(function(){
+			
+			$('#criteria').attr('value','claim_status');
+			$('#upDown').attr('value','ASC');
+			$('#claimList').submit();
+		});
+		
+	});
+
+</script>
 </head>
 <body>
-	<h1>호갱님전용 클래임 리스트 페이지입니다.</h1>
+
+<h1>호갱님 클래임 리스트 페이지입니다.</h1>
+	
+	<c:if test="${empty claimList}">
+		<p>해당하는 클래임이 존재하지 않습니다. 이름 또는 전화번호를 정확하게 입력해 주세요</p>
+	</c:if>
+	<c:if test="${!empty claimList}">
+		<!-- 상품 검색 -->
+		<form name="claimList" id="claimList" action="/customerViewClaimList" method="post">
+			<!-- 오름차/내림차순 정렬을 위한 input 태그 -->
+			<input type="hidden" name="criteria" id="criteria" value=""/>
+			<input type="hidden" name="upDown" id="upDown" value=""/>
+			<input type="hidden" name="customerName" value="${claim.customerName}"/>
+			<input type="hidden" name="customerPhone" value="${claim.customerPhone}"/>
+			
+			
+			등록 날짜: 
+			<input type="date" name="regitDateStart" value="${claimSearch.regitDateStart}"/> ~
+			<input type="date" name="regitDateEnd" value="${claimSearch.regitDateEnd}"/> 
+			<br/><br/>
+			<select name="searchKey" required="required">
+				<option value="">::선택::</option>
+				<option value="claim_code" <c:if test="${claimSearch.searchKey eq 'claim_code'}">selected="selected"</c:if>>claim_code</option>
+				<option value="claim_type" <c:if test="${claimSearch.searchKey eq 'claim_type'}">selected="selected"</c:if>>claim_type</option>
+				<option value="sub_code" <c:if test="${claimSearch.searchKey eq 'sub_code'}">selected="selected"</c:if>>sub_code</option>
+				<option value="customer_name" <c:if test="${claimSearch.searchKey eq 'customer_name'}">selected="selected"</c:if>>customer_name</option>
+				<option value="customer_phone" <c:if test="${claimSearch.searchKey eq 'customer_phone'}">selected="selected"</c:if>>customer_phone</option>
+			</select>
+			<input type="text" name="searchClaim" value="${claimSearch.searchClaim}"/>
+			<button>검색</button>
+		</form>
+		<hr/>
+		<div>
+		claimCode<span id="claimCodeUp">▲</span><span id="claimCodeDown">▼</span>
+		claimType<span id="claimTypeUp">▲</span><span id="claimTypeDown">▼</span>
+		claimAskDate<span id="claimAskDateUp">▲</span><span id="claimAskDateDown">▼</span>
+		claimAnswerDate<span id="claimAnswerDateUp">▲</span><span id="claimAnswerDateDown">▼</span>
+		subCode<span id="subCodeUp">▲</span><span id="subCodeDown">▼</span>
+		customerName<span id="customerNameUp">▲</span><span id="customerNameDown">▼</span>
+		customerPhone<span id="customerPhoneUp">▲</span><span id="customerPhoneDown">▼</span>
+		claimStatus<span id="claimStatusUp">▲</span><span id="claimStatusDown">▼</span>
+		[상세보기]
+		[수정]
+		[삭제]
+		</div>
+	
+		<div>
+			<c:forEach var="claimList" items="${claimList}">
+				<div>
+					${claimList.claimCode}
+					${claimList.claimType}
+					${claimList.claimAskDate}
+					${claimList.claimAnswerDate}
+					${claimList.subCode}
+					${claimList.customerName}
+					${claimList.customerPhone}
+					${claimList.claimStatus}
+					<a href="/viewClaimContent?claimCode=${claimList.claimCode}">[상세보기]</a>
+					<a href="/">[수정]</a>
+					<a href="/">[삭제]</a>
+				</div>
+			</c:forEach>
+		</div>
+	</c:if>
+	
+	
+	
 </body>
 </html>

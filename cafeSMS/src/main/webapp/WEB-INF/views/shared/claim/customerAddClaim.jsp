@@ -75,6 +75,7 @@ $(document).on("ready",function(){
 				
 			</select>
 		</div>
+		<p>[고객이름과 전화번호는 고객님께서 사용하실 아이디와 비밀번호 역할을 할 것 입니다. 정확히 기입해주세요]</p>
 		<div>
 			<label>고객 이름 : </label>
 			<input type="text" name="customerName"/>

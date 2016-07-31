@@ -125,10 +125,17 @@ public class ClaimController {
 	
 	
 	//고객이 자신의 클래임을 조회
-	@RequestMapping(value = "/customerViewClaimList", method=RequestMethod.POST)
-	public String customerViewClaimList() {
+	@RequestMapping(value = "/customerViewClaimList")
+	public String customerViewClaimList(Model model,Claim claim,ClaimSearch claimSearch) {
 		System.out.println("contractController customerViewClaimList 실행!!");
+		System.out.println("claim : "+ claim);
 		
+		List<Claim> claimList = claimService.customerViewClaimList(claim,claimSearch);
+		System.out.println("claimList : "+claimList);
+		
+		model.addAttribute("claim", claim);
+		model.addAttribute("claimSearch", claimSearch);
+		model.addAttribute("claimList", claimList);
 		
 		return "/shared/claim/customerViewClaimList";
 	}
