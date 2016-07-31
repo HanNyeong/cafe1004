@@ -93,4 +93,12 @@
 		<bean id="sqlSessionRecipe" class="org.mybatis.spring.SqlSessionTemplate">
 			<constructor-arg index="0" ref="sqlSessionFactoryRecipe" />
 		</bean>
+	<!-- 장바구니 관리 -->
+		<bean id="sqlSessionFactoryCart" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			<property name="mapperLocations" value="classpath:com/cafe24/seoje1004/cart/repository/CartMapper.xml" />
+		</bean>
+		<bean id="sqlSessionCart" class="org.mybatis.spring.SqlSessionTemplate">
+			<constructor-arg index="0" ref="sqlSessionFactoryCart" />
+		</bean>
 </beans>

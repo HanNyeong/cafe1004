@@ -1,1 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cafe24.seoje1004.cart.repository.CartMapper">
+   
+	<!-- POJO객체와 DB column명을 맞춰줍니다 -->
+	<resultMap type="com.cafe24.seoje1004.cart.model.Cart" id="cartResultMap">
+		<id property="cartCode" column="cart_code"/>
+		<result property="cartQuantity" column="cart_quantity"/>
+		<result property="headItemCode" column="head_item_code"/>
+		<result property="subCode" column="sub_code"/>
+	</resultMap>
+  
+	<!-- 가맹직원을 등록하는 inst 쿼리 자동으로 subStaffId를 생성해줌 -->
+	<insert id="addCart"
+		parameterType="com.cafe24.seoje1004.cart.model.Cart"
+		useGeneratedKeys="true"
+		keyProperty="cartId">
+	<selectKey resultType="hashmap" keyProperty="cartCode" order="BEFORE">
+		select if(isnull(cart_code),'cart_code1000', concat('cart_code', MAX(CONVERT(SUBSTRING(cart_code,10), UNSIGNED))+1)) as cartCode
+		from cart
+	</selectKey>
+      
+	INSERT INTO 
+		cart(
+			cart_code,
+			cart_quantity, 
+			head_item_code, 
+			sub_code
+		)
+	VALUES (
+		#{cartCode},
+		#{cartQuantity}, 
+		#{headItemCode}, 
+		#{subCode}
+	)
+</insert>
+
+</mapper>
