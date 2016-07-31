@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cafe24.seoje1004.event.repository.EventMapper">
+	 <resultMap type="com.cafe24.seoje1004.event.model.Event" id="eventResultMap">
+       <id property="eventCode" column="event_code"/>
+       <result property="eventName" column="event_name"/>    
+       <result property="eventBegin" column="event_begin"/>
+       <result property="eventEnd" column="event_end"/>
+       <result property="eventType" column="event_type"/>
+       <result property="eventDiscountRate" column="event_discount_rate"/>
+       <result property="eventRegitDate" column="event_regit_date"/>
+       <result property="headStaffId" column="head_staff_id"/>
+    </resultMap>
+	<select id="viewEventList"
+		resultMap="eventResultMap">
+  		select
+			event_code,
+			event_name,
+			event_begin,
+			event_end,
+			event_type,
+			event_discount_rate,
+			event_regit_date,
+			head_staff_id
+		from
+			event
+		<where>
+			<if test="eventSearch.regitDateStart != null and eventSearch.regitDateEnd != null and eventSearch.regitDateStart !='' and eventSearch.regitDateEnd !=''">
+				 <![CDATA[date(event_regit_date) >= #{eventSearch.regitDateStart} and date(event_regit_date) <= #{eventSearch.regitDateEnd}]]> AND
+			</if>
+			<if test="eventSearch.searchKey != null and eventSearch.searchKey != '' and eventSearch.searchEvent!= null and eventSearch.searchEvent != ''">
+						${eventSearch.searchKey} like CONCAT('%',#{eventSearch.searchEvent},'%') 
+			</if>
+		</where>
+		
+		<if test="eventSearch.criteria == null and eventSearch.upDown == null">
+			order by event_regit_date desc
+		</if>
+		<if test="eventSearch.criteria != null and eventSearch.upDown != null and eventSearch.criteria != null and eventSearch.upDown != ''">
+			order by ${eventSearch.criteria} ${eventSearch.upDown}
+		</if>
+  			
+	</select>
+</mapper>
