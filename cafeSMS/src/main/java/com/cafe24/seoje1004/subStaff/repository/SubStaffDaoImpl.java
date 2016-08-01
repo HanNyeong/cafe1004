@@ -54,7 +54,9 @@ public class SubStaffDaoImpl implements SubStaffDao{
     	return sqlSessionSubStaff.update(NS+".modifySubStaff",subStaff);
     }
 
-
+    /**
+     * 본사에서 직원 승락 메서드 입니다.
+     */
 	@Override
 	public int headModifySubStaffByPermit(SubStaff subStaff) {
 		return sqlSessionSubStaff.update(NS+".headModifySubStaffByPermit",subStaff);

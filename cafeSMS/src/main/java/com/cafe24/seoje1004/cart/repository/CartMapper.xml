@@ -57,4 +57,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 
 	</select>
+	<!-- 장바구니 정보를 가져오기 (수정폼으로) -->
+	   <select id="selectCart"
+   		parameterType="com.cafe24.seoje1004.cart.model.Cart"
+     	resultMap="cartResultMap">
+	      SELECT 
+	         cart_code,
+	         cart_quantity, 
+	         h_item_code, 
+	         sub_code         
+	      FROM 
+	         cart
+	      WHERE
+	         cart_code = #{cartCode}
+   </select>
+   <!-- 장바구니 수정하기  -->
+   <update id="modifyCart"
+      parameterType="com.cafe24.seoje1004.cart.model.Cart">
+	      UPDATE 
+	         cart
+	      SET
+	         cart_quantity= #{cartQuantity}
+	      WHERE 
+	         cart_code = #{cartCode}
+   </update>
 </mapper>

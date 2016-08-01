@@ -63,6 +63,7 @@
 		4:레시피 등록 날짜<span class="up">▲</span><span class="down">▼</span>
 		5:메뉴 코드<span class="up">▲</span><span class="down">▼</span>
 		6:본사 승인 직원 ID
+		
 
 	</P>        
 	<c:forEach var="recipeList" items="${subViewRecipeList}">	

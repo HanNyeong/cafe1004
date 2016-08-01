@@ -60,6 +60,9 @@
 		2:상품 수량<span class="up">▲</span><span class="down">▼</span>
 		3:본사 상품 코드<span class="up">▲</span><span class="down">▼</span>
 		4:가맹 대표 코드<span class="up">▲</span><span class="down">▼</span>
+		5:수정
+		6:삭제
+		7:주문
 	</P>        
 	<c:forEach var="cartList" items="${cartList}">
 	
@@ -68,6 +71,9 @@
 			2:${cartList.cartQuantity}
 			3:${cartList.hItemCode}
 			4:${cartList.subCode}
+			5:<a href="/subModifyCart?cartCode=${cartList.cartCode}"><input type="button" id="cartModifyBtn" name="cartModifyBtn" value="수정"></a>
+			5:<a href="/subDeleteCart?cartCode=${cartList.cartCode}"><input type="button" id="cartDeleteBtn" name="cartDeleteBtn" value="삭제"></a>
+			5:<a href=""><input type="button" id="ordersBtn" name="ordersBtn" value="주문"></a>
 		</p>
 	
 	</c:forEach>
