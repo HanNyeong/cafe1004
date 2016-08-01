@@ -101,12 +101,20 @@
 		<bean id="sqlSessionCart" class="org.mybatis.spring.SqlSessionTemplate">
 			<constructor-arg index="0" ref="sqlSessionFactoryCart" />
 		</bean>
-	<!-- 장바구니 관리 -->
+	<!-- 행사 관리 -->
 		<bean id="sqlSessionFactoryEvent" class="org.mybatis.spring.SqlSessionFactoryBean">
 			<property name="dataSource" ref="dataSource" />
 			<property name="mapperLocations" value="classpath:com/cafe24/seoje1004/event/repository/EventMapper.xml" />
 		</bean>
 		<bean id="sqlSessionEvent" class="org.mybatis.spring.SqlSessionTemplate">
 			<constructor-arg index="0" ref="sqlSessionFactoryEvent" />
+		</bean>
+	<!-- 계정과목 관리 -->
+		<bean id="sqlSessionFactorySubject" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			<property name="mapperLocations" value="classpath:com/cafe24/seoje1004/subject/repository/SubjectMapper.xml" />
+		</bean>
+		<bean id="sqlSessionSubject" class="org.mybatis.spring.SqlSessionTemplate">
+			<constructor-arg index="0" ref="sqlSessionFactorySubject" />
 		</bean>
 </beans>
