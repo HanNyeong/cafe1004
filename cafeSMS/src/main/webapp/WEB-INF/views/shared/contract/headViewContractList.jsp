@@ -137,7 +137,8 @@
 		contractN
 		contractExpireDate<span id="contractExpireDateUp">▲</span><span id="contractExpireDateDown">▼</span>
 		subCode
-		reContractStatus	
+		reContractStatus
+		headContractConfirm	
 		[상세보기]	
 		[계약승인]
 	</div>
@@ -152,14 +153,18 @@
 			<c:forEach var="headContractList" items="${headContractList}">
 				<div>
 					<c:if test="${headContractList.headContractConfirm == 'Y'}">
-						<c:if test="${headContractList.contractExpireDate != null}">
-		 				파기
+				 		
+				 		<c:if test="${headContractList.contractExpireDate != null}">
+			 				파기
 				 		</c:if>
-						<c:if test="${headContractList.contractExpireDate == null && headContractList.contractExpiryDate > nows}">
+						<c:if test="${headContractList.contractExpireDate == null && headContractList.contractExpiryDate > nows && subContractList.reContractStatus == 'N'}">
 				 			정상
 				 		</c:if>
 				 		<c:if test="${headContractList.contractExpiryDate <= nows}">
 				 			만료
+				 		</c:if>
+				 		<c:if test="${headContractList.reContractStatus == 'Y' && headContractList.contractExpireDate == null}">
+				 			이전계약(재계약)
 				 		</c:if>
 						${headContractList.contractCode}
 						${headContractList.contractName}
@@ -188,15 +193,7 @@
 			<c:forEach var="headContractList" items="${headContractList}">
 				<div>
 					<c:if test="${headContractList.headContractConfirm == 'N'}">
-						<c:if test="${headContractList.contractExpireDate != null}">
-		 				파기
-				 		</c:if>
-						<c:if test="${headContractList.contractExpireDate == null && headContractList.contractExpiryDate > nows}">
-				 			정상
-				 		</c:if>
-				 		<c:if test="${headContractList.contractExpiryDate <= nows}">
-				 			만료
-				 		</c:if>
+						대기중
 						${headContractList.contractCode}
 						${headContractList.contractName}
 						${headContractList.contractRegitDate}

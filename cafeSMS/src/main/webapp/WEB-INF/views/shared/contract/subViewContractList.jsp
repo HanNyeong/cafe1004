@@ -142,10 +142,10 @@
 			contractExpireDate<span id="contractExpireDateUp">▲</span><span id="contractExpireDateDown">▼</span>
 			subCode
 			reContractStatus	
+			[본사승인여부]
 			[상세보기]
 			[재계약신청]	
 			[계약파기신청]
-			[본사승인여부]	
 		</div>
 		
 		
@@ -162,11 +162,14 @@
 					<c:if test="${subContractList.contractExpireDate != null}">
 		 				파기
 			 		</c:if>
-					<c:if test="${subContractList.contractExpireDate == null && subContractList.contractExpiryDate > nows}">
+					<c:if test="${subContractList.contractExpireDate == null && subContractList.contractExpiryDate > nows && subContractList.reContractStatus == 'N'}">
 			 			정상
 			 		</c:if>
 			 		<c:if test="${subContractList.contractExpiryDate <= nows}">
 			 			만료
+			 		</c:if>
+			 		<c:if test="${subContractList.reContractStatus == 'Y' && subContractList.contractExpireDate == null}">
+			 			이전계약(재계약)
 			 		</c:if>
 					${subContractList.contractCode}
 					${subContractList.contractName}

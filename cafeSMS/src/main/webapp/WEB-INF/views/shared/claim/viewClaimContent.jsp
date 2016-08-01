@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<a href="/">home</a>
 	<h1>클래임 상세내역</h1>
 	
 	
