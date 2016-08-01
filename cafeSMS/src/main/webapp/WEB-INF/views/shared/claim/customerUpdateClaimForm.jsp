@@ -77,7 +77,7 @@ $(document).on("ready",function(){
 			<label>지점 선택 : </label>
 			<select id="subCode" name="subCode">
 				<option value="">::선택::</option>
-				<option value="본사">본사</option>
+				<option value="본사" <c:if test="${map.claimContent.subCode eq '본사'}">selected="selected"</c:if>>본사</option>
 				<option value="sub_code1" <c:if test="${map.claimContent.subCode eq 'sub_code1'}">selected="selected"</c:if>>1지점</option>
 				<option value="sub_code2" <c:if test="${map.claimContent.subCode eq 'sub_code2'}">selected="selected"</c:if>>2지점</option>
 				<option value="sub_code3" <c:if test="${map.claimContent.subCode eq 'sub_code3'}">selected="selected"</c:if>>3지점</option>
