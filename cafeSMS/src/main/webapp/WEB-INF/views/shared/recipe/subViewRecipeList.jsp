@@ -40,9 +40,10 @@
 </head>
 <body>
 
-	<form id="recipeList" action="/subViewrecipeList" method="POST">
+	<form id="recipeList" action="/subViewRecipeList" method="POST">
 		<input type="hidden" id="upDown" name="upDown" value="" />
 		<input type="hidden" id="criteria" name="criteria" value=""/>
+		<input type="hidden" name="menuCode" value="${menuCode}">
 		등록 날짜: 
 		<input type="date" name="regitDateStart" value="${recipeSearch.regitDateStart}"/> ~
 		<input type="date" name="regitDateEnd" value="${recipeSearch.regitDateEnd}"/> 

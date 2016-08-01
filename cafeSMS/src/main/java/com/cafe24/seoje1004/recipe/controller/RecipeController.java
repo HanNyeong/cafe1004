@@ -30,6 +30,7 @@ public class RecipeController {
 		System.out.println(recipeSearch);
 		System.out.println(menuCode+"확인작업");
 		model.addAttribute("subViewRecipeList", recipeService.subViewRecipeListService(recipeSearch,subLogin,menuCode));
+		model.addAttribute("menuCode", menuCode);
 		return "/shared/recipe/subViewRecipeList";
 	}
 }

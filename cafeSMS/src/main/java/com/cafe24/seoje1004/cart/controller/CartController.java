@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cafe24.seoje1004.cart.model.Cart;
+import com.cafe24.seoje1004.cart.model.CartSearch;
 import com.cafe24.seoje1004.cart.service.CartService;
 import com.cafe24.seoje1004.headItem.model.HeadItem;
 import com.cafe24.seoje1004.sub.model.SubLogin;
@@ -33,5 +34,21 @@ public class CartController {
 		System.out.println(cart);
 		
 		return "/sub/cart/subViewCartList";
+	}
+	/**
+	 * 장바구니를 조회하는 컨트롤러입니다.
+	 * @param model
+	 * @param cartSearch
+	 * @param cart
+	 * @return
+	 */
+	@RequestMapping(value="/subViewCartList")
+	public String subViewCartList(Model model, CartSearch cartSearch,Cart cart){
+		System.out.println("CartController subViewCartList실행");
+		System.out.println(cartSearch);
+		model.addAttribute("cartList", cartService.viewCartListService(cartSearch,cart));
+		model.addAttribute("cartSearch", cartSearch);
+		return "/sub/cart/subViewCartList";
+		
 	}
 }
