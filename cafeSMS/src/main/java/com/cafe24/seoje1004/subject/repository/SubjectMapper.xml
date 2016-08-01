@@ -3,37 +3,37 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.seoje1004.subject.repository.SubjectMapper">
-<resultMap type="com.cafe24.seoje1004.subject.model.Subject" id="subjectResultMap">
-	<id property="subjectCode" column="subject_code"/>
-	<result property="subjectName" column="subject_name"/>
-	<result property="subjectContent" column="subject_content"/>	
-	<result property="subjectRegitDate" column="subject_regit_date"/>	
-</resultMap>
+	<resultMap type="com.cafe24.seoje1004.subject.model.Subject" id="subjectResultMap">
+		<id property="subjectCode" column="subject_code"/>
+		<result property="subjectName" column="subject_name"/>
+		<result property="subjectContent" column="subject_content"/>	
+		<result property="subjectRegitDate" column="subject_regit_date"/>	
+	</resultMap>
 
-<!-- 계정과목리스트 불러오기 -->
-<select id="viewSubject"
-		resultMap="subjectResultMap"
-		parameterType="java.util.Map">
-	select
-		subject_code,
-		subject_name,
-		subject_content,
-		subject_regit_date
-	from
-		subject
-	<where>
-		<if test="subjectSearch.regitDateStart != null and subjectSearch.regitDateEnd != null and subjectSearch.regitDateStart !='' and subjectSearch.regitDateEnd !=''">
-			<![CDATA[date(subject_regit_date) >= #{subjectSearch.regitDateStart} and date(subject_regit_date) <= #{subjectSearch.regitDateEnd}]]> AND
-		</if>
-		<if test="subjectSearch.searchKey != null and subjectSearch.searchKey != '' and subjectSearch.searchSubject!= null and subjectSearch.searchSubject != ''">
-			${subjectSearch.searchKey} like CONCAT('%',#{subjectSearch.searchSubject},'%') 
-		</if>
-	</where>
-		<if test="subjectSearch.criteria == null and subjectSearch.upDown == null">
-			order by subject_regit_date desc
-		</if>
-		<if test="subjectSearch.criteria != null and subjectSearch.upDown != null and subjectSearch.criteria != null and subjectSearch.upDown != ''">
-			order by ${subjectSearch.criteria} ${subjectSearch.upDown}
-		</if>
-</select>
+	<!-- 계정과목리스트 불러오기 -->
+	<select id="viewSubject"
+			resultMap="subjectResultMap"
+			parameterType="java.util.Map">
+		select
+			subject_code,
+			subject_name,
+			subject_content,
+			subject_regit_date
+		from
+			subject
+		<where>
+			<if test="subjectSearch.regitDateStart != null and subjectSearch.regitDateEnd != null and subjectSearch.regitDateStart !='' and subjectSearch.regitDateEnd !=''">
+				<![CDATA[date(subject_regit_date) >= #{subjectSearch.regitDateStart} and date(subject_regit_date) <= #{subjectSearch.regitDateEnd}]]> AND
+			</if>
+			<if test="subjectSearch.searchKey != null and subjectSearch.searchKey != '' and subjectSearch.searchSubject!= null and subjectSearch.searchSubject != ''">
+				${subjectSearch.searchKey} like CONCAT('%',#{subjectSearch.searchSubject},'%') 
+			</if>
+		</where>
+			<if test="subjectSearch.criteria == null and subjectSearch.upDown == null">
+				order by subject_regit_date desc
+			</if>
+			<if test="subjectSearch.criteria != null and subjectSearch.upDown != null and subjectSearch.criteria != null and subjectSearch.upDown != ''">
+				order by ${subjectSearch.criteria} ${subjectSearch.upDown}
+			</if>
+	</select>
 </mapper>

@@ -126,4 +126,12 @@
 		<bean id="sqlSeesionSubAccount" class="org.mybatis.spring.SqlSessionTemplate">
 			<constructor-arg index="0" ref="sqlSessionFactorySubAccount" />
 		</bean>
+	<!-- 가맹발주 관리 -->
+		<bean id="sqlSessionFactorySubOrders" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			<property name="mapperLocations" value="classpath:com/cafe24/seoje1004/orders/repository/OrdersMapper.xml" />
+		</bean>
+		<bean id="sqlSeesionSubOrders" class="org.mybatis.spring.SqlSessionTemplate">
+			<constructor-arg index="0" ref="sqlSessionFactorySubOrders" />
+		</bean>
 </beans>

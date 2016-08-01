@@ -16,7 +16,7 @@
 	$(document).ready(function(){
 		//컬럼 명 지정해주는 배열 
 		//자기입맛에 맛게 고쳐 쓰세요
-		var columnList = ['h_item_code','h_item_name','inte_code','h_item_quantity','h_item_unit','h_item_selling_price','h_item_regit_date','head_staff_id','h_item_regit_price']
+		var columnList = ['h_item_code','h_item_name','inte_code','h_item_quantity','h_item_unit','h_item_selling_price','h_item_regit_date','head_staff_id','h_item_regit_price','h_item_regit_date','head_staff_id','h_item_regit_price']
 
 		$('.up').each(function(index,item){
 			$(item).click(function(){
@@ -34,6 +34,14 @@
 			}else{
 				$('#headItemForm').submit();
 			}
+		});
+		$('#cartBtn').click(function(){
+			$('#cartAndOrders').attr('action','subAddCart');
+			$('#cartAndOrders').submit();
+		});
+		$('#ordersBtn').click(function(){
+			$('#cartAndOrders').attr('action','subAddOrders');
+			$('#cartAndOrders').submit();
 		});
 	});
 </script>
@@ -69,9 +77,9 @@
 		4:아이템 갯수<span class="up">▲</span><span class="down">▼</span>
 		5:박스 또는 개별<span class="up">▲</span><span class="down">▼</span>
 		6:가맹에 파는 가격<span class="up">▲</span><span class="down">▼</span>
-		7:등록 날짜
-		8:등록한 사람
-		9:소비자가격
+		7:등록 날짜<span class="up">▲</span><span class="down">▼</span>
+		8:등록한 사람<span class="up">▲</span><span class="down">▼</span>
+		9:소비자가격<span class="up">▲</span><span class="down">▼</span>
 
 	</P>        
 	<c:forEach var="headItemList" items="${headItemList}">	
@@ -86,11 +94,12 @@
 			8:${headItemList.headStaffId}
 			9:${headItemList.hItemRetailPrice}
 			<c:if test="${subLogin != null}">
-				<form action="/subAddCart" method="POST">
+				<form id="cartAndOrders" action="/" method="POST">
 					<input type="hidden" name="subCode" value="${subLogin.subCode}">
 					<input type="hidden" name="hItemCode" value="${headItemList.hItemCode}">
 					<input type="number" name="cartQuantity" min="1">
-					<button>장바구니 담기</button>
+					<input type="button" id="cartBtn" value="장바구니담기">
+					<input type="button" id="ordersBtn" value="발주하기">
 				</form>
 			</c:if>
 		</p>	

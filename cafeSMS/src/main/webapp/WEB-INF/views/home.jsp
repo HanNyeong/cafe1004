@@ -75,6 +75,7 @@
 <a href="/viewHeadItemList">본사 상품리스트</a>
 <a href="/subViewCartList?subCode=${subLogin.subCode}">장바구니</a>
 <a href="/viewSubjectList">[계정과목]</a>
+<a href="/viewOrdersList?subCode=${subLogin.subCode}">@발주내역조회@</a>
 
 </body>
 </html>
