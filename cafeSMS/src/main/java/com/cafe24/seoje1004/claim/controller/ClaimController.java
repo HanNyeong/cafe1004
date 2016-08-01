@@ -1,5 +1,7 @@
 package com.cafe24.seoje1004.claim.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
@@ -192,9 +194,19 @@ public class ClaimController {
 		
 			System.out.println("customerName : "+customerName);
 			System.out.println("customerPhone : "+customerPhone);
+			
+			String customerNames="";
+			try {
+				customerNames = URLEncoder.encode(customerName, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			
 		
-		
-		return	"redirect:/customerViewClaimList?customerName="+customerName+"&customerPhone="+customerPhone;
+		return	"redirect:/customerViewClaimList?customerName="+customerNames+"&customerPhone="+customerPhone;
 	}
 	
 }
