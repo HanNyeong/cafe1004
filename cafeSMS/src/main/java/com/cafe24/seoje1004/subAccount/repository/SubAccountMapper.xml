@@ -3,5 +3,53 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.seoje1004.subAccount.repository.SubAccountMapper">
-
+	<resultMap type="com.cafe24.seoje1004.subAccount.model.SubAccount" id="subAccountResultMap">
+		<id property="subAccountCode" column="sub_account_code"/>
+		<result property="subAccountFlow" column="sub_account_flow"/>
+		<result property="subAccountGroupCode" column="sub_account_group_code"/>
+		<result property="subAccountTable" column="sub_account_table"/>
+		<result property="subAccountSum" column="sub_account_sum"/>
+		<result property="subAccountRequestDate" column="sub_account_request_date"/>
+		<result property="subAccountCheck" column="sub_account_check"/>
+		<result property="subAccountDetail" column="sub_account_detail"/>
+		<result property="subjectCode" column="subject_code"/>
+		<result property="subClientCode" column="sub_client_code"/>
+		<result property="subCode" column="sub_code"/>
+		<result property="subStaffCode" column="sub_staff_code"/>
+		<result property="subStaffKeeper" column="sub_staff_keeper"/>
+	</resultMap>
+	
+	<insert id="addSubAccount"
+		parameterType="com.cafe24.seoje1004.subAccount.model.SubAccount">
+		<selectKey resultType="hashmap" keyProperty="subAccountCode" order="BEFORE">
+			select if(isnull(sub_account_code),'sub_account_code1000', concat('sub_account_code', MAX(CONVERT(SUBSTRING(sub_account_code,17), UNSIGNED))+1)) as subAccountCode
+		</selectKey>
+		INSERT INTO
+			sub_account(
+				sub_account_code,
+				sub_account_flow,
+				sub_account_group_code,
+				sub_account_table,
+				sub_account_sum,
+				sub_account_request_date,
+				sub_account_detail,
+				subject_code,
+				sub_client_code,
+				sub_code,
+				sub_staff_code
+			)
+			VALUES(
+				#{subAccountCode},
+				#{subAcountAdd.subAccountFlow},
+				#{subAcountAdd.subAccountGroupCode},
+				#{subAcountAdd.subAccountTable},
+				#{subAcountAdd.subAccountSum},
+				NOW(),
+				#{subAcountAdd.subAccountDetail},
+				#{subAcountAdd.subjectCode},
+				#{subAcountAdd.subClientCode},
+				#{subAcountAdd.subCode},
+				#{subAcountAdd.subStaffCode}
+			)
+	</insert>
 </mapper>

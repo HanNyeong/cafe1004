@@ -10,10 +10,15 @@ public class SubAccountDaoImpl implements SubAccountDao{
 
 	@Autowired
 	private SqlSessionTemplate sqlSeesionSubAccount;
+	private final String NS = "com.cafe24.seoje1004.subAccount.repository.SubAccountMapper";
 	
+	/**
+	 * 통합 회계 등록 dao 메서드 입니다.
+	 * 매개변수로 subAccount를 받습니다.
+	 */
 	@Override
-	public void addSubAccount(SubAccount subAccount) {
-		
+	public int addSubAccount(SubAccount subAccount) {
+		return sqlSeesionSubAccount.insert(NS+".addSubAccount", subAccount);
 	}
 
 }

@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cafe24.seoje1004.sub.model.SubLogin;
+import com.cafe24.seoje1004.subAccount.model.SubAccount;
+import com.cafe24.seoje1004.subAccount.repository.SubAccountDao;
 import com.cafe24.seoje1004.subStaff.model.SubStaff;
 import com.cafe24.seoje1004.subStaff.model.SubStaffSearch;
 import com.cafe24.seoje1004.subStaff.repository.SubStaffDao;
@@ -19,6 +21,9 @@ public class SubStaffServiceImpl implements SubStaffService{
 
 	@Autowired
 	private SubStaffDao subStaffDao;
+	
+	@Autowired
+	private SubAccountDao subAccountDao;
 	
 	/**
 	 * 가맹직원을 등록하는 서비스 메서드입니다.
@@ -107,12 +112,12 @@ public class SubStaffServiceImpl implements SubStaffService{
      * @return
      */
 	@Override
-	@Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
 	public int subStaffSalaryService(SubStaff subStaff) {
 		System.out.println("SubStaffServiceImpl subStaffSalaryService실행");
-		int resultSubStaff = subStaffDao.subStaffSalary(subStaff);
-//		int resultSubAccount = subAccountDao.addSubStaffSalary(subStaff.getTotalAccountGroup());
-		return resultSubStaff;
+		SubAccount subAccount = new SubAccount();
+		subAccount.setSubAccountGroupCode(subStaff.getTotalAccountGroup());
+		int resultSubAccount = subAccountDao.addSubAccount(subAccount);
+		return 0;
 	}
 
 }

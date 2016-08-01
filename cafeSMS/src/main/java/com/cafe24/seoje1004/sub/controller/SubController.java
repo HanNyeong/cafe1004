@@ -88,9 +88,9 @@ public class SubController {
 	}
 	
 	/**
-* 가맹직원 로그인을 체크하는 컨트롤러입니다.
-* 매개변수로 
-*/
+	 * 가맹직원 로그인을 체크하는 컨트롤러입니다.
+	 * 매개변수로 
+	 */
    
 	@RequestMapping(value="/subLogin",method=RequestMethod.POST)
 	public String loginSub(Model model ,Sub sub){

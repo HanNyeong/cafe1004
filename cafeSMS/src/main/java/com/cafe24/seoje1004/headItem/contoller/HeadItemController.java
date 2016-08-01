@@ -21,5 +21,4 @@ public class HeadItemController {
 		model.addAttribute("headItemSearch",headItemSearch);
 		return "/shared/headItem/viewHeadItemList";
 	}
-	
 }

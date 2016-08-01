@@ -56,37 +56,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	      )
    </insert>
    
-   <select id="selectSubStaff"
-   		parameterType="com.cafe24.seoje1004.subStaff.model.SubStaff"
-     	resultMap="subStaffResultMap">
-	      SELECT 
-	         sub_staff_code,
-	         sub_staff_name, 
-	         sub_code, 
-	         sub_staff_level,
-	         sub_staff_join,
-	         head_staff_id,
-	         sub_staff_permit_date,
-	         sub_staff_regit_date,
-	         sub_staff_salary         
-	      FROM 
-	         sub_staff
-	      WHERE
-	         sub_staff_code = #{subStaffCode}
-   </select>
-   <update id="modifySubStaff"
-      parameterType="com.cafe24.seoje1004.subStaff.model.SubStaff">
-	      UPDATE 
-	         sub_staff
-	      SET
-	         sub_staff_name= #{subStaffName},
-	         sub_staff_level= #{subStaffLevel},
-	         sub_staff_salary= #{subStaffSalary}
-	      WHERE 
-	         sub_staff_code = #{subStaffCode}
-   </update>
+	<select id="selectSubStaff"
+		parameterType="com.cafe24.seoje1004.subStaff.model.SubStaff"
+		resultMap="subStaffResultMap">
+			SELECT 
+				sub_staff_code,
+				sub_staff_name, 
+				sub_code, 
+				sub_staff_level,
+				sub_staff_join,
+				head_staff_id,
+				sub_staff_permit_date,
+				sub_staff_regit_date,
+				sub_staff_salary         
+			FROM 
+				sub_staff
+			WHERE
+				sub_staff_code = #{subStaffCode}
+	</select>
+	<update id="modifySubStaff"
+		parameterType="com.cafe24.seoje1004.subStaff.model.SubStaff">
+			UPDATE 
+				sub_staff
+			SET
+				sub_staff_name= #{subStaffName},
+				sub_staff_level= #{subStaffLevel},
+				sub_staff_salary= #{subStaffSalary}
+			WHERE 
+				sub_staff_code = #{subStaffCode}
+	</update>
    
-   <!-- 가맹 리스트를 컬럼별 조회하는 select쿼리 -->
+	<!-- 가맹 리스트를 컬럼별 조회하는 select쿼리 -->
 	<select id="viewSubStaffList"
 		parameterType="java.util.Map"
 		resultMap="subStaffResultMap">
@@ -110,7 +110,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="subStaffSearch.criteria != null and subStaffSearch.upDown != null and subStaffSearch.criteria != null and subStaffSearch.upDown != ''">
 			order by ${subStaffSearch.criteria} ${subStaffSearch.upDown}
 		</if>
-
+	
 	</select>
 		
 	<!-- 본사직원이 가맹직원 등록을 승인 하는 update 쿼리 -->
@@ -129,15 +129,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				sub_staff_resign = NOW()
 			WHERE 
 				sub_staff_code = #{subStaffCode}
-	</update>
-	
-	<!-- 가맹직원 급여 관리 update쿼리 -->
-	<update id="subStaffSalary"
-		parameterType="com.cafe24.seoje1004.subStaff.model.SubStaff">
-			UPDATE sub_staff
-			SET
-				sub_staff_salary = #{subStaffSalary}
-			WHERE
-				sub_staff_code = #{subStaffCode}	
 	</update>
 </mapper>
