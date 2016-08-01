@@ -41,7 +41,7 @@
 	<form id="subjectList" action="/viewSubjectList" method="POST">
 		<input type="hidden" id="upDown" name="upDown" value="" />
 		<input type="hidden" id="criteria" name="criteria" value=""/>
-		<input type="hidden" id="subCode" name="subCode" value="${subLogin.subCode}"/>
+		<%-- <input type="hidden" id="subCode" name="subCode" value="${subLogin.subCode}"/> --%>
 		등록 날짜: 
 		<input type="date" name="regitDateStart" value="${subjectSearch.regitDateStart}"/> ~
 		<input type="date" name="regitDateEnd" value="${subjectSearch.regitDateEnd}"/> 
@@ -52,18 +52,20 @@
 			<option value="subject_name" <c:if test="${subjectSearch.searchKey eq 'subject_name'}">selected="selected"</c:if>>가맹거래처명</option>
 		</select>
 		<input type="text" id="searchSubject" name="searchSubject" value="${subjectSearch.searchSubject}"/>
-		<input type="button" id="searchBtn" value="검색" /><a href="/viewSubjectList?subCode=${subLogin.subCode}"><input type="button" value="전체보기"/></a>
+		<input type="button" id="searchBtn" value="검색" /><a href="/viewSubjectList"><input type="button" value="전체보기"/></a>
 	</form>
 		<p>
 			1.계정과목코드<span class="up">▲</span><span class="down">▼</span>
 			2.계정과목명<span class="up">▲</span><span class="down">▼</span>
 			3.계정과목상세내용<span class="up">▲</span><span class="down">▼</span>
+			4.계정과목등록일자<span class="up">▲</span><span class="down">▼</span>
 		</p>
 	<c:forEach var="subjectList" items="${subjectList}">
 		<p>	
 			1.${subjectList.subjectCode}
 			2.${subjectList.subjectName}
 			3.${subjectList.subjectContent}
+			4.${subjectList.subjectRegitDate}
 		</p>		
 	</c:forEach>
 </body>

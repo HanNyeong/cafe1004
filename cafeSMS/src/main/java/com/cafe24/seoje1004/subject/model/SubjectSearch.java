@@ -37,18 +37,18 @@ public class SubjectSearch {
 	public void setSearchKey(String searchKey) {
 		this.searchKey = searchKey;
 	}
-	public String getSearchSubClient() {
+	public String getSearchSubject() {
 		return searchSubject;
 	}
-	public void setSearchSubClient(String searchSubject) {
+	public void setSearchSubject(String searchSubject) {
 		this.searchSubject = searchSubject;
 	}
+	
 	@Override
 	public String toString() {
 		return "SubjectSearch [upDown=" + upDown + ", criteria=" + criteria + ", regitDateStart=" + regitDateStart
 				+ ", regitDateEnd=" + regitDateEnd + ", searchKey=" + searchKey + ", searchSubject=" + searchSubject
 				+ "]";
 	}
-	
 	
 }
