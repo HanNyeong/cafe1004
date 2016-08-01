@@ -168,8 +168,6 @@
 		customerPhone<span id="customerPhoneUp">▲</span><span id="customerPhoneDown">▼</span>
 		claimStatus<span id="claimStatusUp">▲</span><span id="claimStatusDown">▼</span>
 		[상세보기]
-		[수정]
-		[삭제]
 		</div>
 	
 		<div>
@@ -183,9 +181,7 @@
 					${claimList.customerName}
 					${claimList.customerPhone}
 					${claimList.claimStatus}
-					<a href="/viewClaimContent?claimCode=${claimList.claimCode}">[상세보기]</a>
-					<a href="/">[수정]</a>
-					<a href="/">[삭제]</a>
+					<a href="/viewClaimContent?claimCode=${claimList.claimCode}&customerName=${claimList.customerName}">[상세보기]</a>
 				</div>
 			</c:forEach>
 		</div>

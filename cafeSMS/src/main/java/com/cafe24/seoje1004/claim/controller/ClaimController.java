@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cafe24.seoje1004.claim.model.Claim;
 import com.cafe24.seoje1004.claim.model.ClaimSearch;
@@ -49,16 +50,20 @@ public class ClaimController {
 	
 	//해당 클래임 상세내역 조회
 	@RequestMapping(value="/viewClaimContent",method=RequestMethod.GET)
-	public String viewClaimContent(Model model,@RequestParam(value="claimCode")String claimCode){
+	public String viewClaimContent(Model model,@RequestParam(value="claimCode")String claimCode
+			,@RequestParam(value="customerName", required = false)String customerName){
 		System.out.println("contractController viewClaimContent get실행");
+		
+		/*,@RequestParam(value="customerName", required = false,defaultValue="")String customerName){*/
 		
 		//claimCode에 해당하는 클래임 상세정보출력
 		//상세정보와 클래임 파일리스트를 받으므로 map에다 넣어주자
 		Map<String,Object> map = claimService.viewClaimContent(claimCode);
 		
-		
+		System.out.println("customerName : "+customerName);
 		System.out.println("map : "+map);
 		
+		model.addAttribute("customerName", customerName);
 		model.addAttribute("map", map);
 		
 		return "/shared/claim/viewClaimContent";
@@ -163,5 +168,33 @@ public class ClaimController {
 		return "redirect:/customerViewClaimForm";
 	}	
 	
+	//고객이 클래임을 수정폼
+	@RequestMapping(value="/customerUpdateClaimForm", method=RequestMethod.GET)
+	public String customerUpdateClaimForm(Model model,@RequestParam(value="claimCode")String claimCode){
+		System.out.println("contractController customerUpdateClaimForm 실행");
+		
+		//claimCode해당하는 정보를 가져와서 폼으로 넘겨주자
+		Map<String,Object> map = claimService.viewClaimContent(claimCode);
+		
+		model.addAttribute("map", map);
+		
+		return "/shared/claim/customerUpdateClaimForm";
+	}
+	
+	//고객이 클래임을 수정 처리
+	
+	//고객이 클래임을 삭제
+	@RequestMapping(value="/customerDeleteClaim", method=RequestMethod.GET)
+	public String customerDelete(Model model,@RequestParam(value="claimCode")String claimCode
+			,@RequestParam(value="customerName")String customerName
+			,@RequestParam(value="customerPhone")String customerPhone){
+		System.out.println("contractController customerDeleteClaim실행");
+		
+			System.out.println("customerName : "+customerName);
+			System.out.println("customerPhone : "+customerPhone);
+		
+		
+		return	"redirect:/customerViewClaimList?customerName="+customerName+"&customerPhone="+customerPhone;
+	}
 	
 }
