@@ -117,4 +117,13 @@
 		<bean id="sqlSessionSubject" class="org.mybatis.spring.SqlSessionTemplate">
 			<constructor-arg index="0" ref="sqlSessionFactorySubject" />
 		</bean>
+		
+	<!-- 통합회계 관리 -->
+		<bean id="sqlSessionFactorySubAccount" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			<property name="mapperLocations" value="classpath:com/cafe24/seoje1004/subAccount/repository/SubAccountMapper.xml" />
+		</bean>
+		<bean id="sqlSeesionSubAccount" class="org.mybatis.spring.SqlSessionTemplate">
+			<constructor-arg index="0" ref="sqlSessionFactorySubAccount" />
+		</bean>
 </beans>
