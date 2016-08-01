@@ -106,13 +106,7 @@
 				<a href="/subModifySubStaff?subStaffCode=${subStaffList.subStaffCode}"><input type="button" value="수정"/></a>
 				<c:if test="${subStaffList.subStaffResign == null}">
 					<a href="/subModifySubStaffByRegsign?subStaffCode=${subStaffList.subStaffCode}&subCode=${subStaffList.subCode}"><input type="button" value="퇴사"/></a>
-					<form action="/subStaffSalary" method="POST" class="subSalaryForm">
-						<input type="hidden" name="subCode" value="${subLogin.subCode}"/>
-						<input type="hidden" name="subStaffCode" value="${subStaffList.subStaffCode}"/>
-						<input type="hidden" name="subStaffSalary" value="${subStaffList.subStaffSalary}"/>
-						<input type="hidden" name="subStaffSalary" value="${subStaffList.subStaffSalary}"/>
-						<input type="button" class="subSalaryBtn" value="급여지급"/>
-					</form>
+					<a href="/subStaffSalary?subStaffCode=${subStaffList.subStaffCode}"><input type="button" value="급여지금"/></a>
 				</c:if>
 			</c:if>
 		</p>

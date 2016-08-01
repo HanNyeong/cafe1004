@@ -14,7 +14,9 @@ public class SubAccountSerivceImpl implements SubAccountService{
 
 	@Override
 	public void modifySubAccountService(SubLogin subLogin) {
-		// TODO Auto-generated method stub
-		
+	}
+
+	@Override
+	public void addSubAccountService(SubAccount subAccount) {
 	}
 }

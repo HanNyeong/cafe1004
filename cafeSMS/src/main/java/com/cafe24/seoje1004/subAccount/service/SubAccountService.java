@@ -7,4 +7,6 @@ public interface SubAccountService {
 
 	void modifySubAccountService(SubLogin subLogin);
 
+	void addSubAccountService(SubAccount subAccount);
+
 }
