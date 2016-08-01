@@ -20,6 +20,7 @@ import com.cafe24.seoje1004.claim.model.ClaimSearch;
 import com.cafe24.seoje1004.claim.service.ClaimService;
 import com.cafe24.seoje1004.contract.model.Contract;
 import com.cafe24.seoje1004.contract.model.ContractSearch;
+import com.cafe24.seoje1004.contract.service.ContractService;
 
 @Controller
 public class ClaimController {
@@ -184,7 +185,35 @@ public class ClaimController {
 	}
 	
 	//고객이 클래임을 수정 처리
-	
+	@RequestMapping(value="/customerUpdateClaim", method=RequestMethod.POST)
+	public String customerUpdateClaim(Model model,Claim claim, HttpServletRequest request){
+		System.out.println("contractController customerUpdateClaim 실행");
+		System.out.println("claim : "+claim);
+		
+		//고객이 수정처리후 다시 콘텐츠로 가도록
+		String claimCode = claim.getClaimCode();
+		String customerName = claim.getCustomerName();
+		
+		//한글 인코딩 문제 해결
+		String customerNames="";
+		try {
+			customerNames = URLEncoder.encode(customerName, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//1.먼저 claim을 삭제 하고 관련된 file을 삭제
+		//고객이 클래임 삭제 처리
+		claimService.customerDeleteClaim(claimCode);
+		
+		//2.새로 클래임을 등록과 파일등록
+		claimService.customerAddClaim(claim,request);
+		
+		
+		return "redirect:/viewClaimContent?claimCode="+claimCode+"&customerName="+customerNames;
+		
+	}
 	//고객이 클래임을 삭제
 	@RequestMapping(value="/customerDeleteClaim", method=RequestMethod.GET)
 	public String customerDelete(Model model,@RequestParam(value="claimCode")String claimCode
@@ -195,6 +224,7 @@ public class ClaimController {
 			System.out.println("customerName : "+customerName);
 			System.out.println("customerPhone : "+customerPhone);
 			
+			//한글 인코딩 문제 해결
 			String customerNames="";
 			try {
 				customerNames = URLEncoder.encode(customerName, "UTF-8");
@@ -203,7 +233,8 @@ public class ClaimController {
 				e.printStackTrace();
 			}
 			
-			
+			//고객이 클래임 삭제 처리
+			claimService.customerDeleteClaim(claimCode);
 			
 		
 		return	"redirect:/customerViewClaimList?customerName="+customerNames+"&customerPhone="+customerPhone;

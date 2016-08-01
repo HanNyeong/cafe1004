@@ -82,9 +82,24 @@ public class ClaimDaoImpl implements ClaimDao {
 	//고객이 클래임 파일을 등록
 	@Override
 	public void customerAddClaimFile(ClaimFile claimFile) {
-		System.out.println("ClaimDaoImpl customerAddClaimFile");
+		System.out.println("ClaimDaoImpl customerAddClaimFile 실행");
 		sqlSessionClaim.insert(NS+".customerAddClaimFile", claimFile);
 		
+	}
+
+	//고객이 클래임 삭제처리
+	@Override
+	public void customerDeleteClaim(String claimCode) {
+		System.out.println("ClaimDaoImpl customerDeleteClaim 실행");
+		sqlSessionClaim.delete(NS+".customerDeleteClaim", claimCode);
+		
+	}
+
+	//고객이 해당클래임에 관련된 파일 삭제처리
+	@Override
+	public void customerDeleteClaimFile(String claimCode) {
+		System.out.println("ClaimDaoImpl customerDeleteClaimFile 실행");
+		sqlSessionClaim.delete(NS+".customerDeleteClaimFile", claimCode);
 	}
 	
 }

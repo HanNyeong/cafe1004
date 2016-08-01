@@ -29,4 +29,5 @@ public interface ClaimService {
 	
 	public List<Claim> customerViewClaimList(Claim claim, ClaimSearch claimSearch);	//고객이 자신의 클래임을 조회, 검색 및 정렬기능 추가
 	public void customerAddClaim(Claim claim, HttpServletRequest request);	//고객이 클래임 등록을 처리, 파일처리를 위해서 request가져오자
+	public void customerDeleteClaim(String claimCode); 		//고객이 클래임 삭제 처리
 }

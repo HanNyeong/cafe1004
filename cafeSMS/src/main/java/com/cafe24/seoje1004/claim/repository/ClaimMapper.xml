@@ -204,8 +204,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			,#{fileName}
 			,#{randomName}
 			)
-		
-	
 	</insert>
-
+	
+	<!-- 고객이 클래임 삭제처리 -->
+	<delete id="customerDeleteClaim"
+			parameterType="String">
+		DELETE FROM
+			claim
+		WHERE
+			claim_code = #{claimCode}	
+	</delete>
+	
+	<!-- 고객이 해당클래임에 관련된 파일 삭제처리 -->
+	<delete id="customerDeleteClaimFile"
+			parameterType="String">
+		DELETE FROM
+			claim_file
+		WHERE
+			claim_code = #{claimCode}	
+	</delete>
 </mapper>

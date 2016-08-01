@@ -6,6 +6,50 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script>
+$(document).on("ready",function(){
+	console.log("ready");
+	
+	//파일 추가
+	$("#addClaimFileBtn").on("click",function(){
+		console.log("addClaimFileBtn click");
+		$("#addClaimFile").append('<div><label>첨부파일 : </label><input id = "claimFile" type="file" name="claimFile"/></div>');	
+	});
+	
+	$("#claimBtn").on("click", function(){
+		console.log("claimBtn click");
+		
+		if($("#claimType").val()==""){
+			$("#claimTypeMsg").text("클래임종류를 선택해주세요");
+		}else if($("#claimContent").val()==""){
+			$("#claimTypeMsg").text("");
+			$("#claimContentMsg").text("클래임 내용을 작성하세요");
+		}else if($("#subCode").val()==""){
+			$("#claimTypeMsg").text("");
+			$("#claimContentMsg").text("");
+			$("#subCodeMsg").text("해당지점을 선택해주세요");
+		}else if($("#customerName").val()==""){
+			$("#claimTypeMsg").text("");
+			$("#claimContentMsg").text("");
+			$("#subCodeMsg").text("");
+			$("#customerNameMsg").text("고객님의 성함을 작성해주세요");
+		}else if($("#customerPhone").val()==""|| isNaN($("#customerPhone").val())){
+			$("#claimTypeMsg").text("");
+			$("#claimContentMsg").text("");
+			$("#subCodeMsg").text("");
+			$("#customerNameMsg").text("");
+			$("#customerPhoneMsg").text("전화번호를 입력하세요(-제외하고 숫자만 기입하세요)");
+		}else{
+			$("#claimUpdateForm").attr("action","/customerUpdateClaim");
+			$("#claimUpdateForm").submit();
+		}
+		
+	});
+	
+});
+
+</script>
 </head>
 <body>
 	<h1>고객이 클래임 수정</h1>

@@ -176,5 +176,18 @@ public class ClaimServiceImpl implements ClaimService {
 		
 		
 	}
+
+	//고객이 클래임 삭제 처리
+	@Override
+	public void customerDeleteClaim(String claimCode) {
+		System.out.println("ClaimServiceImpl customerDeleteClaim 실행");
+		
+		//고객이 클래임 삭제처리
+		claimDao.customerDeleteClaim(claimCode);
+		
+		//고객이 해당클래임에 관련된 파일 삭제처리
+		claimDao.customerDeleteClaimFile(claimCode);
+		
+	}
 	
 }

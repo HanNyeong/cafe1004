@@ -26,4 +26,7 @@ public interface ClaimDao {
 	public void customerAddClaim(Claim claim);		//고객이 클래임 등록을 처리
 	public ClaimFile selectClaimFileByRandomName(String randomName);		//랜덤네임이 중복되는 이름이 있으면 다시 새로운 랜덤네임으로 저장	
 	public void customerAddClaimFile(ClaimFile claimFile);						//고객이 클래임 파일을 등록
+	public void customerDeleteClaim(String claimCode);		//고객이 클래임 삭제처리
+	public void customerDeleteClaimFile(String claimCode);		//고객이 해당클래임에 관련된 파일 삭제처리
+	
 }			
