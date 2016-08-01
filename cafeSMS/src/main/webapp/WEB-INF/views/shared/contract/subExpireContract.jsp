@@ -41,6 +41,7 @@
 				<label>contractCode : </label> 			
  				<input type="text" name="contractCode" value="${contractCode}" readonly="readonly"/>
  			</div>
+ 			<input type="hidden" name="subCode" value="${subCode}"/>
  			
  			<div>
  				<label>contractExpireFile : </label>

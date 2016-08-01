@@ -84,9 +84,9 @@ public class ContractController {
 		//실제 파일경로를 지정해주기 위해서 request를 가져와 넣어주자
 		contractService.subAddContract(contract, request);
 		
+		String subCode = contract.getSubCode();
 		
-		
-		return "redirect:/subViewContractList";
+		return "redirect:/subViewContractList?subCode="+subCode;
 	}	
 	
 	//가맹대표코드 중복체크(계약등록시 이미 동일한 가맹대표코드로 등록이 되어있다면 등록되어선 안된다.)
@@ -151,19 +151,21 @@ public class ContractController {
 	public String subAddRecharterContract(Contract contract, HttpServletRequest request){
 		System.out.println("contractController subAddRecharterContract POST실행");
 		System.out.println("contract : "+contract);
+		String subCode = contract.getSubCode();
 		
 		//재계약 신청 등록 처리
 		contractService.subAddRecharterContract(contract, request);
 			
-		return "redirect:/subViewContractList";
+		return "redirect:/subViewContractList?subCode="+subCode;
 	
 	}
 				
 	//가맹이 계약파기를 신청폼
 	@RequestMapping(value="/subExpireContract", method=RequestMethod.GET)
-	public String subExpireContractForm(Model model,@RequestParam(value="contractCode")String contractCode){
+	public String subExpireContractForm(Model model,@RequestParam(value="contractCode")String contractCode,@RequestParam(value="subCode")String subCode){
 		System.out.println("contractController subExpireContract get 실행");
 		
+		model.addAttribute("subCode", subCode);
 		model.addAttribute("contractCode", contractCode);
 		
 		return "/shared/contract/subExpireContract";
@@ -178,8 +180,8 @@ public class ContractController {
 		System.out.println("contract : "+contract);
 		
 		contractService.subExpireContract(contract,request);
-		
-		return "redirect:/subViewContractList";
+		String subCode = contract.getSubCode();
+		return "redirect:/subViewContractList?subCode="+subCode;
 	}
 	
 	/*--------------------------------------------------------------------아래부터는 본사구간----------------------------------------------------------------------------------*/
