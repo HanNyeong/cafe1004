@@ -185,7 +185,7 @@
 					</c:if>
 					
 					<c:if test="${subContractList.contractExpireDate ==null && subContractList.reContractStatus == 'N'}">
-						<a href="/subExpireContract?contractCode=${subContractList.contractCode}">[계약파기신청]</a>
+						<a href="/subExpireContract?contractCode=${subContractList.contractCode}&subCode=${subContractList.subCode}">[계약파기신청]</a>
 					</c:if>			
 				</c:if>
 			</div>

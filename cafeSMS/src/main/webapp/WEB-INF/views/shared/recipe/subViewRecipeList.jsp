@@ -40,9 +40,10 @@
 </head>
 <body>
 
-	<form id="recipeList" action="/subViewrecipeList" method="POST">
+	<form id="recipeList" action="/subViewRecipeList" method="POST">
 		<input type="hidden" id="upDown" name="upDown" value="" />
 		<input type="hidden" id="criteria" name="criteria" value=""/>
+		<input type="hidden" name="menuCode" value="${menuCode}">
 		등록 날짜: 
 		<input type="date" name="regitDateStart" value="${recipeSearch.regitDateStart}"/> ~
 		<input type="date" name="regitDateEnd" value="${recipeSearch.regitDateEnd}"/> 
@@ -62,6 +63,7 @@
 		4:레시피 등록 날짜<span class="up">▲</span><span class="down">▼</span>
 		5:메뉴 코드<span class="up">▲</span><span class="down">▼</span>
 		6:본사 승인 직원 ID
+		
 
 	</P>        
 	<c:forEach var="recipeList" items="${subViewRecipeList}">	

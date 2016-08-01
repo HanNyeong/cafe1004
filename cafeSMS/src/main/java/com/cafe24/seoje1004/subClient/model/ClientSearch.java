@@ -1,13 +1,14 @@
 package com.cafe24.seoje1004.subClient.model;
 
 public class ClientSearch {
-		private String upDown;
-		private String criteria;
-		private String regitDateStart;
-		private String regitDateEnd;
-		private String searchKey;
-		private String searchSubClient;
-		public String getUpDown() {
+	private String upDown;
+	private String criteria;
+	private String regitDateStart;
+	private String regitDateEnd;
+	private String searchKey;
+	private String searchSubClient;
+	
+	public String getUpDown() {
 			return upDown;
 		}
 		public void setUpDown(String upDown) {
