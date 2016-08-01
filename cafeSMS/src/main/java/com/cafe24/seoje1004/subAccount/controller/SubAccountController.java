@@ -32,7 +32,6 @@ public class SubAccountController {
 		   System.out.println("SubAccountController subStaffSalary실행");
 		   System.out.println(subAccount);
 		   subAccountService.addSubAccountService(subAccount);
-		   
 		   return "redirect:/viewSubStaffList?subCode="+subAccount.getSubCode();
 	   }
 	

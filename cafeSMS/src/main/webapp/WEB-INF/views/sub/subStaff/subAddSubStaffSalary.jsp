@@ -22,7 +22,7 @@
 <body>
 	<h1>직원 급여 지급</h1>
 	<form action="/subStaffSalary" method="POST" id="subStaffSalaryForm">
-	<input type="hidden" name="subCode" value="${subStaff.subCode}">
+	<input type="hidden" name="subCode" value="${subLogin.subCode}">
 	<input type="hidden" name="subAccountFlow" value="출금">
 	<input type="hidden" name="subAccountGroupCode" value="${subStaff.totalAccountGroup}">
 	<input type="hidden" name="subAccountTable" value="sub_staff">

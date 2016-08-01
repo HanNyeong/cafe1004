@@ -18,5 +18,8 @@ public class SubAccountSerivceImpl implements SubAccountService{
 
 	@Override
 	public void addSubAccountService(SubAccount subAccount) {
+		System.out.println("SubAccountSerivceImpl addSubAccountService실행");
+		System.out.println(subAccount);
+		subAccountDao.addSubAccount(subAccount);
 	}
 }
