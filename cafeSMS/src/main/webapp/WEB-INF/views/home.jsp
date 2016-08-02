@@ -66,6 +66,7 @@
 <a href="/subViewClaimList?subCode=${subLogin.subCode}">[클래임/가맹클래임조회]</a>
 <a href="/headViewClaimList">[클래임/본사클래임조회]</a>
 <a href="/customerViewClaimForm">[클래임/고객클래임등록 및 나의 클래임조회]</a>
+<a href="/subViewDeliveryList">[배송/가맹측 배송조회]</a>
 <a href="/subViewSubClientList?subCode=${subLogin.subCode}">[가맹거래처조회]</a>
 <a href="/viewEventList">[행사조회]</a>
 <a href="/headAddSub">가맹 등록</a>
