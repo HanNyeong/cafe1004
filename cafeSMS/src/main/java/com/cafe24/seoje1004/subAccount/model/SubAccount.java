@@ -3,7 +3,7 @@ package com.cafe24.seoje1004.subAccount.model;
 public class SubAccount {
 	private String subAccountCode;
 	private String subAccountFlow;
-	private String subAccountGroupCode;
+	private String totalAccountGroup;
 	private String subAccountTable;
 	private int subAccountSum;
 	private String subAccountRequestDate;
@@ -26,11 +26,11 @@ public class SubAccount {
 	public void setSubAccountFlow(String subAccountFlow) {
 		this.subAccountFlow = subAccountFlow;
 	}
-	public String getSubAccountGroupCode() {
-		return subAccountGroupCode;
+	public String getTotalAccountGroup() {
+		return totalAccountGroup;
 	}
-	public void setSubAccountGroupCode(String subAccountGroupCode) {
-		this.subAccountGroupCode = subAccountGroupCode;
+	public void setTotalAccountGroup(String totalAccountGroup) {
+		this.totalAccountGroup = totalAccountGroup;
 	}
 	public String getSubAccountTable() {
 		return subAccountTable;
@@ -95,7 +95,7 @@ public class SubAccount {
 	@Override
 	public String toString() {
 		return "SubAccount [subAccountCode=" + subAccountCode + ", subAccountFlow=" + subAccountFlow
-				+ ", subAccountGroupCode=" + subAccountGroupCode + ", subAccountTable=" + subAccountTable
+				+ ", totalAccountGroup=" + totalAccountGroup + ", subAccountTable=" + subAccountTable
 				+ ", subAccountSum=" + subAccountSum + ", subAccountRequestDate=" + subAccountRequestDate
 				+ ", subAccountCheck=" + subAccountCheck + ", subAccountDetail=" + subAccountDetail + ", subjectCode="
 				+ subjectCode + ", subClientCode=" + subClientCode + ", subCode=" + subCode + ", subStaffCode="

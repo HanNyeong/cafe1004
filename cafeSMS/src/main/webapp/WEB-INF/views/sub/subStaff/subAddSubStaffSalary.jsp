@@ -22,18 +22,20 @@
 <body>
 	<h1>직원 급여 지급</h1>
 	<form action="/subStaffSalary" method="POST" id="subStaffSalaryForm">
+	<!-- 수정이 필요함 -->
 	<input type="hidden" name="subCode" value="${subLogin.subCode}">
 	<input type="hidden" name="subAccountFlow" value="출금">
-	<input type="hidden" name="subAccountGroupCode" value="${subStaff.totalAccountGroup}">
+	<input type="hidden" name="totalAccountGroup" value="${subStaff.totalAccountGroup}">
 	<input type="hidden" name="subAccountTable" value="sub_staff">
+	<input type="hidden" name="subjectCode" value="subject_code3">
 		<div>
 			직원 코드 : <input type="text" id="subStaffCode" name="subStaffCode" value="${subStaff.subStaffCode}">			
 		</div>
 		<div>
-			직원 급여<input type="text" id="subAccountSum" name="subAccountSum" value="${subStaff.subStaffSalary}">			
+			직원 급여 : <input type="text" id="subAccountSum" name="subAccountSum" value="${subStaff.subStaffSalary}">			
 		</div>
 		<div>
-			상세 내용<input type="text" id="subAccountDetail" name="subAccountDetail" value="직원 급여">			
+			상세 내용 : <input type="text" id="subAccountDetail" name="subAccountDetail" value="직원 급여">			
 		</div>
 		<input type="button" id="subStaffSalaryBtn" value="급여 지급">
 	</form>

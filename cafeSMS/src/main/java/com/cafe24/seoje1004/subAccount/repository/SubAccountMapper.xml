@@ -4,52 +4,61 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.seoje1004.subAccount.repository.SubAccountMapper">
 	<resultMap type="com.cafe24.seoje1004.subAccount.model.SubAccount" id="subAccountResultMap">
-		<id property="subAccountCode" column="sub_account_code"/>
-		<result property="subAccountFlow" column="sub_account_flow"/>
-		<result property="subAccountGroupCode" column="sub_account_group_code"/>
-		<result property="subAccountTable" column="sub_account_table"/>
-		<result property="subAccountSum" column="sub_account_sum"/>
-		<result property="subAccountRequestDate" column="sub_account_request_date"/>
-		<result property="subAccountCheck" column="sub_account_check"/>
-		<result property="subAccountDetail" column="sub_account_detail"/>
-		<result property="subjectCode" column="subject_code"/>
-		<result property="subClientCode" column="sub_client_code"/>
-		<result property="subCode" column="sub_code"/>
-		<result property="subStaffCode" column="sub_staff_code"/>
-		<result property="subStaffKeeper" column="sub_staff_keeper"/>
+		<id 	property="subAccountCode" 			column="sub_account_code"/>
+		<result property="subAccountFlow" 			column="sub_account_flow"/>
+		<result property="totalAccountGroup" 		column="total_account_group"/>
+		<result property="subAccountTable" 			column="sub_account_table"/>
+		<result property="subAccountSum" 			column="sub_account_sum"/>
+		<result property="subAccountRequestDate" 	column="sub_account_request_date"/>
+		<result property="subAccountCheck" 			column="sub_account_check"/>
+		<result property="subAccountDetail" 		column="sub_account_detail"/>
+		<result property="subjectCode" 				column="subject_code"/>
+		<result property="subClientCode" 			column="sub_client_code"/>
+		<result property="subCode" 					column="sub_code"/>
+		<result property="subStaffCode" 			column="sub_staff_code"/>
+		<result property="subStaffKeeper" 			column="sub_staff_keeper"/>
 	</resultMap>
-	
+	<!-- 가맹 통합회계 등록 -->
 	<insert id="addSubAccount"
 		parameterType="com.cafe24.seoje1004.subAccount.model.SubAccount">
 		<selectKey resultType="hashmap" keyProperty="subAccountCode" order="BEFORE">
 			select if(isnull(sub_account_code),'sub_account_code1000', concat('sub_account_code', MAX(CONVERT(SUBSTRING(sub_account_code,17), UNSIGNED))+1)) as subAccountCode
+			from sub_account
 		</selectKey>
-		INSERT INTO
-			sub_account(
-				sub_account_code,
-				sub_account_flow,
-				sub_account_group_code,
-				sub_account_table,
-				sub_account_sum,
-				sub_account_request_date,
-				sub_account_detail,
-				subject_code,
-				sub_client_code,
-				sub_code,
-				sub_staff_code
-			)
-			VALUES(
-				#{subAccountCode},
-				#{subAcountAdd.subAccountFlow},
-				#{subAcountAdd.subAccountGroupCode},
-				#{subAcountAdd.subAccountTable},
-				#{subAcountAdd.subAccountSum},
-				NOW(),
-				#{subAcountAdd.subAccountDetail},
-				#{subAcountAdd.subjectCode},
-				#{subAcountAdd.subClientCode},
-				#{subAcountAdd.subCode},
-				#{subAcountAdd.subStaffCode}
-			)
+		
+		INSERT INTO sub_account
+			(sub_account_code, sub_account_flow, total_account_group, sub_account_table, sub_account_sum, sub_account_request_date, sub_account_detail, subject_code, sub_code, sub_staff_code)
+		VALUES (#{subAccountCode}, 
+			#{subAccountFlow}, 
+			#{totalAccountGroup}, 
+			#{subAccountTable}, 
+			#{subAccountSum}, 
+			NOW(), 
+			#{subAccountDetail}, 
+			#{subjectCode}, 
+			#{subCode}, 
+			#{subStaffCode})
 	</insert>
+	
+<!-- 	<select id="SubAccountKeeperCheck" -->
+<!-- 		parameterType="com.cafe24.seoje1004.subStaff.model.SubStaff" -->
+<!-- 		resultMap="subAccountResultMap"> -->
+<!-- 		SELECT  -->
+<!-- 			sub_staff_code as subStaffKeeper, -->
+<!-- 			sub_code as subCode -->
+<!-- 		FROM -->
+<!-- 			sub_staff -->
+<!-- 		WHERE -->
+<!-- 			sub_staff_code = #{} AND sub_Staff_pw = #{} AND sub_staff_level = '점주' AND sub_code = #{} -->
+<!-- 	</select> -->
+	<!-- 점주가 회계 마감 -->
+	<update id="modifySubAccountCheck"
+		parameterType="com.cafe24.seoje1004.subAccount.model.SubAccount">
+		UPDATE sub_account
+		SET
+			sub_account_check = NOW(),
+			sub_staff_keeper = #{subStaffKeeper}
+		WHERE 
+			sub_account_code = #{subAccountCode}
+	</update>
 </mapper>

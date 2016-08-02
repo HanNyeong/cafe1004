@@ -15,29 +15,37 @@ import com.cafe24.seoje1004.subStaff.model.SubStaff;
 
 @Controller
 public class SubAccountController {
+	
 	@Autowired
 	private SubAccountService subAccountService;
 	
 	
 	/**
-	    * 직원 급여관리를 하는 컨트롤러 입니다.
-	    * 매개변수로 가맹직원 id와 급여 금액을 받아서 서비스 메서드로 
-	    * 넘겨줍니다.
-	    * int로 리턴받습니다.
-	    * @param subStaff
-	    * @return
-	    */
-	   @RequestMapping(value="/subStaffSalary",method=RequestMethod.POST)
-	   public String subStaffSalary(SubAccount subAccount){
-		   System.out.println("SubAccountController subStaffSalary실행");
-		   System.out.println(subAccount);
-		   subAccountService.addSubAccountService(subAccount);
-		   return "redirect:/viewSubStaffList?subCode="+subAccount.getSubCode();
-	   }
+	 * 직원 급여관리를 하는 컨트롤러 입니다.
+	 * 매개변수로 가맹직원 id와 급여 금액을 받아서 서비스 메서드로 
+	 * 넘겨줍니다.
+	 * int로 리턴받습니다.
+	 * @param subStaff
+	 * @return
+	 */
+	@RequestMapping(value="/subStaffSalary",method=RequestMethod.POST)
+	public String subStaffSalary(SubAccount subAccount){
+		System.out.println("SubAccountController subStaffSalary실행");
+		System.out.println(subAccount);
+		subAccountService.addSubAccountService(subAccount);
+		return "redirect:/viewSubStaffList?subCode="+subAccount.getSubCode();
+	}
 	
-	
-	public String modifySubAccount(Model model, SubLogin subLogin){
-		subAccountService.modifySubAccountService(subLogin);
+	@RequestMapping(value="/subAccountKeeperCheck",method=RequestMethod.POST)
+	public String subAccountKeeperCheck(Model model, SubStaff subStaff){
+		SubStaff subKeeper = subAccountService.subAccountKeeperCheckService(subStaff);
+		model.addAttribute("subKeeper", subKeeper);
+		return "";
+	}
+	@RequestMapping(value="/subAccountList")
+	public String subAccountList(Model model,SubLogin subLogin){
+		
+		
 		return "";
 	}
 	

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.cafe24.seoje1004.cart.model.Cart;
 import com.cafe24.seoje1004.cart.model.CartSearch;
+import com.cafe24.seoje1004.cart.model.Carts;
 import com.cafe24.seoje1004.cart.repository.CartDao;
 
 @Service
@@ -60,10 +61,19 @@ public class CartServiceImpl implements CartService {
 	 * 장바구니 삭제하는 서비스 메서드 입니다.
 	 */
 	@Override
-	public int subDeleteCartService(Cart cart) {
+	public int subDeleteCartService(Carts carts) {
 		System.out.println("CartServiceImpl subDeleteCartService실행");
-		System.out.println(cart);
-		return cartDao.subDeleteCartService(cart);
+		System.out.println(carts);
+		for(int i = 0; i<carts.getCartCode().size(); i++){
+			Cart cart = new Cart();
+			cart.setCartCode(carts.getCartCode().get(i));
+			cart.setCartQuantity(carts.getCartQuantity().get(i));
+			cart.sethItemCode(carts.gethItemCode().get(i));
+			cart.setSubCode(cart.getSubCode());
+			cartDao.subDeleteCartService(cart);
+		}
+		
+		return 0;
 	}
 
 }

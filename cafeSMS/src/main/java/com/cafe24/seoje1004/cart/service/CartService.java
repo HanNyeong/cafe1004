@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cafe24.seoje1004.cart.model.Cart;
 import com.cafe24.seoje1004.cart.model.CartSearch;
+import com.cafe24.seoje1004.cart.model.Carts;
 
 public interface CartService {
 	/**
@@ -39,6 +40,6 @@ public interface CartService {
 	 * 장바구니를 삭제하는 서비스메서드 입니다.
 	 * @param cart
 	 */
-	int subDeleteCartService(Cart cart);
+	int subDeleteCartService(Carts cart);
 
 }

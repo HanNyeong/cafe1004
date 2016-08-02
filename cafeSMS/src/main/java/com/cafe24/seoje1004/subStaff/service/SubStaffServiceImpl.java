@@ -103,21 +103,6 @@ public class SubStaffServiceImpl implements SubStaffService{
 		System.out.println(subStaff);
 		return subStaffDao.subModifySubStaffByResign(subStaff);
 	}
-	/**
-     * 직원 급여를 관리하는 서비스 메서드 입니다.
-     * 매개변수로 직원정보를 고 가맹정보를 업데이트하고
-     * 가맹통합회계 에 등록 합니다.
-     * 결과를 int로 리턴합니다.
-     * @param subStaff
-     * @return
-     */
-	@Override
-	public int subStaffSalaryService(SubStaff subStaff) {
-		System.out.println("SubStaffServiceImpl subStaffSalaryService실행");
-		SubAccount subAccount = new SubAccount();
-		subAccount.setSubAccountGroupCode(subStaff.getTotalAccountGroup());
-		int resultSubAccount = subAccountDao.addSubAccount(subAccount);
-		return 0;
-	}
+	
 
 }
