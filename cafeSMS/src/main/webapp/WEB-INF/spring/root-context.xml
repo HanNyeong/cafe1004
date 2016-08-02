@@ -161,4 +161,12 @@
 		<bean id="sqlSessionSubDump" class="org.mybatis.spring.SqlSessionTemplate">
 			<constructor-arg index="0" ref="sqlSessionFactorySubDump" />
 		</bean>
+	<!-- 반품 관리 -->
+		<bean id="sqlSessionFactoryReturns" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			<property name="mapperLocations" value="classpath:com/cafe24/seoje1004/returns/repository/ReturnsMapper.xml" />
+		</bean>
+		<bean id="sqlSessionReturns" class="org.mybatis.spring.SqlSessionTemplate">
+			<constructor-arg index="0" ref="sqlSessionFactoryReturns" />
+		</bean>
 </beans>

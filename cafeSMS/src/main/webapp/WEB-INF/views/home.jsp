@@ -67,7 +67,9 @@
 <a href="/headViewClaimList">[클래임/본사클래임조회]</a>
 <a href="/customerViewClaimForm">[클래임/고객클래임등록 및 나의 클래임조회]</a>
 <a href="/subViewDeliveryList?subCode=${subLogin.subCode}">[배송/가맹측 배송조회]</a>
-<a href="headViewDeliveryList">[배송/본사측 배송조회]</a>
+<a href="/headViewDeliveryList">[배송/본사측 배송조회]</a>
+<a href="/headViewReturnsList">[반품/본사측 반품상품조회]</a>
+<a href="/subViewReturnsList">[반품/가맹측 반품상품조회]</a>
 <a href="/subViewSubClientList?subCode=${subLogin.subCode}">[가맹거래처조회]</a>
 <a href="/viewEventList">[행사조회]</a>
 <a href="/headAddSub">^^가맹 등록^^</a>

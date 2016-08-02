@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.seoje1004.subDump.repository.SubDumpMapper">
-	<resultMap type="com.cafe24.seoje1004.subDump.model.SubDubp" id="subClientResultMap">
+	<resultMap type="com.cafe24.seoje1004.subDump.model.SubDump" id="subClientResultMap">
       <id property="subDumpCode" column="sub_dump_code"/>
       <result property="subDumpReason" column="sub_dump_reason"/>    
       <result property="subDumpDate" column="sub_dump_date"/>
