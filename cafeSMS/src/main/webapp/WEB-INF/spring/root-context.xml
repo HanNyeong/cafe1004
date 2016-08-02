@@ -153,4 +153,12 @@
 		<bean id="sqlSessionDelivery" class="org.mybatis.spring.SqlSessionTemplate">
 			<constructor-arg index="0" ref="sqlSessionFactoryDelivery" />
 		</bean>
+	<!-- 폐기 관리 -->
+		<bean id="sqlSessionFactorySubDump" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			<property name="mapperLocations" value="classpath:com/cafe24/seoje1004/subDump/repository/SubDumpMapper.xml" />
+		</bean>
+		<bean id="sqlSessionSubDump" class="org.mybatis.spring.SqlSessionTemplate">
+			<constructor-arg index="0" ref="sqlSessionFactorySubDump" />
+		</bean>
 </beans>
