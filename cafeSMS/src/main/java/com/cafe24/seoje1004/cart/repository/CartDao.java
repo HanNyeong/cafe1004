@@ -31,5 +31,11 @@ public interface CartDao {
 	 * @return
 	 */
 	int modifyCart(Cart cart);
+	/**
+	 * 장바구니 삭제하는 dao 메서드 입니다.
+	 * @param cart
+	 * @return
+	 */
+	int subDeleteCartService(Cart cart);
 
 }

@@ -1,10 +1,13 @@
 package com.cafe24.seoje1004.cart.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.seoje1004.cart.model.Cart;
 import com.cafe24.seoje1004.cart.model.CartSearch;
@@ -89,6 +92,20 @@ public class CartController {
 	    }
 		return result;
 	}
-	
+	/**
+	 * 장바구니 삭제시 처리하는 컨트롤러입니다.
+	 * @param model
+	 * @param cart
+	 * @return
+	 */
+	@RequestMapping(value="/subDeleteCart",method=RequestMethod.POST)
+	public String subDeleteCart(Model model, 
+			@RequestParam(value="cartCode",required=true)List<Integer> cartCode){
+		System.out.println("CartController subDeleteCart실행");
+		System.out.println(cartCode.get(0));
+//		cartService.subDeleteCartService(cart);	
+//		?subCode="+cart.getSubCode()
+		return "redirect:/subViewCartList";
+	}
 	
 }

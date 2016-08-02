@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.seoje1004.cart.repository.CartMapper">
-   
+  
 	<!-- POJO객체와 DB column명을 맞춰줍니다 -->
 	<resultMap type="com.cafe24.seoje1004.cart.model.Cart" id="cartResultMap">
 		<id property="cartCode" column="cart_code"/>
@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="hItemCode" column="h_item_code"/>
 		<result property="subCode" column="sub_code"/>
 	</resultMap>
-  
+ 
 	<!-- 가맹직원을 등록하는 inst 쿼리 자동으로 subStaffId를 생성해줌 -->
 	<insert id="addCart"
 		parameterType="java.util.Map"
@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select if(isnull(cart_code),'cart_code1000', concat('cart_code', MAX(CONVERT(SUBSTRING(cart_code,10), UNSIGNED))+1)) as cartCode
 		from cart
 	</selectKey>
-	      
+      
 		INSERT INTO 
 			cart(
 				cart_code,
@@ -37,8 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 
-
-   <!-- 가맹 리스트를 컬럼별 조회하는 select쿼리 -->
+	<!-- 가맹 리스트를 컬럼별 조회하는 select쿼리 -->
 	<select id="viewCartList"
 		parameterType="java.util.Map"
 		resultMap="cartResultMap">
@@ -55,30 +54,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="cartSearch.criteria != null and cartSearch.upDown != null and cartSearch.criteria != null and cartSearch.upDown != ''">
 			order by ${cartSearch.criteria} ${cartSearch.upDown}
 		</if>
-
+	
 	</select>
+	
 	<!-- 장바구니 정보를 가져오기 (수정폼으로) -->
-	   <select id="selectCart"
-   		parameterType="com.cafe24.seoje1004.cart.model.Cart"
-     	resultMap="cartResultMap">
-	      SELECT 
-	         cart_code,
-	         cart_quantity, 
-	         h_item_code, 
-	         sub_code         
-	      FROM 
-	         cart
-	      WHERE
-	         cart_code = #{cartCode}
-   </select>
-   <!-- 장바구니 수정하기  -->
-   <update id="modifyCart"
-      parameterType="com.cafe24.seoje1004.cart.model.Cart">
-	      UPDATE 
-	         cart
-	      SET
-	         cart_quantity= #{cartQuantity}
-	      WHERE 
-	         cart_code = #{cartCode}
-   </update>
+	<select id="selectCart"
+			parameterType="com.cafe24.seoje1004.cart.model.Cart"
+	  		resultMap="cartResultMap">
+	    SELECT 
+	       cart_code,
+	       cart_quantity, 
+	       h_item_code, 
+	       sub_code         
+	    FROM 
+	       cart
+	    WHERE
+	       cart_code = #{cartCode}
+	</select>
+	
+	<!-- 장바구니 수정하기  -->
+	<update id="modifyCart"
+			parameterType="com.cafe24.seoje1004.cart.model.Cart">
+      UPDATE 
+         cart
+      SET
+         cart_quantity= #{cartQuantity}
+      WHERE 
+         cart_code = #{cartCode}
+	</update>
+	
+	<!-- 장바구니 삭제 -->
+	<delete id="deleteCart"
+			parameterType="com.cafe24.seoje1004.cart.model.Cart">
+		DELETE 
+		FROM 
+			cart 
+		WHERE 
+			cart_code=#{cartCode}	
+	</delete>
 </mapper>

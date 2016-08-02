@@ -47,5 +47,10 @@ public class CartDaoImpl implements CartDao {
 	public int modifyCart(Cart cart) {
 		return sqlSessionCart.update(NS+".modifyCart",cart);
 	}
+	@Override
+	public int subDeleteCartService(Cart cart) {
+		System.out.println("CartDaoImpl subDeleteCartService실행");
+		return sqlSessionCart.delete(NS+".deleteCart", cart);
+	}
 
 }

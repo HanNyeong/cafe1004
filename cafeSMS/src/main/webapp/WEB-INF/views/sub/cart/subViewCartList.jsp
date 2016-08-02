@@ -34,9 +34,46 @@
 				$('#cartList').submit();
 			}
 		});
-
 		
+		// 삭제 체크 되어 있는 값 추출
+		$('#cartDeleteBtn').click(function(){
+			if($('.cartCodeChk:checked').size()<1){
+		        alert("1개 이상 체크해주세요");
+		        console.log("delete");
+		    }else{
+				$('#cartListForm').prop('action','/subDeleteCart');
+				$('#cartListForm').prop('method','POST');
+				$('#cartListForm').submit();
+		    }
+		});
+		// 주문 체크 되어 있는 값 추출
+		$('#ordersBtn').click(function(){
+			if($('.cartCodeChk:checked').size()<1){
+		        alert("1개 이상 체크해주세요");
+		        console.log("orders");
+		    }else{
+				$('#cartListForm').prop('action','/viewOrdersInCart');
+				$('#cartListForm').prop('method','GET');
+				$('#cartListForm').submit();
+		    }
+		});
 	});
+	//삭제 체크 박스 전체 선택/해제
+	function selectCartDeleteAll(source) {
+		var checkboxes = document.getElementsByName('cartDelete');
+			for(var i=0; i<checkboxes.length; i++) {
+			checkboxes[i].checked = source.checked; // '모두 체크'에 체크가 되면 다 체크하고 아니면 다 해제하고!
+		}
+	}
+	//주문 체크 박스 전체 선택/해제
+	function selectCartOrdersAll(source) {
+		var checkboxes = document.getElementsByName('cartOrders');
+			for(var i=0; i<checkboxes.length; i++) {
+			checkboxes[i].checked = source.checked; // '모두 체크'에 체크가 되면 다 체크하고 아니면 다 해제하고!
+		}
+	}
+	
+	
 </script>
 </head>
 <body>
@@ -61,21 +98,24 @@
 		3:본사 상품 코드<span class="up">▲</span><span class="down">▼</span>
 		4:가맹 대표 코드<span class="up">▲</span><span class="down">▼</span>
 		5:수정
-		6:삭제
-		7:주문
+		6:삭제<input type="checkbox" id="cartDeleteAll" class="cartCodeChk" name="cartDeleteAll" onclick="selectCartDeleteAll(this)" value="삭제 전체 선택">
+		7:주문<input type="checkbox" id="cartOrdersAll" class="cartCodeChk" name="cartOrdersAll" onclick="selectCartOrdersAll(this)" value="주문 전체 선택">
 	</P>        
-	<c:forEach var="cartList" items="${cartList}">
-	
-		<p>
-			1:${cartList.cartCode}
-			2:${cartList.cartQuantity}
-			3:${cartList.hItemCode}
-			4:${cartList.subCode}
-			5:<a href="/subModifyCart?cartCode=${cartList.cartCode}"><input type="button" id="cartModifyBtn" name="cartModifyBtn" value="수정"></a>
-			5:<a href="/subDeleteCart?cartCode=${cartList.cartCode}"><input type="button" id="cartDeleteBtn" name="cartDeleteBtn" value="삭제"></a>
-			5:<a href=""><input type="button" id="ordersBtn" name="ordersBtn" value="주문"></a>
-		</p>
-	
-	</c:forEach>
+	<form id="cartListForm" action="" method="">
+		<c:forEach var="cartList" items="${cartList}">
+			<p>
+				1:${cartList.cartCode}<input type="hidden" name="cartCode" value="${cartList.cartCode}">
+				2:${cartList.cartQuantity}<input type="hidden" name="cartCode" value="${cartList.cartQuantity}">
+				3:${cartList.hItemCode}<input type="hidden" name="cartCode" value="${cartList.hItemCode}">
+				4:${cartList.subCode}<input type="hidden" name="cartCode" value="${cartList.subCode}">
+				5:<a href="/subModifyCart?cartCode=${cartList.cartCode}"><input type="button" id="cartModifyBtn" name="cartModifyBtn" value="수정"></a>
+				6:<input type="checkbox" class="cartCodeChk" name="cartDelete" value="${cartList.cartCode}">
+				7:<input type="checkbox" class="cartCodeChk" name="cartOrders" value="${cartList.cartCode}">
+			</p>
+		
+		</c:forEach>
+			<input type="button" id="cartDeleteBtn" name="cartDeleteBtn" value="삭제">
+			<input type="button" id="ordersBtn" name="ordersBtn" value="주문">
+	</form>
 </body>
 </html>

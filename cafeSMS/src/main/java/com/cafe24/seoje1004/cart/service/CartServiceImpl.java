@@ -56,5 +56,14 @@ public class CartServiceImpl implements CartService {
 		System.out.println("CartServiceImpl modifySubCartService실행");
 		return cartDao.modifyCart(cart);
 	}
+	/**
+	 * 장바구니 삭제하는 서비스 메서드 입니다.
+	 */
+	@Override
+	public int subDeleteCartService(Cart cart) {
+		System.out.println("CartServiceImpl subDeleteCartService실행");
+		System.out.println(cart);
+		return cartDao.subDeleteCartService(cart);
+	}
 
 }
