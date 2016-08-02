@@ -3,6 +3,38 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.seoje1004.orders.repository.OrdersMapper">
+<resultMap type="com.cafe24.seoje1004.orders.model.Orders" id="ordersResultMap">
+	<id property="ordersCode" column="orders_code"/>
+	<result property="subOrdersGroup" column="sub_orders_group"/>
+	<result property="subOrdersQuantity" column="sub_orders_quantity"/>
+	<result property="subOrdersDate" column="sub_orders_date"/>
+	<result property="subOrdersHeadCheck" column="sub_orders_head_check"/>
+	<result property="subOrdersStatus" column="sub_orders_status"/>
+	<result property="totalAccountGroup" column="total_account_group"/>
+	<result property="ordersPay" column="orders_pay"/>
+	<result property="ordersPayDate" column="orders_pay_date"/>
+	<result property="headItemCode" column="head_item_code"/>
+	<result property="subCode" column="sub_code"/>
+	<result property="subStaffCode" column="sub_staff_code"/>
+	<result property="headStaffId" column="head_staff_id"/>
+	<result property="headOrdersConfirm" column="head_orders_confirm"/>
+</resultMap>
 
-
+<select id="viewOrdersInHeadItem"
+		resultType="java.util.Map">
+	select
+		h_item_code hItemCode,
+		h_item_name hItemName,
+		inte_code inteCode,
+		h_item_quantity hItemQuantity,
+		h_item_unit hItemUnit,
+		h_item_selling_price hItemSellingPrice,
+		h_item_regit_date hItemRegitDate,
+		head_staff_id headStaffId,
+		h_item_retail_price hItemRetailPrice
+	from
+		head_item
+	where
+		h_item_code = ${hItemCode}
+</select>
 </mapper>

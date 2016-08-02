@@ -40,7 +40,7 @@
 			$('#cartAndOrders').submit();
 		});
 		$('#ordersBtn').click(function(){
-			$('#cartAndOrders').attr('action','subAddOrders');
+			$('#cartAndOrders').attr('action','viewOrdersInHeadItem');
 			$('#cartAndOrders').submit();
 		});
 	});
