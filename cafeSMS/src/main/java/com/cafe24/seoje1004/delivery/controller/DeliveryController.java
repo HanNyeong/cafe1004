@@ -11,10 +11,20 @@ public class DeliveryController {
 	 * Delevery컨트롤러
 	 */
 	
+	//가맹이 해당점의 배송 리스트를 조회
 	@RequestMapping(value="/subViewDeliveryList")
 	public String subViewDeliveryList(Model model){
 		System.out.println("DeliveryController subViewDeliveryList 실행");
 		
 		return "/shared/delivery/subViewDeliveryList";
 	}
-}
+	
+	//본사가 전체 배송리스트를 조회
+	@RequestMapping(value="/headViewDeliveryList")
+	public String  headViewDeliveryList(Model model){
+		System.out.println("DeliveryController headViewDeliveryList 실행");
+		
+		return "/shared/delivery/headViewDeliveryList";
+	}
+
+} 
