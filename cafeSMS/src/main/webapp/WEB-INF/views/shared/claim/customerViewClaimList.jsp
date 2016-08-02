@@ -126,7 +126,7 @@
 </script>
 </head>
 <body>
-
+<a href="/">home</a>
 <h1>호갱님 클래임 리스트 페이지입니다.</h1>
 	
 	<c:if test="${empty claimList}">

@@ -259,4 +259,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			claim_code = #{claimCode}	
 	</update>
 	
+	<!-- 가맹이 해당점의 클래임리스트 조회 -->
+	<select id="subViewClaimList"
+			parameterType="java.util.Map"
+			resultMap="claimListMap">
+		SELECT
+			claim_code,
+			claim_type,
+			claim_ask_date,
+			claim_content,
+			claim_answer_date,
+			claim_answer_content,
+			sub_code,
+			customer_name,
+			customer_phone,
+			claim_status
+		FROM
+			claim
+		
+		<where>
+			sub_code = #{subCode}
+			<if test="claimSearch.regitDateStart != null and claimSearch.regitDateEnd != null and claimSearch.regitDateStart !='' and claimSearch.regitDateEnd !=''">
+				AND <![CDATA[date(claim_ask_date) >= #{claimSearch.regitDateStart} and date(claim_ask_date) <= #{claimSearch.regitDateEnd}]]>
+			</if>
+			<if test="claimSearch.searchKey != null and claimSearch.searchKey != '' and claimSearch.searchClaim != null and claimSearch.searchClaim != ''">
+				AND  ${claimSearch.searchKey} like CONCAT('%',#{claimSearch.searchClaim},'%')
+			</if> 
+		</where> 
+		<trim prefix="ORDER BY">
+			<if test="claimSearch.criteria == null or claimSearch.criteria == ''">
+				claim_ask_date
+			</if>
+			<if test="claimSearch.criteria != null or claimSearch.criteria != ''">
+				${claimSearch.criteria} ${claimSearch.upDown}
+			</if>
+		</trim>	
+	</select>
+	
+	
 </mapper>

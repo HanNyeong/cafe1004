@@ -117,12 +117,19 @@ public class ClaimController {
 	
 	
 	//가맹이 해당점의 클래임리스트 조회
-	@RequestMapping(value = "/subViewClaimList", method=RequestMethod.GET)
-	public String subViewClaimList(@RequestParam(value="subCode")String subCode) {
+	@RequestMapping(value = "/subViewClaimList")
+	public String subViewClaimList(Model model,@RequestParam(value="subCode")String subCode,ClaimSearch claimSearch) {
 		System.out.println("contractController subViewClaimList 실행!!");
 		System.out.println("subCode : "+subCode);
 		//1.해당가맹의 클래임리스트 조회
 		
+		List<Claim> claimList = claimService.subViewClaimList(subCode, claimSearch);
+		
+		System.out.println("claimList : " +claimList);
+		
+		model.addAttribute("subCode", subCode);
+		model.addAttribute("claimSearch", claimSearch);
+		model.addAttribute("claimList", claimList);
 		
 		return "/shared/claim/subViewClaimList";
 	}
