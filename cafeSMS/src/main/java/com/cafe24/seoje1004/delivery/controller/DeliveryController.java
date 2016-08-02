@@ -1,8 +1,11 @@
 package com.cafe24.seoje1004.delivery.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.cafe24.seoje1004.delivery.service.DeliveryService;
 
 @Controller
 public class DeliveryController {
@@ -11,10 +14,16 @@ public class DeliveryController {
 	 * Delevery컨트롤러
 	 */
 	
+	@Autowired
+	DeliveryService deliveryService;
+	
+	
 	//가맹이 해당점의 배송 리스트를 조회
 	@RequestMapping(value="/subViewDeliveryList")
-	public String subViewDeliveryList(Model model){
+	public String subViewDeliveryList(Model model, String subCode){
 		System.out.println("DeliveryController subViewDeliveryList 실행");
+		
+		//List<Delivery> deliveryList = deliveryService.subViewDeliveryList();
 		
 		return "/shared/delivery/subViewDeliveryList";
 	}
