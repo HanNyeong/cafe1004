@@ -29,6 +29,7 @@
 </script>
 </head>
 <body>
+<a href="/">home</a>
 	<h1>호갱님, 클래임 리스트를 확인하시려면 이름과 전화번호를 기입하세요</h1>
 	<form id="customerLogin" method="post">
 		<div>

@@ -14,7 +14,8 @@ public interface ClaimDao {
 	public List<Claim> headViewClaimList(Map<String,Object> map);		//본사가 전체클래임리스트 조회
 	public Claim viewClaimContent(String claimCode);	//claimCode에 해당하는 클래임 상세정보출력
 	public List<ClaimFile> viewClaimFile(String claimCode);	//해당클래임의 파일리스트
-
+	public Claim headAnswerClaimForm(String claimCode);	//해당클레임에 대한 정보를 가져와서 수정해야하므로 해당정보를 가져와주자
+	public void headAnswerClaim(Claim claim);			//답변처리 업데이트 하기
 	/*--------------------------------------------------구분선--------------------------------------------------*/
 	/*--------------------------------------------------구분선--------------------------------------------------*/	
 	/*--------------------------------------------------구분선--------------------------------------------------*/	

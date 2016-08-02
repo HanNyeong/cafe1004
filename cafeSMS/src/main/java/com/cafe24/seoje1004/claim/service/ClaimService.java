@@ -15,9 +15,9 @@ public interface ClaimService {
 	 */
 	
 	public List<Claim> headViewClaimList(ClaimSearch claimSearch);		//본사가 전체클래임리스트 조회
-	public Map<String,Object> viewClaimContent(String ClaimCode);	//claimCode에 해당하는 클래임 상세정보출력
-	
-
+	public Map<String,Object> viewClaimContent(String claimCode);	//claimCode에 해당하는 클래임 상세정보출력
+	public Claim headAnswerClaimForm(String claimCode);				//해당클레임에 대한 정보를 가져와서 수정해야하므로 해당정보를 가져와주자
+	public void headAnswerClaim(Claim claim);			//답변처리 업데이트 하기
 	/*--------------------------------------------------구분선--------------------------------------------------*/
 	/*--------------------------------------------------구분선--------------------------------------------------*/	
 	/*--------------------------------------------------구분선--------------------------------------------------*/	

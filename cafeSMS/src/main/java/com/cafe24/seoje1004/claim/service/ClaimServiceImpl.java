@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cafe24.seoje1004.claim.model.Claim;
@@ -56,7 +58,21 @@ public class ClaimServiceImpl implements ClaimService {
 		return map;
 	}
 
+	//해당클레임에 대한 정보를 가져와서 수정해야하므로 해당정보를 가져와주자
+	@Override
+	public Claim headAnswerClaimForm(String claimCode) {
+		System.out.println("ClaimServiceImpl headAnswerClaimForm 실행");
+		return claimDao.headAnswerClaimForm(claimCode);
+	}
 
+	//답변처리 업데이트 하기
+	@Override
+	public void headAnswerClaim(Claim claim) {
+		System.out.println("ClaimServiceImpl headAnswerClaim 실행");
+		claimDao.headAnswerClaim(claim);
+	}
+	
+		
 	/*--------------------------------------------------구분선--------------------------------------------------*/
 	/*--------------------------------------------------구분선--------------------------------------------------*/	
 	/*--------------------------------------------------구분선--------------------------------------------------*/	
@@ -79,6 +95,7 @@ public class ClaimServiceImpl implements ClaimService {
 	}
 
 	//고객이 클래임 등록을 처리
+	@Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
 	@Override
 	public void customerAddClaim(Claim claim, HttpServletRequest request) {
 		System.out.println("ClaimServiceImpl customerAddClaim");
@@ -178,6 +195,7 @@ public class ClaimServiceImpl implements ClaimService {
 	}
 
 	//고객이 클래임 삭제 처리
+	@Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
 	@Override
 	public void customerDeleteClaim(String claimCode) {
 		System.out.println("ClaimServiceImpl customerDeleteClaim 실행");
@@ -189,5 +207,6 @@ public class ClaimServiceImpl implements ClaimService {
 		claimDao.customerDeleteClaimFile(claimCode);
 		
 	}
+	
 	
 }

@@ -223,4 +223,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE
 			claim_code = #{claimCode}	
 	</delete>
+	
+	<!-- 해당클레임에 대한 정보를 가져와서 수정해야하므로 해당정보를 가져와주자 -->
+	<select id="headAnswerClaimForm"
+			parameterType="String"
+			resultMap="claimListMap">
+		SELECT
+			claim_code,
+			claim_type,
+			claim_ask_date,
+			claim_content,
+			claim_answer_date,
+			claim_answer_content,
+			sub_code,
+			customer_name,
+			customer_phone,
+			claim_status
+		FROM
+			claim
+		WHERE
+			claim_code = #{claimCode}
+				
+	</select>
+	
+	<!-- 답변처리 업데이트 하기 -->
+	<update id="headAnswerClaim"
+			parameterType="com.cafe24.seoje1004.claim.model.Claim">
+		UPDATE
+			claim
+		SET
+			claim_answer_date = NOW(),
+			claim_answer_content = #{claimAnswerContent},
+			claim_status = "Y"
+		WHERE
+			claim_code = #{claimCode}	
+	</update>
+	
 </mapper>

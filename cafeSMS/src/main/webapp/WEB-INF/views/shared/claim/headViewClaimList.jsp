@@ -164,7 +164,35 @@
 		
 	</div>
 	<div>
+	<p>--------------------------------------------------답변구간--------------------------------------------------</p>
+	</div>
+	<div>
 		<c:forEach var="claimList" items="${claimList}">
+			<c:if test="${claimList.claimStatus == 'Y'}">
+				<div>
+					${claimList.claimCode}
+					${claimList.claimType}
+					${claimList.claimAskDate}
+					${claimList.claimAnswerDate}
+					${claimList.subCode}
+					${claimList.customerName}
+					${claimList.customerPhone}
+					${claimList.claimStatus}
+					<a href="/viewClaimContent?claimCode=${claimList.claimCode}">[상세보기]</a>
+					<a href="/headAnswerClaimForm?claimCode=${claimList.claimCode}">[수정하기]</a>
+				</div>
+			</c:if>
+		</c:forEach>
+		
+		
+	</div>
+	<div>
+	<p>--------------------------------------------------미답변구간--------------------------------------------------</p>
+	</div>
+	<div>
+		
+		<c:forEach var="claimList" items="${claimList}">
+			<c:if test="${claimList.claimStatus == 'N'}">
 			<div>
 				${claimList.claimCode}
 				${claimList.claimType}
@@ -175,9 +203,14 @@
 				${claimList.customerPhone}
 				${claimList.claimStatus}
 				<a href="/viewClaimContent?claimCode=${claimList.claimCode}">[상세보기]</a>
+				<a href="/headAnswerClaimForm?claimCode=${claimList.claimCode}">[답변하기]</a>
 			</div>
+			</c:if>
 		</c:forEach>
+		
+		
 	</div>
+	<div>
 	
 </body>
 </html>

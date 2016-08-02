@@ -74,11 +74,30 @@ public class ClaimController {
 		return "/shared/claim/viewClaimContent";
 	}
 	
+	//본사가 해당클래임에 답변하기
+	@RequestMapping(value="/headAnswerClaimForm", method=RequestMethod.GET)
+	public String headAnswerClaimForm(Model model,@RequestParam(value="claimCode")String claimCode){
+		System.out.println("contractController headAnswerClaim 실행");
+		
+		//해당클레임에 대한 정보를 가져와서 수정해야하므로 해당정보를 가져와주자
+		Claim claim = claimService.headAnswerClaimForm(claimCode);
+		model.addAttribute("claim", claim);
+		return	"/shared/claim/headAnswerClaimForm";
+
+	}
 	
-	
-	
-	
-	
+	//답변처리 즉 업데이트 하기
+	@RequestMapping(value="/headAnswerClaim", method=RequestMethod.POST)
+	public String headAnswerClaim(Claim claim){
+		System.out.println("contractController headAnswerClaim 실행");
+		System.out.println("claim :" + claim);
+		
+		//업데이트 처리
+		claimService.headAnswerClaim(claim);
+		
+		return	"redirect:/headViewClaimList";
+
+	}
 	
 	
 	
@@ -99,8 +118,9 @@ public class ClaimController {
 	
 	//가맹이 해당점의 클래임리스트 조회
 	@RequestMapping(value = "/subViewClaimList", method=RequestMethod.GET)
-	public String subViewClaimList() {
+	public String subViewClaimList(@RequestParam(value="subCode")String subCode) {
 		System.out.println("contractController subViewClaimList 실행!!");
+		System.out.println("subCode : "+subCode);
 		//1.해당가맹의 클래임리스트 조회
 		
 		

@@ -63,7 +63,7 @@
 <a href="/logout">로그아웃</a>
 <a href="/subViewContractList?subCode=${subLogin.subCode}">[계약/가맹계약조회]</a>
 <a href="/headViewContractList">[계약/본사계약조회]</a>
-<a href="/subViewClaimList">[클래임/가맹클래임조회]</a>
+<a href="/subViewClaimList?subCode=${subLogin.subCode}">[클래임/가맹클래임조회]</a>
 <a href="/headViewClaimList">[클래임/본사클래임조회]</a>
 <a href="/customerViewClaimForm">[클래임/고객클래임등록 및 나의 클래임조회]</a>
 <a href="/subViewSubClientList?subCode=${subLogin.subCode}">[가맹거래처조회]</a>

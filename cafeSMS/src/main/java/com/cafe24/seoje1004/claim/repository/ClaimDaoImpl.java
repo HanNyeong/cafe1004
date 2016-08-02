@@ -46,7 +46,21 @@ public class ClaimDaoImpl implements ClaimDao {
 		System.out.println("ClaimDaoImpl viewClaimFile 실행");
 		return sqlSessionClaim.selectList(NS+".viewClaimFile", claimCode);
 	}
-
+	
+	//해당클레임에 대한 정보를 가져와서 수정해야하므로 해당정보를 가져와주자
+	@Override
+	public Claim headAnswerClaimForm(String claimCode) {
+		System.out.println("ClaimDaoImpl headAnswerClaimForm 실행");
+		return sqlSessionClaim.selectOne(NS+".headAnswerClaimForm", claimCode);
+	}
+		
+	
+	//답변처리 업데이트 하기
+	@Override
+	public void headAnswerClaim(Claim claim) {
+		System.out.println("ClaimDaoImpl headAnswerClaim 실행");
+		sqlSessionClaim.update(NS+".headAnswerClaim", claim);
+	}
 	
 	/*--------------------------------------------------구분선--------------------------------------------------*/
 	/*--------------------------------------------------구분선--------------------------------------------------*/	
@@ -101,5 +115,9 @@ public class ClaimDaoImpl implements ClaimDao {
 		System.out.println("ClaimDaoImpl customerDeleteClaimFile 실행");
 		sqlSessionClaim.delete(NS+".customerDeleteClaimFile", claimCode);
 	}
+
+
+
+	
 	
 }

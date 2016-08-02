@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cafe24.seoje1004.contract.model.Contract;
@@ -46,6 +48,7 @@ public class ContractServiceImpl implements ContractService {
 	}
 
 	//가맹이 계약등록을 신청
+	@Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
 	@Override
 	public void subAddContract(Contract contract, HttpServletRequest request) {
 		System.out.println("ContractServiceImpl subAddContract실행");
@@ -183,6 +186,7 @@ public class ContractServiceImpl implements ContractService {
 	}
 	
 	//재계약 신청 등록 처리
+	@Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
 	@Override
 	public void subAddRecharterContract(Contract contract, HttpServletRequest request) {
 		System.out.println("ContractServiceImpl subAddRecharterContract 실행");
@@ -286,6 +290,7 @@ public class ContractServiceImpl implements ContractService {
 	}
 	
 	//가맹계약파기
+	@Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
 	@Override
 	public void subExpireContract(Contract contract,HttpServletRequest request) {
 		System.out.println("ContractServiceImpl subExpireContract실행");
