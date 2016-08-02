@@ -3,5 +3,111 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.seoje1004.delivery.repository.DeliveryMapper">
-
+	
+	<!-- Delivery객체등록 -->
+	<resultMap type="com.cafe24.seoje1004.delivery.model.Delivery" id="deliveryListMap">
+		<id property="deliveryCode" column="delivery_code"/>
+		<result property="deliveryDate" column="delivery_date"/>
+		<result property="deliveryReceive" column="delivery_receive"/>
+		<result property="deliveryLocation" column="delivery_location"/>
+		<result property="deliveryReturn" column="delivery_return"/>
+		<result property="deliveryPerson" column="delivery_person"/>
+		<result property="ordersCode" column="orders_code"/>
+		<result property="subOrdersGroup" column="sub_orders_group"/>
+		<result property="headStaffId" column="head_staff_id"/>
+		<result property="subCode" column="sub_code"/>
+	</resultMap>
+	
+	
+	<!-- 가맹이 해당점의 배송 리스트를 조회 -->
+	<select id="subViewDeliveryList"
+			parameterType="java.util.Map"
+			resultMap="deliveryListMap">
+			SELECT
+			delivery_code,
+			delivery_date,
+			delivery_receive,
+			delivery_location,
+			delivery_return,
+			delivery_person,
+			delivery.orders_code as orders_code,
+			sub_orders.sub_orders_group as sub_orders_group,
+			delivery.head_staff_id as head_staff_id,
+			sub_orders.sub_code as sub_code
+			from
+				delivery
+			INNER JOIN
+				sub_orders 
+			ON
+			delivery.orders_code = sub_orders.orders_code
+			
+				
+			<where>
+			sub_orders.sub_code = #{subCode}
+			
+			<if test="deliverySearch.regitDateStart != null and deliverySearch.regitDateEnd != null and deliverySearch.regitDateStart !='' and deliverySearch.regitDateEnd !=''">
+							AND	<![CDATA[date(delivery_date) >= #{deliverySearch.regitDateStart} and date(delivery_date) <= #{deliverySearch.regitDateEnd}]]>  
+			</if>
+			<if test="deliverySearch.searchKey != null and deliverySearch.searchKey != '' and deliverySearch.searchDelivery != null and deliverySearch.searchDelivery != ''">
+				
+				AND  ${deliverySearch.searchKey} like CONCAT('%',#{deliverySearch.searchDelivery},'%') 
+			</if> 
+			</where> 
+			<trim prefix="ORDER BY">
+				<if test="deliverySearch.criteria == null or deliverySearch.criteria == ''">
+					delivery_date
+				</if>
+				<if test="deliverySearch.criteria != null or deliverySearch.criteria != ''">
+					${deliverySearch.criteria} ${deliverySearch.upDown}
+				</if>
+			</trim>
+			
+	</select>
+	
+	<!-- 본사가 전체 배송리스트를 조회 -->
+	<select id="headViewDeliveryList"
+			parameterType="java.util.Map"
+			resultMap="deliveryListMap">
+			SELECT
+			delivery_code,
+			delivery_date,
+			delivery_receive,
+			delivery_location,
+			delivery_return,
+			delivery_person,
+			delivery.orders_code as orders_code,
+			sub_orders.sub_orders_group as sub_orders_group,
+			delivery.head_staff_id as head_staff_id,
+			sub_orders.sub_code as sub_code
+			from
+				delivery
+			INNER JOIN
+				sub_orders 
+			ON
+			delivery.orders_code = sub_orders.orders_code
+			
+				
+			<where>
+			
+			
+			<if test="deliverySearch.regitDateStart != null and deliverySearch.regitDateEnd != null and deliverySearch.regitDateStart !='' and deliverySearch.regitDateEnd !=''">
+				<![CDATA[date(delivery_date) >= #{deliverySearch.regitDateStart} and date(delivery_date) <= #{deliverySearch.regitDateEnd}]]>  
+			</if>
+			<if test="deliverySearch.searchKey != null and deliverySearch.searchKey != '' and deliverySearch.searchDelivery != null and deliverySearch.searchDelivery != ''">
+				
+				AND  ${deliverySearch.searchKey} like CONCAT('%',#{deliverySearch.searchDelivery},'%') 
+			</if> 
+			</where> 
+			<trim prefix="ORDER BY">
+				<if test="deliverySearch.criteria == null or deliverySearch.criteria == ''">
+					delivery_date
+				</if>
+				<if test="deliverySearch.criteria != null or deliverySearch.criteria != ''">
+					${deliverySearch.criteria} ${deliverySearch.upDown}
+				</if>
+			</trim>
+			
+	</select>
+	
+	
 </mapper>
