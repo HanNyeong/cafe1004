@@ -1,5 +1,7 @@
 package com.cafe24.seoje1004.subAccount.repository;
 
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -30,6 +32,11 @@ public class SubAccountDaoImpl implements SubAccountDao{
 	public SubStaff subAccountKeeperCheck(SubStaff subStaff) {
 		System.out.println("SubAccountDaoImpl modifySubAccountCheck실행");
 		return sqlSeesionSubAccount.selectOne(NS+".SubAccountKeeperCheck", subStaff);
+	}
+	@Override
+	public SubAccount viewSubAccountList(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

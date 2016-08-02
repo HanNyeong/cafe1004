@@ -61,7 +61,7 @@ public class CartServiceImpl implements CartService {
 	 * 장바구니 삭제하는 서비스 메서드 입니다.
 	 */
 	@Override
-	public int subDeleteCartService(Carts carts) {
+	public void subDeleteCartService(Carts carts) {
 		System.out.println("CartServiceImpl subDeleteCartService실행");
 		System.out.println(carts);
 		for(int i = 0; i<carts.getCartCode().size(); i++){
@@ -72,8 +72,6 @@ public class CartServiceImpl implements CartService {
 			cart.setSubCode(cart.getSubCode());
 			cartDao.subDeleteCartService(cart);
 		}
-		
-		return 0;
 	}
 
 }

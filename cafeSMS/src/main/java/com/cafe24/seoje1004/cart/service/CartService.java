@@ -40,6 +40,6 @@ public interface CartService {
 	 * 장바구니를 삭제하는 서비스메서드 입니다.
 	 * @param cart
 	 */
-	int subDeleteCartService(Carts cart);
+	void subDeleteCartService(Carts cart);
 
 }
