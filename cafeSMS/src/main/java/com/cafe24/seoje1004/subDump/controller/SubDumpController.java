@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cafe24.seoje1004.subDump.model.SubDump;
+import com.cafe24.seoje1004.subDump.model.SubDumpSearch;
 import com.cafe24.seoje1004.subDump.service.SubDumpService;
 
 @Controller
@@ -36,7 +37,7 @@ public class SubDumpController {
 		 * @param subDump
 		 * @return
 		 */
-		@RequestMapping(value="subAddSubDump",method=RequestMethod.POST)
+		@RequestMapping(value="/subAddSubDump",method=RequestMethod.POST)
 		public String addSubDumpPost(Model model, SubDump subDump){
 			System.out.println("SubDumpController addSubDump.POST 실행");
 			System.out.println(subDump);
@@ -50,5 +51,21 @@ public class SubDumpController {
 		    	result="redirect:/subViewSubDumpList?subCode="+subDump.getSubCode();
 		    }
 			return result;
+		}
+		
+		/**
+		 * 폐기 관리 리스트 컨트롤러 입니다.
+		 * @param model
+		 * @param subDumpSearch
+		 * @param subDump
+		 * @return
+		 */
+		@RequestMapping(value="/subViewSubDumpList")
+		public String subViewSubDumpList(Model model, SubDumpSearch subDumpSearch, SubDump subDump){
+			System.out.println("SubDumpController subViewSubDumpList실행");
+			System.out.println(subDumpSearch);
+			model.addAttribute("subDumpList", subDumpService.viewSubDumpListService(subDumpSearch,subDump));
+			model.addAttribute("subDumpSearch", subDumpSearch);
+			return "/sub/subDump/subViewSubDumpList";			
 		}
 }

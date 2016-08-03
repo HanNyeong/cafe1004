@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <id property="subDumpCode" column="sub_dump_code"/>
       <result property="subDumpReason" column="sub_dump_reason"/>    
       <result property="subDumpDate" column="sub_dump_date"/>
-      <result property="headItemCode" column="head_item_code"/>
+      <result property="hItemCode" column="head_item_code"/>
       <result property="specificItemCode" column="specific_item_code"/>
       <result property="subStaffCode" column="sub_staff_code"/>
       <result property="subCode" column="sub_code"/>
@@ -47,12 +47,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			)
 		VALUES (
 				#{subDumpCode},
-				#{subDumpReason},
+				#{subDump.subDumpReason},
 				NOW(),
-				#{headItemCode},
-				#{specificItemCode},
-				#{subStaffCode},
-				#{subCode}
+				#{subDump.hItemCode},
+				#{subDump.specificItemCode},
+				#{subDump.subStaffCode},
+				#{subDump.subCode}
 			)
 	</insert>
+	<!-- 폐기 리스트를 컬럼별 조회하는 select쿼리 -->
+	<select id="viewSubDumpList"
+		parameterType="java.util.Map"
+		resultMap="subDumpResultMap">
+		SELECT 
+			sub_dump_code,
+			sub_dump_reason,
+			sub_dump_date, 
+			head_item_code,
+			specific_item_code, 
+			sub_staff_code,
+			sub_code    
+		FROM 
+			sub_dump
+		<if test="subDumpSearch.criteria == null and subDumpSearch.upDown == null">
+			order by sub_dump desc
+		</if>
+		<if test="subDumpSearch.criteria != null and subDumpSearch.upDown != null and subDumpSearch.criteria != null and subDumpSearch.upDown != ''">
+			order by ${subDumpSearch.criteria} ${subDumpSearch.upDown}
+		</if>
+	
+	</select>
 </mapper>

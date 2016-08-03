@@ -1,5 +1,6 @@
 package com.cafe24.seoje1004.subDump.repository;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -30,5 +31,13 @@ public class SubDumpDaoImpl implements SubDumpDao {
 	public SubDump selectSubDump(SubDump subDump) {
 		System.out.println("SubDumpDaoImpl selectSubDump실행");
 		return sqlSessionSubDump.selectOne(NS+".selectSubDump",subDump);
+	}
+	/**
+	 * 폐기 리스트를 보여주는 메서드입니다.
+	 */
+	@Override
+	public List<SubDump> viewSubDumpList(Map<String, Object> map) {
+		System.out.println("SubDumpDaoImpl viewSubDumpList실행");
+		return sqlSessionSubDump.selectList(NS+".viewSubDumpList",map);
 	}
 }

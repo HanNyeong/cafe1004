@@ -16,7 +16,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<h1> 장바구니 수정 </h1>
+<h1> 폐기 등록 </h1>
 <form action="/subAddSubDump" method="POST" id="addSubDumpForm">
  	<div>
 	   	<p>폐기 사유 :<input type="text" id="subDumpReason" name="subDumpReason" value=""/></p>
