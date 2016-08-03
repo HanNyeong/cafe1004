@@ -4,7 +4,7 @@ public class SubDump {
 	private String subDumpCode;
 	private String subDumpReason;
 	private String subDumpDate;
-	private String headItemCode;
+	private String hItemCode;
 	private String specificItemCode;
 	private String subStaffCode;
 	private String subCode;
@@ -26,11 +26,11 @@ public class SubDump {
 	public void setSubDumpDate(String subDumpDate) {
 		this.subDumpDate = subDumpDate;
 	}
-	public String getHeadItemCode() {
-		return headItemCode;
+	public String gethItemCode() {
+		return hItemCode;
 	}
-	public void setHeadItemCode(String headItemCode) {
-		this.headItemCode = headItemCode;
+	public void sethItemCode(String hItemCode) {
+		this.hItemCode = hItemCode;
 	}
 	public String getSpecificItemCode() {
 		return specificItemCode;
@@ -53,7 +53,7 @@ public class SubDump {
 	@Override
 	public String toString() {
 		return "SubDump [subDumpCode=" + subDumpCode + ", subDumpReason=" + subDumpReason + ", subDumpDate="
-				+ subDumpDate + ", headItemCode=" + headItemCode + ", specificItemCode=" + specificItemCode
+				+ subDumpDate + ", hItemCode=" + hItemCode + ", specificItemCode=" + specificItemCode
 				+ ", subStaffCode=" + subStaffCode + ", subCode=" + subCode + "]";
 	}
 	

@@ -43,7 +43,10 @@
 	<form id="subDumpList" action="/subViewSubDumpList" method="POST">
 		<input type="hidden" id="upDown" name="upDown" value="" />
 		<input type="hidden" id="criteria" name="criteria" value=""/>
-		<input type="hidden" id="subDumpCode" name="subDumpCode" value="${subDumpList.subDumpCode}"/>
+		<input type="hidden" id="subCode" name="subCode" value="${subLogin.subCode}"/>
+		등록 날짜: 
+		<input type="date" name="regitDateStart" value="${subDumpSearch.regitDateStart}"/> ~
+		<input type="date" name="regitDateEnd" value="${subDumpSearch.regitDateEnd}"/> 
 		<br/><br/>
 		<select name="searchKey" required="required">
 			<option value="">::선택::</option>

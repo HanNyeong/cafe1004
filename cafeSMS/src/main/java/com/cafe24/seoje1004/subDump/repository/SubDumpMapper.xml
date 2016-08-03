@@ -70,7 +70,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM 
 			sub_dump
 		<if test="subDumpSearch.criteria == null and subDumpSearch.upDown == null">
-			order by sub_dump desc
+			order by sub_dump_date desc
 		</if>
 		<if test="subDumpSearch.criteria != null and subDumpSearch.upDown != null and subDumpSearch.criteria != null and subDumpSearch.upDown != ''">
 			order by ${subDumpSearch.criteria} ${subDumpSearch.upDown}
