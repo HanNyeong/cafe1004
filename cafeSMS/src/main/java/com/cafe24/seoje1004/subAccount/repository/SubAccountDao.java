@@ -14,10 +14,15 @@ public interface SubAccountDao {
 	 */
 	int addSubAccount(SubAccount subAccount);
 	/**
-	 * 가맹 통합회계마감처리 하는 dao메서드입니다.
+	 * 가맹 통합회계리스트 조회권한체크 dao메서드입니다.
 	 * 매개변수는점주의 직원정보를 받습니다.
 	 */
-	SubStaff subAccountKeeperCheck(SubStaff subStaff);
+	SubAccount subAccountKeeperCheck(SubStaff subStaff);
+	/**
+	 * 
+	 * @param map
+	 * @return
+	 */
 	SubAccount viewSubAccountList(Map<String, Object> map);
 
 }

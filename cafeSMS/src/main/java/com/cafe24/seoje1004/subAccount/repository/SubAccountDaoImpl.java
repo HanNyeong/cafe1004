@@ -25,17 +25,20 @@ public class SubAccountDaoImpl implements SubAccountDao{
 		return sqlSeesionSubAccount.insert(NS+".addSubAccount", subAccount);
 	}
 	/**
-	 * 가맹 통합회계마감처리 하는 dao메서드입니다.
+	 * 가맹 통합회계리스트 조회권한체크 dao메서드입니다.
 	 * 매개변수는점주의 직원정보를 받습니다.
 	 */
 	@Override
-	public SubStaff subAccountKeeperCheck(SubStaff subStaff) {
+	public SubAccount subAccountKeeperCheck(SubStaff subStaff) {
 		System.out.println("SubAccountDaoImpl modifySubAccountCheck실행");
-		return sqlSeesionSubAccount.selectOne(NS+".SubAccountKeeperCheck", subStaff);
+		return sqlSeesionSubAccount.selectOne(NS+".subAccountKeeperCheck", subStaff);
 	}
+	/**
+	 * 통합회계리스트를 출력하는 dao메서드입니다.
+	 */
 	@Override
 	public SubAccount viewSubAccountList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
+		System.out.println("SubAccountDaoImpl viewSubAccountList실행");
 		return null;
 	}
 

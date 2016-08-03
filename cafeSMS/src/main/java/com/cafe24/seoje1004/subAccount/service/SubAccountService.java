@@ -9,7 +9,7 @@ public interface SubAccountService {
 	 * 
 	 * @param subLogin
 	 */
-	SubStaff subAccountKeeperCheckService(SubStaff subStaff);
+	SubAccount subAccountKeeperCheckService(SubStaff subStaff);
 	/**
 	 * 
 	 * @param subAccount

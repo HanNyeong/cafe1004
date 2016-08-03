@@ -50,6 +50,7 @@
 		    	$('.headItemCheck').each(function(index,item){
 		    		if(!$(this).is(":checked")){
 		    			console.log("체크안됨");
+		    			console.log($(this).is(":checked"));
 						$("input[class=subCode]:eq(" + index + ")").prop('name','');
 						$("input[class=cartQuantity]:eq(" + index + ")").prop('name','');
 						$("input[class=hItemCode]:eq(" + index + ")").prop('name','');
@@ -118,9 +119,9 @@
 				8:${headItemList.headStaffId}
 				9:${headItemList.hItemRetailPrice}
 				<c:if test="${subLogin != null}">
-					<input type="hidden" name="subCode" value="${subLogin.subCode}">
-					<input type="hidden" name="hItemCode" value="${headItemList.hItemCode}">
-					<input type="number" name="cartQuantity" min="1">
+					<input type="hidden" class="subCode" name="subCode" value="${subLogin.subCode}">
+					<input type="hidden" class="hItemCode" name="hItemCode" value="${headItemList.hItemCode}">
+					<input type="number" class="cartQuantity" name="cartQuantity" min="1">
 					<input type="checkbox" class="headItemCheck" name="headItemCheck" >
 				</c:if>
 			</p>	

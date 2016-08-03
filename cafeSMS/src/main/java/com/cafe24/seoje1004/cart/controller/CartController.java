@@ -13,8 +13,6 @@ import com.cafe24.seoje1004.cart.model.CartDetail;
 import com.cafe24.seoje1004.cart.model.CartSearch;
 import com.cafe24.seoje1004.cart.model.Carts;
 import com.cafe24.seoje1004.cart.service.CartService;
-import com.cafe24.seoje1004.headItem.model.HeadItem;
-
 
 @Controller
 public class CartController {
@@ -37,7 +35,7 @@ public class CartController {
 		cartService.addSubCartService(carts);
 		System.out.println(carts);
 		
-		return "/sub/cart/subViewCartList";
+		return "redirect:/subViewCartList?subCode="+carts.getSubCode().get(0);
 	}
 	/**
 	 * 장바구니를 조회하는 컨트롤러입니다.

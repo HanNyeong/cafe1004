@@ -81,5 +81,6 @@
 <a href="/viewSubjectList">[계정과목]</a>
 <a href="/viewOrdersList?subCode=${subLogin.subCode}">@발주내역조회@</a>
 <a href="/subViewSubDumpList">^^상품폐기^^</a>
+<a href="/subAccountKeeperCheck">^^가맹통합회계^^</a>
 </body>
 </html>

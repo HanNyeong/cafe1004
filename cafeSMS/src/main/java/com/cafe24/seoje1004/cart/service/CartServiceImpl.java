@@ -28,7 +28,7 @@ public class CartServiceImpl implements CartService {
 			Cart cart = new Cart();
 			cart.setCartQuantity(carts.getCartQuantity().get(i));
 			cart.sethItemCode(carts.gethItemCode().get(i));
-			cart.setSubCode(cart.getSubCode());
+			cart.setSubCode(carts.getSubCode().get(i));
 			cartDao.addCart(cart);
 		}
 		
@@ -59,7 +59,7 @@ public class CartServiceImpl implements CartService {
 			cart.setCartCode(carts.getCartCode().get(i));
 			cart.setCartQuantity(carts.getCartQuantity().get(i));
 			cart.sethItemCode(carts.gethItemCode().get(i));
-			cart.setSubCode(cart.getSubCode());
+			cart.setSubCode(carts.getSubCode().get(i));
 			cartDao.subDeleteCartService(cart);
 		}
 	}

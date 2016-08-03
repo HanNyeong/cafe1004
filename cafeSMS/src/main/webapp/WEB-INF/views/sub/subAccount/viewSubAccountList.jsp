@@ -10,33 +10,33 @@
 </script>
 </head>
 <body>
-	<c:if test="${subKeeper == null or subKeeper.level != '점주'}">
+	<c:if test="${subKeeper == null or subStaff.subStaffLevel != '점주'}">
 		<h1>1급 제한 구역입니다.</h1>
 		<form action="/subAccountKeeperCheck" method="POST">
 			<input type="hidden" name="subCode" value="${subLogin.subCode}">
 			<div>코드 : <input type="text" name="subStaffCode" /></div>
 			<div>비밀번호 : <input type="text" name="subStaffPw" /></div>
-			<input type="button" id="subAccountBtn" value="확인">
+			<input type="submit" id="subAccountBtn" value="확인">
 		</form>
 	</c:if>
-	<c:if test="${subKeeper.level == '점주'}">
+	<c:if test="${subStaff.subStaffLevel == '점주'}">
 		<form action="">
 			<c:forEach var="accountList" items="${subAccountList}">
 				<div>
 					<input type="checkbox" id="accountListCheck">
-					#{accountList.subAccountCode}
-					#{accountList.subAccountFlow}
-					#{accountList.totalAccountGroup}
-					#{accountList.subAccountTable}
-					#{accountList.subAccountSum}
-					#{accountList.subAccountRequestDate}
-					#{accountList.subAccountCheck}
-					#{accountList.subAccountDetail}
-					#{accountList.subjectCode}
-					#{accountList.subClientCode}
-					#{accountList.subCode}
-					#{accountList.subStaffCode}
-					#{accountList.subStaffKeeper}	
+					${accountList.subAccountCode}
+					${accountList.subAccountFlow}
+					${accountList.totalAccountGroup}
+					${accountList.subAccountTable}
+					${accountList.subAccountSum}
+					${accountList.subAccountRequestDate}
+					${accountList.subAccountCheck}
+					${accountList.subAccountDetail}
+					${accountList.subjectCode}
+					${accountList.subClientCode}
+					${accountList.subCode}
+					${accountList.subStaffCode}
+					${accountList.subStaffKeeper}	
 				</div>
 			</c:forEach>
 		</form>

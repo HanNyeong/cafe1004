@@ -42,7 +42,9 @@ public class SubAccountController {
 	 * @return
 	 */
 	@RequestMapping(value = "/subAccountKeeperCheck", method = RequestMethod.GET)
-	public String subAccountKeeperCheck() {
+	public String subAccountKeeperCheck(Model model) {
+		System.out.println("SubAccountController subAccountKeeperCheck.GET실행");
+
 		return "/sub/subAccount/viewSubAccountList";
 	}
 	/**
@@ -52,9 +54,15 @@ public class SubAccountController {
 	 * @return
 	 */
 	@RequestMapping(value = "/subAccountKeeperCheck", method = RequestMethod.POST)
-	public String subAccountKeeperCheckPOST(RedirectAttributes redirectAttr, SubStaff subStaff) {
-		SubStaff subKeeper = subAccountService.subAccountKeeperCheckService(subStaff);
-		redirectAttr.addFlashAttribute("subKeeper", subKeeper);
+	public String subAccountKeeperCheck(RedirectAttributes redirectAttr, SubStaff subStaff) {
+		System.out.println("SubAccountController subAccountKeeperCheck.POST실행");
+		System.out.println(subStaff);
+		if(subAccountService.subAccountKeeperCheckService(subStaff) != null){
+			subStaff.setSubStaffLevel("점주");
+			redirectAttr.addFlashAttribute("subAccount", subAccountService.subAccountKeeperCheckService(subStaff));
+			redirectAttr.addFlashAttribute("subStaff", subStaff);
+			
+		}
 		return "redirect:/subAccountList";
 	}
 	/**
@@ -65,10 +73,15 @@ public class SubAccountController {
 	 * @return
 	 */
 	@RequestMapping(value = "/subAccountList")
-	public String subAccountList(Model model, SubLogin subLogin,SubAccountSearch subAccountSearch) {
-		
-		SubAccount subAccount = subAccountService.viewSubAccountListService(subAccountSearch);
-		return "";
+	public String subAccountList(Model model, SubAccount subAccount,SubAccountSearch subAccountSearch,SubStaff subStaff) {
+		System.out.println("SubAccountController subAccountList실행");
+		System.out.println(subAccount);
+		if(subStaff.getSubStaffLevel() == "점주"){
+			model.addAttribute("subStaff", subStaff);
+			model.addAttribute("subAccountList", subAccountService.viewSubAccountListService(subAccountSearch));
+			System.out.println(subAccountService.viewSubAccountListService(subAccountSearch));
+		}
+		return "/sub/subAccount/viewSubAccountList";
 	}
 
 }

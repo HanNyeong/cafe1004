@@ -19,10 +19,9 @@ public class SubAccountServiceImpl implements SubAccountService{
 	private SubAccountDao subAccountDao;
 
 	@Override
-	public SubStaff subAccountKeeperCheckService(SubStaff subStaff) {
-	
-		subAccountDao.subAccountKeeperCheck(subStaff);
-		return null;
+	public SubAccount subAccountKeeperCheckService(SubStaff subStaff) {
+		System.out.println("SubAccountSerivceImpl subAccountKeeperCheckService실행");
+		return subAccountDao.subAccountKeeperCheck(subStaff);
 		
 	}
 
@@ -38,7 +37,7 @@ public class SubAccountServiceImpl implements SubAccountService{
 		System.out.println("SubStaffServiceImpl viewSubStaffListService실행");
 		System.out.println("SubServiceImpl viewSubListService. 조회 실행");
 		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("subStaffSearch", subAccountDao);
+		map.put("subStaffSearch", subAccountSearch);
 		return subAccountDao.viewSubAccountList(map);
 		
 	}
