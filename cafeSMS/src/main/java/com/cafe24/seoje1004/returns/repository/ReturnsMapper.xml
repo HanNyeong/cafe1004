@@ -3,4 +3,58 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.seoje1004.returns.repository.ReturnsMapper">
+	
+	<!-- returns객체등록 -->
+	<resultMap type="com.cafe24.seoje1004.returns.model.Returns" id="returnsListMap">
+		<id property="returnCode" column="return_code"/>
+		<result property="returnReason" column="return_reason"/>
+		<result property="returnPrice" column="return_price"/>
+		<result property="returnReportDate" column="return_report_date"/>
+		<result property="returnHeadCheck" column="return_head_check"/>
+		<result property="returnHeadCheckDate" column="return_head_check_date"/>
+		<result property="totalAccountGroup" column="total_account_group"/>
+		<result property="returnReDelivery" column="return_re_delivery"/>
+		<result property="returnCancel" column="return_cancel"/>
+		<result property="ordersCode" column="orders_code"/>
+		<result property="specificItemCode" column="specific_item_code"/>
+		<result property="headStaffId" column="head_staff_id"/>
+		<result property="headReturnsConfirm" column="head_returns_confirm"/>
+		
+	</resultMap>
+	
+	<!-- returnsFile객체등록 -->
+	<resultMap type="com.cafe24.seoje1004.returns.model.ReturnsFile" id="returnsFileListMap">
+		<id property="returnsFileCode" column="returns_file_code"/>
+		<result property="returnsCode" column="returns_code"/>
+		<result property="returnsFile" column="returns_file"/>
+		<result property="fileName" column="file_name"/>
+		<result property="randomName" column="random_name"/>
+	</resultMap>
+
+	<!-- 가맹측 반품상품관리 조회 -->
+	<select id="subViewReturnsList"
+			parameterType="java.util.Map"
+			resultMap="returnsListMap">
+		SELECT
+			return_code,
+			return_reason,
+			return_price,
+			return_report_date,
+			return_head_check,
+			return_head_check_date,
+			total_account_group,
+			return_re_delivery,
+			return_cancel,
+			orders_code,
+			specific_item_code,
+			head_staff_id,
+			head_return_confirm
+		FROM
+			returns	
+		WHERE
+			sub_code	=	#{subCode}	
+				
+	
+	</select>
+	
 </mapper>

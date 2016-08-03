@@ -29,7 +29,7 @@ public class ReturnsController {
 		System.out.println("ReturnsController subViewReturnsList 실행");
 		
 		List<Returns> returnsList = returnsService.subViewReturnsList(subCode, returnsSearch);
-		
+		System.out.println("returnsList : "+ returnsList);
 		
 		return "/shared/returns/subViewReturnsList";
 	}
