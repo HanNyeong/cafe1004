@@ -48,6 +48,8 @@
 						$("input[class=cartQuantity]:eq(" + index + ")").prop('name','');
 						$("input[class=hItemCode]:eq(" + index + ")").prop('name','');
 						$("input[class=subCode]:eq(" + index + ")").prop('name','');
+						$("input[class=hItemName]:eq(" + index + ")").prop('name','');
+						$("input[class=hItemSellingPrice]:eq(" + index + ")").prop('name','');
 		    		}else if($(this).is(":checked")){
 		    			console.log("체크됨");
 		    		}else{
@@ -71,6 +73,8 @@
 						$("input[class=cartQuantity]:eq(" + index + ")").prop('name','');
 						$("input[class=hItemCode]:eq(" + index + ")").prop('name','');
 						$("input[class=subCode]:eq(" + index + ")").prop('name','');
+						$("input[class=hItemName]:eq(" + index + ")").prop('name','');
+						$("input[class=hItemSellingPrice]:eq(" + index + ")").prop('name','');
 		    			}else if($(this).is(":checked")){
 		    				console.log("체크됨");
 		    			}else{
@@ -133,6 +137,8 @@
 				2:${cartList.cartQuantity}<input type="hidden" class="cartQuantity" name="cartQuantity" value="${cartList.cartQuantity}">
 				3:${cartList.hItemCode}<input type="hidden" class="hItemCode" name="hItemCode" value="${cartList.hItemCode}">
 				4:${cartList.subCode}<input type="hidden" class="subCode" name="subCode" value="${cartList.subCode}">
+				<input type="hidden" class="hItemName" name="hItemName" value="${cartList.hItemName}">
+				<input type="hidden" class="hItemSellingPrice" name="hItemSellingPrice" value="${cartList.hItemSellingPrice}">
 				5:<a href="/subModifyCart?cartCode=${cartList.cartCode}"><input type="button" id="cartModifyBtn" name="cartModifyBtn" value="수정"></a>
 				6:<input type="checkbox" class="cartDelete" name="cartDelete" value="${cartList.cartCode}">
 				7:<input type="checkbox" class="cartOrders" name="cartOrders" value="${cartList.cartCode}">

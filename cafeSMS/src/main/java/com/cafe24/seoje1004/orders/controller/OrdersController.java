@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.seoje1004.cart.model.Cart;
+import com.cafe24.seoje1004.cart.model.CartDetail;
 import com.cafe24.seoje1004.cart.model.Carts;
 import com.cafe24.seoje1004.headItem.model.HeadItem;
 import com.cafe24.seoje1004.orders.service.OrdersService;
@@ -19,16 +20,15 @@ public class OrdersController {
 	@Autowired
 	private OrdersService ordersService;
 	
-	//주문 최종승인 폼이동 컨트롤러 by head_item
+	//주문 최종승인 폼이동 컨트롤러 by cart
 	@RequestMapping(value="/viewOrdersInCart")
-	public String viewOrdersInHeadItem(Model model,HeadItem headItem,Carts cart) {
-		System.out.println("OrdersController//viewSubOrdersInHeadItem");
-		System.out.println(cart);
-		System.out.println(headItem);
+	public String viewOrdersInHeadItem(Model model,CartDetail cartDetail) {
+		System.out.println("OrdersController//viewSubOrdersCart");
+		System.out.println(cartDetail);
 		
-		List<HeadItem> ordersconfirmList = ordersService.viewOrdersInHeadItemService(headItem,cart);
-		model.addAttribute("ordersconfirmList",ordersconfirmList);
-		System.out.println(ordersconfirmList);
+		List<CartDetail> ordersConfirmList = ordersService.viewOrdersInCartService(cartDetail);
+		model.addAttribute("ordersConfirmList",ordersConfirmList);
+		
 		return "/shared/orders/subAddOrdersByCart";
 	}
 }

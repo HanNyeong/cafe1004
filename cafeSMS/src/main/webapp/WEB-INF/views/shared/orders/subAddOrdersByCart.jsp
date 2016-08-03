@@ -8,20 +8,19 @@
 </head>
 <body>
 	<h1>발주내역확인:by head_item</h1>
-		<%-- <input type="hidden" name="hItemCode" value="${headItemList.hItemCode}">
-		<input type="hidden" name="subCode" value="${subLogin.subCode}"> --%>
-	<c:forEach var="ordersconfirmList" items="${ordersconfirmList}">
+		
+	<c:forEach var="ordersConfirmList" items="${ordersConfirmList}">
 		<div>
-			1. 상품코드 : <input type="text" name="hItemName" value="${ordersconfirmList.hItemCode}" readonly/>
+			1. 상품코드 : <input type="text" name="hItemName" value="${ordersConfirmList.hItemCode}" readonly/>
 		</div>
 		<div>
-			2. 상품명 : <input type="text" name="hItemName" value="${ordersconfirmList.hItemName}" readonly/>
+			2. 상품명 : <input type="text" name="hItemName" value="${ordersConfirmList.hItemName}" readonly/>
 		</div>
 		<div>
-			3. 상품수량 : <input type="text" name="hItemQuantity" value="${ordersconfirmList.hItemQuantity}" readonly/>
+			3. 상품수량 : <input type="text" name="hItemQuantity" value="${ordersConfirmList.cartQuantity}" readonly/>
 		</div>
 		<div>
-			4. 공급가 : <input type="text" name="hItemSellingPrice" value="${ordersconfirmList.hItemSellingPrice}" readonly/>
+			4. 공급가 : <input type="text" name="hItemSellingPrice" value="${ordersConfirmList.hItemSellingPrice}" readonly/>
 		</div>
 	</c:forEach>
 		<button>주문하기</button>

@@ -20,9 +20,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<result property="headOrdersConfirm" column="head_orders_confirm"/>
 </resultMap>
 
-	<select id="viewOrdersInHeadItem"
+<!-- 장바구니에서 체크된 cartList 정보확인 select -->
+	<select id="viewOrdersInCart"
 			parameterType="java.util.Map"
-			resultType="com.cafe24.seoje1004.headItem.model.HeadItem">
+			resultType="com.cafe24.seoje1004.cart.model.CartDetail">
 	select
 		c.h_item_code hItemCode,
 		c.cart_code cartCode,
@@ -32,7 +33,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		h.h_item_selling_price hItemSellingPrice
 	from	
 		cart c inner join head_item h
+	on
+		h.h_item_code = c.h_item_code
 	where
-		cart_code = #{cart.cartCode}
+		cart_code = #{cartDetail.cartCode}
 	</select>
 </mapper>
