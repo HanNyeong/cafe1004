@@ -1,6 +1,7 @@
 package com.cafe24.seoje1004.returns.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.cafe24.seoje1004.returns.model.Returns;
 import com.cafe24.seoje1004.returns.model.ReturnsSearch;
@@ -20,4 +21,5 @@ public interface ReturnsService {
 	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
 	
 	public List<Returns> headViewReturnsList(ReturnsSearch returnsSearch);		//본사측 반품상품관리 조회
+	public Map<String,Object> viewReturnsContent(String returnCode);		//반품상품 상세보기
 }

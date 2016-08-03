@@ -226,7 +226,7 @@
 				${returnsList.ordersCode}
 				${returnsList.specificItemCode}
 				${returnsList.headReturnsConfirm}
-				<a href="">[상세보기]</a>
+				<a href="/viewReturnsContent?returnCode=${returnsList.returnCode}">[상세보기]</a>
 			</div>
 		</c:forEach>
 	</div>

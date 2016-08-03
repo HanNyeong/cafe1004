@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.cafe24.seoje1004.returns.model.Returns;
+import com.cafe24.seoje1004.returns.model.ReturnsFile;
 
 public interface ReturnsDao {
 	/**
@@ -20,4 +21,7 @@ public interface ReturnsDao {
 	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
 	
 	public List<Returns> headViewReturnsList(Map<String, Object> map);	//본사측 반품상품관리 조회
+	public Returns viewReturnsContent(String returnCode);			//해당 반품상품의 상세정보
+	public List<ReturnsFile> viewReturnsFile(String returnCode);		//해당반품상품의 파일 리스트
+	
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cafe24.seoje1004.returns.model.Returns;
+import com.cafe24.seoje1004.returns.model.ReturnsFile;
 import com.cafe24.seoje1004.returns.model.ReturnsSearch;
 import com.cafe24.seoje1004.returns.repository.ReturnsDao;
 
@@ -40,6 +41,22 @@ public class ReturnsServiceImpl implements ReturnsService {
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("returnsSearch", returnsSearch);
 		return returnsDao.headViewReturnsList(map);
+	}
+
+	//반품상품 상세보기
+	@Override
+	public Map<String, Object> viewReturnsContent(String returnCode) {
+		System.out.println("ReturnsServiceImpl viewReturnsContent 실행");
+		//1.해당 반품상품의 상세정보
+		Returns returns = returnsDao.viewReturnsContent(returnCode);
+		
+		//2.해당반품상품의 파일 리스트
+		List<ReturnsFile> returnsFile = returnsDao.viewReturnsFile(returnCode);
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("returns", returns);
+		map.put("returnsFile", returnsFile);
+		return map;
 	}
 
 }

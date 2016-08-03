@@ -25,9 +25,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- returnsFile객체등록 -->
 	<resultMap type="com.cafe24.seoje1004.returns.model.ReturnsFile" id="returnsFileListMap">
-		<id property="returnsFileCode" column="returns_file_code"/>
-		<result property="returnsCode" column="returns_code"/>
-		<result property="returnsFile" column="returns_file"/>
+		<id property="returnFileCode" column="return_file_code"/>
+		<result property="returnCode" column="return_code"/>
+		<result property="returnFile" column="return_file"/>
 		<result property="fileName" column="file_name"/>
 		<result property="randomName" column="random_name"/>
 	</resultMap>
@@ -96,9 +96,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			head_returns_confirm,
 			sub_code
 		FROM
-			returns	
-		
-				
+			returns			
 		<where>
 			<if test="returnsSearch.regitDateStart != null and returnsSearch.regitDateEnd != null and returnsSearch.regitDateStart !='' and returnsSearch.regitDateEnd !=''">
 				<![CDATA[date(return_report_date) >= #{returnsSearch.regitDateStart} and date(return_report_date) <= #{returnsSearch.regitDateEnd}]]>
@@ -115,7 +113,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				${returnsSearch.criteria} ${returnsSearch.upDown}
 			</if>
 		</trim>	
-				
+	</select>
 	
+	<!-- 해당 반품상품의 상세정보 -->
+	<select id="viewReturnsContent"
+			parameterType="String"
+			resultMap="returnsListMap">
+		SELECT
+			return_code,
+			return_reason,
+			return_price,
+			return_report_date,
+			return_head_check,
+			return_head_check_date,
+			total_account_group,
+			return_re_delivery,
+			return_cancel,
+			orders_code,
+			specific_item_code,
+			head_staff_id,
+			head_returns_confirm,
+			sub_code
+		FROM
+			returns	
+		WHERE
+			return_code = #{returnCode}	
+	
+	</select>
+	
+	<!-- 해당반품상품의 파일 리스트 -->
+	<select id="viewReturnsFile"
+			parameterType="String"
+			resultMap="returnsFileListMap">
+		SELECT
+			return_file_code,
+			return_code,
+			return_file,
+			file_name,
+			random_name
+		FROM
+			returns_file
+		WHERE
+			return_code = #{returnCode}
 	</select>
 </mapper>

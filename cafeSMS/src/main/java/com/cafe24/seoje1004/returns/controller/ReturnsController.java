@@ -1,11 +1,13 @@
 package com.cafe24.seoje1004.returns.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.seoje1004.returns.model.Returns;
@@ -58,6 +60,20 @@ public class ReturnsController {
 		
 		
 		return "/shared/returns/headViewReturnsList";
+	}
+	
+	//반품상품 상세보기
+	@RequestMapping(value="/viewReturnsContent", method=RequestMethod.GET)
+	public String viewReturnsContent(Model model,@RequestParam(value="returnCode")String returnCode){
+		System.out.println("ReturnsController viewReturnsContent 실행");
+		System.out.println("returnCode : "+returnCode);
+		
+		//해당 반품상품정보와 해당반품상품의 파일리스트를 가져와야하므로
+		Map<String,Object> map = returnsService.viewReturnsContent(returnCode);
+		System.out.println("map : "+map);
+		
+		model.addAttribute("map", map);
+		return "/shared/returns/viewReturnsContent";
 	}
 	
 }

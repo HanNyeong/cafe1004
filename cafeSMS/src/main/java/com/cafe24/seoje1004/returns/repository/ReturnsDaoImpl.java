@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cafe24.seoje1004.returns.model.Returns;
+import com.cafe24.seoje1004.returns.model.ReturnsFile;
 
 @Repository
 public class ReturnsDaoImpl implements ReturnsDao {
@@ -41,6 +42,20 @@ public class ReturnsDaoImpl implements ReturnsDao {
 	public List<Returns> headViewReturnsList(Map<String, Object> map) {
 		System.out.println("ReturnsDaoImpl headViewReturnsList 실행");
 		return sqlSessionReturns.selectList(NS+".headViewReturnsList", map);
+	}
+
+	//해당 반품상품의 상세정보
+	@Override
+	public Returns viewReturnsContent(String returnCode) {
+		System.out.println("ReturnsDaoImpl viewReturnsContent 실행");
+		return sqlSessionReturns.selectOne(NS+".viewReturnsContent", returnCode);
+	}
+
+	//해당반품상품의 파일 리스트
+	@Override
+	public List<ReturnsFile> viewReturnsFile(String returnCode) {
+		System.out.println("ReturnsDaoImpl viewReturnsFile 실행");
+		return sqlSessionReturns.selectList(NS+".viewReturnsFile", returnCode);
 	}
 
 	
