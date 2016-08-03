@@ -40,6 +40,14 @@ public class ReturnsController {
 		return "/shared/returns/subViewReturnsList";
 	}
 	
+	//가맹측 환불신청
+	@RequestMapping(value="/subAddReturns")
+	public String subAddReturns(Model model, @RequestParam(value="subCode")String subCode){
+		System.out.println("ReturnsController subAddReturns 실행");
+		System.out.println("subCode : "+subCode);
+		return	"/shared/returns/subAddReturns";
+	}
+	
 	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
 	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
 	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/

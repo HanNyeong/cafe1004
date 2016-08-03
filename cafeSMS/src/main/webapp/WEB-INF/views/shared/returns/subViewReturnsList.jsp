@@ -230,6 +230,12 @@
 			</div>
 		</c:forEach>
 	</div>
-	 </c:if>
+	
+	
+	<h1>환불신청은 여기서</h1><hr/>
+	<a href="/subAddReturns?subCode=${subCode}">[환불신청]</a>
+	
+	
+	</c:if>
 </body>
 </html>
