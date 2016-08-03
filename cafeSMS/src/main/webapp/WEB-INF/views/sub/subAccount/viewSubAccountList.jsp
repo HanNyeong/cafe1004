@@ -13,6 +13,7 @@
 	<c:if test="${subKeeper == null or subKeeper.level != '점주'}">
 		<h1>1급 제한 구역입니다.</h1>
 		<form action="/subAccountKeeperCheck" method="POST">
+			<input type="hidden" name="subCode" value="${subLogin.subCode}">
 			<div>코드 : <input type="text" name="subStaffCode" /></div>
 			<div>비밀번호 : <input type="text" name="subStaffPw" /></div>
 			<input type="button" id="subAccountBtn" value="확인">

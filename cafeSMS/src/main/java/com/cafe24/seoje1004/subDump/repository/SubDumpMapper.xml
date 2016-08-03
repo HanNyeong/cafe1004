@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.seoje1004.subDump.repository.SubDumpMapper">
-	<resultMap type="com.cafe24.seoje1004.subDump.model.SubDump" id="subClientResultMap">
+	<resultMap type="com.cafe24.seoje1004.subDump.model.SubDump" id="subDumpResultMap">
       <id property="subDumpCode" column="sub_dump_code"/>
       <result property="subDumpReason" column="sub_dump_reason"/>    
       <result property="subDumpDate" column="sub_dump_date"/>
@@ -12,5 +12,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <result property="subStaffCode" column="sub_staff_code"/>
       <result property="subCode" column="sub_code"/>
    </resultMap>   
-   
+   	<!-- 폐기 등록 전 정보를 가져오기 (등록폼으로) -->
+	<select id="selectSubDump"
+			parameterType="com.cafe24.seoje1004.sub.model.SubLogin"
+	  		resultMap="subDumpResultMap">
+	    SELECT 
+	       head_item_code,
+	       specific_item_code, 
+	       sub_code 
+	    FROM 
+	       sub_stock
+	    WHERE
+	       sub_code = #{subCode} and specific_item_code = 'specific_item_code1' 
+	</select>
+   <!-- 가맹직원을 등록하는 insert 쿼리 자동으로 subDumpCode를 생성해줌 -->
+	<insert id="addSubDump"
+		parameterType="java.util.Map"
+		useGeneratedKeys="true"
+		keyProperty="subDumpCode">
+	<selectKey resultType="hashmap" keyProperty="subDumpCode" order="BEFORE">
+		select if(isnull(sub_dump_code),'subDump_code1000', concat('sub_dump_code', MAX(CONVERT(SUBSTRING(sub_dump_code,14), UNSIGNED))+1)) as subDumpCode
+		from sub_dump
+	</selectKey>
+      
+		INSERT INTO 
+			sub_dump(
+				sub_dump_code,
+				sub_dump_reason,
+				sub_dump_date, 
+				head_item_code,
+				specific_item_code, 
+				sub_staff_code,
+				sub_code
+			)
+		VALUES (
+				#{subDumpCode},
+				#{subDumpReason},
+				NOW(),
+				#{headItemCode},
+				#{specificItemCode},
+				#{subStaffCode},
+				#{subCode}
+			)
+	</insert>
 </mapper>

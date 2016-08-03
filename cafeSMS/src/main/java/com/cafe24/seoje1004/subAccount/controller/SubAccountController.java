@@ -42,7 +42,7 @@ public class SubAccountController {
 	 * @return
 	 */
 	@RequestMapping(value = "/subAccountKeeperCheck", method = RequestMethod.GET)
-	public String subAccountKeeperCheck(Model model, SubStaff subStaff) {
+	public String subAccountKeeperCheck() {
 		return "/sub/subAccount/viewSubAccountList";
 	}
 	/**
