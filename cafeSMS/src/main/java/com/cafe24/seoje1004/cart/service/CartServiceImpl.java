@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cafe24.seoje1004.cart.model.Cart;
+import com.cafe24.seoje1004.cart.model.CartDetail;
 import com.cafe24.seoje1004.cart.model.CartSearch;
 import com.cafe24.seoje1004.cart.model.Carts;
 import com.cafe24.seoje1004.cart.repository.CartDao;
@@ -23,9 +24,8 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public int addSubCartService(Carts carts) {
 		System.out.println("CartServiceImpl addSubCartService실행");
-		for(int i = 0; i<carts.getCartCode().size(); i++){
+		for(int i = 0; i<carts.getSubCode().size(); i++){
 			Cart cart = new Cart();
-			cart.setCartCode(carts.getCartCode().get(i));
 			cart.setCartQuantity(carts.getCartQuantity().get(i));
 			cart.sethItemCode(carts.gethItemCode().get(i));
 			cart.setSubCode(cart.getSubCode());
@@ -39,13 +39,29 @@ public class CartServiceImpl implements CartService {
 	 * 장바구니 리스트를 리턴하는 서비스 메서드입니다.
 	 */
 	@Override
-	public List<Cart> viewCartListService(CartSearch cartSearch, Cart cart) {
+	public List<CartDetail> viewCartListService(CartSearch cartSearch, CartDetail cartDetail) {
 		System.out.println("CartServiceImpl viewCartListService실행");
 		System.out.println("CartServiceImpl viewCartListService. 조회 실행");
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("cartSearch", cartSearch);
-		map.put("cart", cart);
+		map.put("cartDetail", cartDetail);
 		return cartDao.viewCartList(map);
+	}
+	/**
+	 * 장바구니 삭제하는 서비스 메서드 입니다.
+	 */
+	@Override
+	public void subDeleteCartService(Carts carts) {
+		System.out.println("CartServiceImpl subDeleteCartService실행");
+		System.out.println(carts);
+		for(int i = 0; i<carts.getCartCode().size(); i++){
+			Cart cart = new Cart();
+			cart.setCartCode(carts.getCartCode().get(i));
+			cart.setCartQuantity(carts.getCartQuantity().get(i));
+			cart.sethItemCode(carts.gethItemCode().get(i));
+			cart.setSubCode(cart.getSubCode());
+			cartDao.subDeleteCartService(cart);
+		}
 	}
 	/**
 	 * 장바구니 수정을 보여주는 서비스메서드 (GET) 입니다.
@@ -64,21 +80,6 @@ public class CartServiceImpl implements CartService {
 		System.out.println("CartServiceImpl modifySubCartService실행");
 		return cartDao.modifyCart(cart);
 	}
-	/**
-	 * 장바구니 삭제하는 서비스 메서드 입니다.
-	 */
-	@Override
-	public void subDeleteCartService(Carts carts) {
-		System.out.println("CartServiceImpl subDeleteCartService실행");
-		System.out.println(carts);
-		for(int i = 0; i<carts.getCartCode().size(); i++){
-			Cart cart = new Cart();
-			cart.setCartCode(carts.getCartCode().get(i));
-			cart.setCartQuantity(carts.getCartQuantity().get(i));
-			cart.sethItemCode(carts.gethItemCode().get(i));
-			cart.setSubCode(cart.getSubCode());
-			cartDao.subDeleteCartService(cart);
-		}
-	}
+	
 
 }

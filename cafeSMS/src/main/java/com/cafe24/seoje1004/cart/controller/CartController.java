@@ -1,5 +1,7 @@
 package com.cafe24.seoje1004.cart.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cafe24.seoje1004.cart.model.Cart;
+import com.cafe24.seoje1004.cart.model.CartDetail;
 import com.cafe24.seoje1004.cart.model.CartSearch;
 import com.cafe24.seoje1004.cart.model.Carts;
 import com.cafe24.seoje1004.cart.service.CartService;
@@ -28,7 +31,7 @@ public class CartController {
 	 * @return
 	 */
 	@RequestMapping(value="/subAddCart",method=RequestMethod.POST)
-	public String addSubCart(Model model,Carts carts){
+	public String addSubCart(Carts carts){
 		System.out.println("CartController addSubCart .POST 실행");
 		System.out.println(carts);
 		cartService.addSubCartService(carts);
@@ -44,10 +47,11 @@ public class CartController {
 	 * @return
 	 */
 	@RequestMapping(value="/subViewCartList")
-	public String subViewCartList(Model model, CartSearch cartSearch,Cart cart,HeadItem headItem){
+	public String subViewCartList(Model model, CartSearch cartSearch,CartDetail cartdetail){
 		System.out.println("CartController subViewCartList실행");
 		System.out.println(cartSearch);
-		model.addAttribute("cartList", cartService.viewCartListService(cartSearch,cart,headItem));
+		List<CartDetail> cartsList = cartService.viewCartListService(cartSearch,cartdetail);
+		model.addAttribute("cartList", cartsList);
 		model.addAttribute("cartSearch", cartSearch);
 		return "/sub/cart/subViewCartList";
 		

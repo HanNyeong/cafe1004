@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cafe24.seoje1004.cart.model.Cart;
+import com.cafe24.seoje1004.cart.model.CartDetail;
+import com.cafe24.seoje1004.cart.model.Carts;
 
 @Repository
 public class CartDaoImpl implements CartDao {
@@ -28,7 +30,7 @@ public class CartDaoImpl implements CartDao {
 	 * 장바구니 리스트 보여주는 메서드입니다.
 	 */
 	@Override
-	public List<Cart> viewCartList(Map<String, Object> map) {
+	public List<CartDetail> viewCartList(Map<String, Object> map) {
 		System.out.println("CartDaoImpl viewCartList실행");
 		return sqlSessionCart.selectList(NS+".viewCartList",map);
 	}

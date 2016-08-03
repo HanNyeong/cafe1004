@@ -40,14 +40,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 장바구니 리스트를 컬럼별 조회하는 select쿼리 -->
 	<select id="viewCartList"
 		parameterType="java.util.Map"
-		resultMap="cartResultMap">
+		resultType="com.cafe24.seoje1004.cart.model.CartDetail">
 		SELECT 
-			cart_code,
-			cart_quantity,
-			h_item_code, 
-			sub_code     
+			c.cart_code cartCode,
+			c.cart_quantity cartQuantity,
+			c.h_item_code hItemCode,
+			h.h_item_name hItemName,
+			h.h_item_selling_price hItemSellingPrice,
+			c.sub_code subCode
 		FROM 
-			cart
+			cart c inner join head_item h
+		on
+			c.h_item_code = h.h_item_code
+		where
+			sub_code = #{cartDetail.subCode}
 		<if test="cartSearch.criteria == null and cartSearch.upDown == null">
 			order by cart_code desc
 		</if>

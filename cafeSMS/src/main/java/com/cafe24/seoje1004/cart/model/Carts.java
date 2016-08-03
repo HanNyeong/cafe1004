@@ -7,6 +7,21 @@ public class Carts {
 	private List<Integer> cartQuantity;
 	private List<String> hItemCode;
 	private List<String> subCode;
+	private List<String> hItemName;
+	private List<String> hItemSellingPrice;
+	
+	public List<String> gethItemName() {
+		return hItemName;
+	}
+	public void sethItemName(List<String> hItemName) {
+		this.hItemName = hItemName;
+	}
+	public List<String> gethItemSellingPrice() {
+		return hItemSellingPrice;
+	}
+	public void sethItemSellingPrice(List<String> hItemSellingPrice) {
+		this.hItemSellingPrice = hItemSellingPrice;
+	}
 	public List<String> getCartCode() {
 		return cartCode;
 	}
@@ -34,7 +49,8 @@ public class Carts {
 	@Override
 	public String toString() {
 		return "Carts [cartCode=" + cartCode + ", cartQuantity=" + cartQuantity + ", hItemCode=" + hItemCode
-				+ ", subCode=" + subCode + "]";
+				+ ", subCode=" + subCode + ", hItemName=" + hItemName + ", hItemSellingPrice=" + hItemSellingPrice
+				+ "]";
 	}
 	
 
