@@ -28,11 +28,11 @@ public class CartController {
 	 * @return
 	 */
 	@RequestMapping(value="/subAddCart",method=RequestMethod.POST)
-	public String addSubCart(Model model,Cart cart){
+	public String addSubCart(Model model,Carts carts){
 		System.out.println("CartController addSubCart .POST 실행");
-		System.out.println(cart);
-		cartService.addSubCartService(cart);
-		System.out.println(cart);
+		System.out.println(carts);
+		cartService.addSubCartService(carts);
+		System.out.println(carts);
 		
 		return "/sub/cart/subViewCartList";
 	}

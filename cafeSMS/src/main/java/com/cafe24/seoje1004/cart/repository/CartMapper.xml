@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 	<!-- 가맹직원을 등록하는 inst 쿼리 자동으로 subStaffId를 생성해줌 -->
 	<insert id="addCart"
-		parameterType="java.util.Map"
+		parameterType="com.cafe24.seoje1004.cart.model.Cart"
 		useGeneratedKeys="true"
 		keyProperty="cartCode">
 	<selectKey resultType="hashmap" keyProperty="cartCode" order="BEFORE">
@@ -31,9 +31,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			)
 		VALUES (
 			#{cartCode},
-			#{cart.cartQuantity}, 
-			#{cart.hItemCode}, 
-			#{cart.subCode}
+			#{cartQuantity}, 
+			#{hItemCode}, 
+			#{subCode}
 		)
 	</insert>
 

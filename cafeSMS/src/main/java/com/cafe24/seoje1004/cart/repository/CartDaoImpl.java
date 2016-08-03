@@ -20,9 +20,9 @@ public class CartDaoImpl implements CartDao {
 	 * 장바구니 등록 메서드 입니다.
 	 */
 	@Override
-	public int addCart(Map<String, Object> map) {
+	public int addCart(Cart cart) {
 		System.out.println("CartDaoImpl addCart실행");
-		return sqlSessionCart.insert(NS+".addCart", map);
+		return sqlSessionCart.insert(NS+".addCart", cart);
 	}
 	/**
 	 * 장바구니 리스트 보여주는 메서드입니다.

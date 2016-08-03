@@ -14,7 +14,7 @@ public interface CartService {
 	 * @param subLogin
 	 * @param headItem
 	 */
-	int addSubCartService(Cart cart);
+	int addSubCartService(Carts carts);
 	
 	/**
 	 * 장바구니 리스트를 리턴하는 서비스 메서드입니다.

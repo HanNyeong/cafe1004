@@ -21,11 +21,18 @@ public class CartServiceImpl implements CartService {
 	 * 가맹 장바구니를 등록하는 서비스 메서드입니다.
 	 */
 	@Override
-	public int addSubCartService(Cart cart) {
+	public int addSubCartService(Carts carts) {
 		System.out.println("CartServiceImpl addSubCartService실행");
-		Map<String, Object> map = new HashMap<String,Object>();
-		map.put("cart", cart);	
-		return cartDao.addCart(map);
+		for(int i = 0; i<carts.getCartCode().size(); i++){
+			Cart cart = new Cart();
+			cart.setCartCode(carts.getCartCode().get(i));
+			cart.setCartQuantity(carts.getCartQuantity().get(i));
+			cart.sethItemCode(carts.gethItemCode().get(i));
+			cart.setSubCode(cart.getSubCode());
+			cartDao.addCart(cart);
+		}
+		
+		return 0;
 		
 	}
 	/**
