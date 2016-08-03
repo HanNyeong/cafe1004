@@ -210,6 +210,7 @@
 		ordersCode<span id="ordersCodeUp">▲</span><span id="ordersCodeDown">▼</span>
 		specificItemCode<span id="specificItemCodeUp">▲</span><span id="specificItemCodeDown">▼</span>
 		headReturnsConfirm<span id="headReturnsConfirmUp">▲</span><span id="headReturnsConfirmDown">▼</span>
+		[상세보기]
 	</div>
 	<div>
 		<c:forEach var="returnsList" items="${returnsList}">
@@ -225,7 +226,7 @@
 				${returnsList.ordersCode}
 				${returnsList.specificItemCode}
 				${returnsList.headReturnsConfirm}
-			
+				<a href="">[상세보기]</a>
 			</div>
 		</c:forEach>
 	</div>
