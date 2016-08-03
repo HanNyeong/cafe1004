@@ -27,4 +27,19 @@ public class ReturnsServiceImpl implements ReturnsService {
 		return returnsDao.subViewReturnsList(map);
 	}
 
+	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
+	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
+	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
+	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
+	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
+	
+	//본사측 반품상품관리 조회
+	@Override
+	public List<Returns> headViewReturnsList(ReturnsSearch returnsSearch) {
+		System.out.println("ReturnsServiceImpl headViewReturnsList 실행");
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("returnsSearch", returnsSearch);
+		return returnsDao.headViewReturnsList(map);
+	}
+
 }

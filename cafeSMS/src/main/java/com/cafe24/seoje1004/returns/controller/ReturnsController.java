@@ -31,14 +31,32 @@ public class ReturnsController {
 		List<Returns> returnsList = returnsService.subViewReturnsList(subCode, returnsSearch);
 		System.out.println("returnsList : "+ returnsList);
 		
+		model.addAttribute("subCode", subCode);
+		model.addAttribute("returnsSearch", returnsSearch);
+		model.addAttribute("returnsList", returnsList);
+		
 		return "/shared/returns/subViewReturnsList";
 	}
 	
+	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
+	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
+	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
+	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
+	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
 	
 	//본사측 반품상품관리 조회
 	@RequestMapping(value="/headViewReturnsList")
-	public String headViewReturnsList(Model model){
+	public String headViewReturnsList(Model model,ReturnsSearch returnsSearch){
 		System.out.println("ReturnsController headViewReturnsList 실행");
+		
+		List<Returns> returnsList = returnsService.headViewReturnsList(returnsSearch);
+		System.out.println("returnsList : "+ returnsList);
+		
+		
+		model.addAttribute("returnsSearch", returnsSearch);
+		model.addAttribute("returnsList", returnsList);
+		
+		
 		return "/shared/returns/headViewReturnsList";
 	}
 	

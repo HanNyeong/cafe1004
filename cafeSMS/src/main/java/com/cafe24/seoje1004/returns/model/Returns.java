@@ -24,6 +24,7 @@ public class Returns {
 	private String specificItemCode;	//개별상품코드
 	private String headStaffId;	//본사 확인자 아이디
 	private String headReturnsConfirm;	//본사확인여부
+	private String subCode;		//가맹대표코드
 	
 	public String getReturnCode() {
 		return returnCode;
@@ -109,6 +110,12 @@ public class Returns {
 	public void setHeadReturnsConfirm(String headReturnsConfirm) {
 		this.headReturnsConfirm = headReturnsConfirm;
 	}
+	public String getSubCode() {
+		return subCode;
+	}
+	public void setSubCode(String subCode) {
+		this.subCode = subCode;
+	}
 	@Override
 	public String toString() {
 		return "Returns [returnCode=" + returnCode + ", returnReason=" + returnReason + ", returnPrice=" + returnPrice
@@ -116,8 +123,10 @@ public class Returns {
 				+ ", returnHeadCheckDate=" + returnHeadCheckDate + ", totalAccountGroup=" + totalAccountGroup
 				+ ", returnReDelivery=" + returnReDelivery + ", returnCancel=" + returnCancel + ", returnFile="
 				+ returnFile + ", ordersCode=" + ordersCode + ", specificItemCode=" + specificItemCode
-				+ ", headStaffId=" + headStaffId + ", headReturnsConfirm=" + headReturnsConfirm + "]";
+				+ ", headStaffId=" + headStaffId + ", headReturnsConfirm=" + headReturnsConfirm + ", subCode=" + subCode
+				+ "]";
 	}
+	
 	
 	
 	

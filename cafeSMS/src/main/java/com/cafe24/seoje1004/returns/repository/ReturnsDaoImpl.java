@@ -28,5 +28,20 @@ public class ReturnsDaoImpl implements ReturnsDao {
 		System.out.println("ReturnsDaoImpl subViewReturnsList 실행");
 		return sqlSessionReturns.selectList(NS+".subViewReturnsList", map);
 	}
+
+	
+	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
+	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
+	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
+	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
+	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
+	
+	//본사측 반품상품관리 조회
+	@Override
+	public List<Returns> headViewReturnsList(Map<String, Object> map) {
+		System.out.println("ReturnsDaoImpl headViewReturnsList 실행");
+		return sqlSessionReturns.selectList(NS+".headViewReturnsList", map);
+	}
+
 	
 }
