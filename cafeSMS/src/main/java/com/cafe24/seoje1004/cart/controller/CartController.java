@@ -10,6 +10,7 @@ import com.cafe24.seoje1004.cart.model.Cart;
 import com.cafe24.seoje1004.cart.model.CartSearch;
 import com.cafe24.seoje1004.cart.model.Carts;
 import com.cafe24.seoje1004.cart.service.CartService;
+import com.cafe24.seoje1004.headItem.model.HeadItem;
 
 
 @Controller
@@ -43,10 +44,10 @@ public class CartController {
 	 * @return
 	 */
 	@RequestMapping(value="/subViewCartList")
-	public String subViewCartList(Model model, CartSearch cartSearch,Cart cart){
+	public String subViewCartList(Model model, CartSearch cartSearch,Cart cart,HeadItem headItem){
 		System.out.println("CartController subViewCartList실행");
 		System.out.println(cartSearch);
-		model.addAttribute("cartList", cartService.viewCartListService(cartSearch,cart));
+		model.addAttribute("cartList", cartService.viewCartListService(cartSearch,cart,headItem));
 		model.addAttribute("cartSearch", cartSearch);
 		return "/sub/cart/subViewCartList";
 		

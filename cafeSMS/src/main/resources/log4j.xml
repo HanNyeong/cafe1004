@@ -9,7 +9,10 @@
 			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
 		</layout>
 	</appender>
-	
+	<!-- Application Loggers -->
+	<logger name="com.cafe24.seoje1004">
+		<level value="debug" />
+	</logger>
 	<!-- Application Loggers -->
 	<logger name="com.cafe24.seoje1004">
 		<level value="info" />

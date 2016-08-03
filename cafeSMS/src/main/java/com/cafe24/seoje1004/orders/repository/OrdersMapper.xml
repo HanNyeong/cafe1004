@@ -20,21 +20,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<result property="headOrdersConfirm" column="head_orders_confirm"/>
 </resultMap>
 
-<select id="viewOrdersInHeadItem"
-		resultType="java.util.Map">
+	<select id="viewOrdersInHeadItem"
+			parameterType="java.util.Map"
+			resultType="com.cafe24.seoje1004.headItem.model.HeadItem">
 	select
-		h_item_code hItemCode,
-		h_item_name hItemName,
-		inte_code inteCode,
-		h_item_quantity hItemQuantity,
-		h_item_unit hItemUnit,
-		h_item_selling_price hItemSellingPrice,
-		h_item_regit_date hItemRegitDate,
-		head_staff_id headStaffId,
-		h_item_retail_price hItemRetailPrice
-	from
-		head_item
+		c.h_item_code hItemCode,
+		c.cart_code cartCode,
+		c.cart_quantity cartQuantity,
+		c.sub_code subCode,
+		h.h_item_name hItemName,
+		h.h_item_selling_price hItemSellingPrice
+	from	
+		cart c inner join head_item h
 	where
-		h_item_code = ${hItemCode}
-</select>
+		cart_code = #{cart.cartCode}
+	</select>
 </mapper>

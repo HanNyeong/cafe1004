@@ -37,7 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 
-	<!-- 가맹 리스트를 컬럼별 조회하는 select쿼리 -->
+	<!-- 장바구니 리스트를 컬럼별 조회하는 select쿼리 -->
 	<select id="viewCartList"
 		parameterType="java.util.Map"
 		resultMap="cartResultMap">
@@ -45,7 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			cart_code,
 			cart_quantity,
 			h_item_code, 
-			sub_code      
+			sub_code     
 		FROM 
 			cart
 		<if test="cartSearch.criteria == null and cartSearch.upDown == null">

@@ -35,14 +35,6 @@
 				$('#headItemForm').submit();
 			}
 		});
-		$('#cartBtn').click(function(){
-			$('#cartAndOrders').attr('action','subAddCart');
-			$('#cartAndOrders').submit();
-		});
-		$('#ordersBtn').click(function(){
-			$('#cartAndOrders').attr('action','viewOrdersInHeadItem');
-			$('#cartAndOrders').submit();
-		});
 	});
 </script>
 </head>
@@ -88,18 +80,17 @@
 			2:${headItemList.hItemName}
 			3:${headItemList.inteCode}
 			4:${headItemList.hItemQuantity}
-			5:${headItemList.hItemUnit}
+			5:${headItemList.hItemUnit}6
 			6:${headItemList.hItemSellingPrice}
 			7:${headItemList.hItemRegitDate}
 			8:${headItemList.headStaffId}
 			9:${headItemList.hItemRetailPrice}
 			<c:if test="${subLogin != null}">
-				<form id="cartAndOrders" action="/" method="POST">
+				<form id="cartAndOrders" action="/subAddCart" method="POST">
 					<input type="hidden" name="subCode" value="${subLogin.subCode}">
 					<input type="hidden" name="hItemCode" value="${headItemList.hItemCode}">
 					<input type="number" name="cartQuantity" min="1">
 					<input type="button" id="cartBtn" value="장바구니담기">
-					<input type="button" id="ordersBtn" value="발주하기">
 				</form>
 			</c:if>
 		</p>	

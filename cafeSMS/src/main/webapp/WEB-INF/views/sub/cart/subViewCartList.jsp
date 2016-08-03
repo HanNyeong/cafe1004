@@ -64,9 +64,22 @@
 		        alert("1개 이상 체크해주세요");
 		        console.log("orders");
 		    }else{
-				$('#cartListForm').prop('action','/viewOrdersInCart');
-				$('#cartListForm').prop('method','GET');
-				$('#cartListForm').submit();
+		    	$('.cartOrders').each(function(index,item){
+		    		if(!$(this).is(":checked")){
+		    			console.log("체크안됨");
+						$("input[class=cartCode]:eq(" + index + ")").prop('name','');
+						$("input[class=cartQuantity]:eq(" + index + ")").prop('name','');
+						$("input[class=hItemCode]:eq(" + index + ")").prop('name','');
+						$("input[class=subCode]:eq(" + index + ")").prop('name','');
+		    			}else if($(this).is(":checked")){
+		    				console.log("체크됨");
+		    			}else{
+		    				console.log("안됨")
+		    			}
+		    	});
+					$('#cartListForm').prop('action','/viewOrdersInCart');
+					$('#cartListForm').prop('method','GET');
+					$('#cartListForm').submit();
 		    }
 		});
 	});
@@ -124,7 +137,6 @@
 				6:<input type="checkbox" class="cartDelete" name="cartDelete" value="${cartList.cartCode}">
 				7:<input type="checkbox" class="cartOrders" name="cartOrders" value="${cartList.cartCode}">
 			</p>
-		
 		</c:forEach>
 		<input type="button" id="cartDeleteBtn" name="cartDeleteBtn" value="삭제">
 		<input type="button" id="ordersBtn" name="ordersBtn" value="주문">
