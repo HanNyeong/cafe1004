@@ -46,7 +46,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="subStaffCode" column="sub_staff_code"/>
 	</resultMap>
 	
-
+	
 	<!-- 가맹측 반품상품관리 조회 -->
 	<select id="subViewReturnsList"
 			parameterType="java.util.Map"
@@ -206,7 +206,115 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="subStockSearch.criteria != null or subStockSearch.criteria != ''">
 				${subStockSearch.criteria} ${subStockSearch.upDown}
 			</if>
-		</trim>		
+		</trim>			
+	</select>
+	
+	<!-- 해당재고를 기준으로 반품등록에 필요한 정보를 가져오자 -->
+	<select id="subAddReturnsForm2"
+			parameterType="String"
+			resultType="com.cafe24.seoje1004.returns.model.AddReturns">
+		SELECT
+			sub_stock.sub_stock_code as subStockCode,
+			head_item.h_item_selling_price as hItemSellingPrice,
+			sub_orders.total_account_group as totalAccountGroup,
+			sub_stock.orders_code as ordersCode,
+			sub_stock.specific_item_code as specificItemCode,
+			sub_stock.sub_code as subCode
+				
+		FROM	
+			sub_stock
+		INNER JOIN
+			head_item 
+		ON 
+			sub_stock.head_item_code = head_item.h_item_code
+		INNER JOIN
+			sub_orders
+		ON	
+			sub_stock.orders_code = sub_orders.orders_code	
+		WHERE
+			sub_stock.sub_stock_code = #{subStockCode}
+	</select>
+	
+	<!-- 환불 신청시 해당 재고상품의 출고여부(판매여부)를 N->Y로 변경 -->
+	<update id="updateSubStockOut"
+			parameterType="String">
+		UPDATE
+			sub_stock
+		SET
+			sub_stock_out	=	"Y"
+		WHERE
+			sub_stock_code = #{subStockCode}		
+	
+	</update>
+	
+	<!-- returns테이블에 새로운 환불 등록 -->
+	<insert id="subAddReturns"
+			parameterType="com.cafe24.seoje1004.returns.model.Returns">
+		<selectKey resultType="hashmap" keyProperty="returnCode" order="BEFORE">
+			select if(isnull(return_code),'return_code1', concat('return_code',MAX(CONVERT(SUBSTRING(return_code,12), UNSIGNED))+1))
+			as returnCode
+			from returns
+		</selectKey>
+		INSERT INTO returns
+			(return_code
+			,return_reason
+			,return_price
+			,return_report_date
+			,total_account_group
+			,orders_code
+			,specific_item_code
+			,sub_code
+			)
+			
+			VALUES(
+			#{returnCode}
+			,#{returnReason}
+			,#{returnPrice}
+			,NOW()
+			,#{totalAccountGroup}
+			,#{ordersCode}
+			,#{specificItemCode}
+			,#{subCode}
+			)
+	</insert>
+	
+	<!-- 랜덤네임이 중복되는 이름이 있으면 다시 새로운 랜덤네임으로 저장 -->
+	<select id="selectReturnFileByRandomName"
+			parameterType="String"
+			resultMap="returnsFileListMap">
+		SELECT
+			return_code,
+			file_name
+		FROM
+			returns_file
+		WHERE
+			random_name = #{randomName}		
 	
 	</select>
+	
+	<!-- 반품첨부파일 정보 등록 -->
+	<insert id="subAddReturnsFile"
+			parameterType="com.cafe24.seoje1004.returns.model.ReturnsFile">
+		<selectKey resultType="hashmap" keyProperty="returnFileCode" order="BEFORE">
+			select if(isnull(return_file_code),'return_file_code1', concat('return_file_code',MAX(CONVERT(SUBSTRING(return_file_code,17), UNSIGNED))+1))
+			as returnFileCode
+			from returns_file
+		</selectKey>
+		INSERT INTO returns_file
+		(return_file_code
+		,return_code
+		,return_file
+		,file_name
+		,random_name
+		)
+		VALUES
+		(#{returnFileCode}
+		,#{returnCode}
+		,#{returnFile}
+		,#{fileName}
+		,#{randomName}
+		)	
+	
+	</insert>
+	
 </mapper>

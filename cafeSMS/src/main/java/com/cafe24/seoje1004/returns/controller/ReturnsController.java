@@ -3,6 +3,8 @@ package com.cafe24.seoje1004.returns.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.cafe24.seoje1004.returns.model.AddReturns;
 import com.cafe24.seoje1004.returns.model.Returns;
 import com.cafe24.seoje1004.returns.model.ReturnsSearch;
 import com.cafe24.seoje1004.returns.model.SubStock;
@@ -62,20 +65,33 @@ public class ReturnsController {
 	
 	//가맹측 환불신청2	(해당재고상품을 환불신청 폼)
 	@RequestMapping(value="/subAddReturnsForm2", method=RequestMethod.GET)
-	public String subAddReturnsFrom2(Model model){
+	public String subAddReturnsFrom2(Model model,@RequestParam(value="subStockCode")String subStockCode){
 		System.out.println("ReturnsController subAddReturnsForm2 실행");
+		System.out.println("subStockCode : "+subStockCode);
+		
+		//해당재고를 기준으로 반품등록에 필요한 정보를 가져오자
+		AddReturns addReturns = returnsService.subAddReturnsForm2(subStockCode);
+		System.out.println("addReturns : "+addReturns);
+		model.addAttribute("addReturns", addReturns);
 		
 		return	"/shared/returns/subAddReturnsForm2";
 	}
 	
 	//가맹측 환불신청3	(해당재고상품을 환불신청 폼)
 	@RequestMapping(value="/subAddReturns", method=RequestMethod.POST)
-	public String subAddReturns(Model model){
+	public String subAddReturns(Returns returns, HttpServletRequest request){
 		System.out.println("ReturnsController subAddReturns 실행");
+		System.out.println("returns : "+returns);
+		String subCode = returns.getSubCode();
+		
+		
+		
 		//1. 해당 재고상품의 출고여부(판매여부)를 N->Y로 변경
 		//2. returns테이블에 새로운 환불 등록
+		returnsService.subAddReturns(returns, request);
 		
-		return	null;
+		
+		return	"redirect:/subAddReturnsForm?subCode="+subCode;
 	}
 	
 	

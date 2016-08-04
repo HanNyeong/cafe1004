@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cafe24.seoje1004.returns.model.AddReturns;
 import com.cafe24.seoje1004.returns.model.Returns;
 import com.cafe24.seoje1004.returns.model.ReturnsFile;
 import com.cafe24.seoje1004.returns.model.SubStock;
@@ -39,7 +40,36 @@ public class ReturnsDaoImpl implements ReturnsDao {
 	}
 
 
+	//해당재고를 기준으로 반품등록에 필요한 정보를 가져오자
+	@Override
+	public AddReturns subAddReturnsForm2(String subStockCode) {
+		System.out.println("ReturnsDaoImpl subAddReturnsForm2 실행");
+		return sqlSessionReturns.selectOne(NS+".subAddReturnsForm2", subStockCode);
+	}
+
+	//환불 신청시 해당 재고상품의 출고여부(판매여부)를 N->Y로 변경
+	@Override
+	public void updateSubStockOut(String subStockCode) {
+		System.out.println("ReturnsDaoImpl updateSubStockOut 실행");
+		sqlSessionReturns.update(NS+".updateSubStockOut", subStockCode);
+	}
 	
+
+	//랜덤네임이 중복되는 이름이 있으면 다시 새로운 랜덤네임으로 저장
+	@Override
+	public ReturnsFile selectReturnFileByRandomName(String randomName) {
+		System.out.println("ReturnsDaoImpl selectReturnFileByRandomName 실행");
+		return sqlSessionReturns.selectOne(NS+".selectReturnFileByRandomName", randomName);
+	}
+	
+	//반품첨부파일 정보 등록
+	@Override
+	public void subAddReturnsFile(ReturnsFile returnsFile) {
+		System.out.println("ReturnsDaoImpl subAddReturnsFile 실행");
+		sqlSessionReturns.insert(NS+".subAddReturnsFile", returnsFile);
+		
+	}
+
 	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
 	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
 	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
@@ -66,4 +96,13 @@ public class ReturnsDaoImpl implements ReturnsDao {
 		System.out.println("ReturnsDaoImpl viewReturnsFile 실행");
 		return sqlSessionReturns.selectList(NS+".viewReturnsFile", returnCode);
 	}
+
+	//returns테이블에 새로운 환불 등록
+	@Override
+	public void subAddReturns(Returns returns) {
+		System.out.println("ReturnsDaoImpl subAddReturns 실행");
+		sqlSessionReturns.insert(NS+".subAddReturns", returns);
+		
+	}
+
 }

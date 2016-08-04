@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<a href="/">home</a>
 	<h1>상세보기입니다요 ㅎ</h1>
 	<div>
 			returnCode

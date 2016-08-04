@@ -211,7 +211,7 @@
 			${subStockList.headItemCode}
 			${subStockList.specificItemCode}
 			${subStockList.subStaffCode}
-			<a href="/subAddReturnsForm2">[환불신청]</a>
+			<a href="/subAddReturnsForm2?subStockCode=${subStockList.subStockCode}">[환불신청]</a>
 		</c:forEach>
 		
 		
