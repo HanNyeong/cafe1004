@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.cafe24.seoje1004.returns.model.Returns;
 import com.cafe24.seoje1004.returns.model.ReturnsFile;
 import com.cafe24.seoje1004.returns.model.ReturnsSearch;
+import com.cafe24.seoje1004.returns.model.SubStock;
+import com.cafe24.seoje1004.returns.model.SubStockSearch;
 import com.cafe24.seoje1004.returns.repository.ReturnsDao;
 
 @Service
@@ -26,6 +28,16 @@ public class ReturnsServiceImpl implements ReturnsService {
 		map.put("subCode", subCode);
 		map.put("returnsSearch", returnsSearch);
 		return returnsDao.subViewReturnsList(map);
+	}
+	
+	//출고상태가 N, 가맹이확인하고 입고한날짜 not null
+	@Override
+	public List<SubStock> subAddReturnsForm(String subCode, SubStockSearch subStockSearch) {
+		System.out.println("ReturnsServiceImpl subAddReturnsForm 실행");
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("subCode", subCode);
+		map.put("subStockSearch", subStockSearch);
+		return returnsDao.subAddReturnsForm(map);
 	}
 
 	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
@@ -58,5 +70,6 @@ public class ReturnsServiceImpl implements ReturnsService {
 		map.put("returnsFile", returnsFile);
 		return map;
 	}
+
 
 }

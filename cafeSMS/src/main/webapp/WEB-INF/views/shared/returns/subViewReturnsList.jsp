@@ -233,7 +233,7 @@
 	
 	
 	<h1>환불신청은 여기서</h1><hr/>
-	<a href="/subAddReturns?subCode=${subCode}">[환불신청]</a>
+	<a href="/subAddReturnsForm?subCode=${subCode}">[환불신청]</a>
 	
 	
 	</c:if>

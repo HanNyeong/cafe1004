@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cafe24.seoje1004.returns.model.Returns;
 import com.cafe24.seoje1004.returns.model.ReturnsFile;
+import com.cafe24.seoje1004.returns.model.SubStock;
 
 @Repository
 public class ReturnsDaoImpl implements ReturnsDao {
@@ -29,6 +30,14 @@ public class ReturnsDaoImpl implements ReturnsDao {
 		System.out.println("ReturnsDaoImpl subViewReturnsList 실행");
 		return sqlSessionReturns.selectList(NS+".subViewReturnsList", map);
 	}
+	
+	//출고상태가 N, 가맹이확인하고 입고한날짜 not null
+	@Override
+	public List<SubStock> subAddReturnsForm(Map<String, Object> map) {
+		System.out.println("ReturnsDaoImpl subAddReturnsForm 실행");
+		return sqlSessionReturns.selectList(NS+".subAddReturnsForm", map);
+	}
+
 
 	
 	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
@@ -57,6 +66,4 @@ public class ReturnsDaoImpl implements ReturnsDao {
 		System.out.println("ReturnsDaoImpl viewReturnsFile 실행");
 		return sqlSessionReturns.selectList(NS+".viewReturnsFile", returnCode);
 	}
-
-	
 }

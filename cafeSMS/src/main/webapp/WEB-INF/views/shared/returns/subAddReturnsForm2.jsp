@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>가맹에서 반품상품등록</h1>
+	<h1>해당 재고상품의 반품신청폼</h1>
+	
 </body>
 </html>

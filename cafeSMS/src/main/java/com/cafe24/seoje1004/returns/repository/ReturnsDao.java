@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.cafe24.seoje1004.returns.model.Returns;
 import com.cafe24.seoje1004.returns.model.ReturnsFile;
+import com.cafe24.seoje1004.returns.model.SubStock;
 
 public interface ReturnsDao {
 	/**
@@ -13,6 +14,7 @@ public interface ReturnsDao {
 	 */
 	
 	public List<Returns> subViewReturnsList(Map<String, Object> map); //가맹측 반품상품관리 조회
+	public List<SubStock> subAddReturnsForm(Map<String, Object> map);		//출고상태가 N, 가맹이확인하고 입고한날짜 not null
 	
 	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
 	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/

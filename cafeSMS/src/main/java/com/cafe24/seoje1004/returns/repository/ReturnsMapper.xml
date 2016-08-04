@@ -31,6 +31,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="fileName" column="file_name"/>
 		<result property="randomName" column="random_name"/>
 	</resultMap>
+	
+	<!-- SubStock 객체 등록 -->
+	<resultMap type="com.cafe24.seoje1004.returns.model.SubStock" id="subStockListMap">
+		<id property="subStockCode" column="sub_stock_code"/>
+		<result property="headStockInDate" column="head_stock_in_date"/>
+		<result property="subStockInDate" column="sub_stock_in_date"/>
+		<result property="subStockOut" column="sub_stock_out"/>
+		<result property="subStockConfirmDate" column="sub_stock_confirm_date"/>
+		<result property="ordersCode" column="orders_code"/>
+		<result property="subCode" column="sub_code"/>
+		<result property="headItemCode" column="head_item_code"/>
+		<result property="specificItemCode" column="specific_item_code"/>
+		<result property="subStaffCode" column="sub_staff_code"/>
+	</resultMap>
+	
 
 	<!-- 가맹측 반품상품관리 조회 -->
 	<select id="subViewReturnsList"
@@ -155,5 +170,43 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			returns_file
 		WHERE
 			return_code = #{returnCode}
+	</select>
+	
+	<!-- 출고상태가 N, 가맹이확인하고 입고한날짜 not null -->
+	<select id="subAddReturnsForm"
+			parameterType="java.util.Map"
+			resultMap="subStockListMap">
+		SELECT
+			sub_stock_code,
+			head_stock_in_date,
+			sub_stock_in_date,
+			sub_stock_out,
+			sub_stock_confirm_date,
+			orders_code,
+			sub_code,
+			head_item_code,
+			specific_item_code,
+			sub_staff_code
+		FROM
+			sub_stock
+		 
+		<where>
+			sub_code	=	#{subCode} AND 	sub_stock_out	=	"N" AND  sub_stock_in_date != ""
+			<if test="subStockSearch.regitDateStart != null and subStockSearch.regitDateEnd != null and subStockSearch.regitDateStart !='' and subStockSearch.regitDateEnd !=''">
+				AND <![CDATA[date(head_stock_in_date) >= #{subStockSearch.regitDateStart} and date(head_stock_in_date) <= #{subStockSearch.regitDateEnd}]]>
+			</if>
+			<if test="subStockSearch.searchKey != null and subStockSearch.searchKey != '' and subStockSearch.searchSubStock != null and subStockSearch.searchSubStock != ''">
+				AND  ${subStockSearch.searchKey} like CONCAT('%',#{subStockSearch.searchSubStock},'%')
+			</if> 
+		</where> 
+		<trim prefix="ORDER BY">
+			<if test="subStockSearch.criteria == null or subStockSearch.criteria == ''">
+				head_stock_in_date
+			</if>
+			<if test="subStockSearch.criteria != null or subStockSearch.criteria != ''">
+				${subStockSearch.criteria} ${subStockSearch.upDown}
+			</if>
+		</trim>		
+	
 	</select>
 </mapper>

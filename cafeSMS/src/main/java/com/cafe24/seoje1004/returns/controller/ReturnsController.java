@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.seoje1004.returns.model.Returns;
 import com.cafe24.seoje1004.returns.model.ReturnsSearch;
+import com.cafe24.seoje1004.returns.model.SubStock;
+import com.cafe24.seoje1004.returns.model.SubStockSearch;
 import com.cafe24.seoje1004.returns.service.ReturnsService;
 
 @Controller
@@ -40,13 +42,42 @@ public class ReturnsController {
 		return "/shared/returns/subViewReturnsList";
 	}
 	
-	//가맹측 환불신청
-	@RequestMapping(value="/subAddReturns")
-	public String subAddReturns(Model model, @RequestParam(value="subCode")String subCode){
-		System.out.println("ReturnsController subAddReturns 실행");
+	//가맹측 환불신청 (해당가맹의 재고리스트)
+	@RequestMapping(value="/subAddReturnsForm")
+	public String subAddReturnsFrom(Model model, @RequestParam(value="subCode")String subCode, SubStockSearch subStockSearch){
+		System.out.println("ReturnsController subAddReturnsFrom 실행");
 		System.out.println("subCode : "+subCode);
-		return	"/shared/returns/subAddReturns";
+		
+		//1.가맹의 재고에서 출고상태가 N이고 가맹이확인하고 입고한 날짜가 null이 아닌것만 환불신청가능
+		//따라서 출고상태가 N, 가맹이확인하고 입고한날짜 not null
+		List<SubStock> subStockList	=	returnsService.subAddReturnsForm(subCode, subStockSearch);
+		System.out.println("subStockList : "+subStockList);
+		
+		model.addAttribute("subCode", subCode);
+		model.addAttribute("subStockSearch", subStockSearch);
+		model.addAttribute("subStockList", subStockList);
+		
+		return	"/shared/returns/subAddReturnsForm";
 	}
+	
+	//가맹측 환불신청2	(해당재고상품을 환불신청 폼)
+	@RequestMapping(value="/subAddReturnsForm2", method=RequestMethod.GET)
+	public String subAddReturnsFrom2(Model model){
+		System.out.println("ReturnsController subAddReturnsForm2 실행");
+		
+		return	"/shared/returns/subAddReturnsForm2";
+	}
+	
+	//가맹측 환불신청3	(해당재고상품을 환불신청 폼)
+	@RequestMapping(value="/subAddReturns", method=RequestMethod.POST)
+	public String subAddReturns(Model model){
+		System.out.println("ReturnsController subAddReturns 실행");
+		//1. 해당 재고상품의 출고여부(판매여부)를 N->Y로 변경
+		//2. returns테이블에 새로운 환불 등록
+		
+		return	null;
+	}
+	
 	
 	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
 	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
