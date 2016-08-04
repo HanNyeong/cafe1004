@@ -58,12 +58,14 @@ public class SubAccountController {
 		System.out.println("SubAccountController subAccountKeeperCheck.POST실행");
 		System.out.println(subStaff);
 		if(subAccountService.subAccountKeeperCheckService(subStaff) != null){
+			System.out.println("IFIFIFIFIFIFIFIFIFIFIFIFIFIFI");
 			subStaff.setSubStaffLevel("점주");
 			redirectAttr.addFlashAttribute("subAccount", subAccountService.subAccountKeeperCheckService(subStaff));
 			redirectAttr.addFlashAttribute("subStaff", subStaff);
+			subStaff.setSubStaffPw("");
 			
 		}
-		return "redirect:/subAccountList";
+		return "redirect:/viewSubAccountList";
 	}
 	/**
 	 * 가맹통합 회계 리스트를 출력하는 컨트롤러 입니다.
@@ -72,16 +74,22 @@ public class SubAccountController {
 	 * @param subAccountSearch
 	 * @return
 	 */
-	@RequestMapping(value = "/subAccountList")
-	public String subAccountList(Model model, SubAccount subAccount,SubAccountSearch subAccountSearch,SubStaff subStaff) {
+	@RequestMapping(value = "/viewSubAccountList")
+	public String viewSubAccountList(Model model, SubAccount subAccount,SubAccountSearch subAccountSearch,SubStaff subStaff) {
 		System.out.println("SubAccountController subAccountList실행");
 		System.out.println(subAccount);
+		System.out.println("확인하자"+subStaff);
 		if(subStaff.getSubStaffLevel() == "점주"){
 			model.addAttribute("subStaff", subStaff);
-			model.addAttribute("subAccountList", subAccountService.viewSubAccountListService(subAccountSearch));
-			System.out.println(subAccountService.viewSubAccountListService(subAccountSearch));
+			model.addAttribute("subAccountList", subAccountService.viewSubAccountListService(subAccountSearch,subStaff));
 		}
 		return "/sub/subAccount/viewSubAccountList";
+	}
+	@RequestMapping(value="/modifySubAccount",method=RequestMethod.POST)
+	public String modifySubAccount(Model model,SubAccount subAccount,SubStaff subStaff){
+		System.out.println("SubAccountController modifySubAccount실행");
+		subAccountService.modifySubAccountService(subAccount,subStaff);
+		return "redirect:/viewSubAccountList";
 	}
 
 }

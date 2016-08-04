@@ -1,5 +1,6 @@
 package com.cafe24.seoje1004.subAccount.repository;
 
+import java.util.List;
 import java.util.Map;
 
 import com.cafe24.seoje1004.subAccount.model.SubAccount;
@@ -23,6 +24,6 @@ public interface SubAccountDao {
 	 * @param map
 	 * @return
 	 */
-	SubAccount viewSubAccountList(Map<String, Object> map);
+	List<SubAccount> viewSubAccountList(Map<String, Object> map);
 
 }

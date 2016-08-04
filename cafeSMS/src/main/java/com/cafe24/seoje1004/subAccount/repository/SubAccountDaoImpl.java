@@ -1,5 +1,6 @@
 package com.cafe24.seoje1004.subAccount.repository;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -37,9 +38,9 @@ public class SubAccountDaoImpl implements SubAccountDao{
 	 * 통합회계리스트를 출력하는 dao메서드입니다.
 	 */
 	@Override
-	public SubAccount viewSubAccountList(Map<String, Object> map) {
+	public List<SubAccount> viewSubAccountList(Map<String, Object> map) {
 		System.out.println("SubAccountDaoImpl viewSubAccountList실행");
-		return null;
+		return sqlSeesionSubAccount.selectList(NS+".viewSubAccountList", map);
 	}
 
 }
