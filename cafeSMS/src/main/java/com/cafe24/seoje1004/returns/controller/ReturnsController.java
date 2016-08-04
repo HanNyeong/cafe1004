@@ -93,6 +93,7 @@ public class ReturnsController {
 		
 		return	"redirect:/subAddReturnsForm?subCode="+subCode;
 	}
+
 	
 	
 	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
@@ -130,5 +131,17 @@ public class ReturnsController {
 		model.addAttribute("map", map);
 		return "/shared/returns/viewReturnsContent";
 	}
+	
+	//본사에서 환불 승인
+	@RequestMapping(value="/approvalReturns", method=RequestMethod.GET)
+	public String approvalReturns(@RequestParam(value="returnCode")String returnCode){
+		System.out.println("ReturnsController approvalReturns 실행");
+		System.out.println("returnCode : "+returnCode);
+		
+		returnsService.approvalReturns(returnCode);
+		
+		return	"redirect:/headViewReturnsList";
+	}
+	
 	
 }

@@ -193,6 +193,14 @@ public class ReturnsServiceImpl implements ReturnsService {
 		map.put("returnsFile", returnsFile);
 		return map;
 	}
+
+	//본사에서 환불 승인
+	@Override
+	public void approvalReturns(String returnCode) {
+		System.out.println("ReturnsServiceImpl approvalReturns 실행");
+		returnsDao.approvalReturns(returnCode);
+		
+	}
 	
 	
 

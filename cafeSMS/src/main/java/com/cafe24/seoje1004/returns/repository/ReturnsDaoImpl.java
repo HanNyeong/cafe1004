@@ -105,4 +105,11 @@ public class ReturnsDaoImpl implements ReturnsDao {
 		
 	}
 
+	//본사에서 환불 승인
+	@Override
+	public void approvalReturns(String returnCode) {
+		System.out.println("ReturnsDaoImpl approvalReturns 실행");
+		sqlSessionReturns.update(NS+".approvalReturns", returnCode);
+	}
+
 }

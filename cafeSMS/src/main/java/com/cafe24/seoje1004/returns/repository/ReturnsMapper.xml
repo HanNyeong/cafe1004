@@ -317,4 +317,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	</insert>
 	
+	<!-- 본사에서 환불 승인 -->
+	<update id="approvalReturns"
+			parameterType="String">
+		UPDATE
+			returns
+		SET
+			return_head_check	=	"Y",
+			return_head_check_date	=	NOW()
+		WHERE
+			return_code = #{returnCode}	
+	</update>
 </mapper>

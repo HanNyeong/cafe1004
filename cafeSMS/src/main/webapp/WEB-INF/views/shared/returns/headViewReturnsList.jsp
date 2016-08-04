@@ -160,6 +160,18 @@
 			$('#upDown').attr('value','ASC');
 			$('#returnsList').submit();
 		});
+		$('#subCodeUp').click(function(){
+			
+			$('#criteria').attr('value','sub_code');
+			$('#upDown').attr('value','DESC');
+			$('#returnsList').submit();
+		});
+		$('#subCodeDown').click(function(){
+			
+			$('#criteria').attr('value','sub_code');
+			$('#upDown').attr('value','ASC');
+			$('#returnsList').submit();
+		});
 		
 	});
 
@@ -191,7 +203,7 @@
 				<option value="total_account_group" <c:if test="${returnsSearch.searchKey eq 'total_account_group'}">selected="selected"</c:if>>total_account_group</option>
 				<option value="orders_code" <c:if test="${retunrsSearch.searchKey eq 'orders_code'}">selected="selected"</c:if>>orders_code</option>
 				<option value="specific_item_code" <c:if test="${returnsSearch.searchKey eq 'specific_item_code'}">selected="selected"</c:if>>specific_item_code</option>
-				
+				<option value="sub_code" <c:if test="${returnsSearch.searchKey eq 'sub_code'}">selected="selected"</c:if>>sub_code</option>
 			</select>
 			<input type="text" name="searchReturns" value="${returnsSearch.searchReturns}"/>
 			<button>검색</button>
@@ -210,24 +222,55 @@
 		ordersCode<span id="ordersCodeUp">▲</span><span id="ordersCodeDown">▼</span>
 		specificItemCode<span id="specificItemCodeUp">▲</span><span id="specificItemCodeDown">▼</span>
 		headReturnsConfirm<span id="headReturnsConfirmUp">▲</span><span id="headReturnsConfirmDown">▼</span>
+		subCode<span id="subCodeUp">▲</span><span id="subCodeDown">▼</span>
 		[상세보기]
+		[환불승인]
+		[환불재배송]
 	</div>
 	<div>
+		<div>-------------------------------------------------------------------------본사승인받은 [returnHeadCheck = Y]환불리스트-------------------------------------------------------------------------</div>
 		<c:forEach var="returnsList" items="${returnsList}">
-			<div>
-				${returnsList.returnCode}
-				${returnsList.returnPrice}
-				${returnsList.returnReportDate}
-				${returnsList.returnHeadCheck}
-				${returnsList.returnHeadCheckDate}
-				${returnsList.totalAccountGroup}
-				${returnsList.returnReDelivery}
-				${returnsList.returnCancel}
-				${returnsList.ordersCode}
-				${returnsList.specificItemCode}
-				${returnsList.headReturnsConfirm}
-				<a href="/viewReturnsContent?returnCode=${returnsList.returnCode}">[상세보기]</a>
-			</div>
+			<c:if test="${returnsList.returnHeadCheck == 'Y'}">	
+				<div>
+					${returnsList.returnCode}
+					${returnsList.returnPrice}
+					${returnsList.returnReportDate}
+					${returnsList.returnHeadCheck}
+					${returnsList.returnHeadCheckDate}
+					${returnsList.totalAccountGroup}
+					${returnsList.returnReDelivery}
+					${returnsList.returnCancel}
+					${returnsList.ordersCode}
+					${returnsList.specificItemCode}
+					${returnsList.headReturnsConfirm}
+					${returnsList.subCode}
+					<a href="/viewReturnsContent?returnCode=${returnsList.returnCode}">[상세보기]</a>
+					[Null]
+					<a href="/">[환불재배송]</a>
+				</div>
+			</c:if>	
+		</c:forEach>
+		<div>-------------------------------------------------------------------------승인대기중인 [returnHeadCheck = N]환불리스트-------------------------------------------------------------------------</div>
+		<c:forEach var="returnsList" items="${returnsList}">
+			<c:if test="${returnsList.returnHeadCheck == 'N'}">	
+				<div>
+					${returnsList.returnCode}
+					${returnsList.returnPrice}
+					${returnsList.returnReportDate}
+					${returnsList.returnHeadCheck}
+					${returnsList.returnHeadCheckDate}
+					${returnsList.totalAccountGroup}
+					${returnsList.returnReDelivery}
+					${returnsList.returnCancel}
+					${returnsList.ordersCode}
+					${returnsList.specificItemCode}
+					${returnsList.headReturnsConfirm}
+					${returnsList.subCode}
+					<a href="/viewReturnsContent?returnCode=${returnsList.returnCode}">[상세보기]</a>
+					<a href="/approvalReturns?returnCode=${returnsList.returnCode}">[환불승인]</a>
+					[Null]
+				</div>
+			</c:if>	
 		</c:forEach>
 	</div>
 	 </c:if>
