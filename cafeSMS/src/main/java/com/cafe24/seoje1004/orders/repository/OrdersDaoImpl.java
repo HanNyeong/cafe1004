@@ -29,5 +29,28 @@ public class OrdersDaoImpl implements OrdersDao{
 		System.out.println("OrdersDaoImpl//viewOrdersList");
 		return sqlSessionOrders.selectList(NS+".viewOrdersList",map);
 	}
+	
+	//orders add
+	@Override
+	public void addOrders(Map<String, Object> map) {
+		System.out.println("OrdersDaoImpl//addOrders실행");
+		sqlSessionOrders.insert(NS+".addOrders",map);
+	}
+	//cart del
+	@Override
+	public void addDelivery(Map<String, Object> map) {
+		System.out.println("OrdersDaoImpl//addDelivery실행");
+		sqlSessionOrders.insert(NS+".delCartForAddOrders",map);
+	}
+	//delivery add
+	@Override
+	public void delCart(Map<String, Object> map) {
+		System.out.println("OrdersDaoImpl//delCart실행");
+		sqlSessionOrders.insert(NS+".addDeliveryForAddOrders",map);
+	}
+	
+	
+	
+	
 
 }

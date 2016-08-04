@@ -11,12 +11,23 @@
 	$.list = function(upDown,criteria){
 		$('#upDown').attr('value',upDown);
 		$('#criteria').attr('value',criteria);
-		$('#OrdersList').submit();	
+		$('#ordersListOrderBy').submit();	
 	};
+	$(document).ready(function(){
+		$('#delOrdersBtn').click(function(){
+			$('#ordersListForm').attr('action','/delOrders');
+			$('#ordersListForm').submit();
+		});
+		$('#modifyPayBtn').click(function(){
+			$('#ordersListForm').attr('action','/modifyOrdersPay');
+			$('#ordersListForm').submit();
+		});
+		
+	});
 </script>
 <body>
 	<h1>주문내역</h1>
-	<form id="ordersList" action="/viewOrdersList" method="POST">
+	<form id="ordersListOrderBy" action="/viewOrdersList" method="POST">
 		<input type="hidden" id="upDown" name="upDown" value="" />
 		<input type="hidden" id="criteria" name="criteria" value=""/>
 		<input type="hidden" id="subCode" name="subCode" value="${subLogin.subCode}"/>
@@ -39,22 +50,30 @@
 		11.승인 본사 직원<span class="up">▲</span><span class="down">▼</span>
 		12.본사 확인 여부<span class="up">▲</span><span class="down">▼</span>
 	</p>
-	<c:forEach var="ordersList" items="${ordersList}">
-		<p>
-		1.{ordersList.subOrdersCode}
-		2.{ordersList.subOrdersGroup}
-		3.{ordersList.subOrdersQuantity}
-		4.{ordersList.subOrdersDate}
-		5.{ordersList.subOrdersHeadCheck}
-		6.{ordersList.subOrdersStatus}
-		7.{ordersList.ordersPay}
-		8.{ordersList.ordersPayDate}
-		9.{ordersList.headItemCode}
-		10.{ordersList.subStaffCode}
-		11.{ordersList.headStaffId}
-		12.{ordersList.headOrdersConfirm}
-		</p>
-	</c:forEach>
+	<form id="ordersListForm" action="" method="POST">
+		<c:forEach var="ordersList" items="${ordersList}">
+			<p>
+			1.${ordersList.ordersCode}
+			2.${ordersList.subOrdersGroup}
+			3.${ordersList.subOrdersQuantity}
+			4.${ordersList.subOrdersDate}
+			5.${ordersList.subOrdersHeadCheck}
+			6.${ordersList.subOrdersStatus}
+			7.${ordersList.ordersPay}
+			8.${ordersList.ordersPayDate}
+			9.${ordersList.headItemCode}
+			10.${ordersList.subStaffCode}
+			11.${ordersList.headStaffId}
+			12.${ordersList.headOrdersConfirm}
+			</p>
+			<c:if test="${ordersList.subOrdersStatus == '배송준비중'}">
+				<input type="button" id="delOrdersBtn" value="주문취소">
+			</c:if>
+			<c:if test="${ordersList.ordersPay == 'N'}">
+				<input type="button" id="modifyPayBtn" value="결제">
+			</c:if>
+		</c:forEach>
+	</form>
 	<!-- 주문취소,결제하기 btn추가 0804할일 -->
 </body>
 </html>

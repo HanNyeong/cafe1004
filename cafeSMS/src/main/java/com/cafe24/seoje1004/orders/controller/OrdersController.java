@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.cafe24.seoje1004.cart.model.Cart;
 import com.cafe24.seoje1004.cart.model.CartDetail;
 import com.cafe24.seoje1004.cart.model.Carts;
+import com.cafe24.seoje1004.delivery.model.Delivery;
 import com.cafe24.seoje1004.headItem.model.HeadItem;
 import com.cafe24.seoje1004.orders.model.Orders;
 import com.cafe24.seoje1004.orders.model.OrdersSearch;
@@ -41,6 +42,16 @@ public class OrdersController {
 		System.out.println("OrdersController//viewOrdersList실행");
 		List<Orders> ordersList = ordersService.viewOrdersListService(ordersSearch,subLogin);
 		model.addAttribute("ordersList",ordersList);
-		return "/shared/orders/headViewOrdersList.jsp";
+		return "/shared/orders/subViewOrdersList";
+	}
+	//orders추가메서드 (트랜잭션//cart삭제,delivery추가)
+	@RequestMapping(value="/addOrders")
+	public String addOrders(Model model,CartDetail cartDetail,Delivery delivery,Orders orders,SubLogin subLogin) {
+		System.out.println("OrdersController//addOrders실행");
+		System.out.println(cartDetail);
+		System.out.println(delivery);
+		System.out.println(orders);
+		ordersService.addOrdersService(cartDetail,delivery,orders,subLogin);
+		return "redirect:/viewOrdersList";
 	}
 }

@@ -71,6 +71,73 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="ordersSearch.criteria != null and ordersSearch.upDown != null and ordersSearch.criteria != null and ordersSearch.upDown != ''">
 			order by ${ordersSearch.criteria} ${ordersSearch.upDown}
 		</if>
-		
 	</select>
+	
+	<!--addOrdersForTransaction Start  -->
+	<!-- ordersAddByDelCart -->
+	<delete id="delCartForAddOrders"
+			parameterType="java.util.Map">
+		DELETE 
+		FROM 
+			cart 
+		WHERE 
+			cart_code=#{CartDetail.cartCode}
+	</delete>
+	<!-- ordersAddByAddDelivery -->
+	<insert id="addDeliveryForAddOrders"
+			parameterType="java.util.Map">
+		insert into
+			delivery
+			(
+			delivery_code deliveryCode,
+			delivery_date deliveryDate,
+			delivery_receive deliveryReceive,
+			delivery_location deliveryLocation,
+			delivery_return deliveryReturn,
+			delivery_person deliveryPerson,
+			orders_code ordersCode,
+			head_staff_id headStaffId
+			)
+		values
+			(
+			#{delivery.deliveryCode},
+			now(),
+			#{delivery.deliveryReceive},
+			#{delivery.deliveryLocation},
+			#{delivery.deliveryReturn},
+			#{delivery.deliveryPerson},
+			#{orders.ordersCode},
+			#{delivery.headStaffId}
+			)
+	</insert>
+	<!-- ordersAdd -->
+	<insert id="addOrders"
+			parameterType="java.util.Map">
+		insert into
+			sub_orders
+				(
+				orders_code, 
+				sub_orders_group, 
+				sub_orders_quantity, 
+				sub_orders_date, 
+				sub_orders_status, 
+				total_account_group,
+				head_item_code,
+				sub_code, 
+				sub_staff_code
+				)
+			values
+				(
+				#{orders.ordersCode},
+				#{orders.subOrdersGroup},
+				${CartDetail.cartQuantity},
+				now(),
+				#{orders.subOrdersStatus},
+				#{orders.totalAccountGroup},
+				#{CartDetail.hItemCode},
+				#{subLogin.subCode},
+				#{orders.subStaffCode}
+				)
+	</insert>
+	<!-- addOrdersForTransaction End -->
 </mapper>
