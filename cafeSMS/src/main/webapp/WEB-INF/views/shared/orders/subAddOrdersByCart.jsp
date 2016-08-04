@@ -11,6 +11,7 @@
 	<form action="/addOrders" method="POST">
 	<c:forEach var="ordersConfirmList" items="${ordersConfirmList}">
 		<input type="hidden" name="subCode" value="${ordersConfirmList.subCode}"/>
+		<input type="hidden" name="cartCode" value="${ordersConfirmList.cartCode}"/>
 		<div>
 			1. 상품코드 : <input type="text" name="hItemCode" value="${ordersConfirmList.hItemCode}" readonly/>
 		</div>

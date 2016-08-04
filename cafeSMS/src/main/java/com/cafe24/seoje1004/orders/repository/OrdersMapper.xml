@@ -81,7 +81,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM 
 			cart 
 		WHERE 
-			cart_code=#{CartDetail.cartCode}
+			cart_code = #{CartDetail.cartCode}
 	</delete>
 	<!-- ordersAddByAddDelivery -->
 	<insert id="addDeliveryForAddOrders"
@@ -89,22 +89,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into
 			delivery
 			(
-			delivery_code deliveryCode,
-			delivery_date deliveryDate,
-			delivery_receive deliveryReceive,
-			delivery_location deliveryLocation,
-			delivery_return deliveryReturn,
-			delivery_person deliveryPerson,
-			orders_code ordersCode,
-			head_staff_id headStaffId
+			delivery_code,
+			delivery_date,
+			delivery_location,
+			delivery_person,
+			orders_code,
+			head_staff_id
 			)
 		values
 			(
 			#{delivery.deliveryCode},
 			now(),
-			#{delivery.deliveryReceive},
 			#{delivery.deliveryLocation},
-			#{delivery.deliveryReturn},
 			#{delivery.deliveryPerson},
 			#{orders.ordersCode},
 			#{delivery.headStaffId}
