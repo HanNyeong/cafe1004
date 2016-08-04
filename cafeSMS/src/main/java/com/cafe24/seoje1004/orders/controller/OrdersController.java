@@ -12,7 +12,10 @@ import com.cafe24.seoje1004.cart.model.Cart;
 import com.cafe24.seoje1004.cart.model.CartDetail;
 import com.cafe24.seoje1004.cart.model.Carts;
 import com.cafe24.seoje1004.headItem.model.HeadItem;
+import com.cafe24.seoje1004.orders.model.Orders;
+import com.cafe24.seoje1004.orders.model.OrdersSearch;
 import com.cafe24.seoje1004.orders.service.OrdersService;
+import com.cafe24.seoje1004.sub.model.SubLogin;
 
 @Controller
 public class OrdersController {
@@ -22,7 +25,7 @@ public class OrdersController {
 	
 	//주문 최종승인 폼이동 컨트롤러 by cart
 	@RequestMapping(value="/viewOrdersInCart")
-	public String viewOrdersInHeadItem(Model model,CartDetail cartDetail) {
+	public String viewOrdersInCart(Model model,CartDetail cartDetail) {
 		System.out.println("OrdersController//viewSubOrdersCart");
 		System.out.println(cartDetail);
 		
@@ -30,5 +33,14 @@ public class OrdersController {
 		model.addAttribute("ordersConfirmList",ordersConfirmList);
 		
 		return "/shared/orders/subAddOrdersByCart";
+	}
+	
+	//주문내역 리스트 컨트롤러
+	@RequestMapping(value="/viewOrdersList")
+	public String viewOrdersList(Model model,OrdersSearch ordersSearch,SubLogin subLogin) {
+		System.out.println("OrdersController//viewOrdersList실행");
+		List<Orders> ordersList = ordersService.viewOrdersListService(ordersSearch,subLogin);
+		model.addAttribute("ordersList",ordersList);
+		return "/shared/orders/headViewOrdersList.jsp";
 	}
 }

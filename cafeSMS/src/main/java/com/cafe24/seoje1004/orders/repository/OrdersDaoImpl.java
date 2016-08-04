@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cafe24.seoje1004.cart.model.CartDetail;
 import com.cafe24.seoje1004.headItem.model.HeadItem;
+import com.cafe24.seoje1004.orders.model.Orders;
 
 @Repository
 public class OrdersDaoImpl implements OrdersDao{
@@ -21,6 +22,12 @@ public class OrdersDaoImpl implements OrdersDao{
 	public List<CartDetail> viewOrdersInCart(Map<String, Object> map) {
 		System.out.println("OrdersDaoImpl//viewOrdersInCart");
 		return sqlSessionOrders.selectList(NS+".viewOrdersInCart",map);
+	}
+	//orders List Dao
+	@Override
+	public List<Orders> viewOrdersList(Map<String, Object> map) {
+		System.out.println("OrdersDaoImpl//viewOrdersList");
+		return sqlSessionOrders.selectList(NS+".viewOrdersList",map);
 	}
 
 }

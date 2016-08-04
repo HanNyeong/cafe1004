@@ -70,7 +70,7 @@
 <a href="/headViewDeliveryList">[배송/본사측 배송조회]</a>
 <a href="/headViewReturnsList">[반품/본사측 반품상품조회]</a>
 <a href="/subViewReturnsList?subCode=${subLogin.subCode}">[반품/가맹측 반품상품조회]</a>
-<a href="/subViewSubClientList?subCode=${subLogin.subCode}">[가맹거래처조회]</a>
+<a href="/subViewSubClientList?subCode=${subLogin.subCode}">@가맹거래처조회@</a>
 <a href="/viewEventList">[행사조회]</a>
 <a href="/headAddSub">^^가맹 등록^^</a>
 <a href="/modifySub?subCode=${subLogin.subCode}">^^가맹수정^^</a>
@@ -78,7 +78,7 @@
 <a href="/subViewMenuList">^^메뉴관리^^</a>
 <a href="/viewHeadItemList">^^본사 상품리스트^^</a>
 <a href="/subViewCartList?subCode=${subLogin.subCode}">^^장바구니^^</a>
-<a href="/viewSubjectList">[계정과목]</a>
+<a href="/viewSubjectList">@계정과목@</a>
 <a href="/viewOrdersList?subCode=${subLogin.subCode}">@발주내역조회@</a>
 <a href="/subViewSubDumpList">^^상품폐기^^</a>
 <a href="/subAccountKeeperCheck">^^가맹통합회계^^</a>

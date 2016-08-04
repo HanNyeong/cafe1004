@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>발주내역확인:by head_item</h1>
-		
+	<form action="/" method="POST">
 	<c:forEach var="ordersConfirmList" items="${ordersConfirmList}">
 		<div>
 			1. 상품코드 : <input type="text" name="hItemName" value="${ordersConfirmList.hItemCode}" readonly/>
@@ -23,9 +23,10 @@
 			4. 공급가 : <input type="text" name="hItemSellingPrice" value="${ordersConfirmList.hItemSellingPrice}" readonly/>
 		</div>
 	</c:forEach>
-		<button>주문하기</button>
+		<input type="button" id="ordersBtn" value="주문하기">
 	<%-- <div>
 		발주total가격 : <input type="text" name="hItemSellingPrice" value="${headItemList.hItemSellingPrice*headItemList.hItemQuantity}" readonly/>
 	</div> --%>
+	</form>
 </body>
 </html>
