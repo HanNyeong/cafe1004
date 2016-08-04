@@ -51,7 +51,7 @@ public class OrdersController {
 		System.out.println(cartDetail);
 		System.out.println(delivery);
 		System.out.println(orders);
-		ordersService.addOrdersService(cartDetail,delivery,orders,subLogin);
-		return "redirect:/viewOrdersList";
+		ordersService.addOrdersService(cartDetail,delivery,orders,subLogin); 
+		return "redirect:/viewOrdersList?subCode="+subLogin.getSubCode();
 	}
 }

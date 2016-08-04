@@ -43,7 +43,7 @@ public class OrdersServiceImpl implements OrdersService{
 	}
 	//orders Add, cart Del, delivery Add transactional Service
 	@Transactional(propagation = Propagation.REQUIRES_NEW,
-					rollbackFor = {Exception.class,SQLException.class})
+					rollbackFor = Exception.class)
 	@Override
 	public void addOrdersService(CartDetail CartDetail, Delivery delivery, Orders orders,SubLogin subLogin) {
 		System.out.println("OrdersServiceImpl//addOrdersService실행");

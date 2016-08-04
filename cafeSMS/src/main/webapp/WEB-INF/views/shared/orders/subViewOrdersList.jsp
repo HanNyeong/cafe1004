@@ -66,7 +66,7 @@
 			11.${ordersList.headStaffId}
 			12.${ordersList.headOrdersConfirm}
 			</p>
-			<c:if test="${ordersList.subOrdersStatus == '배송준비중'}">
+			<c:if test="${ordersList.subOrdersStatus == '배송준비중' && ordersList.subOrdersStatus'배송전'}">
 				<input type="button" id="delOrdersBtn" value="주문취소">
 			</c:if>
 			<c:if test="${ordersList.ordersPay == 'N'}">
