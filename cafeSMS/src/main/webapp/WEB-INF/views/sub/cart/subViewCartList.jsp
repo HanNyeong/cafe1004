@@ -133,15 +133,15 @@
 	<form id="cartListForm" action="/subDeleteCart" method="POST">
 		<c:forEach var="cartList" items="${cartList}">
 			<p>
-				1:${cartList.cartCode}<input type="hidden" class="cartCode" name="cartCode" value="${cartList.cartCode}">
+				1:${cartList.cartCode}	<input type="hidden" class="cartCode" name="cartCode" value="${cartList.cartCode}">
 				2:${cartList.cartQuantity}<input type="hidden" class="cartQuantity" name="cartQuantity" value="${cartList.cartQuantity}">
-				3:${cartList.hItemCode}<input type="hidden" class="hItemCode" name="hItemCode" value="${cartList.hItemCode}">
-				4:${cartList.subCode}<input type="hidden" class="subCode" name="subCode" value="${cartList.subCode}">
-				<input type="hidden" class="hItemName" name="hItemName" value="${cartList.hItemName}">
-				<input type="hidden" class="hItemSellingPrice" name="hItemSellingPrice" value="${cartList.hItemSellingPrice}">
+				3:${cartList.hItemCode}	<input type="hidden" class="hItemCode" name="hItemCode" value="${cartList.hItemCode}">
+				4:${cartList.subCode}	<input type="hidden" class="subCode" name="subCode" value="${cartList.subCode}">
+										<input type="hidden" class="hItemName" name="hItemName" value="${cartList.hItemName}">
+										<input type="hidden" class="hItemSellingPrice" name="hItemSellingPrice" value="${cartList.hItemSellingPrice}">
 				5:<a href="/subModifyCart?cartCode=${cartList.cartCode}"><input type="button" id="cartModifyBtn" name="cartModifyBtn" value="수정"></a>
-				6:<input type="checkbox" class="cartDelete" name="cartDelete" value="${cartList.cartCode}">
-				7:<input type="checkbox" class="cartOrders" name="cartOrders" value="${cartList.cartCode}">
+				6:						<input type="checkbox" class="cartDelete" name="cartDelete" value="${cartList.cartCode}">
+				7:						<input type="checkbox" class="cartOrders" name="cartOrders" value="${cartList.cartCode}">
 			</p>
 		</c:forEach>
 		<input type="button" id="cartDeleteBtn" name="cartDeleteBtn" value="삭제">
