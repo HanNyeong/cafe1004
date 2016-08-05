@@ -350,4 +350,152 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			orders_code = #{ordersCode}	
 	
 	</update>
+	
+	<!-- 환불테이블의 headReturnsConfirm을 Y로 변경 update -->
+	<update id="updateHeadReturnsConfirmY"
+			parameterType="String">
+		UPDATE
+			returns
+		SET
+			head_returns_confirm = "Y"
+		WHERE
+			orders_code = #{ordersCode}
+	</update>
+	
+	<!-- sub_orders의 기존행의 sub_orders_status = "환불" update -->
+	<update id="updateSubOrdersStatus"
+			parameterType="String">
+		UPDATE
+			sub_orders
+		SET
+			sub_orders_status = "환불"
+		WHERE
+			orders_code = #{ordersCode}
+	</update>
+	
+	<!-- sub_orders의 기존행의 정보를 가져옴 -->
+	<select id="selectSubOrdersByOrdersCode"
+			parameterType="String"
+			resultType="com.cafe24.seoje1004.returns.model.SubOrders">
+		SELECT
+			sub_orders_group as subOrdersGroup
+			,sub_orders_quantity as subOrdersQuantity
+			,total_account_group as totalAccountGroup
+			,orders_pay as ordersPay
+			,orders_pay_date as ordersPayDate
+			,head_item_code as headItemCode
+			,sub_code as subCode
+			,sub_staff_code as subStaffCode
+			,head_staff_id as headStaffId
+			,head_orders_confirm as headOrdersConfirm
+		FROM
+			sub_orders
+		WHERE	
+			orders_code = #{ordersCode}
+	</select>
+	
+	<!-- sub_orders새로운 행에 insert -->
+	<insert id="addSubOrders"
+	        parameterType="com.cafe24.seoje1004.returns.model.SubOrders">
+		<selectKey resultType="hashmap" keyProperty="ordersCode" order="BEFORE">
+			select if(isnull(orders_code),'orders_code1', concat('orders_code',MAX(CONVERT(SUBSTRING(orders_code,12), UNSIGNED))+1))
+			as ordersCode
+			from sub_orders
+		</selectKey>
+		INSERT INTO sub_orders
+			(orders_code
+			,sub_orders_group
+			,sub_orders_quantity
+			,sub_orders_date
+			,sub_orders_head_check
+			,sub_orders_status
+			,total_account_group
+			,orders_pay
+			,orders_pay_date
+			,head_item_code
+			,sub_code
+			,sub_staff_code
+			,head_staff_id
+			,head_orders_confirm
+			
+			)
+			
+			VALUES(
+			#{ordersCode}
+			,#{subOrdersGroup}
+			,#{subOrdersQuantity}
+			,NOW()
+			,NOW()
+			,"배송중"
+			,#{totalAccountGroup}
+			,#{ordersPay}
+			,#{ordersPayDate}
+			,#{headItemCode}
+			,#{subCode}
+			,#{subStaffCode}
+			,#{headStaffId}
+			,#{headOrdersConfirm}
+			
+			)
+	</insert>
+	
+	<!-- 배송테이블의 deliveryReturn을 Y로 변경 update -->
+	<update id="updateDeliveryReturn"
+			parameterType="String">
+		UPDATE
+			delivery
+		SET
+			delivery_return	=	"Y"
+			
+		WHERE
+			orders_code = #{ordersCode}
+	
+	</update>
+	
+	<!-- 배송테이블의 delivery에 기존행의 정보를 가져옴 -->
+	<select id="selectDeliveryByOrdersCode"
+			parameterType="String"
+			resultType="com.cafe24.seoje1004.returns.model.Delivery">
+		SELECT
+			delivery_location as deliveryLocation
+			,delivery_person as deliveryPerson
+			,orders_code as ordersCode
+			,head_staff_id as headStaffId
+			
+		FROM
+			delivery
+		WHERE	
+			orders_code = #{ordersCode}
+	</select>
+	
+	<!-- delivery에 새로운행에 insert -->
+	<insert id="addDelivery"
+			parameterType="com.cafe24.seoje1004.returns.model.Delivery">
+		<selectKey resultType="hashmap" keyProperty="deliveryCode" order="BEFORE">
+			select if(isnull(delivery_code),'delivery_code1', concat('delivery_code',MAX(CONVERT(SUBSTRING(delivery_code,14), UNSIGNED))+1))
+			as deliveryCode
+			from delivery
+		</selectKey>
+		INSERT INTO delivery
+			(delivery_code
+			,delivery_date
+			,delivery_receive
+			,delivery_location
+			,delivery_return
+			,delivery_person
+			,orders_code
+			,head_staff_id
+			)
+			
+			VALUES(
+			#{deliveryCode}
+			,NOW()
+			,"N"
+			,#{deliveryLocation}
+			,"N"
+			,#{deliveryPerson}
+			,#{ordersCode}
+			,#{headStaffId}
+			)
+	</insert>
 </mapper>

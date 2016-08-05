@@ -249,8 +249,14 @@
 					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'N'}">
 						<a href="/headReturnReDelivery?ordersCode=${returnsList.ordersCode}">[재배송]</a>
 					</c:if>
+					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'Y'}">
+						[재배송 처리]
+					</c:if>
 					<c:if test="${returnsList.returnReDelivery == 'N' && returnsList.headReturnsConfirm == 'N'}">
-						<a href="/">[환불처리]</a>
+						<a href="/">[환불]</a>
+					</c:if>
+					<c:if test="${returnsList.returnReDelivery == 'N' && returnsList.headReturnsConfirm == 'Y'}">
+						[환불 처리]
 					</c:if>
 					
 					

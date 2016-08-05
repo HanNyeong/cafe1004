@@ -17,9 +17,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cafe24.seoje1004.contract.model.ContractFile;
 import com.cafe24.seoje1004.returns.model.AddReturns;
+import com.cafe24.seoje1004.returns.model.Delivery;
 import com.cafe24.seoje1004.returns.model.Returns;
 import com.cafe24.seoje1004.returns.model.ReturnsFile;
 import com.cafe24.seoje1004.returns.model.ReturnsSearch;
+import com.cafe24.seoje1004.returns.model.SubOrders;
 import com.cafe24.seoje1004.returns.model.SubStock;
 import com.cafe24.seoje1004.returns.model.SubStockSearch;
 import com.cafe24.seoje1004.returns.repository.ReturnsDao;
@@ -211,5 +213,34 @@ public class ReturnsServiceImpl implements ReturnsService {
 		System.out.println("ReturnsServiceImpl approvalReturns 실행");
 		returnsDao.approvalReturns(returnCode);
 		
+	}
+
+	//본사에서 재배송처리
+	@Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
+	@Override
+	public void headReturnReDelivery(String ordersCode) {
+		System.out.println("ReturnsServiceImpl headReturnReDelivery 실행");
+
+		//ordersCode를 기준으로 값을 변경해주면된다.
+		//1.환불테이블의 headReturnsConfirm을 Y로 변경 update
+		returnsDao.updateHeadReturnsConfirmY(ordersCode);
+		
+		//2.sub_orders의 기존행의 sub_orders_status = "환불" update
+		returnsDao.updateSubOrdersStatus(ordersCode);
+		
+		//3.sub_orders의 기존행의 정보를 가져옴
+		SubOrders subOrders = returnsDao.selectSubOrdersByOrdersCode(ordersCode);
+		
+		//4.sub_orders새로운 행에 insert
+		returnsDao.addSubOrders(subOrders);
+		
+		//5.배송테이블의 deliveryReturn을 Y로 변경 update
+		returnsDao.updateDeliveryReturn(ordersCode);
+		
+		//6.배송테이블의 delivery에 기존행의 정보를 가져옴
+		Delivery delivery = returnsDao.selectDeliveryByOrdersCode(ordersCode);
+		
+		//7.delivery에 새로운행에 insert
+		returnsDao.addDelivery(delivery);
 	}
 }

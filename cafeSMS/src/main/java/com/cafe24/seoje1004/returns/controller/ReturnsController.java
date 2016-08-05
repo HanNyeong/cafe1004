@@ -162,10 +162,7 @@ public class ReturnsController {
 	public String headReturnReDelivery(@RequestParam(value="ordersCode")String ordersCode){
 		System.out.println("ordersCode : "+ordersCode);
 		
-		//ordersCode를 기준으로 값을 변경해주면된다.
-		//1.환불테이블의 headReturnsConfirm을 Y로 변경 update
-		//2.배송테이블의 deliveryReturn을 Y로 변경 update
-		//3.
+		returnsService.headReturnReDelivery(ordersCode);
 		
 		return	"redirect:/headViewReturnsList";
 	}

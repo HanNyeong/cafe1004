@@ -32,5 +32,6 @@ public interface ReturnsService {
 	public List<Returns> headViewReturnsList(ReturnsSearch returnsSearch);		//본사측 반품상품관리 조회
 	public Map<String,Object> viewReturnsContent(String returnCode);		//반품상품 상세보기
 	public void approvalReturns(String returnCode);		//본사에서 환불 승인
+	public void headReturnReDelivery(String ordersCode);		//본사에서 재배송처리
 	
 }

@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cafe24.seoje1004.returns.model.AddReturns;
+import com.cafe24.seoje1004.returns.model.Delivery;
 import com.cafe24.seoje1004.returns.model.Returns;
 import com.cafe24.seoje1004.returns.model.ReturnsFile;
+import com.cafe24.seoje1004.returns.model.SubOrders;
 import com.cafe24.seoje1004.returns.model.SubStock;
 
 @Repository
@@ -126,6 +128,60 @@ public class ReturnsDaoImpl implements ReturnsDao {
 		sqlSessionReturns.update(NS+".updateSubStockOutN", ordersCode);
 		
 	}
+	
+	
+	/*---------재배송---------------*/
+	//환불테이블의 headReturnsConfirm을 Y로 변경 update
+	@Override
+	public void updateHeadReturnsConfirmY(String ordersCode) {
+		System.out.println("ReturnsDaoImpl updateHeadReturnsConfirmY 실행");
+		sqlSessionReturns.update(NS+".updateHeadReturnsConfirmY", ordersCode);
+	}
+
+	//sub_orders의 기존행의 sub_orders_status = "환불" update
+	@Override
+	public void updateSubOrdersStatus(String ordersCode) {
+		 System.out.println("ReturnsDaoImpl updateSubOrdersStatus 실행");
+		 sqlSessionReturns.update(NS+".updateSubOrdersStatus", ordersCode);
+	}
+	
+	//sub_orders의 기존행의 정보를 가져옴
+	@Override
+	public SubOrders selectSubOrdersByOrdersCode(String ordersCode) {
+		System.out.println("ReturnsDaoImpl selectSubOrdersByOrdersCode 실행");
+		return sqlSessionReturns.selectOne(NS+".selectSubOrdersByOrdersCode", ordersCode);
+	}
+
+	//sub_orders새로운 행에 insert
+	@Override
+	public void addSubOrders(SubOrders subOrders) {
+		System.out.println("ReturnsDaoImpl addSubOrders 실행");
+		sqlSessionReturns.insert(NS+".addSubOrders", subOrders);
+		
+	}
+	
+	//배송테이블의 deliveryReturn을 Y로 변경 update
+	@Override
+	public void updateDeliveryReturn(String ordersCode) {
+		System.out.println("ReturnsDaoImpl updateDeliveryReturn  실행");
+		sqlSessionReturns.update(NS+".updateDeliveryReturn", ordersCode);
+	}
+
+	//배송테이블의 delivery에 기존행의 정보를 가져옴
+	@Override
+	public Delivery selectDeliveryByOrdersCode(String ordersCode) {
+		System.out.println("ReturnsDaoImpl selectDeliveryByOrdersCode");
+		return sqlSessionReturns.selectOne(NS+".selectDeliveryByOrdersCode", ordersCode);
+	}
+	
+	//delivery에 새로운행에 insert
+	@Override
+	public void addDelivery(Delivery delivery) {
+		System.out.println("ReturnsDaoImpl addDelivery");
+		sqlSessionReturns.insert(NS+".addDelivery", delivery);
+		
+	}
+	
 	
 
 }
