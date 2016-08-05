@@ -22,6 +22,18 @@
 			$('#ordersListForm').attr('action','/modifyOrdersPay');
 			$('#ordersListForm').submit();
 		});
+		var columnList = ['orders_code','sub_orders_group','sub_orders_quantity','sub_orders_date','sub_orders_head_check','sub_orders_status','orders_pay','orders_pay_date','head_item_code','sub_staff_code','head_staff_id','head_orders_confirm']
+
+		$('.up').each(function(index,item){
+			$(item).click(function(){
+				$.list('ASC',columnList[index]);
+			});
+		});
+		$('.down').each(function(index,item){
+			$(item).click(function(){
+				$.list('DESC',columnList[index]);
+			});
+		});
 		
 	});
 </script>
@@ -66,7 +78,7 @@
 			11.${ordersList.headStaffId}
 			12.${ordersList.headOrdersConfirm}
 			</p>
-			<c:if test="${ordersList.subOrdersStatus == '배송준비중' && ordersList.subOrdersStatus'배송전'}">
+			<c:if test="${ordersList.subOrdersStatus == '배송준비중' && ordersList.subOrdersStatus == '배송전'}">
 				<input type="button" id="delOrdersBtn" value="주문취소">
 			</c:if>
 			<c:if test="${ordersList.ordersPay == 'N'}">

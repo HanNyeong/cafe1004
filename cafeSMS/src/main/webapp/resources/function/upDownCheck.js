@@ -1,10 +1,10 @@
 /**
  * 
  */
-	$.list = function(upDown,criteria){
+	$.list = function(upDown,criteria,form){
 		$('#upDown').attr('value',upDown);
 		$('#criteria').attr('value',criteria);
-		$('#cartList').submit();	
+		form.submit();	
 	}
 	//삭제 체크 박스 전체 선택/해제
 	function selectAll(source) {

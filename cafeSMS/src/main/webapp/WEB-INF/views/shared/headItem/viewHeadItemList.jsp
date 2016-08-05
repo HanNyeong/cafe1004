@@ -104,6 +104,15 @@
 </div>
 <br/>
 <br/>
+<div class="row">
+	<div class="col-sm-2">
+	</div>	  
+		<div class="col-sm-8 cartBtn">
+			<input type="button" id="cartBtn" class="btn btn-default" value="장바구니담기">
+		</div>
+	<div class="col-sm-2">
+	</div>
+</div>
 <div class="row tablediv">
 	<div class="col-sm-2">
 	</div>
@@ -162,15 +171,7 @@
 		</div>
 		</c:forEach>
 		<br/>
-<div class="row tablediv">
-	<div class="col-sm-2">
-	</div>	  
-		<div class="col-sm-8 cartBtn">
-			<input type="button" id="cartBtn" class="btn btn-default" value="장바구니담기">
-		</div>
-	<div class="col-sm-2">
-	</div>
-</div>
+
 	</form>
 
 <jsp:include page="/WEB-INF/module/footer.jsp"/>

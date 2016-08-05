@@ -56,53 +56,40 @@ public class OrdersServiceImpl implements OrdersService{
 		Map<String,Object> map = new HashMap<String,Object>();
 		
 /*		//delivery insert test 를위한임의값
-		String deliveryCode = "delivery_code1000";
-		String deliveryReceive = "delivery_receive1000";
-		String deliveryLocation = "전주시";
-		String deliveryPerson = "headStaffId1000";
-		String headStaffId = "headStaffId1000";
-		delivery.setDeliveryCode(deliveryCode);
-		delivery.setDeliveryReceive(deliveryReceive);
-		delivery.setDeliveryLocation(deliveryLocation);
-		delivery.setDeliveryPerson(deliveryPerson);
-		delivery.setHeadStaffId(headStaffId);
-		
+	
 		//orders insert test 를위한임의값
-		String ordersCode = "orders_code1000";
-		String subOrdersGroup = "sub_orders_group1000";
-		String subOrdersStatus = "배송전";
-		String totalAccountGroup = "total_account_group1000";
-		String subStaffCode =  "sub_staff_code1000";
-		orders.setOrdersCode(ordersCode);
-		orders.setSubOrdersGroup(subOrdersGroup);
-		orders.setSubOrdersStatus(subOrdersStatus);
-		orders.setTotalAccountGroup(totalAccountGroup);
-		orders.setSubStaffCode(subStaffCode);
-		orders.setHeadStaffId(headStaffId);
 		*/
 		
 		//여러개 객체가 왔을경우를 대비한 리스트 생성
-		List<Orders> ordersList = new ArrayList<Orders>();
-		List<Delivery> deliveryList = new ArrayList<Delivery>();
-		
+//		List<Orders> ordersList = new ArrayList<Orders>();
+//		List<Delivery> deliveryList = new ArrayList<Delivery>();
+		orders.setSubOrdersGroup(ordersDao.selectOrdersGroupCode());
+		System.out.println("맵퍼딱지를 떄는중 이제는 코더로"+orders.getSubOrdersQuantity());
 		//for문으로 리스트에 들어오는 해당 객체 각각 집어넣어주기 
 		for(int i = 0; i<cartDetail.getCartCode().size() ; i++) {
 			CartDetail c = new CartDetail();
 			c.setCartCode(cartDetail.getCartCode().get(i));
 			c.setCartQuantity(cartDetail.getCartQuantity().get(i));
 			c.sethItemCode(cartDetail.gethItemCode().get(i));
+			c.sethItemName(cartDetail.gethItemName().get(i));
+			c.sethItemSellingPrice(cartDetail.gethItemSellingPrice().get(i));
+			c.setSubCode(cartDetail.getSubCode().get(i));
+			orders.setSubOrdersQuantity(cartDetail.getCartQuantity().get(i));
+			orders.setSubStaffCode("sub_staff_code1000");
+			orders.setOrdersCode(ordersDao.selectOrdersCode());
+			map.put("cartDetail", c);
+			map.put("orders", orders);
+			map.put("delivery", delivery);
+			map.put("subLogin", subLogin);
+
+			ordersDao.addOrders(map);
+			ordersDao.addDelivery(map);
+			ordersDao.delCart(map);
 			
 		}
 		//맵에 집어넣자
-		map.put("cartDetail", cartDetail);
-		map.put("orders", orders);
-		map.put("delivery", delivery);
-		map.put("subLogin", subLogin);
 		
 		/*ordersDao.selectspecific(map);*/
-		ordersDao.addOrders(map);
-		ordersDao.addDelivery(map);
-		ordersDao.delCart(map);
 	}
 
 }

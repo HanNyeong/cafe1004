@@ -55,6 +55,14 @@ public class OrdersDaoImpl implements OrdersDao{
 		System.out.println("OrdersDaoImpl//selectspecific실행");
 		sqlSessionOrders.selectOne(NS+".selectSpecificAddOrders",map);
 	}*/
+	@Override
+	public String selectOrdersGroupCode(){
+		return sqlSessionOrders.selectOne(NS+".selectOrdersGroupCode");
+	}
+	@Override
+	public String selectOrdersCode() {
+		return sqlSessionOrders.selectOne(NS+".selectOrdersCode");
+	}
 	
 	
 	

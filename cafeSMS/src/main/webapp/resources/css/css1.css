@@ -9,6 +9,7 @@
 /* viewHeadItemList.jsp */
 .th{
 	background-color: #e6e6e6;
+	padding-top: 0px;
 }
 .cartBtn{
 	text-align: right;

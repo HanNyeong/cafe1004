@@ -50,15 +50,18 @@ public class OrdersController {
 	//orders추가메서드 (트랜잭션//cart삭제,delivery추가)
 	@RequestMapping(value="/addOrders")
 	public String addOrders(Model model,
+							SubLogin subLogin,
 							CartsDetail cartDetail,
 							Delivery delivery,
-							Orders orders,
-							SubLogin subLogin) {
+							Orders orders
+							) {
 		System.out.println("OrdersController//addOrders실행");
 		System.out.println(cartDetail);
 		System.out.println(delivery);
 		System.out.println(orders);
-		ordersService.addOrdersService(cartDetail,delivery,orders,subLogin); 
-		return "redirect:/viewOrdersList?subCode="+subLogin.getSubCode();
+		System.out.println(subLogin.getSubCode()+"1번");
+		ordersService.addOrdersService(cartDetail,delivery,orders,subLogin);
+		System.out.println(subLogin.getSubCode());
+		return "redirect:/viewOrdersList?subCode="+cartDetail.getSubCode().get(0);
 	}
 }
