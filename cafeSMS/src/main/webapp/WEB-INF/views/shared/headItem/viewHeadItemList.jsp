@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>subviewMenuList</title>
+<title>viewHeadItemList</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
 	$.list = function(upDown,criteria){
@@ -68,7 +68,12 @@
 </script>
 </head>
 <body>
-
+<jsp:include page="/WEB-INF/module/nav.jsp"/>
+<div class="row">
+	<div class="col-sm-2">
+	</div>
+	
+	<div class="col-sm-8">
 	<form id="headItemForm" action="/viewHeadItemList" method="POST">
 		<input type="hidden" id="upDown" name="upDown" value="" />
 		<input type="hidden" id="criteria" name="criteria" value=""/>
@@ -90,43 +95,84 @@
 			
 		</select>
 		<input type="text" id="searchHeadItem" name="searchHeadItem" value="${headItemSearch.searchHeadItem}"/>
-		<input type="button" id="searchBtn" value="검색" /><a href="/viewHeadItemList"><input type="button" value="전체보기"/></a>
+		<input type="button" class="btn btn-default" id="searchBtn" value="검색" /> <a href="/viewHeadItemList"><input type="button" class="btn btn-default" value="전체보기"/></a>
 		
 	</form>
-	<P>
-		1:아이템 코드<span class="up">▲</span><span class="down">▼</span>
-		2:아이템 이름<span class="up">▲</span><span class="down">▼</span>
-		3:상품메뉴통합코드<span class="up">▲</span><span class="down">▼</span>
-		4:아이템 갯수<span class="up">▲</span><span class="down">▼</span>
-		5:박스 또는 개별<span class="up">▲</span><span class="down">▼</span>
-		6:가맹에 파는 가격<span class="up">▲</span><span class="down">▼</span>
-		7:등록 날짜<span class="up">▲</span><span class="down">▼</span>
-		8:등록한 사람<span class="up">▲</span><span class="down">▼</span>
-		9:소비자가격<span class="up">▲</span><span class="down">▼</span>
+	</div>
+		<div class="col-sm-2">
+	</div>
+</div>
+<br/>
+<br/>
+<div class="row tablediv">
+	<div class="col-sm-2">
+	</div>
+	<div class="col-sm-1 th">	
+		아이템 코드<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		아이템 이름<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		아이템 갯수<span class="up">▲</span><span class="down">▼</span>	
+	</div>
+	<div class="col-sm-1 th">	
+		가맹 판매가<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		등록 날짜<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		등록한 사람<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		소비자가격<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
 		<input type="checkbox" id="cartDeleteAll" class="cartCodeChk" name="cartDeleteAll" onclick="selectHeadItemAll(this)" value="전체 선택">
+	</div>
+	<div class="col-sm-2">
+	</div>
+</div>
 
-	</P>        
 	<form id="cartAndOrders" action="/subAddCart" method="POST">
+			
 		<c:forEach var="headItemList" items="${headItemList}">	
-			<p>
-				1:${headItemList.hItemCode}
-				2:${headItemList.hItemName}
-				3:${headItemList.inteCode}
-				4:${headItemList.hItemQuantity}
-				5:${headItemList.hItemUnit}6
-				6:${headItemList.hItemSellingPrice}
-				7:${headItemList.hItemRegitDate}
-				8:${headItemList.headStaffId}
-				9:${headItemList.hItemRetailPrice}
-				<c:if test="${subLogin != null}">
-					<input type="hidden" class="subCode" name="subCode" value="${subLogin.subCode}">
-					<input type="hidden" class="hItemCode" name="hItemCode" value="${headItemList.hItemCode}">
-					<input type="number" class="cartQuantity" name="cartQuantity" min="1">
-					<input type="checkbox" class="headItemCheck" name="headItemCheck" >
-				</c:if>
-			</p>	
+		<div class="row tablediv">
+			<div class="col-sm-2">
+			</div>	    
+			
+				<div class="col-sm-1">${headItemList.hItemCode}</div>
+				<div class="col-sm-1">${headItemList.hItemName}</div>
+				<div class="col-sm-1">${headItemList.hItemQuantity}(${headItemList.hItemUnit})</div>
+				<div class="col-sm-1">${headItemList.hItemSellingPrice}</div>
+				<div class="col-sm-1">${headItemList.hItemRegitDate}</div>
+				<div class="col-sm-1">${headItemList.headStaffId}</div>
+				<div class="col-sm-1">${headItemList.hItemRetailPrice}</div>
+				<div class="col-sm-1">
+					<c:if test="${subLogin != null}">
+						<input type="hidden" class="subCode" name="subCode" value="${subLogin.subCode}">
+						<input type="hidden" class="hItemCode" name="hItemCode" value="${headItemList.hItemCode}">
+						<input type="number" class="cartQuantity" name="cartQuantity" min="1">
+						<input type="checkbox" class="headItemCheck" name="headItemCheck" >
+					</c:if>
+				</div>
+			<div class="col-sm-2">
+			</div>
+		</div>
 		</c:forEach>
+		<br/>
+<div class="row tablediv">
+	<div class="col-sm-2">
+	</div>	  
+		<div class="col-sm-8 cartBtn">
+			<input type="button" id="cartBtn" class="btn btn-default" value="장바구니담기">
+		</div>
+	<div class="col-sm-2">
+	</div>
+</div>
 	</form>
-	<input type="button" id="cartBtn" value="장바구니담기">
+
+<jsp:include page="/WEB-INF/module/footer.jsp"/>
 </body>
 </html>

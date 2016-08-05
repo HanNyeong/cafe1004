@@ -6,6 +6,20 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 
+/* viewHeadItemList.jsp */
+.th{
+	background-color: #e6e6e6;
+}
+.cartBtn{
+	text-align: right;
+}
+.cartQuantity{
+	width: 50px;
+}
+.tablediv{
+	text-align: center;
+	padding: 20px;
+}
 /* home.jsp,nav,footer */
 #mainpng{
 	text-align: center;
