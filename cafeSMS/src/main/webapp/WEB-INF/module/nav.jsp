@@ -12,9 +12,9 @@
 </head>
 <body>
 
-<div class="container">
 <h2>카페 관리 시스템 (Café Store Management System)</h2>
-<ul class="nav nav-tabs" role="tablist">
+<div class="container">
+  <ul class="nav nav-tabs" role="tablist">
 	
 	<li class="active"><a href="/">Home</a></li>
 	<c:if test="${subLogin ne null}">	 
@@ -31,22 +31,15 @@
 		</li>
 		
 	<!-- 메뉴관리 -->
-		<li class="dropdown">
-		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-		메뉴관리 <span class="caret"></span></a>
-			<ul class="dropdown-menu" role="menu">
-				<li><a href="/subViewMenuList">메뉴관리</a></li>
-				<li><a href="#">레시피 조회</a></li>
-			</ul>
-		</li>
+		<li><a href="/subViewMenuList">메뉴관리</a></li>
 	
 	<!-- 발주관리 -->
 		<li class="dropdown">
 		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 		발주관리 <span class="caret"></span></a>
 			<ul class="dropdown-menu" role="menu">
-				<li><a href="#">발주관리</a></li>
-				<li><a href="#">장바구니</a></li>
+				<li><a href="/viewOrdersList?subCode=${subLogin.subCode}">발주관리</a></li>
+				<li><a href="/subViewCartList?subCode=${subLogin.subCode}">장바구니</a></li>
 				<li><a href="#">배송관리</a></li>
 			</ul>
 		</li>
@@ -56,10 +49,10 @@
 		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 		가맹관리 <span class="caret"></span></a>
 			<ul class="dropdown-menu" role="menu">
-				<li><a href="#">가맹관리</a></li>
-				<li><a href="#">거래처관리</a></li>
-				<li><a href="#">직원관리</a></li>
-				<li><a href="#">계약관리</a></li>
+				<li><a href="/modifySub?subCode=${subLogin.subCode}">가맹관리</a></li>
+				<li><a href="/subViewSubClientList?subCode=${subLogin.subCode}">거래처관리</a></li>
+				<li><a href="/viewSubStaffList?subCode=${subLogin.subCode}">직원관리</a></li>
+				<li><a href="/subViewContractList?subCode=${subLogin.subCode}">계약관리</a></li>
 			</ul>
 		</li>
 		
@@ -76,12 +69,14 @@
 	<!-- 본사측 승인 관리 -->
 		<li class="dropdown">
 		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-		승인관리 <span class="caret"></span></a>
+		본사관리 <span class="caret"></span></a>
 			<ul class="dropdown-menu" role="menu">
-				<li><a href="#">가맹직원승인</a></li>
-				<li><a href="#">발주승인</a></li>
-				<li><a href="#">반품승인</a></li>
-				<li><a href="#">계약승인</a></li>
+				<li><a href="/headAddSub">가맹관리</a></li>
+				<li><a href="#">발주조회</a></li>
+				<li><a href="/headViewClaimList">클래임조회</a></li>
+				<li><a href="/headViewDeliveryList">배송조회</a></li>
+				<li><a href="/headViewReturnsList">반품조회</a></li>
+				<li><a href="/headViewContractList">계약조회</a></li>
 			</ul>
 		</li>
 		
@@ -91,7 +86,7 @@
 		기타 <span class="caret"></span></a>
 			<ul class="dropdown-menu" role="menu">
 				<li><a href="/viewEventList">행사관리</a></li>
-				<li><a href="/headViewClaimList">고객관리</a></li>
+				<li><a href="/subViewClaimList?subCode=${subLogin.subCode}">고객관리</a></li>
 			</ul>
 		</li>
 		
@@ -99,8 +94,8 @@
 		<li><a href="/logout">로그아웃</a></li>
 	</c:if>
 </ul>
-
 </div>
+
 
 </body>
 </html>
