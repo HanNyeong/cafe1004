@@ -41,7 +41,7 @@
 <h1>
 	Hello world!  
 </h1>
-<c:if test="${subLogin == null}">
+<c:if test="${subLogin eq null}">
 	<div class="container">
 		<form role="form" action="/subLogin" method="post" id="loginForm">
 		<h2>로그인</h2>
@@ -65,6 +65,7 @@
 <a href="/headViewContractList">[계약/본사계약조회]</a>
 <a href="/subViewClaimList?subCode=${subLogin.subCode}">[클래임/가맹클래임조회]</a>
 <a href="/headViewClaimList">[클래임/본사클래임조회]</a>
+<!-- 지울때 지우지 말것 로그인 옆에 배치  -->
 <a href="/customerViewClaimForm">[클래임/고객클래임등록 및 나의 클래임조회]</a>
 <a href="/subViewDeliveryList?subCode=${subLogin.subCode}">[배송/가맹측 배송조회]</a>
 <a href="/headViewDeliveryList">[배송/본사측 배송조회]</a>
