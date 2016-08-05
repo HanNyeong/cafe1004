@@ -84,6 +84,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="subAccountSearch.criteria != null and subAccountSearch.upDown != null and subAccountSearch.criteria != null and subAccountSearch.upDown != ''">
 			order by ${subAccountSearch.criteria} ${subAccountSearch.upDown}
 		</if>
-	
 	</select>
+	<update id="modifySubAccount"
+		parameterType="java.util.Map">
+		UPDATE sub_account
+		SET
+			sub_account_check = NOW(),
+			sub_staff_keeper = #{subStaff.subStaffCode}
+		WHERE 
+			sub_account_code = #{subAccount.subAccountCode}	
+	</update>
 </mapper>

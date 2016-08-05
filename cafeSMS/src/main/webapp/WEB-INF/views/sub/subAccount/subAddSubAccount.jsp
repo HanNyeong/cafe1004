@@ -20,19 +20,19 @@
 </script>
 </head>
 <body>
-	<h1>직원 급여 지급</h1>
+	<h1></h1>
 	<form action="/subStaffSalary" method="POST" id="subStaffSalaryForm">
 	<!-- 수정이 필요함 -->
-	<input type="hidden" name="subCode" value="${subLogin.subCode}">
-	<input type="hidden" name="subAccountFlow" value="출금">
-	<input type="hidden" name="totalAccountGroup" value="${subStaff.totalAccountGroup}">
-	<input type="hidden" name="subAccountTable" value="sub_staff">
-	<input type="hidden" name="subjectCode" value="subject_code3">
+	<input type=text name="subCode" value="${subLogin.subCode}" readonly="readonly">
+	<input type="text" name="subAccountFlow" value="${subAccount.subAccountFlow}" readonly="readonly">
+	<input type="text" name="totalAccountGroup" value="${subAccount.totalAccountGroup}" readonly="readonly">
+	<input type="text" name="subAccountTable" value="${subAccount.subAccountTable}" readonly="readonly">
+	<input type="text" name="subjectCode" value="${subAccount.subjectCode}" readonly="readonly">
 		<div>
-			직원 코드 : <input type="text" id="subStaffCode" name="subStaffCode" value="${subStaff.subStaffCode}">			
+			직원 코드 : <input type="text" id="subStaffCode" name="subStaffCode" value="${subAccount.subStaffCode}">			
 		</div>
 		<div>
-			직원 급여 : <input type="text" id="subAccountSum" name="subAccountSum" value="${subStaff.subStaffSalary}">			
+			직원 급여 : <input type="text" id="subAccountSum" name="subAccountSum" value="${subAccount.subStaffSalary}">			
 		</div>
 		<div>
 			상세 내용 : <input type="text" id="subAccountDetail" name="subAccountDetail" value="직원 급여">			

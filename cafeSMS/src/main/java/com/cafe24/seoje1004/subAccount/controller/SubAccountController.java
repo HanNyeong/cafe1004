@@ -28,8 +28,8 @@ public class SubAccountController {
 	 * @param subStaff
 	 * @return
 	 */
-	@RequestMapping(value = "/subStaffSalary", method = RequestMethod.POST)
-	public String subStaffSalary(SubAccount subAccount) {
+	@RequestMapping(value = "/subAddSubAccount", method = RequestMethod.POST)
+	public String subAddSubAccount(SubAccount subAccount) {
 		System.out.println("SubAccountController subStaffSalary실행");
 		System.out.println(subAccount);
 		subAccountService.addSubAccountService(subAccount);
@@ -85,6 +85,13 @@ public class SubAccountController {
 		}
 		return "/sub/subAccount/viewSubAccountList";
 	}
+	/**
+	 * 
+	 * @param model
+	 * @param subAccount
+	 * @param subStaff
+	 * @return
+	 */
 	@RequestMapping(value="/modifySubAccount",method=RequestMethod.POST)
 	public String modifySubAccount(Model model,SubAccount subAccount,SubStaff subStaff){
 		System.out.println("SubAccountController modifySubAccount실행");

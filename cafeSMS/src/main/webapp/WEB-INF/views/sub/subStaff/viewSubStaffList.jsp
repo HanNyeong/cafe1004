@@ -106,7 +106,7 @@
 				<a href="/subModifySubStaff?subStaffCode=${subStaffList.subStaffCode}"><input type="button" value="수정"/></a>
 				<c:if test="${subStaffList.subStaffResign == null}">
 					<a href="/subModifySubStaffByRegsign?subStaffCode=${subStaffList.subStaffCode}&subCode=${subStaffList.subCode}"><input type="button" value="퇴사"/></a>
-					<a href="/subStaffSalary?subStaffCode=${subStaffList.subStaffCode}"><input type="button" value="급여지금"/></a>
+					<a href="/subAddSubAccount?subStaffCode=${subStaffList.subStaffCode}"><input type="button" value="급여지금"/></a>
 				</c:if>
 			</c:if>
 		</p>

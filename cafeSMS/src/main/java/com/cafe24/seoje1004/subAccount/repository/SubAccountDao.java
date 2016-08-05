@@ -25,5 +25,6 @@ public interface SubAccountDao {
 	 * @return
 	 */
 	List<SubAccount> viewSubAccountList(Map<String, Object> map);
+	void modifySubAccount(Map<String, Object> map);
 
 }

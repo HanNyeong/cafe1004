@@ -42,5 +42,13 @@ public class SubAccountDaoImpl implements SubAccountDao{
 		System.out.println("SubAccountDaoImpl viewSubAccountList실행");
 		return sqlSeesionSubAccount.selectList(NS+".viewSubAccountList", map);
 	}
+	/**
+	 * 
+	 */
+	@Override
+	public void modifySubAccount(Map<String, Object> map) {
+		sqlSeesionSubAccount.update(NS+".modifySubAccount", map);
+		
+	}
 
 }

@@ -46,8 +46,7 @@ public class SubAccountServiceImpl implements SubAccountService{
 	 */
 	@Override
 	public List<SubAccount> viewSubAccountListService(SubAccountSearch subAccountSearch,SubStaff subStaff) {
-		System.out.println("SubStaffServiceImpl viewSubStaffListService실행");
-		System.out.println("SubServiceImpl viewSubListService. 조회 실행");
+		System.out.println("SubAccountServiceImpl viewSubAccountListService실행");
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("subAccountSearch", subAccountSearch);
 		map.put("subStaff", subStaff);
@@ -61,7 +60,14 @@ public class SubAccountServiceImpl implements SubAccountService{
 	 */
 	@Override
 	public void modifySubAccountService(SubAccount subAccount, SubStaff subStaff) {
-		// TODO Auto-generated method stub
+		System.out.println("SubAccountServiceImpl modifySubAccountService실행");
+		Map<String,Object> map = new HashMap<String,Object>();
+		if(subStaff.getSubStaffLevel() == "점주"){
+			map.put("subAccount", subAccount);
+			map.put("subStaff", subStaff);
+			subAccountDao.modifySubAccount(map);
+			
+		}
 		
 	}
 
