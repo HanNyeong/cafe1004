@@ -53,9 +53,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on
 			c.h_item_code = h.h_item_code
 		where
-			sub_code = #{cartDetail.subCode}
+			c.sub_code = #{cartDetail.subCode}
 		<if test="cartSearch.criteria == null and cartSearch.upDown == null">
-			order by cart_code desc
+			order by c.cart_code desc
 		</if>
 		<if test="cartSearch.criteria != null and cartSearch.upDown != null and cartSearch.criteria != null and cartSearch.upDown != ''">
 			order by ${cartSearch.criteria} ${cartSearch.upDown}

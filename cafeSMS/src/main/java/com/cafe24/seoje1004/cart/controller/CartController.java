@@ -49,6 +49,7 @@ public class CartController {
 	public String subViewCartList(Model model, CartSearch cartSearch,CartDetail cartdetail){
 		System.out.println("CartController subViewCartList실행");
 		System.out.println(cartSearch);
+		System.out.println(cartdetail+"====확인");
 		List<CartsDetail> cartsList = cartService.viewCartListService(cartSearch,cartdetail);
 		model.addAttribute("cartList", cartsList);
 		model.addAttribute("cartSearch", cartSearch);
