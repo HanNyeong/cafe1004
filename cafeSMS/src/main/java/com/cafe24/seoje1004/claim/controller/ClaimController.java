@@ -15,14 +15,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cafe24.seoje1004.claim.model.Claim;
 import com.cafe24.seoje1004.claim.model.ClaimSearch;
 import com.cafe24.seoje1004.claim.service.ClaimService;
-import com.cafe24.seoje1004.contract.model.Contract;
-import com.cafe24.seoje1004.contract.model.ContractSearch;
-import com.cafe24.seoje1004.contract.service.ContractService;
 
 @Controller
 public class ClaimController {

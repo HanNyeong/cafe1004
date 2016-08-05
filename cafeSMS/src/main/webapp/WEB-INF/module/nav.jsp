@@ -11,13 +11,16 @@
 <title>nav.jsp</title>
 </head>
 <body>
+
 <div class="row">
 	<div class="col-sm-2">
 	</div>
 	<div class="col-sm-8">
-	<h2>카페 관리 시스템 (Café Store Management System)</h2>
+		<div id="mainpng">
+			<img src="/resources/img/main.png" >
+		</div>
 		<div class="container">
-		  <ul class="nav nav-tabs" role="tablist">
+			<ul class="nav nav-tabs" role="tablist">
 			
 			<li class="active"><a href="/">Home</a></li>
 			<c:if test="${subLogin ne null}">	 
@@ -99,8 +102,8 @@
 			
 			
 			<!-- 나중에 본사용 네비바 분리하기  -->
-		</ul>
-	</div>
+			</ul>
+		</div>
 	</div>
 	<div class="col-sm-2">
 	</div>

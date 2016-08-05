@@ -5,9 +5,21 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-#plus{
-	padding-left: 25%;
+
+/* home.jsp,nav,footer */
+#mainpng{
+	text-align: center;
 }
+footer {
+	background-color: #fff;
+	padding: 25px;
+}
+  .carousel-inner > .item > img,
+ .carousel-inner > .item > a > img {
+     width: 70%;
+     margin: auto;
+ }
+ 
 #claimForm{
 	padding-left: 5%;
 	padding-right: 10%;
@@ -20,6 +32,7 @@
  .right{
  	text-align: right;
  }
+/* home.jsp 여기까지  */
 html {
 	font-family: sans-serif;
 	-webkit-text-size-adjust: 100%;
@@ -1364,7 +1377,8 @@ body {
 	font-size: 14px;
 	line-height: 1.42857143;
 	color: #333;
-	background-color: #fff
+	background-color: #fff;
+
 }
 
 button, input, select, textarea {
@@ -3177,7 +3191,7 @@ select[multiple].input-lg, textarea.input-lg {
 
 .has-warning .input-group-addon {
 	color: #8a6d3b;
-	background-color: #fcf8e3;
+	-color: #fcf8e3;
 	border-color: #8a6d3b
 }
 
