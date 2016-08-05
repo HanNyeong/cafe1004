@@ -6,7 +6,14 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 
-/* viewHeadItemList.jsp */
+/* add.jsp  */
+#addSubDumpBtn{
+	margin-left: 70%;
+}
+.addForm{
+	background-color: #e6e6e6;
+}
+/* List.jsp */
 .th{
 	background-color: #e6e6e6;
 	padding-top: 0px;

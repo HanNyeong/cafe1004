@@ -12,10 +12,11 @@
 <br/>
 <footer class="container-fluid text-center">
 	<address>
-			<p><strong>(주)FireCoding</strong> ksmart <span><strong>개인정보보호담당자</strong> 서지연</span></p>
-			<p><strong>사업자등록번호</strong> 010-9201-4268 <span><strong>통신판매업신고</strong> 2015-기린대로-0589</span></p>
-			<p><strong>주소</strong> 전주시 덕진구 송천동 주공아파트 130동 703호</p>
-			<p><span><strong>TEL/FAX</strong> 010-9201-4268</span></p>
+			<p><strong>(주)FireCoding</strong> 불코 <span><strong>주제 :</strong> 카페 관리 시스템 (Café Store Management System)</span></p>
+			<p><strong>소속 : ksmart</strong><span> 한국 스마트 정보 교육원</span></p>
+			<p><strong>팀원</strong> 오성현 박효민 이한녕 서지연 </p>
+			<p><span><strong>개발 환경</strong>  
+			java Jdk1.8, Spring Framework 4.0.9, tomcat 8.0, mybatis, jquery, jstl, spring tool suite(STS)</span></p>
 	</address>
 	<div>(주)FireCoding은 신선한 재료와 최고의 서비스로 고객을 만족시켜드립니다!!</div>
 	<div>Copyright ⓒ Seojiyeon Co, Ltd. All rights reserved</div>

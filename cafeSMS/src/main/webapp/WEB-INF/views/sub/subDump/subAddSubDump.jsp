@@ -16,19 +16,29 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<h1> 폐기 등록 </h1>
-<form action="/subAddSubDump" method="POST" id="addSubDumpForm">
- 	<div>
-	   	<p>폐기 사유 :<input type="text" id="subDumpReason" name="subDumpReason" value=""/></p>
-		<p>본사 상품 코드 :<input type="text" id="headItemCode" name="headItemCode" readonly="readonly" value="${reSubDump.headItemCode}"/></p>
-		<p>개별 상품 코드:<input type="text" id="specificItemCode" name="specificItemCode" readonly="readonly" value="${reSubDump.specificItemCode}"/></p>
-		<p>가맹 폐기 담당 직원 :<input type="text" id="subStaffCode" name="subStaffCode" value=""/></p>
-		<p>가맹대표코드 :<input type="text" id="subCode" name="subCode" readonly="readonly" value="${reSubDump.subCode}"/></p>
+<jsp:include page="/WEB-INF/module/nav.jsp"/>
+<div class="row">
+	<div class="col-sm-5">
 	</div>
-
-   <div>
-      <input type="button" id="addSubDumpBtn" name="addSubDumpBtn" value="등록"/>      
-   </div>
-</form> 
+	<div class="col-sm-2 addForm">
+		<h1> 폐기 등록 </h1>
+	<form action="/subAddSubDump" method="POST" id="addSubDumpForm">
+	 	<div>
+		   	<p>폐기 사유 : <input type="text" id="subDumpReason" name="subDumpReason" value=""/></p>
+			<p>본사 상품 코드 : <input type="text" id="hItemCode" name="headItemCode" readonly="readonly" value="${reSubDump.hItemCode}"/></p>
+			<p>개별 상품 코드: <input type="text" id="specificItemCode" name="specificItemCode" readonly="readonly" value="${reSubDump.specificItemCode}"/></p>
+			<p>가맹 담당 직원 : <input type="text" id="subStaffCode" name="subStaffCode" value=""/></p>
+			<p>가맹대표코드 : <input type="text" id="subCode" name="subCode" readonly="readonly" value="${reSubDump.subCode}"/></p>
+		</div>	
+		      <input type="button" id="addSubDumpBtn" class="btn btn-default" name="addSubDumpBtn" value="등록"/>      
+		<br/>
+		<br/>
+		
+	</form> 
+	</div>
+		<div class="col-sm-5">
+	</div>
+</div>
+<jsp:include page="/WEB-INF/module/footer.jsp"/>
 </body>
 </html>
