@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.seoje1004.cart.model.Cart;
 import com.cafe24.seoje1004.cart.model.CartDetail;
+import com.cafe24.seoje1004.cart.model.CartsDetail;
 import com.cafe24.seoje1004.cart.model.Carts;
 import com.cafe24.seoje1004.delivery.model.Delivery;
 import com.cafe24.seoje1004.headItem.model.HeadItem;
@@ -24,13 +25,14 @@ public class OrdersController {
 	@Autowired
 	private OrdersService ordersService;
 	
+	
 	//주문 최종승인 폼이동 컨트롤러 by cart
 	@RequestMapping(value="/viewOrdersInCart")
-	public String viewOrdersInCart(Model model,CartDetail cartDetail) {
+	public String viewOrdersInCart(Model model,CartsDetail cartsDetail) {
 		System.out.println("OrdersController//viewSubOrdersCart");
-		System.out.println(cartDetail);
-		
-		List<CartDetail> ordersConfirmList = ordersService.viewOrdersInCartService(cartDetail);
+		System.out.println(cartsDetail);
+		List<CartDetail> ordersConfirmList = ordersService.viewOrdersInCartService(cartsDetail);
+	
 		model.addAttribute("ordersConfirmList",ordersConfirmList);
 		
 		return "/shared/orders/subAddOrdersByCart";
@@ -46,7 +48,11 @@ public class OrdersController {
 	}
 	//orders추가메서드 (트랜잭션//cart삭제,delivery추가)
 	@RequestMapping(value="/addOrders")
-	public String addOrders(Model model,CartDetail cartDetail,Delivery delivery,Orders orders,SubLogin subLogin) {
+	public String addOrders(Model model,
+							CartsDetail cartDetail,
+							Delivery delivery,
+							Orders orders,
+							SubLogin subLogin) {
 		System.out.println("OrdersController//addOrders실행");
 		System.out.println(cartDetail);
 		System.out.println(delivery);

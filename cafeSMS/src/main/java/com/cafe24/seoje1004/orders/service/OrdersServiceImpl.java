@@ -1,6 +1,7 @@
 package com.cafe24.seoje1004.orders.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cafe24.seoje1004.cart.model.Cart;
 import com.cafe24.seoje1004.cart.model.CartDetail;
+import com.cafe24.seoje1004.cart.model.CartsDetail;
 import com.cafe24.seoje1004.cart.model.Carts;
 import com.cafe24.seoje1004.delivery.model.Delivery;
 import com.cafe24.seoje1004.headItem.model.HeadItem;
@@ -26,13 +28,17 @@ public class OrdersServiceImpl implements OrdersService{
 	private OrdersDao ordersDao;
 	//장바구니에서 체크된 cartList 정보확인 service
 	@Override
-	public List<CartDetail> viewOrdersInCartService(CartDetail cartDetail) {
+	public List<CartDetail> viewOrdersInCartService(CartsDetail cartsDetail) {
 		System.out.println("OrdersServiceImpl//viewviewOrdersInCartService실행");
+		List<CartDetail> ordersConfirmList = new ArrayList<CartDetail>();
 		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("cartDetail", cartDetail);
-		return ordersDao.viewOrdersInCart(map);
+		for(int i = 0; i<cartsDetail.getCartCode().size(); i++) {
+			map.put("cartCode",cartsDetail.getCartCode().get(i));
+			ordersConfirmList.add(ordersDao.viewOrdersInCart(map));
+		}
+		return ordersConfirmList;
 	}
-	//주문내역 뿌려주는 List SErvice 0804 박효민
+	//주문내역 뿌려주는 List Service 0804 박효민
 	@Override
 	public List<Orders> viewOrdersListService(OrdersSearch ordersSearch, SubLogin subLogin) {
 		System.out.println("OrdersServiceImpl//viewOrdersListService실행");
@@ -45,7 +51,7 @@ public class OrdersServiceImpl implements OrdersService{
 	@Transactional(propagation = Propagation.REQUIRES_NEW,
 					rollbackFor = Exception.class)
 	@Override
-	public void addOrdersService(CartDetail CartDetail, Delivery delivery, Orders orders,SubLogin subLogin) {
+	public void addOrdersService(CartsDetail cartDetail, Delivery delivery, Orders orders,SubLogin subLogin) {
 		System.out.println("OrdersServiceImpl//addOrdersService실행");
 		Map<String,Object> map = new HashMap<String,Object>();
 		
@@ -75,10 +81,12 @@ public class OrdersServiceImpl implements OrdersService{
 		orders.setHeadStaffId(headStaffId);
 		
 		//맵에 집어넣자
-		map.put("CartDetail", CartDetail);
+		map.put("cartDetail", cartDetail);
 		map.put("delivery", delivery);
 		map.put("orders", orders);
 		map.put("subLogin", subLogin);
+		
+		ordersDao.selectspecific(map);
 		ordersDao.addOrders(map);
 		ordersDao.addDelivery(map);
 		ordersDao.delCart(map);

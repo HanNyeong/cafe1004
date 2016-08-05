@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cafe24.seoje1004.cart.model.Cart;
 import com.cafe24.seoje1004.cart.model.CartDetail;
+import com.cafe24.seoje1004.cart.model.CartsDetail;
 import com.cafe24.seoje1004.cart.model.CartSearch;
 import com.cafe24.seoje1004.cart.model.Carts;
 import com.cafe24.seoje1004.cart.service.CartService;
@@ -48,7 +49,7 @@ public class CartController {
 	public String subViewCartList(Model model, CartSearch cartSearch,CartDetail cartdetail){
 		System.out.println("CartController subViewCartList실행");
 		System.out.println(cartSearch);
-		List<CartDetail> cartsList = cartService.viewCartListService(cartSearch,cartdetail);
+		List<CartsDetail> cartsList = cartService.viewCartListService(cartSearch,cartdetail);
 		model.addAttribute("cartList", cartsList);
 		model.addAttribute("cartSearch", cartSearch);
 		return "/sub/cart/subViewCartList";

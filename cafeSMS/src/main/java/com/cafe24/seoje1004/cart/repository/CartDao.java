@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.cafe24.seoje1004.cart.model.Cart;
-import com.cafe24.seoje1004.cart.model.CartDetail;
+import com.cafe24.seoje1004.cart.model.CartsDetail;
 import com.cafe24.seoje1004.cart.model.Carts;
 
 public interface CartDao {
@@ -20,7 +20,7 @@ public interface CartDao {
 	 * @param map
 	 * @return
 	 */
-	List<CartDetail> viewCartList(Map<String, Object> map);
+	List<CartsDetail> viewCartList(Map<String, Object> map);
 	/**
 	 * 장바구니 수정 GET 방식
 	 * @param cart

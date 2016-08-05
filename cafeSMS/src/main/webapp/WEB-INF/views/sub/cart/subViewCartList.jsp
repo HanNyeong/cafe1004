@@ -82,7 +82,7 @@
 		    			}
 		    	});
 					$('#cartListForm').prop('action','/viewOrdersInCart');
-					$('#cartListForm').prop('method','GET');
+					$('#cartListForm').prop('method','POST');
 					$('#cartListForm').submit();
 		    }
 		});

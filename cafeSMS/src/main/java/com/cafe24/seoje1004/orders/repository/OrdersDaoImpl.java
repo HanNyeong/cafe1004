@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cafe24.seoje1004.cart.model.CartDetail;
+import com.cafe24.seoje1004.cart.model.CartsDetail;
 import com.cafe24.seoje1004.headItem.model.HeadItem;
 import com.cafe24.seoje1004.orders.model.Orders;
 
@@ -19,9 +20,9 @@ public class OrdersDaoImpl implements OrdersDao{
 	private final String NS = "com.cafe24.seoje1004.orders.repository.OrdersMapper";
 	//장바구니에서 체크된 cartList 정보확인 Dao
 	@Override
-	public List<CartDetail> viewOrdersInCart(Map<String, Object> map) {
+	public CartDetail viewOrdersInCart(Map<String, Object> map) {
 		System.out.println("OrdersDaoImpl//viewOrdersInCart");
-		return sqlSessionOrders.selectList(NS+".viewOrdersInCart",map);
+		return sqlSessionOrders.selectOne(NS+".viewOrdersInCart",map);
 	}
 	//orders List Dao
 	@Override
@@ -48,6 +49,13 @@ public class OrdersDaoImpl implements OrdersDao{
 		System.out.println("OrdersDaoImpl//delCart실행");
 		sqlSessionOrders.insert(NS+".addDeliveryForAddOrders",map);
 	}
+	//selec specific
+	@Override
+	public void selectspecific(Map<String, Object> map) {
+		System.out.println("OrdersDaoImpl//selectspecific실행");
+		sqlSessionOrders.selectOne(NS+".selectSpecificAddOrders",map);
+	}
+	
 	
 	
 	

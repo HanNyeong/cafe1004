@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.cafe24.seoje1004.cart.model.Cart;
 import com.cafe24.seoje1004.cart.model.CartDetail;
+import com.cafe24.seoje1004.cart.model.CartsDetail;
 import com.cafe24.seoje1004.cart.model.CartSearch;
 import com.cafe24.seoje1004.cart.model.Carts;
 import com.cafe24.seoje1004.cart.repository.CartDao;
@@ -39,7 +40,7 @@ public class CartServiceImpl implements CartService {
 	 * 장바구니 리스트를 리턴하는 서비스 메서드입니다.
 	 */
 	@Override
-	public List<CartDetail> viewCartListService(CartSearch cartSearch, CartDetail cartDetail) {
+	public List<CartsDetail> viewCartListService(CartSearch cartSearch, CartDetail cartDetail) {
 		System.out.println("CartServiceImpl viewCartListService실행");
 		System.out.println("CartServiceImpl viewCartListService. 조회 실행");
 		Map<String,Object> map = new HashMap<String,Object>();

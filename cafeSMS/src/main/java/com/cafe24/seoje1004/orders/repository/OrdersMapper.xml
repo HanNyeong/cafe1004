@@ -36,7 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	on
 		h.h_item_code = c.h_item_code
 	where
-		cart_code = #{cartDetail.cartCode}
+		cart_code = #{cartCode}
 	</select>
 <!-- 주문내역 List select -->
 	<select id="viewOrdersList"
@@ -74,6 +74,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!--addOrdersForTransaction Start  -->
+	<!--ordersAddBySelectSpecific -->
+	<select id="selectSpecificAddOrders"
+			parameterType="java.util.Map"
+			resultType="com.cafe24.seoje1004.cart.model.CartDetail">
+		select
+			specific_item_code	
+		from
+			specific_item
+		where
+			head_item_code = #{cartDetail.hItemCode}
+		LIMIT(0,${cartDetail.cartQuantity})
+			order by asc;
+	</select>
 	<!-- ordersAddByDelCart -->
 	<delete id="delCartForAddOrders"
 			parameterType="java.util.Map">
