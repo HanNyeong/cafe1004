@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript" src="resources/function/upDownCheck.js"></script>
 <script>
 	$.list = function(upDown,criteria){
 		$('#upDown').attr('value',upDown);
@@ -61,6 +62,7 @@
 		10.주문 직원<span class="up">▲</span><span class="down">▼</span>
 		11.승인 본사 직원<span class="up">▲</span><span class="down">▼</span>
 		12.본사 확인 여부<span class="up">▲</span><span class="down">▼</span>
+		13.전체선택<input type="checkbox" id="selectAll" class="selectAll" name="selectAll" onclick="selectAll(this)" value="전체 선택">
 	</p>
 	<form id="ordersListForm" action="" method="POST">
 		<c:forEach var="ordersList" items="${ordersList}">
@@ -77,6 +79,7 @@
 			10.${ordersList.subStaffCode}
 			11.${ordersList.headStaffId}
 			12.${ordersList.headOrdersConfirm}
+			13.<input type="checkbox" class="checking" name="checking">
 			</p>
 			<c:if test="${ordersList.subOrdersStatus == '배송준비중' && ordersList.subOrdersStatus == '배송전'}">
 				<input type="button" id="delOrdersBtn" value="주문취소">

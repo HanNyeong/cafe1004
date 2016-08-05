@@ -4,6 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script>
+	$(document).ready(function(){
+		var price = 0;
+		$('.price').each(function(index,item){
+			price += $("input[class=cartQuantity]:eq(" + index + ")").val()*$("input[class=price]:eq(" + index + ")").val();
+		});
+		$('#totalPrice').text(price);
+	});
+</script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -19,13 +29,14 @@
 			2. 상품명 : <input type="text" name="hItemName" value="${ordersConfirmList.hItemName}" readonly/>
 		</div>
 		<div>
-			3. 상품수량 : <input type="text" name="cartQuantity" value="${ordersConfirmList.cartQuantity}" readonly/>
+			3. 상품수량 : <input type="text" class="cartQuantity" name="cartQuantity" value="${ordersConfirmList.cartQuantity}" readonly/>
 		</div>
 		<div>
-			4. 공급가 : <input type="text" name="hItemSellingPrice" value="${ordersConfirmList.hItemSellingPrice}" readonly/>
+			4. 공급가 : <input type="text" class="price" name="hItemSellingPrice" value="${ordersConfirmList.hItemSellingPrice}" readonly/>
 		</div>
 	</c:forEach>
-		<button>주문하자제발</button>
+		<span id="totalPrice"></span>원
+		<button>주문</button>
 	</form>
 </body>
 </html>
