@@ -55,7 +55,7 @@ public class OrdersServiceImpl implements OrdersService{
 		System.out.println("OrdersServiceImpl//addOrdersService실행");
 		Map<String,Object> map = new HashMap<String,Object>();
 		
-		//delivery insert test 를위한임의값
+/*		//delivery insert test 를위한임의값
 		String deliveryCode = "delivery_code1000";
 		String deliveryReceive = "delivery_receive1000";
 		String deliveryLocation = "전주시";
@@ -79,13 +79,20 @@ public class OrdersServiceImpl implements OrdersService{
 		orders.setTotalAccountGroup(totalAccountGroup);
 		orders.setSubStaffCode(subStaffCode);
 		orders.setHeadStaffId(headStaffId);
+		*/
 		
 		//여러개 객체가 왔을경우를 대비한 리스트 생성
 		List<Orders> ordersList = new ArrayList<Orders>();
 		List<Delivery> deliveryList = new ArrayList<Delivery>();
 		
 		//for문으로 리스트에 들어오는 해당 객체 각각 집어넣어주기 
-		
+		for(int i = 0; i<cartDetail.getCartCode().size() ; i++) {
+			CartDetail c = new CartDetail();
+			c.setCartCode(cartDetail.getCartCode().get(i));
+			c.setCartQuantity(cartDetail.getCartQuantity().get(i));
+			c.sethItemCode(cartDetail.gethItemCode().get(i));
+			
+		}
 		//맵에 집어넣자
 		map.put("cartDetail", cartDetail);
 		map.put("orders", orders);
