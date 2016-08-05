@@ -80,10 +80,18 @@ public class OrdersServiceImpl implements OrdersService{
 		orders.setSubStaffCode(subStaffCode);
 		orders.setHeadStaffId(headStaffId);
 		
+		//여러개 객체가 왔을경우를 대비한 리스트 생성
+		List<Orders> ordersList = new ArrayList<Orders>();
+		List<Delivery> deliveryList = new ArrayList<Delivery>();
+		
+		for() {
+			
+		}
+		
 		//맵에 집어넣자
 		map.put("cartDetail", cartDetail);
-		map.put("delivery", delivery);
 		map.put("orders", orders);
+		map.put("delivery", delivery);
 		map.put("subLogin", subLogin);
 		
 		/*ordersDao.selectspecific(map);*/

@@ -132,18 +132,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				sub_orders_status, 
 				total_account_group,
 				head_item_code,
-				sub_code, 
+				sub_code,
 				sub_staff_code
 				)
 			values
 				(
 				#{orders.ordersCode},
 				#{orders.subOrdersGroup},
-				${CartDetail.cartQuantity},
+				${cartDetail.cartQuantity},
 				now(),
 				#{orders.subOrdersStatus},
 				#{orders.totalAccountGroup},
-				#{CartDetail.hItemCode},
+				#{cartDetail.hItemCode},
 				#{subLogin.subCode},
 				#{orders.subStaffCode}
 				)

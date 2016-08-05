@@ -19,7 +19,7 @@
 			2. 상품명 : <input type="text" name="hItemName" value="${ordersConfirmList.hItemName}" readonly/>
 		</div>
 		<div>
-			3. 상품수량 : <input type="text" name="hItemQuantity" value="${ordersConfirmList.cartQuantity}" readonly/>
+			3. 상품수량 : <input type="text" name="cartQuantity" value="${ordersConfirmList.cartQuantity}" readonly/>
 		</div>
 		<div>
 			4. 공급가 : <input type="text" name="hItemSellingPrice" value="${ordersConfirmList.hItemSellingPrice}" readonly/>

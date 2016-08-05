@@ -169,4 +169,12 @@
 		<bean id="sqlSessionReturns" class="org.mybatis.spring.SqlSessionTemplate">
 			<constructor-arg index="0" ref="sqlSessionFactoryReturns" />
 		</bean>
+	<!-- 재고 관리 -->
+	<bean id="sqlSessionFactorySubStock" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:com/cafe24/seoje1004/subStock/repository/SubStockMapper.xml" />
+	</bean>
+	<bean id="sqlSessionSubStock" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactorySubStock" />
+	</bean>
 </beans>

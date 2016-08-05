@@ -46,6 +46,7 @@ public class OrdersController {
 		model.addAttribute("ordersList",ordersList);
 		return "/shared/orders/subViewOrdersList";
 	}
+	
 	//orders추가메서드 (트랜잭션//cart삭제,delivery추가)
 	@RequestMapping(value="/addOrders")
 	public String addOrders(Model model,

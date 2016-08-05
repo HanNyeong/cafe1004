@@ -3,7 +3,7 @@ package com.cafe24.seoje1004.cart.model;
 
 public class CartDetail {
 	private String cartCode;
-	private int cartQuantity;
+	private Integer cartQuantity;
 	private String hItemCode;
 	private String subCode;
 	private String hItemName;
