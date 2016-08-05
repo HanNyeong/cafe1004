@@ -39,7 +39,12 @@
 </script>
 </head>
 <body>
-
+<jsp:include page="/WEB-INF/module/nav.jsp"/>
+<div class="row">
+	<div class="col-sm-2">
+	</div>
+	
+	<div class="col-sm-8">
 	<form id="subDumpList" action="/subViewSubDumpList" method="POST">
 		<input type="hidden" id="upDown" name="upDown" value="" />
 		<input type="hidden" id="criteria" name="criteria" value=""/>
@@ -57,30 +62,69 @@
 			<option value="sub_code" <c:if test="${subDumpSearch.searchKey eq 'sub_code'}">selected="selected"</c:if>>가맹 대표 코드</option>
 		</select>
 		<input type="text" id="searchSubDump" name="searchSubDump" value="${subDumpSearch.searchSubDump}"/>
-		<input type="button" id="searchBtn" value="검색" /><a href="/viewsubDumpList"><input type="button" value="전체보기"/></a>
+		<input type="button" id="searchBtn" class="btn btn-default"  value="검색" /><a href="/viewsubDumpList"> <input type="button" class="btn btn-default" value="전체보기"/></a>
 	</form>
-		<a href="/subAddSubDump"><input type="button" id="subDumpAddBtn" name="subDumpAddBtn" value="폐기등록"></a>
-	<P>
-		1:폐기 코드<span class="up">▲</span><span class="down">▼</span>
-		2:폐기 사유
-		3:폐기 날짜<span class="up">▲</span><span class="down">▼</span>
-		4:본사 상품 코드<span class="up">▲</span><span class="down">▼</span>
-		5:개별 상품 코드<span class="up">▲</span><span class="down">▼</span>
-		6:가맹 폐기 담당 직원<span class="up">▲</span><span class="down">▼</span>
-		7:가맹대표코드<span class="up">▲</span><span class="down">▼</span>
-	</P>        
+	</div>
+		<div class="col-sm-2">
+	</div>
+</div>
+<br/>
+<br/>
+<div class="row">
+	<div class="col-sm-2">
+	</div>	
+		<div class="col-sm-8 cartBtn">
+			<a href="/subAddSubDump?subCode=${subLogin.subCode}">
+				<input type="button" class="btn btn-default" id="subDumpAddBtn" name="subDumpAddBtn" value="폐기등록">
+			</a>
+		</div>
+	<div class="col-sm-2">
+	</div>
+</div>
+<div class="row tablediv">
+	<div class="col-sm-2">
+	</div>
+	<div class="col-sm-1 th">	
+		폐기 코드<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		폐기 사유
+	</div>
+	<div class="col-sm-2 th">
+		폐기 날짜<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		본사 상품 코드<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		개별 상품 코드<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		가맹 담당 직원<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		가맹대표코드<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-2">
+	</div>
+</div>    
 		<c:forEach var="subDumpList" items="${subDumpList}">
-			<p>
-				1:${subDumpList.subDumpCode}<input type="hidden" class="subDumpCode" name="subDumpCode" value="${subDumpList.subDumpCode}">
-				2:${subDumpList.specificItemCode}<input type="hidden" class="specificItemCode" name="specificItemCode" value="${subDumpList.specificItemCode}">
-				3:${subDumpList.subDumpDate}<input type="hidden" class="subDumpDate" name="subDumpDate" value="${subDumpList.subDumpDate}">
-				4:${subDumpList.hItemCode}<input type="hidden" class="hItemCode" name="hItemCode" value="${subDumpList.hItemCode}">
-				5:${subDumpList.specificItemCode}<input type="hidden" class="specificItemCode" name="specificItemCode" value="${subDumpList.specificItemCode}">
-				6:${subDumpList.subStaffCode}<input type="hidden" class="subStaffCode" name="subStaffCode" value="${subDumpList.subStaffCode}">
-				7:${subDumpList.subCode}<input type="hidden" class="subCode" name="subCode" value="${subDumpList.subCode}">
-				
-			</p>
-		
+		<div class="row tablediv">
+			<div class="col-sm-2">
+			</div>
+			
+				<div class="col-sm-1">${subDumpList.subDumpCode}<input type="hidden" class="subDumpCode" name="subDumpCode" value="${subDumpList.subDumpCode}"></div>
+				<div class="col-sm-1">${subDumpList.subDumpReason}<input type="hidden" class="subDumpReason" name="subDumpReason" value="${subDumpList.subDumpReason}"></div>
+				<div class="col-sm-2">${subDumpList.subDumpDate}<input type="hidden" class="subDumpDate" name="subDumpDate" value="${subDumpList.subDumpDate}"></div>
+				<div class="col-sm-1">${subDumpList.hItemCode}<input type="hidden" class="hItemCode" name="hItemCode" value="${subDumpList.hItemCode}"></div>
+				<div class="col-sm-1">${subDumpList.specificItemCode}<input type="hidden" class="specificItemCode" name="specificItemCode" value="${subDumpList.specificItemCode}"></div>
+				<div class="col-sm-1">${subDumpList.subStaffCode}<input type="hidden" class="subStaffCode" name="subStaffCode" value="${subDumpList.subStaffCode}"></div>
+				<div class="col-sm-1">${subDumpList.subCode}<input type="hidden" class="subCode" name="subCode" value="${subDumpList.subCode}"></div>
+			
+			<div class="col-sm-2">
+			</div>
+		</div>
 		</c:forEach>
+<jsp:include page="/WEB-INF/module/footer.jsp"/>
 </body>
 </html>

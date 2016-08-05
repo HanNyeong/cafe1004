@@ -71,11 +71,11 @@
 				<h2>로그인</h2>
 					<div class="form-group">
 						<label for="subCode">아이디 : </label>
-						<input type="text" class="form-control" id="subCode" name ="subCode" placeholder="Enter ID">
+						<input type="text" class="form-control" id="subCode" name ="subCode" placeholder="Enter ID" value="sub_code1">
 					</div>
 					<div class="form-group">
 						<label for="staffPw">비밀번호:</label>
-						<input type="password" class="form-control" id="subPassword" name = "subPassword" placeholder="Enter password">
+						<input type="password" class="form-control" id="subPassword" name = "subPassword" placeholder="Enter password" value="1234">
 					</div>
 					<div class="right">
 						<input type="button" class="btn btn-default" id="loginBtn" value="로그인"/>
