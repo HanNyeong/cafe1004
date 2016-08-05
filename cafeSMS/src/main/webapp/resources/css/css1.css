@@ -5,6 +5,21 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+#plus{
+	padding-left: 15%;
+}
+#claimForm{
+	padding-left: 5%;
+	padding-right: 10%;
+	width: 50%;
+}
+#loginForm{
+	padding-right: 10%;
+	width: 45%;
+}
+ .right{
+ 	text-align: right;
+ }
 html {
 	font-family: sans-serif;
 	-webkit-text-size-adjust: 100%;
