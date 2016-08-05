@@ -201,6 +201,7 @@
 	</div>
 	<div>
 		<c:forEach var="subStockList" items="${subStockList}">
+		<div>
 			${subStockList.subStockCode}
 			${subStockList.headStockInDate}
 			${subStockList.subStockInDate}
@@ -212,6 +213,7 @@
 			${subStockList.specificItemCode}
 			${subStockList.subStaffCode}
 			<a href="/subAddReturnsForm2?subStockCode=${subStockList.subStockCode}">[환불신청]</a>
+		</div>
 		</c:forEach>
 		
 		

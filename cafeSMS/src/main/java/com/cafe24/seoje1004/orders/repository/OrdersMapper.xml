@@ -75,7 +75,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!--addOrdersForTransaction Start  -->
 	<!--ordersAddBySelectSpecific -->
-	<select id="selectSpecificAddOrders"
+	<!-- <select id="selectSpecificAddOrders"
 			parameterType="java.util.Map"
 			resultType="com.cafe24.seoje1004.cart.model.CartDetail">
 		select
@@ -86,7 +86,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			head_item_code = #{cartDetail.hItemCode}
 		LIMIT(0,${cartDetail.cartQuantity})
 			order by asc;
-	</select>
+	</select> -->
 	<!-- ordersAddByDelCart -->
 	<delete id="delCartForAddOrders"
 			parameterType="java.util.Map">

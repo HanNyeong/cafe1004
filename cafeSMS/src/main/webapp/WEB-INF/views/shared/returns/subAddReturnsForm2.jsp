@@ -90,6 +90,12 @@ $(document).on("ready",function(){
 				<input id="subCode" type="text" name="subCode" value="${addReturns.subCode}" readonly="readonly"/>
 			</div>
 			<div>
+				<label>재배송여부  Y : </label>
+				<input type="radio" name="returnReDelivery" value="Y" checked="checked"/>
+				<label> N : </label>
+				<input type="radio" name="returnReDelivery" value="N"/>
+			</div>
+			<div>
 				<input id="addReturnBtn" type="button" value="환불신청"/>
 			</div>
 		</form>

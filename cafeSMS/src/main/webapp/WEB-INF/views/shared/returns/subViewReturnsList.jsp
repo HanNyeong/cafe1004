@@ -266,7 +266,7 @@
 					${returnsList.headReturnsConfirm}
 					${returnsList.subCode}
 					<a href="/viewReturnsContent?returnCode=${returnsList.returnCode}">[상세보기]</a>
-					<a href="/">[환불취소]</a>
+					<a href="/subCancelReturns?returnCode=${returnsList.returnCode}&ordersCode=${returnsList.ordersCode}&subCode=${returnsList.subCode}">[환불취소]</a>
 				</div>
 			</c:if>
 		</c:forEach>

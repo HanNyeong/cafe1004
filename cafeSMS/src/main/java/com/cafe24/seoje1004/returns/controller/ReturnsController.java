@@ -93,6 +93,20 @@ public class ReturnsController {
 		
 		return	"redirect:/subAddReturnsForm?subCode="+subCode;
 	}
+	
+	//가맹측 환불 취소
+	@RequestMapping(value="/subCancelReturns", method=RequestMethod.GET)
+	public String subCancelReturns(@RequestParam(value="returnCode")String returnCode
+			,@RequestParam(value="ordersCode")String ordersCode
+			,@RequestParam(value="subCode")String subCode){
+		System.out.println("ReturnsController subCancelReturns 실행");
+		System.out.println("returnCode : "+returnCode);
+		System.out.println("ordersCode : "+ordersCode);
+		
+		returnsService.subCancelReturns(returnCode,ordersCode);
+		
+		return "redirect:/subViewReturnsList?subCode="+subCode;
+	}
 
 	
 	
@@ -143,5 +157,17 @@ public class ReturnsController {
 		return	"redirect:/headViewReturnsList";
 	}
 	
+	//본사에서 재배송처리
+	@RequestMapping(value="/headReturnReDelivery", method=RequestMethod.GET)
+	public String headReturnReDelivery(@RequestParam(value="ordersCode")String ordersCode){
+		System.out.println("ordersCode : "+ordersCode);
+		
+		//ordersCode를 기준으로 값을 변경해주면된다.
+		//1.환불테이블의 headReturnsConfirm을 Y로 변경 update
+		//2.배송테이블의 deliveryReturn을 Y로 변경 update
+		//3.
+		
+		return	"redirect:/headViewReturnsList";
+	}
 	
 }

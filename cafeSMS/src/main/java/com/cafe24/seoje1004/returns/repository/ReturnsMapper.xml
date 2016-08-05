@@ -264,6 +264,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			,orders_code
 			,specific_item_code
 			,sub_code
+			,return_re_delivery
+			
 			)
 			
 			VALUES(
@@ -275,6 +277,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			,#{ordersCode}
 			,#{specificItemCode}
 			,#{subCode}
+			,#{returnReDelivery}
 			)
 	</insert>
 	
@@ -327,5 +330,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			return_head_check_date	=	NOW()
 		WHERE
 			return_code = #{returnCode}	
+	</update>
+	
+	<!-- 해당 returnCode에 해당하는 행 삭제 -->
+	<delete id="subCancelReturns">
+		DELETE FROM returns
+		WHERE return_code	=	#{returnCode}
+		
+	</delete>
+	
+	<!-- orders_code에 해당하는 subStock가맹재고의 subStockOut출고여부를 Y->N으로 수정 -->
+	<update id="updateSubStockOutN"
+			parameterType="String">
+		UPDATE
+			sub_stock
+		SET
+			sub_stock_out = "N"
+		WHERE
+			orders_code = #{ordersCode}	
+	
 	</update>
 </mapper>

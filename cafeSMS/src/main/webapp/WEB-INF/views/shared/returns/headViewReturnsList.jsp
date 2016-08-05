@@ -225,7 +225,7 @@
 		subCode<span id="subCodeUp">▲</span><span id="subCodeDown">▼</span>
 		[상세보기]
 		[환불승인]
-		[환불재배송]
+		[처리]
 	</div>
 	<div>
 		<div>-------------------------------------------------------------------------본사승인받은 [returnHeadCheck = Y]환불리스트-------------------------------------------------------------------------</div>
@@ -246,7 +246,14 @@
 					${returnsList.subCode}
 					<a href="/viewReturnsContent?returnCode=${returnsList.returnCode}">[상세보기]</a>
 					[Null]
-					<a href="/">[환불재배송]</a>
+					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'N'}">
+						<a href="/headReturnReDelivery?ordersCode=${returnsList.ordersCode}">[재배송]</a>
+					</c:if>
+					<c:if test="${returnsList.returnReDelivery == 'N' && returnsList.headReturnsConfirm == 'N'}">
+						<a href="/">[환불처리]</a>
+					</c:if>
+					
+					
 				</div>
 			</c:if>	
 		</c:forEach>

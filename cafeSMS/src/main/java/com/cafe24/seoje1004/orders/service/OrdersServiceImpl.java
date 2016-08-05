@@ -86,7 +86,7 @@ public class OrdersServiceImpl implements OrdersService{
 		map.put("orders", orders);
 		map.put("subLogin", subLogin);
 		
-		ordersDao.selectspecific(map);
+		/*ordersDao.selectspecific(map);*/
 		ordersDao.addOrders(map);
 		ordersDao.addDelivery(map);
 		ordersDao.delCart(map);

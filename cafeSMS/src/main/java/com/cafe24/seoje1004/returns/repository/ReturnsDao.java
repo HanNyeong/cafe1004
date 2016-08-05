@@ -21,6 +21,9 @@ public interface ReturnsDao {
 	public void subAddReturns(Returns returns); 	//returns테이블에 새로운 환불 등록
 	public ReturnsFile selectReturnFileByRandomName(String randomName);	//랜덤네임이 중복되는 이름이 있으면 다시 새로운 랜덤네임으로 저장
 	public void subAddReturnsFile(ReturnsFile returnsFile);		//반품첨부파일 정보 등록
+	public void subCancelReturns(String returnCode);		//해당 returnCode에 해당하는 행 삭제
+	public void updateSubStockOutN(String ordersCode);		//orders_code에 해당하는 subStock가맹재고의 subStockOut출고여부를 Y->N으로 수정
+	
 	
 	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
 	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/

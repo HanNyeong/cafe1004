@@ -49,12 +49,12 @@ public class OrdersDaoImpl implements OrdersDao{
 		System.out.println("OrdersDaoImpl//delCart실행");
 		sqlSessionOrders.insert(NS+".addDeliveryForAddOrders",map);
 	}
-	//selec specific
+	/*//selec specific
 	@Override
 	public void selectspecific(Map<String, Object> map) {
 		System.out.println("OrdersDaoImpl//selectspecific실행");
 		sqlSessionOrders.selectOne(NS+".selectSpecificAddOrders",map);
-	}
+	}*/
 	
 	
 	

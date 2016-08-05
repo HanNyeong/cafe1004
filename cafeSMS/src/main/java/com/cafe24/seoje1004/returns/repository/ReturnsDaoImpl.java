@@ -69,6 +69,13 @@ public class ReturnsDaoImpl implements ReturnsDao {
 		sqlSessionReturns.insert(NS+".subAddReturnsFile", returnsFile);
 		
 	}
+	
+	//해당 returnCode에 해당하는 행 삭제
+	@Override
+	public void subCancelReturns(String returnCode) {
+		System.out.println("ReturnsDaoImpl subCancelReturns 실행");
+		sqlSessionReturns.delete(NS+".subCancelReturns", returnCode);
+	}
 
 	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
 	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
@@ -111,5 +118,14 @@ public class ReturnsDaoImpl implements ReturnsDao {
 		System.out.println("ReturnsDaoImpl approvalReturns 실행");
 		sqlSessionReturns.update(NS+".approvalReturns", returnCode);
 	}
+
+	//orders_code에 해당하는 subStock가맹재고의 subStockOut출고여부를 Y->N으로 수정
+	@Override
+	public void updateSubStockOutN(String ordersCode) {
+		System.out.println("ReturnsDaoImpl updateSubStockOutN 실행");
+		sqlSessionReturns.update(NS+".updateSubStockOutN", ordersCode);
+		
+	}
+	
 
 }

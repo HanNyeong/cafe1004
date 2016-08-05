@@ -163,6 +163,17 @@ public class ReturnsServiceImpl implements ReturnsService {
 		
 	}
 
+	//가맹측 환불 취소
+	@Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
+	@Override
+	public void subCancelReturns(String returnCode, String ordersCode) {
+		System.out.println("ReturnsServiceImpl subCancelReturns 실행");
+		//1.해당 returnCode에 해당하는 행 삭제
+		returnsDao.subCancelReturns(returnCode);
+		//2.orders_code에 해당하는 subStock가맹재고의 subStockOut출고여부를 Y->N으로 수정
+		returnsDao.updateSubStockOutN(ordersCode);
+	}
+	
 	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
 	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
 	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
@@ -201,7 +212,4 @@ public class ReturnsServiceImpl implements ReturnsService {
 		returnsDao.approvalReturns(returnCode);
 		
 	}
-	
-	
-
 }

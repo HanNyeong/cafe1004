@@ -20,7 +20,7 @@ public interface OrdersDao {
 
 	void delCart(Map<String, Object> map);
 
-	void selectspecific(Map<String, Object> map);
+	/*void selectspecific(Map<String, Object> map);*/
 
 
 }
