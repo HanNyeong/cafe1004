@@ -26,5 +26,7 @@ public interface OrdersDao {
 	
 	String selectOrdersCode();
 
+	void modifyOrders(Map<String, Object> map);
+
 
 }

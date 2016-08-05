@@ -91,5 +91,17 @@ public class OrdersServiceImpl implements OrdersService{
 		
 		/*ordersDao.selectspecific(map);*/
 	}
+	//결제유무 update Service
+	@Override
+	public void modifyOrdersPayService(Orders orders) {
+		System.out.println("OrdersServiceImpl//modifyOrdersPayService실행");
+		String subOrdersStatus = "배송준비중";
+		String ordersPay = "Y";
+		orders.setSubOrdersStatus(subOrdersStatus);
+		orders.setOrdersPay(ordersPay);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("orders", orders);
+		ordersDao.modifyOrders(map);
+	}
 
 }

@@ -64,4 +64,14 @@ public class OrdersController {
 		System.out.println(subLogin.getSubCode());
 		return "redirect:/viewOrdersList?subCode="+cartDetail.getSubCode().get(0);
 	}
+	
+	//결제 상태 update controller 
+	@RequestMapping(value="/modifyOrdersPay")
+	public String modifyOrdersPay(Orders orders) {
+		System.out.println("OrdersController//modifyOrdersPay실행");
+		System.out.println(orders);
+		
+		ordersService.modifyOrdersPayService(orders);
+		return "redirect:/viewOrdersList?subCode="+orders.getSubCode();
+	}
 }

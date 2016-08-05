@@ -23,4 +23,6 @@ public interface OrdersService {
 
 	void addOrdersService(CartsDetail cartDetail, Delivery delivery, Orders orders,SubLogin subLogin);
 
+	void modifyOrdersPayService(Orders orders);
+
 }

@@ -159,4 +159,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			select if(isnull(sub_orders_group),'sub_orders_group1', concat('sub_orders_group',MAX(CONVERT(SUBSTRING(sub_orders_group,17), UNSIGNED))+1))
 			from sub_orders
 	</select>
+	
+	<!-- 결제유무 update 쿼리 -->
+	<update id="updateOrdersPay"
+			parameterType="java.util.Map">
+	UPDATE
+		sub_orders
+	SET
+		sub_orders_status=#{orders.subOrdersStatus},
+		orders_pay=#{orders.ordersPay},
+		orders_pay_date=NOW()
+	WHERE 
+		orders_code = #{orders.ordersCode}
+	</update>
 </mapper>

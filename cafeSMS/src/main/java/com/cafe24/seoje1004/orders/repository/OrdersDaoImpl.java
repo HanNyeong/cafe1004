@@ -55,13 +55,20 @@ public class OrdersDaoImpl implements OrdersDao{
 		System.out.println("OrdersDaoImpl//selectspecific실행");
 		sqlSessionOrders.selectOne(NS+".selectSpecificAddOrders",map);
 	}*/
+	//주문그룹코드 생성 쿼리
 	@Override
 	public String selectOrdersGroupCode(){
 		return sqlSessionOrders.selectOne(NS+".selectOrdersGroupCode");
 	}
+	//주문코드 생성쿼리 for DeliveryAdd
 	@Override
 	public String selectOrdersCode() {
 		return sqlSessionOrders.selectOne(NS+".selectOrdersCode");
+	}
+	@Override
+	public void modifyOrders(Map<String, Object> map) {
+		System.out.println("OrdersDaoImpl//modifyOrders실행");
+		sqlSessionOrders.update(NS+".updateOrdersPay",map);
 	}
 	
 	

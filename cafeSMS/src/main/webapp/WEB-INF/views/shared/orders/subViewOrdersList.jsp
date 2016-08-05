@@ -35,6 +35,25 @@
 				$.list('DESC',columnList[index]);
 			});
 		});
+		$('#modifyPayBtn').click(function(){
+			if($('.checking:checked').size()<1){
+		        alert("1개 이상 체크해주세요");
+		        console.log("delete");
+		    }else{
+		    	$('.checking').each(function(index,item){
+		    		if(!$(this).is(":checked")){
+		    			console.log("체크안됨");
+						$("input[class=ordersCode]:eq(" + index + ")").prop('name','');
+		    		}else if($(this).is(":checked")){
+		    			console.log("체크됨");
+		    		}else{
+		    			console.log("안됨")
+		    		}
+		    	});
+	    		$('#ordersListForm').prop('action','/modifyOrdersPay');
+	    		$('#ordersListForm').submit();
+		    }
+		});
 		
 	});
 </script>
@@ -67,28 +86,30 @@
 	<form id="ordersListForm" action="" method="POST">
 		<c:forEach var="ordersList" items="${ordersList}">
 			<p>
-			1.${ordersList.ordersCode}
-			2.${ordersList.subOrdersGroup}
-			3.${ordersList.subOrdersQuantity}
-			4.${ordersList.subOrdersDate}
-			5.${ordersList.subOrdersHeadCheck}
-			6.${ordersList.subOrdersStatus}
-			7.${ordersList.ordersPay}
-			8.${ordersList.ordersPayDate}
-			9.${ordersList.headItemCode}
-			10.${ordersList.subStaffCode}
-			11.${ordersList.headStaffId}
+			1.${ordersList.ordersCode} 
+			2.${ordersList.subOrdersGroup} 
+			3.${ordersList.subOrdersQuantity} 
+			4.${ordersList.subOrdersDate} 
+			5.${ordersList.subOrdersHeadCheck} 
+			6.${ordersList.subOrdersStatus} 
+			7.${ordersList.ordersPay} 
+			8.${ordersList.ordersPayDate} 
+			9.${ordersList.headItemCode} 
+			10.${ordersList.subStaffCode} 
+			11.${ordersList.headStaffId} 
 			12.${ordersList.headOrdersConfirm}
 			13.<input type="checkbox" class="checking" name="checking">
+			<input type="hidden" class="ordersCode" name="ordersCode" value="${ordersList.ordersCode}">
 			</p>
-			<c:if test="${ordersList.subOrdersStatus == '배송준비중' && ordersList.subOrdersStatus == '배송전'}">
-				<input type="button" id="delOrdersBtn" value="주문취소">
+			<c:if test="${ordersList.subOrdersStatus == '배송전'}">
+		<input type="button" id="delOrdersBtn" value="주문취소">
 			</c:if>
-			<c:if test="${ordersList.ordersPay == 'N'}">
-				<input type="button" id="modifyPayBtn" value="결제">
-			</c:if>
+		<c:if test="${ordersList.ordersPay == 'N'}">
+			<input type="button" id="modifyPayBtn" value="결제">
+		</c:if>
 		</c:forEach>
 	</form>
+	
 	<!-- 주문취소,결제하기 btn추가 0804할일 -->
 </body>
 </html>
