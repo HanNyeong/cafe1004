@@ -84,9 +84,7 @@ public class OrdersServiceImpl implements OrdersService{
 		List<Orders> ordersList = new ArrayList<Orders>();
 		List<Delivery> deliveryList = new ArrayList<Delivery>();
 		
-		for() {
-			
-		}
+		//for문으로 리스트에 들어오는 해당 객체 각각 집어넣어주기 
 		
 		//맵에 집어넣자
 		map.put("cartDetail", cartDetail);
