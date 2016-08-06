@@ -190,21 +190,46 @@
 			headItemCode<span id="headItemCodeUp">▲</span><span id="headItemCodeDown">▼</span>
 			specificItemCode<span id="specificItemCodeUp">▲</span><span id="specificItemCodeDown">▼</span>
 			subStaffCode<span id="subStaffCodeUp">▲</span><span id="subStaffCodeDown">▼</span>
+			[입고]
 	</div>
 	<div>
+		<p>--------------------------------------------------------------------------------입고전 subStockInDate=null--------------------------------------------------------------------------------</p>
 		<c:forEach var="subStockList" items="${subStockList}">
-			<div>
-				${subStockList.subStockCode}
-				${subStockList.headStockInDate}
-				${subStockList.subStockInDate}
-				${subStockList.subStockOut}
-				${subStockList.subStockConfirmDate}
-				${subStockList.ordersCode}
-				${subStockList.subCode}
-				${subStockList.headItemCode}
-				${subStockList.specificItemCode}
-				${subStockList.subStaffCode}
-			</div>
+			<c:if test="${subStockList.subStockInDate == null}">
+				<div>
+					${subStockList.subStockCode}
+					${subStockList.headStockInDate}
+					${subStockList.subStockInDate}
+					${subStockList.subStockOut}
+					${subStockList.subStockConfirmDate}
+					${subStockList.ordersCode}
+					${subStockList.subCode}
+					${subStockList.headItemCode}
+					${subStockList.specificItemCode}
+					${subStockList.subStaffCode}
+					<a href="/subWarehousing?subStockCode=${subStockList.subStockCode}&subCode=${subStockList.subCode}&ordersCode=${subStockList.ordersCode}">[입고]</a>
+				</div>
+			</c:if>	
+		</c:forEach>
+	</div>
+	<div>
+		<p>--------------------------------------------------------------------------------입고후 subStockInDate!=null--------------------------------------------------------------------------------</p>
+		<c:forEach var="subStockList" items="${subStockList}">
+			<c:if test="${subStockList.subStockInDate != null}">
+				<div>
+					${subStockList.subStockCode}
+					${subStockList.headStockInDate}
+					${subStockList.subStockInDate}
+					${subStockList.subStockOut}
+					${subStockList.subStockConfirmDate}
+					${subStockList.ordersCode}
+					${subStockList.subCode}
+					${subStockList.headItemCode}
+					${subStockList.specificItemCode}
+					${subStockList.subStaffCode}
+					[Null]
+				</div>
+			</c:if>	
 		</c:forEach>
 	</div>
 </body>

@@ -14,4 +14,5 @@ public interface SubStockService {
 	 */
 	
 	public List<SubStock> subViewSubStockList(String subCode, SubStockSearch subStockSearch);		//가맹재고리스트
+	public void subWarehousing(String subStockCode,String ordersCode);		//가맹이 본사로부터 받은 제품을 입고
 }

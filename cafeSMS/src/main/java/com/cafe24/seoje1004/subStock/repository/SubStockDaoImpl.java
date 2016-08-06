@@ -30,5 +30,19 @@ public class SubStockDaoImpl implements SubStockDao{
 		
 		return sqlSessionSubStock.selectList(NS+".subViewSubStockList", map);
 	}
+
+	//비어있는 입고날짜를 오늘로 업데이트
+	@Override
+	public void subWarehousing(String subStockCode) {
+		System.out.println("SubStockDaoImpl subWarehousing 실행");
+		sqlSessionSubStock.update(NS+".subWarehousing", subStockCode);
+	}
+
+	//배송테이블의 배송수령여부 컬럼을 Y로 업데이트
+	@Override
+	public void deliveryReceiveY(String ordersCode) {
+		System.out.println("SubStockDaoImpl deliveryReceiveY 실행");
+		sqlSessionSubStock.update(NS+".deliveryReceiveY", ordersCode);
+	}
 	
 }
