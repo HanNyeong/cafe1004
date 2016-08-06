@@ -143,7 +143,7 @@
 	</div>
 	<div class="col-sm-8">
 		<P>  The time on the server is ${serverTime}. </P>
-		
+		<a href="/subViewSubStockList?subCode=${subLogin.subCode}">[재고/가맹재고조회]</a>
 		<a href="/subViewContractList?subCode=${subLogin.subCode}">[계약/가맹계약조회]</a>
 		<a href="/headViewContractList">[계약/본사계약조회]</a>
 		<a href="/subViewClaimList?subCode=${subLogin.subCode}">[클래임/가맹클래임조회]</a>
