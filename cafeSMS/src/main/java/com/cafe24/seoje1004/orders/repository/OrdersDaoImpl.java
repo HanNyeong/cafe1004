@@ -70,6 +70,12 @@ public class OrdersDaoImpl implements OrdersDao{
 		System.out.println("OrdersDaoImpl//modifyOrders실행");
 		sqlSessionOrders.update(NS+".updateOrdersPay",map);
 	}
+	//발주 취소
+	@Override
+	public void subDeleteOrdersCancel(Orders orders) {
+		System.out.println("OrdersDaoImpl//subModifyOrdersCancel실행");
+		sqlSessionOrders.delete(NS+".subDeleteOrdersCancel",orders);
+	}
 	
 	
 	

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.seoje1004.cart.model.Cart;
@@ -14,6 +15,7 @@ import com.cafe24.seoje1004.cart.model.CartsDetail;
 import com.cafe24.seoje1004.cart.model.Carts;
 import com.cafe24.seoje1004.delivery.model.Delivery;
 import com.cafe24.seoje1004.headItem.model.HeadItem;
+import com.cafe24.seoje1004.orders.model.OrderGroup;
 import com.cafe24.seoje1004.orders.model.Orders;
 import com.cafe24.seoje1004.orders.model.OrdersSearch;
 import com.cafe24.seoje1004.orders.service.OrdersService;
@@ -65,13 +67,29 @@ public class OrdersController {
 		return "redirect:/viewOrdersList?subCode="+cartDetail.getSubCode().get(0);
 	}
 	
-	//결제 상태 update controller 
-	@RequestMapping(value="/modifyOrdersPay")
-	public String modifyOrdersPay(Orders orders) {
-		System.out.println("OrdersController//modifyOrdersPay실행");
-		System.out.println(orders);
-		
-		ordersService.modifyOrdersPayService(orders);
-		return "redirect:/viewOrdersList?subCode="+orders.getSubCode();
+	//결제 페이지로 이동
+	@RequestMapping(value="/subOrdersPayConfirm")
+	public String subOrdersPayConfirm(Model model,OrdersSearch ordersSearch,SubLogin subLogin){
+		System.out.println("OrdersController//subOrdersPayConfirm실행");
+		model.addAttribute("ordersList", ordersService.subOrdersPayConfirmService(ordersSearch,subLogin));
+		return "/shared/orders/subOrdersPayConfirm";
 	}
+	
+	//결제 상태 update controller 
+	@RequestMapping(value="/modifyOrdersPay",method=RequestMethod.POST)
+	public String modifyOrdersPay(OrderGroup orderGroup) {
+		System.out.println("OrdersController//modifyOrdersPay실행");
+		System.out.println(orderGroup);
+		ordersService.modifyOrdersPayService(orderGroup);
+		return "redirect:/viewOrdersList?subCode="+orderGroup.getSubCode().get(0);
+	}
+	//발주 취소
+	@RequestMapping(value="/subDeleteOrdersCancel",method=RequestMethod.POST)
+	public String subDeleteOrdersCancel(OrderGroup orderGroup){
+		System.out.println("OrdersController//subDeleteOrdersCancel실행");
+		System.out.println(orderGroup);
+		ordersService.subDeleteOrdersCancelService(orderGroup);
+		return "redirect:/viewOrdersList?subCode="+orderGroup.getSubCode().get(0);
+	}
+	
 }

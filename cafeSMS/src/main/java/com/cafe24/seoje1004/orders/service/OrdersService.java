@@ -10,6 +10,7 @@ import com.cafe24.seoje1004.cart.model.CartsDetail;
 import com.cafe24.seoje1004.cart.model.Carts;
 import com.cafe24.seoje1004.delivery.model.Delivery;
 import com.cafe24.seoje1004.headItem.model.HeadItem;
+import com.cafe24.seoje1004.orders.model.OrderGroup;
 import com.cafe24.seoje1004.orders.model.Orders;
 import com.cafe24.seoje1004.orders.model.OrdersSearch;
 import com.cafe24.seoje1004.sub.model.SubLogin;
@@ -23,6 +24,10 @@ public interface OrdersService {
 
 	void addOrdersService(CartsDetail cartDetail, Delivery delivery, Orders orders,SubLogin subLogin);
 
-	void modifyOrdersPayService(Orders orders);
+	void modifyOrdersPayService(OrderGroup orderGroup);
+
+	List<Orders> subOrdersPayConfirmService(OrdersSearch ordersSearch, SubLogin subLogin);
+
+	void subDeleteOrdersCancelService(OrderGroup orderGroup);
 
 }

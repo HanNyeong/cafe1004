@@ -28,5 +28,7 @@ public interface OrdersDao {
 
 	void modifyOrders(Map<String, Object> map);
 
+	void subDeleteOrdersCancel(Orders orders);
+
 
 }

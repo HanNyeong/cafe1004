@@ -43,9 +43,10 @@
 		    	$('.checking').each(function(index,item){
 		    		if(!$(this).is(":checked")){
 		    			console.log("체크안됨");
-						$("input[class=ordersCode]:eq(" + index + ")").prop('name','');
 		    		}else if($(this).is(":checked")){
 		    			console.log("체크됨");
+						$("input[class=ordersCode]:eq(" + index + ")").prop('name','ordersCode');
+						$("input[class=subCode]:eq(" + index + ")").prop('name','subCode');
 		    		}else{
 		    			console.log("안됨")
 		    		}
@@ -67,6 +68,7 @@
 		<input type="date" name="regitDateStart" value="${clientSearch.regitDateStart}"/> ~
 		<input type="date" name="regitDateEnd" value="${clientSearch.regitDateEnd}"/> 
 		<br/><br/>
+		<a href="/subOrdersPayConfirm?subCode=${subLogin.subCode}"><input type="button" id="ordersPay" value="결제하러가기"></a>
 	</form>
 	<p>
 		1.발주 코드<span class="up">▲</span><span class="down">▼</span>
@@ -85,28 +87,24 @@
 	</p>
 	<form id="ordersListForm" action="" method="POST">
 		<c:forEach var="ordersList" items="${ordersList}">
-			<p>
-			1.${ordersList.ordersCode} 
-			2.${ordersList.subOrdersGroup} 
-			3.${ordersList.subOrdersQuantity} 
-			4.${ordersList.subOrdersDate} 
-			5.${ordersList.subOrdersHeadCheck} 
-			6.${ordersList.subOrdersStatus} 
-			7.${ordersList.ordersPay} 
-			8.${ordersList.ordersPayDate} 
-			9.${ordersList.headItemCode} 
-			10.${ordersList.subStaffCode} 
-			11.${ordersList.headStaffId} 
-			12.${ordersList.headOrdersConfirm}
-			13.<input type="checkbox" class="checking" name="checking">
-			<input type="hidden" class="ordersCode" name="ordersCode" value="${ordersList.ordersCode}">
-			</p>
-			<c:if test="${ordersList.subOrdersStatus == '배송전'}">
-		<input type="button" id="delOrdersBtn" value="주문취소">
-			</c:if>
-		<c:if test="${ordersList.ordersPay == 'N'}">
-			<input type="button" id="modifyPayBtn" value="결제">
-		</c:if>
+			<input type="hidden" class="ordersCode" name="" value="${ordersList.ordersCode}">
+			<input type="hidden" class="subCode" name="" value="${subLogin.subCode}">
+			
+			<div>
+				1.${ordersList.ordersCode} 
+				2.${ordersList.subOrdersGroup} 
+				3.${ordersList.subOrdersQuantity} 
+				4.${ordersList.subOrdersDate} 
+				5.${ordersList.subOrdersHeadCheck} 
+				6.${ordersList.subOrdersStatus} 
+				7.${ordersList.ordersPay} 
+				8.${ordersList.ordersPayDate} 
+				9.${ordersList.headItemCode} 
+				10.${ordersList.subStaffCode} 
+				11.${ordersList.headStaffId} 
+				12.${ordersList.headOrdersConfirm}
+				13.<input type="checkbox" class="checking" name="checking">
+			</div>
 		</c:forEach>
 	</form>
 	

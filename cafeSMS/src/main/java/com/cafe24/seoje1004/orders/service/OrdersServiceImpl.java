@@ -17,6 +17,7 @@ import com.cafe24.seoje1004.cart.model.CartsDetail;
 import com.cafe24.seoje1004.cart.model.Carts;
 import com.cafe24.seoje1004.delivery.model.Delivery;
 import com.cafe24.seoje1004.headItem.model.HeadItem;
+import com.cafe24.seoje1004.orders.model.OrderGroup;
 import com.cafe24.seoje1004.orders.model.Orders;
 import com.cafe24.seoje1004.orders.model.OrdersSearch;
 import com.cafe24.seoje1004.orders.repository.OrdersDao;
@@ -93,15 +94,53 @@ public class OrdersServiceImpl implements OrdersService{
 	}
 	//결제유무 update Service
 	@Override
-	public void modifyOrdersPayService(Orders orders) {
+	public void modifyOrdersPayService(OrderGroup orderGroup) {
 		System.out.println("OrdersServiceImpl//modifyOrdersPayService실행");
+		Orders orders = new Orders();
 		String subOrdersStatus = "배송준비중";
 		String ordersPay = "Y";
 		orders.setSubOrdersStatus(subOrdersStatus);
 		orders.setOrdersPay(ordersPay);
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("orders", orders);
-		ordersDao.modifyOrders(map);
+
+		for(int i = 0; i < orderGroup.getOrdersCode().size(); i++){
+			orders.setOrdersCode(orderGroup.getOrdersCode().get(i));
+			ordersDao.modifyOrders(map);
+		}
+	}
+	//결제페이지로이동
+	@Override
+	public List<Orders> subOrdersPayConfirmService(OrdersSearch ordersSearch, SubLogin subLogin) {
+		System.out.println("OrdersServiceImpl//viewOrdersListService실행");
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("ordersSearch", ordersSearch);
+		map.put("subLogin", subLogin);
+		List<Orders> list = ordersDao.viewOrdersList(map);
+		List<Orders> ordersList = new ArrayList<Orders>();
+		System.out.println(list);
+		for(int i = 0; i < list.size(); i++){
+			if(list.get(i).getOrdersPay().equals("N")){
+				System.out.println(list.get(i));
+				ordersList.add(list.get(i));
+				System.out.println(ordersList);
+			}
+		}
+		System.out.println(ordersList);
+		return ordersList;
+	}
+	//주문취소
+	@Override
+	public void subDeleteOrdersCancelService(OrderGroup orderGroup) {
+		System.out.println("OrdersServiceImpl//subModifyOrdersCancelService실행");
+		Orders orders = new Orders();
+
+		for(int i = 0; i < orderGroup.getOrdersCode().size(); i++){
+			orders.setOrdersCode(orderGroup.getSubCode().get(i));
+			orders.setOrdersCode(orderGroup.getOrdersCode().get(i));
+			ordersDao.subDeleteOrdersCancel(orders);
+		}
+		
 	}
 
 }

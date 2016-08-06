@@ -172,4 +172,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	WHERE 
 		orders_code = #{orders.ordersCode}
 	</update>
+	<delete id="subDeleteOrdersCancel"
+			parameterType="com.cafe24.seoje1004.orders.model.Orders">
+		DELETE FROM sub_orders 
+		WHERE orders_code = #{ordersCode}
+	</delete>
 </mapper>
