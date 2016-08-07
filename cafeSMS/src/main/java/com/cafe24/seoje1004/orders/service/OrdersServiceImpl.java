@@ -116,18 +116,7 @@ public class OrdersServiceImpl implements OrdersService{
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("ordersSearch", ordersSearch);
 		map.put("subLogin", subLogin);
-		List<Orders> list = ordersDao.viewOrdersList(map);
-		List<Orders> ordersList = new ArrayList<Orders>();
-		System.out.println(list);
-		for(int i = 0; i < list.size(); i++){
-			if(list.get(i).getOrdersPay().equals("N")){
-				System.out.println(list.get(i));
-				ordersList.add(list.get(i));
-				System.out.println(ordersList);
-			}
-		}
-		System.out.println(ordersList);
-		return ordersList;
+		return ordersDao.viewOrdersList(map);
 	}
 	//주문취소
 	@Override

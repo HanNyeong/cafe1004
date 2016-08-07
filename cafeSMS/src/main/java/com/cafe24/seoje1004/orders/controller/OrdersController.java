@@ -46,7 +46,7 @@ public class OrdersController {
 		System.out.println("OrdersController//viewOrdersList실행");
 		List<Orders> ordersList = ordersService.viewOrdersListService(ordersSearch,subLogin);
 		model.addAttribute("ordersList",ordersList);
-		return "/shared/orders/subViewOrdersList";
+		return "/shared/orders/subOrdersPayConfirm";
 	}
 	
 	//orders추가메서드 (트랜잭션//cart삭제,delivery추가)
@@ -72,7 +72,7 @@ public class OrdersController {
 	public String subOrdersPayConfirm(Model model,OrdersSearch ordersSearch,SubLogin subLogin){
 		System.out.println("OrdersController//subOrdersPayConfirm실행");
 		model.addAttribute("ordersList", ordersService.subOrdersPayConfirmService(ordersSearch,subLogin));
-		return "/shared/orders/subOrdersPayConfirm";
+		return "/shared/orders/subViewOrdersList";
 	}
 	
 	//결제 상태 update controller 
