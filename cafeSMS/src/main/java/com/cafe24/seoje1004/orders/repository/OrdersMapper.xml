@@ -149,7 +149,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				now(),
 				#{orders.totalAccountGroup},
 				#{cartDetail.hItemCode},
-				#{subLogin.subCode},
+				#{orders.subCode},
 				#{orders.subStaffCode}
 				)
 	</insert>

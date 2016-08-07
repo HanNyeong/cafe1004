@@ -46,7 +46,7 @@ public class OrdersController {
 		System.out.println("OrdersController//viewOrdersList실행");
 		List<Orders> ordersList = ordersService.viewOrdersListService(ordersSearch,subLogin);
 		model.addAttribute("ordersList",ordersList);
-		return "/shared/orders/subOrdersPayConfirm";
+		return "/shared/orders/subViewOrdersList";
 	}
 	
 	//orders추가메서드 (트랜잭션//cart삭제,delivery추가)
@@ -71,8 +71,9 @@ public class OrdersController {
 	@RequestMapping(value="/subOrdersPayConfirm")
 	public String subOrdersPayConfirm(Model model,OrdersSearch ordersSearch,SubLogin subLogin){
 		System.out.println("OrdersController//subOrdersPayConfirm실행");
-		model.addAttribute("ordersList", ordersService.subOrdersPayConfirmService(ordersSearch,subLogin));
-		return "/shared/orders/subViewOrdersList";
+		List<Orders> ordersList = ordersService.viewOrdersListService(ordersSearch,subLogin);
+		model.addAttribute("ordersList", ordersList);
+		return "/shared/orders/subOrdersPayConfirm";
 	}
 	
 	//결제 상태 update controller 
@@ -81,7 +82,7 @@ public class OrdersController {
 		System.out.println("OrdersController//modifyOrdersPay실행");
 		System.out.println(orderGroup);
 		ordersService.modifyOrdersPayService(orderGroup);
-		return "redirect:/viewOrdersList?subCode="+orderGroup.getSubCode().get(0);
+		return "redirect:/subOrdersPayConfirm?subCode="+orderGroup.getSubCode().get(0);
 	}
 	//발주 취소
 	@RequestMapping(value="/subDeleteOrdersCancel",method=RequestMethod.POST)

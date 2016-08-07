@@ -86,7 +86,7 @@
 		<h3>= 주문내역 =</h3>
 	</div>
 	<div class="col-sm-6 clickBtn">
-		<a href="/subOrdersPayConfirm?subCode=${subLogin.subCode}"><input type="button" id="ordersPay" class="btn btn-default" value="결제하기"></a>	
+		<a href="/viewOrdersList?subCode=${subLogin.subCode}"><input type="button" id="ordersPay" class="btn btn-default" value="결제하기"></a>	
 	</div>
 	<div class="col-sm-2">
 	</div>	
@@ -124,28 +124,28 @@
 </div>
 	<form id="ordersListForm" action="" method="POST">
 		<c:forEach var="ordersList" items="${ordersList}">
-		<c:if test="${ordersList.ordersPay == 'Y'}">
-			<input type="hidden" class="ordersCode" name="" value="${ordersList.ordersCode}">
-			<input type="hidden" class="subCode" name="" value="${subLogin.subCode}">
-			
-			<div class="row tablediv">
-			<div class="col-sm-2">
-			</div>	
-				<div class="col-sm-1">
-					<input type="checkbox" class="checking" name="checking">
-					${ordersList.ordersCode}  
-				</div>	
-				<div class="col-sm-1">${ordersList.subOrdersQuantity}</div>	
-				<div class="col-sm-1">${ordersList.subOrdersDate}</div>	 
-				<div class="col-sm-1">${ordersList.subOrdersStatus}</div>	 
-				<div class="col-sm-1">${ordersList.ordersPayDate}</div>	 
-				<div class="col-sm-1">${ordersList.headItemCode}</div>	 
-				<div class="col-sm-1">${ordersList.subStaffCode}</div>	
-				<div class="col-sm-1">${ordersList.headOrdersConfirm}</div>	
+			<c:if test="${ordersList.ordersPay == 'Y'}">
+				<input type="hidden" class="ordersCode" name="" value="${ordersList.ordersCode}">
+				<input type="hidden" class="subCode" name="" value="${subLogin.subCode}">
+				
+				<div class="row tablediv">
 				<div class="col-sm-2">
+				</div>	
+					<div class="col-sm-1">
+						<input type="checkbox" class="checking" name="checking">
+						${ordersList.ordersCode}  
+					</div>	
+					<div class="col-sm-1">${ordersList.subOrdersQuantity}</div>	
+					<div class="col-sm-1">${ordersList.subOrdersDate}</div>	 
+					<div class="col-sm-1">${ordersList.ordersPayDate}</div>	 
+					<div class="col-sm-1">${ordersList.subOrdersStatus}</div>	 
+					<div class="col-sm-1">${ordersList.headItemCode}</div>	 
+					<div class="col-sm-1">${ordersList.subStaffCode}</div>	
+					<div class="col-sm-1">${ordersList.headOrdersConfirm}</div>	
+					<div class="col-sm-2">
+					</div>
 				</div>
-			</div>
-		</c:if>
+			</c:if>
 		</c:forEach>
 	</form>
 	

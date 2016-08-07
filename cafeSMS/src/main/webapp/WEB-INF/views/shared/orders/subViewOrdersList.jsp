@@ -65,10 +65,10 @@
 		<input type="hidden" id="criteria" name="criteria" value=""/>
 		<input type="hidden" id="subCode" name="subCode" value="${subLogin.subCode}"/>
 		등록 날짜: 
-		<input type="date" name="regitDateStart" value="${clientSearch.regitDateStart}"/> ~
-		<input type="date" name="regitDateEnd" value="${clientSearch.regitDateEnd}"/> 
+		<input type="date" name="regitDateStart" value="${ordersSearch.regitDateStart}"/> ~
+		<input type="date" name="regitDateEnd" value="${ordersSearch.regitDateEnd}"/> 
 		<br/><br/>
-		<a href="/viewOrdersList?subCode=${subLogin.subCode}"><input type="button" id="ordersPay" value="전체리스트보기"></a>
+		<a href="/subOrdersPayConfirm?subCode=${subLogin.subCode}"><input type="button" id="ordersPay" value="전체리스트보기"></a>
 	</form>
 	<input type="button" id="ordersPayBtn" value="결제">
 	<input type="button" id="ordersPayBtn" value="결제취소">
@@ -89,7 +89,7 @@
 	</p>
 	<form id="ordersListForm" action="" method="POST">
 		<c:forEach var="ordersList" items="${ordersList}">
-			<c:if test="${ordersList.ordersPay == 'N'}">
+		<c:if test="${ordersList.ordersPay == 'N'}">
 				<input type="hidden" class="ordersCode" name="" value="${ordersList.ordersCode}">
 				<input type="hidden" class="subCode" name="" value="${subLogin.subCode}">
 				<div>
@@ -107,7 +107,7 @@
 					12.${ordersList.headOrdersConfirm}
 					13.<input type="checkbox" class="checking" name="checking">
 				</div>
-			</c:if>
+		</c:if>
 		</c:forEach>
 	</form>
 	

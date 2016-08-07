@@ -65,8 +65,13 @@ public class OrdersServiceImpl implements OrdersService{
 //		List<Orders> ordersList = new ArrayList<Orders>();
 //		List<Delivery> deliveryList = new ArrayList<Delivery>();
 		orders.setSubOrdersGroup(ordersDao.selectOrdersGroupCode());
+		orders.setSubCode(cartDetail.getSubCode().get(0));
 		System.out.println("맵퍼딱지를 떄는중 이제는 코더로"+orders.getSubOrdersQuantity());
 		//for문으로 리스트에 들어오는 해당 객체 각각 집어넣어주기 
+		System.out.println(cartDetail);
+		System.out.println(delivery);
+		System.out.println(orders);
+		System.out.println(subLogin);
 		for(int i = 0; i<cartDetail.getCartCode().size() ; i++) {
 			CartDetail c = new CartDetail();
 			c.setCartCode(cartDetail.getCartCode().get(i));
@@ -78,6 +83,7 @@ public class OrdersServiceImpl implements OrdersService{
 			orders.setSubOrdersQuantity(cartDetail.getCartQuantity().get(i));
 			orders.setSubStaffCode("sub_staff_code1000");
 			orders.setOrdersCode(ordersDao.selectOrdersCode());
+			
 			map.put("cartDetail", c);
 			map.put("orders", orders);
 			map.put("delivery", delivery);
