@@ -96,7 +96,6 @@
 		</select>
 		<input type="text" id="searchHeadItem" name="searchHeadItem" value="${headItemSearch.searchHeadItem}"/>
 		<input type="button" class="btn btn-default" id="searchBtn" value="검색" /> <a href="/viewHeadItemList"><input type="button" class="btn btn-default" value="전체보기"/></a>
-		
 	</form>
 	</div>
 		<div class="col-sm-2">
@@ -106,8 +105,11 @@
 <br/>
 <div class="row">
 	<div class="col-sm-2">
-	</div>	  
-		<div class="col-sm-8 cartBtn">
+	</div>	
+		<div class="col-sm-2">  
+			<h3>= 상품 리스트 =</h3>
+		</div>
+		<div class="col-sm-6 cartBtn">
 			<input type="button" id="cartBtn" class="btn btn-default" value="장바구니담기">
 		</div>
 	<div class="col-sm-2">

@@ -17,7 +17,7 @@
 	</div>
 	<div class="col-sm-8">
 		<div id="mainpng">
-			<img src="/resources/img/main.png" >
+			<a href="/"><img src="/resources/img/main.png" ></a>
 		</div>
 		<div class="container">
 			<ul class="nav nav-tabs" role="tablist">

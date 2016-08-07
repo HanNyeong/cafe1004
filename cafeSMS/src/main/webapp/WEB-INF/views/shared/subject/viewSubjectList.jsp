@@ -37,7 +37,7 @@
 </script>
 </head>
 <body>
-	<h1>계정과목목록</h1>
+	<h2>계정과목목록</h2>
 	<form id="subjectList" action="/viewSubjectList" method="POST">
 		<input type="hidden" id="upDown" name="upDown" value="" />
 		<input type="hidden" id="criteria" name="criteria" value=""/>

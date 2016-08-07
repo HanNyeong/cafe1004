@@ -39,7 +39,12 @@
 </script>
 </head>
 <body>
-
+<jsp:include page="/WEB-INF/module/nav.jsp"/>
+<div class="row">
+	<div class="col-sm-2">
+	</div>
+	
+	<div class="col-sm-8">
 	<form id="recipeList" action="/subViewRecipeList" method="POST">
 		<input type="hidden" id="upDown" name="upDown" value="" />
 		<input type="hidden" id="criteria" name="criteria" value=""/>
@@ -54,27 +59,54 @@
 			<option value="menu_code" <c:if test="${recipeSearch.searchKey eq 'menu_code'}">selected="selected"</c:if>>메뉴코드</option>
 		</select>
 		<input type="text" id="searchRecipe" name="searchRecipe" value="${recipeSearch.searchRecipe}"/>
-		<input type="button" id="searchBtn" value="검색" /><a href="/viewrecipeList"><input type="button" value="전체보기"/></a>
+		<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
+		<a href="/viewrecipeList"><input type="button" class="btn btn-default" value="전체보기"/></a>
 	</form>
-	<P>
-		1:레시피 코드<span class="up">▲</span><span class="down">▼</span>
-		2:조리 순서<span class="up">▲</span><span class="down">▼</span>
-		3:조리 내용<span class="up">▲</span><span class="down">▼</span>
-		4:레시피 등록 날짜<span class="up">▲</span><span class="down">▼</span>
-		5:메뉴 코드<span class="up">▲</span><span class="down">▼</span>
-		6:본사 승인 직원 ID
-		
+	</div>
+		<div class="col-sm-2">
+	</div>
+</div>
+<br/>
+<br/>
+<div class="row tablediv">
+	<div class="col-sm-2">
+	</div>
+	<div class="col-sm-1 th">
+		레시피 코드<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		조리 순서<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-2 th">
+		조리 내용<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-2 th">	
+		레시피 등록 날짜<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		메뉴 코드<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		본사 승인 직원 ID
+	</div>
+	<div class="col-sm-2">
+	</div>
+</div>	
 
-	</P>        
+       
 	<c:forEach var="recipeList" items="${subViewRecipeList}">	
-		<p>
-			1:${recipeList.recipeCode}
-			2:${recipeList.recipeOrder}
-			3:${recipeList.recipeAct}
-			4:${recipeList.recipeRegitDate}
-			5:${recipeList.menuCode}
-			6:${recipeList.headStaffId}
-		</p>	
+	<div class="row tablediv">
+		<div class="col-sm-2">
+		</div>	 
+			<div class="col-sm-1">${recipeList.recipeCode}</div>
+			<div class="col-sm-1">${recipeList.recipeOrder}</div>
+			<div class="col-sm-2">${recipeList.recipeAct}</div>
+			<div class="col-sm-2">${recipeList.recipeRegitDate}</div>
+			<div class="col-sm-1">${recipeList.menuCode}</div>
+			<div class="col-sm-1">${recipeList.headStaffId}</div>
+		<div class="col-sm-2">
+		</div>
+	</div>	
 	</c:forEach>
 </body>
 </html>
