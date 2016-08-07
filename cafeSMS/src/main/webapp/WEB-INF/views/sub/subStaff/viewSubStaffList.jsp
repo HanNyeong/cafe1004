@@ -7,7 +7,7 @@
 <title>viewSubStaffList</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
-	$.list = function(upDown,criteria){
+	var list = function(upDown,criteria){
 		$('#upDown').attr('value',upDown);
 		$('#criteria').attr('value',criteria);
 		$('#subStaffList').submit();	
@@ -17,13 +17,18 @@
 
 		$('.up').each(function(index,item){
 			$(item).click(function(){
-				$.list('ASC',columnList[index]);
+				list('ASC',columnList[index]);
 			});
 		});
 		$('.down').each(function(index,item){
 			$(item).click(function(){
 				$.list('DESC',columnList[index]);
 			});
+		});
+		$('#viewMoreBtn').click(function(){
+			var viewMore = $('#viewMore').val();
+			$('#viewMore').val(viewMore*1+25);
+			$('#subStaffList').submit();
 		});
 		$('#searchBtn').click(function(){
 			if($('#searchSubStaff').val() == ""){
@@ -47,7 +52,6 @@
 				$('.subSalaryForm')[index].submit();
 			});	
 		});
-		
 	});
 </script>
 </head>
@@ -58,9 +62,11 @@
 	</div>	
 	<div class="col-sm-8">
 	<form id="subStaffList" action="/viewSubStaffList" method="POST">
-		<input type="hidden" id="upDown" name="upDown" value="" />
-		<input type="hidden" id="criteria" name="criteria" value=""/>
+		<input type="hidden" id="upDown" name="upDown" value="${subStaffSearch.upDown}" />
+		<input type="hidden" id="criteria" name="criteria" value="${subStaffSearch.criteria}"/>
+		<input type="hidden" id="viewMore" name="viewMore" value="${subStaffSearch.viewMore}"/>
 		<input type="hidden" id="subCode" name="subCode" value="${subLogin.subCode}"/>
+		
 		등록 날짜: 
 		<input type="date" name="regitDateStart" value="${subStaffSearch.regitDateStart}"/> ~
 		<input type="date" name="regitDateEnd" value="${subStaffSearch.regitDateEnd}"/> 
@@ -74,7 +80,7 @@
 <!-- 			<option value="sub_telephone">퇴사직원</option> -->
 			<!-- 승인여부는 본사측 기능입니다. -->
 		</select>
-		<input type="text" id="searchSubStaff" name="searchSubStaff" value="${subStaffSearch.searchSubStaff}"/>
+		<input type="text" id="search" name="search" value="${subStaffSearch.search}"/>
 		<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
 		<a href="/viewSubStaffList"><input type="button" class="btn btn-default"  value="전체보기"/></a>
 	</form>
@@ -158,6 +164,9 @@
 			</div>
 		</c:if>	
 	</c:forEach>
+	<div>
+		<input type="button" class="btn btn-default" id="viewMoreBtn" value="더보기"/>
+	</div>
 <jsp:include page="/WEB-INF/module/footer.jsp"/>
 </body>
 </html>

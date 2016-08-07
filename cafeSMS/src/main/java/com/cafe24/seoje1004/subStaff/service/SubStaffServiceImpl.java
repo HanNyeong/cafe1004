@@ -13,8 +13,8 @@ import com.cafe24.seoje1004.sub.model.SubLogin;
 import com.cafe24.seoje1004.subAccount.model.SubAccount;
 import com.cafe24.seoje1004.subAccount.repository.SubAccountDao;
 import com.cafe24.seoje1004.subStaff.model.SubStaff;
-import com.cafe24.seoje1004.subStaff.model.SubStaffSearch;
 import com.cafe24.seoje1004.subStaff.repository.SubStaffDao;
+import com.cafe24.seoje1004.util.Search;
 
 @Service
 public class SubStaffServiceImpl implements SubStaffService{
@@ -45,7 +45,7 @@ public class SubStaffServiceImpl implements SubStaffService{
 	 * @return
 	 */
 	@Override
-	public List<SubStaff> viewSubStaffListService(SubStaffSearch subStaffSearch,SubLogin subLogin) {
+	public List<SubStaff> viewSubStaffListService(Search subStaffSearch,SubLogin subLogin) {
 		System.out.println("SubStaffServiceImpl viewSubStaffListService실행");
 		System.out.println("SubServiceImpl viewSubListService. 조회 실행");
 		if(subStaffSearch.getSearchKey() == "joinPermit" || subStaffSearch.getSearchKey() == "part_time_job"){

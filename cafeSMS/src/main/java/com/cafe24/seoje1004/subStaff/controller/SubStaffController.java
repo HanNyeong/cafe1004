@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cafe24.seoje1004.sub.model.SubLogin;
 import com.cafe24.seoje1004.subStaff.model.SubStaff;
-import com.cafe24.seoje1004.subStaff.model.SubStaffSearch;
 import com.cafe24.seoje1004.subStaff.service.SubStaffService;
+import com.cafe24.seoje1004.util.Search;
 
 @Controller
 public class SubStaffController {
@@ -56,7 +56,7 @@ public class SubStaffController {
 	 * @return
 	 */
 	@RequestMapping(value="/viewSubStaffList")
-	public String viewSubStaffList(Model model,SubStaffSearch subStaffSearch,SubLogin subLogin){
+	public String viewSubStaffList(Model model,Search subStaffSearch,SubLogin subLogin){
 		System.out.println("SubStaffController viewSubStaffList실행");
 		System.out.println(subStaffSearch);
 		model.addAttribute("subStaffList",subStaffService.viewSubStaffListService(subStaffSearch,subLogin));

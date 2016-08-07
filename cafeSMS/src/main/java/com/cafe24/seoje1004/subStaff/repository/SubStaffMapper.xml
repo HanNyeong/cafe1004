@@ -100,17 +100,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="subStaffSearch.regitDateStart != null and subStaffSearch.regitDateEnd != null and subStaffSearch.regitDateStart !='' and subStaffSearch.regitDateEnd !=''">
 				AND <![CDATA[date(sub_staff_regit_date) >= #{subStaffSearch.regitDateStart} and date(sub_staff_regit_date) <= #{subStaffSearch.regitDateEnd}]]>  
 			</if>
-			<if test="subStaffSearch.searchKey != null and subStaffSearch.searchKey != '' and subStaffSearch.searchSubStaff != null and subStaffSearch.searchSubStaff != ''">
+			<if test="subStaffSearch.searchKey != null and subStaffSearch.searchKey != '' and subStaffSearch.search != null and subStaffSearch.search != ''">
 					AND  ${subStaffSearch.searchKey} like CONCAT('%',#{subStaffSearch.searchSubStaff},'%') 
 			</if>
 			
 		</where>
-		<if test="subStaffSearch.criteria == null and subStaffSearch.upDown == null">
+		<if test="subStaffSearch.criteria == null and subStaffSearch.criteria == '' and subStaffSearch.upDown == null and subStaffSearch.upDown == ''">
 			order by sub_staff_regit_date desc
 		</if>
 		<if test="subStaffSearch.criteria != null and subStaffSearch.upDown != null and subStaffSearch.criteria != null and subStaffSearch.upDown != ''">
 			order by ${subStaffSearch.criteria} ${subStaffSearch.upDown}
 		</if>
+		LIMIT 0,${subStaffSearch.viewMore}
 	
 	</select>
 		
