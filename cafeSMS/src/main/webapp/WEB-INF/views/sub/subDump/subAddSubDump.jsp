@@ -30,8 +30,10 @@ $(document).ready(function(){
 				<p>가맹 담당 직원 : <input type="text" id="subStaffCode" name="subStaffCode" value=""/></p>
 				<p>가맹대표코드 : <input type="text" id="subCode" name="subCode" readonly="readonly" value="${reSubDump.subCode}"/></p>
 			</div>	
-			      <input type="button" id="addSubDumpBtn" class="btn btn-default" name="addSubDumpBtn" value="등록"/>      
 			<br/>
+			<div class="clickBtn">
+			      <input type="button" id="addSubDumpBtn" class="btn btn-default" name="addSubDumpBtn" value="등록"/>      
+			</div>
 			<br/>
 			
 		</form> 

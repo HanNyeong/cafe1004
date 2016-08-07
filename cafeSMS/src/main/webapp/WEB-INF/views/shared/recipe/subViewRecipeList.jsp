@@ -117,5 +117,6 @@
 		</div>
 	</div>	
 	</c:forEach>
+<jsp:include page="/WEB-INF/module/footer.jsp"/>
 </body>
 </html>

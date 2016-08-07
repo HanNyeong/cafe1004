@@ -52,6 +52,11 @@
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/module/nav.jsp"/>
+<div class="row">
+	<div class="col-sm-2">
+	</div>	
+	<div class="col-sm-8">
 	<form id="subStaffList" action="/viewSubStaffList" method="POST">
 		<input type="hidden" id="upDown" name="upDown" value="" />
 		<input type="hidden" id="criteria" name="criteria" value=""/>
@@ -73,45 +78,86 @@
 		<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
 		<a href="/viewSubStaffList"><input type="button" class="btn btn-default"  value="전체보기"/></a>
 	</form>
-	<div>
-		<a href="/subAddSubStaff"><input type="button" class="btn btn-default" value="가맹등록"/></a>
 	</div>
-	<P>
-		1:가맹 직원 코드<span class="up">▲</span><span class="down">▼</span>
-		2:직원 이름<span class="up">▲</span><span class="down">▼</span>
-		3:직급<span class="up">▲</span><span class="down">▼</span>
-		4:입사일<span class="up">▲</span><span class="down">▼</span>
-		5: 퇴사일<span class="up">▲</span><span class="down">▼</span>
-		6:급여<span class="up">▲</span><span class="down">▼</span>
+	<div class="col-sm-2">
+	</div>
+</div>
+<br/>
+<br/>
+<div class="row">
+	<div class="col-sm-2">
+	</div>	
+	<div class="col-sm-2">
+		<h3>= 가맹 직원 리스트 =</h3>
+	</div>
+	<div class="col-sm-6 clickBtn">
+		<a href="/subAddSubStaff"><input type="button" class="btn btn-default" value="직원등록"/></a>
+	</div>
+	<div class="col-sm-2">
+	</div>	
+</div>
+<div class="row tablediv">
+	<div class="col-sm-2">
+	</div>
+	<div class="col-sm-1 th">
+		가맹 직원 코드<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		이름(직급)<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		입사일<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		 퇴사일<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		급여<span class="up">▲</span><span class="down">▼</span>
 		 <!-- 급여는 가맹만 조회가능 -->
-		7: 등록일자<span class="up">▲</span><span class="down">▼</span>
-		8:본사 승인 직원 ID<span class="up">▲</span><span class="down">▼</span>
-		9:승인 날짜<span class="up">▲</span><span class="down">▼</span>
-	</P>        
+	</div>
+	<div class="col-sm-1 th">
+		 등록일자<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		승인 날짜<span class="up">▲</span><span class="down">▼</span>
+    </div>
+    <div class="col-sm-1 th">
+    	수정
+	</div>
+	<div class="col-sm-2">
+	</div>
+</div>   
 	<c:forEach var="subStaffList" items="${subStaffList}">
-	
-		<p>
-			1:${subStaffList.subStaffCode}
-			2:${subStaffList.subStaffName}
-			3:${subStaffList.subStaffLevel}
-			4:${subStaffList.subStaffJoin}
-			5:${subStaffList.subStaffResign}
-			6:${subStaffList.subStaffSalary}
-			7:${subStaffList.subStaffRegitDate}
-			8:${subStaffList.headStaffId}
-			9:${subStaffList.subStaffPermitDate}
-			<c:if test="${subLogin != null}">
-				<a href="/subModifySubStaff?subStaffCode=${subStaffList.subStaffCode}">
-				<input type="button" class="btn btn-default"  value="수정"/></a>
-				<c:if test="${subStaffList.subStaffResign == null}">
-					<a href="/subModifySubStaffByRegsign?subStaffCode=${subStaffList.subStaffCode}&subCode=${subStaffList.subCode}">
-					<input type="button" class="btn btn-default"  value="퇴사"/></a>
-					<a href="/subAddSubAccount?subStaffCode=${subStaffList.subStaffCode}">
-					<input type="button" class="btn btn-default" value="급여지금"/></a>
-				</c:if>
-			</c:if>
-		</p>
-	
+		<c:if test="${subLogin != null}">
+			<div class="row tablediv">
+			<div class="col-sm-2">
+			</div>	
+				<div class="col-sm-1">${subStaffList.subStaffCode}</div>
+				<div class="col-sm-1">${subStaffList.subStaffName}(${subStaffList.subStaffLevel})</div>
+				<div class="col-sm-1">${subStaffList.subStaffJoin}</div>
+				<div class="col-sm-1">${subStaffList.subStaffResign}
+					<c:if test="${subStaffList.subStaffResign == null}">
+						<a href="/subModifySubStaffByRegsign?subStaffCode=${subStaffList.subStaffCode}&subCode=${subStaffList.subCode}">
+						<input type="button" class="btn btn-default"  value="퇴사"/></a>
+					</c:if>
+				</div>
+				<div class="col-sm-1">${subStaffList.subStaffSalary}
+					<c:if test="${subStaffList.subStaffResign == null}">
+						<a href="/subAddSubAccount?subStaffCode=${subStaffList.subStaffCode}">
+						<input type="button" class="btn btn-default" value="급여지금"/></a>
+					</c:if>
+				</div>
+				<div class="col-sm-1">${subStaffList.subStaffRegitDate}</div>
+				<div class="col-sm-1">${subStaffList.subStaffPermitDate}</div>
+				<div class="col-sm-1">
+					<a href="/subModifySubStaff?subStaffCode=${subStaffList.subStaffCode}">
+					<input type="button" class="btn btn-default"  value="수정"/></a>
+				</div>
+			<div class="col-sm-2">
+			</div>
+			</div>
+		</c:if>	
 	</c:forEach>
+<jsp:include page="/WEB-INF/module/footer.jsp"/>
 </body>
 </html>
