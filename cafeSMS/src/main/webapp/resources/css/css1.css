@@ -5,7 +5,14 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-
+/* subAddSubStaff.jsp  */
+.plusForm{
+	background-color: #e6e6e6;
+	text-align: center;
+}
+#redId{
+	color: red;
+}
 /* add.jsp  */
 #addSubDumpBtn{
 	margin-left: 70%;
