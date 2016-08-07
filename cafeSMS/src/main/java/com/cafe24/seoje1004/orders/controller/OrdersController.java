@@ -67,6 +67,15 @@ public class OrdersController {
 		return "redirect:/viewOrdersList?subCode="+cartDetail.getSubCode().get(0);
 	}
 	
+	//본사측 결제 Y인상품 리스트 뿌려주기
+	@RequestMapping(value="/headViewOrdersList")
+	public String headViewOrdersList(Model model,OrdersSearch ordersSearch) {
+		System.out.println("본사측  ordersList//headViewOrdersList실행");
+		List<Orders> ordersList = ordersService.viewOrdersListByHeadService(ordersSearch);
+		model.addAttribute("ordersList",ordersList);
+		return "/shared/orders/headViewOrdersList";
+	}
+	
 	//결제 페이지로 이동
 	@RequestMapping(value="/subOrdersPayConfirm")
 	public String subOrdersPayConfirm(Model model,OrdersSearch ordersSearch,SubLogin subLogin){

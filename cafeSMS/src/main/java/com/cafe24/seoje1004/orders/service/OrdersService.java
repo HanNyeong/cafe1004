@@ -30,4 +30,6 @@ public interface OrdersService {
 
 	void subDeleteOrdersCancelService(OrderGroup orderGroup);
 
+	List<Orders> viewOrdersListByHeadService(OrdersSearch ordersSearch);
+
 }

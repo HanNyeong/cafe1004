@@ -56,10 +56,6 @@ public class OrdersServiceImpl implements OrdersService{
 		System.out.println("OrdersServiceImpl//addOrdersService실행");
 		Map<String,Object> map = new HashMap<String,Object>();
 		
-/*		//delivery insert test 를위한임의값
-	
-		//orders insert test 를위한임의값
-		*/
 		
 		//여러개 객체가 왔을경우를 대비한 리스트 생성
 //		List<Orders> ordersList = new ArrayList<Orders>();
@@ -96,7 +92,7 @@ public class OrdersServiceImpl implements OrdersService{
 		}
 		//맵에 집어넣자
 		
-		/*ordersDao.selectspecific(map);*/
+//		ordersDao.selectspecific(map);
 	}
 	//결제유무 update Service
 	@Override
@@ -136,6 +132,14 @@ public class OrdersServiceImpl implements OrdersService{
 			ordersDao.subDeleteOrdersCancel(orders);
 		}
 		
+	}
+	//본사측 orders승인을위한 service
+	@Override
+	public List<Orders> viewOrdersListByHeadService(OrdersSearch ordersSearch) {
+		System.out.println("viewOrdersListByHeadService실행");
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("ordersSearch", ordersSearch);
+		return ordersDao.viewOrdersListByHead(map);
 	}
 
 }

@@ -30,5 +30,7 @@ public interface OrdersDao {
 
 	void subDeleteOrdersCancel(Orders orders);
 
+	List<Orders> viewOrdersListByHead(Map<String, Object> map);
+
 
 }

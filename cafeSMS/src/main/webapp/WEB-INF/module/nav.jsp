@@ -78,7 +78,7 @@
 				본사관리 <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="/headAddSub">가맹관리</a></li>
-						<li><a href="#">발주조회</a></li>
+						<li><a href="/headViewOrdersList">발주조회</a></li>
 						<li><a href="/headViewClaimList">클래임조회</a></li>
 						<li><a href="/headViewDeliveryList">배송조회</a></li>
 						<li><a href="/headViewReturnsList">반품조회</a></li>

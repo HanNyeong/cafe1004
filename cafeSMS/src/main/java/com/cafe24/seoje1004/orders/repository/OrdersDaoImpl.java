@@ -76,6 +76,12 @@ public class OrdersDaoImpl implements OrdersDao{
 		System.out.println("OrdersDaoImpl//subModifyOrdersCancel실행");
 		sqlSessionOrders.delete(NS+".subDeleteOrdersCancel",orders);
 	}
+	//본사 리스트
+	@Override
+	public List<Orders> viewOrdersListByHead(Map<String, Object> map) {
+		System.out.println("OrdersDaoImpl//viewOrdersListByHead실행");
+		return sqlSessionOrders.selectList(NS+".viewOrdersListByHead",map);
+	}
 	
 	
 	
