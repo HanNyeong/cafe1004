@@ -80,7 +80,7 @@ public class CartController {
 	 * @param cart
 	 * @return
 	 */
-	@RequestMapping(value="subModifyCart",method=RequestMethod.POST)
+	@RequestMapping(value="/subModifyCart",method=RequestMethod.POST)
 	public String subModifyCartPost(Model model,Cart cart){
 		System.out.println("CartController subModifyCart.POST 실행");
 	    System.out.println(cart);
@@ -102,13 +102,12 @@ public class CartController {
 	 * @return
 	 */
 	@RequestMapping(value="/subDeleteCart",method=RequestMethod.POST)
-	public String subDeleteCart(Model model, 
-			Carts cart){
+	public String subDeleteCart(Model model,Carts cart){
 		System.out.println("CartController subDeleteCart실행");
 		System.out.println(cart);
-		cartService.subDeleteCartService(cart);	
+		cartService.subDeleteCartService(cart);
 //		?subCode="+cart.getSubCode()
-		return "redirect:/subViewCartList";
+		return "redirect:/subViewCartList?subCode="+cart.getSubCode().get(0);
 	}
 	
 }
