@@ -13,8 +13,6 @@
 		$('#subStaffList').submit();	
 	}
 	$(document).ready(function(){
-		//컬럼 명 지정해주는 배열 
-		//자기입맛에 맛게 고쳐 쓰세요
 		var columnList = ['sub_staff_code','sub_staff_name','sub_staff_level','sub_staff_join','sub_staff_resign','sub_staff_salary','sub_staff_regit_date','head_staff_id','sub_staff_permit_date']
 
 		$('.up').each(function(index,item){
@@ -54,7 +52,6 @@
 </script>
 </head>
 <body>
-
 	<form id="subStaffList" action="/viewSubStaffList" method="POST">
 		<input type="hidden" id="upDown" name="upDown" value="" />
 		<input type="hidden" id="criteria" name="criteria" value=""/>
@@ -73,10 +70,11 @@
 			<!-- 승인여부는 본사측 기능입니다. -->
 		</select>
 		<input type="text" id="searchSubStaff" name="searchSubStaff" value="${subStaffSearch.searchSubStaff}"/>
-		<input type="button" id="searchBtn" value="검색" /><a href="/viewSubStaffList"><input type="button" value="전체보기"/></a>
+		<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
+		<a href="/viewSubStaffList"><input type="button" class="btn btn-default"  value="전체보기"/></a>
 	</form>
 	<div>
-		<a href="/subAddSubStaff"><input type="button" value="가맹등록"/></a>
+		<a href="/subAddSubStaff"><input type="button" class="btn btn-default" value="가맹등록"/></a>
 	</div>
 	<P>
 		1:가맹 직원 코드<span class="up">▲</span><span class="down">▼</span>
@@ -103,10 +101,13 @@
 			8:${subStaffList.headStaffId}
 			9:${subStaffList.subStaffPermitDate}
 			<c:if test="${subLogin != null}">
-				<a href="/subModifySubStaff?subStaffCode=${subStaffList.subStaffCode}"><input type="button" value="수정"/></a>
+				<a href="/subModifySubStaff?subStaffCode=${subStaffList.subStaffCode}">
+				<input type="button" class="btn btn-default"  value="수정"/></a>
 				<c:if test="${subStaffList.subStaffResign == null}">
-					<a href="/subModifySubStaffByRegsign?subStaffCode=${subStaffList.subStaffCode}&subCode=${subStaffList.subCode}"><input type="button" value="퇴사"/></a>
-					<a href="/subAddSubAccount?subStaffCode=${subStaffList.subStaffCode}"><input type="button" value="급여지금"/></a>
+					<a href="/subModifySubStaffByRegsign?subStaffCode=${subStaffList.subStaffCode}&subCode=${subStaffList.subCode}">
+					<input type="button" class="btn btn-default"  value="퇴사"/></a>
+					<a href="/subAddSubAccount?subStaffCode=${subStaffList.subStaffCode}">
+					<input type="button" class="btn btn-default" value="급여지금"/></a>
 				</c:if>
 			</c:if>
 		</p>

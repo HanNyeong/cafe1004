@@ -86,7 +86,7 @@
 		<h3>= 주문내역 =</h3>
 	</div>
 	<div class="col-sm-6 clickBtn">
-		<a href="/subOrdersPayConfirm?subCode=${subLogin.subCode}"><input type="button" id="ordersPay" class="btn btn-default" value="결제하기"></a>	
+		<a href="/subOrdersPayConfirm?subCode=${subLogin.subCode}"><input type="button" id="ordersPay"  value="결제하기"></a>	
 	</div>
 	<div class="col-sm-2">
 	</div>	
