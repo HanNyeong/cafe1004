@@ -186,4 +186,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM sub_orders
 	
 	</select>
+	
+	<update id="modifyOrdersConfirm"
+			parameterType="java.util.Map">
+			UPDATE sub_orders
+			SET
+				sub_orders_head_check = NOW(),
+				head_orders_confirm = #{orders.headOrdersConfirm},
+				head_staff_id = #{orders.headStaffId},
+				sub_orders_status = #{orders.subOrdersStatus}
+			WHERE 
+				orders_code = #{orders.ordersCode}
+	</update>
+	
+	<update id="modifyDeliveryLocation"
+			parameterType="java.util.Map">
+			UPDATE delivery
+			SET
+				delivery_location = #{delivery.deliveryLocation},
+				delivery_person = #{delivery.deliveryPerson}
+			WHERE orders_code = #{orders.ordersCode}
+	</update>
 </mapper>

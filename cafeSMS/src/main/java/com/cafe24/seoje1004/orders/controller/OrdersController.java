@@ -102,4 +102,13 @@ public class OrdersController {
 		return "redirect:/viewOrdersList?subCode="+orderGroup.getSubCode().get(0);
 	}
 	
+	//본사측에서 해당 orders 승인 modify head_orders_confirm
+	@RequestMapping(value="/modifyOrdersConfirm")
+	public String modifyOrdersConfirm(OrderGroup orderGroup) {
+		System.out.println("modifyOrdersConfirm실행");
+		System.out.println(orderGroup.getHeadItemCode());
+		ordersService.modifyOrdersConfirmService(orderGroup);
+		return "redirect:/headViewOrdersList";
+	}
+	
 }

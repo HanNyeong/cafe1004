@@ -32,4 +32,6 @@ public interface OrdersService {
 
 	List<Orders> viewOrdersListByHeadService(OrdersSearch ordersSearch);
 
+	void modifyOrdersConfirmService(OrderGroup orderGroup);
+
 }

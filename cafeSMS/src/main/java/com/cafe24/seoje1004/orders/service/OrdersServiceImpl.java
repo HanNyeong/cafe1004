@@ -141,5 +141,32 @@ public class OrdersServiceImpl implements OrdersService{
 		map.put("ordersSearch", ordersSearch);
 		return ordersDao.viewOrdersListByHead(map);
 	}
+	//본사주문승인 modifyOrdersServie
+	@Override
+	public void modifyOrdersConfirmService(OrderGroup orderGroup) {
+		System.out.println("modifyOrdersConfirmService");
+		Map<String,Object> map = new HashMap<String,Object>();
+		for(int i = 0; i<orderGroup.getOrdersCode().size();i++) {
+			Orders orders = new Orders();
+			orders.setOrdersCode(orderGroup.getOrdersCode().get(i));
+			orders.setSubCode(orderGroup.getSubCode().get(i));
+			orders.setHeadItemCode(orderGroup.getHeadItemCode().get(i));
+			orders.setSubOrdersQuantity(orderGroup.getSubOrdersQuantity().get(i));
+			orders.setTotalAccountGroup(orderGroup.getTotalAccountGroup().get(i));
+			orders.setHeadStaffId("head_staff_id1");
+			orders.setSubOrdersStatus("배송준비중");
+			orders.setHeadOrdersConfirm("Y");
+			map.put("orders", orders);
+			
+			Delivery delivery = new Delivery();
+			delivery.setDeliveryPerson("head_staff_id1");
+			delivery.setDeliveryLocation("물류센터");
+			map.put("delivery", delivery);
+			
+			ordersDao.modifyOrdersConfirm(map);
+			ordersDao.modifyDeliveryLocation(map);
+			
+		}
+	}
 
 }

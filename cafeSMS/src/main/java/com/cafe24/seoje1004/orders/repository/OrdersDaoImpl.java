@@ -83,6 +83,22 @@ public class OrdersDaoImpl implements OrdersDao{
 		return sqlSessionOrders.selectList(NS+".viewOrdersListByHead",map);
 	}
 	
+	//본사주문승인 Dao (ordersConfirm)
+	@Override
+	public void modifyOrdersConfirm(Map<String, Object> map) {
+		System.out.println("modifyOrdersConfirm실행");
+		sqlSessionOrders.update(NS+".modifyOrdersConfirm",map);
+	}
+	
+	//본사주문승인 Dao (deliveryLocation)
+	@Override
+	public void modifyDeliveryLocation(Map<String, Object> map) {
+		System.out.println("modifyDeliveryLocation실행");
+		sqlSessionOrders.update(NS+".modifyDeliveryLocation",map);
+	}
+	
+	//본사주문승인 Dao (sub_stock insert)
+	
 	
 	
 	

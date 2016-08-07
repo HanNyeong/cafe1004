@@ -47,11 +47,14 @@
 		    			console.log("체크됨");
 						$("input[class=ordersCode]:eq(" + index + ")").prop('name','ordersCode');
 						$("input[class=subCode]:eq(" + index + ")").prop('name','subCode');
+						$("input[class=headItemCode]:eq(" + index + ")").prop('name','headItemCode');
+						$("input[class=subOrdersQuantity]:eq(" + index + ")").prop('name','subOrdersQuantity');
+						$("input[class=totalAccountGroup]:eq(" + index + ")").prop('name','totalAccountGroup');
 		    		}else{
 		    			console.log("안됨")
 		    		}
 		    	});
-	    		$('#ordersListForm').prop('action','/modifyOrdersPay');
+	    		$('#ordersListForm').prop('action','/modifyOrdersConfirm');
 	    		$('#ordersListForm').submit();
 		    }
 		});
@@ -86,7 +89,7 @@
 		<h3>= 주문내역 =</h3>
 	</div>
 	<div class="col-sm-6 clickBtn">
-		<a href=""><input type="button" id="ordersConfirm" class="btn btn-default" value="승인하기"></a>
+		<input type="button" id="ordersConfirm" class="btn btn-default" value="승인하기">
 	</div>
 	<div class="col-sm-2">
 	</div>	
@@ -117,17 +120,19 @@
 		주문 직원<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">
-		본사 확인 여부<span class="up">▲</span><span class="down">▼</span>
+		본사 확인<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-2">
 	</div>
 </div>
 	<form id="ordersListForm" action="" method="POST">
 		<c:forEach var="ordersList" items="${ordersList}">
-			<c:if test="${ordersList.ordersPay == 'Y'}">
+			<c:if test="${ordersList.ordersPay == 'Y' && ordersList.headOrdersConfirm == 'N'}">
 				<input type="hidden" class="ordersCode" name="" value="${ordersList.ordersCode}">
 				<input type="hidden" class="subCode" name="" value="${subLogin.subCode}">
-				
+				<input type="hidden" class="subOrdersQuantity" name="" value="${ordersList.subOrdersQuantity}">
+				<input type="hidden" class="headItemCode" name="" value="${ordersList.headItemCode}">
+				<input type="hidden" class="totalAccountGroup" name="" value="${ordersList.totalAccountGroup}">
 				<div class="row tablediv">
 				<div class="col-sm-2">
 				</div>	

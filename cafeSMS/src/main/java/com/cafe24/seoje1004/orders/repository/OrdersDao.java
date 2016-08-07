@@ -32,5 +32,9 @@ public interface OrdersDao {
 
 	List<Orders> viewOrdersListByHead(Map<String, Object> map);
 
+	void modifyOrdersConfirm(Map<String, Object> map);
+
+	void modifyDeliveryLocation(Map<String, Object> map);
+
 
 }
