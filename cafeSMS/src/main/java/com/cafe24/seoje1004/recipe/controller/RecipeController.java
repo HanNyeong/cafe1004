@@ -25,12 +25,14 @@ public class RecipeController {
 	@RequestMapping(value="/subViewRecipeList")
 	
 	public String subViewRecipeList(Model model, RecipeSearch recipeSearch,SubLogin subLogin,
-									@RequestParam("menuCode")String menuCode){
+									@RequestParam("menuCode")String menuCode,
+									@RequestParam("menuName")String menuName){
 		System.out.println("RecipeController subViewRecipeList실행");
 		System.out.println(recipeSearch);
 		System.out.println(menuCode+"확인작업");
 		model.addAttribute("subViewRecipeList", recipeService.subViewRecipeListService(recipeSearch,subLogin,menuCode));
 		model.addAttribute("menuCode", menuCode);
+		model.addAttribute("menuName",menuName);
 		return "/shared/recipe/subViewRecipeList";
 	}
 }

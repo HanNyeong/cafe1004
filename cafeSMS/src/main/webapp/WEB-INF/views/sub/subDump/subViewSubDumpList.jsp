@@ -73,7 +73,10 @@
 <div class="row">
 	<div class="col-sm-2">
 	</div>	
-		<div class="col-sm-8 cartBtn">
+		<div class="col-sm-2">  
+			<h3>= 폐기 관리 리스트 =</h3>
+		</div>
+		<div class="col-sm-6 clickBtn">
 			<a href="/subAddSubDump?subCode=${subLogin.subCode}">
 				<input type="button" class="btn btn-default" id="subDumpAddBtn" name="subDumpAddBtn" value="폐기등록">
 			</a>

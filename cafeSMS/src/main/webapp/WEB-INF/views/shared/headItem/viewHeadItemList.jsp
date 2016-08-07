@@ -109,7 +109,7 @@
 		<div class="col-sm-2">  
 			<h3>= 상품 리스트 =</h3>
 		</div>
-		<div class="col-sm-6 cartBtn">
+		<div class="col-sm-6 clickBtn">
 			<input type="button" id="cartBtn" class="btn btn-default" value="장바구니담기">
 		</div>
 	<div class="col-sm-2">

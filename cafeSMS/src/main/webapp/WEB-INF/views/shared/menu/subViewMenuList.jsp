@@ -67,6 +67,15 @@
 </div>
 <br/>
 <br/>
+<div class="row">
+	<div class="col-sm-2">
+	</div>	
+	<div class="col-sm-8">
+		<h3>= 메뉴 리스트 =</h3>
+	</div>
+	<div class="col-sm-2">
+	</div>	
+</div>
 <div class="row tablediv">
 	<div class="col-sm-2">
 	</div>
@@ -110,7 +119,7 @@
 			<div class="col-sm-1">${menuList.eventCode}</div>
 			<div class="col-sm-1">${menuList.headStaffId}</div>
 			<div class="col-sm-1">
-				<a href="subViewRecipeList?menuCode=${menuList.menuCode}">레시피 보기</a>
+				<a href="subViewRecipeList?menuCode=${menuList.menuCode}&menuName=${menuList.menuName}">레시피 보기</a>
 			</div>
 		<div class="col-sm-2">
 		</div>
