@@ -67,6 +67,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				sub_staff_join,
 				head_staff_id,
 				sub_staff_permit_date,
+				sub_staff_resign,
 				sub_staff_regit_date,
 				sub_staff_salary         
 			FROM 

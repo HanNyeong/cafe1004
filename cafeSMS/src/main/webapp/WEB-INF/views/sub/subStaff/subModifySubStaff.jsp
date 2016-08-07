@@ -32,7 +32,7 @@ $(document).ready(function(){
 			<p>가맹대표코드 : ${reSub.subCode}</p>
 			<p>직급 : <input type="text" name="subStaffLevel" id="subStaffLevel" value="${reSubStaff.subStaffLevel}"/></p>
 			<p>입사일 : ${reSubStaff.subStaffJoin}</p>
-			<p>퇴사일 :<input type="text" name="subStaffResign" id="subStaffResign" value="${reSubStaff.subStaffResign}"/></p>
+			<p>퇴사일 : ${reSubStaff.subStaffResign}</p>
 			<p>승인 본사 직원 ID : ${headStaff.headStaffId}</p>
 			<p>승인 날짜 : ${reSubStaff.subStaffPermitDate}</p>
 			<p>등록일자 : ${reSubStaff.subStaffRegitDate}</p>

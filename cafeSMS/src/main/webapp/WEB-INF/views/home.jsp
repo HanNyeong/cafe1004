@@ -31,7 +31,7 @@
 			} else if ($('#customerPhone').val() == "") {
 				alert('전화번호를 입력하세요.');
 			}  else {
-				$('#claimForm').submit();
+				$('#claimMainForm').submit();
 			}
 			
 		});
@@ -46,7 +46,7 @@
 	<div class="col-sm-4">
 		<c:if test="${subLogin eq null}">
 			<div class="container">
-				<form role="form" action="/customerViewClaimList" method="get" id="claimForm">
+				<form role="form" action="/customerViewClaimList" method="get" id="claimMainForm">
 					<h2>고객  센터</h2>
 					<div class="form-group">
 						<label for="customerName">이름 : </label>
