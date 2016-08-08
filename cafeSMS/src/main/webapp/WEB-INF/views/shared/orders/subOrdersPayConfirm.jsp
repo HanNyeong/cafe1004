@@ -83,7 +83,7 @@
 	<div class="col-sm-2">
 	</div>	
 	<div class="col-sm-2">
-		<h3>= 주문내역 =</h3>
+		<h3>= 최종 발주 리스트 =</h3>
 	</div>
 	<div class="col-sm-6 clickBtn">
 		<a href="/viewOrdersList?subCode=${subLogin.subCode}"><input type="button" id="ordersPay" class="btn btn-default" value="결제하기"></a>	
@@ -96,7 +96,7 @@
 	</div>
 	<div class="col-sm-1 th">
 		<input type="checkbox" id="selectAll" class="selectAll" name="selectAll" onclick="selectAll(this)" value="전체 선택">
-		발주 코드<span class="up">▲</span><span class="down">▼</span>
+		발주코드<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">
 		주문 수량<span class="up">▲</span><span class="down">▼</span>
@@ -117,7 +117,7 @@
 		주문 직원<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">
-		본사 확인 여부<span class="up">▲</span><span class="down">▼</span>
+		본사확인<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-2">
 	</div>
@@ -148,7 +148,7 @@
 			</c:if>
 		</c:forEach>
 	</form>
-	
-	<!-- 주문취소,결제하기 btn추가 0804할일 -->
+<jsp:include page="/WEB-INF/module/footer.jsp"/>
+
 </body>
 </html>

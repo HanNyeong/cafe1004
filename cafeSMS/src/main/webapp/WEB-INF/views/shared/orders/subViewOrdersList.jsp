@@ -59,7 +59,11 @@
 	});
 </script>
 <body>
-	<h1>주문내역</h1>
+<jsp:include page="/WEB-INF/module/nav.jsp"/>
+<div class="row">
+	<div class="col-sm-2">
+	</div>	
+	<div class="col-sm-8">
 	<form id="ordersListOrderBy" action="/viewOrdersList" method="POST">
 		<input type="hidden" id="upDown" name="upDown" value="" />
 		<input type="hidden" id="criteria" name="criteria" value=""/>
@@ -68,49 +72,96 @@
 		<input type="date" name="regitDateStart" value="${ordersSearch.regitDateStart}"/> ~
 		<input type="date" name="regitDateEnd" value="${ordersSearch.regitDateEnd}"/> 
 		<br/><br/>
-		<a href="/subOrdersPayConfirm?subCode=${subLogin.subCode}"><input type="button" id="ordersPay" value="전체리스트보기"></a>
+		<a href="/subOrdersPayConfirm?subCode=${subLogin.subCode}">
+		<input type="button" id="ordersPay" class="btn btn-default" value="전체리스트보기"></a>
 	</form>
-	<input type="button" id="ordersPayBtn" value="결제">
-	<input type="button" id="ordersPayBtn" value="결제취소">
-	<p>
-		1.발주 코드<span class="up">▲</span><span class="down">▼</span>
-		2.주문 그룹 코드<span class="up">▲</span><span class="down">▼</span>
-		3.주문 수량<span class="up">▲</span><span class="down">▼</span>
-		4.주문 날짜<span class="up">▲</span><span class="down">▼</span>
-		5.본사 확인 날짜<span class="up">▲</span><span class="down">▼</span>
-		6.배송 상태<span class="up">▲</span><span class="down">▼</span>
-		7.결제 유무<span class="up">▲</span><span class="down">▼</span>
-		8.결제 날짜<span class="up">▲</span><span class="down">▼</span>
-		9.상품 코드<span class="up">▲</span><span class="down">▼</span>
-		10.주문 직원<span class="up">▲</span><span class="down">▼</span>
-		11.승인 본사 직원<span class="up">▲</span><span class="down">▼</span>
-		12.본사 확인 여부<span class="up">▲</span><span class="down">▼</span>
-		13.전체선택<input type="checkbox" id="selectAll" class="selectAll" name="selectAll" onclick="selectAll(this)" value="전체 선택">
-	</p>
+	</div>
+	<div class="col-sm-2">
+	</div>
+</div>
+<br/>
+<br/>
+<div class="row">
+	<div class="col-sm-2">
+	</div>	
+	<div class="col-sm-8">
+		<h3>= 주문내역 =</h3>
+	</div>
+	<div class="col-sm-2">
+	</div>	
+</div>
+<div class="row">
+	<div class="col-sm-2">
+	</div>	
+	<div class="col-sm-8 clickBtn">		
+		<input type="button" id="ordersPayBtn" class="btn btn-default" value="결제">
+		<input type="button" id="ordersPayBtn" class="btn btn-default" value="결제취소">
+	</div>
+	<div class="col-sm-2">
+	</div>	
+</div>
+<div class="row tablediv">
+	<div class="col-sm-2">
+	</div>
+	<div class="col-sm-1 th">
+		<input type="checkbox" id="selectAll" class="selectAll" name="selectAll" onclick="selectAll(this)" value="전체 선택">
+		발주코드<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		주문 수량<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		주문 날짜<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		본사확인날<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		배송 상태<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		결제 날짜<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		상품 코드<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		주문직원<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-2">
+	</div>
+</div>
 	<form id="ordersListForm" action="" method="POST">
 		<c:forEach var="ordersList" items="${ordersList}">
 		<c:if test="${ordersList.ordersPay == 'N'}">
 				<input type="hidden" class="ordersCode" name="" value="${ordersList.ordersCode}">
 				<input type="hidden" class="subCode" name="" value="${subLogin.subCode}">
-				<div>
-					1.${ordersList.ordersCode} 
-					2.${ordersList.subOrdersGroup} 
-					3.${ordersList.subOrdersQuantity} 
-					4.${ordersList.subOrdersDate} 
-					5.${ordersList.subOrdersHeadCheck} 
-					6.${ordersList.subOrdersStatus} 
-					7.${ordersList.ordersPay} 
-					8.${ordersList.ordersPayDate} 
-					9.${ordersList.headItemCode} 
-					10.${ordersList.subStaffCode} 
-					11.${ordersList.headStaffId} 
-					12.${ordersList.headOrdersConfirm}
-					13.<input type="checkbox" class="checking" name="checking">
+			<div class="row tablediv">
+				<div class="col-sm-2">
+				</div>	
+					<div class="col-sm-1">
+						<input type="checkbox" class="checking" name="checking">
+						${ordersList.ordersCode} 
+					</div>
+					<div class="col-sm-1">${ordersList.subOrdersQuantity} </div>
+					<div class="col-sm-1">${ordersList.subOrdersDate} </div>
+					<div class="col-sm-1">
+						(${ordersList.headOrdersConfirm})
+						${ordersList.subOrdersHeadCheck} 
+					</div>
+					<div class="col-sm-1">${ordersList.subOrdersStatus}</div>
+					<div class="col-sm-1">
+						(${ordersList.ordersPay})
+						${ordersList.ordersPayDate} 
+					</div>
+					<div class="col-sm-1">${ordersList.headItemCode} </div>
+					<div class="col-sm-1">${ordersList.subStaffCode} </div>
+				<div class="col-sm-2">
 				</div>
+			</div>
 		</c:if>
 		</c:forEach>
 	</form>
-	
-	<!-- 주문취소,결제하기 btn추가 0804할일 -->
+<jsp:include page="/WEB-INF/module/footer.jsp"/>
 </body>
 </html>
