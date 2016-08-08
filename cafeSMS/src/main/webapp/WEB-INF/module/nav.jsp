@@ -35,7 +35,7 @@
 						<li><a href="/subViewSubDumpList">폐기관리</a></li>
 					</ul>
 				</li>
-				
+			
 			<!-- 메뉴관리 -->
 				<li><a href="/subViewMenuList">메뉴관리</a></li>
 			
@@ -68,6 +68,7 @@
 				회계관리 <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="/subAccountKeeperCheck">회계관리</a></li>
+						<li><a href="/subViewSubSellList?subCode=${subLogin.subCode}">판매 관리</a></li>
 						<li><a href="/viewSubjectList">계정과목 관리</a></li>
 					</ul>
 				</li>

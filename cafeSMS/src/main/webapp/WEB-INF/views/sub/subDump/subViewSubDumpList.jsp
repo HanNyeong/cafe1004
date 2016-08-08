@@ -97,16 +97,16 @@
 		폐기 날짜<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">
-		본사 상품 코드<span class="up">▲</span><span class="down">▼</span>
+		본사상품C<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">
-		개별 상품 코드<span class="up">▲</span><span class="down">▼</span>
+		개별상품C<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">
-		가맹 담당 직원<span class="up">▲</span><span class="down">▼</span>
+		담당 직원<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">
-		가맹대표코드<span class="up">▲</span><span class="down">▼</span>
+		대표코드<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-2">
 	</div>

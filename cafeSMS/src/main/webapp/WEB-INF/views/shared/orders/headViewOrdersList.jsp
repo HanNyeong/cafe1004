@@ -99,7 +99,7 @@
 	</div>
 	<div class="col-sm-1 th">
 		<input type="checkbox" id="selectAll" class="selectAll" name="selectAll" onclick="selectAll(this)" value="전체 선택">
-		발주 코드<span class="up">▲</span><span class="down">▼</span>
+		발주코드<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">
 		주문 수량<span class="up">▲</span><span class="down">▼</span>
