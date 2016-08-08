@@ -138,36 +138,6 @@
 	<div class="col-sm-2">
 	</div>
 </div>
-<div class="row">
-	<div class="col-sm-2">
-	</div>
-	<div class="col-sm-8">
-		<P>  The time on the server is ${serverTime}. </P>
-		<a href="/subViewSubStockList?subCode=${subLogin.subCode}">[재고/가맹재고조회]</a>
-		<a href="/subViewContractList?subCode=${subLogin.subCode}">[계약/가맹계약조회]</a>
-		<a href="/headViewContractList">[계약/본사계약조회]</a>
-		<a href="/subViewClaimList?subCode=${subLogin.subCode}">[클래임/가맹클래임조회]</a>
-		<a href="/headViewClaimList">[클래임/본사클래임조회]</a>
-		<a href="/subViewDeliveryList?subCode=${subLogin.subCode}">[배송/가맹측 배송조회]</a>
-		<a href="/headViewDeliveryList">[배송/본사측 배송조회]</a>
-		<a href="/headViewReturnsList">[반품/본사측 반품상품조회]</a>
-		<a href="/subViewReturnsList?subCode=${subLogin.subCode}">[반품/가맹측 반품상품조회]</a>
-		<a href="/subViewSubClientList?subCode=${subLogin.subCode}">@가맹거래처조회@</a>
-		<a href="/viewEventList">[행사조회]</a>
-		<a href="/headAddSub">^^가맹 등록^^</a>
-		<a href="/modifySub?subCode=${subLogin.subCode}">^^가맹수정^^</a>
-		<a href="/viewSubStaffList?subCode=${subLogin.subCode}">^^가맹 직원 조회^^</a>
-		<a href="/subViewMenuList">^^메뉴관리^^</a>
-		<a href="/viewHeadItemList">^^본사 상품리스트^^</a>
-		<a href="/subViewCartList?subCode=${subLogin.subCode}">^^장바구니^^</a>
-		<a href="/viewSubjectList">@계정과목@</a>
-		<a href="/viewOrdersList?subCode=${subLogin.subCode}">@발주내역조회@</a>
-		<a href="/subViewSubDumpList">^^상품폐기^^</a>
-		<a href="/subAccountKeeperCheck">^^가맹통합회계^^</a>
-	</div>
-	<div class="col-sm-2">
-	</div>
-</div>
 <jsp:include page="/WEB-INF/module/footer.jsp"/>
 </body>
 </html>
