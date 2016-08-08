@@ -85,7 +85,7 @@
 	<div class="col-sm-2">
 	</div>	
 	<div class="col-sm-8">
-		<h3>= 주문내역 =</h3>
+		<h3>= 발주 결제 예정 목록 =</h3>
 	</div>
 	<div class="col-sm-2">
 	</div>	

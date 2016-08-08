@@ -164,7 +164,7 @@
 					<c:if test="${subLogin != null}">
 						<input type="hidden" class="subCode" name="subCode" value="${subLogin.subCode}">
 						<input type="hidden" class="hItemCode" name="hItemCode" value="${headItemList.hItemCode}">
-						<input type="number" class="cartQuantity" name="cartQuantity" min="1">
+						<input type="number" class="cartQuantity" name="cartQuantity" min="1" value="1">
 						<input type="checkbox" class="headItemCheck" name="headItemCheck" >
 					</c:if>
 				</div>

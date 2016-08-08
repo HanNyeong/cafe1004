@@ -5,7 +5,13 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-
+/* subAddOrdersByCart.jsp  */
+.inputNoLine,
+.cartQuantity,
+.price{
+	border:none;
+	background-color: #e6e6e6;
+}
 /* claim.jsp  */
 #claimContent{
 	resize:none;

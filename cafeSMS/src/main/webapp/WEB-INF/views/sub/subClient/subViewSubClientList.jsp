@@ -39,7 +39,11 @@
 </script>
 </head>
 <body>
-	<h1>가맹거래처목록</h1>
+<jsp:include page="/WEB-INF/module/nav.jsp"/>
+<div class="row">
+	<div class="col-sm-2">
+	</div>
+	<div class="col-sm-8">
 	<form id="subClientList" action="/subViewSubClientList" method="POST">
 		<input type="hidden" id="upDown" name="upDown" value="" />
 		<input type="hidden" id="criteria" name="criteria" value=""/>
@@ -54,31 +58,78 @@
 			<option value="sub_client_name" <c:if test="${clientSearch.searchKey eq 'sub_client_name'}">selected="selected"</c:if>>가맹거래처명</option>
 		</select>
 		<input type="text" id="searchSubClient" name="searchSubClient" value="${clientSearch.searchSubClient}"/>
-		<input type="button" id="searchBtn" value="검색" /><a href="/subViewSubClientList?subCode=${subLogin.subCode}"><input type="button" value="전체보기"/></a>
+		<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
+		<a href="/subViewSubClientList?subCode=${subLogin.subCode}">
+			<input type="button" class="btn btn-default" value="전체보기"/></a>
 	</form>
-		<p>
-			1:거래처코드<span class="up">▲</span><span class="down">▼</span>
-			2:거래처명 <span class="up">▲</span><span class="down">▼</span>
-			3:거래처등록일<span class="up">▲</span><span class="down">▼</span>
-			4:거래처담당자명<span class="up">▲</span><span class="down">▼</span>
-			5:거래처계약상태<span class="up">▲</span><span class="down">▼</span>
-			6:거래처연락처<span class="up">▲</span><span class="down">▼</span>
-			7:거래처주소<span class="up">▲</span><span class="down">▼</span>
-		</p>
-		<c:forEach var="clientList" items="${clientList}">
-		<p>
-			1:${clientList.subClientCode}
-			2:${clientList.subClientName}
-			3:${clientList.subClientRegitDate}
-			4:${clientList.subClientInCharge}
-			5:${clientList.subClientContract}
-			6:${clientList.subClientPhone}
-			7:${clientList.subClientAddr}
-		</p>
-			<button><a href="/subModifySubClient?subClientCode=${clientList.subClientCode}">정보수정</a></button>
-	</c:forEach>
-	<div>
-		<button><a href="/subAddSubClient">거래처추가</a></button>
 	</div>
+		<div class="col-sm-2">
+	</div>
+</div>
+<br/>
+<br/>
+<div class="row">
+	<div class="col-sm-2">
+	</div>	
+		<div class="col-sm-2">  
+			<h3>= 가맹거래처목록 =</h3>
+		</div>
+		<div class="col-sm-6 clickBtn">			
+			<a href="/subAddSubClient"><button  class="btn btn-default">거래처추가</button></a>
+		</div>
+	<div class="col-sm-2">
+	</div>
+</div>
+<div class="row tablediv">
+	<div class="col-sm-2">
+	</div>
+	<div class="col-sm-1 th">	
+		거래처코드<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		거래처명 <span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		등록일<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		담장자명<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		계약상태<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		연락처<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		주소<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		수정
+	</div>
+	<div class="col-sm-2">
+	</div>
+</div>
+	<c:forEach var="clientList" items="${clientList}">
+	<div class="row tablediv">
+		<div class="col-sm-2">
+		</div>
+		<div class="col-sm-1">${clientList.subClientCode}</div>
+		<div class="col-sm-1">${clientList.subClientName}</div>
+		<div class="col-sm-1">${clientList.subClientRegitDate}</div>
+		<div class="col-sm-1">${clientList.subClientInCharge}</div>
+		<div class="col-sm-1">${clientList.subClientContract}</div>
+		<div class="col-sm-1">${clientList.subClientPhone}</div>
+		<div class="col-sm-1">${clientList.subClientAddr}</div>
+		<div class="col-sm-1">			
+			<a href="/subModifySubClient?subClientCode=${clientList.subClientCode}">
+				<button class="btn btn-default">수정</button>
+			</a>			
+		</div>
+		<div class="col-sm-2">
+		</div>
+	</div>
+	</c:forEach>
+<jsp:include page="/WEB-INF/module/footer.jsp"/>
 </body>
 </html>

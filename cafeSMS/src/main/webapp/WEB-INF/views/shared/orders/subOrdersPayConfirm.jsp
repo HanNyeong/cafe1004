@@ -35,27 +35,6 @@
 				$.list('DESC',columnList[index]);
 			});
 		});
-		$('#modifyPayBtn').click(function(){
-			if($('.checking:checked').size()<1){
-		        alert("1개 이상 체크해주세요");
-		        console.log("delete");
-		    }else{
-		    	$('.checking').each(function(index,item){
-		    		if(!$(this).is(":checked")){
-		    			console.log("체크안됨");
-		    		}else if($(this).is(":checked")){
-		    			console.log("체크됨");
-						$("input[class=ordersCode]:eq(" + index + ")").prop('name','ordersCode');
-						$("input[class=subCode]:eq(" + index + ")").prop('name','subCode');
-		    		}else{
-		    			console.log("안됨")
-		    		}
-		    	});
-	    		$('#ordersListForm').prop('action','/modifyOrdersPay');
-	    		$('#ordersListForm').submit();
-		    }
-		});
-		
 	});
 </script>
 <body>
@@ -86,7 +65,7 @@
 		<h3>= 최종 발주 리스트 =</h3>
 	</div>
 	<div class="col-sm-6 clickBtn">
-		<a href="/viewOrdersList?subCode=${subLogin.subCode}"><input type="button" id="ordersPay" class="btn btn-default" value="결제하기"></a>	
+		<a href="/viewOrdersList?subCode=${subLogin.subCode}"><input type="button" id="ordersPay" class="btn btn-default" value="발주추기"></a>	
 	</div>
 	<div class="col-sm-2">
 	</div>	
@@ -95,7 +74,6 @@
 	<div class="col-sm-2">
 	</div>
 	<div class="col-sm-1 th">
-		<input type="checkbox" id="selectAll" class="selectAll" name="selectAll" onclick="selectAll(this)" value="전체 선택">
 		발주코드<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">
@@ -131,10 +109,7 @@
 				<div class="row tablediv">
 				<div class="col-sm-2">
 				</div>	
-					<div class="col-sm-1">
-						<input type="checkbox" class="checking" name="checking">
-						${ordersList.ordersCode}  
-					</div>	
+					<div class="col-sm-1">${ordersList.ordersCode}</div>	
 					<div class="col-sm-1">${ordersList.subOrdersQuantity}</div>	
 					<div class="col-sm-1">${ordersList.subOrdersDate}</div>	 
 					<div class="col-sm-1">${ordersList.ordersPayDate}</div>	 

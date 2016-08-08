@@ -16,22 +16,34 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<h1> 장바구니 수정 </h1>
-<form action="/subModifyCart" method="POST" id="modifyCartForm">
-   <input type="hidden" name="cartCode" value="${reCart.cartCode}" />
-   <input type="hidden" name="hItemCode" value="${reCart.hItemCode}" />
-   <input type="hidden" name="subCode" value="${subLogin.subCode}" />
-<div>
-   	<p>장바구니 코드 : ${reCart.cartCode}</p>
- 	<p>상품 수량 : <input type="number" id="cartQuantity" name="cartQuantity" min="1" value="${reCart.cartQuantity}"/></p>
-	<p>본사 상품 코드 : ${reCart.hItemCode}</p>
-	<p>가맹 대표 코드 : ${reCart.subCode}</p>
+<jsp:include page="/WEB-INF/module/nav.jsp"/>
+<div class="row">
+	<div class="col-sm-4">
+	</div>
+		<div class="col-sm-3 addForm">
+			<h1> 장바구니 수정 </h1>
+		<form action="/subModifyCart" method="POST" id="modifyCartForm">
+		   <input type="hidden" name="cartCode" value="${reCart.cartCode}" />
+		   <input type="hidden" name="hItemCode" value="${reCart.hItemCode}" />
+		   <input type="hidden" name="subCode" value="${subLogin.subCode}" />
+		<div>
+		   	<p>장바구니 코드 : ${reCart.cartCode}</p>
+		 	<p>상품 수량 : <input type="number" id="cartQuantity" name="cartQuantity" min="1" value="${reCart.cartQuantity}"/></p>
+			<p>본사 상품 코드 : ${reCart.hItemCode}</p>
+			<p>가맹 대표 코드 : ${reCart.subCode}</p>
+		</div>
+		<br/>
+			<div class="clickBtn">
+				<input type="button" id="modifyCartBtn" class="btn btn-default" name="modifyCartBtn" value="수정"/>
+		    </div>
+			<br/>  
+		</form> 
+		</div>
+	<div class="col-sm-5">
+	</div>
 </div>
 
-   <div>
-      <input type="button" id="modifyCartBtn" name="modifyCartBtn" value="수정"/>
-      
-   </div>
-</form> 
+<jsp:include page="/WEB-INF/module/footer.jsp"/>
+
 </body>
 </html>

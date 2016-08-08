@@ -88,7 +88,12 @@
 </script>
 </head>
 <body>
-
+<jsp:include page="/WEB-INF/module/nav.jsp"/>
+<div class="row">
+	<div class="col-sm-2">
+	</div>
+	
+	<div class="col-sm-8">
 	<form id="cartList" action="/subViewCartList" method="POST">
 		<input type="hidden" id="upDown" name="upDown" value="" />
 		<input type="hidden" id="criteria" name="criteria" value=""/>
@@ -101,33 +106,90 @@
 			<option value="sub_code" <c:if test="${cartSearch.searchKey eq 'sub_code'}">selected="selected"</c:if>>가맹 대표 코드</option>
 		</select>
 		<input type="text" id="searchCart" name="searchCart" value="${cartSearch.searchCart}"/>
-		<input type="button" id="searchBtn" value="검색" /><a href="/viewcartList"><input type="button" value="전체보기"/></a>
+		<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
+		<a href="/viewcartList"><input type="button" class="btn btn-default" value="전체보기"/></a>
 	</form>
-	<P>
-		1:장바구니 코드<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-2">
+	</div>
+</div>
+<br/>
+<br/>
+<div class="row">
+	<div class="col-sm-2">
+	</div>	
+		<div class="col-sm-2">  
+			<h3>= 장바구니 =</h3>
+		</div>
+		<div class="col-sm-6 clickBtn">
+			<input type="button" id="cartDeleteBtn" class="btn btn-default" name="cartDeleteBtn" value="삭제">
+			<input type="button" id="ordersBtn" class="btn btn-default" name="ordersBtn" value="주문">
+		</div>
+	<div class="col-sm-2">
+	</div>
+</div>
+<div class="row tablediv">
+	<div class="col-sm-2">
+	</div>
+	<div class="col-sm-1 th">
+		전체선택<input type="checkbox" id="selectAll" class="selectAll" name="selectAll" onclick="selectAll(this)" value="전체 선택">
+	</div>
+	<div class="col-sm-2 th">	
+		장바구니 코드<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
 		상품이름<span class="up">▲</span><span class="down">▼</span>
-		2:상품 수량<span class="up">▲</span><span class="down">▼</span>
-		3:본사 상품 코드<span class="up">▲</span><span class="down">▼</span>
-		4:가맹 대표 코드<span class="up">▲</span><span class="down">▼</span>
-		5:상푸
-		6:전체선택<input type="checkbox" id="selectAll" class="selectAll" name="selectAll" onclick="selectAll(this)" value="전체 선택">
-	</P>        
+	</div>
+	<div class="col-sm-1 th">
+		상품 수량<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		본사상품C<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		가맹대표C<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		수량수정
+	</div>
+   	<div class="col-sm-2">
+	</div>
+</div>    
 	<form id="cartListForm" action="/subDeleteCart" method="POST">
 		<c:forEach var="cartList" items="${cartList}">
-			<p>
-				1:${cartList.cartCode}	<input type="hidden" class="cartCode" name="cartCode" value="${cartList.cartCode}">
-				${cartList.hItemName}
-				2:${cartList.cartQuantity}<input type="hidden" class="cartQuantity" name="cartQuantity" value="${cartList.cartQuantity}">
-				3:${cartList.hItemCode}	<input type="hidden" class="hItemCode" name="hItemCode" value="${cartList.hItemCode}">
-				4:${cartList.subCode}	<input type="hidden" class="subCode" name="subCode" value="${cartList.subCode}">
-										<input type="hidden" class="hItemName" name="hItemName" value="${cartList.hItemName}">
-										<input type="hidden" class="hItemSellingPrice" name="hItemSellingPrice" value="${cartList.hItemSellingPrice}">
-				5:<a href="/subModifyCart?cartCode=${cartList.cartCode}"><input type="button" id="cartModifyBtn" name="cartModifyBtn" value="수정"></a>
-				6:						<input type="checkbox" class="checking" name="checking">
-			</p>
+		<div class="row tablediv">
+			<div class="col-sm-2">
+			</div>
+			<div class="col-sm-1"><input type="checkbox" class="checking" name="checking"></div>
+			<div class="col-sm-2">
+				${cartList.cartCode}
+				<input type="hidden" class="cartCode" name="cartCode" value="${cartList.cartCode}">
+			</div>
+			<div class="col-sm-1">${cartList.hItemName}</div>
+			<div class="col-sm-1">
+				${cartList.cartQuantity}
+				<input type="hidden" class="cartQuantity" name="cartQuantity" value="${cartList.cartQuantity}">
+			</div>
+			<div class="col-sm-1">
+				${cartList.hItemCode}	
+				<input type="hidden" class="hItemCode" name="hItemCode" value="${cartList.hItemCode}">
+			</div>
+			<div class="col-sm-1">
+				${cartList.subCode}	
+				<input type="hidden" class="subCode" name="subCode" value="${cartList.subCode}">
+				<input type="hidden" class="hItemName" name="hItemName" value="${cartList.hItemName}">
+				<input type="hidden" class="hItemSellingPrice" name="hItemSellingPrice" value="${cartList.hItemSellingPrice}">
+			</div>
+			<div class="col-sm-1">
+				<a href="/subModifyCart?cartCode=${cartList.cartCode}">
+				<input type="button" id="cartModifyBtn" class="btn btn-default" name="cartModifyBtn" value="수정"></a>
+			</div>
+			<div class="col-sm-2">
+			</div>
+		</div>
 		</c:forEach>
-		<input type="button" id="cartDeleteBtn" name="cartDeleteBtn" value="삭제">
-		<input type="button" id="ordersBtn" name="ordersBtn" value="주문">
 	</form>
+
+<jsp:include page="/WEB-INF/module/footer.jsp"/>
 </body>
 </html>
