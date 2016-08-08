@@ -184,4 +184,13 @@
 	<bean id="sqlSessionSubStock" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactorySubStock" />
 	</bean>
+	
+	<!-- 판매 관리 -->
+	<bean id="sqlSessionFactorySubSell" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:com/cafe24/seoje1004/subSell/repository/SubSellMapper.xml" />
+	</bean>
+	<bean id="sqlSessionSubSell" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactorySubSell" />
+	</bean>
 </beans>

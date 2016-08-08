@@ -22,7 +22,7 @@
 		});
 		$('.down').each(function(index,item){
 			$(item).click(function(){
-				$.list('DESC',columnList[index]);
+				list('DESC',columnList[index]);
 			});
 		});
 		// 더보기

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cafe24.seoje1004.subSell.repository.SubSellMapper">
+	<!-- SubSell객체등록 -->
+	<resultMap type="com.cafe24.seoje1004.subSell.model.SubSell" id="subSellResultMap">
+	     <id property="subSellCode" column="sub_sell_code"/>
+	     <result property="inteCode" column="inte_code"/>
+	     <result property="subSellGroup" column="sub_sell_group"/>
+	     <result property="subSellDate" column="sub_sell_date"/>
+	     <result property="subSellPracticalSellingPrice" column="sub_sell_practical_selling_price"/>
+	     <result property="totalAccountGroup" column="total_account_group"/>
+	     <result property="subSellFinal" column="sub_sell_final"/>
+	     <result property="subSellFinalDate" column="sub_sell_final_date"/>
+	     <result property="payMethod" column="pay_method"/>
+	     <result property="subCode" column="sub_code"/>
+	     <result property="eventCode" column="event_code"/>
+	     <result property="subStaffCode" column="sub_staff_code"/>
+	     <result property="subSellFinalStaff" column="sub_sell_final_staff"/>
+	     <result property="subSellCost" column="sub_sell_cost"/>
+   	</resultMap>
+
+	<!-- 가맹 판매 조회 -->
+	<select id ="subViewSubSellList"
+			parameterType="java.util.Map"
+			resultMap="subSellResultMap">
+		SELECT
+			sub_sell_code
+			,inte_code
+			,sub_sell_group
+			,sub_sell_date
+			,sub_sell_practical_selling_price
+			,total_account_group
+			,sub_sell_final
+			,sub_sell_final_date
+			,pay_method
+			,sub_code
+			,event_code
+			,sub_staff_code
+			,sub_sell_final_staff
+			,sub_sell_cost
+		FROM
+			sub_sell
+		<where>
+			sub_code = #{subCode}
+			<if test="search.regitDateStart != null and search.regitDateEnd != null and search.regitDateStart !='' and search.regitDateEnd !=''">
+				AND <![CDATA[date(sub_sell_date) >= #{search.regitDateStart} and date(sub_sell_date) <= #{search.regitDateEnd}]]>  
+			</if>
+			<if test="search.searchKey != null and search.searchKey != '' and search.search != null and search.search != ''">
+					AND  ${search.searchKey} like CONCAT('%',#{search.search},'%') 
+			</if>
+			
+		</where>
+		<if test="search.criteria == null and search.criteria == '' and search.upDown == null and search.upDown == ''">
+			order by sub_sell_date desc
+		</if>
+		<if test="search.criteria != null and search.upDown != null and search.criteria != null and search.upDown != ''">
+			order by ${search.criteria} ${search.upDown}
+		</if>
+		LIMIT 0,${search.viewMore}
+	
+	</select>
+	
+	<!-- 가맹 판매 마감처리 -->
+	<update id="subSellFinal"
+			parameterType="String">
+		UPDATE	
+			sub_sell
+		SET	
+			sub_sell_final = "Y",
+			sub_sell_final_date = NOW()
+		WHERE
+			sub_sell_code = #{subSellCode}
+	</update>
+</mapper>
