@@ -96,7 +96,7 @@
 		메뉴 코드<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">	
-		본사 승인 직원 ID
+		본사승인직원ID
 	</div>
 	<div class="col-sm-2">
 	</div>

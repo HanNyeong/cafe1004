@@ -140,7 +140,7 @@
 		소비자가격<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">	
-		<input type="checkbox" id="cartDeleteAll" class="cartCodeChk" name="cartDeleteAll" onclick="selectHeadItemAll(this)" value="전체 선택">
+		수량 <input type="checkbox" id="cartDeleteAll" class="cartCodeChk" name="cartDeleteAll" onclick="selectHeadItemAll(this)" value="전체 선택">
 	</div>
 	<div class="col-sm-2">
 	</div>

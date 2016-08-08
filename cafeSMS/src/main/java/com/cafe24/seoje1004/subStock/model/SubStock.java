@@ -10,7 +10,6 @@ public class SubStock {
 	private String headStockInDate;		//본사가 가맹에 입고한 날짜
 	private String subStockInDate;		//가맹이 화인하고 입고한 날짜
 	private String subStockOut;		//판매여부
-	private String subStockConfirmDate;		//배송확인날짜
 	private String ordersCode;		//주문코드
 	private String subCode;		//가맹대표코드
 	private String headItemCode;	//본사상품코드
@@ -40,12 +39,6 @@ public class SubStock {
 	}
 	public void setSubStockOut(String subStockOut) {
 		this.subStockOut = subStockOut;
-	}
-	public String getSubStockConfirmDate() {
-		return subStockConfirmDate;
-	}
-	public void setSubStockConfirmDate(String subStockConfirmDate) {
-		this.subStockConfirmDate = subStockConfirmDate;
 	}
 	public String getOrdersCode() {
 		return ordersCode;
@@ -80,11 +73,9 @@ public class SubStock {
 	@Override
 	public String toString() {
 		return "SubStock [subStockCode=" + subStockCode + ", headStockInDate=" + headStockInDate + ", subStockInDate="
-				+ subStockInDate + ", subStockOut=" + subStockOut + ", subStockConfirmDate=" + subStockConfirmDate
-				+ ", ordersCode=" + ordersCode + ", subCode=" + subCode + ", headItemCode=" + headItemCode
-				+ ", specificItemCode=" + specificItemCode + ", subStaffCode=" + subStaffCode + "]";
+				+ subStockInDate + ", subStockOut=" + subStockOut + ", ordersCode=" + ordersCode + ", subCode="
+				+ subCode + ", headItemCode=" + headItemCode + ", specificItemCode=" + specificItemCode
+				+ ", subStaffCode=" + subStaffCode + "]";
 	}
-	
-	
 	
 }

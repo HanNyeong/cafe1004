@@ -10,7 +10,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	     <result property="headStockInDate" column="head_stock_in_date"/>
 	     <result property="subStockInDate" column="sub_stock_in_date"/>
 	     <result property="subStockOut" column="sub_stock_out"/>
-	     <result property="subStockConfirmDate" column="sub_stock_confirm_date"/>
 	     <result property="ordersCode" column="orders_code"/>
 	     <result property="subCode" column="sub_code"/>
 	     <result property="headItemCode" column="head_item_code"/>
@@ -30,7 +29,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			,head_stock_in_date
 			,sub_stock_in_date
 			,sub_stock_out
-			,sub_stock_confirm_date
 			,orders_code
 			,sub_code
 			,head_item_code

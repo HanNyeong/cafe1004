@@ -85,7 +85,7 @@
 	<c:when test="${sub == null}">
 	<h1> 가맹 등록 : </h1>
 		<form action="/headAddSub" method="POST" id="addSubForm">
-			<div>본사 직원 ID :<input type="text" id="headStaffId" name="headStaffId" readonly="readonly" style="border: none;" value="head"/></div>
+			<div>본사직원ID :<input type="text" id="headStaffId" name="headStaffId" readonly="readonly" style="border: none;" value="head"/></div>
 			<div>가맹점 명 :<input type="text" id="subName" name="subName" /><span id="subNameHelper"></span></div>
 			<div>가맹 점주명 :<input type="text" id="subKeeper" name="subKeeper" /><span id="subKeeperHelper"></span></div>
 			<div>비밀번호 :<input type="password" id="subPassword" name="subPassword" /></div>

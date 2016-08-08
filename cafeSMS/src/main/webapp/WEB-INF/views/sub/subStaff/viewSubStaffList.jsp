@@ -25,6 +25,7 @@
 				$.list('DESC',columnList[index]);
 			});
 		});
+		// 더보기
 		$('#viewMoreBtn').click(function(){
 			var viewMore = $('#viewMore').val();
 			$('#viewMore').val(viewMore*1+25);
@@ -106,7 +107,7 @@
 	<div class="col-sm-2">
 	</div>
 	<div class="col-sm-1 th">
-		가맹 직원 코드<span class="up">▲</span><span class="down">▼</span>
+		직원코드<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">
 		이름(직급)<span class="up">▲</span><span class="down">▼</span>
@@ -147,10 +148,10 @@
 						<input type="button" class="btn btn-default"  value="퇴사"/></a>
 					</c:if>
 				</div>
-				<div class="col-sm-1">${subStaffList.subStaffSalary}
+				<div class="col-sm-1">${subStaffList.subStaffSalary} 원
 					<c:if test="${subStaffList.subStaffResign == null}">
 						<a href="/subAddSubAccount?subStaffCode=${subStaffList.subStaffCode}">
-						<input type="button" class="btn btn-default" value="급여지금"/></a>
+						<input type="button" class="btn btn-default" value="지급"/></a>
 					</c:if>
 				</div>
 				<div class="col-sm-1">${subStaffList.subStaffRegitDate}</div>
@@ -164,9 +165,15 @@
 			</div>
 		</c:if>	
 	</c:forEach>
-	<div>
+<div class="row tablediv">
+	<div class="col-sm-2">
+	</div>
+	<div class="col-sm-8">
 		<input type="button" class="btn btn-default" id="viewMoreBtn" value="더보기"/>
 	</div>
+	<div class="col-sm-2">
+	</div>
+</div>
 <jsp:include page="/WEB-INF/module/footer.jsp"/>
 </body>
 </html>

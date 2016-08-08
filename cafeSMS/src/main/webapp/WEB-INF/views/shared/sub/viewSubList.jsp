@@ -11,11 +11,11 @@
 <body>
 	<div>
 
-		     	<div>가맹 대표 코드 : ${subList.subCode}</div>
-				<div>본사 직원 ID : ${subList.headStaffId}</div>
-				<div>가맹 등록 날짜 : ${subList.subRegitDate}</div>
+		     	<div>가맹대표코드 : ${subList.subCode}</div>
+				<div>본사직원ID : ${subList.headStaffId}</div>
+				<div>가맹등록날짜 : ${subList.subRegitDate}</div>
 				<div>가맹점 명 : ${subList.subName}</div>
-				<div>가맹 점주 명 :${subList.subKeeper} </div>
+				<div>가맹점주명 :${subList.subKeeper} </div>
 				<div>연락처 : ${subList.subTelephone}</div>
 				<div>주소 : ${subList.subAddr}</div>
 

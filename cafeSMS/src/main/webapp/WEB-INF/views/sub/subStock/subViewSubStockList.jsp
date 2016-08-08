@@ -66,22 +66,6 @@
 			$('#subStockList').submit();
 		});
 		
-		
-		
-		$('#subStockConfirmDateUp').click(function(){
-			
-			$('#criteria').attr('value','sub_stock_confirm_date');
-			$('#upDown').attr('value','DESC');
-			$('#subStockList').submit();
-		});
-		$('#subStockConfirmDateDown').click(function(){
-			
-			$('#criteria').attr('value','sub_stock_confirm_date');
-			$('#upDown').attr('value','ASC');
-			$('#subStockList').submit();
-		});
-		
-		
 		$('#ordersCodeUp').click(function(){
 			
 			$('#criteria').attr('value','orders_code');
@@ -184,7 +168,6 @@
 			headStockInDate<span id="headStockInDateUp">▲</span><span id="headStockInDateDown">▼</span>
 			subStockInDate<span id="subStockInDateUp">▲</span><span id="subStockInDateDown">▼</span>
 			subStockOut<span id="subStockOutUp">▲</span><span id="subStockOutDown">▼</span>
-			subStockConfirmDate<span id="subStockConfirmDateUp">▲</span><span id="subStockConfirmDateDown">▼</span>
 			ordersCode<span id="ordersCodeUp">▲</span><span id="ordersCodeDown">▼</span>
 			subCode<span id="subCodeUp">▲</span><span id="subCodeDown">▼</span>
 			headItemCode<span id="headItemCodeUp">▲</span><span id="headItemCodeDown">▼</span>
@@ -201,7 +184,6 @@
 					${subStockList.headStockInDate}
 					${subStockList.subStockInDate}
 					${subStockList.subStockOut}
-					${subStockList.subStockConfirmDate}
 					${subStockList.ordersCode}
 					${subStockList.subCode}
 					${subStockList.headItemCode}
@@ -221,7 +203,6 @@
 					${subStockList.headStockInDate}
 					${subStockList.subStockInDate}
 					${subStockList.subStockOut}
-					${subStockList.subStockConfirmDate}
 					${subStockList.ordersCode}
 					${subStockList.subCode}
 					${subStockList.headItemCode}

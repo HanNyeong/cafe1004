@@ -29,11 +29,11 @@
             <td>${reSub.subCode}</td>
          </tr>
          <tr>
-            <td>본사 직원 ID</td>
+            <td>본사직원ID</td>
             <td>${headStaffLogin.headStaffId}</td>
          </tr>
          <tr>
-            <td>가맹 등록 날짜</td>
+            <td>가맹등록날짜</td>
             <td>${reSub.subRegitDate}</td>
          </tr>
          <tr>
