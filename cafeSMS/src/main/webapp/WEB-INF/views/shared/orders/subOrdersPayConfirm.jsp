@@ -35,6 +35,9 @@
 				$.list('DESC',columnList[index]);
 			});
 		});
+		$('#searchBtn').click(function(){
+			$('#ordersListOrderBy').submit();
+		});
 	});
 </script>
 <body>
@@ -51,6 +54,8 @@
 			<input type="date" name="regitDateStart" value="${clientSearch.regitDateStart}"/> ~
 			<input type="date" name="regitDateEnd" value="${clientSearch.regitDateEnd}"/> 
 			<br/><br/>
+		<input type="button" class="btn btn-default" id="searchBtn" value="검색" /> 
+		<a href="/subOrdersPayConfirm?subCode=${subLogin.subCode}"><input type="button" class="btn btn-default" value="전체보기"/></a>
 		</form>
 	</div>
 	<div class="col-sm-2">
@@ -65,7 +70,7 @@
 		<h3>= 최종 발주 리스트 =</h3>
 	</div>
 	<div class="col-sm-6 clickBtn">
-		<a href="/viewOrdersList?subCode=${subLogin.subCode}"><input type="button" id="ordersPay" class="btn btn-default" value="발주추기"></a>	
+		<a href="/viewOrdersList?subCode=${subLogin.subCode}"><input type="button" id="ordersPay" class="btn btn-default" value="발주추가"></a>	
 	</div>
 	<div class="col-sm-2">
 	</div>	

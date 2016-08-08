@@ -20,48 +20,34 @@
 </script>
 </head>
 <body>
-<h1> 가맹 수정 </h1>
-   <form action="/headModifySub" method="POST" id="modifySubForm">
-      <input type="hidden" name="subCode" value="${reSub.subCode}" />
-      <table>
-         <tr>
-            <td>가맹코드</td>
-            <td>${reSub.subCode}</td>
-         </tr>
-         <tr>
-            <td>본사직원ID</td>
-            <td>${headStaffLogin.headStaffId}</td>
-         </tr>
-         <tr>
-            <td>가맹등록날짜</td>
-            <td>${reSub.subRegitDate}</td>
-         </tr>
-         <tr>
-            <td>가맹점 명</td>
-            <td><input type="text" id="subName" name="subName" value="${reSub.subName}" /></td>
-         </tr>
-         <tr>
-            <td>가맹 점주명</td>
-            <td><input type="text" id="subKeeper" name="subKeeper" value="${reSub.subKeeper}"/></td>
-         </tr>
-         <tr>
-            <td>연락처</td>
-            <td>
-               <input type="text" name="subTelephone" id="subTelephone" value="${reSub.subTelephone}" numberonly="true"/>
-            </td>
-         </tr>
-         <tr>
-            <td>주소</td>
-            <td>
-               <input type="text" name="subAddr" id="subAddr" value="${reSub.subAddr}"/>
-            </td>
-         </tr> 
-      </table>
-      <div>
-         <input type="button" id="subModifyBtn" name="subModifyBtn" value="수정"/>
-         <a href="/"><input type="button" value="취소"/></a>
-      </div>
-   </form>
-   
+<jsp:include page="/WEB-INF/module/nav.jsp"/>
+<div class="row">
+		<div class="col-sm-4">
+		</div>
+		<div class="col-sm-3 addForm">
+			<h1> 가맹 수정 </h1>
+				<form action="/headModifySub" method="POST" id="modifySubForm">
+					<input type="hidden" name="subCode" value="${reSub.subCode}" />
+					<div>
+						<p>가맹코드 : ${reSub.subCode}</p>
+						<p>가맹등록날짜 : ${reSub.subRegitDate}</p>
+						<p>가맹점 명 : <input type="text" id="subName" name="subName" value="${reSub.subName}"/></p>
+						<p>가맹 점주명 : <input type="text" id="subKeeper" name="subKeeper" value="${reSub.subKeeper}"/></p>
+						<p>연락처 : <input type="text" id="subTelephone" name="subTelephone" value="${reSub.subTelephone}" numberonly="true"/></p>
+						<p>주소 : <input type="text" id="subAddr" name="subAddr" value="${reSub.subAddr}"/></p>
+					</div>	
+					<br/>
+					<div class="clickBtn">
+				         <input type="button" id="subModifyBtn" class="btn btn-default" name="subModifyBtn" value="수정"/>
+				         <a href="/"><input type="button" class="btn btn-default" value="취소"/></a>
+			     	 </div>
+			     	 <br/>
+			   </form>
+			  </div>
+	<div class="col-sm-5">
+	</div>
+</div>
+<jsp:include page="/WEB-INF/module/footer.jsp"/>
+			   
 </body>
 </html>

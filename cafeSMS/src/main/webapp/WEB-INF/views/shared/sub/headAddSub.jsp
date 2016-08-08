@@ -81,23 +81,31 @@
 </script>
 </head>
 <body>
-<c:choose>
-	<c:when test="${sub == null}">
-	<h1> 가맹 등록 : </h1>
-		<form action="/headAddSub" method="POST" id="addSubForm">
-			<div>본사직원ID :<input type="text" id="headStaffId" name="headStaffId" readonly="readonly" style="border: none;" value="head"/></div>
-			<div>가맹점 명 :<input type="text" id="subName" name="subName" /><span id="subNameHelper"></span></div>
-			<div>가맹 점주명 :<input type="text" id="subKeeper" name="subKeeper" /><span id="subKeeperHelper"></span></div>
-			<div>비밀번호 :<input type="password" id="subPassword" name="subPassword" /></div>
-			<div>비밀번호확인 :<input type="password" id="subPasswordCheck" name="subPasswordCheck" /></div>
-			<div>연락처 :<input type="text" name="subTelephone" id="subTelephone" size=11 maxlength=11 numberonly="true"/><span id="subTelephoneHelper"></span></div>
-			<div>주소 :<input type="text" name="subAddr" id="subAddr" /><span id="subAddrHelper"></span></div>
-			<div><input type="button" id="headAddBtn" name="headAddBtn" value="등록"/><a href="/"><input type="button" value="취소"/></a></div>
-		</form>	
-	</c:when>
-	<c:otherwise>
-		<a href="/">Home</a>
-		아이디는 ${sub.subCode} 입니다.	
-	</c:otherwise>
-</c:choose>
+<jsp:include page="/WEB-INF/module/nav.jsp"/>
+<div class="row">
+	<div class="col-sm-4">
+	</div>
+		<div class="col-sm-3 addForm">
+			<h1> 가맹 추가 </h1>
+				<form action="/headAddSub" method="POST" id="addSubForm">
+					<div>본사직원ID : <input type="text" id="headStaffId" name="headStaffId" readonly="readonly" class="inputNoLine" value="head"/></div>
+					<div>가맹점 명 :<input type="text" id="subName" name="subName" /><span id="subNameHelper"></span></div>
+					<div>가맹 점주명 :<input type="text" id="subKeeper" name="subKeeper" /><span id="subKeeperHelper"></span></div>
+					<div>비밀번호 :<input type="password" id="subPassword" name="subPassword" /></div>
+					<div>비밀번호확인 :<input type="password" id="subPasswordCheck" name="subPasswordCheck" /></div>
+					<div>연락처 :<input type="text" name="subTelephone" id="subTelephone" size=11 maxlength=11 numberonly="true"/><span id="subTelephoneHelper"></span></div>
+					<div>주소 :<input type="text" name="subAddr" id="subAddr" /><span id="subAddrHelper"></span></div>
+					<br/>
+					<div class="clickBtn">
+						<input type="button" id="headAddBtn" name="headAddBtn" class="btn btn-default" value="등록"/>
+						<a href="/"><input type="button" class="btn btn-default" value="취소"/></a>
+					</div>
+					<br/>
+				</form>	
+		</div>
+	<div class="col-sm-5">
+	</div>
+</div>
+
+<jsp:include page="/WEB-INF/module/footer.jsp"/>
 </body>

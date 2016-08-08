@@ -39,43 +39,90 @@
 </script>
 </head>
 <body>
-	<h1>행사목록</h1>
-	<form id="EventList" action="/viewEventList" method="POST">
-		<input type="hidden" id="upDown" name="upDown" value="" />
-		<input type="hidden" id="criteria" name="criteria" value=""/>
-		등록 날짜: 
-		<input type="date" name="regitDateStart" value="${eventSearch.regitDateStart}"/> ~
-		<input type="date" name="regitDateEnd" value="${eventSearch.regitDateEnd}"/> 
-		<br/><br/>
-		<select name="searchKey" required="required">
-			<option value="">::선택::</option>
-			<option value="event_code" <c:if test="${eventSearch.searchKey eq 'event_code'}">selected="selected"</c:if>>행사코드</option>
-			<option value="event_name" <c:if test="${eventSearch.searchKey eq 'event_name'}">selected="selected"</c:if>>행사명</option>
-		</select>
-		<input type="text" id="searchEvent" name="searchEvent" value="${eventSearch.searchEvent}"/>
-		<input type="button" id="searchBtn" value="검색" /><a href="/viewEventList"><input type="button" value="전체보기"/></a>
-	</form>
-	<p>
-		1:행사코드<span class="up">▲</span><span class="down">▼</span>
-		2:행사명<span class="up">▲</span><span class="down">▼</span>
-		3:행사시작일<span class="up">▲</span><span class="down">▼</span>
-		4:행사종료일<span class="up">▲</span><span class="down">▼</span>
-		5:행사종류<span class="up">▲</span><span class="down">▼</span>
-		6:행사할인율<span class="up">▲</span><span class="down">▼</span>
-		7:행사등록날짜<span class="up">▲</span><span class="down">▼</span>
-		8:행사등록담당직원<span class="up">▲</span><span class="down">▼</span>
-	</p>
+<jsp:include page="/WEB-INF/module/nav.jsp"/>
+<div class="row">
+	<div class="col-sm-2">
+	</div>
+	
+	<div class="col-sm-8">
+		<form id="EventList" action="/viewEventList" method="POST">
+			<input type="hidden" id="upDown" name="upDown" value="" />
+			<input type="hidden" id="criteria" name="criteria" value=""/>
+			등록 날짜: 
+			<input type="date" name="regitDateStart" value="${eventSearch.regitDateStart}"/> ~
+			<input type="date" name="regitDateEnd" value="${eventSearch.regitDateEnd}"/> 
+			<br/><br/>
+			<select name="searchKey" required="required">
+				<option value="">::선택::</option>
+				<option value="event_code" <c:if test="${eventSearch.searchKey eq 'event_code'}">selected="selected"</c:if>>행사코드</option>
+				<option value="event_name" <c:if test="${eventSearch.searchKey eq 'event_name'}">selected="selected"</c:if>>행사명</option>
+			</select>
+			<input type="text" id="searchEvent" name="searchEvent" value="${eventSearch.searchEvent}"/>
+			<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
+			<a href="/viewEventList"><input type="button" class="btn btn-default" value="전체보기"/></a>
+		</form>
+	</div>
+	<div class="col-sm-2">
+	</div>
+</div>
+<br/>
+<br/>
+<div class="row">
+	<div class="col-sm-2">
+	</div>	
+		<div class="col-sm-8"> 
+			<h3>= 행사목록 =</h3>
+		</div>
+	<div class="col-sm-2">
+	</div>
+</div>
+<div class="row tablediv">
+	<div class="col-sm-2">
+	</div>
+	<div class="col-sm-1 th">
+		행사코드<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		행사명<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		행사시작일<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		행사종료일<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		행사종류<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		행사할인율<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		행사등록날짜<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		행사담당직원<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-2">
+	</div>
+</div>
+
 	<c:forEach var="eventList" items="${eventList}">
-		<p>
-			1:${eventList.eventCode}
-			2:${eventList.eventName}
-			3:${eventList.eventBegin}
-			4:${eventList.eventEnd}
-			5:${eventList.eventType}
-			6:${eventList.eventDiscountRate}
-			7:${eventList.eventRegitDate}
-			8:${eventList.headStaffId}
-		</p>
+	<div class="row tablediv">
+		<div class="col-sm-2">
+		</div>	
+			<div class="col-sm-1">${eventList.eventCode}</div>
+			<div class="col-sm-1">${eventList.eventName}</div>
+			<div class="col-sm-1">${eventList.eventBegin}</div>
+			<div class="col-sm-1">${eventList.eventEnd}</div>
+			<div class="col-sm-1">${eventList.eventType}</div>
+			<div class="col-sm-1">${eventList.eventDiscountRate}</div>
+			<div class="col-sm-1">${eventList.eventRegitDate}</div>
+			<div class="col-sm-1">${eventList.headStaffId}</div>
+		<div class="col-sm-2">
+		</div>
+	</div>
 	</c:forEach>
+<jsp:include page="/WEB-INF/module/footer.jsp"/>
 </body>
 </html>
