@@ -13,6 +13,9 @@
 		$('#criteria').attr('value',criteria);
 		$('#subSellList').submit();	
 	}
+	
+	
+	
 	$(document).ready(function(){
 		var columnList = ['sub_sell_code','inte_code','sub_sell_group','sub_sell_date','sub_sell_practical_selling_price','total_account_group','sub_sell_final','sub_sell_final_date','pay_method','sub_code','event_code','sub_staff_code','sub_sell_final_staff','sub_sell_cost']
 		
@@ -42,9 +45,27 @@
 		});
 		
 		
+		//selectYN
+		$('#selectYN').on('change',function(){
+			if($('#selectYN').val() == ''){
+				$('#YN').val('');
+				$('#subSellList').submit();
+			}else if($('#selectYN').val() == 'Y'){
+				$('#YN').val('Y');
+				$('#subSellList').submit();
+			}else if($('#selectYN').val() == 'N'){
+				$('#YN').val('N');
+				$('#subSellList').submit();
+			}
+			
+			
+		});
+		
 	});
 </script>
 </head>
+
+
 <body>
 	<h1>가맹 판매 리스트[승인처리리스트]</h1>
 	<form id="subSellList" action="/subViewSubSellList" method="POST">
@@ -52,6 +73,8 @@
 		<input type="hidden" id="criteria" name="criteria" value="${search.criteria}"/>
 		<input type="hidden" id="viewMore" name="viewMore" value="${search.viewMore}"/>
 		<input type="hidden" id="subCode" name="subCode" value="${subCode}"/>
+		<input type="hidden" id="YN" name="YN" value="${YN}"/>
+		
 		
 		등록 날짜: 
 		<input type="date" name="regitDateStart" value="${search.regitDateStart}"/> ~
@@ -73,7 +96,14 @@
 		<a href="/subViewSubSellList?subCode=${subCode}"><input type="button" class="btn btn-default"  value="전체보기"/></a>
 	</form>
 	
-	<a href="/subViewSubSellListN?subCode=${subCode}">[승인대기리스트]</a>
+	분류 : 
+	<select id="selectYN" required="required">
+		<option value="" <c:if test="${YN eq ''}">selected="selected"</c:if>>::선택::</option>
+		<option value="Y" <c:if test="${YN eq 'Y'}">selected="selected"</c:if>>마감Y</option>
+		<option value="N" <c:if test="${YN eq 'N'}">selected="selected"</c:if>>마감N</option>
+	</select>
+	
+	
 	<div>
 		subSellCode<span class="up">▲</span><span class="down">▼</span>
 		inteCode<span class="up">▲</span><span class="down">▼</span>
@@ -93,9 +123,9 @@
 	</div>
 	
 	<div>
-		<p>------------------------------------------------------승인처리 된것 subSellFinal ="Y"---------------------------------------------------------</p>
+		
 		<c:forEach var="subSellList" items="${subSellList}">
-			<c:if test="${subSellList.subSellFinal == 'Y'}">	
+			<c:if test="${YN eq '' || YN eq null}">
 				<div>
 					${subSellList.subSellCode}
 					${subSellList.inteCode}
@@ -111,9 +141,38 @@
 					${subSellList.subStaffCode}
 					${subSellList.subSellFinalStaff}
 					${subSellList.subSellCost}
-					[Null]
+					<c:if test="${subSellList.subSellFinal == 'N'}">
+						<a href="/subSellFinal?subCode=${subCode}&subSellCode=${subSellList.subSellCode}">[마감]</a>
+					</c:if>					
+					<c:if test="${subSellList.subSellFinal == 'Y'}">
+						[Null]
+					</c:if>					
 				</div>
-			</c:if>	
+			</c:if>
+			<c:if test="${subSellList.subSellFinal eq YN}">	
+				<div>
+					${subSellList.subSellCode}
+					${subSellList.inteCode}
+					${subSellList.subSellGroup}
+					${subSellList.subSellDate}
+					${subSellList.subSellPracticalSellingPrice}
+					${subSellList.totalAccountGroup}
+					${subSellList.subSellFinal}
+					${subSellList.subSellFinalDate}
+					${subSellList.payMethod}
+					${subSellList.subCode}
+					${subSellList.eventCode}
+					${subSellList.subStaffCode}
+					${subSellList.subSellFinalStaff}
+					${subSellList.subSellCost}
+					<c:if test="${subSellList.subSellFinal == 'N'}">
+						<a href="/subSellFinal?subCode=${subCode}&subSellCode=${subSellList.subSellCode}">[마감]</a>
+					</c:if>					
+					<c:if test="${subSellList.subSellFinal == 'Y'}">
+						[Null]
+					</c:if>					
+				</div>
+			</c:if>
 		</c:forEach>
 		<input type="button" class="btn btn-default" id="viewMoreBtn" value="더보기"/>
 	</div>

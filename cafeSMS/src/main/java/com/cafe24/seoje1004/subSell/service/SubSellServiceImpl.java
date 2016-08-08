@@ -40,16 +40,6 @@ public class SubSellServiceImpl implements SubSellService{
 		subSellDao.subSellFinal(subSellCode);
 	}
 
-	//가맹 판매 조회[승인대기리스트]
-	@Override
-	public List<SubSell> subViewSubSellListN(Search search, String subCode) {
-		System.out.println("SubSellServiceImpl subViewSubSellListN 실행");
-		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("search", search);
-		map.put("subCode", subCode);
-		
-		
-		return subSellDao.subViewSubSellListN(map);
-	}
+	
 	
 }

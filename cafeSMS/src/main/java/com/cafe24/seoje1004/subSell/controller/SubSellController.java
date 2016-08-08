@@ -26,18 +26,20 @@ public class SubSellController {
 	
 	//가맹 판매 조회[승인처리리스트]
 	@RequestMapping(value="/subViewSubSellList")
-	public String subViewSubSellList(Model model, Search search, @RequestParam(value="subCode")String subCode){
+	public String subViewSubSellList(Model model, Search search
+			,@RequestParam(value="subCode")String subCode
+			,@RequestParam(value="YN", required = false)String YN){
 		System.out.println("SubSellController subViewSubSellList 실행");
 		
 		List<SubSell> subSellList = subSellService.subViewSubSellList(search,subCode);
 		
 		System.out.println("subSellList : " + subSellList);
 		System.out.println("search : "+search);
+		System.out.println("YN : "+YN);
 		
 		
 		
-		
-		
+		model.addAttribute("YN", YN);
 		model.addAttribute("subCode", subCode);
 		model.addAttribute("subSellSearch", search);
 		model.addAttribute("subSellList", subSellList);
@@ -45,26 +47,7 @@ public class SubSellController {
 		return "/sub/subSell/subViewSubSellList";
 	}
 	
-	//가맹 판매 조회[승인대기리스트]
-	@RequestMapping(value="/subViewSubSellListN")
-	public String subViewSubSellListN(Model model, Search search, @RequestParam(value="subCode")String subCode){
-		System.out.println("SubSellController subViewSubSellListN 실행");
-		
-		List<SubSell> subSellListN = subSellService.subViewSubSellListN(search,subCode);
-		
-		System.out.println("subSellListN : " + subSellListN);
-		System.out.println("search : "+search);
-		
-		
-		
-		
-		
-		model.addAttribute("subCode", subCode);
-		model.addAttribute("subSellSearch", search);
-		model.addAttribute("subSellList", subSellListN);
-		
-		return "/sub/subSell/subViewSubSellListN";
-	}
+
 	
 	//가맹 판매 마감처리
 	@RequestMapping(value="/subSellFinal")

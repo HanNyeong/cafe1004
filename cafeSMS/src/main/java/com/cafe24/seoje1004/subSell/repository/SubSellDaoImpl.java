@@ -36,11 +36,5 @@ public class SubSellDaoImpl implements SubSellDao {
 		sqlSessionSubSell.update(NS+".subSellFinal", subSellCode);
 	}
 
-	//가맹 판매 조회[승인대기리스트]
-	@Override
-	public List<SubSell> subViewSubSellListN(Map<String, Object> map) {
-		System.out.println("SubSellDaoImpl subViewSubSellListN 실행");
-		return sqlSessionSubSell.selectList(NS+".subViewSubSellListN", map);
-	}
 	
 }
