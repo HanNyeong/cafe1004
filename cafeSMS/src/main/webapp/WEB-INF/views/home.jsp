@@ -138,6 +138,9 @@
 	<div class="col-sm-2">
 	</div>
 </div>
+
+<a href="/subViewSubSellList?subCode=${subLogin.subCode}">[판매/가맹판매리스트]</a>
+
 <jsp:include page="/WEB-INF/module/footer.jsp"/>
 </body>
 </html>
