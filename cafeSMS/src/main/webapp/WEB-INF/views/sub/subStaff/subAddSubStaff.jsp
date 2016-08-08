@@ -39,9 +39,9 @@ $(document).ready(function(){
 <c:choose>
 <c:when test="${subStaff == null }">
 	<div class="row">
-		<div class="col-sm-5">
+		<div class="col-sm-4">
 		</div>
-		<div class="col-sm-2 addForm">
+		<div class="col-sm-3 addForm">
 			<h1> 가맹 직원 등록 </h1>
 			<form action="/subAddSubStaff" method="POST" id="addSubStaffForm">
 				<div>

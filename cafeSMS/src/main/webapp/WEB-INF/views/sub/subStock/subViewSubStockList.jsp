@@ -187,8 +187,6 @@
 	<div class="col-sm-2">
 	</div>	
 </div>
-<c:forEach var="subStockList" items="${subStockList}">
-	<c:if test="${subStockList.subStockInDate == null}">
 		<div class="row tablediv">
 			<div class="col-sm-2">
 			</div>
@@ -219,6 +217,8 @@
 			<div class="col-sm-2">
 			</div>
 		</div>
+<c:forEach var="subStockList" items="${subStockList}">
+	<c:if test="${subStockList.subStockInDate == null}">
 		<div class="row tablediv">
 			<div class="col-sm-2">
 			</div>	 
@@ -247,8 +247,6 @@
 	<div class="col-sm-2">
 	</div>	
 </div>
-<c:forEach var="subStockList" items="${subStockList}">
-	<c:if test="${subStockList.subStockInDate != null}">
 		<div class="row tablediv">
 			<div class="col-sm-2">
 			</div>
@@ -279,6 +277,8 @@
 			<div class="col-sm-2">
 			</div>
 		</div>
+<c:forEach var="subStockList" items="${subStockList}">
+	<c:if test="${subStockList.subStockInDate != null}">
 		<div class="row tablediv">
 			<div class="col-sm-2">
 			</div>

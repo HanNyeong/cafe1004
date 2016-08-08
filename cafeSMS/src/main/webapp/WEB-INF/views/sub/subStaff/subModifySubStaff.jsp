@@ -18,9 +18,9 @@ $(document).ready(function(){
 <body>
 <jsp:include page="/WEB-INF/module/nav.jsp"/>
 <div class="row">
-	<div class="col-sm-5">
+	<div class="col-sm-4">
 	</div>
-	<div class="col-sm-2 addForm">
+	<div class="col-sm-3 addForm">
 		<h2> 가맹 직원 정보 수정 </h2>
 		<form action="/subModifySubStaff" method="POST" id="headModifySubStaffForm">
 		   <input type="hidden" name="subStaffCode" value="${reSubStaff.subStaffCode}" />

@@ -46,7 +46,7 @@
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="/viewOrdersList?subCode=${subLogin.subCode}">발주관리</a></li>
 						<li><a href="/subViewCartList?subCode=${subLogin.subCode}">장바구니</a></li>
-						<li><a href="#">배송관리</a></li>
+						<li><a href="/subViewDeliveryList">배송관리</a></li>
 					</ul>
 				</li>
 				
@@ -78,7 +78,7 @@
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 				본사관리 <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="/headAddSub">가맹관리</a></li>
+						<li><a href="/headAddSub">가맹추가</a></li>
 						<li><a href="/headViewOrdersList">발주조회</a></li>
 						<li><a href="/headViewClaimList">클래임조회</a></li>
 						<li><a href="/headViewDeliveryList">배송조회</a></li>
@@ -102,7 +102,14 @@
 			</c:if>
 			
 			
-			<!-- 나중에 본사용 네비바 분리하기  -->
+<!-- 			본사 네비바-->
+<!-- 			<li><a href="/headAddSub">가맹추가</a></li> -->
+<!-- 			<li><a href="/headViewOrdersList">발주조회</a></li> -->
+<!-- 			<li><a href="/headViewClaimList">클래임조회</a></li> -->
+<!-- 			<li><a href="/headViewDeliveryList">배송조회</a></li> -->
+<!-- 			<li><a href="/headViewReturnsList">반품조회</a></li> -->
+<!-- 			<li><a href="/headViewContractList">계약조회</a></li> -->
+<!-- 			<li><a href="/logout">로그아웃</a></li> -->
 			</ul>
 		</div>
 	</div>
