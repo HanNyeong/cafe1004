@@ -46,8 +46,8 @@
 </script>
 </head>
 <body>
-	<h1>가맹 판매 리스트[승인처리리스트]</h1>
-	<form id="subSellList" action="/subViewSubSellList" method="POST">
+	<h1>가맹 판매 리스트[승인처리대기리스트]</h1>
+	<form id="subSellList" action="/subViewSubSellListN" method="POST">
 		<input type="hidden" id="upDown" name="upDown" value="${search.upDown}" />
 		<input type="hidden" id="criteria" name="criteria" value="${search.criteria}"/>
 		<input type="hidden" id="viewMore" name="viewMore" value="${search.viewMore}"/>
@@ -73,7 +73,7 @@
 		<a href="/subViewSubSellList?subCode=${subCode}"><input type="button" class="btn btn-default"  value="전체보기"/></a>
 	</form>
 	
-	<a href="/subViewSubSellListN?subCode=${subCode}">[승인대기리스트]</a>
+	<a href="/subViewSubSellList?subCode=${subCode}">[승인처리리스트]</a>
 	<div>
 		subSellCode<span class="up">▲</span><span class="down">▼</span>
 		inteCode<span class="up">▲</span><span class="down">▼</span>
@@ -91,11 +91,10 @@
 		subSellCost<span class="up">▲</span><span class="down">▼</span>
 		[마감처리]
 	</div>
-	
 	<div>
-		<p>------------------------------------------------------승인처리 된것 subSellFinal ="Y"---------------------------------------------------------</p>
+		<p>------------------------------------------------------승인처리안된것 subSellFinal ="N"---------------------------------------------------------</p>
 		<c:forEach var="subSellList" items="${subSellList}">
-			<c:if test="${subSellList.subSellFinal == 'Y'}">	
+			<c:if test="${subSellList.subSellFinal == 'N'}">	
 				<div>
 					${subSellList.subSellCode}
 					${subSellList.inteCode}
@@ -111,11 +110,12 @@
 					${subSellList.subStaffCode}
 					${subSellList.subSellFinalStaff}
 					${subSellList.subSellCost}
-					[Null]
+					<a href="/subSellFinal?subSellCode=${subSellList.subSellCode}&subCode=${subSellList.subCode}">[마감]</a>
 				</div>
 			</c:if>	
 		</c:forEach>
 		<input type="button" class="btn btn-default" id="viewMoreBtn" value="더보기"/>
 	</div>
+	
 </body>
 </html>

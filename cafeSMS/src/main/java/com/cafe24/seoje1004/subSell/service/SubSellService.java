@@ -11,6 +11,8 @@ public interface SubSellService {
 	 * SubSellService 인터페이스
 	 */
 	
-	public List<SubSell> subViewSubSellList(Search search,String subCode); 	//가맹 판매 조회
+	public List<SubSell> subViewSubSellList(Search search,String subCode); 	//가맹 판매 조회[승인처리리스트]
 	public void subSellFinal(String subSellCode);		//가맹 판매 마감처리
+	
+	public List<SubSell> subViewSubSellListN(Search search,String subCode);			//가맹 판매 조회[승인대기리스트]
 }
