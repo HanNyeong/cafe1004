@@ -126,18 +126,18 @@
 </script>
 </head>
 <body>
-<a href="/">home</a>
-	<h1>가맹에서 고객클래임리스트</h1>
-	
+<jsp:include page="/WEB-INF/module/nav.jsp"/>
+<div class="row">
+	<div class="col-sm-2">
+	</div>	
+	<div class="col-sm-8">
 	<!-- 상품 검색 -->
 		<form name="claimList" id="claimList" action="subViewClaimList" method="post">
 			<!-- 오름차/내림차순 정렬을 위한 input 태그 -->
 			<input type="hidden" name="criteria" id="criteria" value=""/>
 			<input type="hidden" name="upDown" id="upDown" value=""/>
 			<input type="hidden" name="subCode" value="${subCode}"/>
-			
-			
-			
+
 			등록 날짜: 
 			<input type="date" name="regitDateStart" value="${claimSearch.regitDateStart}"/> ~
 			<input type="date" name="regitDateEnd" value="${claimSearch.regitDateEnd}"/> 
@@ -151,35 +151,87 @@
 				<option value="customer_phone" <c:if test="${claimSearch.searchKey eq 'customer_phone'}">selected="selected"</c:if>>customer_phone</option>
 			</select>
 			<input type="text" name="searchClaim" value="${claimSearch.searchClaim}"/>
-			<button>검색</button>
+			<button class="btn btn-default">검색</button>
 		</form>
-		<hr/>
-	<div>
-		claimCode<span id="claimCodeUp">▲</span><span id="claimCodeDown">▼</span>
-		claimType<span id="claimTypeUp">▲</span><span id="claimTypeDown">▼</span>
-		claimAskDate<span id="claimAskDateUp">▲</span><span id="claimAskDateDown">▼</span>
-		claimAnswerDate<span id="claimAnswerDateUp">▲</span><span id="claimAnswerDateDown">▼</span>
-		subCode<span id="subCodeUp">▲</span><span id="subCodeDown">▼</span>
-		customerName<span id="customerNameUp">▲</span><span id="customerNameDown">▼</span>
-		customerPhone<span id="customerPhoneUp">▲</span><span id="customerPhoneDown">▼</span>
-		claimStatus<span id="claimStatusUp">▲</span><span id="claimStatusDown">▼</span>
-		[상세보기]
 	</div>
-	<div>
-		<c:forEach var="claimList" items="${claimList}">
-				<div>
-					${claimList.claimCode}
-					${claimList.claimType}
-					${claimList.claimAskDate}
-					${claimList.claimAnswerDate}
-					${claimList.subCode}
-					${claimList.customerName}
-					${claimList.customerPhone}
-					${claimList.claimStatus}
-					<a href="/viewClaimContent?claimCode=${claimList.claimCode}&customerName=${claimList.customerName}">[상세보기]</a>
-				</div>
-		</c:forEach>
+	<div class="col-sm-2">
 	</div>
+</div>
+<br/>
+<br/>
+<div class="row">
+	<div class="col-sm-2">
+	</div>	
+	<div class="col-sm-8">
+		<h3>= 고객클래임리스트 =</h3>
+	</div>
+	<div class="col-sm-2">
+	</div>	
+</div>
+<div class="row tablediv">
+		<div class="col-sm-2">
+		</div>
+		<div class="col-sm-1 th">
+			claimCode<span id="claimCodeUp">▲</span><span id="claimCodeDown">▼</span>
+		</div>
+		<div class="col-sm-1 th">	
+			claimType<span id="claimTypeUp">▲</span><span id="claimTypeDown">▼</span>
+		</div>
+		<div class="col-sm-1 th">	
+			claimAskDate<span id="claimAskDateUp">▲</span><span id="claimAskDateDown">▼</span>
+		</div>
+		<div class="col-sm-1 th">	
+			claimAnswerDate<span id="claimAnswerDateUp">▲</span><span id="claimAnswerDateDown">▼</span>
+		</div>
+		<div class="col-sm-1 th">	
+			customerName<span id="customerNameUp">▲</span><span id="customerNameDown">▼</span>
+		</div>
+		<div class="col-sm-1 th">	
+			customerPhone<span id="customerPhoneUp">▲</span><span id="customerPhoneDown">▼</span>
+		</div>
+		<div class="col-sm-1 th">	
+			claimStatus<span id="claimStatusUp">▲</span><span id="claimStatusDown">▼</span>
+		</div>
+		<div class="col-sm-1 th">	
+			[상세보기]
+			</div>	
+		<div class="col-sm-2">
+		</div>
+</div> 
+	<c:forEach var="claimList" items="${claimList}">
+		<div class="row tablediv">
+			<div class="col-sm-2">
+			</div>
+			<div class="col-sm-1">
+				${claimList.claimCode}
+			</div>
+			<div class="col-sm-1">	
+				${claimList.claimType}
+			</div>
+			<div class="col-sm-1">	
+				${claimList.claimAskDate}
+			</div>
+			<div class="col-sm-1">	
+				${claimList.claimAnswerDate}
+			</div>
+			<div class="col-sm-1">	
+				${claimList.customerName}
+			</div>
+			<div class="col-sm-1">	
+				${claimList.customerPhone}
+			</div>
+			<div class="col-sm-1">	
+				${claimList.claimStatus}
+			</div>
+			<div class="col-sm-1">	
+				<a href="/viewClaimContent?claimCode=${claimList.claimCode}&customerName=${claimList.customerName}">[상세보기]</a>
+			</div>
+			<div class="col-sm-2">
+			</div>
+		</div>
+	</c:forEach>
+	
+<jsp:include page="/WEB-INF/module/footer.jsp"/>
 	
 </body>
 </html>
