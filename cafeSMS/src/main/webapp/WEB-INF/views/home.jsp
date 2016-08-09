@@ -8,34 +8,39 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
-	$(document).ready(function() {
-		$('#loginBtn').click(function() {
+$(document).ready(function() {
+//유효성 검사
+		$('#loginBtn').click(function(){
 			console.log('로그인버튼 클릭');
-			//아이디, 비밀번호 입력여부 검사
-			if ($('#subCode').val() == "") {
-				//console.log('아이디 미입력');
-				alert('아이디를 입력하세요.');
-			} else if ($('#subPassword').val() == "") {
-				//console.log('비밀번호 미입력');
-				alert('비밀번호를 입력하세요.');
-			}  else {
+			if( $('#subCode').val() == "" || $('#subPassword').val() != ""){
+				$('#subPasswordHelper').text('');
+				$('#subCodeHelper').css('color', 'red');
+				$('#subCodeHelper').text('가맹 코드를 입력해주세요');
+			}else if( $('#subPassword').val() == "" || $('#subCode').val() != ""){
+				$('#subPasswordHelper').css('color', 'red');
+				$('#subPasswordHelper').text('비밀번호를 입력해주세요');
+				$('#subCodeHelper').text('');
+			}else{
 				$('#loginForm').submit();
-			}
-			
+			}			
 		});
 		$('#claimBtn').click(function() {
 			console.log('고객 컴플레인 클릭');
 			//이름,핸드폰번호 검사
-			if ($('#customerName').val() == "") {
-				alert('이름 입력하세요.');
-			} else if ($('#customerPhone').val() == "") {
-				alert('전화번호를 입력하세요.');
-			}  else {
+			if( $('#customerName').val() == "" || $('#customerPhone').val() != ""){
+				$('#customerPhoneHelper').text('');
+				$('#customerNameHelper').css('color', 'red');
+				$('#customerNameHelper').text('이름 입력해주세요');
+			}else if( $('#customerPhone').val() == "" || $('#customerName').val() != ""){
+				$('#customerPhoneHelper').css('color', 'red');
+				$('#customerPhoneHelper').text('전화번호를 입력해주세요');
+				$('#customerNameHelper').text('');
+			}else{
 				$('#claimMainForm').submit();
-			}
-			
+			}			
 		});
 	});
+
 </script>
 </head>
 <body>
@@ -50,11 +55,13 @@
 					<h2>고객  센터</h2>
 					<div class="form-group">
 						<label for="customerName">이름 : </label>
-						<input type="text" class="form-control" id="customerName" name ="customerName" placeholder="이름을 입력해주세요.">
+						<input type="text" class="form-control" id="customerName" name ="customerName" placeholder="이름을 입력해주세요." value="서지연">
+						<span id="customerNameHelper"></span>
 					</div>
 					<div class="form-group">
 						<label for="customerPhone">전화번호:</label>
-						<input type="text" class="form-control" id="customerPhone" name = "customerPhone" placeholder="핸드폰 번호를 입력해주세요.">
+						<input type="text" class="form-control" id="customerPhone" name = "customerPhone" placeholder="핸드폰 번호를 입력해주세요." value="01092014268">
+						<span id="customerPhoneHelper"></span>
 					</div>
 					<div class="right">
 						<a href="/customerAddClaim">고객불만등록</a> <input type="button" class="btn btn-default" id="claimBtn" value="검색"/>
@@ -72,10 +79,12 @@
 					<div class="form-group">
 						<label for="subCode">아이디 : </label>
 						<input type="text" class="form-control" id="subCode" name ="subCode" placeholder="Enter ID" value="sub_code1">
+						<span id="subCodeHelper"></span>
 					</div>
 					<div class="form-group">
 						<label for="staffPw">비밀번호:</label>
 						<input type="password" class="form-control" id="subPassword" name = "subPassword" placeholder="Enter password" value="1234">
+						<span id="subPasswordHelper"></span>
 					</div>
 					<div class="right">
 						<input type="button" class="btn btn-default" id="loginBtn" value="로그인"/>
