@@ -9,38 +9,35 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
-//유효성 검사
-		$('#loginBtn').click(function(){
-			console.log('로그인버튼 클릭');
-			if( $('#subCode').val() == "" || $('#subPassword').val() != ""){
-				$('#subPasswordHelper').text('');
-				$('#subCodeHelper').css('color', 'red');
-				$('#subCodeHelper').text('가맹 코드를 입력해주세요');
-			}else if( $('#subPassword').val() == "" || $('#subCode').val() != ""){
-				$('#subPasswordHelper').css('color', 'red');
-				$('#subPasswordHelper').text('비밀번호를 입력해주세요');
-				$('#subCodeHelper').text('');
-			}else{
-				$('#loginForm').submit();
-			}			
-		});
-		$('#claimBtn').click(function() {
-			console.log('고객 컴플레인 클릭');
-			//이름,핸드폰번호 검사
-			if( $('#customerName').val() == "" || $('#customerPhone').val() != ""){
-				$('#customerPhoneHelper').text('');
-				$('#customerNameHelper').css('color', 'red');
-				$('#customerNameHelper').text('이름 입력해주세요');
-			}else if( $('#customerPhone').val() == "" || $('#customerName').val() != ""){
-				$('#customerPhoneHelper').css('color', 'red');
-				$('#customerPhoneHelper').text('전화번호를 입력해주세요');
-				$('#customerNameHelper').text('');
-			}else{
-				$('#claimMainForm').submit();
-			}			
-		});
-	});
-
+	//유효성 검사
+			$('#loginBtn').click(function(){
+				console.log('로그인버튼 클릭');
+				if( $('#subCode').val() == ""){
+					$('#subCodeHelper').css('color', 'red');
+					$('#subCodeHelper').text('가맹 코드를 입력해주세요');
+				}else if( $('#subPassword').val() == ""){
+					$('#subCodeHelper').text('');
+					$('#subPasswordHelper').css('color', 'red');
+					$('#subPasswordHelper').text('비밀번호를 입력해주세요');
+				}else{
+					$('#loginForm').submit();
+				}			
+			});
+			$('#claimBtn').click(function() {
+				console.log('고객 컴플레인 클릭');
+				//이름,핸드폰번호 검사
+				if( $('#customerName').val() == ""){
+					$('#customerNameHelper').css('color', 'red');
+					$('#customerNameHelper').text('이름을 입력해주세요');
+				}else if( $('#customerPhone').val() == ""){
+					$('#customerNameHelper').text('');
+					$('#customerPhoneHelper').css('color', 'red');
+					$('#customerPhoneHelper').text('전화번호를 입력해주세요');
+				}  else {
+					$('#claimMainForm').submit();
+				}			
+			});
+});
 </script>
 </head>
 <body>
