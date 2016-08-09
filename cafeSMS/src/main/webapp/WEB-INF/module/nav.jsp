@@ -59,6 +59,7 @@
 						<li><a href="/subViewSubClientList?subCode=${subLogin.subCode}">거래처관리</a></li>
 						<li><a href="/viewSubStaffList?subCode=${subLogin.subCode}">직원관리</a></li>
 						<li><a href="/subViewContractList?subCode=${subLogin.subCode}">계약관리</a></li>
+						<li><a href="/subViewClaimList?subCode=${subLogin.subCode}">고객불만관리</a></li>
 					</ul>
 				</li>
 				
