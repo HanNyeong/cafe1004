@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cafe24.seoje1004.subStock.model.SubStock;
 import com.cafe24.seoje1004.subStock.model.SubStockSearch;
 import com.cafe24.seoje1004.subStock.repository.SubStockDao;
+import com.cafe24.seoje1004.util.Search;
 
 @Service
 public class SubStockServiceImpl implements SubStockService{
@@ -27,12 +28,12 @@ public class SubStockServiceImpl implements SubStockService{
 	
 	//가맹재고리스트
 	@Override
-	public List<SubStock> subViewSubStockList(String subCode, SubStockSearch subStockSearch) {
+	public List<SubStock> subViewSubStockList(String subCode, Search search) {
 		System.out.println("SubStockServiceImpl subViewSubStockList 실행");
 		
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("subCode", subCode);
-		map.put("subStockSearch", subStockSearch);
+		map.put("search", search);
 		
 		return subStockDao.subViewSubStockList(map);
 	}

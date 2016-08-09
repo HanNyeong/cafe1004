@@ -38,21 +38,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			sub_stock
 		<where>
 			sub_code = #{subCode}
-			<if test="subStockSearch.regitDateStart != null and subStockSearch.regitDateEnd != null and subStockSearch.regitDateStart !='' and subStockSearch.regitDateEnd !=''">
-				AND	<![CDATA[date(head_stock_in_date) >= #{subStockSearch.regitDateStart} and date(head_stock_in_date) <= #{subStockSearch.regitDateEnd}]]>
+			<if test="search.regitDateStart != null and search.regitDateEnd != null and search.regitDateStart !='' and search.regitDateEnd !=''">
+				AND <![CDATA[date(head_stock_in_date) >= #{search.regitDateStart} and date(head_stock_in_date) <= #{search.regitDateEnd}]]>  
 			</if>
-			<if test="subStockSearch.searchKey != null and subStockSearch.searchKey != '' and subStockSearch.searchSubStock != null and subStockSearch.searchSubStock != ''">
-				AND  ${subStockSearch.searchKey} like CONCAT('%',#{subStockSearch.searchSubStock},'%')
-			</if> 
-		</where> 
-		<trim prefix="ORDER BY">
-			<if test="subStockSearch.criteria == null or subStockSearch.criteria == ''">
-				head_stock_in_date
+			<if test="search.searchKey != null and search.searchKey != '' and search.search != null and search.search != ''">
+					AND  ${search.searchKey} like CONCAT('%',#{search.search},'%') 
 			</if>
-			<if test="subStockSearch.criteria != null or subStockSearch.criteria != ''">
-				${subStockSearch.criteria} ${subStockSearch.upDown}
-			</if>
-		</trim>
+			
+		</where>
+		<if test="search.criteria == null and search.criteria == '' and search.upDown == null and search.upDown == ''">
+			order by head_stock_in_date desc
+		</if>
+		<if test="search.criteria != null and search.upDown != null and search.criteria != null and search.upDown != ''">
+			order by ${search.criteria} ${search.upDown}
+		</if>
+		LIMIT 0,${search.viewMore}
 	</select>
 	
 	<!-- 비어있는 입고날짜를 오늘로 업데이트 -->

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.cafe24.seoje1004.subStock.model.SubStock;
 import com.cafe24.seoje1004.subStock.model.SubStockSearch;
 import com.cafe24.seoje1004.subStock.service.SubStockService;
+import com.cafe24.seoje1004.util.Search;
 
 @Controller
 public class SubStockController {
@@ -25,16 +26,19 @@ public class SubStockController {
 	
 	//가맹재고리스트
 	@RequestMapping(value="/subViewSubStockList")
-	public String subViewSubStockList(Model model, @RequestParam(value="subCode")String subCode, SubStockSearch subStockSearch){
+	public String subViewSubStockList(Model model
+			,@RequestParam(value="subCode")String subCode
+			,Search search
+			,@RequestParam(value="YN", required = false)String YN){
 		System.out.println("SubStockController subViewSubStockList 실행");
 		System.out.println("subCode : "+subCode);
 		
-		List<SubStock> subStockList = subStockService.subViewSubStockList(subCode, subStockSearch);
+		List<SubStock> subStockList = subStockService.subViewSubStockList(subCode, search);
 		System.out.println("subStockList : "+ subStockList);
 		
-		
+		model.addAttribute("YN", YN);
 		model.addAttribute("subCode", subCode);
-		model.addAttribute("subStockSearch", subStockSearch);
+		model.addAttribute("search", search);
 		model.addAttribute("subStockList", subStockList);
 		
 		return "/sub/subStock/subViewSubStockList";
