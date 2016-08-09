@@ -136,62 +136,73 @@
 
 </head>
 <body>
-<h1>내가 등록폼일쌔!!</h1>
-	<div>
-		<form id="contractAddForm" method="post" enctype="multipart/form-data">
+<jsp:include page="/WEB-INF/module/nav.jsp"/>
+<div class="row">
+		<div class="col-sm-4">
+		</div>
+		<div class="col-sm-3 addForm">
+		<h1>= 계약 등록 =</h1>
 			<div>
-				<label>contractName : </label>
-				<input id="contractName" type="text" name="contractName"/>
-				<span id="contractNameMsg"></span>
-			</div>	
-			<div>
-				<label>contractActualDate : </label>
-				<input id="contractActualDate" type="date" name="contractActualDate"/>
-				<span id="contractActualDateMsg"></span>
-			</div>	
-			<div>
-				<label>contractExpiryDate : </label>
-				<input id="contractExpiryDate" type="date" name="contractExpiryDate"/>
-				<span id="contractExpiryDateMsg"></span>
-			</div>	
-			<div>
-				<label>contractDeposit : </label>
-				<input id="contractDeposit" type="text" name="contractDeposit"/>
-				<span id="contractDepositMsg"></span>
-			</div>	
-			<div>
-				<label>contractProfitPercent : </label>
-				<input id="contractProfitPercent" type="text" name="contractProfitPercent"/>
-				<span id="contractProfitPercentMsg"></span>
-			</div>	
-			<div>
-				<label>contractFile : </label>
-				<input id="contractFile" type="file" name="contractFile"/>
-				<input id="contractFileBtn" type="button" value="AddBtn"/>
-				<span id="contractFileMsg"></span>
-			</div>	
-			<span id="contractFileAdd"></span>
-			<div>
-				<label>contractN : </label>
-				<input id="contractN" type="text" name="contractN" value="1" readonly="readonly"/>
-			</div>	
-			<div>
-				<label>headStaffId : </label>
-				<input id="headStaffId" type="text" name="headStaffId"/>
-				<span id="headStaffIdMsg"></span>
-			</div>	
-			<div>
-				<label>subCode : </label>
-				<input id="subCode" type="text" name="subCode" value="${subCode}" readonly="readonly"/>
-				<input id="subCodeCheck" type="button" value="가맹대표코드중복체크"/>	
-				<span id="subCodeMsg"></span>
-			</div>	
-			<div>
-				<input id="contractAddBtn" type="button" value="계약등록"/>
+				<form id="contractAddForm" method="post" enctype="multipart/form-data">
+					<div>
+						<label>계약자 이름 : </label>
+						<input id="contractName" type="text" name="contractName"/>
+						<span id="contractNameMsg"></span>
+					</div>	
+					<div>
+						<label>계약 날짜 : </label>
+						<input id="contractActualDate" type="date" name="contractActualDate"/>
+						<span id="contractActualDateMsg"></span>
+					</div>	
+					<div>
+						<label>계약 만료일 : </label>
+						<input id="contractExpiryDate" type="date" name="contractExpiryDate"/>
+						<span id="contractExpiryDateMsg"></span>
+					</div>	
+					<div>
+						<label>가맹 금액 : </label>
+						<input id="contractDeposit" type="text" name="contractDeposit"/>
+						<span id="contractDepositMsg"></span>
+					</div>	
+					<div>
+						<label>이익 배분율 : </label>
+						<input id="contractProfitPercent" type="text" name="contractProfitPercent"/>
+						<span id="contractProfitPercentMsg"></span>
+					</div>	
+					<div>
+						<label>계약 첨부파일 : </label>
+						<input id="contractFileBtn" type="button" class="btn btn-default" value="파일추가"/>
+						<input id="contractFile" type="file" name="contractFile"/>
+						<span id="contractFileMsg"></span>
+					</div>	
+					<span id="contractFileAdd"></span>
+					<div>
+						<label>계약 차수 : </label>
+						<input id="contractN" type="text" name="contractN" value="1" readonly="readonly"/>
+					</div>	
+					<div>
+						<label>본사 계약 담당 직원 : </label>
+						<input id="headStaffId" type="text" name="headStaffId"/>
+						<span id="headStaffIdMsg"></span>
+					</div>	
+					<div>
+						<label>가맹 대표 코드 : </label>
+						<input id="subCode" type="text" name="subCode" value="${subCode}" readonly="readonly"/>
+						<input id="subCodeCheck" type="button" class="btn btn-default" value="중복체크"/>	
+						<span id="subCodeMsg"></span>
+					</div>	
+					<br/>
+					<div class="clickBtn">
+						<input id="contractAddBtn" type="button" class="btn btn-default" value="계약등록"/>
+					</div>				
+					<br/>
+				</form>
 			</div>
-			
-		
-		</form>
+			</div>
+		<div class="col-sm-5">
+		</div>
 	</div>
+	
+<jsp:include page="/WEB-INF/module/footer.jsp"/>
 </body>
 </html>
