@@ -31,7 +31,7 @@
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="/viewHeadItemList">상품목록</a></li>
 						<li><a href="/subViewSubStockList?subCode=${subLogin.subCode}">재고관리</a></li>
-						<li><a href="#">반품관리</a></li>
+						<li><a href="/subViewReturnsList">반품관리</a></li>
 						<li><a href="/subViewSubDumpList">폐기관리</a></li>
 					</ul>
 				</li>
