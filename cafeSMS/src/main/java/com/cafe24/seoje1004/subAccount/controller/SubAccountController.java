@@ -57,14 +57,19 @@ public class SubAccountController {
 	public String subAccountKeeperCheck(RedirectAttributes redirectAttr, SubStaff subStaff) {
 		System.out.println("SubAccountController subAccountKeeperCheck.POST실행");
 		System.out.println(subStaff);
-		if(subAccountService.subAccountKeeperCheckService(subStaff) != null){
+		SubAccount subAccount = subAccountService.subAccountKeeperCheckService(subStaff);
+		System.out.println("================================================");
+		System.out.println(subAccount);
+		System.out.println("================================================");
+		if(subAccount != null){
 			System.out.println("IFIFIFIFIFIFIFIFIFIFIFIFIFIFI");
 			subStaff.setSubStaffLevel("점주");
-			redirectAttr.addFlashAttribute("subAccount", subAccountService.subAccountKeeperCheckService(subStaff));
-			redirectAttr.addFlashAttribute("subStaff", subStaff);
 			subStaff.setSubStaffPw("");
+			redirectAttr.addFlashAttribute("subAccount", subAccount);
+			redirectAttr.addFlashAttribute("subStaff", subStaff);
 			
 		}
+			
 		return "redirect:/viewSubAccountList";
 	}
 	/**
