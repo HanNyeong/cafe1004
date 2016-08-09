@@ -41,26 +41,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			ON
 			delivery.orders_code = sub_orders.orders_code
 			
-				
 			<where>
 			sub_orders.sub_code = #{subCode}
-			
-			<if test="deliverySearch.regitDateStart != null and deliverySearch.regitDateEnd != null and deliverySearch.regitDateStart !='' and deliverySearch.regitDateEnd !=''">
-							AND	<![CDATA[date(delivery_date) >= #{deliverySearch.regitDateStart} and date(delivery_date) <= #{deliverySearch.regitDateEnd}]]>  
+			<if test="search.regitDateStart != null and search.regitDateEnd != null and search.regitDateStart !='' and search.regitDateEnd !=''">
+				AND <![CDATA[date(delivery_date) >= #{search.regitDateStart} and date(delivery_date) <= #{search.regitDateEnd}]]>  
 			</if>
-			<if test="deliverySearch.searchKey != null and deliverySearch.searchKey != '' and deliverySearch.searchDelivery != null and deliverySearch.searchDelivery != ''">
-				
-				AND  ${deliverySearch.searchKey} like CONCAT('%',#{deliverySearch.searchDelivery},'%') 
-			</if> 
-			</where> 
-			<trim prefix="ORDER BY">
-				<if test="deliverySearch.criteria == null or deliverySearch.criteria == ''">
-					delivery_date
-				</if>
-				<if test="deliverySearch.criteria != null or deliverySearch.criteria != ''">
-					${deliverySearch.criteria} ${deliverySearch.upDown}
-				</if>
-			</trim>
+			<if test="search.searchKey != null and search.searchKey != '' and search.search != null and search.search != ''">
+					AND  ${search.searchKey} like CONCAT('%',#{search.search},'%') 
+			</if>
+			
+			</where>
+			<if test="search.criteria == null and search.criteria == '' and search.upDown == null and search.upDown == ''">
+				order by delivery_date desc
+			</if>
+			<if test="search.criteria != null and search.upDown != null and search.criteria != null and search.upDown != ''">
+				order by ${search.criteria} ${search.upDown}
+			</if>
+			LIMIT 0,${search.viewMore}
 			
 	</select>
 	
@@ -89,23 +86,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				
 			<where>
 			
-			
-			<if test="deliverySearch.regitDateStart != null and deliverySearch.regitDateEnd != null and deliverySearch.regitDateStart !='' and deliverySearch.regitDateEnd !=''">
-				<![CDATA[date(delivery_date) >= #{deliverySearch.regitDateStart} and date(delivery_date) <= #{deliverySearch.regitDateEnd}]]>  
+			<if test="search.regitDateStart != null and search.regitDateEnd != null and search.regitDateStart !='' and search.regitDateEnd !=''">
+				<![CDATA[date(delivery_date) >= #{search.regitDateStart} and date(delivery_date) <= #{search.regitDateEnd}]]>  
 			</if>
-			<if test="deliverySearch.searchKey != null and deliverySearch.searchKey != '' and deliverySearch.searchDelivery != null and deliverySearch.searchDelivery != ''">
-				
-				AND  ${deliverySearch.searchKey} like CONCAT('%',#{deliverySearch.searchDelivery},'%') 
-			</if> 
-			</where> 
-			<trim prefix="ORDER BY">
-				<if test="deliverySearch.criteria == null or deliverySearch.criteria == ''">
-					delivery_date
-				</if>
-				<if test="deliverySearch.criteria != null or deliverySearch.criteria != ''">
-					${deliverySearch.criteria} ${deliverySearch.upDown}
-				</if>
-			</trim>
+			<if test="search.searchKey != null and search.searchKey != '' and search.search != null and search.search != ''">
+					AND  ${search.searchKey} like CONCAT('%',#{search.search},'%') 
+			</if>
+			
+			</where>
+			<if test="search.criteria == null and search.criteria == '' and search.upDown == null and search.upDown == ''">
+				order by delivery_date desc
+			</if>
+			<if test="search.criteria != null and search.upDown != null and search.criteria != null and search.upDown != ''">
+				order by ${search.criteria} ${search.upDown}
+			</if>
+			LIMIT 0,${search.viewMore}
 			
 	</select>
 	

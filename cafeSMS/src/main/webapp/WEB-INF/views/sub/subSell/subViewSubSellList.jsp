@@ -38,7 +38,7 @@
 			$('#subSellList').submit();
 		});
 		$('#searchBtn').click(function(){
-			if($('#searchSubStaff').val() == ""){
+			if($('#search').val() == ""){
 				console.log("검색어입력하세요");
 			}else{
 				$('#subSellList').submit();
@@ -121,7 +121,7 @@
 		</select>
 		<input type="text" id="search" name="search" value="${search.search}"/>
 		<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
-		<input type="button" class="btn btn-default"  value="전체보기"/></a>
+		<a href="/subViewSubSellList?subCode=${subCode}"><input type="button" class="btn btn-default"  value="전체보기"/></a>
 	
 	
 	분류 : 

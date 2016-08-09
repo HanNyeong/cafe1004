@@ -7,147 +7,65 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script type="text/javascript" src="resources/function/upDownCheck.js"></script>
 <script>
+var list = function(upDown,criteria){
+	$('#upDown').attr('value',upDown);
+	$('#criteria').attr('value',criteria);
+	$('#subSellList').submit();	
+}
+
+
+
+$(document).ready(function(){
+	var columnList = ['sub_sell_code','inte_code','sub_sell_group','sub_sell_date','sub_sell_practical_selling_price','total_account_group','sub_sell_final','sub_sell_final_date','pay_method','sub_code','event_code','sub_staff_code','sub_sell_final_staff','sub_sell_cost']
 	
-	$(document).ready(function(){
-		
-		/* 오름차/내림차순 정렬 설정 */
-		$('#deliveryCodeUp').click(function(){
-			console.log("deliveryCodeUp");
-			$('#criteria').attr('value','delivery_code');
-			$('#upDown').attr('value','DESC');
-			$('#deliveryList').submit();
+
+	$('.up').each(function(index,item){
+		$(item).click(function(){
+			list('ASC',columnList[index]);
 		});
-		$('#deliveryCodeDown').click(function(){
-			
-			$('#criteria').attr('value','delivery_code');
-			$('#upDown').attr('value','ASC');
-			$('#deliveryList').submit();
-		});
-		
-		
-		$('#deliveryDateUp').click(function(){
-			
-			$('#criteria').attr('value','delivery_date');
-			$('#upDown').attr('value','DESC');
-			$('#deliveryList').submit();
-		});
-		$('#deliveryDateDown').click(function(){
-			
-			$('#criteria').attr('value','delivery_date');
-			$('#upDown').attr('value','ASC');
-			$('#deliveryList').submit();
-		});
-		
-		
-		$('#deliveryReceiveUp').click(function(){
-			
-			$('#criteria').attr('value','delivery_receive');
-			$('#upDown').attr('value','DESC');
-			$('#deliveryList').submit();
-		});
-		$('#deliveryReceiveDown').click(function(){
-			
-			$('#criteria').attr('value','delivery_receive');
-			$('#upDown').attr('value','ASC');
-			$('#deliveryList').submit();
-		});
-		
-		
-		
-		$('#deliveryLocationUp').click(function(){
-			
-			$('#criteria').attr('value','delivery_location');
-			$('#upDown').attr('value','DESC');
-			$('#deliveryList').submit();
-		});
-		$('#deliveryLocationDown').click(function(){
-			
-			$('#criteria').attr('value','delivery_location');
-			$('#upDown').attr('value','ASC');
-			$('#deliveryList').submit();
-		});
-		
-		
-		$('#deliveryReturnUp').click(function(){
-			
-			$('#criteria').attr('value','delivery_return');
-			$('#upDown').attr('value','DESC');
-			$('#deliveryList').submit();
-		});
-		$('#deliveryReturnDown').click(function(){
-			
-			$('#criteria').attr('value','delivery_return');
-			$('#upDown').attr('value','ASC');
-			$('#deliveryList').submit();
-		});
-		
-		$('#deliveryPersonUp').click(function(){
-			
-			$('#criteria').attr('value','delivery_person');
-			$('#upDown').attr('value','DESC');
-			$('#deliveryList').submit();
-		});
-		$('#deliveryPersonDown').click(function(){
-			
-			$('#criteria').attr('value','delivery_person');
-			$('#upDown').attr('value','ASC');
-			$('#deliveryList').submit();
-		});
-		
-		$('#ordersCodeUp').click(function(){
-			
-			$('#criteria').attr('value','orders_code');
-			$('#upDown').attr('value','DESC');
-			$('#deliveryList').submit();
-		});
-		$('#ordersCodeDown').click(function(){
-			
-			$('#criteria').attr('value','orders_code');
-			$('#upDown').attr('value','ASC');
-			$('#deliveryList').submit();
-		});
-		
-		$('#subOrdersGroupUp').click(function(){
-			
-			$('#criteria').attr('value','sub_orders_group');
-			$('#upDown').attr('value','DESC');
-			$('#deliveryList').submit();
-		});
-		$('#subOrdersGroupDown').click(function(){
-			
-			$('#criteria').attr('value','sub_orders_group');
-			$('#upDown').attr('value','ASC');
-			$('#deliveryList').submit();
-		});
-		
-		$('#headStaffIdUp').click(function(){
-			
-			$('#criteria').attr('value','head_staff_id');
-			$('#upDown').attr('value','DESC');
-			$('#deliveryList').submit();
-		});
-		$('#headStaffIdDown').click(function(){
-			
-			$('#criteria').attr('value','head_staff_id');
-			$('#upDown').attr('value','ASC');
-			$('#deliveryList').submit();
-		});
-		
-		$('#subCodeUp').click(function(){
-			
-			$('#criteria').attr('value','sub_code');
-			$('#upDown').attr('value','DESC');
-			$('#deliveryList').submit();
-		});
-		$('#subCodeDown').click(function(){
-			
-			$('#criteria').attr('value','sub_code');
-			$('#upDown').attr('value','ASC');
-			$('#deliveryList').submit();
-		});
-		
 	});
+	$('.down').each(function(index,item){
+		$(item).click(function(){
+			list('DESC',columnList[index]);
+		});
+	});
+	// 더보기
+	$('#viewMoreBtn').click(function(){
+		var viewMore = $('#viewMore').val();
+		$('#viewMore').val(viewMore*1+25);
+		$('#deliveryList').submit();
+	});
+	$('#searchBtn').click(function(){
+		if($('#search').val() == ""){
+			console.log("검색어입력하세요");
+		}else{
+			$('#deliveryList').submit();
+		}
+	});
+	
+	
+	//selectYN
+	$('#selectYN').change(function(){
+		console.log("change");
+		
+		
+		if($('#selectYN').val() == ''){
+			$('#YN').val('');
+			$('#deliveryList').submit();
+		}else if($('#selectYN').val() == 'Y'){
+			$('#YN').val('Y');
+			$('#deliveryList').submit();
+		}else if($('#selectYN').val() == 'N'){
+			$('#YN').val('N');
+			$('#deliveryList').submit();
+		}	
+	});
+	
+
+	
+});
 
 </script>
 </head>
@@ -162,56 +80,82 @@
 	<!-- 상품 검색 -->
 	<form name="deliveryList" id="deliveryList" action="/headViewDeliveryList" method="post">
 	<!-- 오름차/내림차순 정렬을 위한 input 태그 -->
-		<input type="hidden" name="criteria" id="criteria" value=""/>
-		<input type="hidden" name="upDown" id="upDown" value=""/>
+		<input type="hidden" id="upDown" name="upDown" value="${search.upDown}" />
+		<input type="hidden" id="criteria" name="criteria" value="${search.criteria}"/>
+		<input type="hidden" id="viewMore" name="viewMore" value="${search.viewMore}"/>
+		<input type="hidden" id="YN"  name="YN" value="${YN}"/>
 					
 		등록 날짜: 
-		<input type="date" name="regitDateStart" value="${deliverySearch.regitDateStart}"/> ~
-		<input type="date" name="regitDateEnd" value="${deliverySearch.regitDateEnd}"/> 
+		<input type="date" name="regitDateStart" value="${search.regitDateStart}"/> ~
+		<input type="date" name="regitDateEnd" value="${search.regitDateEnd}"/> 
 		<br/><br/>
 		<select name="searchKey" required="required">
 			<option value="">::선택::</option>
-			<option value="delivery_code" <c:if test="${deliverySearch.searchKey eq 'delivery_code'}">selected="selected"</c:if>>delivery_code</option>
-			<option value="delivery_location" <c:if test="${deliverySearch.searchKey eq 'delivery_location'}">selected="selected"</c:if>>delivery_location</option>
-			<option value="delivery_person" <c:if test="${deliverySearch.searchKey eq 'delivery_person'}">selected="selected"</c:if>>delivery_person</option>
-			<option value="orders_code" <c:if test="${deliverySearch.searchKey eq 'orders_code'}">selected="selected"</c:if>>orders_code</option>
-			<option value="subOrders_group" <c:if test="${deliverySearch.searchKey eq 'subOrders_group'}">selected="selected"</c:if>>subOrders_group</option>
-			<option value="head_staff_id" <c:if test="${deliverySearch.searchKey eq 'head_staff_id'}">selected="selected"</c:if>>head_staff_id</option>
-			<option value="sub_code" <c:if test="${deliverySearch.searchKey eq 'sub_code'}">selected="selected"</c:if>>sub_code</option>
+			<option value="delivery_code" <c:if test="${search.searchKey eq 'delivery_code'}">selected="selected"</c:if>>delivery_code</option>
+			<option value="delivery_location" <c:if test="${search.searchKey eq 'delivery_location'}">selected="selected"</c:if>>delivery_location</option>
+			<option value="delivery_person" <c:if test="${search.searchKey eq 'delivery_person'}">selected="selected"</c:if>>delivery_person</option>
+			<option value="orders_code" <c:if test="${search.searchKey eq 'orders_code'}">selected="selected"</c:if>>orders_code</option>
+			<option value="subOrders_group" <c:if test="${search.searchKey eq 'subOrders_group'}">selected="selected"</c:if>>subOrders_group</option>
+			<option value="head_staff_id" <c:if test="${search.searchKey eq 'head_staff_id'}">selected="selected"</c:if>>head_staff_id</option>
+			<option value="sub_code" <c:if test="${search.searchKey eq 'sub_code'}">selected="selected"</c:if>>sub_code</option>
 		</select>
-		<input type="text" name="searchDelivery" value="${deliverySearch.searchDelivery}"/>
-		<button>검색</button>
+		<input type="text" id="search" name="search" value="${search.search}"/>
+		<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
+		<a href="/headViewDeliveryList"><input type="button" class="btn btn-default"  value="전체보기"/></a>
+	
+		분류 : 
+		<select id="selectYN" required="required">
+			<option value="" <c:if test="${YN eq ''}">selected="selected"</c:if>>::선택::</option>
+			<option value="Y" <c:if test="${YN eq 'Y'}">selected="selected"</c:if>>수령</option>
+			<option value="N" <c:if test="${YN eq 'N'}">selected="selected"</c:if>>미수령</option>
+		</select>		
 	</form>
 	<hr/>
 	
 	
 	<div>
-			deliveryCode<span id="deliveryCodeUp">▲</span><span id="deliveryCodeDown">▼</span>
-			deliveryDate<span id="deliveryDateUp">▲</span><span id="deliveryDateDown">▼</span>
-			deliveryReceive<span id="deliveryReceiveUp">▲</span><span id="deliveryReceiveDown">▼</span>
-			deliveryLocation<span id="deliveryLocationUp">▲</span><span id="deliveryLocationDown">▼</span>
-			deliveryReturn<span id="deliveryReturnUp">▲</span><span id="deliveryReturnDown">▼</span>
-			deliveryPerson<span id="deliveryPersonUp">▲</span><span id="deliveryPersonDown">▼</span>
-			ordersCode<span id="ordersCodeUp">▲</span><span id="ordersCodeDown">▼</span>
-			subOrdersGroup<span id="subOrdersGroupUp">▲</span><span id="subOrdersGroupDown">▼</span>
-			headStaffId<span id="headStaffIdUp">▲</span><span id="headStaffIdDown">▼</span>
-			subCode<span id="subCodeUp">▲</span><span id="subCodeDown">▼</span>
+			deliveryCode<span class="up">▲</span><span class="down">▼</span>
+			deliveryDate<span class="up">▲</span><span class="down">▼</span>
+			deliveryReceive<span class="up">▲</span><span class="down">▼</span>
+			deliveryLocation<span class="up">▲</span><span class="down">▼</span>
+			deliveryReturn<span class="up">▲</span><span class="down">▼</span>
+			deliveryPerson<span class="up">▲</span><span class="down">▼</span>
+			ordersCode<span class="up">▲</span><span class="down">▼</span>
+			subOrdersGroup<span class="up">▲</span><span class="down">▼</span>
+			headStaffId<span class="up">▲</span><span class="down">▼</span>
+			subCode<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	
 	<div>
 		<c:forEach var="deliveryList" items="${deliveryList}"> 
-			<div>
-				${deliveryList.deliveryCode}
-				${deliveryList.deliveryDate}
-				${deliveryList.deliveryReceive}
-				${deliveryList.deliveryLocation}
-				${deliveryList.deliveryReturn}
-				${deliveryList.deliveryPerson}
-				${deliveryList.ordersCode}
-				${deliveryList.subOrdersGroup}
-				${deliveryList.headStaffId}
-				${deliveryList.subCode}
-			</div>
+			<c:if test="${YN eq '' || YN eq null}">			
+				<div>
+					${deliveryList.deliveryCode}
+					${deliveryList.deliveryDate}
+					${deliveryList.deliveryReceive}
+					${deliveryList.deliveryLocation}
+					${deliveryList.deliveryReturn}
+					${deliveryList.deliveryPerson}
+					${deliveryList.ordersCode}
+					${deliveryList.subOrdersGroup}
+					${deliveryList.headStaffId}
+					${deliveryList.subCode}
+				</div>
+			</c:if>
+			<c:if test="${deliveryList.deliveryReceive == YN}">			
+				<div>
+					${deliveryList.deliveryCode}
+					${deliveryList.deliveryDate}
+					${deliveryList.deliveryReceive}
+					${deliveryList.deliveryLocation}
+					${deliveryList.deliveryReturn}
+					${deliveryList.deliveryPerson}
+					${deliveryList.ordersCode}
+					${deliveryList.subOrdersGroup}
+					${deliveryList.headStaffId}
+					${deliveryList.subCode}
+				</div>
+			</c:if>
 		</c:forEach>
 		
 	</div>

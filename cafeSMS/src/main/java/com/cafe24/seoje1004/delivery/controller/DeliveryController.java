@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.seoje1004.delivery.model.Delivery;
 import com.cafe24.seoje1004.delivery.model.DeliverySearch;
 import com.cafe24.seoje1004.delivery.service.DeliveryService;
+import com.cafe24.seoje1004.util.Search;
 
 @Controller
 public class DeliveryController {
@@ -24,14 +26,19 @@ public class DeliveryController {
 	
 	//가맹이 해당점의 배송 리스트를 조회
 	@RequestMapping(value="/subViewDeliveryList")
-	public String subViewDeliveryList(Model model, String subCode, DeliverySearch deliverySearch){
+	public String subViewDeliveryList(Model model
+				, String subCode
+				, Search search
+				,@RequestParam(value="YN", required = false)String YN){
 		System.out.println("DeliveryController subViewDeliveryList 실행");
-		
-		List<Delivery> deliveryList = deliveryService.subViewDeliveryList(subCode,deliverySearch);
+		System.out.println("subCode : "+subCode);
+		System.out.println("deliverySearch : "+search);
+		List<Delivery> deliveryList = deliveryService.subViewDeliveryList(subCode,search);
 		System.out.println("deliveryList : "+deliveryList);
 		
+		model.addAttribute("YN", YN);
 		model.addAttribute("subCode", subCode);
-		model.addAttribute("deliverySearch", deliverySearch);
+		model.addAttribute("search", search);
 		model.addAttribute("deliveryList", deliveryList);
 		
 		return "/shared/delivery/subViewDeliveryList";
@@ -39,13 +46,16 @@ public class DeliveryController {
 	
 	//본사가 전체 배송리스트를 조회
 	@RequestMapping(value="/headViewDeliveryList")
-	public String  headViewDeliveryList(Model model, DeliverySearch deliverySearch){
+	public String  headViewDeliveryList(Model model
+			, Search search
+			,@RequestParam(value="YN", required = false)String YN){
 		System.out.println("DeliveryController headViewDeliveryList 실행");
 		
-		List<Delivery> deliveryList	= deliveryService.headViewDeliveryList(deliverySearch);
+		List<Delivery> deliveryList	= deliveryService.headViewDeliveryList(search);
 		System.out.println("deliveryList : "+deliveryList);
 		
-		model.addAttribute("deliverySearch", deliverySearch);
+		model.addAttribute("YN", YN);
+		model.addAttribute("search", search);
 		model.addAttribute("deliveryList", deliveryList);
 		
 		return "/shared/delivery/headViewDeliveryList";
