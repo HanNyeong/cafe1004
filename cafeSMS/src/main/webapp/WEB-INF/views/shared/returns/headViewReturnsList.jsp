@@ -7,173 +7,66 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script type="text/javascript" src="resources/function/upDownCheck.js"></script>
 <script>
+
+var list = function(upDown,criteria){
+	$('#upDown').attr('value',upDown);
+	$('#criteria').attr('value',criteria);
+	$('#returnsList').submit();	
+}
+
+
+
+$(document).ready(function(){
+	var columnList = ['return_code','return_price','return_report_date','return_head_check','return_head_check_date','total_account_group','return_re_delivery','return_cancel','orders_code','specific_item_code','head_returns_confirm','sub_code']
 	
-	$(document).ready(function(){
-		
-		/* 오름차/내림차순 정렬 설정 */
-		$('#returnCodeUp').click(function(){
-			
-			$('#criteria').attr('value','return_code');
-			$('#upDown').attr('value','DESC');
-			$('#returnsList').submit();
+
+	$('.up').each(function(index,item){
+		$(item).click(function(){
+			list('ASC',columnList[index]);
 		});
-		$('#returnCodeDown').click(function(){
-			
-			$('#criteria').attr('value','return_code');
-			$('#upDown').attr('value','ASC');
-			$('#returnsList').submit();
-		});
-		
-		
-		$('#returnPriceUp').click(function(){
-			
-			$('#criteria').attr('value','return_price');
-			$('#upDown').attr('value','DESC');
-			$('#returnsList').submit();
-		});
-		$('#returnPriceDown').click(function(){
-			
-			$('#criteria').attr('value','return_price');
-			$('#upDown').attr('value','ASC');
-			$('#returnsList').submit();
-		});
-		
-		
-		$('#returnReportDateUp').click(function(){
-			
-			$('#criteria').attr('value','return_report_date');
-			$('#upDown').attr('value','DESC');
-			$('#returnsList').submit();
-		});
-		$('#returnReportDateDown').click(function(){
-			
-			$('#criteria').attr('value','return_report_date');
-			$('#upDown').attr('value','ASC');
-			$('#returnsList').submit();
-		});
-		
-		
-		$('#returnHeadCheckUp').click(function(){
-			
-			$('#criteria').attr('value','return_head_check');
-			$('#upDown').attr('value','DESC');
-			$('#returnsList').submit();
-		});
-		$('#returnHeadCheckDown').click(function(){
-			
-			$('#criteria').attr('value','return_head_check');
-			$('#upDown').attr('value','ASC');
-			$('#returnsList').submit();
-		});
-		
-		
-		$('#returnHeadCheckDateUp').click(function(){
-			
-			$('#criteria').attr('value','return_head_check_date');
-			$('#upDown').attr('value','DESC');
-			$('#returnsList').submit();
-		});
-		$('#returnHeadCheckDateDown').click(function(){
-			
-			$('#criteria').attr('value','return_head_check_date');
-			$('#upDown').attr('value','ASC');
-			$('#returnsList').submit();
-		});
-		
-		$('#totalAccountGroupUp').click(function(){
-			
-			$('#criteria').attr('value','total_account_group');
-			$('#upDown').attr('value','DESC');
-			$('#returnsList').submit();
-		});
-		$('#totalAccountGroupDown').click(function(){
-			
-			$('#criteria').attr('value','total_account_group');
-			$('#upDown').attr('value','ASC');
-			$('#returnsList').submit();
-		});
-		
-		
-		$('#returnReDeliveryUp').click(function(){
-			
-			$('#criteria').attr('value','return_re_delivery');
-			$('#upDown').attr('value','DESC');
-			$('#returnsList').submit();
-		});
-		$('#returnReDeliveryDown').click(function(){
-			
-			$('#criteria').attr('value','return_re_delivery');
-			$('#upDown').attr('value','ASC');
-			$('#returnsList').submit();
-		});
-		
-		
-		$('#returnCancelUp').click(function(){
-			
-			$('#criteria').attr('value','return_cancel');
-			$('#upDown').attr('value','DESC');
-			$('#returnsList').submit();
-		});
-		$('#returnCancelDown').click(function(){
-			
-			$('#criteria').attr('value','return_cancel');
-			$('#upDown').attr('value','ASC');
-			$('#returnsList').submit();
-		});
-		
-		$('#ordersCodeUp').click(function(){
-			
-			$('#criteria').attr('value','orders_code');
-			$('#upDown').attr('value','DESC');
-			$('#returnsList').submit();
-		});
-		$('#ordersCodeDown').click(function(){
-			
-			$('#criteria').attr('value','orders_code');
-			$('#upDown').attr('value','ASC');
-			$('#returnsList').submit();
-		});
-		
-		$('#specificItemCodeUp').click(function(){
-			
-			$('#criteria').attr('value','specific_item_code');
-			$('#upDown').attr('value','DESC');
-			$('#returnsList').submit();
-		});
-		$('#specificItemCodeDown').click(function(){
-			
-			$('#criteria').attr('value','specific_item_code');
-			$('#upDown').attr('value','ASC');
-			$('#returnsList').submit();
-		});
-		
-		$('#headReturnsConfirmUp').click(function(){
-			
-			$('#criteria').attr('value','head_returns_confirm');
-			$('#upDown').attr('value','DESC');
-			$('#returnsList').submit();
-		});
-		$('#headReturnsConfirmDown').click(function(){
-			
-			$('#criteria').attr('value','head_returns_confirm');
-			$('#upDown').attr('value','ASC');
-			$('#returnsList').submit();
-		});
-		$('#subCodeUp').click(function(){
-			
-			$('#criteria').attr('value','sub_code');
-			$('#upDown').attr('value','DESC');
-			$('#returnsList').submit();
-		});
-		$('#subCodeDown').click(function(){
-			
-			$('#criteria').attr('value','sub_code');
-			$('#upDown').attr('value','ASC');
-			$('#returnsList').submit();
-		});
-		
 	});
+	$('.down').each(function(index,item){
+		$(item).click(function(){
+			list('DESC',columnList[index]);
+		});
+	});
+	// 더보기
+	$('#viewMoreBtn').click(function(){
+		var viewMore = $('#viewMore').val();
+		$('#viewMore').val(viewMore*1+25);
+		$('#returnsList').submit();
+	});
+	$('#searchBtn').click(function(){
+		if($('#search').val() == ""){
+			console.log("검색어입력하세요");
+		}else{
+			$('#returnsList').submit();
+		}
+	});
+	
+	
+	//selectYN
+	$('#selectYN').change(function(){
+		console.log("change");
+		
+		
+		if($('#selectYN').val() == ''){
+			$('#YN').val('');
+			$('#returnsList').submit();
+		}else if($('#selectYN').val() == 'Y'){
+			$('#YN').val('Y');
+			$('#returnsList').submit();
+		}else if($('#selectYN').val() == 'N'){
+			$('#YN').val('N');
+			$('#returnsList').submit();
+		}	
+	});
+	
+
+	
+});
 
 </script>
 </head>
@@ -187,42 +80,51 @@
 	<!-- 상품 검색 -->
 		<form name="returnsList" id="returnsList" action="/headViewReturnsList" method="post">
 			<!-- 오름차/내림차순 정렬을 위한 input 태그 -->
-			<input type="hidden" name="criteria" id="criteria" value=""/>
-			<input type="hidden" name="upDown" id="upDown" value=""/>
-			
-			
+			<input type="hidden" id="upDown" name="upDown" value="${search.upDown}" />
+			<input type="hidden" id="criteria" name="criteria" value="${search.criteria}"/>
+			<input type="hidden" id="viewMore" name="viewMore" value="${search.viewMore}"/>
+			<input type="hidden" id="YN"  name="YN" value="${YN}"/>	
 			
 			
 			등록 날짜: 
-			<input type="date" name="regitDateStart" value="${returnsSearch.regitDateStart}"/> ~
-			<input type="date" name="regitDateEnd" value="${returnsSearch.regitDateEnd}"/> 
+			<input type="date" name="regitDateStart" value="${search.regitDateStart}"/> ~
+			<input type="date" name="regitDateEnd" value="${search.regitDateEnd}"/> 
 			<br/><br/>
 			<select name="searchKey" required="required">
 				<option value="">::선택::</option>
-				<option value="return_code" <c:if test="${returnsSearch.searchKey eq 'return_code'}">selected="selected"</c:if>>return_code</option>
-				<option value="total_account_group" <c:if test="${returnsSearch.searchKey eq 'total_account_group'}">selected="selected"</c:if>>total_account_group</option>
-				<option value="orders_code" <c:if test="${retunrsSearch.searchKey eq 'orders_code'}">selected="selected"</c:if>>orders_code</option>
-				<option value="specific_item_code" <c:if test="${returnsSearch.searchKey eq 'specific_item_code'}">selected="selected"</c:if>>specific_item_code</option>
-				<option value="sub_code" <c:if test="${returnsSearch.searchKey eq 'sub_code'}">selected="selected"</c:if>>sub_code</option>
+				<option value="return_code" <c:if test="${search.searchKey eq 'return_code'}">selected="selected"</c:if>>return_code</option>
+				<option value="total_account_group" <c:if test="${search.searchKey eq 'total_account_group'}">selected="selected"</c:if>>total_account_group</option>
+				<option value="orders_code" <c:if test="${search.searchKey eq 'orders_code'}">selected="selected"</c:if>>orders_code</option>
+				<option value="specific_item_code" <c:if test="${search.searchKey eq 'specific_item_code'}">selected="selected"</c:if>>specific_item_code</option>
+				<option value="sub_code" <c:if test="${search.searchKey eq 'sub_code'}">selected="selected"</c:if>>sub_code</option>
 			</select>
-			<input type="text" name="searchReturns" value="${returnsSearch.searchReturns}"/>
-			<button>검색</button>
+		
+			<input type="text" id="search" name="search" value="${search.search}"/>
+			<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
+			<a href="/headViewReturnsList"><input type="button" class="btn btn-default"  value="전체보기"/></a>
+			
+			분류 : 
+			<select id="selectYN" required="required">
+				<option value="" <c:if test="${YN eq ''}">selected="selected"</c:if>>::선택::</option>
+				<option value="Y" <c:if test="${YN eq 'Y'}">selected="selected"</c:if>>수령</option>
+				<option value="N" <c:if test="${YN eq 'N'}">selected="selected"</c:if>>미수령</option>
+			</select>	
 		</form>
 	<hr/>
 	
 	<div>
-		returnCode<span id="returnCodeUp">▲</span><span id="returnCodeDown">▼</span>
-		returnPrice<span id="returnPriceUp">▲</span><span id="returnPriceDown">▼</span>
-		returnReportDate<span id="returnReportDateUp">▲</span><span id="returnReportDateDown">▼</span>
-		returnHeadCheck<span id="returnHeadCheckUp">▲</span><span id="returnHeadCheckDown">▼</span>
-		returnHeadCheckDate<span id="returnHeadCheckDateUp">▲</span><span id="returnHeadCheckDateDown">▼</span>
-		totalAccountGroup<span id="totalAccountGroupUp">▲</span><span id="totalAccountGroupDown">▼</span>
-		returnReDelivery<span id="returnReDeliveryUp">▲</span><span id="returnReDeliveryDown">▼</span>
-		returnCancel<span id="returnCancelUp">▲</span><span id="returnCancelDown">▼</span>
-		ordersCode<span id="ordersCodeUp">▲</span><span id="ordersCodeDown">▼</span>
-		specificItemCode<span id="specificItemCodeUp">▲</span><span id="specificItemCodeDown">▼</span>
-		headReturnsConfirm<span id="headReturnsConfirmUp">▲</span><span id="headReturnsConfirmDown">▼</span>
-		subCode<span id="subCodeUp">▲</span><span id="subCodeDown">▼</span>
+		returnCode<span class="up">▲</span><span class="down">▼</span>
+		returnPrice<span class="up">▲</span><span class="down">▼</span>
+		returnReportDate<span class="up">▲</span><span class="down">▼</span>
+		returnHeadCheck<span class="up">▲</span><span class="down">▼</span>
+		returnHeadCheckDate<span class="up">▲</span><span class="down">▼</span>
+		totalAccountGroup<span class="up">▲</span><span class="down">▼</span>
+		returnReDelivery<span class="up">▲</span><span class="down">▼</span>
+		returnCancel<span class="up">▲</span><span class="down">▼</span>
+		ordersCode<span class="up">▲</span><span class="down">▼</span>
+		specificItemCode<span class="up">▲</span><span class="down">▼</span>
+		headReturnsConfirm<span class="up">▲</span><span class="down">▼</span>
+		subCode<span class="up">▲</span><span class="down">▼</span>
 		[상세보기]
 		[환불승인]
 		[처리]
@@ -230,7 +132,7 @@
 	<div>
 		<div>-------------------------------------------------------------------------본사승인받은 [returnHeadCheck = Y]환불리스트-------------------------------------------------------------------------</div>
 		<c:forEach var="returnsList" items="${returnsList}">
-			<c:if test="${returnsList.returnHeadCheck == 'Y'}">	
+			<c:if test="${YN eq '' || YN eq null }">
 				<div>
 					${returnsList.returnCode}
 					${returnsList.returnPrice}
@@ -245,7 +147,12 @@
 					${returnsList.headReturnsConfirm}
 					${returnsList.subCode}
 					<a href="/viewReturnsContent?returnCode=${returnsList.returnCode}">[상세보기]</a>
-					[Null]
+					
+					<c:if test="${returnsList.returnHeadCheck == 'Y'}">
+						<a href="/approvalReturns?returnCode=${returnsList.returnCode}">[환불승인]</a>
+					</c:if>
+					
+					
 					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'N'}">
 						<a href="/headReturnReDelivery?ordersCode=${returnsList.ordersCode}">[재배송]</a>
 					</c:if>
@@ -258,14 +165,10 @@
 					<c:if test="${returnsList.returnReDelivery == 'N' && returnsList.headReturnsConfirm == 'Y'}">
 						[환불 처리]
 					</c:if>
-					
-					
 				</div>
-			</c:if>	
-		</c:forEach>
-		<div>-------------------------------------------------------------------------승인대기중인 [returnHeadCheck = N]환불리스트-------------------------------------------------------------------------</div>
-		<c:forEach var="returnsList" items="${returnsList}">
-			<c:if test="${returnsList.returnHeadCheck == 'N'}">	
+			</c:if>
+			
+			<c:if test="${returnsList.returnHeadCheck == YN}">
 				<div>
 					${returnsList.returnCode}
 					${returnsList.returnPrice}
@@ -280,12 +183,29 @@
 					${returnsList.headReturnsConfirm}
 					${returnsList.subCode}
 					<a href="/viewReturnsContent?returnCode=${returnsList.returnCode}">[상세보기]</a>
-					<a href="/approvalReturns?returnCode=${returnsList.returnCode}">[환불승인]</a>
-					[Null]
+					
+					<c:if test="${returnsList.returnHeadCheck == 'Y'}">
+						<a href="/approvalReturns?returnCode=${returnsList.returnCode}">[환불승인]</a>
+					</c:if>
+					
+					
+					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'N'}">
+						<a href="/headReturnReDelivery?ordersCode=${returnsList.ordersCode}">[재배송]</a>
+					</c:if>
+					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'Y'}">
+						[재배송 처리]
+					</c:if>
+					<c:if test="${returnsList.returnReDelivery == 'N' && returnsList.headReturnsConfirm == 'N'}">
+						<a href="/">[환불]</a>
+					</c:if>
+					<c:if test="${returnsList.returnReDelivery == 'N' && returnsList.headReturnsConfirm == 'Y'}">
+						[환불 처리]
+					</c:if>
 				</div>
-			</c:if>	
+			</c:if>
 		</c:forEach>
+	
 	</div>
-	 </c:if>
+	</c:if> 
 </body>
 </html>

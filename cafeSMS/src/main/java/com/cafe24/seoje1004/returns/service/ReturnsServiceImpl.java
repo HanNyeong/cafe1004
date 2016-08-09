@@ -25,6 +25,7 @@ import com.cafe24.seoje1004.returns.model.SubOrders;
 import com.cafe24.seoje1004.returns.model.SubStock;
 import com.cafe24.seoje1004.returns.model.SubStockSearch;
 import com.cafe24.seoje1004.returns.repository.ReturnsDao;
+import com.cafe24.seoje1004.util.Search;
 
 @Service
 public class ReturnsServiceImpl implements ReturnsService {
@@ -34,11 +35,11 @@ public class ReturnsServiceImpl implements ReturnsService {
 	
 	//가맹측 반품상품관리 조회
 	@Override
-	public List<Returns> subViewReturnsList(String subCode, ReturnsSearch returnsSearch) {
+	public List<Returns> subViewReturnsList(String subCode, Search search) {
 		System.out.println("ReturnsServiceImpl subViewReturnsList 실행");
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("subCode", subCode);
-		map.put("returnsSearch", returnsSearch);
+		map.put("search", search);
 		return returnsDao.subViewReturnsList(map);
 	}
 	
@@ -184,10 +185,10 @@ public class ReturnsServiceImpl implements ReturnsService {
 	
 	//본사측 반품상품관리 조회
 	@Override
-	public List<Returns> headViewReturnsList(ReturnsSearch returnsSearch) {
+	public List<Returns> headViewReturnsList(Search search) {
 		System.out.println("ReturnsServiceImpl headViewReturnsList 실행");
 		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("returnsSearch", returnsSearch);
+		map.put("search", search);
 		return returnsDao.headViewReturnsList(map);
 	}
 

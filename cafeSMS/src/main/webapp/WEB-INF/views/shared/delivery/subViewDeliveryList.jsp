@@ -12,13 +12,13 @@
 var list = function(upDown,criteria){
 	$('#upDown').attr('value',upDown);
 	$('#criteria').attr('value',criteria);
-	$('#subSellList').submit();	
+	$('#deliveryList').submit();	
 }
 
 
 
 $(document).ready(function(){
-	var columnList = ['sub_sell_code','inte_code','sub_sell_group','sub_sell_date','sub_sell_practical_selling_price','total_account_group','sub_sell_final','sub_sell_final_date','pay_method','sub_code','event_code','sub_staff_code','sub_sell_final_staff','sub_sell_cost']
+	var columnList = ['delivery_code','delivery_date','delivery_receive','delivery_location','delivery_return','delivery_person','orders_code','sub_orders_group','head_staff_id','sub_code']
 	
 
 	$('.up').each(function(index,item){
@@ -101,6 +101,7 @@ $(document).ready(function(){
 			<option value="head_staff_id" <c:if test="${search.searchKey eq 'head_staff_id'}">selected="selected"</c:if>>head_staff_id</option>
 			<option value="sub_code" <c:if test="${search.searchKey eq 'sub_code'}">selected="selected"</c:if>>sub_code</option>
 		</select>
+		
 		<input type="text" id="search" name="search" value="${search.search}"/>
 		<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
 		<a href="/subViewDeliveryList?subCode=${subCode}"><input type="button" class="btn btn-default"  value="전체보기"/></a>

@@ -12,13 +12,13 @@
 var list = function(upDown,criteria){
 	$('#upDown').attr('value',upDown);
 	$('#criteria').attr('value',criteria);
-	$('#subSellList').submit();	
+	$('#deliveryList').submit();	
 }
 
 
 
 $(document).ready(function(){
-	var columnList = ['sub_sell_code','inte_code','sub_sell_group','sub_sell_date','sub_sell_practical_selling_price','total_account_group','sub_sell_final','sub_sell_final_date','pay_method','sub_code','event_code','sub_staff_code','sub_sell_final_staff','sub_sell_cost']
+	var columnList = ['delivery_code','delivery_date','delivery_receive','delivery_location','delivery_return','delivery_person','orders_code','sub_orders_group','head_staff_id','sub_code']
 	
 
 	$('.up').each(function(index,item){

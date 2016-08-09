@@ -68,25 +68,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			sub_code
 		FROM
 			returns	
-		
 				
 		<where>
-			sub_code	=	#{subCode}
-			<if test="returnsSearch.regitDateStart != null and returnsSearch.regitDateEnd != null and returnsSearch.regitDateStart !='' and returnsSearch.regitDateEnd !=''">
-				AND <![CDATA[date(return_report_date) >= #{returnsSearch.regitDateStart} and date(return_report_date) <= #{returnsSearch.regitDateEnd}]]>
+			sub_code = #{subCode}
+			<if test="search.regitDateStart != null and search.regitDateEnd != null and search.regitDateStart !='' and search.regitDateEnd !=''">
+				AND <![CDATA[date(return_report_date) >= #{search.regitDateStart} and date(return_report_date) <= #{search.regitDateEnd}]]>  
 			</if>
-			<if test="returnsSearch.searchKey != null and returnsSearch.searchKey != '' and returnsSearch.searchReturns != null and returnsSearch.searchReturns != ''">
-				AND  ${returnsSearch.searchKey} like CONCAT('%',#{returnsSearch.searchReturns},'%')
-			</if> 
-		</where> 
-		<trim prefix="ORDER BY">
-			<if test="returnsSearch.criteria == null or returnsSearch.criteria == ''">
-				return_report_date
+			<if test="search.searchKey != null and search.searchKey != '' and search.search != null and search.search != ''">
+					AND  ${search.searchKey} like CONCAT('%',#{search.search},'%') 
 			</if>
-			<if test="returnsSearch.criteria != null or returnsSearch.criteria != ''">
-				${returnsSearch.criteria} ${returnsSearch.upDown}
-			</if>
-		</trim>	
+			
+		</where>
+		<if test="search.criteria == null and search.criteria == '' and search.upDown == null and search.upDown == ''">
+			order by return_report_date desc
+		</if>
+		<if test="search.criteria != null and search.upDown != null and search.criteria != null and search.upDown != ''">
+			order by ${search.criteria} ${search.upDown}
+		</if>
+		LIMIT 0,${search.viewMore}
 				
 	
 	</select>
@@ -113,21 +112,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM
 			returns			
 		<where>
-			<if test="returnsSearch.regitDateStart != null and returnsSearch.regitDateEnd != null and returnsSearch.regitDateStart !='' and returnsSearch.regitDateEnd !=''">
-				<![CDATA[date(return_report_date) >= #{returnsSearch.regitDateStart} and date(return_report_date) <= #{returnsSearch.regitDateEnd}]]>
+			
+			<if test="search.regitDateStart != null and search.regitDateEnd != null and search.regitDateStart !='' and search.regitDateEnd !=''">
+				<![CDATA[date(return_report_date) >= #{search.regitDateStart} and date(return_report_date) <= #{search.regitDateEnd}]]>  
 			</if>
-			<if test="returnsSearch.searchKey != null and returnsSearch.searchKey != '' and returnsSearch.searchReturns != null and returnsSearch.searchReturns != ''">
-				AND  ${returnsSearch.searchKey} like CONCAT('%',#{returnsSearch.searchReturns},'%')
-			</if> 
-		</where> 
-		<trim prefix="ORDER BY">
-			<if test="returnsSearch.criteria == null or returnsSearch.criteria == ''">
-				return_report_date
+			<if test="search.searchKey != null and search.searchKey != '' and search.search != null and search.search != ''">
+					AND  ${search.searchKey} like CONCAT('%',#{search.search},'%') 
 			</if>
-			<if test="returnsSearch.criteria != null or returnsSearch.criteria != ''">
-				${returnsSearch.criteria} ${returnsSearch.upDown}
-			</if>
-		</trim>	
+			
+		</where>
+		<if test="search.criteria == null and search.criteria == '' and search.upDown == null and search.upDown == ''">
+			order by return_report_date desc
+		</if>
+		<if test="search.criteria != null and search.upDown != null and search.criteria != null and search.upDown != ''">
+			order by ${search.criteria} ${search.upDown}
+		</if>
+		LIMIT 0,${search.viewMore}
 	</select>
 	
 	<!-- 해당 반품상품의 상세정보 -->

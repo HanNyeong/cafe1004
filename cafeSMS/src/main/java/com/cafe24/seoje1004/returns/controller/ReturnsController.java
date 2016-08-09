@@ -18,6 +18,7 @@ import com.cafe24.seoje1004.returns.model.ReturnsSearch;
 import com.cafe24.seoje1004.returns.model.SubStock;
 import com.cafe24.seoje1004.returns.model.SubStockSearch;
 import com.cafe24.seoje1004.returns.service.ReturnsService;
+import com.cafe24.seoje1004.util.Search;
 
 @Controller
 public class ReturnsController {
@@ -32,14 +33,19 @@ public class ReturnsController {
 	
 	//가맹측 반품상품관리 조회
 	@RequestMapping(value="/subViewReturnsList")
-	public String subViewReturnsList(Model model, @RequestParam(value="subCode")String subCode,ReturnsSearch returnsSearch){
+	public String subViewReturnsList(Model model
+				,@RequestParam(value="subCode")String subCode
+				,Search search
+				,@RequestParam(value="YN", required = false)String YN){
 		System.out.println("ReturnsController subViewReturnsList 실행");
 		
-		List<Returns> returnsList = returnsService.subViewReturnsList(subCode, returnsSearch);
+		List<Returns> returnsList = returnsService.subViewReturnsList(subCode, search);
 		System.out.println("returnsList : "+ returnsList);
+		System.out.println("YN : "+YN);
 		
+		model.addAttribute("YN", YN);
 		model.addAttribute("subCode", subCode);
-		model.addAttribute("returnsSearch", returnsSearch);
+		model.addAttribute("search", search);
 		model.addAttribute("returnsList", returnsList);
 		
 		return "/shared/returns/subViewReturnsList";
@@ -118,14 +124,17 @@ public class ReturnsController {
 	
 	//본사측 반품상품관리 조회
 	@RequestMapping(value="/headViewReturnsList")
-	public String headViewReturnsList(Model model,ReturnsSearch returnsSearch){
+	public String headViewReturnsList(Model model
+				,Search search
+				,@RequestParam(value="YN", required = false)String YN){
 		System.out.println("ReturnsController headViewReturnsList 실행");
 		
-		List<Returns> returnsList = returnsService.headViewReturnsList(returnsSearch);
+		List<Returns> returnsList = returnsService.headViewReturnsList(search);
 		System.out.println("returnsList : "+ returnsList);
 		
 		
-		model.addAttribute("returnsSearch", returnsSearch);
+		model.addAttribute("YN", YN);
+		model.addAttribute("search", search);
 		model.addAttribute("returnsList", returnsList);
 		
 		
