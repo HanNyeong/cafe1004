@@ -24,4 +24,9 @@ public class SubjectDaoImpl implements SubjectDao{
 		return sqlSessionSubject.selectList(NS+".viewSubject",map);
 	}
 
+	@Override
+	public void add(Map<String, Object> map) {
+		sqlSessionSubject.insert(NS+".add",map);
+	}
+
 }

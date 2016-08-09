@@ -103,6 +103,17 @@ public class OrdersDaoImpl implements OrdersDao{
 		sqlSessionOrders.insert(NS+".addSubStock",map);
 		
 	}	
+	@Override
+	public List<String> selectSpecificCode(Orders orders){
+		return sqlSessionOrders.selectList(NS+".selectSpecificCode",orders);
+	}
+	
+	//specific 출고여부 update
+	@Override
+	public void modifySpecificItemOut(String specificItemCode) {
+		System.out.println("modifySpecificItemOut");
+		sqlSessionOrders.update(NS+".modifySpecific",specificItemCode);
+	}
 	
 
 }

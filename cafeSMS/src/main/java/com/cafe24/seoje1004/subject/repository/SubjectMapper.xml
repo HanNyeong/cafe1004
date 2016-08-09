@@ -36,4 +36,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				order by ${subjectSearch.criteria} ${subjectSearch.upDown}
 			</if>
 	</select>
+	
+	<insert id="add"
+		parameterType="java.util.Map">
+		<selectKey resultType="hashmap" keyProperty="specificItemCode" order="BEFORE">
+			select if(isnull(specific_item_code),'specific_item_code100', concat('specific_item_code', MAX(CONVERT(SUBSTRING(specific_item_code,19), UNSIGNED))+1)) as specificItemCode
+			from specific_item
+		</selectKey>
+		INSERT INTO specific_item
+		(specific_item_code, 
+		specific_item_date, 
+		specific_item_in, 
+		specific_item_expiry_date, 
+		head_item_code, 
+		head_staff_registration)
+		VALUES 
+		(#{specificItemCode}, 
+		NOW(), 
+		NOW(), 
+		'2016-10-09 20:07:50', 
+		#{specificItem.headItemCode}, 
+		#{specificItem.headStaffRegistration})
+	</insert>
 </mapper>

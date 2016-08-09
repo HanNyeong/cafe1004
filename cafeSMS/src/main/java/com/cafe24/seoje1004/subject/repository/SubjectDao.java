@@ -9,4 +9,6 @@ public interface SubjectDao {
 
 	List<Subject> viewSubjectList(Map<String, Object> map);
 
+	void add(Map<String, Object> map);
+
 }

@@ -57,7 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 비어있는 입고날짜를 오늘로 업데이트 -->
 	<update id="subWarehousing"
-			parameterType="String">
+			parameterType="java.lang.String">
 		UPDATE
 			sub_stock
 		SET
@@ -70,14 +70,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 배송테이블의 배송수령여부 컬럼을 Y로 업데이트 -->
 	<update id="deliveryReceiveY"
-			parameterType="String">
+			parameterType="java.lang.String">
 		UPDATE
 			delivery
 		SET
 			delivery_receive = "Y"
 		WHERE
 			orders_code = #{ordersCode}	
-	
+	</update>
+	<!-- modifyOrders -->
+	<update id="modifyOrders"
+			parameterType="java.lang.String">
+		UPDATE sub_orders
+		SET
+			sub_orders_status='배송완료'
+		WHERE 
+			orders_code = #{ordersCode}
 	</update>
 
 </mapper>

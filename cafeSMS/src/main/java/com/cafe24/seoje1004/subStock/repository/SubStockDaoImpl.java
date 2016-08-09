@@ -45,4 +45,11 @@ public class SubStockDaoImpl implements SubStockDao{
 		sqlSessionSubStock.update(NS+".deliveryReceiveY", ordersCode);
 	}
 	
+	//orders table status 업데이트
+	@Override
+	public void ordersStatus(String ordersCode) {
+		System.out.println("ordersStatus");
+		sqlSessionSubStock.update(NS+".modifyOrders",ordersCode);
+	}
+	
 }

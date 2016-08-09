@@ -228,12 +228,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{orders.ordersCode}, 
 			#{orders.subCode}, 
 			#{orders.headItemCode}, 
-			(
-			select specific_item_code from specific_item where head_item_code = #{orders.headItemCode} 
-			and specific_item_expiry_date >= NOW() 
-			and specific_item_out = 'N'
-			)
+			#{specificItemCode}
 			)
 			
 	</insert>
+	<select id="selectSpecificCode"
+			parameterType="com.cafe24.seoje1004.orders.model.Orders"
+			resultType="java.lang.String">
+			select specific_item_code from specific_item where head_item_code = #{headItemCode} 
+			and NOW() >= specific_item_expiry_date  
+			and specific_item_out = 'N'
+	</select>
+	
+	<!-- modifySpecific -->
+	<update id="modifySpecific"
+			parameterType="java.lang.String">
+			UPDATE specific_item
+			SET
+				specific_item_out='Y'
+			WHERE 
+				specific_item_code = #{specificItemCode}
+	</update>
 </mapper>

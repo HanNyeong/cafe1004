@@ -148,13 +148,10 @@ public class OrdersServiceImpl implements OrdersService{
 		System.out.println("modifyOrdersConfirmService");
 		Map<String,Object> map = new HashMap<String,Object>();
 		System.out.println("orderGroup :" +orderGroup);
+		
 		for(int i = 0; i<orderGroup.getOrdersCode().size(); i++) {
 			System.out.println("for문 확인");
 			Orders orders = new Orders();
-			System.out.println("orders SET전 "+ orderGroup.getOrdersCode().get(i));
-			System.out.println("orders SET전 "+ orderGroup.getSubCode().get(i));
-			System.out.println("orders SET전 "+ orderGroup.getHeadItemCode().get(i));
-			System.out.println("orders SET전 "+ orderGroup.getSubOrdersQuantity().get(i));
 			orders.setOrdersCode(orderGroup.getOrdersCode().get(i));
 			orders.setSubCode(orderGroup.getSubCode().get(i));
 			orders.setHeadItemCode(orderGroup.getHeadItemCode().get(i));
@@ -162,23 +159,31 @@ public class OrdersServiceImpl implements OrdersService{
 			orders.setHeadStaffId("head_staff_id1");
 			orders.setSubOrdersStatus("배송중");
 			orders.setHeadOrdersConfirm("Y");
-			System.out.println("orders SET후 "+ orders.getOrdersCode());
-			System.out.println("orders SET후 "+ orders.getSubCode());
-			System.out.println("orders SET후 "+ orders.getHeadItemCode());
-			System.out.println("orders SET후 "+ orders.getSubOrdersQuantity());
 			map.put("orders", orders);
 			Delivery delivery = new Delivery();
 			delivery.setDeliveryPerson("head_staff_id1");
-			delivery.setDeliveryLocation("물류센터");
+			delivery.setDeliveryLocation("매장도착");
 			map.put("delivery", delivery);
-			
-			SubStock subStock = new SubStock();
-			subStock.setSpecificItemCode("specific_item_code1");
-			map.put("subStock",subStock);
 			
 			ordersDao.modifyOrdersConfirm(map);
 			ordersDao.modifyDeliveryLocation(map);
-			ordersDao.addSubStock(map);
+			
+			System.out.println();
+			System.out.println();
+			System.out.println();System.out.println();System.out.println();System.out.println();
+			System.out.println();System.out.println();System.out.println();System.out.println();System.out.println();System.out.println();
+			List<String> l = ordersDao.selectSpecificCode(orders);
+			for(int j =0; j<orders.getSubOrdersQuantity(); j++){
+				
+				System.out.println(l);
+				map.put("specificItemCode", l.get(j));
+				ordersDao.addSubStock(map);
+				ordersDao.modifySpecificItemOut(l.get(j));
+			}
+			System.out.println();
+			System.out.println();
+			System.out.println();System.out.println();System.out.println();System.out.println();
+			System.out.println();System.out.println();System.out.println();System.out.println();System.out.println();System.out.println();
 			
 		}
 	}
