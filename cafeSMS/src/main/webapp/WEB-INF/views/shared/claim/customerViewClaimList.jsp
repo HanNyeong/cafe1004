@@ -207,11 +207,11 @@
 	<div class="col-sm-2">
 	</div>
 </div>	
-<div class="row tablediv">
-	<div class="col-sm-2">
-	</div>		
-		<c:if test="${!empty claimList}">
-			<c:forEach var="claimList" items="${claimList}">
+<c:if test="${!empty claimList}">
+	<c:forEach var="claimList" items="${claimList}">
+		<div class="row tablediv">
+			<div class="col-sm-2">
+			</div>		
 				<div class="col-sm-1">${claimList.claimCode}</div>	
 				<div class="col-sm-1">${claimList.claimType}</div>	
 				<div class="col-sm-1">${claimList.claimAskDate}</div>	
@@ -223,11 +223,11 @@
 					${claimList.claimStatus}
 					<a href="/viewClaimContent?claimCode=${claimList.claimCode}&customerName=${claimList.customerName}">[상세보기]</a>
 				</div>	
-			</c:forEach>
-		</c:if>
-	<div class="col-sm-2">
-	</div>
-</div>
+			<div class="col-sm-2">
+			</div>
+		</div>
+	</c:forEach>
+</c:if>
 
 <jsp:include page="/WEB-INF/module/footer.jsp"/>	
 </body>

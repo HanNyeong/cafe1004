@@ -72,6 +72,7 @@
 		<input type="date" name="regitDateStart" value="${ordersSearch.regitDateStart}"/> ~
 		<input type="date" name="regitDateEnd" value="${ordersSearch.regitDateEnd}"/> 
 		<br/><br/>
+		
 		<a href="/subOrdersPayConfirm?subCode=${subLogin.subCode}">
 		<input type="button" id="ordersPay" class="btn btn-default" value="전체리스트보기"></a>
 	</form>

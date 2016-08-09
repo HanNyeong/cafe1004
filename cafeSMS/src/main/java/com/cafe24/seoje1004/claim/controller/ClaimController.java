@@ -155,7 +155,7 @@ public class ClaimController {
 		System.out.println("contractController customerViewClaimForm 실행!!");
 		
 		
-		return "/shared/claim/customerViewClaimForm";
+		return "redirect:/";
 	}	
 	
 	

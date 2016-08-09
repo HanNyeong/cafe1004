@@ -75,6 +75,7 @@
 			<input type="date" name="regitDateStart" value="${clientSearch.regitDateStart}"/> ~
 			<input type="date" name="regitDateEnd" value="${clientSearch.regitDateEnd}"/> 
 			<br/><br/>
+			<a href="/headViewOrdersList"><input type="button" id="ordersList" class="btn btn-default" value="전체보기"></a>
 		</form>
 	</div>
 	<div class="col-sm-2">
