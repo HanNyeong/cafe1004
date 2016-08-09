@@ -181,7 +181,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			head_stock_in_date,
 			sub_stock_in_date,
 			sub_stock_out,
-			sub_stock_confirm_date,
 			orders_code,
 			sub_code,
 			head_item_code,
