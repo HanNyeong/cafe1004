@@ -67,7 +67,6 @@ public class SubAccountController {
 			subStaff.setSubStaffPw("");
 			redirectAttr.addFlashAttribute("subAccount", subAccount);
 			redirectAttr.addFlashAttribute("subStaff", subStaff);
-			
 		}
 			
 		return "redirect:/viewSubAccountList";
