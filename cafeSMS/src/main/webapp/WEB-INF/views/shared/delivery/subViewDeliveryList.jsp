@@ -70,8 +70,13 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<a href="/">home</a>
-	<h1>[${subCode}]가맹에서 배송조회</h1>
+<jsp:include page="/WEB-INF/module/nav.jsp"/>
+<div class="row">
+	<div class="col-sm-2">
+	</div>
+	
+	<div class="col-sm-8">
+	
 	<c:if test="${empty deliveryList}">
 		[${subCode}]의 배송 내역이 없습니다.
 	</c:if>
@@ -105,65 +110,96 @@ $(document).ready(function(){
 		<input type="text" id="search" name="search" value="${search.search}"/>
 		<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
 		<a href="/subViewDeliveryList?subCode=${subCode}"><input type="button" class="btn btn-default"  value="전체보기"/></a>
-		
-		분류 : 
+		</form>
+		</c:if>
+	</div>
+	<div class="col-sm-2">
+	</div>
+</div>
+<br/>
+<br/>
+<div class="row">
+	<div class="col-sm-2">
+	</div>	
+	<div class="col-sm-3">	
+		<h3>= ${subCode}가맹에서 배송조회 =</h3>
+	</div>	
+	<div class="col-sm-5 clickBtn">	
+		<h4>분류 : 
 		<select id="selectYN" required="required">
 			<option value="" <c:if test="${YN eq ''}">selected="selected"</c:if>>::선택::</option>
 			<option value="Y" <c:if test="${YN eq 'Y'}">selected="selected"</c:if>>수령</option>
 			<option value="N" <c:if test="${YN eq 'N'}">selected="selected"</c:if>>미수령</option>
-		</select>
-		
-	</form>
-	<hr/>
-	
-	
-	<div>
-			deliveryCode<span class="up">▲</span><span class="down">▼</span>
-			deliveryDate<span class="up">▲</span><span class="down">▼</span>
-			deliveryReceive<span class="up">▲</span><span class="down">▼</span>
-			deliveryLocation<span class="up">▲</span><span class="down">▼</span>
-			deliveryReturn<span class="up">▲</span><span class="down">▼</span>
-			deliveryPerson<span class="up">▲</span><span class="down">▼</span>
-			ordersCode<span class="up">▲</span><span class="down">▼</span>
-			subOrdersGroup<span class="up">▲</span><span class="down">▼</span>
-			headStaffId<span class="up">▲</span><span class="down">▼</span>
-			subCode<span class="up">▲</span><span class="down">▼</span>
+		</select></h4>
 	</div>
-	
-	<div>
+	<div class="col-sm-2">
+	</div>	
+</div>
+<c:if test="${!empty deliveryList}">
+<div class="row tablediv">
+		<div class="col-sm-2">
+		</div>
+		<div class="col-sm-1 th">
+			배송코드<span class="up">▲</span><span class="down">▼</span>
+		</div>
+		<div class="col-sm-1 th">	
+			출발날짜<span class="up">▲</span><span class="down">▼</span>
+		</div>
+		<div class="col-sm-1 th">	
+			수령여부<span class="up">▲</span><span class="down">▼</span>
+		</div>
+		<div class="col-sm-1 th">	
+			현재위치<span class="up">▲</span><span class="down">▼</span>
+		</div>
+		<div class="col-sm-1 th">	
+			반송여부<span class="up">▲</span><span class="down">▼</span>
+		</div>
+		<div class="col-sm-1 th">	
+			배송담당자<span class="up">▲</span><span class="down">▼</span>
+		</div>
+		<div class="col-sm-1 th">	
+			주문코드<span class="up">▲</span><span class="down">▼</span>
+		</div>
+		<div class="col-sm-1 th">	
+			주문통합그룹<span class="up">▲</span><span class="down">▼</span>			
+		</div>
+		<div class="col-sm-2">	
+		</div>
+	</div>
 		<c:forEach var="deliveryList" items="${deliveryList}"> 
 			<c:if test="${YN eq '' || YN eq null}">			
-				<div>
-					${deliveryList.deliveryCode}
-					${deliveryList.deliveryDate}
-					${deliveryList.deliveryReceive}
-					${deliveryList.deliveryLocation}
-					${deliveryList.deliveryReturn}
-					${deliveryList.deliveryPerson}
-					${deliveryList.ordersCode}
-					${deliveryList.subOrdersGroup}
-					${deliveryList.headStaffId}
-					${deliveryList.subCode}
+				<div class="row tablediv">
+					<div class="col-sm-2">
+					</div>
+					<div class="col-sm-1">${deliveryList.deliveryCode}</div>
+					<div class="col-sm-1">${deliveryList.deliveryDate}</div>
+					<div class="col-sm-1">${deliveryList.deliveryReceive}</div>
+					<div class="col-sm-1">${deliveryList.deliveryLocation}</div>
+					<div class="col-sm-1">${deliveryList.deliveryReturn}</div>
+					<div class="col-sm-1">${deliveryList.deliveryPerson}</div>
+					<div class="col-sm-1">${deliveryList.ordersCode}</div>
+					<div class="col-sm-1">${deliveryList.subOrdersGroup}</div>
+					<div class="col-sm-2">	
+					</div>
 				</div>
 			</c:if>
 			<c:if test="${deliveryList.deliveryReceive == YN}">			
-				<div>
-					${deliveryList.deliveryCode}
-					${deliveryList.deliveryDate}
-					${deliveryList.deliveryReceive}
-					${deliveryList.deliveryLocation}
-					${deliveryList.deliveryReturn}
-					${deliveryList.deliveryPerson}
-					${deliveryList.ordersCode}
-					${deliveryList.subOrdersGroup}
-					${deliveryList.headStaffId}
-					${deliveryList.subCode}
+				<div class="row tablediv">
+					<div class="col-sm-2">
+					</div>
+					<div class="col-sm-1">${deliveryList.deliveryCode}</div>
+					<div class="col-sm-1">${deliveryList.deliveryDate}</div>
+					<div class="col-sm-1">${deliveryList.deliveryReceive}</div>
+					<div class="col-sm-1">${deliveryList.deliveryLocation}</div>
+					<div class="col-sm-1">${deliveryList.deliveryReturn}</div>
+					<div class="col-sm-1">${deliveryList.deliveryPerson}</div>
+					<div class="col-sm-1">${deliveryList.ordersCode}</div>
+					<div class="col-sm-1">${deliveryList.subOrdersGroup}</div>
+					<div class="col-sm-2">	
+					</div>
 				</div>
 			</c:if>
 		</c:forEach>
-		
-	</div>
-	
 	</c:if>
 	
 	

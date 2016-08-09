@@ -72,10 +72,11 @@
 	});
 
 </script>
-<a href="/">home</a>
-	<h1>계약조회 페이지입니다.</h1><hr/>
-	
-	
+<jsp:include page="/WEB-INF/module/nav.jsp"/>
+<div class="row">
+	<div class="col-sm-2">
+	</div>	
+	<div class="col-sm-8">
 		<!-- 상품 검색 -->
 		<form  id="contractList" action="/subViewContractList" method="post">
 			<!-- 오름차/내림차순 정렬을 위한 input 태그 -->
@@ -98,55 +99,82 @@
 			</select>
 			<input type="text" id="search" name="search" value="${search.search}"/>
 			<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
-			<a href="/subViewContractList?subCode=${subCode}"><input type="button" class="btn btn-default"  value="전체보기"/></a>
-		
-			분류 : 
-			<select id="selectYN" required="required">
-				<option value="" <c:if test="${YN eq ''}">selected="selected"</c:if>>전체</option>
-				<option value="Y" <c:if test="${YN eq 'Y'}">selected="selected"</c:if>>본사승인</option>
-				<option value="N" <c:if test="${YN eq 'N'}">selected="selected"</c:if>>승인대기</option>
-				
-				
-			</select>
-		
+			<a href="/subViewContractList?subCode=${subCode}">
+			<input type="button" class="btn btn-default"  value="전체보기"/></a>
 		</form>
-	<hr/>
-	<div>
-		<div>
-			[본사승인여부]
-			[계약상태]
-			contractCode<span class="up">▲</span><span class="down">▼</span>
-			contractName<span class="up">▲</span><span class="down">▼</span>
-			contractRegitDate<span class="up">▲</span><span class="down">▼</span>
-			contractActualDate<span class="up">▲</span><span class="down">▼</span>
-			contractExpiryDate<span class="up">▲</span><span class="down">▼</span>
-			contractN<span class="up">▲</span><span class="down">▼</span>
-			contractExpireDate<span class="up">▲</span><span class="down">▼</span>
-			subCode<span class="up">▲</span><span class="down">▼</span>
-			reContractStatus<span class="up">▲</span><span class="down">▼</span>
-			[상세보기]
-			[재계약신청]	
-			[계약파기신청]
 		</div>
-		<hr/>
-		
-		
+	<div class="col-sm-2">
+	</div>
+</div>
+<br/>
+<br/>
+<div class="row">
+	<div class="col-sm-2">
+	</div>	
+	<div class="col-sm-3">
+		<h3>= 계약조회 페이지 =</h3>
+	</div>	
+	<div class="col-sm-5 clickBtn">	
+			<h4>분류 : 
+				<select id="selectYN" required="required">
+					<option value="" <c:if test="${YN eq ''}">selected="selected"</c:if>>전체</option>
+					<option value="Y" <c:if test="${YN eq 'Y'}">selected="selected"</c:if>>본사승인</option>
+					<option value="N" <c:if test="${YN eq 'N'}">selected="selected"</c:if>>승인대기</option>			
+				</select>
+			</h4>
+		<a href="/subAddContract?subCode=${subCode}"><button class="btn btn-default">계약등록</button></a>
+	</div>
+	<div class="col-sm-2">
+	</div>	
+</div>
+<div class="row tablediv">
+		<div class="col-sm-2">
+		</div>
+		<div class="col-sm-1 th">
+			계약상태
+		</div>
+		<div class="col-sm-1 th">	
+			계약코드  <span class="up">▲</span><span class="down">▼</span>
+		</div>
+		<div class="col-sm-1 th">	
+			계약자 명  <span class="up">▲</span><span class="down">▼</span>
+		</div>
+		<div class="col-sm-1 th">	
+			계약 시작일  <span class="up">▲</span><span class="down">▼</span>
+		</div>
+		<div class="col-sm-1 th">	
+			계약 만료일  <span class="up">▲</span><span class="down">▼</span>
+		</div>
+		<div class="col-sm-1 th">	
+			계약 파기일  <span class="up">▲</span><span class="down">▼</span>
+		</div>
+		<div class="col-sm-1 th">	
+			[상세보기]
+		</div>
+		<div class="col-sm-1 th">	
+			신청
+		</div>	
+		<div class="col-sm-2">
+		</div>
+	</div> 	
 		
 		<!-- 날짜구하기 -->
-		<c:set var="now" value="<%=new java.util.Date()%>" />
-		<fmt:formatDate value="${now}" var="nows" pattern="yyyy-MM-dd"/>
+<c:set var="now" value="<%=new java.util.Date()%>" />
+<fmt:formatDate value="${now}" var="nows" pattern="yyyy-MM-dd"/>
 		
-		<c:forEach var="subContractList" items="${subContractList}">
-			<c:if test="${YN eq '' || YN eq null}">		
-			<div>
+<c:forEach var="subContractList" items="${subContractList}">
+	<c:if test="${YN eq '' || YN eq null}">		
+		<div class="row tablediv">
+			<div class="col-sm-2">
+			</div>
+			<div class="col-sm-1">
 					<c:if test="${subContractList.headContractConfirm == 'Y'}">
-						[본사승인]
+						[승인]
 					</c:if>
 					<c:if test="${subContractList.headContractConfirm == 'N'}">
-						[승인대기]
-					</c:if>
-					
-				
+						[대기]
+					</c:if>	
+					<br/>
 					<c:if test="${subContractList.contractExpireDate != null}">
 		 				파기
 			 		</c:if>
@@ -154,44 +182,47 @@
 			 			정상
 			 		</c:if>
 			 		<c:if test="${subContractList.contractExpiryDate <= nows}">
-			 			만료
+			 			${subContractList.contractN}차 계약 만료
 			 		</c:if>
+			 		<br/>
 			 		<c:if test="${subContractList.reContractStatus == 'Y' && subContractList.contractExpireDate == null}">
-			 			이전계약(재계약)
+			 			${subContractList.contractN}차 재계약
 			 		</c:if>
-					${subContractList.contractCode}
-					${subContractList.contractName}
-					${subContractList.contractRegitDate}
-					${subContractList.contractActualDate}
-					${subContractList.contractExpiryDate}
-					${subContractList.contractN}
-					${subContractList.contractExpireDate}
-					${subContractList.subCode}
-					${subContractList.reContractStatus}
-					${subContractList.headContractConfirm}
-					<a href="/subViewContractContent?contractCode=${subContractList.contractCode}">[상세보기]</a>
-					
+			 </div>		
+			 <div class="col-sm-1">${subContractList.contractCode}</div>	
+			 <div class="col-sm-1">${subContractList.contractName}</div>	
+			 <div class="col-sm-1">${subContractList.contractActualDate}</div>	
+			 <div class="col-sm-1">${subContractList.contractExpiryDate}</div>	
+			 <div class="col-sm-1">${subContractList.contractExpireDate}</div>	
+			 <div class="col-sm-1">		
+				<a href="/subViewContractContent?contractCode=${subContractList.contractCode}">[상세보기]</a>
+			 </div>	
+			 <div class="col-sm-1">
 					<c:if test="${subContractList.reContractStatus == 'N'}">
 						<a href="/subAddRecharterContract?contractCode=${subContractList.contractCode}">[재계약신청]</a>
 					</c:if>
-					
+					<br/>
 					<c:if test="${subContractList.contractExpireDate ==null && subContractList.reContractStatus == 'N'}">
 						<a href="/subExpireContract?contractCode=${subContractList.contractCode}&subCode=${subContractList.subCode}">[계약파기신청]</a>
 					</c:if>			
-				
 			</div>
-			</c:if>
+			<div class="col-sm-2">
+			</div>
+		</div>
+	</c:if>
 		
-			<c:if test="${subContractList.headContractConfirm eq YN}">		
-			<div>
+	<c:if test="${subContractList.headContractConfirm eq YN}">		
+			<div class="row tablediv">
+			<div class="col-sm-2">
+			</div>
+			<div class="col-sm-1">
 					<c:if test="${subContractList.headContractConfirm == 'Y'}">
-						[본사승인]
+						[승인]
 					</c:if>
 					<c:if test="${subContractList.headContractConfirm == 'N'}">
-						[승인대기]
+						[대기]
 					</c:if>
-					
-				
+					<br/>	
 					<c:if test="${subContractList.contractExpireDate != null}">
 		 				파기
 			 		</c:if>
@@ -199,51 +230,37 @@
 			 			정상
 			 		</c:if>
 			 		<c:if test="${subContractList.contractExpiryDate <= nows}">
-			 			만료
+			 			${subContractList.contractN}차 계약 만료
 			 		</c:if>
+			 		<br/>
 			 		<c:if test="${subContractList.reContractStatus == 'Y' && subContractList.contractExpireDate == null}">
-			 			이전계약(재계약)
+			 			${subContractList.contractN}차 재계약
 			 		</c:if>
-					${subContractList.contractCode}
-					${subContractList.contractName}
-					${subContractList.contractRegitDate}
-					${subContractList.contractActualDate}
-					${subContractList.contractExpiryDate}
-					${subContractList.contractN}
-					${subContractList.contractExpireDate}
-					${subContractList.subCode}
-					${subContractList.reContractStatus}
-					${subContractList.headContractConfirm}
-					<a href="/subViewContractContent?contractCode=${subContractList.contractCode}">[상세보기]</a>
-					
+			 </div>		
+			 <div class="col-sm-1">${subContractList.contractCode}</div>	
+			 <div class="col-sm-1">${subContractList.contractName}</div>	
+			 <div class="col-sm-1">${subContractList.contractActualDate}</div>	
+			 <div class="col-sm-1">${subContractList.contractExpiryDate}</div>	
+			 <div class="col-sm-1">${subContractList.contractExpireDate}</div>	
+			 <div class="col-sm-1">		
+				<a href="/subViewContractContent?contractCode=${subContractList.contractCode}">[상세보기]</a>
+			 </div>	
+			 <div class="col-sm-1">
 					<c:if test="${subContractList.reContractStatus == 'N'}">
 						<a href="/subAddRecharterContract?contractCode=${subContractList.contractCode}">[재계약신청]</a>
 					</c:if>
-					
+					<br/>
 					<c:if test="${subContractList.contractExpireDate ==null && subContractList.reContractStatus == 'N'}">
 						<a href="/subExpireContract?contractCode=${subContractList.contractCode}&subCode=${subContractList.subCode}">[계약파기신청]</a>
 					</c:if>			
-				
 			</div>
-			</c:if>		
-		
-		
-		
-		</c:forEach>
+			<div class="col-sm-2">
+			</div>
+		</div>
+	</c:if>			
+</c:forEach>
 	<input type="button" class="btn btn-default" id="viewMoreBtn" value="더보기"/>
-	</div>
-	
-	
-	
-	
-	
-	<h1>계약등록 링크</h1>
-	<div>
-		<a href="/subAddContract?subCode=${subCode}">[계약등록]</a>
-	</div>
-	
-	
-	
+<jsp:include page="/WEB-INF/module/footer.jsp"/>
 	
 </body>
 </html>

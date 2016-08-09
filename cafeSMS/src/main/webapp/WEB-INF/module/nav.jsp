@@ -22,7 +22,7 @@
 		<div class="container">
 			<ul class="nav nav-tabs" role="tablist">
 			
-			<li class="active"><a href="/">Home</a></li>
+			<li class="active"><a href="/">Home</a></li> 
 			<c:if test="${subLogin ne null}">	 
 			<!-- 상품관리 -->
 				<li class="dropdown">
