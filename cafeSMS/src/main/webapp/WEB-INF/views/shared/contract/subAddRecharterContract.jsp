@@ -14,7 +14,7 @@
 	//계약서 파일 추가
 	$("#contractFileBtn").on("click",function(){
 		console.log("contractFileBtn click");
-		$("#contractFileAdd").append('<div><label>contractFile : </label><input id = "contractFile" type="file" name="contractFile"/></div>');	
+		$("#contractFileAdd").append('<div><input id = "contractFile" type="file" class="btn btn-default" name="contractFile"/></div>');	
 	});
 	
 	//계약등록 버튼
@@ -101,69 +101,84 @@
 
 </head>
 <body>
-	<h1>재계약 신청 폼</h1>
-	<div>
-		<form id="reContractAddForm" method="post" enctype="multipart/form-data">
-				<input id="contractCode" type="hidden" name="contractCode" value="${contract.contractCode}">
-			
-			<div>
-				<label>contractName : </label>
-				<input id="contractName" type="text" name="contractName" value="${contract.contractName}"/>
-				<span id="contractNameMsg"></span>
-			</div>	
-			
-			<div>
-				<label>이전 contractActualDate : </label>
-				<input id="preContractActualDate" type="text" value="${contract.contractActualDate}" readonly="readonly"/>
-				<label>contractActualDate : </label>
-				<input id="contractActualDate" type="date" name="contractActualDate"/>
-				<span id="contractActualDateMsg"></span>
-			</div>	
-			<div>
-				<label>이전 contractExpiryDate : </label>
-				<input id="preContractExpiryDate" type="text" value="${contract.contractExpiryDate}" readonly="readonly"/>
-				<label>contractExpiryDate : </label>
-				<input id="contractExpiryDate" type="date" name="contractExpiryDate"/>
-				<span id="contractExpiryDateMsg"></span>
-			</div>	
-			<div>
-				<label>contractDeposit : </label>
-				<input id="contractDeposit" type="text" name="contractDeposit" value="${contract.contractDeposit}"/>
-				<span id="contractDepositMsg"></span>
-			</div>	
-			<div>
-				<label>contractProfitPercent : </label>
-				<input id="contractProfitPercent" type="text" name="contractProfitPercent" value="${contract.contractProfitPercent}"/>
-				<span id="contractProfitPercentMsg"></span>
-			</div>	
-			<div>
-				<label>contractFile : </label>
-				<input id="contractFile" type="file" name="contractFile"/>
-				<input id="contractFileBtn" type="button" value="AddBtn"/>
-				<span id="contractFileMsg"></span>
+<jsp:include page="/WEB-INF/module/nav.jsp"/>
+<div class="row">
+		<div class="col-sm-4">
+		</div>
+		<div class="col-sm-3 addForm">
+		<h1>= 재계약 신청 폼 =</h1>
+		<div>
+			<form id="reContractAddForm" method="post" enctype="multipart/form-data">
+					<input id="contractCode" type="hidden" name="contractCode" value="${contract.contractCode}">
 				
-			</div>	
-			<span id="contractFileAdd"></span>
-			<div>
-				<label>contractN : </label>
-				<input id="contractN" type="text" name="contractN" value="${contract.contractN + 1}" readonly="readonly"/>
-			</div>	
-			<div>
-				<label>headStaffId : </label>
-				<input id="headStaffId" type="text" name="headStaffId" value="${contract.headStaffId}"/>
-				<span id="headStaffIdMsg"></span>
-			</div>	
-			<div>
-				<label>subCode : </label>
-				<input id="subCode" type="text" name="subCode" value="${contract.subCode}" readonly="readonly"/>
-				<span id="subCodeMsg"></span>
-			</div>	
-			<div>
-				<input id="reContractAddBtn" type="button" value="계약등록"/>
+				<div>
+					<label>계약자 이름  : </label>
+					<input id="contractName" type="text" name="contractName" value="${contract.contractName}"/>
+					<span id="contractNameMsg"></span>
+				</div>	
+				
+				<div>
+					<label>이전 계약 날짜 : </label>
+					<input id="preContractActualDate" type="text" value="${contract.contractActualDate}" readonly="readonly"/>
+				</div>	
+				<div>	
+					<label>계약 날짜 : </label>
+					<input id="contractActualDate" type="date" name="contractActualDate"/>
+					<span id="contractActualDateMsg"></span>
+				</div>	
+				<div>
+					<label>이전 계약 만료일 : </label>
+					<input id="preContractExpiryDate" type="text" value="${contract.contractExpiryDate}" readonly="readonly"/>
+				</div>	
+				<div>	
+					<label>계약 만료일  : </label>
+					<input id="contractExpiryDate" type="date" name="contractExpiryDate"/>
+					<span id="contractExpiryDateMsg"></span>
+				</div>	
+				<div>
+					<label>가맹 금액  : </label>
+					<input id="contractDeposit" type="text" name="contractDeposit" value="${contract.contractDeposit}"/>
+					<span id="contractDepositMsg"></span>
+				</div>	
+				<div>
+					<label>이익 배분율 : </label>
+					<input id="contractProfitPercent" type="text" name="contractProfitPercent" value="${contract.contractProfitPercent}"/>
+					<span id="contractProfitPercentMsg"></span>
+				</div>	
+				<div>
+					<label>계약 첨부파일 : </label>
+					<input id="contractFileBtn" type="button" class="btn btn-default"value="파일추가"/>
+					<input id="contractFile" type="file" class="btn btn-default" name="contractFile"/>
+					<span id="contractFileMsg"></span>
+					
+				</div>	
+				<span id="contractFileAdd"></span>
+				<div>
+					<label>계약 차수 : </label>
+					<input id="contractN" type="text" name="contractN" value="${contract.contractN + 1}" readonly="readonly"/>
+				</div>	
+				<div>
+					<label>본사 계약 담당 직원 : </label>
+					<input id="headStaffId" type="text" name="headStaffId" value="${contract.headStaffId}"/>
+					<span id="headStaffIdMsg"></span>
+				</div>	
+				<div>
+					<label>가맹 대표 코드 : </label>
+					<input id="subCode" type="text" name="subCode" value="${contract.subCode}" readonly="readonly"/>
+					<span id="subCodeMsg"></span>
+				</div>
+				<br/>	
+				<div class="clickBtn">
+					<input id="reContractAddBtn" type="button" class="btn btn-default" value="계약등록"/>
+				</div>
+				<br/>
+				</form>
+				</div>
 			</div>
-			
-		
-		</form>
+		<div class="col-sm-5">
+		</div>
 	</div>
+	
+<jsp:include page="/WEB-INF/module/footer.jsp"/>
 </body>
 </html>

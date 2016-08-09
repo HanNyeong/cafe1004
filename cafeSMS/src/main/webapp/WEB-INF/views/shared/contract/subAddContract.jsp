@@ -14,7 +14,7 @@
 	//계약서 파일 추가
 	$("#contractFileBtn").on("click",function(){
 		console.log("contractFileBtn click");
-		$("#contractFileAdd").append('<div><label>contractFile : </label><input id = "contractFile" type="file" name="contractFile"/></div>');	
+		$("#contractFileAdd").append('<div><input id = "contractFile" class="btn btn-default" type="file" name="contractFile"/></div>');	
 	});
 	
 	//가맹대표코드 중복체크
@@ -172,7 +172,7 @@
 					<div>
 						<label>계약 첨부파일 : </label>
 						<input id="contractFileBtn" type="button" class="btn btn-default" value="파일추가"/>
-						<input id="contractFile" type="file" name="contractFile"/>
+						<input id="contractFile" type="file" class="btn btn-default" name="contractFile"/>
 						<span id="contractFileMsg"></span>
 					</div>	
 					<span id="contractFileAdd"></span>
