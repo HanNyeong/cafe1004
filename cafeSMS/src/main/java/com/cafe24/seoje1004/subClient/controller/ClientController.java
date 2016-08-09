@@ -24,7 +24,8 @@ public class ClientController {
 	@RequestMapping(value="/subViewSubClientList")
 	public String viewClientList(Model model, ClientSearch clientSearch, SubLogin subLogin) {
 		System.out.println("ClientController//viewClientList실행");
-		model.addAttribute(clientService.viewClientListService(clientSearch,subLogin));
+		List<Client> clientList = clientService.viewClientListService(clientSearch,subLogin);
+		model.addAttribute("clientList",clientList);
 		model.addAttribute("clientSearch",clientSearch);
 		return "/sub/subClient/subViewSubClientList";
 	}
@@ -38,15 +39,15 @@ public class ClientController {
 	
 	//거래처 추가 컨트롤러 0729 박효민
 	@RequestMapping(value="/addClient",method=RequestMethod.POST)
-	public String addClient(Model model, Client client) {
+	public String addClient(Model model, Client client,SubLogin subLogin) {
 		System.out.println("ClientController//addClient실행");
 		System.out.println("쿼리실행전//"+client);
-		clientService.addClientService(client);
+		clientService.addClientService(client,subLogin);
 		System.out.println("쿼리실행후//"+client);
 		
 		model.addAttribute("client",client);
 		
-		return "redirect:/subViewSubClientList";
+		return "redirect:/subViewSubClientList?SubCode="+client.getSubCode();
 	}
 	
 	//거래처 수정 폼이동 컨트롤러 0729 박효민

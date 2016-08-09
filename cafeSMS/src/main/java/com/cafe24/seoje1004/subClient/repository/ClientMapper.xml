@@ -64,9 +64,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </select>
    
    <insert id="insertClient"
-   		parameterType="com.cafe24.seoje1004.subClient.model.Client">
+   		parameterType="java.util.Map">
    		<selectKey resultType="hashmap" keyProperty="subClientCode" order="BEFORE">
-        	select if(isnull(sub_client_code),'sub_client_code1000', concat('sub_client', MAX(CONVERT(SUBSTRING(sub_client_code,16), UNSIGNED))+1)) as subClientCode
+        	select if(isnull(sub_client_code),'sub_client_code1000', concat('sub_client_code', MAX(CONVERT(SUBSTRING(sub_client_code,16), UNSIGNED))+1)) as subClientCode
         	from sub_client
       	</selectKey>
       		INSERT INTO 
@@ -80,13 +80,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					sub_code
 					)
 				VALUES (
-					#{subClientCode},
-		 			#{subClientName}, 
+					#{client.subClientCode},
+		 			#{client.subClientName}, 
 					 NOW(), 
-		 			#{subClientInCharge},
-		 			#{subClientPhone},
-		 			#{subClientAddr},
-		 			#{subCode}
+		 			#{client.subClientInCharge},
+		 			#{client.subClientPhone},
+		 			#{client.subClientAddr},
+		 			#{subLogin.subCode}
 		 			)
    </insert>
    
@@ -103,4 +103,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE
 			sub_client_code= #{subClientCode}
    </update>
+   
+   	<select id="selectClientCode"
+		resultType="java.lang.String">
+		select if(isnull(sub_client_code),'sub_client_code1000', concat('sub_client_code', MAX(CONVERT(SUBSTRING(sub_client_code,16), UNSIGNED))+1)) as subClientCode
+		from sub_client
+	</select>
 </mapper>

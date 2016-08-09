@@ -30,11 +30,13 @@ public class ClientServiceImpl implements ClientService{
 	
 	//거래처추가 service 0729박효민
 	@Override
-	public void addClientService(Client client) {
+	public void addClientService(Client client,SubLogin subLogin) {
 		System.out.println("ClientServiceImpl//addClientService실행");
-		client.setSubCode("sub_code1");
-		clientDao.addClient(client);
-		System.out.println(client);
+		Map<String,Object> map = new HashMap<String,Object>();
+		client.setSubClientCode(clientDao.selectClientCode());
+		map.put("client", client);
+		map.put("subLogin", subLogin);
+		clientDao.addClient(map);
 	}
 	
 	//거래처수정을위한 select service 0729박효민

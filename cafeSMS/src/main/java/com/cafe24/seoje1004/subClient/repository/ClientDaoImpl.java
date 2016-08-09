@@ -26,9 +26,9 @@ public class ClientDaoImpl implements ClientDao{
 	
 	//거래처추가 Dao 0729박효민
 	@Override
-	public void addClient(Client client) {
+	public void addClient(Map<String, Object> map) {
 		System.out.println("ClientDaoImpl//addClient실행");
-		sqlSessionSubClient.insert(NS+".insertClient", client);
+		sqlSessionSubClient.insert(NS+".insertClient", map);
 	}
 	
 	//거래처 수정폼이동및값셋팅 Dao 0729 박효민
@@ -44,4 +44,11 @@ public class ClientDaoImpl implements ClientDao{
 		System.out.println("ClientDaoImpl//modifyClient");
 		sqlSessionSubClient.update(NS+".modifyClient",map);
 	}
+	
+	//clientcode 가져오기
+	@Override
+	public String selectClientCode() {
+		return sqlSessionSubClient.selectOne(NS+".selectClientCode");
+	}
+	
 }

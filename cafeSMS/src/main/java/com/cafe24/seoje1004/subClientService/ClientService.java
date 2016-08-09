@@ -10,7 +10,7 @@ public interface ClientService {
 
 	List<Client> viewClientListService(ClientSearch clientSearch, SubLogin subLogin);
 
-	void addClientService(Client client);
+	void addClientService(Client client,SubLogin subLogin);
 
 	Client selectClientService(Client client);
 

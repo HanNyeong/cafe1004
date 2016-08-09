@@ -75,7 +75,7 @@
 			<h3>= 가맹거래처목록 =</h3>
 		</div>
 		<div class="col-sm-6 clickBtn">			
-			<a href="/subAddSubClient"><button  class="btn btn-default">거래처추가</button></a>
+			<a href="/subAddSubClient?subCode=${subLogin.subCode}"><button  class="btn btn-default">거래처추가</button></a>
 		</div>
 	<div class="col-sm-2">
 	</div>

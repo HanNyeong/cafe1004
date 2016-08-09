@@ -14,6 +14,7 @@
 	<div class="col-sm-3 addForm">
 		<h1>가맹거래처추가</h1>
 			<form action="/addClient" method=POST>
+				<input type="hidden" name="subCode" value="${subLogin.subCode}">
 				<div>
 					거래처명 : <input type="text" name="subClientName">
 				</div>
