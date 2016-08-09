@@ -22,6 +22,7 @@ import com.cafe24.seoje1004.orders.model.Orders;
 import com.cafe24.seoje1004.orders.model.OrdersSearch;
 import com.cafe24.seoje1004.orders.repository.OrdersDao;
 import com.cafe24.seoje1004.sub.model.SubLogin;
+import com.cafe24.seoje1004.subStock.model.SubStock;
 
 @Service
 public class OrdersServiceImpl implements OrdersService{
@@ -141,7 +142,7 @@ public class OrdersServiceImpl implements OrdersService{
 		map.put("ordersSearch", ordersSearch);
 		return ordersDao.viewOrdersListByHead(map);
 	}
-	//본사주문승인 modifyOrdersServie
+	//본사주문승인 modifyOrdersService
 	@Override
 	public void modifyOrdersConfirmService(OrderGroup orderGroup) {
 		System.out.println("modifyOrdersConfirmService");
@@ -154,7 +155,7 @@ public class OrdersServiceImpl implements OrdersService{
 			orders.setSubOrdersQuantity(orderGroup.getSubOrdersQuantity().get(i));
 			orders.setTotalAccountGroup(orderGroup.getTotalAccountGroup().get(i));
 			orders.setHeadStaffId("head_staff_id1");
-			orders.setSubOrdersStatus("배송준비중");
+			orders.setSubOrdersStatus("배송중");
 			orders.setHeadOrdersConfirm("Y");
 			map.put("orders", orders);
 			
@@ -163,8 +164,11 @@ public class OrdersServiceImpl implements OrdersService{
 			delivery.setDeliveryLocation("물류센터");
 			map.put("delivery", delivery);
 			
+			SubStock subStock = new SubStock();
+			map.put("subStock",subStock);
 			ordersDao.modifyOrdersConfirm(map);
 			ordersDao.modifyDeliveryLocation(map);
+			ordersDao.addSubStock(map);
 			
 		}
 	}

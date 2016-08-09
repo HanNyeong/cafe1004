@@ -36,5 +36,7 @@ public interface OrdersDao {
 
 	void modifyDeliveryLocation(Map<String, Object> map);
 
+	void addSubStock(Map<String, Object> map);
+
 
 }

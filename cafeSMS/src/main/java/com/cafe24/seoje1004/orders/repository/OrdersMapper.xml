@@ -207,4 +207,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				delivery_person = #{delivery.deliveryPerson}
 			WHERE orders_code = #{orders.ordersCode}
 	</update>
+	
+	<insert id="addSubStock"
+			parameterType="java.util.Map">
+			<selectKey resultType="hashmap" keyProperty="subStockCode" order="BEFORE">
+				select if(isnull(sub_stock_code),'sub_stock_code1000', concat('sub_stock_code', MAX(CONVERT(SUBSTRING(sub_stock_code,15), UNSIGNED))+1)) as subStockCode
+				from sub_stock
+			</selectKey>
+	INSERT INTO 
+		sub_stock(
+			sub_stock_code,
+			head_stock_in_date,  
+			orders_code, 
+			sub_code, 
+			head_item_code, 
+			specific_item_code)
+	VALUES (
+			#{subStockCode}, 
+			NOW(),
+			#{orders.ordersCode}, 
+			#{subLogin.subCode}, 
+			#{orders.headItemCode}, 
+			(
+			select specific_item_code from specific_item where head_item_code = #{orders.headItemCode} 
+			and specific_item_expiry_date >= NOW() 
+			and specific_item_out = 'N'
+			)
+			
+	</insert>
 </mapper>

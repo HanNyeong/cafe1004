@@ -96,12 +96,13 @@ public class OrdersDaoImpl implements OrdersDao{
 		System.out.println("modifyDeliveryLocation실행");
 		sqlSessionOrders.update(NS+".modifyDeliveryLocation",map);
 	}
-	
-	//본사주문승인 Dao (sub_stock insert)
-	
-	
-	
-	
+	//본사주문승인 Dao(addSubStock)
+	@Override
+	public void addSubStock(Map<String, Object> map) {
+		System.out.println("addSubStock실행");
+		sqlSessionOrders.insert(NS+".",map);
+		
+	}	
 	
 
 }
