@@ -21,7 +21,7 @@ public class ClientController {
 	private ClientService clientService;
 	
 	//거래처목록 불러오는 컨트롤러 0729 박효민 search추가후 수정
-	@RequestMapping(value="/subViewSubClientList")
+	@RequestMapping(value="/subViewSubClientList", method=RequestMethod.GET)
 	public String viewClientList(Model model, ClientSearch clientSearch, SubLogin subLogin) {
 		System.out.println("ClientController//viewClientList실행");
 		List<Client> clientList = clientService.viewClientListService(clientSearch,subLogin);
