@@ -100,7 +100,7 @@ public class OrdersDaoImpl implements OrdersDao{
 	@Override
 	public void addSubStock(Map<String, Object> map) {
 		System.out.println("addSubStock실행");
-		sqlSessionOrders.insert(NS+".",map);
+		sqlSessionOrders.insert(NS+".addSubStock",map);
 		
 	}	
 	

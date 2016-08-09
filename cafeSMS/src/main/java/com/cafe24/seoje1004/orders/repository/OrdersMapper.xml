@@ -226,12 +226,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{subStockCode}, 
 			NOW(),
 			#{orders.ordersCode}, 
-			#{subLogin.subCode}, 
+			#{orders.subCode}, 
 			#{orders.headItemCode}, 
 			(
 			select specific_item_code from specific_item where head_item_code = #{orders.headItemCode} 
 			and specific_item_expiry_date >= NOW() 
 			and specific_item_out = 'N'
+			)
 			)
 			
 	</insert>

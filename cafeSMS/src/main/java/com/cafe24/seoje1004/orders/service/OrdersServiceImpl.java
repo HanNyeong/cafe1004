@@ -147,25 +147,35 @@ public class OrdersServiceImpl implements OrdersService{
 	public void modifyOrdersConfirmService(OrderGroup orderGroup) {
 		System.out.println("modifyOrdersConfirmService");
 		Map<String,Object> map = new HashMap<String,Object>();
-		for(int i = 0; i<orderGroup.getOrdersCode().size();i++) {
+		System.out.println("orderGroup :" +orderGroup);
+		for(int i = 0; i<orderGroup.getOrdersCode().size(); i++) {
+			System.out.println("for문 확인");
 			Orders orders = new Orders();
+			System.out.println("orders SET전 "+ orderGroup.getOrdersCode().get(i));
+			System.out.println("orders SET전 "+ orderGroup.getSubCode().get(i));
+			System.out.println("orders SET전 "+ orderGroup.getHeadItemCode().get(i));
+			System.out.println("orders SET전 "+ orderGroup.getSubOrdersQuantity().get(i));
 			orders.setOrdersCode(orderGroup.getOrdersCode().get(i));
 			orders.setSubCode(orderGroup.getSubCode().get(i));
 			orders.setHeadItemCode(orderGroup.getHeadItemCode().get(i));
 			orders.setSubOrdersQuantity(orderGroup.getSubOrdersQuantity().get(i));
-			orders.setTotalAccountGroup(orderGroup.getTotalAccountGroup().get(i));
 			orders.setHeadStaffId("head_staff_id1");
 			orders.setSubOrdersStatus("배송중");
 			orders.setHeadOrdersConfirm("Y");
+			System.out.println("orders SET후 "+ orders.getOrdersCode());
+			System.out.println("orders SET후 "+ orders.getSubCode());
+			System.out.println("orders SET후 "+ orders.getHeadItemCode());
+			System.out.println("orders SET후 "+ orders.getSubOrdersQuantity());
 			map.put("orders", orders);
-			
 			Delivery delivery = new Delivery();
 			delivery.setDeliveryPerson("head_staff_id1");
 			delivery.setDeliveryLocation("물류센터");
 			map.put("delivery", delivery);
 			
 			SubStock subStock = new SubStock();
+			subStock.setSpecificItemCode("specific_item_code1");
 			map.put("subStock",subStock);
+			
 			ordersDao.modifyOrdersConfirm(map);
 			ordersDao.modifyDeliveryLocation(map);
 			ordersDao.addSubStock(map);
