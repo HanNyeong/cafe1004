@@ -12,93 +12,64 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script>
-	
+var list = function(upDown,criteria){
+	$('#upDown').attr('value',upDown);
+	$('#criteria').attr('value',criteria);
+	$('#contractList').submit();	
+	}
+
 	$(document).ready(function(){
+		var columnList = ['contract_code','contract_name','contract_regit_date','contract_actual_date','contract_expiry_date','contract_n','contract_expire_date','sub_code','pay_method','sub_code','re_contract_status']
 		
-		/* 오름차/내림차순 정렬 설정 */
-		$('#contractCodeUp').click(function(){
-			
-			$('#criteria').attr('value','contract_code');
-			$('#upDown').attr('value','DESC');
-			$('#contractList').submit();
+
+		$('.up').each(function(index,item){
+			$(item).click(function(){
+				list('ASC',columnList[index]);
+			});
 		});
-		$('#contractCodeDown').click(function(){
-			
-			$('#criteria').attr('value','contract_code');
-			$('#upDown').attr('value','ASC');
-			$('#contractList').submit();
+		$('.down').each(function(index,item){
+			$(item).click(function(){
+				list('DESC',columnList[index]);
+			});
 		});
+
 		
-		
-		$('#contractNameUp').click(function(){
-			
-			$('#criteria').attr('value','contract_name');
-			$('#upDown').attr('value','DESC');
-			$('#contractList').submit();
-		});
-		$('#contractNameDown').click(function(){
-			
-			$('#criteria').attr('value','contract_name');
-			$('#upDown').attr('value','ASC');
+		// 더보기
+		$('#viewMoreBtn').click(function(){
+			var viewMore = $('#viewMore').val();
+			$('#viewMore').val(viewMore*1+25);
 			$('#contractList').submit();
 		});
 		
-		
-		$('#contractRegitDateUp').click(function(){
-			
-			$('#criteria').attr('value','contract_regit_date');
-			$('#upDown').attr('value','DESC');
-			$('#contractList').submit();
-		});
-		$('#contractRegitDateDown').click(function(){
-			
-			$('#criteria').attr('value','contract_regit_date');
-			$('#upDown').attr('value','ASC');
-			$('#contractList').submit();
+		$('#searchBtn').click(function(){
+			if($('#searchSubStaff').val() == ""){
+				console.log("검색어입력하세요");
+			}else{
+				$('#contractList').submit();
+			}
 		});
 		
 		
-		$('#contractActualDateUp').click(function(){
-			
-			$('#criteria').attr('value','contract_actual_date');
-			$('#upDown').attr('value','DESC');
-			$('#contractList').submit();
-		});
-		$('#contractActualDateDown').click(function(){
-			
-			$('#criteria').attr('value','contract_actual_date');
-			$('#upDown').attr('value','ASC');
-			$('#contractList').submit();
-		});
-		
-		
-		$('#contractExpiryDateUp').click(function(){
-			
-			$('#criteria').attr('value','contract_expiry_date');
-			$('#upDown').attr('value','DESC');
-			$('#contractList').submit();
-		});
-		$('#contractExpiryDateDown').click(function(){
-			
-			$('#criteria').attr('value','contract_expiry_date');
-			$('#upDown').attr('value','ASC');
-			$('#contractList').submit();
+	
+		//selectYN
+		$('#selectYN').change(function(){
+			if($('#selectYN').val() == ''){
+				$('#YN').val('');
+				$('#contractList').submit();
+			}else if($('#selectYN').val() == 'Y'){
+				$('#YN').val('Y');
+				$('#contractList').submit();
+			}else if($('#selectYN').val() == 'N'){
+				$('#YN').val('N');
+				$('#contractList').submit();
+			}
 		});
 		
-		$('#contractExpireDateUp').click(function(){
-			
-			$('#criteria').attr('value','contract_expire_date');
-			$('#upDown').attr('value','DESC');
-			$('#contractList').submit();
-		});
-		$('#contractExpireDateDown').click(function(){
-			
-			$('#criteria').attr('value','contract_expire_date');
-			$('#upDown').attr('value','ASC');
-			$('#contractList').submit();
-		});
+		
+		
 		
 	});
+
 
 </script>
 
@@ -107,38 +78,49 @@
 	<!-- 상품 검색 -->
 		<form name="contractList" id="contractList" action="/headViewContractList" method="post">
 			<!-- 오름차/내림차순 정렬을 위한 input 태그 -->
-			<input type="hidden" name="criteria" id="criteria" value=""/>
-			<input type="hidden" name="upDown" id="upDown" value=""/>
+			<input type="hidden" id="upDown" name="upDown" value="${search.upDown}" />
+			<input type="hidden" id="criteria" name="criteria" value="${search.criteria}"/>
+			<input type="hidden" id="viewMore" name="viewMore" value="${search.viewMore}"/>
+			<input type="hidden" id="YN"  name="YN" value="${YN}"/>
 			<%-- <input type="hidden" name="subCode" value="${subCode}"/> --%>
 			
 		
 			등록 날짜: 
-			<input type="date" name="regitDateStart" value="${contractSearch.regitDateStart}"/> ~
-			<input type="date" name="regitDateEnd" value="${contractSearch.regitDateEnd}"/> 
+			<input type="date" name="regitDateStart" value="${search.regitDateStart}"/> ~
+			<input type="date" name="regitDateEnd" value="${search.regitDateEnd}"/> 
 			<br/><br/>
 			<select name="searchKey" required="required">
 				<option value="">::선택::</option>
-				<option value="contract_code" <c:if test="${contractSearch.searchKey eq 'contract_code'}">selected="selected"</c:if>>contract_code</option>
-				<option value="contract_name" <c:if test="${contractSearch.searchKey eq 'contract_name'}">selected="selected"</c:if>>contract_name</option>
-				<option value="sub_code" <c:if test="${contractSearch.searchKey eq 'sub_code'}">selected="selected"</c:if>>sub_code</option>
+				<option value="contract_code" <c:if test="${search.searchKey eq 'contract_code'}">selected="selected"</c:if>>contract_code</option>
+				<option value="contract_name" <c:if test="${search.searchKey eq 'contract_name'}">selected="selected"</c:if>>contract_name</option>
+				<option value="sub_code" <c:if test="${search.searchKey eq 'sub_code'}">selected="selected"</c:if>>sub_code</option>
 				
 			</select>
-			<input type="text" name="searchContract" value="${contractSearch.searchContract}"/>
-			<button>검색</button>
+			<input type="text" id="search" name="search" value="${search.search}"/>
+			<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
+			<a href="/headViewContractList"><input type="button" class="btn btn-default"  value="전체보기"/></a>
+		
+			분류 : 
+			<select id="selectYN" required="required">
+				<option value="" <c:if test="${YN eq ''}">selected="selected"</c:if>>전체</option>
+				<option value="Y" <c:if test="${YN eq 'Y'}">selected="selected"</c:if>>본사승인</option>
+				<option value="N" <c:if test="${YN eq 'N'}">selected="selected"</c:if>>승인대기</option>
+			</select>
 		</form>
 	
 	<div>
+		[본사승인여부]
 		[계약상태]
-		contractCode<span id="contractCodeUp">▲</span><span id="contractCodeDown">▼</span>
-		contractName<span id="contractNameUp">▲</span><span id="contractNameDown">▼</span>
-		contractRegitDate<span id="contractRegitDateUp">▲</span><span id="contractRegitDateDown">▼</span>
-		contractActualDate<span id="contractActualDateUp">▲</span><span id="contractActualDateDown">▼</span>
-		contractExpiryDate<span id="contractExpiryDateUp">▲</span><span id="contractExpiryDateDown">▼</span>
-		contractN
-		contractExpireDate<span id="contractExpireDateUp">▲</span><span id="contractExpireDateDown">▼</span>
-		subCode
-		reContractStatus
-		headContractConfirm	
+		contractCode<span class="up">▲</span><span class="down">▼</span>
+		contractName<span class="up">▲</span><span class="down">▼</span>
+		contractRegitDate<span class="up">▲</span><span class="down">▼</span>
+		contractActualDate<span class="up">▲</span><span class="down">▼</span>
+		contractExpiryDate<span class="up">▲</span><span class="down">▼</span>
+		contractN<span class="up">▲</span><span class="down">▼</span>
+		contractExpireDate<span class="up">▲</span><span class="down">▼</span>
+		subCode<span class="up">▲</span><span class="down">▼</span>
+		reContractStatus<span class="up">▲</span><span class="down">▼</span>
+		headContractConfirm	<span class="up">▲</span><span class="down">▼</span>
 		[상세보기]	
 		[계약승인]
 	</div>
@@ -148,16 +130,58 @@
 			<c:set var="now" value="<%=new java.util.Date()%>" />
 			<fmt:formatDate value="${now}" var="nows" pattern="yyyy-MM-dd"/>
 	
-	<p>------------------------------------------------------------전체 계약진행 리스트------------------------------------------------------------</p>
+	
 			
 			<c:forEach var="headContractList" items="${headContractList}">
+				<c:if test="${YN eq '' || YN eq null}">
 				<div>
 					<c:if test="${headContractList.headContractConfirm == 'Y'}">
-				 		
+				 		[본사승인]
+				 	</c:if>
+				 	<c:if test="${headContractList.headContractConfirm == 'N'}">
+				 		[승인대기]
+				 	</c:if>		
 				 		<c:if test="${headContractList.contractExpireDate != null}">
 			 				파기
 				 		</c:if>
-						<c:if test="${headContractList.contractExpireDate == null && headContractList.contractExpiryDate > nows && subContractList.reContractStatus == 'N'}">
+						<c:if test="${headContractList.contractExpireDate == null && headContractList.contractExpiryDate > nows && headContractList.reContractStatus == 'N'}">
+							정상
+				 		</c:if>
+				 		<c:if test="${headContractList.contractExpiryDate <= nows}">
+				 			만료
+				 		</c:if>
+				 		<c:if test="${headContractList.reContractStatus == 'Y' && headContractList.contractExpireDate == null}">
+				 			이전계약(재계약)
+				 		</c:if>
+						${headContractList.contractCode}
+						${headContractList.contractName}
+						${headContractList.contractRegitDate}
+						${headContractList.contractActualDate}
+						${headContractList.contractExpiryDate}
+						${headContractList.contractN}
+						${headContractList.contractExpireDate}
+						${headContractList.subCode}
+						${headContractList.reContractStatus}
+						${headContractList.headContractConfirm}
+						<a href="/subViewContractContent?contractCode=${headContractList.contractCode}">[상세보기]</a>	
+						
+					<c:if test="${headContractList.headContractConfirm == 'N'}">	
+						<a href="/headApproveContract?contractCode=${headContractList.contractCode}">[계약승인]</a>
+					</c:if>		
+				</div>
+				</c:if>
+				<c:if test="${headContractList.headContractConfirm eq YN}">
+				<div>
+					<c:if test="${headContractList.headContractConfirm == 'Y'}">
+				 		[본사승인]
+				 	</c:if>
+				 	<c:if test="${headContractList.headContractConfirm == 'N'}">
+				 		[승인대기]
+				 	</c:if>		
+				 		<c:if test="${headContractList.contractExpireDate != null}">
+			 				파기
+				 		</c:if>
+						<c:if test="${headContractList.contractExpireDate == null && headContractList.contractExpiryDate > nows && headContractList.reContractStatus == 'N'}">
 				 			정상
 				 		</c:if>
 				 		<c:if test="${headContractList.contractExpiryDate <= nows}">
@@ -177,41 +201,18 @@
 						${headContractList.reContractStatus}
 						${headContractList.headContractConfirm}
 						<a href="/subViewContractContent?contractCode=${headContractList.contractCode}">[상세보기]</a>	
-						[Null]
-	
-					</c:if>	
-											
-							
+						
+					<c:if test="${headContractList.headContractConfirm == 'N'}">	
+						<a href="/headApproveContract?contractCode=${headContractList.contractCode}">[계약승인]</a>
+					</c:if>		
 				</div>
+				</c:if>
 			</c:forEach>
 	
 	
 	</div>
 	
-	<p>------------------------------------------------------------전체 계약신청 리스트------------------------------------------------------------</p>
-			
-			<c:forEach var="headContractList" items="${headContractList}">
-				<div>
-					<c:if test="${headContractList.headContractConfirm == 'N'}">
-						대기중
-						${headContractList.contractCode}
-						${headContractList.contractName}
-						${headContractList.contractRegitDate}
-						${headContractList.contractActualDate}
-						${headContractList.contractExpiryDate}
-						${headContractList.contractN}
-						${headContractList.contractExpireDate}
-						${headContractList.subCode}
-						${headContractList.reContractStatus}
-						${headContractList.headContractConfirm}
-						<a href="/subViewContractContent?contractCode=${headContractList.contractCode}">[상세보기]</a>
-						<a href="/headApproveContract?contractCode=${headContractList.contractCode}">[계약승인]</a>
-					</c:if>	
-							
-						
-							
-				</div>
-			</c:forEach>
+	
 	
 </body>
 </html>

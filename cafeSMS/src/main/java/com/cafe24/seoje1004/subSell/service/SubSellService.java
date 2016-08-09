@@ -3,6 +3,7 @@ package com.cafe24.seoje1004.subSell.service;
 import java.util.List;
 
 import com.cafe24.seoje1004.subSell.model.SubSell;
+import com.cafe24.seoje1004.subSell.model.SubSells;
 import com.cafe24.seoje1004.util.Search;
 
 public interface SubSellService {
@@ -12,7 +13,7 @@ public interface SubSellService {
 	 */
 	
 	public List<SubSell> subViewSubSellList(Search search,String subCode); 	//가맹 판매 조회[승인처리리스트]
-	public void subSellFinal(String subSellCode);		//가맹 판매 마감처리
 	
+	public void subSellFinals(SubSells subSells);		//가맹 판매 마감처리s
 	
 }

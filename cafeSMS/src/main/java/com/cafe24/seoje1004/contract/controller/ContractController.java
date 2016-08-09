@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.cafe24.seoje1004.contract.model.Contract;
 import com.cafe24.seoje1004.contract.model.ContractSearch;
 import com.cafe24.seoje1004.contract.service.ContractService;
+import com.cafe24.seoje1004.util.Search;
 
 @Controller
 public class ContractController {
@@ -35,7 +36,10 @@ public class ContractController {
 	
 	//가맹점이 해당가맹점의 계약리스트를 리뷰
 	@RequestMapping(value = "/subViewContractList")
-	public String subViewContractList(Model model, ContractSearch contractSearch, @RequestParam(value="subCode")String subCodes) {
+	public String subViewContractList(Model model
+					, Search search
+					, @RequestParam(value="subCode")String subCodes
+					, @RequestParam(value="YN", required = false)String YN) {
 		System.out.println("contractController subViewContractList 실행!!");
 		//1.sub생성 (로그인 기능만 부여)
 		//2.계약등록 (이제 해당프로그램 사용가능) 이라는 전제로 한다.
@@ -46,12 +50,13 @@ public class ContractController {
 		String subCode = subCodes;
 		
 		//가맹의 계약리스트(subCode는 해당가맹, contractSearch는 검색 및 컬럼별조회기능)
-		List<Contract> subContractList = contractService.subViewContractList(subCode, contractSearch);
+		List<Contract> subContractList = contractService.subViewContractList(subCode, search);
 		System.out.println("subContractList : "+ subContractList);
-		System.out.println("contractSearch : "+ contractSearch);
+		System.out.println("search : "+ search);
 		
+		model.addAttribute("YN", YN);
 		model.addAttribute("subContractList", subContractList);
-		model.addAttribute("contractSearch", contractSearch);
+		model.addAttribute("search", search);
 		model.addAttribute("subCode", subCode);
 		
 		return "/shared/contract/subViewContractList";
@@ -194,12 +199,16 @@ public class ContractController {
 
 	//본사에서 계약리스트 조회
 	@RequestMapping(value="/headViewContractList")	
-	public String headViewContractList(Model model, ContractSearch contractSearch){
+	public String headViewContractList(Model model
+				,Search search
+				,@RequestParam(value="YN", required = false)String YN){
 		System.out.println("contractController headViewContractList");
 		//본사에서 전체 계약진행 리스트 조회
-		List<Contract> headContractList = contractService.headViewContract(contractSearch);
+		List<Contract> headContractList = contractService.headViewContract(search);
 		System.out.println("headContractList : "+headContractList);
 		
+		model.addAttribute("YN", YN);
+		model.addAttribute("search", search);
 		model.addAttribute("headContractList", headContractList);
 		
 		return "/shared/contract/headViewContractList";

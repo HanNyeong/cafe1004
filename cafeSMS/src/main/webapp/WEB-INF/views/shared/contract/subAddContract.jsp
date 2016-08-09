@@ -182,7 +182,7 @@
 			</div>	
 			<div>
 				<label>subCode : </label>
-				<input id="subCode" type="text" name="subCode" value="${subCode}"/>
+				<input id="subCode" type="text" name="subCode" value="${subCode}" readonly="readonly"/>
 				<input id="subCodeCheck" type="button" value="가맹대표코드중복체크"/>	
 				<span id="subCodeMsg"></span>
 			</div>	

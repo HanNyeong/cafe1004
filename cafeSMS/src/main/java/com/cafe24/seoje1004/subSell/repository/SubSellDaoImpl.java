@@ -29,11 +29,13 @@ public class SubSellDaoImpl implements SubSellDao {
 		return sqlSessionSubSell.selectList(NS+".subViewSubSellList", map);
 	}
 
-	//가맹 판매 마감처리
+
+
+	//가맹 판매 마감처리s
 	@Override
-	public void subSellFinal(String subSellCode) {
-		System.out.println("SubSellDaoImpl subSellFinal 실행");
-		sqlSessionSubSell.update(NS+".subSellFinal", subSellCode);
+	public void subSellFinals(SubSell subSell) {
+		System.out.println("SubSellDaoImpl subSellFinals 실행");
+		sqlSessionSubSell.update(NS+".subSellFinals", subSell);
 	}
 
 	

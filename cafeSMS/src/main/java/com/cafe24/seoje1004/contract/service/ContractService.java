@@ -7,13 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.cafe24.seoje1004.contract.model.Contract;
 import com.cafe24.seoje1004.contract.model.ContractSearch;
+import com.cafe24.seoje1004.util.Search;
 
 public interface ContractService {
 	/**
 	 * 최종수정일 2016-07-28 오성현
 	 * contractService 인터페이스 생성
 	 */
-	public List<Contract> subViewContractList(String subCode, ContractSearch contractSearch);	// 가맹에서 계약조회
+	public List<Contract> subViewContractList(String subCode, Search search);	// 가맹에서 계약조회
 	public void subAddContract(Contract contract, HttpServletRequest request);	//가맹이 계약등록을 신청
 	public int subCodeCheck(String subCode);	//subCode가 있는지 중복체크
 	public Map<String,Object> subViewContractContent(String contractCode);	//가맹이 계약상세정보를 리뷰
@@ -29,7 +30,7 @@ public interface ContractService {
 	/*--------------------------------------------------------------------아래부터는 본사구간----------------------------------------------------------------------------------*/
 	
 	
-	public List<Contract> headViewContract(ContractSearch contractSearch);	//본사에서 전체 계약진행 리스트 조회
+	public List<Contract> headViewContract(Search search);	//본사에서 전체 계약진행 리스트 조회
 	public void headApproveContract(String contractCode);	//본사에서 계약 승인처리
 	
 }

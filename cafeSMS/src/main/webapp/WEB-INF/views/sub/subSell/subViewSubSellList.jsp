@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript" src="resources/function/upDownCheck.js"></script>
 <script>
 	var list = function(upDown,criteria){
 		$('#upDown').attr('value',upDown);
@@ -61,19 +62,46 @@
 			
 		});
 		
+		
+		// 주문 체크 되어 있는 값 추출
+		$('#subSellFinalBtn').click(function(){
+			if($('.checking:checked').size()<1){
+		        alert("1개 이상 체크해주세요");
+		        console.log("subSellFinal");
+		    }else{
+		    	$('.checking').each(function(index,item){
+		    		if(!$(this).is(":checked")){
+		    			console.log("체크안됨");
+						}else if($(this).is(":checked")){
+		    				console.log("체크됨");
+						$("input[class=subSellCode]:eq(" + index + ")").prop('name','subSellCode');
+						$("input[class=subCode]:eq(" + index + ")").prop('name','subCode');
+		    			}else{
+		    				console.log("안됨")
+		    			}
+		    	});
+					$('#subSellList').prop('action','/subSellFinals');
+					$('#subSellList').prop('method','POST');
+					$('#subSellList').submit();
+		    }
+		});
+		
+		
 	});
 </script>
 </head>
 
 
+
 <body>
+<a href="/">home</a>
 	<h1>가맹 판매 리스트[승인처리리스트]</h1>
 	<form id="subSellList" action="/subViewSubSellList" method="POST">
 		<input type="hidden" id="upDown" name="upDown" value="${search.upDown}" />
 		<input type="hidden" id="criteria" name="criteria" value="${search.criteria}"/>
 		<input type="hidden" id="viewMore" name="viewMore" value="${search.viewMore}"/>
 		<input type="hidden" id="subCode" name="subCode" value="${subCode}"/>
-		<input type="hidden" id="YN" name="YN" value="${YN}"/>
+		<input type="hidden" id="YN"  name="YN" value="${YN}"/>
 		
 		
 		등록 날짜: 
@@ -93,8 +121,8 @@
 		</select>
 		<input type="text" id="search" name="search" value="${search.search}"/>
 		<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
-		<a href="/subViewSubSellList?subCode=${subCode}"><input type="button" class="btn btn-default"  value="전체보기"/></a>
-	</form>
+		<input type="button" class="btn btn-default"  value="전체보기"/></a>
+	
 	
 	분류 : 
 	<select id="selectYN" required="required">
@@ -105,6 +133,7 @@
 	
 	
 	<div>
+		전체선택<input type="checkbox" id="selectAll" class="selectAll" name="selectAll" onclick="selectAll(this)" value="전체 선택">
 		subSellCode<span class="up">▲</span><span class="down">▼</span>
 		inteCode<span class="up">▲</span><span class="down">▼</span>
 		subSellGroup<span class="up">▲</span><span class="down">▼</span>
@@ -123,35 +152,50 @@
 	</div>
 	
 	<div>
+	<!-- 	<form id="subSellFinalForm" action="/subSellFinals" method="POST"> -->
 		
 		<c:forEach var="subSellList" items="${subSellList}">
 			<c:if test="${YN eq '' || YN eq null}">
 				<div>
-					${subSellList.subSellCode}
-					${subSellList.inteCode}
-					${subSellList.subSellGroup}
-					${subSellList.subSellDate}
-					${subSellList.subSellPracticalSellingPrice}
-					${subSellList.totalAccountGroup}
-					${subSellList.subSellFinal}
-					${subSellList.subSellFinalDate}
-					${subSellList.payMethod}
-					${subSellList.subCode}
-					${subSellList.eventCode}
-					${subSellList.subStaffCode}
-					${subSellList.subSellFinalStaff}
-					${subSellList.subSellCost}
 					<c:if test="${subSellList.subSellFinal == 'N'}">
-						<a href="/subSellFinal?subCode=${subCode}&subSellCode=${subSellList.subSellCode}">[마감]</a>
+						<input type="checkbox" class="checking" name="checking">
+						<input type="hidden" class="subSellCode" name="" value="${subSellList.subSellCode}">
+						<input type="hidden" class="subCode" name="" value="${subSellList.subCode}">
 					</c:if>					
+						${subSellList.subSellCode}
+						${subSellList.inteCode}
+						${subSellList.subSellGroup}
+						${subSellList.subSellDate}
+						${subSellList.subSellPracticalSellingPrice}
+						${subSellList.totalAccountGroup}
+						${subSellList.subSellFinal}
+						${subSellList.subSellFinalDate}
+						${subSellList.payMethod}
+						${subSellList.subCode}
+						${subSellList.eventCode}
+						${subSellList.subStaffCode}
+						${subSellList.subSellFinalStaff}
+						${subSellList.subSellCost}
+					
+						
+					
+								
 					<c:if test="${subSellList.subSellFinal == 'Y'}">
-						[Null]
+						[마감완료]
 					</c:if>					
 				</div>
 			</c:if>
 			<c:if test="${subSellList.subSellFinal eq YN}">	
 				<div>
+					<c:if test="${subSellList.subSellFinal == 'N'}">
+						<input type="checkbox" class="checking" name="checking">
+						<input type="hidden" class="subSellCode" name="" value="${subSellList.subSellCode}">
+						<input type="hidden" class="subCode" name="" value="${subSellList.subCode}">
+					</c:if>		
+					
+					
 					${subSellList.subSellCode}
+					
 					${subSellList.inteCode}
 					${subSellList.subSellGroup}
 					${subSellList.subSellDate}
@@ -161,20 +205,23 @@
 					${subSellList.subSellFinalDate}
 					${subSellList.payMethod}
 					${subSellList.subCode}
+					
 					${subSellList.eventCode}
 					${subSellList.subStaffCode}
 					${subSellList.subSellFinalStaff}
 					${subSellList.subSellCost}
-					<c:if test="${subSellList.subSellFinal == 'N'}">
-						<a href="/subSellFinal?subCode=${subCode}&subSellCode=${subSellList.subSellCode}">[마감]</a>
-					</c:if>					
+							
 					<c:if test="${subSellList.subSellFinal == 'Y'}">
-						[Null]
+						[마감완료]
 					</c:if>					
 				</div>
 			</c:if>
 		</c:forEach>
+		<!-- </form> -->
+		
+		<input type="button" class="btn btn-default" id="subSellFinalBtn" value="마감"/>
 		<input type="button" class="btn btn-default" id="viewMoreBtn" value="더보기"/>
 	</div>
+	</form>
 </body>
 </html>

@@ -19,6 +19,7 @@ import com.cafe24.seoje1004.contract.model.Contract;
 import com.cafe24.seoje1004.contract.model.ContractFile;
 import com.cafe24.seoje1004.contract.model.ContractSearch;
 import com.cafe24.seoje1004.contract.repository.ContractDao;
+import com.cafe24.seoje1004.util.Search;
 
 /**
  * 최종수정일 2016-07-28 오성현
@@ -35,13 +36,13 @@ public class ContractServiceImpl implements ContractService {
 	
 	//가맹점이 해당가맹점의 계약리스트를 리뷰
 	@Override
-	public List<Contract> subViewContractList(String subCode, ContractSearch contractSearch) {
+	public List<Contract> subViewContractList(String subCode, Search search) {
 			System.out.println("ContractServiceImpl subViewContractList실행");
 			
 			//맵안에 검색 및 컬럼정렬 정보와 subCode를 담아주자
 			Map<String,Object> map = new HashMap<String,Object>();
 			map.put("subCode", subCode);
-			map.put("contractSearch", contractSearch);
+			map.put("search", search);
 			
 			
 		return contractDao.subViewContractList(map);
@@ -394,10 +395,10 @@ public class ContractServiceImpl implements ContractService {
 	
 	//본사에서 전체 계약진행 리스트 조회
 	@Override
-	public List<Contract> headViewContract(ContractSearch contractSearch) {
+	public List<Contract> headViewContract(Search search) {
 		System.out.println("ContractServiceImpl headViewContract 실행");
 		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("contractSearch", contractSearch);
+		map.put("search", search);
 		
 		return contractDao.headViewContract(map);
 	}

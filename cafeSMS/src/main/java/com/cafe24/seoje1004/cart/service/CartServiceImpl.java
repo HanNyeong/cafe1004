@@ -25,8 +25,8 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public int addSubCartService(Carts carts) {
 		System.out.println("CartServiceImpl addSubCartService실행");
+		Cart cart = new Cart();
 		for(int i = 0; i<carts.getSubCode().size(); i++){
-			Cart cart = new Cart();
 			cart.setCartQuantity(carts.getCartQuantity().get(i));
 			cart.sethItemCode(carts.gethItemCode().get(i));
 			cart.setSubCode(carts.getSubCode().get(i));

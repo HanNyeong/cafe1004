@@ -7,9 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cafe24.seoje1004.subSell.model.SubSell;
 import com.cafe24.seoje1004.subSell.model.SubSellSearch;
+import com.cafe24.seoje1004.subSell.model.SubSells;
 import com.cafe24.seoje1004.subSell.service.SubSellService;
 import com.cafe24.seoje1004.util.Search;
 
@@ -41,23 +43,33 @@ public class SubSellController {
 		
 		model.addAttribute("YN", YN);
 		model.addAttribute("subCode", subCode);
-		model.addAttribute("subSellSearch", search);
+		model.addAttribute("search", search);
 		model.addAttribute("subSellList", subSellList);
 		
 		return "/sub/subSell/subViewSubSellList";
 	}
 	
 
-	
-	//가맹 판매 마감처리
-	@RequestMapping(value="/subSellFinal")
-	public String subSellFinal(@RequestParam(value="subCode")String subCode,
-								@RequestParam(value="subSellCode")String subSellCode){
-		System.out.println("SubSellController subSellFinal 실행");
 
-		subSellService.subSellFinal(subSellCode);
+	
+
+	//가맹 판매 마감처리s
+	@RequestMapping(value="/subSellFinals")
+	public String subSellFinals(RedirectAttributes redirectAttributes 
+								,SubSells subSells, Search search
+								,@RequestParam(value="YN", required = false)String YN){
+		System.out.println("SubSellController subSellFinals 실행");
+		System.out.println("YN : "+ YN);	
+		subSellService.subSellFinals(subSells);
 		
-		return "redirect:/subViewSubSellList?subCode="+subCode;
+		//redirectAttributes.addFlashAttribute("YN", YN);
+		//redirectAttributes.addFlashAttribute("subCode", subSells.getSubCode().get(0));
+		redirectAttributes.addFlashAttribute("search", search);
+		
+		
+		return "redirect:/subViewSubSellList?subCode="+subSells.getSubCode().get(0)+"&YN="+YN;
+		
 	}
+
 	
 }

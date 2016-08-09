@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cafe24.seoje1004.subSell.model.SubSell;
+import com.cafe24.seoje1004.subSell.model.SubSells;
 import com.cafe24.seoje1004.subSell.repository.SubSellDao;
 import com.cafe24.seoje1004.util.Search;
 
@@ -33,11 +34,18 @@ public class SubSellServiceImpl implements SubSellService{
 		return subSellDao.subViewSubSellList(map);
 	}
 
-	//가맹 판매 마감처리
+	
+	
+	//가맹 판매 마감처리s
 	@Override
-	public void subSellFinal(String subSellCode) {
-		System.out.println("SubSellServiceImpl subSellFinal 실행");
-		subSellDao.subSellFinal(subSellCode);
+	public void subSellFinals(SubSells subSells) {
+		System.out.println("SubSellServiceImpl subSellFinals 실행");
+		
+		for(int i=0; i<subSells.getSubSellCode().size(); i++){
+			SubSell subSell = new SubSell();
+			subSell.setSubSellCode(subSells.getSubSellCode().get(i));
+			subSellDao.subSellFinals(subSell);
+		}
 	}
 
 	

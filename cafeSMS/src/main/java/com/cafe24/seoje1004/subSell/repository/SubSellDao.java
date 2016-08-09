@@ -13,6 +13,6 @@ public interface SubSellDao {
 	
 	
 	public List<SubSell> subViewSubSellList(Map<String,Object> map); 	//가맹 판매 조회
-	public void subSellFinal(String subSellCode); //가맹 판매 마감처리
 	
+	public void subSellFinals(SubSell subSell);	//가맹 판매 마감처리s
 }

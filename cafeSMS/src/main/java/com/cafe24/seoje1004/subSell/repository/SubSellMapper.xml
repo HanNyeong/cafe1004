@@ -62,9 +62,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	</select>
 	
+	
+	
 	<!-- 가맹 판매 마감처리 -->
-	<update id="subSellFinal"
-			parameterType="String">
+	<update id="subSellFinals"
+			parameterType="com.cafe24.seoje1004.subSell.model.SubSell">
 		UPDATE	
 			sub_sell
 		SET	
