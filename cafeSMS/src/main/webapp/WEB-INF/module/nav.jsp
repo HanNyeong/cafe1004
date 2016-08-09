@@ -46,7 +46,7 @@
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="/viewOrdersList?subCode=${subLogin.subCode}">발주관리</a></li>
 						<li><a href="/subViewCartList?subCode=${subLogin.subCode}">장바구니</a></li>
-						<li><a href="/subViewDeliveryList">배송관리</a></li>
+						<li><a href="/subViewDeliveryList?subCode=${subLogin.subCode}">배송관리</a></li>
 					</ul>
 				</li>
 				
