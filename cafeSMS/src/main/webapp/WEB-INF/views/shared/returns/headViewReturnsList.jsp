@@ -19,7 +19,7 @@ var list = function(upDown,criteria){
 
 
 $(document).ready(function(){
-	var columnList = ['return_code','return_price','return_report_date','return_head_check','return_head_check_date','total_account_group','return_re_delivery','return_cancel','orders_code','specific_item_code','head_returns_confirm','sub_code']
+	var columnList = ['return_code','return_price','return_report_date','return_head_check','return_head_check_date','total_account_group','return_re_delivery','return_cancel','orders_code','specific_item_code','head_returns_confirm','sub_code','return_re_delivery']
 	
 
 	$('.up').each(function(index,item){
@@ -160,6 +160,9 @@ $(document).ready(function(){
 		가맹코드<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">	
+		재배송유무<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
 		비고
 	</div>
 	
@@ -178,6 +181,7 @@ $(document).ready(function(){
 				<div class="col-sm-1">${returnsList.ordersCode}</div>
 				<div class="col-sm-1">${returnsList.specificItemCode}</div>
 				<div class="col-sm-1">${returnsList.subCode}</div>
+				<div class="col-sm-1">${returnsList.returnReDelivery}</div>
 				<div class="col-sm-1">
 					<a href="/viewReturnsContent?returnCode=${returnsList.returnCode}">[상세보기]</a><br/>
 					<c:if test="${returnsList.returnHeadCheck == 'N'}">
@@ -216,6 +220,7 @@ $(document).ready(function(){
 				<div class="col-sm-1">${returnsList.ordersCode}</div>
 				<div class="col-sm-1">${returnsList.specificItemCode}</div>
 				<div class="col-sm-1">${returnsList.subCode}</div>
+				<div class="col-sm-1">${returnsList.returnReDelivery}</div>
 				<div class="col-sm-1">
 					<a href="/viewReturnsContent?returnCode=${returnsList.returnCode}">[상세보기]</a><br/>
 					<c:if test="${returnsList.returnHeadCheck == 'N'}">
