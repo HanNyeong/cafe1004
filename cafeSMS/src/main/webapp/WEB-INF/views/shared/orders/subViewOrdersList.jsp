@@ -47,6 +47,7 @@
 		    			console.log("체크됨");
 						$("input[class=ordersCode]:eq(" + index + ")").prop('name','ordersCode');
 						$("input[class=subCode]:eq(" + index + ")").prop('name','subCode');
+						$("input[class=subOrdersPrice]:eq(" + index + ")").prop('name','subOrdersPrice');
 		    		}else{
 		    			console.log("안됨")
 		    		}
@@ -137,6 +138,8 @@
 		<c:if test="${ordersList.ordersPay == 'N'}">
 				<input type="hidden" class="ordersCode" name="" value="${ordersList.ordersCode}">
 				<input type="hidden" class="subCode" name="" value="${subLogin.subCode}">
+				<input type="hidden" class="subOrdersPrice" name="" value="${ordersList.subOrdersPrice}">
+				
 			<div class="row tablediv">
 				<div class="col-sm-2">
 				</div>	

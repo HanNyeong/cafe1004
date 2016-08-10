@@ -15,12 +15,12 @@ public class Orders {
 	private String subStaffCode;
 	private String headStaffId;
 	private String headOrdersConfirm;
-	private Integer subOrdersPrice;
+	private int subOrdersPrice;
 	
-	public Integer getSubOrdersPrice() {
+	public int getSubOrdersPrice() {
 		return subOrdersPrice;
 	}
-	public void setSubOrdersPrice(Integer subOrdersPrice) {
+	public void setSubOrdersPrice(int subOrdersPrice) {
 		this.subOrdersPrice = subOrdersPrice;
 	}
 	public String getOrdersCode() {

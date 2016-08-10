@@ -27,13 +27,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				cart_code,
 				cart_quantity, 
 				h_item_code, 
-				sub_code
+				sub_code,
+				h_item_selling_price
 			)
 		VALUES (
 			#{cartCode},
 			#{cartQuantity}, 
 			#{hItemCode}, 
-			#{subCode}
+			#{subCode},
+			#{hItemSellingPrice}
 		)
 	</insert>
 

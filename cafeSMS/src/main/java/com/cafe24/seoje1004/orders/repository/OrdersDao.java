@@ -42,5 +42,7 @@ public interface OrdersDao {
 
 	void modifySpecificItemOut(String specificItemCode);
 
+	void addSubAccount(Map<String, Object> map);
+
 
 }

@@ -61,6 +61,7 @@ public class CartServiceImpl implements CartService {
 			cart.setCartQuantity(carts.getCartQuantity().get(i));
 			cart.sethItemCode(carts.gethItemCode().get(i));
 			cart.setSubCode(carts.getSubCode().get(i));
+			cart.sethItemSellingPrice(carts.gethItemSellingPrice().get(i));
 			cartDao.subDeleteCartService(cart);
 		}
 	}

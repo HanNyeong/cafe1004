@@ -114,6 +114,11 @@ public class OrdersDaoImpl implements OrdersDao{
 		System.out.println("modifySpecificItemOut");
 		sqlSessionOrders.update(NS+".modifySpecific",specificItemCode);
 	}
-	
+	//subAccount insert
+	@Override
+	public void addSubAccount(Map<String, Object> map) {
+		System.out.println("addSubAccount실행");
+		sqlSessionOrders.insert(NS+".addSubAccount",map);
+	}
 
 }

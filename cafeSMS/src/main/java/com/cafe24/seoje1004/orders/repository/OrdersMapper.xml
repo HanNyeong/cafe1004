@@ -58,7 +58,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			sub_staff_code,
 			head_staff_id,
 			head_orders_confirm,
-			(sub_orders_price*sub_orders_quantity)
+			sub_orders_price
 		from
 			sub_orders
 		<where>
@@ -253,4 +253,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			WHERE 
 				specific_item_code = #{specificItemCode}
 	</update>
+
+	<!-- addSubAccount -->
+	<insert id="addSubAccount"
+			parameterType="java.util.Map">
+		<selectKey resultType="hashmap" keyProperty="subAccountCode" order="BEFORE">
+				select if(isnull(sub_account_code),'sub_account_code200', concat('sub_account_code', MAX(CONVERT(SUBSTRING(sub_account_code,17), UNSIGNED))+1)) as subAccountCode
+				from sub_account
+		</selectKey>
+	</insert>
 </mapper>

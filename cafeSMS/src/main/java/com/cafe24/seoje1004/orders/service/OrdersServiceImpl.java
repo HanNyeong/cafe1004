@@ -22,7 +22,9 @@ import com.cafe24.seoje1004.orders.model.Orders;
 import com.cafe24.seoje1004.orders.model.OrdersSearch;
 import com.cafe24.seoje1004.orders.repository.OrdersDao;
 import com.cafe24.seoje1004.sub.model.SubLogin;
+import com.cafe24.seoje1004.subAccount.model.SubAccount;
 import com.cafe24.seoje1004.subStock.model.SubStock;
+import com.cafe24.seoje1004.subject.model.Subject;
 
 @Service
 public class OrdersServiceImpl implements OrdersService{
@@ -47,6 +49,7 @@ public class OrdersServiceImpl implements OrdersService{
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("ordersSearch", ordersSearch);
 		map.put("subLogin", subLogin);
+		
 		return ordersDao.viewOrdersList(map);
 	}
 	//orders Add, cart Del, delivery Add transactional Service
@@ -80,6 +83,7 @@ public class OrdersServiceImpl implements OrdersService{
 			c.setSubCode(cartDetail.getSubCode().get(i));
 			orders.setSubOrdersQuantity(cartDetail.getCartQuantity().get(i));
 			orders.setSubStaffCode("sub_staff_code1000");
+			orders.setSubOrdersPrice((cartDetail.getCartQuantity().get(i))*(cartDetail.gethItemSellingPrice().get(i)));
 			orders.setOrdersCode(ordersDao.selectOrdersCode());
 			
 			map.put("cartDetail", c);
@@ -98,19 +102,32 @@ public class OrdersServiceImpl implements OrdersService{
 	}
 	//결제유무 update Service
 	@Override
-	public void modifyOrdersPayService(OrderGroup orderGroup) {
+	public void modifyOrdersPayService(OrderGroup orderGroup,Subject subject) {
 		System.out.println("OrdersServiceImpl//modifyOrdersPayService실행");
+		Map<String,Object> map = new HashMap<String,Object>();
 		Orders orders = new Orders();
 		String subOrdersStatus = "배송준비중";
 		String ordersPay = "Y";
 		orders.setSubOrdersStatus(subOrdersStatus);
 		orders.setOrdersPay(ordersPay);
-		Map<String,Object> map = new HashMap<String,Object>();
+		orders.setSubOrdersPrice(orderGroup.getSubOrdersPrice().get(0));
+		SubAccount subAccount = new SubAccount();
+		String subAccountDetail = "발주";
+		String totalAccountGroup = "orders_account_group1";
+		String subjectCode = "subject_code2";
+		String subAccountFlow = "출금";
+		
+		subAccount.setSubAccountDetail(subAccountDetail);
+		subAccount.setTotalAccountGroup(totalAccountGroup);
+		subAccount.setSubjectCode(subjectCode);
+		subAccount.setSubAccountFlow(subAccountFlow);
+		map.put("subAccount", subAccount);
 		map.put("orders", orders);
 
 		for(int i = 0; i < orderGroup.getOrdersCode().size(); i++){
 			orders.setOrdersCode(orderGroup.getOrdersCode().get(i));
 			ordersDao.modifyOrders(map);
+			ordersDao.addSubAccount(map);
 		}
 	}
 	//결제페이지로이동

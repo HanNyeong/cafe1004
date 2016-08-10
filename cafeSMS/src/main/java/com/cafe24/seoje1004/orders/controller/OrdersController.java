@@ -16,6 +16,7 @@ import com.cafe24.seoje1004.orders.model.Orders;
 import com.cafe24.seoje1004.orders.model.OrdersSearch;
 import com.cafe24.seoje1004.orders.service.OrdersService;
 import com.cafe24.seoje1004.sub.model.SubLogin;
+import com.cafe24.seoje1004.subject.model.Subject;
 
 @Controller
 public class OrdersController {
@@ -83,10 +84,10 @@ public class OrdersController {
 	
 	//결제 상태 update controller 
 	@RequestMapping(value="/modifyOrdersPay",method=RequestMethod.POST)
-	public String modifyOrdersPay(OrderGroup orderGroup) {
+	public String modifyOrdersPay(OrderGroup orderGroup, Subject subject) {
 		System.out.println("OrdersController//modifyOrdersPay실행");
 		System.out.println(orderGroup);
-		ordersService.modifyOrdersPayService(orderGroup);
+		ordersService.modifyOrdersPayService(orderGroup,subject);
 		return "redirect:/subOrdersPayConfirm?subCode="+orderGroup.getSubCode().get(0);
 	}
 	//발주 취소
