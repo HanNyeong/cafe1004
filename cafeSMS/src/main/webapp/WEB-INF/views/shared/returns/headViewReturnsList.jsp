@@ -184,19 +184,19 @@ $(document).ready(function(){
 						<a href="/approvalReturns?returnCode=${returnsList.returnCode}">[환불승인]</a>
 						<br/>
 					</c:if>	
-					<c:if test="${returnsList.returnReDelivery == 'N' && returnsList.headReturnsConfirm == 'N'}">
+					<c:if test="${returnsList.returnReDelivery == 'N' && returnsList.headReturnsConfirm == 'N' && returnsList.returnHeadCheck == 'Y'}">
 						<a href="/">[환불]</a>
 						<br/>
 					</c:if>
-					<c:if test="${returnsList.returnReDelivery == 'N' && returnsList.headReturnsConfirm == 'Y'}">
+					<c:if test="${returnsList.returnReDelivery == 'N' && returnsList.headReturnsConfirm == 'Y' && returnsList.returnHeadCheck == 'Y'}">
 						[환불 처리]
 						<br/>
 					</c:if>
-					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'N'}">
+					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'N' && returnsList.returnHeadCheck == 'Y'}">
 						<a href="/headReturnReDelivery?ordersCode=${returnsList.ordersCode}">[재배송]</a>
 						<br/>
 					</c:if>
-					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'Y'}">
+					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'Y' && returnsList.returnHeadCheck == 'Y'}">
 						[재배송 처리]
 					</c:if>
 				</div>
@@ -222,19 +222,19 @@ $(document).ready(function(){
 						<a href="/approvalReturns?returnCode=${returnsList.returnCode}">[환불승인]</a>
 						<br/>
 					</c:if>	
-					<c:if test="${returnsList.returnReDelivery == 'N' && returnsList.headReturnsConfirm == 'N'}">
+					<c:if test="${returnsList.returnReDelivery == 'N' && returnsList.headReturnsConfirm == 'N' && returnsList.returnHeadCheck == 'Y'}">
 						<a href="/">[환불]</a>
 						<br/>
 					</c:if>
-					<c:if test="${returnsList.returnReDelivery == 'N' && returnsList.headReturnsConfirm == 'Y'}">
+					<c:if test="${returnsList.returnReDelivery == 'N' && returnsList.headReturnsConfirm == 'Y' && returnsList.returnHeadCheck == 'Y'}">
 						[환불 처리]
 						<br/>
 					</c:if>
-					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'N'}">
+					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'N' && returnsList.returnHeadCheck == 'Y'}">
 						<a href="/headReturnReDelivery?ordersCode=${returnsList.ordersCode}">[재배송]</a>
 						<br/>
 					</c:if>
-					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'Y'}">
+					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'Y' && returnsList.returnHeadCheck == 'Y'}">
 						[재배송 처리]
 					</c:if>
 				</div>
