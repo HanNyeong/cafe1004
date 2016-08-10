@@ -55,7 +55,7 @@
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 				가맹관리 <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="/modifySub?subCode=${subLogin.subCode}">가맹관리</a></li>
+						<li><a href="/viewSubList?subCode=${subLogin.subCode}">가맹관리</a></li>
 						<li><a href="/subViewSubClientList?subCode=${subLogin.subCode}">거래처관리</a></li>
 						<li><a href="/viewSubStaffList?subCode=${subLogin.subCode}">직원관리</a></li>
 						<li><a href="/subViewContractList?subCode=${subLogin.subCode}">계약관리</a></li>

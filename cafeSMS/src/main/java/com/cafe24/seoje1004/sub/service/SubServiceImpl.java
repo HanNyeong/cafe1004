@@ -1,10 +1,14 @@
 package com.cafe24.seoje1004.sub.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cafe24.seoje1004.sub.model.Sub;
 import com.cafe24.seoje1004.sub.model.SubLogin;
+import com.cafe24.seoje1004.sub.model.SubSearch;
 import com.cafe24.seoje1004.sub.repository.SubDao;
 
 @Service
@@ -73,6 +77,19 @@ public class SubServiceImpl implements SubService{
 		
 		System.out.println(subLogin);
 		return subLogin;
+	}
+
+	/**
+	 * 가맹 정보를 리턴하는 서비스 메서드 입니다.
+	 */
+	@Override
+	public Sub viewSubListService(SubLogin subLogin) {
+		System.out.println("SubServiceImpl viewSubListService실행");
+		System.out.println("SubServiceImpl viewSubListService. 조회 실행");
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("subLogin", subLogin);
+		return subDao.viewSubList(map);
 	}
 	
 

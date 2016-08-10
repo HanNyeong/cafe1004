@@ -1,5 +1,8 @@
 package com.cafe24.seoje1004.sub.repository;
 
+import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -60,6 +63,14 @@ public class SubDaoImpl implements SubDao{
 	public SubLogin loginSub(Sub sub) {
 		System.out.println("SubDaoImpl loginSub실행");
 		return sqlSessionSub.selectOne(NS+".loginSub",sub);
+	}
+	/**
+	 * 가맹 정보 보여주는 메서드 입니다.
+	 */
+	@Override
+	public Sub viewSubList(Map<String, Object> map) {
+		System.out.println("SubDaoImpl viewSubList실행");
+		return sqlSessionSub.selectOne(NS+".viewSubList",map);
 	}
 	
 

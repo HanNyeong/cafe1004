@@ -1,5 +1,8 @@
 package com.cafe24.seoje1004.sub.repository;
 
+import java.util.List;
+import java.util.Map;
+
 import com.cafe24.seoje1004.sub.model.Sub;
 import com.cafe24.seoje1004.sub.model.SubLogin;
 
@@ -41,6 +44,13 @@ public interface SubDao {
 	 * @return
 	 */
 	SubLogin loginSub(Sub sub);
+	
+	/**
+	 * 가맹 정보를 조회하는 dao메서드 입니다.
+	 * @param map
+	 * @return
+	 */
+	Sub viewSubList(Map<String, Object> map);
 	
 
 }
