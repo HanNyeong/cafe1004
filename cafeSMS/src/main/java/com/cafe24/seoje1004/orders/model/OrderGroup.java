@@ -17,6 +17,14 @@ public class OrderGroup {
 	private List<String> subStaffCode;
 	private List<String> headStaffId;
 	private List<String> headOrdersConfirm;
+	private List<Integer> subOrdersPrice;
+	
+	public List<Integer> getSubOrdersPrice() {
+		return subOrdersPrice;
+	}
+	public void setSubOrdersPrice(List<Integer> subOrdersPrice) {
+		this.subOrdersPrice = subOrdersPrice;
+	}
 	@Override
 	public String toString() {
 		return "OrderGroup [ordersCode=" + ordersCode + ", subOrdersGroup=" + subOrdersGroup + ", subOrdersQuantity="

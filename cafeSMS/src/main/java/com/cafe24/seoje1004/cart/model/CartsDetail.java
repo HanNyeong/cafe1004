@@ -8,7 +8,15 @@ public class CartsDetail {
 	private List<String> hItemCode;
 	private List<String> subCode;
 	private List<String> hItemName;
-	private List<String> hItemSellingPrice;
+	private List<Integer> hItemSellingPrice;
+	private List<Integer> subOrdersPrice;
+	
+	public List<Integer> getSubOrdersPrice() {
+		return subOrdersPrice;
+	}
+	public void setSubOrdersPrice(List<Integer> subOrdersPrice) {
+		this.subOrdersPrice = subOrdersPrice;
+	}
 	public List<String> getCartCode() {
 		return cartCode;
 	}
@@ -39,10 +47,10 @@ public class CartsDetail {
 	public void sethItemName(List<String> hItemName) {
 		this.hItemName = hItemName;
 	}
-	public List<String> gethItemSellingPrice() {
+	public List<Integer> gethItemSellingPrice() {
 		return hItemSellingPrice;
 	}
-	public void sethItemSellingPrice(List<String> hItemSellingPrice) {
+	public void sethItemSellingPrice(List<Integer> hItemSellingPrice) {
 		this.hItemSellingPrice = hItemSellingPrice;
 	}
 	@Override

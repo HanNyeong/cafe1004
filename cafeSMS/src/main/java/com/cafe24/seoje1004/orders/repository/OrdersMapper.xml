@@ -18,6 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<result property="subStaffCode" column="sub_staff_code"/>
 	<result property="headStaffId" column="head_staff_id"/>
 	<result property="headOrdersConfirm" column="head_orders_confirm"/>
+	<result property="subOrdersPrice" column="sub_orders_price"/>
 </resultMap>
 
 <!-- 장바구니에서 체크된 cartList 정보확인 select -->
@@ -56,7 +57,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			sub_code,
 			sub_staff_code,
 			head_staff_id,
-			head_orders_confirm
+			head_orders_confirm,
+			(sub_orders_price*sub_orders_quantity)
 		from
 			sub_orders
 		<where>
@@ -139,7 +141,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				total_account_group,
 				head_item_code,
 				sub_code,
-				sub_staff_code
+				sub_staff_code,
+				sub_orders_price
 				)
 			values
 				(
@@ -150,7 +153,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				#{orders.totalAccountGroup},
 				#{cartDetail.hItemCode},
 				#{orders.subCode},
-				#{orders.subStaffCode}
+				#{orders.subStaffCode},
+				#{orders.subOrdersPrice}
 				)
 	</insert>
 	<!-- addOrdersForTransaction End -->
@@ -182,7 +186,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			resultMap="ordersResultMap">
 		SELECT orders_code, sub_orders_group, sub_orders_quantity, sub_orders_date, sub_orders_head_check,
 		 sub_orders_status, total_account_group, orders_pay, orders_pay_date, head_item_code, sub_code, 
-		 sub_staff_code, head_staff_id, head_orders_confirm
+		 sub_staff_code, head_staff_id, head_orders_confirm,sub_orders_price
 		FROM sub_orders
 	
 	</select>

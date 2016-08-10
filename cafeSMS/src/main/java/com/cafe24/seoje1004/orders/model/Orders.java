@@ -15,7 +15,14 @@ public class Orders {
 	private String subStaffCode;
 	private String headStaffId;
 	private String headOrdersConfirm;
+	private Integer subOrdersPrice;
 	
+	public Integer getSubOrdersPrice() {
+		return subOrdersPrice;
+	}
+	public void setSubOrdersPrice(Integer subOrdersPrice) {
+		this.subOrdersPrice = subOrdersPrice;
+	}
 	public String getOrdersCode() {
 		return ordersCode;
 	}

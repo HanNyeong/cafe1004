@@ -7,19 +7,32 @@ public class CartDetail {
 	private String hItemCode;
 	private String subCode;
 	private String hItemName;
-	private String hItemSellingPrice;
+	private Integer hItemSellingPrice;
+	private Integer subOrdersPrice;
+	
+	public Integer getSubOrdersPrice() {
+		return subOrdersPrice;
+	}
+	public void setSubOrdersPrice(Integer subOrdersPrice) {
+		this.subOrdersPrice = subOrdersPrice;
+	}
+	
 	public String getCartCode() {
 		return cartCode;
 	}
+	
 	public void setCartCode(String cartCode) {
 		this.cartCode = cartCode;
 	}
+	
 	public int getCartQuantity() {
 		return cartQuantity;
 	}
-	public void setCartQuantity(int cartQuantity) {
+	
+	public void setCartQuantity(Integer cartQuantity) {
 		this.cartQuantity = cartQuantity;
 	}
+	
 	public String gethItemCode() {
 		return hItemCode;
 	}
@@ -38,10 +51,10 @@ public class CartDetail {
 	public void sethItemName(String hItemName) {
 		this.hItemName = hItemName;
 	}
-	public String gethItemSellingPrice() {
+	public Integer gethItemSellingPrice() {
 		return hItemSellingPrice;
 	}
-	public void sethItemSellingPrice(String hItemSellingPrice) {
+	public void sethItemSellingPrice(Integer hItemSellingPrice) {
 		this.hItemSellingPrice = hItemSellingPrice;
 	}
 	@Override

@@ -54,6 +54,7 @@
 						$("input[class=subCode]:eq(" + index + ")").prop('name','');
 						$("input[class=cartQuantity]:eq(" + index + ")").prop('name','');
 						$("input[class=hItemCode]:eq(" + index + ")").prop('name','');
+						$("input[class=hItemSellingPrice]:eq(" + index + ")").prop('name','');
 		    		}else if($(this).is(":checked")){
 		    			console.log("체크됨");
 		    		}else{
@@ -164,6 +165,7 @@
 					<c:if test="${subLogin != null}">
 						<input type="hidden" class="subCode" name="subCode" value="${subLogin.subCode}">
 						<input type="hidden" class="hItemCode" name="hItemCode" value="${headItemList.hItemCode}">
+						<input type="hidden" class="hItemSellingPrice" name="hItemSellingPrice" value="${headItemList.hItemSellingPrice}">
 						<input type="number" class="cartQuantity" name="cartQuantity" min="1" value="1">
 						<input type="checkbox" class="headItemCheck" name="headItemCheck" >
 					</c:if>

@@ -5,7 +5,16 @@ public class Cart {
 	private int cartQuantity;
 	private String hItemCode;
 	private String subCode;
+	private int hItemSellingPrice;
 	
+	public int gethItemSellingPrice() {
+		return hItemSellingPrice;
+	}
+
+	public void sethItemSellingPrice(int hItemSellingPrice) {
+		this.hItemSellingPrice = hItemSellingPrice;
+	}
+
 	public String getCartCode() {
 		return cartCode;
 	}

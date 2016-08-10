@@ -63,6 +63,7 @@ public class OrdersServiceImpl implements OrdersService{
 //		List<Delivery> deliveryList = new ArrayList<Delivery>();
 		orders.setSubOrdersGroup(ordersDao.selectOrdersGroupCode());
 		orders.setSubCode(cartDetail.getSubCode().get(0));
+		
 		System.out.println("맵퍼딱지를 떄는중 이제는 코더로"+orders.getSubOrdersQuantity());
 		//for문으로 리스트에 들어오는 해당 객체 각각 집어넣어주기 
 		System.out.println(cartDetail);

@@ -23,7 +23,7 @@
 			$('#ordersListForm').attr('action','/modifyOrdersPay');
 			$('#ordersListForm').submit();
 		});
-		var columnList = ['orders_code','sub_orders_group','sub_orders_quantity','sub_orders_date','sub_orders_head_check','sub_orders_status','orders_pay','orders_pay_date','head_item_code','sub_staff_code','head_staff_id','head_orders_confirm']
+		var columnList = ['orders_code','sub_orders_group','sub_orders_quantity','sub_orders_date','sub_orders_head_check','sub_orders_status','orders_pay','orders_pay_date','head_item_code','sub_staff_code','head_staff_id','sub_orders_price']
 
 		$('.up').each(function(index,item){
 			$(item).click(function(){
@@ -127,7 +127,7 @@
 		상품 코드<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">
-		주문직원<span class="up">▲</span><span class="down">▼</span>
+		결제 금액<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-2">
 	</div>
@@ -156,7 +156,7 @@
 						${ordersList.ordersPayDate} 
 					</div>
 					<div class="col-sm-1">${ordersList.headItemCode} </div>
-					<div class="col-sm-1">${ordersList.subStaffCode} </div>
+					<div class="col-sm-1">${ordersList.subOrdersPrice} </div>
 				<div class="col-sm-2">
 				</div>
 			</div>

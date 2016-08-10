@@ -8,10 +8,13 @@
 <script>
 	$(document).ready(function(){
 		var price = 0;
+		var itemPrice = 0;
 		$('.price').each(function(index,item){
-			price += $("input[class=cartQuantity]:eq(" + index + ")").val()*$("input[class=price]:eq(" + index + ")").val();
+			itemPrice = $("input[class=cartQuantity]:eq(" + index + ")").val()*$("input[class=price]:eq(" + index + ")").val();
+			price += itemPrice;
 		});
 		$('#totalPrice').text(price);
+		$('.subOrdersPrice').val(itemPrice);
 	});
 </script>
 <title>subAddOrdersByCart</title>
@@ -45,6 +48,7 @@
 		</c:forEach>
 				<div class="clickBtn">
 					<p>총 가격 : <span id="totalPrice"></span> 원 </p>
+					<input type="hidden" class="subOrdersPrice" name="subOrdersPrice" value="">
 					<button  class="btn btn-default">주문
 				</button></div>
 			<br/>

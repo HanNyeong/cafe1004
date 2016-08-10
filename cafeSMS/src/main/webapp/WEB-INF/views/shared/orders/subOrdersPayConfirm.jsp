@@ -97,7 +97,7 @@
 		상품 코드<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">
-		주문 직원<span class="up">▲</span><span class="down">▼</span>
+		결제 금액<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">
 		본사확인<span class="up">▲</span><span class="down">▼</span>
@@ -120,7 +120,7 @@
 					<div class="col-sm-1">${ordersList.ordersPayDate}</div>	 
 					<div class="col-sm-1">${ordersList.subOrdersStatus}</div>	 
 					<div class="col-sm-1">${ordersList.headItemCode}</div>	 
-					<div class="col-sm-1">${ordersList.subStaffCode}</div>	
+					<div class="col-sm-1">${ordersList.subOrdersPrice}</div>	
 					<div class="col-sm-1">${ordersList.headOrdersConfirm}</div>	
 					<div class="col-sm-2">
 					</div>
