@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>headViewDeliveryList</title>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script type="text/javascript" src="resources/function/upDownCheck.js"></script>
 <script>
@@ -91,13 +91,13 @@ $(document).ready(function(){
 		<br/><br/>
 		<select name="searchKey" required="required">
 			<option value="">::선택::</option>
-			<option value="delivery_code" <c:if test="${search.searchKey eq 'delivery_code'}">selected="selected"</c:if>>delivery_code</option>
-			<option value="delivery_location" <c:if test="${search.searchKey eq 'delivery_location'}">selected="selected"</c:if>>delivery_location</option>
-			<option value="delivery_person" <c:if test="${search.searchKey eq 'delivery_person'}">selected="selected"</c:if>>delivery_person</option>
-			<option value="orders_code" <c:if test="${search.searchKey eq 'orders_code'}">selected="selected"</c:if>>orders_code</option>
-			<option value="subOrders_group" <c:if test="${search.searchKey eq 'subOrders_group'}">selected="selected"</c:if>>subOrders_group</option>
-			<option value="head_staff_id" <c:if test="${search.searchKey eq 'head_staff_id'}">selected="selected"</c:if>>head_staff_id</option>
-			<option value="sub_code" <c:if test="${search.searchKey eq 'sub_code'}">selected="selected"</c:if>>sub_code</option>
+			<option value="delivery_code" <c:if test="${search.searchKey eq 'delivery_code'}">selected="selected"</c:if>>배송코드</option>
+			<option value="delivery_location" <c:if test="${search.searchKey eq 'delivery_location'}">selected="selected"</c:if>>현재위치</option>
+			<option value="delivery_person" <c:if test="${search.searchKey eq 'delivery_person'}">selected="selected"</c:if>>배송담당자</option>
+			<option value="orders_code" <c:if test="${search.searchKey eq 'orders_code'}">selected="selected"</c:if>>주문코드</option>
+			<option value="subOrders_group" <c:if test="${search.searchKey eq 'subOrders_group'}">selected="selected"</c:if>>주문통합그룹</option>
+			<option value="head_staff_id" <c:if test="${search.searchKey eq 'head_staff_id'}">selected="selected"</c:if>>본사배송담당자</option>
+			<option value="sub_code" <c:if test="${search.searchKey eq 'sub_code'}">selected="selected"</c:if>>가맹코드</option>
 		</select>
 		<input type="text" id="search" name="search" value="${search.search}"/>
 		<input type="button" id="searchBtn" class="btn btn-default" value="검색" />

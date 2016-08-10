@@ -7,9 +7,8 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>subViewContractList</title>
 </head>
-<body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script>
@@ -72,6 +71,7 @@
 	});
 
 </script>
+<body>
 <jsp:include page="/WEB-INF/module/nav.jsp"/>
 <div class="row">
 	<div class="col-sm-2">
@@ -92,9 +92,9 @@
 			<br/><br/>
 			<select name="searchKey" required="required">
 				<option value="">::선택::</option>
-				<option value="contract_code" <c:if test="${search.searchKey eq 'contract_code'}">selected="selected"</c:if>>contract_code</option>
-				<option value="contract_name" <c:if test="${search.searchKey eq 'contract_name'}">selected="selected"</c:if>>contract_name</option>
-				<option value="sub_code" <c:if test="${search.searchKey eq 'sub_code'}">selected="selected"</c:if>>sub_code</option>
+				<option value="contract_code" <c:if test="${search.searchKey eq 'contract_code'}">selected="selected"</c:if>>계약코드</option>
+				<option value="contract_name" <c:if test="${search.searchKey eq 'contract_name'}">selected="selected"</c:if>>계약자명</option>
+				<option value="sub_code" <c:if test="${search.searchKey eq 'sub_code'}">selected="selected"</c:if>>가맹코드</option>
 				
 			</select>
 			<input type="text" id="search" name="search" value="${search.search}"/>
@@ -158,7 +158,7 @@
 		</div>
 	</div> 	
 		
-		<!-- 날짜구하기 -->
+<!-- 날짜구하기 -->
 <c:set var="now" value="<%=new java.util.Date()%>" />
 <fmt:formatDate value="${now}" var="nows" pattern="yyyy-MM-dd"/>
 		

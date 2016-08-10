@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>customerViewClaimList</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script>
@@ -74,7 +74,7 @@ $(document).ready(function(){
 	<div class="col-sm-2">
 	</div>		
 	<div class="col-sm-8 cIfForm">
-		<h1>클래임 리스트 페이지입니다.</h1>
+		<h1>= 클래임 리스트 페이지 =</h1>
 		<br/>	
 		<c:if test="${empty claimList}">
 			<p>해당하는 클래임이 존재하지 않습니다. 이름 또는 전화번호를 정확하게 입력해 주세요.</p>
@@ -106,11 +106,11 @@ $(document).ready(function(){
 		
 				<select name="searchKey" required="required">
 					<option value="">::선택::</option>
-					<option value="claim_code" <c:if test="${claimSearch.searchKey eq 'claim_code'}">selected="selected"</c:if>>claim_code</option>
-					<option value="claim_type" <c:if test="${claimSearch.searchKey eq 'claim_type'}">selected="selected"</c:if>>claim_type</option>
-					<option value="sub_code" <c:if test="${claimSearch.searchKey eq 'sub_code'}">selected="selected"</c:if>>sub_code</option>
-					<option value="customer_name" <c:if test="${claimSearch.searchKey eq 'customer_name'}">selected="selected"</c:if>>customer_name</option>
-					<option value="customer_phone" <c:if test="${claimSearch.searchKey eq 'customer_phone'}">selected="selected"</c:if>>customer_phone</option>
+					<option value="claim_code" <c:if test="${claimSearch.searchKey eq 'claim_code'}">selected="selected"</c:if>>클래임접수코드</option>
+					<option value="claim_type" <c:if test="${claimSearch.searchKey eq 'claim_type'}">selected="selected"</c:if>>클래임 종류</option>
+					<option value="sub_code" <c:if test="${claimSearch.searchKey eq 'sub_code'}">selected="selected"</c:if>>가맹 코드</option>
+					<option value="customer_name" <c:if test="${claimSearch.searchKey eq 'customer_name'}">selected="selected"</c:if>>고객 이름</option>
+					<option value="customer_phone" <c:if test="${claimSearch.searchKey eq 'customer_phone'}">selected="selected"</c:if>>고객 번호</option>
 				</select>
 				<input type="text" id="search" name="search" value="${search.search}"/>
 				<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
@@ -134,10 +134,10 @@ $(document).ready(function(){
 	</div>	
 		<c:if test="${!empty claimList}">
 			<div class="col-sm-1 th">
-				불만접수코드<span id="claimCodeUp">▲</span><span id="claimCodeDown">▼</span>
+				접수코드<span id="claimCodeUp">▲</span><span id="claimCodeDown">▼</span>
 			</div>
 			<div class="col-sm-1 th">
-				불만 종류<span id="claimTypeUp">▲</span><span id="claimTypeDown">▼</span>
+				클래임 종류<span id="claimTypeUp">▲</span><span id="claimTypeDown">▼</span>
 			</div>
 			<div class="col-sm-1 th">
 				접수 날짜<span id="claimAskDateUp">▲</span><span id="claimAskDateDown">▼</span>

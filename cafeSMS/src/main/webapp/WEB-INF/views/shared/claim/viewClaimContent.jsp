@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>viewClaimContent</title>
 </head>
 <body>
 <jsp:include page="/WEB-INF/module/nav.jsp"/>
@@ -33,14 +33,14 @@
 <div class="row tablediv">
 	<div class="col-sm-2">
 	</div>	
-	<div class="col-sm-1 th">claimCode</div>	
-	<div class="col-sm-1 th">claimType</div>	
-	<div class="col-sm-1 th">claimAskDate</div>	
-	<div class="col-sm-1 th">claimContent</div>	
-	<div class="col-sm-1 th">subCode</div>	
-	<div class="col-sm-1 th">customerName</div>	
-	<div class="col-sm-1 th">customerPhone</div>	
-	<div class="col-sm-1 th">claimStatus</div>	
+	<div class="col-sm-1 th">접수코드</div>	
+	<div class="col-sm-1 th">클래임 종류</div>	
+	<div class="col-sm-1 th">접수 날짜</div>	
+	<div class="col-sm-1 th">클래임내용</div>	
+	<div class="col-sm-1 th">가맹 코드</div>	
+	<div class="col-sm-1 th">고객 이름</div>	
+	<div class="col-sm-1 th">고객 번호</div>	
+	<div class="col-sm-1 th">처리 상태</div>	
 	<div class="col-sm-2">
 	</div>
 </div>	

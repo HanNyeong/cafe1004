@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>subViewClaimList</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script>
@@ -144,11 +144,11 @@
 			<br/><br/>
 			<select name="searchKey" required="required">
 				<option value="">::선택::</option>
-				<option value="claim_code" <c:if test="${claimSearch.searchKey eq 'claim_code'}">selected="selected"</c:if>>claim_code</option>
-				<option value="claim_type" <c:if test="${claimSearch.searchKey eq 'claim_type'}">selected="selected"</c:if>>claim_type</option>
-				<option value="sub_code" <c:if test="${claimSearch.searchKey eq 'sub_code'}">selected="selected"</c:if>>sub_code</option>
-				<option value="customer_name" <c:if test="${claimSearch.searchKey eq 'customer_name'}">selected="selected"</c:if>>customer_name</option>
-				<option value="customer_phone" <c:if test="${claimSearch.searchKey eq 'customer_phone'}">selected="selected"</c:if>>customer_phone</option>
+				<option value="claim_code" <c:if test="${claimSearch.searchKey eq 'claim_code'}">selected="selected"</c:if>>클래임접수코드</option>
+				<option value="claim_type" <c:if test="${claimSearch.searchKey eq 'claim_type'}">selected="selected"</c:if>>클래임 종류</option>
+				<option value="sub_code" <c:if test="${claimSearch.searchKey eq 'sub_code'}">selected="selected"</c:if>>가맹 코드</option>
+				<option value="customer_name" <c:if test="${claimSearch.searchKey eq 'customer_name'}">selected="selected"</c:if>>고객 이름</option>
+				<option value="customer_phone" <c:if test="${claimSearch.searchKey eq 'customer_phone'}">selected="selected"</c:if>>고객 번호</option>
 			</select>
 			<input type="text" name="searchClaim" value="${claimSearch.searchClaim}"/>
 			<button class="btn btn-default">검색</button>
@@ -172,25 +172,25 @@
 		<div class="col-sm-2">
 		</div>
 		<div class="col-sm-1 th">
-			claimCode<span id="claimCodeUp">▲</span><span id="claimCodeDown">▼</span>
+			접수코드<span id="claimCodeUp">▲</span><span id="claimCodeDown">▼</span>
 		</div>
 		<div class="col-sm-1 th">	
-			claimType<span id="claimTypeUp">▲</span><span id="claimTypeDown">▼</span>
+			클래임 종류<span id="claimTypeUp">▲</span><span id="claimTypeDown">▼</span>
 		</div>
 		<div class="col-sm-1 th">	
-			claimAskDate<span id="claimAskDateUp">▲</span><span id="claimAskDateDown">▼</span>
+			접수 날짜<span id="claimAskDateUp">▲</span><span id="claimAskDateDown">▼</span>
 		</div>
 		<div class="col-sm-1 th">	
-			claimAnswerDate<span id="claimAnswerDateUp">▲</span><span id="claimAnswerDateDown">▼</span>
+			답변 일자<span id="claimAnswerDateUp">▲</span><span id="claimAnswerDateDown">▼</span>
 		</div>
 		<div class="col-sm-1 th">	
-			customerName<span id="customerNameUp">▲</span><span id="customerNameDown">▼</span>
+			고객 이름<span id="customerNameUp">▲</span><span id="customerNameDown">▼</span>
 		</div>
 		<div class="col-sm-1 th">	
-			customerPhone<span id="customerPhoneUp">▲</span><span id="customerPhoneDown">▼</span>
+			고객 번호<span id="customerPhoneUp">▲</span><span id="customerPhoneDown">▼</span>
 		</div>
 		<div class="col-sm-1 th">	
-			claimStatus<span id="claimStatusUp">▲</span><span id="claimStatusDown">▼</span>
+			처리 상태<span id="claimStatusUp">▲</span><span id="claimStatusDown">▼</span>
 		</div>
 		<div class="col-sm-1 th">	
 			[상세보기]

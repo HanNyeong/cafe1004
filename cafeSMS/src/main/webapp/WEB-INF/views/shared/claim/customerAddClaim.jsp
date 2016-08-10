@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>customerAddClaim</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
 $(document).on("ready",function(){
@@ -57,7 +57,7 @@ $(document).on("ready",function(){
 	</div>
 	
 	<div class="col-sm-6">
-	<h1>고객클래임접수등록</h1>
+	<h1>= 고객클래임접수등록 =</h1>
 		<form id="claimForm" method="post" enctype="multipart/form-data">
 			<div>
 				<label>클래임 종류 : </label>
@@ -73,8 +73,8 @@ $(document).on("ready",function(){
 				<span id="claimTypeMsg"></span>
 			</div>
 			<div>
-				<label>클래임 내용 : </label>
-				<textarea id="claimContent" rows="5" cols="100" name="claimContent"></textarea>
+				<label class="topLabel">클래임 내용 : </label>
+				<textarea class="textereaContent" rows="5" cols="100" name="claimContent"></textarea>
 				<span id="claimContentMsg"></span>
 			</div>
 			<br/>

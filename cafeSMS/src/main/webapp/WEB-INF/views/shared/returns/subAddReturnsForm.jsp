@@ -140,19 +140,15 @@
 
 </head>
 <body>
-<a href="/">home</a>
+
 	<h1>해당가맹의 재고리스트</h1><br/>
-	<p>subStockOut[출고]가 N이고  subStockInDate[가맹이확인하고 입고한날짜]가 notNull인것만 환불 신청가능</p>
 	<hr/>
 	<!-- 상품 검색 -->
 		<form name="subStockList" id="subStockList" action="/subAddReturnsForm" method="post">
 			<!-- 오름차/내림차순 정렬을 위한 input 태그 -->
 			<input type="hidden" name="criteria" id="criteria" value=""/>
 			<input type="hidden" name="upDown" id="upDown" value=""/>
-			<input type="hidden" name="subCode" value="${subCode}"/>
-			
-			
-			
+			<input type="hidden" name="subCode" value="${subCode}"/>			
 			등록 날짜: 
 			<input type="date" name="regitDateStart" value="${subStockSearch.regitDateStart}"/> ~
 			<input type="date" name="regitDateEnd" value="${subStockSearch.regitDateEnd}"/> 
@@ -201,6 +197,7 @@
 		
 		
 	</div>
+	<p>subStockOut[출고]가 N이고  subStockInDate[가맹이확인하고 입고한날짜]가 notNull인것만 환불 신청가능</p>
 	
 </body>
 </html>

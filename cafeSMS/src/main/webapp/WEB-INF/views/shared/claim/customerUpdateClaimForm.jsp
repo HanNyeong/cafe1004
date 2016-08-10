@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>customerUpdateClaimForm</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
 $(document).on("ready",function(){
@@ -58,7 +58,7 @@ $(document).on("ready",function(){
 	</div>
 	
 	<div class="col-sm-6">
-	<h1>고객이 클래임 수정</h1>
+	<h1>= 클래임 수정 =</h1>
 		<form id="claimUpdateForm" method="post" enctype="multipart/form-data">
 			<div>
 				<input type="hidden" name="claimCode" value="${map.claimContent.claimCode}"/>

@@ -5,7 +5,10 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-
+/* headAnswerClaimForm.jsp */
+.ffffNoLine{
+	border:none;
+}
 /* viewSubAccountList.jsp */
 .rightKeeperCheck{
 	text-align:right;
@@ -23,9 +26,11 @@
 	background-color: #e6e6e6;
 }
 /* claim.jsp  */
-#claimContent{
+.topLabel{
+	vertical-align: top;	
+}
+.textereaContent{
 	resize:none;
-	vertical-align: top;
 }
 .cIfForm{
 	text-align: center;
