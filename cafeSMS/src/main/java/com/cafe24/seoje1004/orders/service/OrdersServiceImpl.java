@@ -122,15 +122,16 @@ public class OrdersServiceImpl implements OrdersService{
 			
 		}
 		
-		for(int j = 0; j<subAccounts.getSubAccountCode().size();j++){
+		for(int j = 0; j<subAccounts.getSubCode().size();j++){
 			SubAccount subAccount = new SubAccount();
 			String subAccountDetail = "발주";
-			String totalAccountGroup = "orders_account_group1";
 			String subjectCode = "subject_code2";
 			String subAccountFlow = "출금";
-			subAccount.setSubAccountSum(orders.getSubOrdersPrice());
+			subAccount.setSubCode(subAccounts.getSubCode().get(j));
+			System.out.println(subAccounts.getSubCode().get(j)+"<<<<<<값확인");
+			subAccount.setSubAccountPrice(orderGroup.getSubOrdersPrice().get(j));
 			subAccount.setSubAccountDetail(subAccountDetail);
-			subAccount.setTotalAccountGroup(totalAccountGroup);
+			subAccount.setTotalAccountGroup(subAccounts.getTotalAccountGroup().get(j));
 			subAccount.setSubjectCode(subjectCode);
 			subAccount.setSubAccountFlow(subAccountFlow);
 			/*(sub_account_code,// 

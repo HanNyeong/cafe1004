@@ -48,6 +48,7 @@
 						$("input[class=ordersCode]:eq(" + index + ")").prop('name','ordersCode');
 						$("input[class=subCode]:eq(" + index + ")").prop('name','subCode');
 						$("input[class=subOrdersPrice]:eq(" + index + ")").prop('name','subOrdersPrice');
+						$("input[class=totalAccountGroup]:eq(" + index + ")").prop('name','totalAccountGroup');
 		    		}else{
 		    			console.log("안됨")
 		    		}
@@ -139,6 +140,7 @@
 				<input type="hidden" class="ordersCode" name="" value="${ordersList.ordersCode}">
 				<input type="hidden" class="subCode" name="" value="${subLogin.subCode}">
 				<input type="hidden" class="subOrdersPrice" name="" value="${ordersList.subOrdersPrice}">
+				<input type="hidden" class="totalAccountGroup" name="" value="${ordersList.totalAccountGroup}">
 				
 			<div class="row tablediv">
 				<div class="col-sm-2">

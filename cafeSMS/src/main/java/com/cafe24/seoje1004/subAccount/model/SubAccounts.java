@@ -7,7 +7,7 @@ public class SubAccounts {
 	private List<String> subAccountFlow;
 	private List<String> totalAccountGroup;
 	private List<String> subAccountTable;
-	private List<Integer> subAccountSum;
+	private List<Integer> subAccountPrice;
 	private List<String> subAccountRequestDate;
 	private List<String> subAccountCheck;
 	private List<String> subAccountDetail;
@@ -40,11 +40,11 @@ public class SubAccounts {
 	public void setSubAccountTable(List<String> subAccountTable) {
 		this.subAccountTable = subAccountTable;
 	}
-	public List<Integer> getSubAccountSum() {
-		return subAccountSum;
+	public List<Integer> getSubAccountPrice() {
+		return subAccountPrice;
 	}
-	public void setSubAccountSum(List<Integer> subAccountSum) {
-		this.subAccountSum = subAccountSum;
+	public void setSubAccountPrice(List<Integer> subAccountPrice) {
+		this.subAccountPrice = subAccountPrice;
 	}
 	public List<String> getSubAccountRequestDate() {
 		return subAccountRequestDate;
@@ -98,7 +98,7 @@ public class SubAccounts {
 	public String toString() {
 		return "SubAccounts [subAccountCode=" + subAccountCode + ", subAccountFlow=" + subAccountFlow
 				+ ", totalAccountGroup=" + totalAccountGroup + ", subAccountTable=" + subAccountTable
-				+ ", subAccountSum=" + subAccountSum + ", subAccountRequestDate=" + subAccountRequestDate
+				+ ", subAccountPrice=" + subAccountPrice + ", subAccountRequestDate=" + subAccountRequestDate
 				+ ", subAccountCheck=" + subAccountCheck + ", subAccountDetail=" + subAccountDetail + ", subjectCode="
 				+ subjectCode + ", subClientCode=" + subClientCode + ", subCode=" + subCode + ", subStaffCode="
 				+ subStaffCode + ", subStaffKeeper=" + subStaffKeeper + "]";

@@ -266,7 +266,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	sub_account_code, 
 	sub_account_flow, 
 	total_account_group, 
-	sub_account_sum, 
+	sub_account_price, 
 	sub_account_request_date, 
 	sub_account_detail, 
 	subject_code, 
@@ -278,11 +278,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	#{subAccountCode}, 
 	#{subAccount.subAccountFlow}, 
 	#{subAccount.totalAccountGroup}, 
-	${orders.subOrdersPrice}, 
+	${subAccount.subAccountPrice}, 
 	NOW(),
 	#{subAccount.subAccountDetail}, 
 	#{subAccount.subjectCode}, 
-	#{subLogin.subCode}, 
+	#{subAccount.subCode}, 
 	'sub_staff_code1'
 	)
 	</insert>
