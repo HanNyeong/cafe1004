@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>subAddReturnsForm</title>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script>
 	
@@ -141,7 +141,7 @@
 </head>
 <body>
 
-	<h1>해당가맹의 재고리스트</h1><br/>
+	<h1>= 가맹 재고리스트 =</h1><br/>
 	<hr/>
 	<!-- 상품 검색 -->
 		<form name="subStockList" id="subStockList" action="/subAddReturnsForm" method="post">
@@ -162,7 +162,7 @@
 				<option value="sub_staff_code" <c:if test="${subStockSearch.searchKey eq 'sub_staff_code'}">selected="selected"</c:if>>sub_staff_code</option>
 			</select>
 			<input type="text" name="searchSubStock" value="${subStockSearch.searchSubStock}"/>
-			<button>검색</button>
+			<button class="btn btn-default" >검색</button>
 		</form>
 		<hr/>
 		

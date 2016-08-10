@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>headViewReturnsList</title>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script type="text/javascript" src="resources/function/upDownCheck.js"></script>
 <script>
@@ -71,141 +71,179 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<a href="/">home</a><br>
-	<c:if test="${empty returnsList}">
-		해당 내역이 존재하지 않습니다.
-	</c:if>
-	<c:if test="${!empty returnsList}">
-	<h1>[본사]측 반픔상품조회</h1>
+<jsp:include page="/WEB-INF/module/nav.jsp"/>
+<div class="row">
+	<div class="col-sm-2">
+	</div>	
+	<div class="col-sm-8">
+		<c:if test="${empty returnsList}">
+			해당 내역이 존재하지 않습니다.
+		</c:if>
+	</div>
+	<div class="col-sm-2">
+	</div>
+</div>
+<c:if test="${!empty returnsList}">
+<div class="row">
+	<div class="col-sm-2">
+	</div>	
+	<div class="col-sm-8">
 	<!-- 상품 검색 -->
 		<form name="returnsList" id="returnsList" action="/headViewReturnsList" method="post">
 			<!-- 오름차/내림차순 정렬을 위한 input 태그 -->
 			<input type="hidden" id="upDown" name="upDown" value="${search.upDown}" />
 			<input type="hidden" id="criteria" name="criteria" value="${search.criteria}"/>
 			<input type="hidden" id="viewMore" name="viewMore" value="${search.viewMore}"/>
-			<input type="hidden" id="YN"  name="YN" value="${YN}"/>	
-			
-			
+			<input type="hidden" id="YN"  name="YN" value="${YN}"/>				
 			등록 날짜: 
 			<input type="date" name="regitDateStart" value="${search.regitDateStart}"/> ~
 			<input type="date" name="regitDateEnd" value="${search.regitDateEnd}"/> 
 			<br/><br/>
 			<select name="searchKey" required="required">
 				<option value="">::선택::</option>
-				<option value="return_code" <c:if test="${search.searchKey eq 'return_code'}">selected="selected"</c:if>>return_code</option>
-				<option value="total_account_group" <c:if test="${search.searchKey eq 'total_account_group'}">selected="selected"</c:if>>total_account_group</option>
-				<option value="orders_code" <c:if test="${search.searchKey eq 'orders_code'}">selected="selected"</c:if>>orders_code</option>
-				<option value="specific_item_code" <c:if test="${search.searchKey eq 'specific_item_code'}">selected="selected"</c:if>>specific_item_code</option>
-				<option value="sub_code" <c:if test="${search.searchKey eq 'sub_code'}">selected="selected"</c:if>>sub_code</option>
+				<option value="return_code" <c:if test="${search.searchKey eq 'return_code'}">selected="selected"</c:if>>반품코드</option>
+				<option value="orders_code" <c:if test="${search.searchKey eq 'orders_code'}">selected="selected"</c:if>>주문코드</option>
+				<option value="specific_item_code" <c:if test="${search.searchKey eq 'specific_item_code'}">selected="selected"</c:if>>개별상품코드</option>
+				<option value="sub_code" <c:if test="${search.searchKey eq 'sub_code'}">selected="selected"</c:if>>가맹코드</option>
 			</select>
 		
 			<input type="text" id="search" name="search" value="${search.search}"/>
 			<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
-			<a href="/headViewReturnsList"><input type="button" class="btn btn-default"  value="전체보기"/></a>
-			
-			분류 : 
+			<a href="/headViewReturnsList"><input type="button" class="btn btn-default"  value="전체보기"/></a>			
+		</form>
+	</div>
+	<div class="col-sm-2">
+	</div>
+</div>
+<br/>
+<br/>
+<div class="row">
+	<div class="col-sm-2">
+	</div>	
+	<div class="col-sm-4">
+		<h3>= 본사 반품 상품 조회 =</h3>
+	</div>
+	<div class="col-sm-4 clickBtn">
+		<h4>분류 : 
 			<select id="selectYN" required="required">
 				<option value="" <c:if test="${YN eq ''}">selected="selected"</c:if>>::선택::</option>
 				<option value="Y" <c:if test="${YN eq 'Y'}">selected="selected"</c:if>>본사확인</option>
 				<option value="N" <c:if test="${YN eq 'N'}">selected="selected"</c:if>>승인대기</option>
 			</select>	
-		</form>
-	<hr/>
-	
-	<div>
-		returnCode<span class="up">▲</span><span class="down">▼</span>
-		returnPrice<span class="up">▲</span><span class="down">▼</span>
-		returnReportDate<span class="up">▲</span><span class="down">▼</span>
-		returnHeadCheck<span class="up">▲</span><span class="down">▼</span>
-		returnHeadCheckDate<span class="up">▲</span><span class="down">▼</span>
-		totalAccountGroup<span class="up">▲</span><span class="down">▼</span>
-		returnReDelivery<span class="up">▲</span><span class="down">▼</span>
-		returnCancel<span class="up">▲</span><span class="down">▼</span>
-		ordersCode<span class="up">▲</span><span class="down">▼</span>
-		specificItemCode<span class="up">▲</span><span class="down">▼</span>
-		headReturnsConfirm<span class="up">▲</span><span class="down">▼</span>
-		subCode<span class="up">▲</span><span class="down">▼</span>
-		[상세보기]
-		[환불승인]
-		[처리]
+		</h4>
 	</div>
-	<div>
+	<div class="col-sm-2">
+	</div>	
+</div>
+<div class="row tablediv">
+	<div class="col-sm-2">
+	</div>
+	<div class="col-sm-1 th">
+		반품코드<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		반품가격<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		가맹보고날짜<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		본사확인날짜<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		주문코드<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		개별상품코드<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		가맹코드<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		비고
+	</div>
 	
-		<c:forEach var="returnsList" items="${returnsList}">
-			<c:if test="${YN eq '' || YN eq null }">
-				<div>
-					${returnsList.returnCode}
-					${returnsList.returnPrice}
-					${returnsList.returnReportDate}
-					${returnsList.returnHeadCheck}
-					${returnsList.returnHeadCheckDate}
-					${returnsList.totalAccountGroup}
-					${returnsList.returnReDelivery}
-					${returnsList.returnCancel}
-					${returnsList.ordersCode}
-					${returnsList.specificItemCode}
-					${returnsList.headReturnsConfirm}
-					${returnsList.subCode}
-					<a href="/viewReturnsContent?returnCode=${returnsList.returnCode}">[상세보기]</a>
-					
+	<div class="col-sm-2">
+	</div>
+</div>
+	<c:forEach var="returnsList" items="${returnsList}">
+		<c:if test="${YN eq '' || YN eq null }">
+			<div class="row tablediv">
+				<div class="col-sm-2">
+				</div>					
+				<div class="col-sm-1">${returnsList.returnCode}</div>
+				<div class="col-sm-1">${returnsList.returnPrice}</div>
+				<div class="col-sm-1">${returnsList.returnReportDate}</div>
+				<div class="col-sm-1">(${returnsList.returnHeadCheck})${returnsList.returnHeadCheckDate}</div>
+				<div class="col-sm-1">${returnsList.ordersCode}</div>
+				<div class="col-sm-1">${returnsList.specificItemCode}</div>
+				<div class="col-sm-1">${returnsList.subCode}</div>
+				<div class="col-sm-1">
+					<a href="/viewReturnsContent?returnCode=${returnsList.returnCode}">[상세보기]</a><br/>
 					<c:if test="${returnsList.returnHeadCheck == 'N'}">
 						<a href="/approvalReturns?returnCode=${returnsList.returnCode}">[환불승인]</a>
+						<br/>
+					</c:if>	
+					<c:if test="${returnsList.returnReDelivery == 'N' && returnsList.headReturnsConfirm == 'N'}">
+						<a href="/">[환불]</a>
+						<br/>
 					</c:if>
-					
-					
+					<c:if test="${returnsList.returnReDelivery == 'N' && returnsList.headReturnsConfirm == 'Y'}">
+						[환불 처리]
+						<br/>
+					</c:if>
 					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'N'}">
 						<a href="/headReturnReDelivery?ordersCode=${returnsList.ordersCode}">[재배송]</a>
+						<br/>
 					</c:if>
 					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'Y'}">
 						[재배송 처리]
 					</c:if>
+				</div>
+				<div class="col-sm-2">
+				</div>
+			</div>
+		</c:if>
+		
+		<c:if test="${returnsList.returnHeadCheck == YN}">
+				<div class="row tablediv">
+				<div class="col-sm-2">
+				</div>					
+				<div class="col-sm-1">${returnsList.returnCode}</div>
+				<div class="col-sm-1">${returnsList.returnPrice}</div>
+				<div class="col-sm-1">${returnsList.returnReportDate}</div>
+				<div class="col-sm-1">(${returnsList.returnHeadCheck})${returnsList.returnHeadCheckDate}</div>
+				<div class="col-sm-1">${returnsList.ordersCode}</div>
+				<div class="col-sm-1">${returnsList.specificItemCode}</div>
+				<div class="col-sm-1">${returnsList.subCode}</div>
+				<div class="col-sm-1">
+					<a href="/viewReturnsContent?returnCode=${returnsList.returnCode}">[상세보기]</a><br/>
+					<c:if test="${returnsList.returnHeadCheck == 'N'}">
+						<a href="/approvalReturns?returnCode=${returnsList.returnCode}">[환불승인]</a>
+						<br/>
+					</c:if>	
 					<c:if test="${returnsList.returnReDelivery == 'N' && returnsList.headReturnsConfirm == 'N'}">
 						<a href="/">[환불]</a>
+						<br/>
 					</c:if>
 					<c:if test="${returnsList.returnReDelivery == 'N' && returnsList.headReturnsConfirm == 'Y'}">
 						[환불 처리]
+						<br/>
 					</c:if>
-				</div>
-			</c:if>
-			
-			<c:if test="${returnsList.returnHeadCheck == YN}">
-				<div>
-					${returnsList.returnCode}
-					${returnsList.returnPrice}
-					${returnsList.returnReportDate}
-					${returnsList.returnHeadCheck}
-					${returnsList.returnHeadCheckDate}
-					${returnsList.totalAccountGroup}
-					${returnsList.returnReDelivery}
-					${returnsList.returnCancel}
-					${returnsList.ordersCode}
-					${returnsList.specificItemCode}
-					${returnsList.headReturnsConfirm}
-					${returnsList.subCode}
-					<a href="/viewReturnsContent?returnCode=${returnsList.returnCode}">[상세보기]</a>
-					
-					<c:if test="${returnsList.returnHeadCheck == 'N'}">
-						<a href="/approvalReturns?returnCode=${returnsList.returnCode}">[환불승인]</a>
-					</c:if>
-					
-					
 					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'N'}">
 						<a href="/headReturnReDelivery?ordersCode=${returnsList.ordersCode}">[재배송]</a>
+						<br/>
 					</c:if>
 					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'Y'}">
 						[재배송 처리]
 					</c:if>
-					<c:if test="${returnsList.returnReDelivery == 'N' && returnsList.headReturnsConfirm == 'N'}">
-						<a href="/">[환불]</a>
-					</c:if>
-					<c:if test="${returnsList.returnReDelivery == 'N' && returnsList.headReturnsConfirm == 'Y'}">
-						[환불 처리]
-					</c:if>
 				</div>
-			</c:if>
-		</c:forEach>
-	
-	</div>
-	</c:if> 
+				<div class="col-sm-2">
+				</div>
+			</div>
+		</c:if>
+	</c:forEach>
+<jsp:include page="/WEB-INF/module/footer.jsp"/>
+</c:if> 
 </body>
 </html>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>subViewReturnsList</title>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script type="text/javascript" src="resources/function/upDownCheck.js"></script>
 <script>
@@ -95,10 +95,9 @@ $(document).ready(function(){
 				<br/><br/>
 				<select name="searchKey" required="required">
 					<option value="">::선택::</option>
-					<option value="return_code" <c:if test="${search.searchKey eq 'return_code'}">selected="selected"</c:if>>return_code</option>
-					<option value="total_account_group" <c:if test="${search.searchKey eq 'total_account_group'}">selected="selected"</c:if>>total_account_group</option>
-					<option value="orders_code" <c:if test="${search.searchKey eq 'orders_code'}">selected="selected"</c:if>>orders_code</option>
-					<option value="specific_item_code" <c:if test="${search.searchKey eq 'specific_item_code'}">selected="selected"</c:if>>specific_item_code</option>	
+					<option value="return_code" <c:if test="${search.searchKey eq 'return_code'}">selected="selected"</c:if>>환불코드</option>
+					<option value="orders_code" <c:if test="${search.searchKey eq 'orders_code'}">selected="selected"</c:if>>주문코드</option>
+					<option value="specific_item_code" <c:if test="${search.searchKey eq 'specific_item_code'}">selected="selected"</c:if>>개별상품코드</option>	
 				</select>
 				
 				<input type="text" id="search" name="search" value="${search.search}"/>
