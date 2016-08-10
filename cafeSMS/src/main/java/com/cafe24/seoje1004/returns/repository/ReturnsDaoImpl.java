@@ -13,6 +13,7 @@ import com.cafe24.seoje1004.returns.model.Returns;
 import com.cafe24.seoje1004.returns.model.ReturnsFile;
 import com.cafe24.seoje1004.returns.model.SubOrders;
 import com.cafe24.seoje1004.returns.model.SubStock;
+import com.cafe24.seoje1004.subAccount.model.AddSharedSubAccount;
 
 @Repository
 public class ReturnsDaoImpl implements ReturnsDao {
@@ -129,14 +130,22 @@ public class ReturnsDaoImpl implements ReturnsDao {
 		
 	}
 	
+	//본사에서 환불 처리 (돈으로 지급)
+		@Override
+		public void headReturns(Map<String,Object> map) {
+			System.out.println("ReturnsDaoImpl headReturns 실행");
+			sqlSessionReturns.insert(NS+".headReturns", map);
+	}
 	
-	/*---------재배송---------------*/
 	//환불테이블의 headReturnsConfirm을 Y로 변경 update
 	@Override
-	public void updateHeadReturnsConfirmY(String ordersCode) {
+	public void updateHeadReturnsConfirmY(String returnCode) {
 		System.out.println("ReturnsDaoImpl updateHeadReturnsConfirmY 실행");
-		sqlSessionReturns.update(NS+".updateHeadReturnsConfirmY", ordersCode);
-	}
+		sqlSessionReturns.update(NS+".updateHeadReturnsConfirmY", returnCode);
+	}	
+	
+	/*---------재배송---------------*/
+	
 
 	//sub_orders의 기존행의 sub_orders_status = "환불" update
 	@Override
@@ -188,6 +197,8 @@ public class ReturnsDaoImpl implements ReturnsDao {
 		sqlSessionReturns.insert(NS+".addDelivery", delivery);
 		
 	}
+
+	
 	
 	
 

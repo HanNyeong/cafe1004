@@ -9,6 +9,7 @@ import com.cafe24.seoje1004.returns.model.Returns;
 import com.cafe24.seoje1004.returns.model.ReturnsFile;
 import com.cafe24.seoje1004.returns.model.SubOrders;
 import com.cafe24.seoje1004.returns.model.SubStock;
+import com.cafe24.seoje1004.subAccount.model.AddSharedSubAccount;
 
 public interface ReturnsDao {
 	/**
@@ -37,9 +38,11 @@ public interface ReturnsDao {
 	public Returns viewReturnsContent(String returnCode);			//해당 반품상품의 상세정보
 	public List<ReturnsFile> viewReturnsFile(String returnCode);		//해당반품상품의 파일 리스트
 	public void approvalReturns(String returnCode);		//본사에서 환불 승인
+	public void headReturns(Map<String,Object> map);		//본사에서 환불 처리 (돈으로 지급)
+	public void updateHeadReturnsConfirmY(String returnCode);	//환불테이블의 headReturnsConfirm을 Y로 변경 update
 	
 	/*----재배송-------*/
-	public void updateHeadReturnsConfirmY(String ordersCode);	//환불테이블의 headReturnsConfirm을 Y로 변경 update
+	
 	public void updateSubOrdersStatus(String ordersCode);	//sub_orders의 기존행의 sub_orders_status = "환불" update
 	public SubOrders selectSubOrdersByOrdersCode(String ordersCode);	//sub_orders의 기존행의 정보를 가져옴
 	public void addSubOrders(SubOrders subOrders);	 //sub_orders새로운 행에 insert

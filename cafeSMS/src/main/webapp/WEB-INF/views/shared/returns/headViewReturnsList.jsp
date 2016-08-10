@@ -189,7 +189,7 @@ $(document).ready(function(){
 						<br/>
 					</c:if>	
 					<c:if test="${returnsList.returnReDelivery == 'N' && returnsList.headReturnsConfirm == 'N' && returnsList.returnHeadCheck == 'Y'}">
-						<a href="/">[환불]</a>
+						<a href="/headReturns?returnCode=${returnsList.returnCode}">[환불]</a>
 						<br/>
 					</c:if>
 					<c:if test="${returnsList.returnReDelivery == 'N' && returnsList.headReturnsConfirm == 'Y' && returnsList.returnHeadCheck == 'Y'}">
@@ -228,7 +228,7 @@ $(document).ready(function(){
 						<br/>
 					</c:if>	
 					<c:if test="${returnsList.returnReDelivery == 'N' && returnsList.headReturnsConfirm == 'N' && returnsList.returnHeadCheck == 'Y'}">
-						<a href="/">[환불]</a>
+						<a href="/headReturns?returnCode=${returnsList.returnCode}">[환불]</a>
 						<br/>
 					</c:if>
 					<c:if test="${returnsList.returnReDelivery == 'N' && returnsList.headReturnsConfirm == 'Y' && returnsList.returnHeadCheck == 'Y'}">

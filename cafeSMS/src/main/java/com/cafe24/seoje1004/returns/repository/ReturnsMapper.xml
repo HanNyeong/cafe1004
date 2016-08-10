@@ -361,7 +361,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SET
 			head_returns_confirm = "Y"
 		WHERE
-			orders_code = #{ordersCode}
+			return_code = #{returnCode}
 	</update>
 	
 	<!-- sub_orders의 기존행의 sub_orders_status = "환불" update -->
@@ -515,5 +515,49 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			WHERE 
 			orders_code = #{ordersCode}
 	</update>
+	
+	
+	
+	
+	
+	<!-- 본사에서 환불 처리 (돈으로 지급) -->
+	<insert id="headReturns"
+			parameterType="java.util.Map">
+			
+			
+			<selectKey resultType="hashmap" keyProperty="subAccountCode" order="BEFORE">
+				select if(isnull(sub_account_code),'sub_account_code200', concat('sub_account_code', MAX(CONVERT(SUBSTRING(sub_account_code,17), UNSIGNED))+1)) 
+				as subAccountCode
+				from sub_account
+		</selectKey>
+			
+			
+			INSERT INTO sub_account
+			(sub_account_code, 
+			sub_account_flow, 
+			total_account_group, 
+			sub_account_sum,
+			sub_account_request_date, 
+			sub_account_detail, 
+			subject_code, 
+			sub_code 
+			)
+			
+			VALUES(
+			#{subAccountCode}
+			,#{addSharedSubAccount.subAccountFlow}
+			,#{addSharedSubAccount.totalAccountGroup}
+			,#{addSharedSubAccount.subAccountSum}
+			,NOW()
+			,#{addSharedSubAccount.subAccountDetail}
+			,#{addSharedSubAccount.subjectCode}
+			,#{addSharedSubAccount.subCode}
+			
+			
+			)
+			
+	</insert>
+	
+	
 	
 </mapper>

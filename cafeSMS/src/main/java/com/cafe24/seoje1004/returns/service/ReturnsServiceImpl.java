@@ -25,6 +25,7 @@ import com.cafe24.seoje1004.returns.model.SubOrders;
 import com.cafe24.seoje1004.returns.model.SubStock;
 import com.cafe24.seoje1004.returns.model.SubStockSearch;
 import com.cafe24.seoje1004.returns.repository.ReturnsDao;
+import com.cafe24.seoje1004.subAccount.model.AddSharedSubAccount;
 import com.cafe24.seoje1004.util.Search;
 
 @Service
@@ -244,9 +245,28 @@ public class ReturnsServiceImpl implements ReturnsService {
 		returnsDao.addDelivery(delivery);
 	}
 	
-	
-	//가맹 반품 처리
-	public void ordersReturns(String OrdersCode){
+	//본사에서 환불 처리 (돈으로 지급)
+	@Override
+	public void headReturns(String returnCode) {
+		System.out.println("ReturnsServiceImpl headReturns 실행");
+		Returns returns = returnsDao.viewReturnsContent(returnCode);
+		System.out.println("returns : "+ returns);
 		
+		AddSharedSubAccount addSharedSubAccount = new AddSharedSubAccount();
+		addSharedSubAccount.setSubAccountFlow("출금");
+		addSharedSubAccount.setSubAccountSum(returns.getReturnPrice());
+		addSharedSubAccount.setSubCode(returns.getSubCode());
+		addSharedSubAccount.setTotalAccountGroup(returns.getTotalAccountGroup());
+		addSharedSubAccount.setSubAccountDetail("환불");
+		addSharedSubAccount.setSubjectCode("환불");
+		
+		//1.회계에 추가
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("addSharedSubAccount", addSharedSubAccount);
+		
+		returnsDao.headReturns(map);
+		
+		//2.환불테이블의 headReturnsConfirm을 Y로 변경 update
+		returnsDao.updateHeadReturnsConfirmY(returns.getReturnCode());
 	}
 }
