@@ -140,9 +140,11 @@
 
 </head>
 <body>
-
-	<h1>= 가맹 재고리스트 =</h1><br/>
-	<hr/>
+<jsp:include page="/WEB-INF/module/nav.jsp"/>
+<div class="row">
+	<div class="col-sm-2">
+	</div>	
+	<div class="col-sm-8">
 	<!-- 상품 검색 -->
 		<form name="subStockList" id="subStockList" action="/subAddReturnsForm" method="post">
 			<!-- 오름차/내림차순 정렬을 위한 input 태그 -->
@@ -155,49 +157,81 @@
 			<br/><br/>
 			<select name="searchKey" required="required">
 				<option value="">::선택::</option>
-				<option value="sub_stock_code" <c:if test="${subStockSearch.searchKey eq 'sub_stock_code'}">selected="selected"</c:if>>sub_stock_code</option>
-				<option value="orders_code" <c:if test="${subStockSearch.searchKey eq 'orders_code'}">selected="selected"</c:if>>orders_code</option>
-				<option value="head_item_code" <c:if test="${subStockSearch.searchKey eq 'head_item_code'}">selected="selected"</c:if>>head_item_code</option>
-				<option value="specific_item_code" <c:if test="${subStockSearch.searchKey eq 'specific_item_code'}">selected="selected"</c:if>>specific_item_code</option>
-				<option value="sub_staff_code" <c:if test="${subStockSearch.searchKey eq 'sub_staff_code'}">selected="selected"</c:if>>sub_staff_code</option>
+				<option value="sub_stock_code" <c:if test="${subStockSearch.searchKey eq 'sub_stock_code'}">selected="selected"</c:if>>재고코드</option>
+				<option value="orders_code" <c:if test="${subStockSearch.searchKey eq 'orders_code'}">selected="selected"</c:if>>주문코드</option>
+				<option value="head_item_code" <c:if test="${subStockSearch.searchKey eq 'head_item_code'}">selected="selected"</c:if>>아이템코드</option>
+				<option value="specific_item_code" <c:if test="${subStockSearch.searchKey eq 'specific_item_code'}">selected="selected"</c:if>>개별상품코드</option>
+				<option value="sub_staff_code" <c:if test="${subStockSearch.searchKey eq 'sub_staff_code'}">selected="selected"</c:if>>가맹직원코드</option>
 			</select>
 			<input type="text" name="searchSubStock" value="${subStockSearch.searchSubStock}"/>
 			<button class="btn btn-default" >검색</button>
 		</form>
-		<hr/>
-		
-		
-	<div>
-		subStockCode<span id="subStockCodeUp">▲</span><span id="subStockCodeDown">▼</span>
-		headStockInDate<span id="headStockInDateUp">▲</span><span id="headStockInDateDown">▼</span>
-		subStockInDate<span id="subStockInDateUp">▲</span><span id="subStockInDateDown">▼</span>
-		subStockOut<span id="subStockOutUp">▲</span><span id="subStockOutDown">▼</span>
-		ordersCode<span id="ordersCodeUp">▲</span><span id="ordersCodeDown">▼</span>
-		subCode<span id="subCodeUp">▲</span><span id="subCodeDown">▼</span>
-		headItemCode<span id="headItemCodeUp">▲</span><span id="headItemCodeDown">▼</span>
-		specificItemCode<span id="specificItemCodeUp">▲</span><span id="specificItemCodeDown">▼</span>
-		subStaffCode<span id="subStaffCodeUp">▲</span><span id="subStaffCodeDown">▼</span>
+		</div>
+	<div class="col-sm-2">
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-2">
+	</div>	
+	<div class="col-sm-8">
+		<h3>= 가맹 환불 가능 리스트 =</h3>	
+		<br/>
+		<p>subStockOut[출고]가 N이고  subStockInDate[가맹이확인하고 입고한날짜]가 notNull인것만 환불 신청가능</p>	
+	</div>
+	<div class="col-sm-2">
+	</div>
+</div>	
+<br/>
+<br/>
+<div class="row tablediv">
+	<div class="col-sm-2">
+	</div>
+	<div class="col-sm-1 th">
+		재고코드<span id="subStockCodeUp">▲</span><span id="subStockCodeDown">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		가맹입고날짜<span id="subStockInDateUp">▲</span><span id="subStockInDateDown">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		판매여부<span id="subStockOutUp">▲</span><span id="subStockOutDown">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		주문코드<span id="ordersCodeUp">▲</span><span id="ordersCodeDown">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		본사상품코드<span id="headItemCodeUp">▲</span><span id="headItemCodeDown">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		개별상품코드<span id="specificItemCodeUp">▲</span><span id="specificItemCodeDown">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
+		가맹확인담당<span id="subStaffCodeUp">▲</span><span id="subStaffCodeDown">▼</span>
+	</div>
+	<div class="col-sm-1 th">	
 		[환불신청]
 	</div>
-	<div>
-		<c:forEach var="subStockList" items="${subStockList}">
-		<div>
-			${subStockList.subStockCode}
-			${subStockList.headStockInDate}
-			${subStockList.subStockInDate}
-			${subStockList.subStockOut}
-			${subStockList.ordersCode}
-			${subStockList.subCode}
-			${subStockList.headItemCode}
-			${subStockList.specificItemCode}
-			${subStockList.subStaffCode}
+	<div class="col-sm-2">
+	</div>
+</div>
+
+<c:forEach var="subStockList" items="${subStockList}">
+	<div class="row tablediv">
+		<div class="col-sm-2">
+		</div>	
+		<div class="col-sm-1">${subStockList.subStockCode}</div>		
+		<div class="col-sm-1">${subStockList.subStockInDate}</div>
+		<div class="col-sm-1">${subStockList.subStockOut}</div>
+		<div class="col-sm-1">${subStockList.ordersCode}</div>	
+		<div class="col-sm-1">${subStockList.headItemCode}</div>
+		<div class="col-sm-1">${subStockList.specificItemCode}</div>
+		<div class="col-sm-1">${subStockList.subStaffCode}</div>
+		<div class="col-sm-1">
 			<a href="/subAddReturnsForm2?subStockCode=${subStockList.subStockCode}">[환불신청]</a>
 		</div>
-		</c:forEach>
-		
-		
+		<div class="col-sm-2">
+		</div>
 	</div>
-	<p>subStockOut[출고]가 N이고  subStockInDate[가맹이확인하고 입고한날짜]가 notNull인것만 환불 신청가능</p>
-	
+</c:forEach>
+<jsp:include page="/WEB-INF/module/footer.jsp"/>	
 </body>
 </html>

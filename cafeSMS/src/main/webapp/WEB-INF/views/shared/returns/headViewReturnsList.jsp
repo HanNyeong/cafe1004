@@ -243,7 +243,7 @@ $(document).ready(function(){
 			</div>
 		</c:if>
 	</c:forEach>
-<jsp:include page="/WEB-INF/module/footer.jsp"/>
 </c:if> 
+<jsp:include page="/WEB-INF/module/footer.jsp"/>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>subAddReturnsForm2</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
 $(document).on("ready",function(){
@@ -14,7 +14,7 @@ $(document).on("ready",function(){
 	//파일 추가
 	$("#addReturnFileBtn").on("click",function(){
 		console.log("addReturnFileBtn click");
-		$("#addReturnFile").append('<div><label>반품첨부파일 : </label><input id = "returnFile" type="file" name="returnFile"/></div>');	
+		$("#addReturnFile").append('<div><input id = "returnFile" class="btn btn-default" type="file" name="returnFile"/></div>');	
 	});
 	
 	
@@ -43,32 +43,36 @@ $(document).on("ready",function(){
 </script>
 </head>
 <body>
-	<h1>해당 재고상품의 반품신청폼</h1><hr/>
-	<div>
+<jsp:include page="/WEB-INF/module/nav.jsp"/>
+<div class="row">
+	<div class="col-sm-4">
+	</div>
+	<div class="col-sm-5">
+	<h1>= 재고상품 반품신청 =</h1>
 		<form  id="addReturnForm" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="subStockCode", value="${addReturns.subStockCode}"/>
 			<div>
 				<!-- 직접기입 -->
-				<label>반품사유 : </label>
-				<textarea id="returnReason" name="returnReason" cols="50" rows="5"></textarea>
+				<label class="topLabel">반품사유 : </label>
+				<textarea id="returnReason"  class="textereaContent" name="returnReason" cols="50" rows="5"></textarea>
 				<span id="returnReasonMsg"></span>
 			</div>
 			<div>
 				<!-- 자동 -->
 				<label>반품가격 : </label>
-				<input id="returnPrice" type="text" name="returnPrice" value="${addReturns.hItemSellingPrice}" readonly="readonly"/>
+				<input id="returnPrice" type="text" name="returnPrice" class="ffffNoLine" value="${addReturns.hItemSellingPrice}" readonly="readonly"/>
 				<span id="returnPriceMsg"></span>
 			</div>
 			<div>
 				<!-- 자동 -->
 				<label>통합회계그룹 : </label>
-				<input id="totalAccountGroup" type="text" name="totalAccountGroup" value="${addReturns.totalAccountGroup}" readonly="readonly"/>
+				<input id="totalAccountGroup" type="text" name="totalAccountGroup" class="ffffNoLine" value="${addReturns.totalAccountGroup}" readonly="readonly"/>
 			</div>
 			<div>
 				<!-- 직접기입 -->
 				<label>반품첨부파일 : </label>
-				<input id="returnFile" type="file" name="returnFile" />
-				<input id="addReturnFileBtn" type="button" value="addReturnFileBtn"/>
+				<input id="addReturnFileBtn" type="button" class="btn btn-default" value="파일추가"/>
+				<input id="returnFile" type="file" name="returnFile" class="btn btn-default"/>
 				<span id="returnFileMsg"></span>
 			</div>
 			<div>
@@ -77,17 +81,17 @@ $(document).on("ready",function(){
 			<div>
 				<!-- 자동 -->
 				<label>주문코드 : </label>
-				<input id="ordersCode" type="text" name="ordersCode" value="${addReturns.ordersCode}" readonly="readonly"/>
+				<input id="ordersCode" type="text" name="ordersCode" value="${addReturns.ordersCode}" class="ffffNoLine" readonly="readonly"/>
 			</div>
 			<div>
 				<!-- 자동 -->
 				<label>개별상품코드 : </label>
-				<input id="specificItemCode" type="text" name="specificItemCode" value="${addReturns.specificItemCode}" readonly="readonly"/>
+				<input id="specificItemCode" type="text" name="specificItemCode" value="${addReturns.specificItemCode}" class="ffffNoLine" readonly="readonly"/>
 			</div>
 			<div>
 				<!-- 자동 -->
 				<label>가맹대표코드 : </label>
-				<input id="subCode" type="text" name="subCode" value="${addReturns.subCode}" readonly="readonly"/>
+				<input id="subCode" type="text" name="subCode" value="${addReturns.subCode}" class="ffffNoLine" readonly="readonly"/>
 			</div>
 			<div>
 				<label>재배송여부  Y : </label>
@@ -95,10 +99,14 @@ $(document).on("ready",function(){
 				<label> N : </label>
 				<input type="radio" name="returnReDelivery" value="N"/>
 			</div>
-			<div>
-				<input id="addReturnBtn" type="button" value="환불신청"/>
+			<div class="clickCenterBtn">
+				<input id="addReturnBtn" class="btn btn-default" type="button" value="환불신청"/>
 			</div>
 		</form>
 	</div>
+	<div class="col-sm-3">
+	</div>
+</div>	
+<jsp:include page="/WEB-INF/module/footer.jsp"/>	
 </body>
 </html>
