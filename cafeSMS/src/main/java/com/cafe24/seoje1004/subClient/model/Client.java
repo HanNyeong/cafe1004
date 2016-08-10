@@ -3,7 +3,7 @@ package com.cafe24.seoje1004.subClient.model;
 public class Client {
 	private String subClientCode;
 	private String subClientName;
-	private int subClientRegitDate;
+	private String subClientRegitDate;
 	private String subClientInCharge;
 	private String subClientContract;
 	private String subClientPhone;
@@ -22,10 +22,10 @@ public class Client {
 	public void setSubClientName(String subClientName) {
 		this.subClientName = subClientName;
 	}
-	public int getSubClientRegitDate() {
+	public String getSubClientRegitDate() {
 		return subClientRegitDate;
 	}
-	public void setSubClientRegitDate(int subClientRegitDate) {
+	public void setSubClientRegitDate(String subClientRegitDate) {
 		this.subClientRegitDate = subClientRegitDate;
 	}
 	

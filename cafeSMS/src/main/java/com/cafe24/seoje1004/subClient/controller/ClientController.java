@@ -25,6 +25,7 @@ public class ClientController {
 	public String viewClientList(Model model, ClientSearch clientSearch, SubLogin subLogin) {
 		System.out.println("ClientController//viewClientList실행");
 		List<Client> clientList = clientService.viewClientListService(clientSearch,subLogin);
+		System.out.println("거래처목록//"+clientList);
 		model.addAttribute("clientList",clientList);
 		model.addAttribute("clientSearch",clientSearch);
 		return "/sub/subClient/subViewSubClientList";
