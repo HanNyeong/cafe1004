@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cafe24.seoje1004.subStock.model.SubStock;
 import com.cafe24.seoje1004.subStock.model.SubStockSearch;
+import com.cafe24.seoje1004.subStock.model.SubStocks;
 import com.cafe24.seoje1004.util.Search;
 
 public interface SubStockService {
@@ -15,5 +16,5 @@ public interface SubStockService {
 	 */
 	
 	public List<SubStock> subViewSubStockList(String subCode, Search search);		//가맹재고리스트
-	public void subWarehousing(String subStockCode,String ordersCode);		//가맹이 본사로부터 받은 제품을 입고
+	public void subWarehousing(SubStocks subStocks);		//가맹이 본사로부터 받은 제품을 입고
 }

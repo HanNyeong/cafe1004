@@ -71,20 +71,20 @@ $(document).ready(function(){
 	    		if(!$(this).is(":checked")){
 	    			console.log("체크안됨");
 					}else if($(this).is(":checked")){
-	    				console.log("체크됨");
-					
+	    									
 					$("input[class=subCode]:eq(" + index + ")").prop('name','subCode');
 					$("input[class=subStockCode]:eq(" + index + ")").prop('name','subStockCode');
 					$("input[class=ordersCode]:eq(" + index + ")").prop('name','ordersCode');
 					$("input[class=specificItemCode]:eq(" + index + ")").prop('name','specificItemCode');
-					
+					console.log("체크됨");
+
 					}else{
 	    				console.log("안됨")
 	    			}
 	    	});
-				$('#subSellList').prop('action','/subWarehousing');
-				$('#subSellList').prop('method','POST');
-				$('#subSellList').submit();
+				$('#subStockList').prop('action','/subWarehousing');
+				$('#subStockList').prop('method','POST');
+				$('#subStockList').submit();
 	    }
 	});
 	
@@ -162,7 +162,6 @@ $(document).ready(function(){
 		본사상품코드<span class="up">▲</span><span class="down">▼</span>
 		개별상품코드<span class="up">▲</span><span class="down">▼</span>
 		가맹확인담당직원<span class="up">▲</span><span class="down">▼</span>
-		[입고확인]
 	</div>	
 	<div>
 		<c:forEach var="subStockList" items="${subStockList}">
@@ -175,6 +174,7 @@ $(document).ready(function(){
 						<input type="hidden" class="ordersCode" name="" value="${subStockList.ordersCode}">
 						<input type="hidden" class="specificItemCode" name="" value="${subStockList.specificItemCode}">
 					</c:if>
+					
 					${subStockList.subStockCode}
 					${subStockList.headStockInDate}
 					${subStockList.subStockInDate}
@@ -184,12 +184,7 @@ $(document).ready(function(){
 					${subStockList.headItemCode}
 					${subStockList.specificItemCode}
 					${subStockList.subStaffCode}
-					<c:if test="${subStockList.subStockInDate == null}">
-						<a href="/subWarehousing?subStockCode=${subStockList.subStockCode}&subCode=${subStockList.subCode}&ordersCode=${subStockList.ordersCode}">[입고]</a>
-					</c:if>
-					<c:if test="${subStockList.subStockInDate != null}">
-						[Null]
-					</c:if>
+					
 				</div>
 			</c:if>
 			<c:if test="${YN eq 'Y'}">	
@@ -211,12 +206,7 @@ $(document).ready(function(){
 						${subStockList.headItemCode}
 						${subStockList.specificItemCode}
 						${subStockList.subStaffCode}
-						<c:if test="${subStockList.subStockInDate == null}">
-							<a href="/subWarehousing?subStockCode=${subStockList.subStockCode}&subCode=${subStockList.subCode}&ordersCode=${subStockList.ordersCode}">[입고]</a>
-						</c:if>
-						<c:if test="${subStockList.subStockInDate != null}">
-							[Null]
-						</c:if>
+						
 					</div>
 				</c:if>
 			</c:if>
@@ -239,12 +229,7 @@ $(document).ready(function(){
 						${subStockList.headItemCode}
 						${subStockList.specificItemCode}
 						${subStockList.subStaffCode}
-						<c:if test="${subStockList.subStockInDate == null}">
-							<a href="/subWarehousing?subStockCode=${subStockList.subStockCode}&subCode=${subStockList.subCode}&ordersCode=${subStockList.ordersCode}">[입고]</a>
-						</c:if>
-						<c:if test="${subStockList.subStockInDate != null}">
-							[Null]
-						</c:if>
+						
 					</div>
 				</c:if>
 			</c:if>

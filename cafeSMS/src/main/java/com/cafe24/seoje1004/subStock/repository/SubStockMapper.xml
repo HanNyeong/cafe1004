@@ -46,12 +46,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 			
 		</where>
+		
+			group by orders_code
+		
 		<if test="search.criteria == null and search.criteria == '' and search.upDown == null and search.upDown == ''">
 			order by head_stock_in_date desc
 		</if>
 		<if test="search.criteria != null and search.upDown != null and search.criteria != null and search.upDown != ''">
 			order by ${search.criteria} ${search.upDown}
 		</if>
+		
 		LIMIT 0,${search.viewMore}
 	</select>
 	
@@ -63,7 +67,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SET
 			sub_stock_in_date = NOW()
 		WHERE
-			sub_stock_code = #{subStockCode}	
+			orders_code = #{ordersCode}	
 				
 	
 	</update>
@@ -80,10 +84,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	<!-- modifyOrders -->
 	<update id="modifyOrders"
-			parameterType="java.lang.String">
+			parameterType="java.util.Map">
 		UPDATE sub_orders
 		SET
-			sub_orders_status='배송완료'
+			sub_orders_status= #{subOrdersStatus}
 		WHERE 
 			orders_code = #{ordersCode}
 	</update>

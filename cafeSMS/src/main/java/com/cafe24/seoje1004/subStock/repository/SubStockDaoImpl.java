@@ -33,9 +33,9 @@ public class SubStockDaoImpl implements SubStockDao{
 
 	//비어있는 입고날짜를 오늘로 업데이트
 	@Override
-	public void subWarehousing(String subStockCode) {
+	public void subWarehousing(String ordersCode) {
 		System.out.println("SubStockDaoImpl subWarehousing 실행");
-		sqlSessionSubStock.update(NS+".subWarehousing", subStockCode);
+		sqlSessionSubStock.update(NS+".subWarehousing", ordersCode);
 	}
 
 	//배송테이블의 배송수령여부 컬럼을 Y로 업데이트
@@ -47,9 +47,9 @@ public class SubStockDaoImpl implements SubStockDao{
 	
 	//orders table status 업데이트
 	@Override
-	public void ordersStatus(String ordersCode) {
+	public void ordersStatus(Map<String,Object> map) {
 		System.out.println("ordersStatus");
-		sqlSessionSubStock.update(NS+".modifyOrders",ordersCode);
+		sqlSessionSubStock.update(NS+".modifyOrders",map);
 	}
 	
 }

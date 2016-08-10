@@ -46,14 +46,16 @@ public class SubStockController {
 	}
 	
 	//가맹이 본사로부터 받은 제품을 입고
-	@RequestMapping(value="/subWarehousing", method=RequestMethod.GET)
+	@RequestMapping(value="/subWarehousing")
 	public String subWarehousing(SubStocks subStocks){
 		
 			
 			//1.subStockCode는 입고날자를 업데이트하기위해서
 			//2.ordersCode는 배송테이블의 배송수령여부 컬럼을 Y로 업데이트 하기위해서
 			
-			//subStockService.subWarehousing(subStocks);
+			System.out.println("subStocks : "+subStocks);
+		
+			subStockService.subWarehousing(subStocks);
 			
 		return	"redirect:/subViewSubStockList?subCode="+subStocks.getSubCode().get(0);
 	}
