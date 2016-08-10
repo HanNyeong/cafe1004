@@ -106,8 +106,8 @@ $(document).ready(function(){
 			분류 : 
 			<select id="selectYN" required="required">
 				<option value="" <c:if test="${YN eq ''}">selected="selected"</c:if>>::선택::</option>
-				<option value="Y" <c:if test="${YN eq 'Y'}">selected="selected"</c:if>>수령</option>
-				<option value="N" <c:if test="${YN eq 'N'}">selected="selected"</c:if>>미수령</option>
+				<option value="Y" <c:if test="${YN eq 'Y'}">selected="selected"</c:if>>본사확인</option>
+				<option value="N" <c:if test="${YN eq 'N'}">selected="selected"</c:if>>승인대기</option>
 			</select>	
 		</form>
 	<hr/>
@@ -130,7 +130,7 @@ $(document).ready(function(){
 		[처리]
 	</div>
 	<div>
-		<div>-------------------------------------------------------------------------본사승인받은 [returnHeadCheck = Y]환불리스트-------------------------------------------------------------------------</div>
+	
 		<c:forEach var="returnsList" items="${returnsList}">
 			<c:if test="${YN eq '' || YN eq null }">
 				<div>
@@ -148,7 +148,7 @@ $(document).ready(function(){
 					${returnsList.subCode}
 					<a href="/viewReturnsContent?returnCode=${returnsList.returnCode}">[상세보기]</a>
 					
-					<c:if test="${returnsList.returnHeadCheck == 'Y'}">
+					<c:if test="${returnsList.returnHeadCheck == 'N'}">
 						<a href="/approvalReturns?returnCode=${returnsList.returnCode}">[환불승인]</a>
 					</c:if>
 					
@@ -184,7 +184,7 @@ $(document).ready(function(){
 					${returnsList.subCode}
 					<a href="/viewReturnsContent?returnCode=${returnsList.returnCode}">[상세보기]</a>
 					
-					<c:if test="${returnsList.returnHeadCheck == 'Y'}">
+					<c:if test="${returnsList.returnHeadCheck == 'N'}">
 						<a href="/approvalReturns?returnCode=${returnsList.returnCode}">[환불승인]</a>
 					</c:if>
 					

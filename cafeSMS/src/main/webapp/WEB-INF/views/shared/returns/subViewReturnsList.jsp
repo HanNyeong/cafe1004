@@ -123,8 +123,8 @@ $(document).ready(function(){
 		<h4>분류 : 
 		<select id="selectYN" required="required">
 			<option value="" <c:if test="${YN eq ''}">selected="selected"</c:if>>::선택::</option>
-			<option value="Y" <c:if test="${YN eq 'Y'}">selected="selected"</c:if>>수령</option>
-			<option value="N" <c:if test="${YN eq 'N'}">selected="selected"</c:if>>미수령</option>
+			<option value="Y" <c:if test="${YN eq 'Y'}">selected="selected"</c:if>>본사확인</option>
+			<option value="N" <c:if test="${YN eq 'N'}">selected="selected"</c:if>>승인대기</option>
 		</select></h4>
 		<a href="/subAddReturnsForm?subCode=${subCode}"><button class="btn btn-default">환불신청</button></a>
 	</div>
@@ -176,7 +176,13 @@ $(document).ready(function(){
 			<div class="col-sm-1">${returnsList.headReturnsConfirm}</div>
 			<div class="col-sm-1">
 				<p><a href="/viewReturnsContent?returnCode=${returnsList.returnCode}">[상세보기]</a></p>
+				
+				<c:if test="${returnsList.returnHeadCheck == 'N'}">
 				<a href="/subCancelReturns?returnCode=${returnsList.returnCode}&ordersCode=${returnsList.ordersCode}&subCode=${returnsList.subCode}">[환불취소]</a>		
+				</c:if>
+				<c:if test="${returnsList.headReturnsConfirm == 'Y'}">
+					[환불완료]
+				</c:if>
 			</div>
 			<div class="col-sm-2">
 			</div>
@@ -195,7 +201,12 @@ $(document).ready(function(){
 			<div class="col-sm-1">${returnsList.headReturnsConfirm}</div>
 			<div class="col-sm-1">
 				<p><a href="/viewReturnsContent?returnCode=${returnsList.returnCode}">[상세보기]</a></p>
+				<c:if test="${returnsList.returnHeadCheck == 'N'}">
 				<a href="/subCancelReturns?returnCode=${returnsList.returnCode}&ordersCode=${returnsList.ordersCode}&subCode=${returnsList.subCode}">[환불취소]</a>
+				</c:if>		
+				<c:if test="${returnsList.headReturnsConfirm == 'Y'}">
+					[환불완료]
+				</c:if>	
 			</div>
 			<div class="col-sm-2">
 			</div>
