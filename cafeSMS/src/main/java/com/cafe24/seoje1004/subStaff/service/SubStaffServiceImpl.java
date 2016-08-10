@@ -22,9 +22,6 @@ public class SubStaffServiceImpl implements SubStaffService{
 	@Autowired
 	private SubStaffDao subStaffDao;
 	
-	@Autowired
-	private SubAccountDao subAccountDao;
-	
 	/**
 	 * 가맹직원을 등록하는 서비스 메서드입니다.
 	 * 등록하고 가맹직원 아이디를 리턴합니다.
@@ -45,15 +42,13 @@ public class SubStaffServiceImpl implements SubStaffService{
 	 * @return
 	 */
 	@Override
-	public List<SubStaff> viewSubStaffListService(Search subStaffSearch,SubLogin subLogin) {
+	public List<SubStaff> viewSubStaffListService(Search subStaffSearch,SubLogin subLogin,String division) {
 		System.out.println("SubStaffServiceImpl viewSubStaffListService실행");
 		System.out.println("SubStaffServiceImpl viewSubListService. 조회 실행");
-		if(subStaffSearch.getSearchKey() == "joinPermit" || subStaffSearch.getSearchKey() == "part_time_job"){
-			subStaffSearch.setSearchKey("sub_staff_permit_date");
-		}
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("subStaffSearch", subStaffSearch);
 		map.put("subLogin", subLogin);
+		map.put("division", division);
 		return subStaffDao.viewSubStaffList(map);
 	}
 	/**
@@ -102,6 +97,14 @@ public class SubStaffServiceImpl implements SubStaffService{
 		System.out.println("SubStaffServiceImpl subModifySubStaffByResignService실행");
 		System.out.println(subStaff);
 		return subStaffDao.subModifySubStaffByResign(subStaff);
+	}
+
+	@Override
+	public void subStaffSalaryService(SubStaff subStaff) {
+		System.out.println("SubStaffServiceImpl subStaffSalary실행");
+		System.out.println(subStaff);
+		SubStaff reSubStaff = subStaffDao.selectSubStaff(subStaff);
+		subStaffDao.subStaffSalary(reSubStaff);
 	}
 	
 

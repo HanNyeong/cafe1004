@@ -50,4 +50,6 @@ public interface SubStaffDao {
 	 * @return
 	 */
 	int subModifySubStaffByResign(SubStaff subStaff);
+
+	void subStaffSalary(SubStaff subStaff);
 }

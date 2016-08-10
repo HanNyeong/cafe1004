@@ -103,6 +103,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="subStaffSearch.searchKey != null and subStaffSearch.searchKey != '' and subStaffSearch.search != null and subStaffSearch.search != ''">
 					AND  ${subStaffSearch.searchKey} like CONCAT('%',#{subStaffSearch.searchSubStaff},'%') 
 			</if>
+			<if test="division == 'employee'">
+				AND sub_staff_resign is null
+			</if>
+			<if test="division == 'retirement'">
+				AND sub_staff_resign is not null
+			</if>
 			
 		</where>
 		<if test="subStaffSearch.criteria == null and subStaffSearch.criteria == '' and subStaffSearch.upDown == null and subStaffSearch.upDown == ''">
@@ -132,4 +138,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			WHERE 
 				sub_staff_code = #{subStaffCode}
 	</update>
+	
+	<insert id="subStaffSalary"
+			parameterType="com.cafe24.seoje1004.subStaff.model.SubStaff">
+			<selectKey resultType="hashmap" keyProperty="subStaffCode,totalAccountGroup" order="BEFORE">
+	         select if(isnull(sub_account_code),'sub_account_code1000', concat('sub_account_code', MAX(CONVERT(SUBSTRING(sub_account_code,16), UNSIGNED))+1)) as subAccountCode, 
+	         from sub_account
+	      </selectKey>
+			INSERT INTO sub_account
+	(sub_account_code, sub_account_flow, total_account_group, sub_account_sum, sub_account_request_date, sub_account_detail, subject_code, sub_client_code, sub_code, sub_staff_code)
+	VALUES (#{subAccountCode}, #{subAccountFlow}, #{totalAccountGroup}, ${subAccountSum}, NOW(), #{subAccountDetail}, #{subjectCode}, #{subClientCode}, #{subCode}, #{subStaffCode})
+	</insert>
 </mapper>

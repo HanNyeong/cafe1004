@@ -20,7 +20,7 @@ public interface SubStaffService {
 	 * 가맹직원 리스트를 리턴하는 서비스 메서드입니다.
 	 * @return
 	 */
-	List<SubStaff> viewSubStaffListService(Search subStaffSearch,SubLogin subLogin);
+	List<SubStaff> viewSubStaffListService(Search subStaffSearch,SubLogin subLogin,String division);
 
    /**
     * 가맹 직원 수정을 하는 서비스메서드 입니다.
@@ -48,6 +48,8 @@ public interface SubStaffService {
 	* @return
 	*/
    int subModifySubStaffByResignService(SubStaff subStaff);
+
+   void subStaffSalaryService(SubStaff subStaff);
    
 
 }

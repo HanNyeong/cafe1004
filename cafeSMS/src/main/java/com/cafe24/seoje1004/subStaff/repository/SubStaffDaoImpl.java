@@ -72,4 +72,11 @@ public class SubStaffDaoImpl implements SubStaffDao{
 		return sqlSessionSubStaff.update(NS+".subModifySubStaffByResign",subStaff);
 		
 	}
+
+
+	@Override
+	public void subStaffSalary(SubStaff subStaff) {
+		System.out.println("SubStaffDaoImpl subStaffSalary실행");
+		sqlSessionSubStaff.update(NS+".subStaffSalary",subStaff);
+	}
 }

@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.seoje1004.sub.model.SubLogin;
 import com.cafe24.seoje1004.subStaff.model.SubStaff;
@@ -56,11 +57,12 @@ public class SubStaffController {
 	 * @return
 	 */
 	@RequestMapping(value="/viewSubStaffList")
-	public String viewSubStaffList(Model model,Search subStaffSearch,SubLogin subLogin){
+	public String viewSubStaffList(Model model,Search subStaffSearch,SubLogin subLogin,@RequestParam(value="division", required = false)String division){
 		System.out.println("SubStaffController viewSubStaffList실행");
 		System.out.println(subStaffSearch);
-		model.addAttribute("subStaffList",subStaffService.viewSubStaffListService(subStaffSearch,subLogin));
+		model.addAttribute("subStaffList",subStaffService.viewSubStaffListService(subStaffSearch,subLogin,division));
 		model.addAttribute("subStaffSearch",subStaffSearch);
+		model.addAttribute("division", division);
 		return "/sub/subStaff/viewSubStaffList";
 	}
 	
@@ -146,7 +148,8 @@ public class SubStaffController {
 	   public String subStaffSalary(Model model,SubStaff subStaff){
 		   System.out.println("SubStaffController subModifySubStaff.GET 실행");
 		   System.out.println(subStaff);
-		   model.addAttribute("reSubStaff",subStaffService.selectSubStaffService(subStaff));
+		   subStaffService.subStaffSalaryService(subStaff);
+		   System.out.println("여기요");
 		   return "/sub/subStaff/subAddSubStaffSalary";
 	   }
 	
