@@ -66,12 +66,11 @@ public class SubServiceImpl implements SubService{
 	@Override
 	public SubLogin loginSubService(Sub sub) {
 		System.out.println("SubServiceImpl loginSubService실행");
-		
+		System.out.println(sub);
 		SubLogin subLogin = null;
 		
-		if(subDao.loginSub(sub) != null){
-			subLogin = subDao.loginSub(sub);
-		}
+		subLogin = subDao.loginSub(sub);
+		
 		System.out.println(subLogin);
 		return subLogin;
 	}

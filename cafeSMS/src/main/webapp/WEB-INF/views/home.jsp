@@ -71,7 +71,7 @@ $(document).ready(function() {
 	<div class="col-sm-4">
 		<c:if test="${subLogin eq null}">
 			<div class="container">
-				<form role="form" action="/subLogin" method="post" id="loginForm">
+				<form role="form" action="/subLogin" method="POST" id="loginForm">
 				<h2>로그인</h2>
 					<div class="form-group">
 						<label for="subCode">아이디 : </label>

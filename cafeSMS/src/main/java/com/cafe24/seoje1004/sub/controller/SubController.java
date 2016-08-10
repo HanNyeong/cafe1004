@@ -96,7 +96,9 @@ public class SubController {
 	public String loginSub(Model model ,Sub sub){
 		System.out.println("SubController loginSub실행");
 		String result = "";
+		System.out.println(sub);
 		SubLogin subLogin = subService.loginSubService(sub);
+		System.out.println(subLogin);
 		if(subLogin == null){
 			result = "/home";
 		}else{

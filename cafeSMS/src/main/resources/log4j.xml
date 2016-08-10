@@ -10,7 +10,7 @@
 		</layout>
 	</appender>
 	<!-- Application Loggers -->
-	<logger name="com.cafe24.seoje1004">
+	<logger name="com.cafe24.seoje1004.sub">
 		<level value="debug" />
 	</logger>
 	<!-- Application Loggers -->
