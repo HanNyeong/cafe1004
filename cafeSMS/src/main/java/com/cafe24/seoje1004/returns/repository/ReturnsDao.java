@@ -46,5 +46,6 @@ public interface ReturnsDao {
 	public void updateDeliveryReturn(String ordersCode);	//배송테이블의 deliveryReturn을 Y로 변경 update
 	public Delivery selectDeliveryByOrdersCode(String ordersCode);		//배송테이블의 delivery에 기존행의 정보를 가져옴
 	public void addDelivery(Delivery delivery);		//delivery에 새로운행에 insert
+	void updateOrdersReturns(SubOrders subOrders); //orders에 반품상품 삭제하는 update
 	
 }

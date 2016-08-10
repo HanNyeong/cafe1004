@@ -75,4 +75,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE 
 			sub_code = #{subCode} and sub_password = #{subPassword}
 	</select>
+	<!-- 가맹 정보 받아오는 select 쿼리 -->
+	<select id="viewSubList"
+			parameterType="java.util.Map"
+			resultMap="subResultMap">
+		SELECT
+			sub_code, sub_regit_date, sub_name, sub_keeper, sub_telephone, sub_addr, head_staff_id
+		FROM
+			sub
+		WHERE
+			sub_code = #{subLogin.subCode}
+	</select>
 </mapper>

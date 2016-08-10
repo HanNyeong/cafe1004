@@ -47,7 +47,7 @@ public class SubStaffServiceImpl implements SubStaffService{
 	@Override
 	public List<SubStaff> viewSubStaffListService(Search subStaffSearch,SubLogin subLogin) {
 		System.out.println("SubStaffServiceImpl viewSubStaffListService실행");
-		System.out.println("SubServiceImpl viewSubListService. 조회 실행");
+		System.out.println("SubStaffServiceImpl viewSubListService. 조회 실행");
 		if(subStaffSearch.getSearchKey() == "joinPermit" || subStaffSearch.getSearchKey() == "part_time_job"){
 			subStaffSearch.setSearchKey("sub_staff_permit_date");
 		}

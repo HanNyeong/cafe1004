@@ -11,6 +11,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.cafe24.seoje1004.sub.model.Sub;
 import com.cafe24.seoje1004.sub.model.SubLogin;
+import com.cafe24.seoje1004.sub.model.SubSearch;
 import com.cafe24.seoje1004.sub.service.SubService;
 
 @Controller
@@ -113,8 +114,19 @@ public class SubController {
 		status.setComplete();
 		return "redirect:/";
 	}
-
-	
+	/**
+	 * 가맹 개인의 정보를 보여줍니다.
+	 * @param model
+	 * @param subSearch
+	 * @param subLogin
+	 * @return
+	 */
+	@RequestMapping(value="/viewSubList")
+	public String viewSubList(Model model,SubLogin subLogin){
+		System.out.println("SubController viewSubList실행");
+		model.addAttribute("viewSubList", subService.viewSubListService(subLogin));
+		return "/shared/sub/viewSubList";
+	}
 
 
 }

@@ -65,8 +65,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    <insert id="insertClient"
    		parameterType="java.util.Map">
-   		<selectKey resultType="hashmap" keyProperty="subClientCode" order="BEFORE">
-        	select if(isnull(sub_client_code),'sub_client_code1000', concat('sub_client_code', MAX(CONVERT(SUBSTRING(sub_client_code,16), UNSIGNED))+1)) as subClientCode
+   		<selectKey resultType="hashmap" keyProperty="subClientCode,totalAccountGroup" order="BEFORE">
+        	select if(isnull(sub_client_code),'sub_client_code1000', concat('sub_client_code', MAX(CONVERT(SUBSTRING(sub_client_code,16), UNSIGNED))+1)) as subClientCode,
+        	if(isnull(total_account_group),'client_total_account1', concat('client_total_account', MAX(CONVERT(SUBSTRING(total_account_group,21), UNSIGNED))+1)) as totalAccountGroup
         	from sub_client
       	</selectKey>
       		INSERT INTO 
@@ -77,7 +78,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					sub_client_in_charge, 
 					sub_client_phone, 
 					sub_client_addr, 
-					sub_code
+					sub_code,
+					total_account_group
 					)
 				VALUES (
 					#{client.subClientCode},
@@ -87,6 +89,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 			#{client.subClientPhone},
 		 			#{client.subClientAddr},
 		 			#{subLogin.subCode}
+		 			#{totalAccountGroup}
 		 			)
    </insert>
    

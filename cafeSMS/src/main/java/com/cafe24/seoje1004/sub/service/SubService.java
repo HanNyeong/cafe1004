@@ -1,7 +1,10 @@
 package com.cafe24.seoje1004.sub.service;
 
+import java.util.List;
+
 import com.cafe24.seoje1004.sub.model.Sub;
 import com.cafe24.seoje1004.sub.model.SubLogin;
+import com.cafe24.seoje1004.sub.model.SubSearch;
 
 public interface SubService {
 	
@@ -39,5 +42,12 @@ public interface SubService {
 	 * @return
 	 */
 	SubLogin loginSubService(Sub sub);
+	/**
+	 * 가맹 정보를 리턴하는 서비스 메서드 입니다.
+	 * @param subSearch
+	 * @param subLogin
+	 * @return
+	 */
+	Sub viewSubListService(SubLogin subLogin);
 	
 }

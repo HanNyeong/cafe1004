@@ -85,7 +85,7 @@ public class ReturnsController {
 	
 	//가맹측 환불신청3	(해당재고상품을 환불신청 폼)
 	@RequestMapping(value="/subAddReturns", method=RequestMethod.POST)
-	public String subAddReturns(Returns returns, HttpServletRequest request){
+	public String subAddReturns(Returns returns, HttpServletRequest request,@RequestParam("ordersCode") String ordersCode){
 		System.out.println("ReturnsController subAddReturns 실행");
 		System.out.println("returns : "+returns);
 		String subCode = returns.getSubCode();
@@ -94,7 +94,7 @@ public class ReturnsController {
 		
 		//1. 해당 재고상품의 출고여부(판매여부)를 N->Y로 변경
 		//2. returns테이블에 새로운 환불 등록
-		returnsService.subAddReturns(returns, request);
+		returnsService.subAddReturns(returns, request,ordersCode);
 		
 		
 		return	"redirect:/subAddReturnsForm?subCode="+subCode;

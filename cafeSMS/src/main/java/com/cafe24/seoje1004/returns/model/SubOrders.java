@@ -15,7 +15,15 @@ public class SubOrders {
 	private String subStaffCode;	//가맹주문한직원
 	private String headStaffId;		//확인한 본사직원
 	private String headOrdersConfirm;	//본사확인여부
+	private int subOrdersPrice;
 	
+	
+	public int getSubOrdersPrice() {
+		return subOrdersPrice;
+	}
+	public void setSubOrdersPrice(int subOrdersPrice) {
+		this.subOrdersPrice = subOrdersPrice;
+	}
 	public String getOrdersCode() {
 		return ordersCode;
 	}
@@ -102,12 +110,12 @@ public class SubOrders {
 	}
 	@Override
 	public String toString() {
-		return "Orders [ordersCode=" + ordersCode + ", subOrdersGroup=" + subOrdersGroup + ", subOrdersQuantity="
+		return "SubOrders [ordersCode=" + ordersCode + ", subOrdersGroup=" + subOrdersGroup + ", subOrdersQuantity="
 				+ subOrdersQuantity + ", subOrdersDate=" + subOrdersDate + ", subOrdersHeadCheck=" + subOrdersHeadCheck
 				+ ", subOrdersStatus=" + subOrdersStatus + ", totalAccountGroup=" + totalAccountGroup + ", ordersPay="
 				+ ordersPay + ", ordersPayDate=" + ordersPayDate + ", headItemCode=" + headItemCode + ", subCode="
 				+ subCode + ", subStaffCode=" + subStaffCode + ", headStaffId=" + headStaffId + ", headOrdersConfirm="
-				+ headOrdersConfirm + "]";
+				+ headOrdersConfirm + ", subOrdersPrice=" + subOrdersPrice + "]";
 	}
 	
 	

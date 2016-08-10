@@ -47,7 +47,7 @@ public class SubStockServiceImpl implements SubStockService{
 		//1.비어있는 입고날짜를 오늘로 업데이트
 		subStockDao.subWarehousing(subStockCode);
 		//2.배송테이블의 배송수령여부 컬럼을 Y로 업데이트
-		subStockDao.deliveryReceiveY(ordersCode);
+		//subStockDao.deliveryReceiveY(ordersCode);
 		//3.orders쪽 status 업데이트
 		subStockDao.ordersStatus(ordersCode);
 	}
