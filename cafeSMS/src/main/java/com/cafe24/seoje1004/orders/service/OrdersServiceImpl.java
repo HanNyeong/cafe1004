@@ -23,6 +23,7 @@ import com.cafe24.seoje1004.orders.model.OrdersSearch;
 import com.cafe24.seoje1004.orders.repository.OrdersDao;
 import com.cafe24.seoje1004.sub.model.SubLogin;
 import com.cafe24.seoje1004.subAccount.model.SubAccount;
+import com.cafe24.seoje1004.subAccount.model.SubAccounts;
 import com.cafe24.seoje1004.subStock.model.SubStock;
 import com.cafe24.seoje1004.subject.model.Subject;
 
@@ -102,31 +103,49 @@ public class OrdersServiceImpl implements OrdersService{
 	}
 	//결제유무 update Service
 	@Override
-	public void modifyOrdersPayService(OrderGroup orderGroup,Subject subject) {
+	public void modifyOrdersPayService(OrderGroup orderGroup, SubLogin subLogin, SubAccounts subAccounts) {
 		System.out.println("OrdersServiceImpl//modifyOrdersPayService실행");
 		Map<String,Object> map = new HashMap<String,Object>();
 		Orders orders = new Orders();
 		String subOrdersStatus = "배송준비중";
 		String ordersPay = "Y";
+		
 		orders.setSubOrdersStatus(subOrdersStatus);
 		orders.setOrdersPay(ordersPay);
 		orders.setSubOrdersPrice(orderGroup.getSubOrdersPrice().get(0));
-		SubAccount subAccount = new SubAccount();
-		String subAccountDetail = "발주";
-		String totalAccountGroup = "orders_account_group1";
-		String subjectCode = "subject_code2";
-		String subAccountFlow = "출금";
 		
-		subAccount.setSubAccountDetail(subAccountDetail);
-		subAccount.setTotalAccountGroup(totalAccountGroup);
-		subAccount.setSubjectCode(subjectCode);
-		subAccount.setSubAccountFlow(subAccountFlow);
-		map.put("subAccount", subAccount);
 		map.put("orders", orders);
-
+		
 		for(int i = 0; i < orderGroup.getOrdersCode().size(); i++){
 			orders.setOrdersCode(orderGroup.getOrdersCode().get(i));
 			ordersDao.modifyOrders(map);
+			
+		}
+		
+		for(int j = 0; j<subAccounts.getSubAccountCode().size();j++){
+			SubAccount subAccount = new SubAccount();
+			String subAccountDetail = "발주";
+			String totalAccountGroup = "orders_account_group1";
+			String subjectCode = "subject_code2";
+			String subAccountFlow = "출금";
+			subAccount.setSubAccountSum(orders.getSubOrdersPrice());
+			subAccount.setSubAccountDetail(subAccountDetail);
+			subAccount.setTotalAccountGroup(totalAccountGroup);
+			subAccount.setSubjectCode(subjectCode);
+			subAccount.setSubAccountFlow(subAccountFlow);
+			/*(sub_account_code,// 
+			sub_account_flow, //
+			total_account_group, //
+			sub_account_sum, 
+			sub_account_request_date, 
+			sub_account_detail, 
+			subject_code, 
+			sub_client_code, 
+			sub_code, 
+			sub_staff_code)*/
+			map.put("subAccount", subAccount);
+			map.put("subLogin", subLogin);
+			
 			ordersDao.addSubAccount(map);
 		}
 	}

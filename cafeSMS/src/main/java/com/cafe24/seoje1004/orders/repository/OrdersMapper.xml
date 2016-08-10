@@ -261,5 +261,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				select if(isnull(sub_account_code),'sub_account_code200', concat('sub_account_code', MAX(CONVERT(SUBSTRING(sub_account_code,17), UNSIGNED))+1)) as subAccountCode
 				from sub_account
 		</selectKey>
+		INSERT INTO sub_account
+	(
+	sub_account_code, 
+	sub_account_flow, 
+	total_account_group, 
+	sub_account_sum, 
+	sub_account_request_date, 
+	sub_account_detail, 
+	subject_code, 
+	sub_code, 
+	sub_staff_code
+	)
+	VALUES 
+	(
+	#{subAccountCode}, 
+	#{subAccount.subAccountFlow}, 
+	#{subAccount.totalAccountGroup}, 
+	${orders.subOrdersPrice}, 
+	NOW(),
+	#{subAccount.subAccountDetail}, 
+	#{subAccount.subjectCode}, 
+	#{subLogin.subCode}, 
+	'sub_staff_code1'
+	)
 	</insert>
 </mapper>

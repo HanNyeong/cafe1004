@@ -14,6 +14,7 @@ import com.cafe24.seoje1004.orders.model.OrderGroup;
 import com.cafe24.seoje1004.orders.model.Orders;
 import com.cafe24.seoje1004.orders.model.OrdersSearch;
 import com.cafe24.seoje1004.sub.model.SubLogin;
+import com.cafe24.seoje1004.subAccount.model.SubAccounts;
 import com.cafe24.seoje1004.subject.model.Subject;
 
 @Service
@@ -25,7 +26,7 @@ public interface OrdersService {
 
 	void addOrdersService(CartsDetail cartDetail, Delivery delivery, Orders orders,SubLogin subLogin);
 
-	void modifyOrdersPayService(OrderGroup orderGroup,Subject subject);
+	void modifyOrdersPayService(OrderGroup orderGroup,SubLogin subLogin,SubAccounts subAccounts);
 
 	List<Orders> subOrdersPayConfirmService(OrdersSearch ordersSearch, SubLogin subLogin);
 
