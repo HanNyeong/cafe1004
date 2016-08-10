@@ -213,6 +213,7 @@ $(document).ready(function(){
 		</c:if>	
 	</c:forEach>
 </c:if>
+<input type="button" class="btn btn-default" id="viewMoreBtn" value="더보기"/>
 <jsp:include page="/WEB-INF/module/footer.jsp"/>	
 	
 </body>

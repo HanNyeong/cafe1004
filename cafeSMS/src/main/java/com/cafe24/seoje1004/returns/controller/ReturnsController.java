@@ -53,17 +53,19 @@ public class ReturnsController {
 	
 	//가맹측 환불신청 (해당가맹의 재고리스트)
 	@RequestMapping(value="/subAddReturnsForm")
-	public String subAddReturnsFrom(Model model, @RequestParam(value="subCode")String subCode, SubStockSearch subStockSearch){
+	public String subAddReturnsFrom(Model model
+				, @RequestParam(value="subCode")String subCode
+				, Search search){
 		System.out.println("ReturnsController subAddReturnsFrom 실행");
 		System.out.println("subCode : "+subCode);
 		
 		//1.가맹의 재고에서 출고상태가 N이고 가맹이확인하고 입고한 날짜가 null이 아닌것만 환불신청가능
 		//따라서 출고상태가 N, 가맹이확인하고 입고한날짜 not null
-		List<SubStock> subStockList	=	returnsService.subAddReturnsForm(subCode, subStockSearch);
+		List<SubStock> subStockList	=	returnsService.subAddReturnsForm(subCode, search);
 		System.out.println("subStockList : "+subStockList);
 		
 		model.addAttribute("subCode", subCode);
-		model.addAttribute("subStockSearch", subStockSearch);
+		model.addAttribute("search", search);
 		model.addAttribute("subStockList", subStockList);
 		
 		return	"/shared/returns/subAddReturnsForm";

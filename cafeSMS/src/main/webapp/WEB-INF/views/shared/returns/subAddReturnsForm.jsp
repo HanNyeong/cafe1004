@@ -8,134 +8,47 @@
 <title>subAddReturnsForm</title>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script>
+var list = function(upDown,criteria){
+	$('#upDown').attr('value',upDown);
+	$('#criteria').attr('value',criteria);
+	$('#subStockList').submit();	
+}
+
+
+
+$(document).ready(function(){
+	var columnList = ['sub_stock_code','sub_stock_in_date','sub_stock_out','orders_code','head_item_code','specific_item_code','sub_staff_code']
 	
-	$(document).ready(function(){
-		
-		/* 오름차/내림차순 정렬 설정 */
-		$('#subStockCodeUp').click(function(){
-			
-			$('#criteria').attr('value','sub_stock_code');
-			$('#upDown').attr('value','DESC');
-			$('#subStockList').submit();
-		});
-		$('#subStockCodeDown').click(function(){
-			
-			$('#criteria').attr('value','sub_stock_code');
-			$('#upDown').attr('value','ASC');
-			$('#subStockList').submit();
-		});
-		
-		
-		$('#headStockInDateUp').click(function(){
-			
-			$('#criteria').attr('value','head_stock_in_date');
-			$('#upDown').attr('value','DESC');
-			$('#subStockList').submit();
-		});
-		$('#headStockInDateDown').click(function(){
-			
-			$('#criteria').attr('value','head_stock_in_date');
-			$('#upDown').attr('value','ASC');
-			$('#subStockList').submit();
-		});
-		
-		
-		$('#subStockInDateUp').click(function(){
-			
-			$('#criteria').attr('value','sub_stock_in_date');
-			$('#upDown').attr('value','DESC');
-			$('#subStockList').submit();
-		});
-		$('#subStockInDateDown').click(function(){
-			
-			$('#criteria').attr('value','sub_stock_in_date');
-			$('#upDown').attr('value','ASC');
-			$('#subStockList').submit();
-		});
-		
-		
-		$('#subStockOutUp').click(function(){
-			
-			$('#criteria').attr('value','sub_stock_out');
-			$('#upDown').attr('value','DESC');
-			$('#subStockList').submit();
-		});
-		$('#subStockOutDown').click(function(){
-			
-			$('#criteria').attr('value','sub_stock_out');
-			$('#upDown').attr('value','ASC');
-			$('#subStockList').submit();
-		});
-		
-		$('#ordersCodeUp').click(function(){
-			
-			$('#criteria').attr('value','orders_code');
-			$('#upDown').attr('value','DESC');
-			$('#subStockList').submit();
-		});
-		$('#ordersCodeDown').click(function(){
-			
-			$('#criteria').attr('value','orders_code');
-			$('#upDown').attr('value','ASC');
-			$('#subStockList').submit();
-		});
-		
-		
-		$('#subCodeUp').click(function(){
-			
-			$('#criteria').attr('value','sub_code');
-			$('#upDown').attr('value','DESC');
-			$('#subStockList').submit();
-		});
-		$('#subCodeDown').click(function(){
-			
-			$('#criteria').attr('value','sub_code');
-			$('#upDown').attr('value','ASC');
-			$('#subStockList').submit();
-		});
-		
-		
-		$('#headItemCodeUp').click(function(){
-			
-			$('#criteria').attr('value','head_item_code');
-			$('#upDown').attr('value','DESC');
-			$('#subStockList').submit();
-		});
-		$('#headItemCodeDown').click(function(){
-			
-			$('#criteria').attr('value','head_item_code');
-			$('#upDown').attr('value','ASC');
-			$('#subStockList').submit();
-		});
-		
-		$('#specificItemCodeUp').click(function(){
-			
-			$('#criteria').attr('value','specific_item_code');
-			$('#upDown').attr('value','DESC');
-			$('#subStockList').submit();
-		});
-		$('#specificItemCodeDown').click(function(){
-			
-			$('#criteria').attr('value','specific_item_code');
-			$('#upDown').attr('value','ASC');
-			$('#subStockList').submit();
-		});
-		
-		$('#subStaffCodeUp').click(function(){
-			
-			$('#criteria').attr('value','sub_staff_code');
-			$('#upDown').attr('value','DESC');
-			$('#subStockList').submit();
-		});
-		$('#subStaffCodeDown').click(function(){
-			
-			$('#criteria').attr('value','sub_staff_code');
-			$('#upDown').attr('value','ASC');
-			$('#subStockList').submit();
-		});
 
+	$('.up').each(function(index,item){
+		$(item).click(function(){
+			list('ASC',columnList[index]);
+		});
 	});
+	$('.down').each(function(index,item){
+		$(item).click(function(){
+			list('DESC',columnList[index]);
+		});
+	});
+	// 더보기
+	$('#viewMoreBtn').click(function(){
+		var viewMore = $('#viewMore').val();
+		$('#viewMore').val(viewMore*1+25);
+		$('#subStockList').submit();
+	});
+	$('#searchBtn').click(function(){
+		if($('#search').val() == ""){
+			console.log("검색어입력하세요");
+		}else{
+			$('#subStockList').submit();
+		}
+	});
+	
+	
+	
 
+	
+});
 </script>
 
 </head>
@@ -148,23 +61,28 @@
 	<!-- 상품 검색 -->
 		<form name="subStockList" id="subStockList" action="/subAddReturnsForm" method="post">
 			<!-- 오름차/내림차순 정렬을 위한 input 태그 -->
-			<input type="hidden" name="criteria" id="criteria" value=""/>
-			<input type="hidden" name="upDown" id="upDown" value=""/>
-			<input type="hidden" name="subCode" value="${subCode}"/>			
+				<input type="hidden" id="upDown" name="upDown" value="${search.upDown}" />
+				<input type="hidden" id="criteria" name="criteria" value="${search.criteria}"/>
+				<input type="hidden" id="viewMore" name="viewMore" value="${search.viewMore}"/>
+				<input type="hidden" id="subCode" name="subCode" value="${subCode}"/>
+					
+							
 			등록 날짜: 
-			<input type="date" name="regitDateStart" value="${subStockSearch.regitDateStart}"/> ~
-			<input type="date" name="regitDateEnd" value="${subStockSearch.regitDateEnd}"/> 
+			<input type="date" name="regitDateStart" value="${search.regitDateStart}"/> ~
+			<input type="date" name="regitDateEnd" value="${search.regitDateEnd}"/> 
 			<br/><br/>
 			<select name="searchKey" required="required">
 				<option value="">::선택::</option>
-				<option value="sub_stock_code" <c:if test="${subStockSearch.searchKey eq 'sub_stock_code'}">selected="selected"</c:if>>재고코드</option>
-				<option value="orders_code" <c:if test="${subStockSearch.searchKey eq 'orders_code'}">selected="selected"</c:if>>주문코드</option>
-				<option value="head_item_code" <c:if test="${subStockSearch.searchKey eq 'head_item_code'}">selected="selected"</c:if>>아이템코드</option>
-				<option value="specific_item_code" <c:if test="${subStockSearch.searchKey eq 'specific_item_code'}">selected="selected"</c:if>>개별상품코드</option>
-				<option value="sub_staff_code" <c:if test="${subStockSearch.searchKey eq 'sub_staff_code'}">selected="selected"</c:if>>가맹직원코드</option>
+				<option value="sub_stock_code" <c:if test="${search.searchKey eq 'sub_stock_code'}">selected="selected"</c:if>>재고코드</option>
+				<option value="orders_code" <c:if test="${search.searchKey eq 'orders_code'}">selected="selected"</c:if>>주문코드</option>
+				<option value="head_item_code" <c:if test="${search.searchKey eq 'head_item_code'}">selected="selected"</c:if>>아이템코드</option>
+				<option value="specific_item_code" <c:if test="${search.searchKey eq 'specific_item_code'}">selected="selected"</c:if>>개별상품코드</option>
+				<option value="sub_staff_code" <c:if test="${search.searchKey eq 'sub_staff_code'}">selected="selected"</c:if>>가맹직원코드</option>
 			</select>
-			<input type="text" name="searchSubStock" value="${subStockSearch.searchSubStock}"/>
-			<button class="btn btn-default" >검색</button>
+			<input type="text" id="search" name="search" value="${search.search}"/>
+			<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
+			<a href="/subAddReturnsForm?subCode=${subCode}"><input type="button" class="btn btn-default"  value="전체보기"/></a>
+			<br/>
 		</form>
 		</div>
 	<div class="col-sm-2">
@@ -187,25 +105,25 @@
 	<div class="col-sm-2">
 	</div>
 	<div class="col-sm-1 th">
-		재고코드<span id="subStockCodeUp">▲</span><span id="subStockCodeDown">▼</span>
+		재고코드<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">	
-		가맹입고날짜<span id="subStockInDateUp">▲</span><span id="subStockInDateDown">▼</span>
+		가맹입고날짜<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">	
-		판매여부<span id="subStockOutUp">▲</span><span id="subStockOutDown">▼</span>
+		판매여부<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">	
-		주문코드<span id="ordersCodeUp">▲</span><span id="ordersCodeDown">▼</span>
+		주문코드<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">	
-		본사상품코드<span id="headItemCodeUp">▲</span><span id="headItemCodeDown">▼</span>
+		본사상품코드<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">	
-		개별상품코드<span id="specificItemCodeUp">▲</span><span id="specificItemCodeDown">▼</span>
+		개별상품코드<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">	
-		가맹확인담당<span id="subStaffCodeUp">▲</span><span id="subStaffCodeDown">▼</span>
+		가맹확인담당<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">	
 		[환불신청]
@@ -232,6 +150,7 @@
 		</div>
 	</div>
 </c:forEach>
+<input type="button" class="btn btn-default" id="viewMoreBtn" value="더보기"/>
 <jsp:include page="/WEB-INF/module/footer.jsp"/>	
 </body>
 </html>

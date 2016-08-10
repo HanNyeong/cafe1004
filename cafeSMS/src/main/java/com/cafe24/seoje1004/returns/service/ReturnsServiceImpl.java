@@ -45,11 +45,11 @@ public class ReturnsServiceImpl implements ReturnsService {
 	
 	//출고상태가 N, 가맹이확인하고 입고한날짜 not null
 	@Override
-	public List<SubStock> subAddReturnsForm(String subCode, SubStockSearch subStockSearch) {
+	public List<SubStock> subAddReturnsForm(String subCode, Search search) {
 		System.out.println("ReturnsServiceImpl subAddReturnsForm 실행");
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("subCode", subCode);
-		map.put("subStockSearch", subStockSearch);
+		map.put("search", search);
 		return returnsDao.subAddReturnsForm(map);
 	}
 	
