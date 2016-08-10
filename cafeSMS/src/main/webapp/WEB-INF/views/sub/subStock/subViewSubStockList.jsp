@@ -61,6 +61,33 @@ $(document).ready(function(){
 		
 	});
 	
+	// 주문 체크 되어 있는 값 추출
+	$('#subWarehousingBtn').click(function(){
+		if($('.checking:checked').size()<1){
+	        alert("1개 이상 체크해주세요");
+	        console.log("subSellFinal");
+	    }else{
+	    	$('.checking').each(function(index,item){
+	    		if(!$(this).is(":checked")){
+	    			console.log("체크안됨");
+					}else if($(this).is(":checked")){
+	    				console.log("체크됨");
+					
+					$("input[class=subCode]:eq(" + index + ")").prop('name','subCode');
+					$("input[class=subStockCode]:eq(" + index + ")").prop('name','subStockCode');
+					$("input[class=ordersCode]:eq(" + index + ")").prop('name','ordersCode');
+					$("input[class=specificItemCode]:eq(" + index + ")").prop('name','specificItemCode');
+					
+					}else{
+	    				console.log("안됨")
+	    			}
+	    	});
+				$('#subSellList').prop('action','/subWarehousing');
+				$('#subSellList').prop('method','POST');
+				$('#subSellList').submit();
+	    }
+	});
+	
 	
 	
 });
@@ -106,7 +133,7 @@ $(document).ready(function(){
 			</select>
 
 	
-		</form>
+		
 	</div>
 	<div class="col-sm-2">
 	</div>
@@ -125,6 +152,7 @@ $(document).ready(function(){
 <br/>
 		subStockList
 	<div>
+		전체선택<input type="checkbox" id="selectAll" class="selectAll" name="selectAll" onclick="selectAll(this)" value="전체 선택">
 		가맹재고코드<span class="up">▲</span><span class="down">▼</span>
 		본사가맹입고날짜<span class="up">▲</span><span class="down">▼</span>
 		가맹확인입고날짜<span class="up">▲</span><span class="down">▼</span>
@@ -140,6 +168,13 @@ $(document).ready(function(){
 		<c:forEach var="subStockList" items="${subStockList}">
 			<c:if test="${YN eq '' || YN eq null}">	
 				<div>
+					<c:if test="${subStockList.subStockInDate eq null}">
+						<input type="checkbox" class="checking" name="checking">
+						<input type="hidden" class="subCode" name="" value="${subStockList.subCode}">
+						<input type="hidden" class="subStockCode" name="" value="${subStockList.subStockCode}">
+						<input type="hidden" class="ordersCode" name="" value="${subStockList.ordersCode}">
+						<input type="hidden" class="specificItemCode" name="" value="${subStockList.specificItemCode}">
+					</c:if>
 					${subStockList.subStockCode}
 					${subStockList.headStockInDate}
 					${subStockList.subStockInDate}
@@ -160,6 +195,13 @@ $(document).ready(function(){
 			<c:if test="${YN eq 'Y'}">	
 				<c:if test="${subStockList.subStockInDate ne null}">
 					<div>
+						<c:if test="${subStockList.subStockInDate eq null}">
+							<input type="checkbox" class="checking" name="checking">
+							<input type="hidden" class="subCode" name="" value="${subStockList.subCode}">
+							<input type="hidden" class="subStockCode" name="" value="${subStockList.subStockCode}">
+							<input type="hidden" class="ordersCode" name="" value="${subStockList.ordersCode}">
+							<input type="hidden" class="specificItemCode" name="" value="${subStockList.specificItemCode}">
+						</c:if>
 						${subStockList.subStockCode}
 						${subStockList.headStockInDate}
 						${subStockList.subStockInDate}
@@ -181,6 +223,13 @@ $(document).ready(function(){
 			<c:if test="${YN eq 'N'}">	
 				<c:if test="${subStockList.subStockInDate eq null}">
 					<div>
+						<c:if test="${subStockList.subStockInDate eq null}">
+							<input type="checkbox" class="checking" name="checking">
+							<input type="hidden" class="subCode" name="" value="${subStockList.subCode}">
+							<input type="hidden" class="subStockCode" name="" value="${subStockList.subStockCode}">
+							<input type="hidden" class="ordersCode" name="" value="${subStockList.ordersCode}">
+							<input type="hidden" class="specificItemCode" name="" value="${subStockList.specificItemCode}">
+						</c:if>
 						${subStockList.subStockCode}
 						${subStockList.headStockInDate}
 						${subStockList.subStockInDate}
@@ -201,9 +250,11 @@ $(document).ready(function(){
 			</c:if>
 			
 		</c:forEach>
+		
 	</div>
+	<input type="button" class="btn btn-default" id="subWarehousingBtn" value="입고"/>
 	<input type="button" class="btn btn-default" id="viewMoreBtn" value="더보기"/>
-
+</form>
 <jsp:include page="/WEB-INF/module/footer.jsp"/>
 </body>
 </html>
