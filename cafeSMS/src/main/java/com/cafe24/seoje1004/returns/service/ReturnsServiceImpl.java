@@ -162,6 +162,13 @@ public class ReturnsServiceImpl implements ReturnsService {
 			}
 
 		}
+		int subOrdersQuantity = 1;
+		
+		SubOrders subOrders = returnsDao.selectSubOrdersByOrdersCode(ordersCode);
+		subOrders.setSubOrdersQuantity(subOrders.getSubOrdersQuantity()-subOrdersQuantity);
+		subOrders.setSubOrdersPrice(subOrders.getSubOrdersPrice()-(subOrdersQuantity*subOrders.gethItemPrice()));
+		returnsDao.updateOrdersReturns(subOrders);
+		returnsDao.addSubOrders(subOrders);
 	}
 
 	//가맹측 환불 취소

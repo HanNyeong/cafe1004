@@ -15,9 +15,16 @@ public class SubOrders {
 	private String subStaffCode;	//가맹주문한직원
 	private String headStaffId;		//확인한 본사직원
 	private String headOrdersConfirm;	//본사확인여부
-	private int subOrdersPrice;
+	private int subOrdersPrice; //가격
+	private int hItemPrice; //상품하나의 가격
 	
 	
+	public int gethItemPrice() {
+		return hItemPrice;
+	}
+	public void sethItemPrice(int hItemPrice) {
+		this.hItemPrice = hItemPrice;
+	}
 	public int getSubOrdersPrice() {
 		return subOrdersPrice;
 	}
@@ -115,7 +122,7 @@ public class SubOrders {
 				+ ", subOrdersStatus=" + subOrdersStatus + ", totalAccountGroup=" + totalAccountGroup + ", ordersPay="
 				+ ordersPay + ", ordersPayDate=" + ordersPayDate + ", headItemCode=" + headItemCode + ", subCode="
 				+ subCode + ", subStaffCode=" + subStaffCode + ", headStaffId=" + headStaffId + ", headOrdersConfirm="
-				+ headOrdersConfirm + ", subOrdersPrice=" + subOrdersPrice + "]";
+				+ headOrdersConfirm + ", subOrdersPrice=" + subOrdersPrice + ", hItemPrice=" + hItemPrice + "]";
 	}
 	
 	
