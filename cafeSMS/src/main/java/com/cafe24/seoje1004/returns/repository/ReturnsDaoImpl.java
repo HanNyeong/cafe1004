@@ -160,6 +160,13 @@ public class ReturnsDaoImpl implements ReturnsDao {
 		
 	}
 	
+	//sub_orders 재뱅송 재품 삭제하는 업데이트
+	@Override
+	public void updateOrdersReturns(SubOrders subOrders){
+		System.out.println("ReturnsDaoImpl updateOrdersReturns 실행");
+		sqlSessionReturns.update(NS+".updateOrdersReturns", subOrders);
+	}
+	
 	//배송테이블의 deliveryReturn을 Y로 변경 update
 	@Override
 	public void updateDeliveryReturn(String ordersCode) {

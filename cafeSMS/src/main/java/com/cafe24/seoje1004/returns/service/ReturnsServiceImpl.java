@@ -64,7 +64,7 @@ public class ReturnsServiceImpl implements ReturnsService {
 	//returns테이블에 새로운 환불 등록,해당 재고상품의 출고여부(판매여부)를 N->Y로 변경
 	@Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
 	@Override
-	public void subAddReturns(Returns returns,HttpServletRequest request) {
+	public void subAddReturns(Returns returns,HttpServletRequest request,String ordersCode) {
 		System.out.println("ReturnsServiceImpl subAddReturns 실행");
 		String subStockCode = returns.getSubStockCode();
 		
@@ -157,13 +157,11 @@ public class ReturnsServiceImpl implements ReturnsService {
 							
 			}else{
 				System.out.println("동일한 randomName 존재합니다.");
-				subAddReturns(returns,request);	//재귀호출
+				subAddReturns(returns,request,ordersCode);	//재귀호출
 				//새로운 randomName으로 실행
 			}
 
 		}
-
-		
 	}
 
 	//가맹측 환불 취소
@@ -243,5 +241,11 @@ public class ReturnsServiceImpl implements ReturnsService {
 		
 		//7.delivery에 새로운행에 insert
 		returnsDao.addDelivery(delivery);
+	}
+	
+	
+	//가맹 반품 처리
+	public void ordersReturns(String OrdersCode){
+		
 	}
 }
