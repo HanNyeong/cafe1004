@@ -12,6 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <result property="subClientPhone" column="sub_client_phone"/>
       <result property="subClientAddr" column="sub_client_addr"/>
       <result property="subCode" column="sub_code"/>
+      <result property="totalAccountGroup" column="total_account_group"/>
    </resultMap>   
    
    <select id="viewSubClient"
@@ -25,6 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		sub_client_contract,
 		sub_client_phone,
 		sub_client_addr,
+		total_account_group,
 		sub_code
 	from
 		sub_client
@@ -46,6 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
    </select>
    
+   <!-- 수정폼이동 및 지출내역폼 이동시 가져갈 data-->
    <select id="selectSubClient"
    		resultMap="subClientResultMap">
 	select
@@ -56,17 +59,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		sub_client_contract,
 		sub_client_phone,
 		sub_client_addr,
+		total_account_group,
 		sub_code
 	from
 		sub_client
 	where
 		sub_client_code = #{subClientCode}
    </select>
+
    
    <insert id="insertClient"
    		parameterType="java.util.Map">
    		<selectKey resultType="hashmap" keyProperty="subClientCode,totalAccountGroup" order="BEFORE">
-        	select if(isnull(sub_client_code),'sub_client_code1000', concat('sub_client_code', MAX(CONVERT(SUBSTRING(sub_client_code,16), UNSIGNED))+1)) as subClientCode,
+        	select 
+        	if(isnull(sub_client_code),'sub_client_code1000', concat('sub_client_code', MAX(CONVERT(SUBSTRING(sub_client_code,16), UNSIGNED))+1)) as subClientCode,
         	if(isnull(total_account_group),'client_total_account1', concat('client_total_account', MAX(CONVERT(SUBSTRING(total_account_group,21), UNSIGNED))+1)) as totalAccountGroup
         	from sub_client
       	</selectKey>

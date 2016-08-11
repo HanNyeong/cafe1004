@@ -8,8 +8,15 @@ public class Client {
 	private String subClientContract;
 	private String subClientPhone;
 	private String subClientAddr;
+	private String totalAccountGroup;	
 	private String subCode;
 	
+	public String getTotalAccountGroup() {
+		return totalAccountGroup;
+	}
+	public void setTotalAccountGroup(String totalAccountGroup) {
+		this.totalAccountGroup = totalAccountGroup;
+	}
 	public String getSubClientCode() {
 		return subClientCode;
 	}
@@ -65,7 +72,7 @@ public class Client {
 		return "Client [subClientCode=" + subClientCode + ", subClientName=" + subClientName + ", subClientRegitDate="
 				+ subClientRegitDate + ", subClientInCharge=" + subClientInCharge + ", subClientContract="
 				+ subClientContract + ", subClientPhone=" + subClientPhone + ", subClientAddr=" + subClientAddr
-				+ ", subCode=" + subCode + "]";
+				+ ", totalAccountGroup=" + totalAccountGroup + ", subCode=" + subCode + "]";
 	}
 	
 }

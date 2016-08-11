@@ -111,6 +111,7 @@
 	</div>
 </div>
 	<c:forEach var="clientList" items="${clientList}">
+	<input type="hidden" name="totalAccountGroup" value="${clientList.totalAccountGroup}">
 	<div class="row tablediv">
 		<div class="col-sm-2">
 		</div>
@@ -124,6 +125,9 @@
 		<div class="col-sm-1">			
 			<a href="/subModifySubClient?subClientCode=${clientList.subClientCode}">
 				<button class="btn btn-default">수정</button>
+			</a>
+			<a href="/subAddClientAccount?subClientCode=${clientList.subClientCode}">
+				<button class="btn btn-default">지출기입</button>
 			</a>			
 		</div>
 		<div class="col-sm-2">

@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cafe24.seoje1004.sub.model.SubLogin;
 import com.cafe24.seoje1004.subClient.model.Client;
 
 @Repository
@@ -50,5 +51,7 @@ public class ClientDaoImpl implements ClientDao{
 	public String selectClientCode() {
 		return sqlSessionSubClient.selectOne(NS+".selectClientCode");
 	}
+
+	
 	
 }

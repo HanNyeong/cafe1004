@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cafe24.seoje1004.sub.model.SubLogin;
+import com.cafe24.seoje1004.subAccount.model.SubAccount;
+import com.cafe24.seoje1004.subAccount.model.SubAccounts;
 import com.cafe24.seoje1004.subClient.model.Client;
 import com.cafe24.seoje1004.subClient.model.ClientSearch;
 import com.cafe24.seoje1004.subClient.repository.ClientDao;
@@ -56,6 +58,26 @@ public class ClientServiceImpl implements ClientService{
 		map.put("client", client);
 		map.put("subClientCode", subClientCode);
 		clientDao.modifyClient(map);
+	}
+
+	//지출내역홈이동 service
+	@Override
+	public Client viewClientListByAccount(Client client) {
+		System.out.println("viewClientListByAccount실행");
+		return clientDao.selectClient(client);
+	}
+	
+	
+	//client -> add Sub_account service
+	@Override
+	public void addSubAccount(SubAccounts subAccounts) {
+		System.out.println("addSubAccount실행");
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		for(int i = 0; i<subAccounts.getSubAccountDetail().size();i++) {
+			SubAccount subAccount = new SubAccount();
+			
+		}
 	}
 
 }

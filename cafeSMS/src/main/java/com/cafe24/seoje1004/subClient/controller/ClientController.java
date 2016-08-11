@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.seoje1004.sub.model.SubLogin;
+import com.cafe24.seoje1004.subAccount.model.SubAccounts;
 import com.cafe24.seoje1004.subClient.model.Client;
 import com.cafe24.seoje1004.subClient.model.ClientSearch;
 import com.cafe24.seoje1004.subClientService.ClientService;
@@ -69,6 +70,24 @@ public class ClientController {
 		System.out.println(client);
 		
 		clientService.modifyClientService(client,subClientCode);
+		
+		return "redirect:/subViewSubClientList";
+	}
+	
+	//지출폼 이동 컨트롤러
+	@RequestMapping(value="/subAddClientAccount")
+	public String viewSubAddClientAccount(Model model, Client client) {
+		System.out.println("subAddClientAccount이동");
+		model.addAttribute("clientList",clientService.viewClientListByAccount(client));
+		return "sub/subClient/subAddClientAccount";
+	}
+	
+	//지출폼->>sub_accountAdd
+	@RequestMapping(value="/subAddSubAccount")
+	public String subAddSubAccount(SubAccounts subAccounts) {
+		System.out.println("subAddSubAccount실행");
+		
+		clientService.addSubAccount(subAccounts);
 		
 		return "redirect:/subViewSubClientList";
 	}
