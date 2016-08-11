@@ -140,7 +140,7 @@
 				<input type="hidden" class="ordersCode" name="" value="${ordersList.ordersCode}">
 				<input type="hidden" class="subCode" name="" value="${subLogin.subCode}">
 				<input type="hidden" class="subOrdersPrice" name="" value="${ordersList.subOrdersPrice}">
-				<input type="hidden" class="totalAccountGroup" name="" value="${ordersList.totalAccountGroup}">
+				<input type="hidden" class="totalAccountGroup" name="" value="${ordersList.subOrdersGroup}">
 				
 			<div class="row tablediv">
 				<div class="col-sm-2">
