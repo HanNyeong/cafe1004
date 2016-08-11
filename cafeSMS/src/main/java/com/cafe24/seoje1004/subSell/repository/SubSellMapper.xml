@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- SubSell객체등록 -->
 	<resultMap type="com.cafe24.seoje1004.subSell.model.SubSell" id="subSellResultMap">
 	     <id property="subSellCode" column="sub_sell_code"/>
-	     <result property="inteCode" column="inte_code"/>
+	     <result property="menuCode" column="menu_code"/>
 	     <result property="subSellGroup" column="sub_sell_group"/>
 	     <result property="subSellDate" column="sub_sell_date"/>
 	     <result property="subSellPracticalSellingPrice" column="sub_sell_practical_selling_price"/>
@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			resultMap="subSellResultMap">
 		SELECT
 			sub_sell_code
-			,inte_code
+			,menu_code
 			,sub_sell_group
 			,sub_sell_date
 			,sub_sell_practical_selling_price

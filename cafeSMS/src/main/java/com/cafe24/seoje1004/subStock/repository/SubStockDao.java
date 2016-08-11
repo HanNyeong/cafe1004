@@ -15,4 +15,6 @@ public interface SubStockDao {
 	public void subWarehousing(String ordersCode);	//비어있는 입고날짜를 오늘로 업데이트
 	public void deliveryReceiveY(String ordersCode);	//배송테이블의 배송수령여부 컬럼을 Y로 업데이트
 	public void ordersStatus(Map<String,Object> map); //
+	
+	public void subStockOutY(String subStockCode);			//가맹 재고 출하
 }

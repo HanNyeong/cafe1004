@@ -91,5 +91,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE 
 			orders_code = #{ordersCode}
 	</update>
+	
+	<!-- 가맹 재고 출하 -->
+	<update id="subStockOutY"
+			parameterType="java.lang.String">
+		UPDATE
+			sub_stock
+		SET
+			sub_stock_out = "Y"
+		WHERE
+			sub_stock_code = #{subStockCode}	
+	
+	</update>
 
 </mapper>

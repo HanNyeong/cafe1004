@@ -18,7 +18,7 @@
 	
 	
 	$(document).ready(function(){
-		var columnList = ['sub_sell_code','inte_code','sub_sell_group','sub_sell_date','sub_sell_practical_selling_price','total_account_group','sub_sell_final','sub_sell_final_date','pay_method','sub_code','event_code','sub_staff_code','sub_sell_final_staff','sub_sell_cost']
+		var columnList = ['sub_sell_code','sub_sell_group','sub_sell_date','sub_sell_practical_selling_price','total_account_group','sub_sell_final','sub_sell_final_date','pay_method','sub_code','event_code','sub_staff_code','sub_sell_final_staff','sub_sell_cost']
 		
 
 		$('.up').each(function(index,item){
@@ -111,7 +111,7 @@
 			<select name="searchKey" required="required">
 				<option value="">::선택::</option>
 				<option value="sub_sell_code" <c:if test="${search.searchKey eq 'sub_sell_code'}">selected="selected"</c:if>>판매코드</option>
-				<option value="inte_code" <c:if test="${search.searchKey eq 'inte_code'}">selected="selected"</c:if>>상품메뉴통합코드</option>
+				<option value="menu_code" <c:if test="${search.searchKey eq 'menu_code'}">selected="selected"</c:if>>메뉴코드</option>
 				<option value="pay_method" <c:if test="${search.searchKey eq 'pay_method'}">selected="selected"</c:if>>결제방식</option>
 				<option value="sub_sell_final_staff" <c:if test="${search.searchKey eq 'sub_sell_final_staff'}">selected="selected"</c:if>>마감담당자</option>
 			</select>
@@ -154,7 +154,7 @@
 		판매코드<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">	
-		메뉴통합코드<span class="up">▲</span><span class="down">▼</span>
+		메뉴코드<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">	
 		판매날짜<span class="up">▲</span><span class="down">▼</span>
@@ -191,7 +191,7 @@
 				</c:if>					
 				</div>	
 			<div class="col-sm-1">${subSellList.subSellCode}</div>
-			<div class="col-sm-1">${subSellList.inteCode}</div>
+			<div class="col-sm-1">${subSellList.menuCode}</div>
 			<div class="col-sm-1">${subSellList.subSellDate}</div>
 			<div class="col-sm-1">${subSellList.subSellCost}→${subSellList.subSellPracticalSellingPrice}</div>
 			<div class="col-sm-1">${subSellList.payMethod}</div>
@@ -217,7 +217,7 @@
 				</c:if>					
 				</div>	
 			<div class="col-sm-1">${subSellList.subSellCode}</div>
-			<div class="col-sm-1">${subSellList.inteCode}</div>
+			<div class="col-sm-1">${subSellList.menuCode}</div>
 			<div class="col-sm-1">${subSellList.subSellDate}</div>
 			<div class="col-sm-1">${subSellList.subSellCost}→${subSellList.subSellPracticalSellingPrice}</div>
 			<div class="col-sm-1">${subSellList.payMethod}</div>

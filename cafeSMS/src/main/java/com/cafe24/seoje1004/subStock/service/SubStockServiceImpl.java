@@ -63,6 +63,13 @@ public class SubStockServiceImpl implements SubStockService{
 		
 		
 	}
+
+	//가맹 재고 출하
+	@Override
+	public void subStockOutY(String subStockCode) {
+		System.out.println("SubStockServiceImpl subStockOutY 실행");
+		subStockDao.subStockOutY(subStockCode);
+	}
 	
 	
 }

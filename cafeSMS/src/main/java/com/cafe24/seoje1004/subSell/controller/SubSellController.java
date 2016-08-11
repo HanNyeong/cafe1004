@@ -70,6 +70,6 @@ public class SubSellController {
 		return "redirect:/subViewSubSellList?subCode="+subSells.getSubCode().get(0)+"&YN="+YN;
 		
 	}
-
+	
 	
 }

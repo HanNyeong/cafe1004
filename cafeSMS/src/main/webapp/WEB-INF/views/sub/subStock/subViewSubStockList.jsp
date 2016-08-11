@@ -162,6 +162,8 @@ $(document).ready(function(){
 		본사상품코드<span class="up">▲</span><span class="down">▼</span>
 		개별상품코드<span class="up">▲</span><span class="down">▼</span>
 		가맹확인담당직원<span class="up">▲</span><span class="down">▼</span>
+		[출하]
+		
 	</div>	
 	<div>
 		<c:forEach var="subStockList" items="${subStockList}">
@@ -184,6 +186,12 @@ $(document).ready(function(){
 					${subStockList.headItemCode}
 					${subStockList.specificItemCode}
 					${subStockList.subStaffCode}
+					<c:if test="${subStockList.subStockOut == 'N' && subStockList.subStockInDate ne null}">
+						<a href="/subStockOutY?subCode=${subStockList.subCode}&subStockCode=${subStockList.subStockCode}">[출하]</a>
+					</c:if>
+					<c:if test="${subStockList.subStockOut == 'Y'&& subStockList.subStockInDate ne null}">
+						[출하완료]
+					</c:if>
 					
 				</div>
 			</c:if>
@@ -206,8 +214,13 @@ $(document).ready(function(){
 						${subStockList.headItemCode}
 						${subStockList.specificItemCode}
 						${subStockList.subStaffCode}
-						
-					</div>
+						<c:if test="${subStockList.subStockOut == 'N' && subStockList.subStockInDate ne null}">
+								<a href="/subStockOutY?subCode=${subStockList.subCode}&subStockCode=${subStockList.subStockCode}">[출하]</a>
+						</c:if>
+						<c:if test="${subStockList.subStockOut == 'Y' && subStockList.subStockInDate ne null}">
+							[출하완료]
+						</c:if>
+						</div>
 				</c:if>
 			</c:if>
 			<c:if test="${YN eq 'N'}">	
@@ -229,7 +242,12 @@ $(document).ready(function(){
 						${subStockList.headItemCode}
 						${subStockList.specificItemCode}
 						${subStockList.subStaffCode}
-						
+						<c:if test="${subStockList.subStockOut == 'N' && subStockList.subStockInDate ne null}">
+								<a href="/subStockOutY?subCode=${subStockList.subCode}&subStockCode=${subStockList.subStockCode}">[출하]</a>
+						</c:if>
+						<c:if test="${subStockList.subStockOut == 'Y' && subStockList.subStockInDate ne null}">
+							[출하완료]
+						</c:if>
 					</div>
 				</c:if>
 			</c:if>

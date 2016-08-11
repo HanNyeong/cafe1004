@@ -7,7 +7,7 @@ public class SubSell {
 	 */
 	
 	private String subSellCode;		//가맹판매코드
-	private String inteCode;		//상품메뉴통합코드
+	private String menuCode;		//상품메뉴통합코드
 	private	String subSellGroup;	//가맹판매그룹코드
 	private String subSellDate;		//판매날짜
 	private int	subSellPracticalSellingPrice;	//실제 판매 금액
@@ -27,11 +27,11 @@ public class SubSell {
 	public void setSubSellCode(String subSellCode) {
 		this.subSellCode = subSellCode;
 	}
-	public String getInteCode() {
-		return inteCode;
+	public String getMenuCode() {
+		return menuCode;
 	}
-	public void setInteCode(String inteCode) {
-		this.inteCode = inteCode;
+	public void setMenuCode(String menuCode) {
+		this.menuCode = menuCode;
 	}
 	public String getSubSellGroup() {
 		return subSellGroup;
@@ -107,13 +107,15 @@ public class SubSell {
 	}
 	@Override
 	public String toString() {
-		return "SubSell [subSellCode=" + subSellCode + ", inteCode=" + inteCode + ", subSellGroup=" + subSellGroup
+		return "SubSell [subSellCode=" + subSellCode + ", menuCode=" + menuCode + ", subSellGroup=" + subSellGroup
 				+ ", subSellDate=" + subSellDate + ", subSellPracticalSellingPrice=" + subSellPracticalSellingPrice
 				+ ", totalAccountGroup=" + totalAccountGroup + ", subSellFinal=" + subSellFinal + ", subSellFinalDate="
 				+ subSellFinalDate + ", payMethod=" + payMethod + ", subCode=" + subCode + ", eventCode=" + eventCode
 				+ ", subStaffCode=" + subStaffCode + ", subSellFinalStaff=" + subSellFinalStaff + ", subSellCost="
 				+ subSellCost + "]";
 	}
+	
+	
 	
 	
 }
