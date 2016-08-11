@@ -129,6 +129,7 @@
 	<div class="col-sm-2">
 	</div>	
 	<div class="col-sm-6">
+		<a href="/subSellSignUp?subCode=${subCode}">[판매등록]</a>
 		<h3>가맹 판매 리스트[승인처리리스트]</h3>
 	</div>
 	<div class="col-sm-2 clickBtn">
