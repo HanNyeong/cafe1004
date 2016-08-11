@@ -150,7 +150,7 @@ public class SubStaffController {
 		   System.out.println(subStaff);
 		   subStaffService.subStaffSalaryService(subStaff);
 		   System.out.println("여기요");
-		   return "/sub/subStaff/subAddSubStaffSalary";
+		   return "redirect:/viewSubStaffList?subCode="+subStaff.getSubCode();
 	   }
 	
 }

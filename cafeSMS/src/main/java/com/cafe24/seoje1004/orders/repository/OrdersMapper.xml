@@ -271,7 +271,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	sub_account_detail, 
 	subject_code, 
 	sub_code, 
-	sub_staff_code
 	)
 	VALUES 
 	(
@@ -283,7 +282,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	#{subAccount.subAccountDetail}, 
 	#{subAccount.subjectCode}, 
 	#{subAccount.subCode}, 
-	'sub_staff_code1'
 	)
 	</insert>
 </mapper>

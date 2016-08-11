@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cafe24.seoje1004.subAccount.model.AddSharedSubAccount;
+import com.cafe24.seoje1004.subAccount.model.SubAccount;
 import com.cafe24.seoje1004.subStaff.model.SubStaff;
 
 @Repository
@@ -75,8 +77,8 @@ public class SubStaffDaoImpl implements SubStaffDao{
 
 
 	@Override
-	public void subStaffSalary(SubStaff subStaff) {
+	public void addSubAccount(Map<String,Object> map) {
 		System.out.println("SubStaffDaoImpl subStaffSalary실행");
-		sqlSessionSubStaff.update(NS+".subStaffSalary",subStaff);
+		sqlSessionSubStaff.update(NS+".addSubAccount",map);
 	}
 }

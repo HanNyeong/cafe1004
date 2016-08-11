@@ -3,6 +3,8 @@ package com.cafe24.seoje1004.subStaff.repository;
 import java.util.List; 
 import java.util.Map;
 
+import com.cafe24.seoje1004.subAccount.model.AddSharedSubAccount;
+import com.cafe24.seoje1004.subAccount.model.SubAccount;
 import com.cafe24.seoje1004.subStaff.model.SubStaff;
 
 public interface SubStaffDao {
@@ -51,5 +53,5 @@ public interface SubStaffDao {
 	 */
 	int subModifySubStaffByResign(SubStaff subStaff);
 
-	void subStaffSalary(SubStaff subStaff);
+	void addSubAccount(Map<String,Object> map);
 }

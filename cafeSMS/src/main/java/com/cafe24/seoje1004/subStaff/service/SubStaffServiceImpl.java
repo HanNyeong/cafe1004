@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cafe24.seoje1004.sub.model.SubLogin;
+import com.cafe24.seoje1004.subAccount.model.AddSharedSubAccount;
 import com.cafe24.seoje1004.subAccount.model.SubAccount;
 import com.cafe24.seoje1004.subAccount.repository.SubAccountDao;
 import com.cafe24.seoje1004.subStaff.model.SubStaff;
@@ -104,7 +105,20 @@ public class SubStaffServiceImpl implements SubStaffService{
 		System.out.println("SubStaffServiceImpl subStaffSalary실행");
 		System.out.println(subStaff);
 		SubStaff reSubStaff = subStaffDao.selectSubStaff(subStaff);
-		subStaffDao.subStaffSalary(reSubStaff);
+		AddSharedSubAccount subAccount = new AddSharedSubAccount();
+		String Flow = "출금";
+		String Detail = "직원급여";
+		String subjectCode = "subject_code3";
+//		String 
+		subAccount.setSubAccountFlow(Flow);
+		subAccount.setSubAccountDetail(Detail);
+		subAccount.setSubAccountPrice(reSubStaff.getSubStaffSalary());
+		subAccount.setSubCode(reSubStaff.getSubCode());
+		subAccount.setSubjectCode(subjectCode);
+		subAccount.setTotalAccountGroup(reSubStaff.getTotalAccountGroup());
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("subAccount", subAccount);
+		subStaffDao.addSubAccount(map);
 	}
 	
 

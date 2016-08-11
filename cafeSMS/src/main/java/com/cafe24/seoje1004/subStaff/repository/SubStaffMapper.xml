@@ -69,7 +69,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				sub_staff_permit_date,
 				sub_staff_resign,
 				sub_staff_regit_date,
-				sub_staff_salary         
+				sub_staff_salary,
+				total_account_group        
 			FROM 
 				sub_staff
 			WHERE
@@ -139,14 +140,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				sub_staff_code = #{subStaffCode}
 	</update>
 	
-	<insert id="subStaffSalary"
-			parameterType="com.cafe24.seoje1004.subStaff.model.SubStaff">
-			<selectKey resultType="hashmap" keyProperty="subStaffCode,totalAccountGroup" order="BEFORE">
-	         select if(isnull(sub_account_code),'sub_account_code1000', concat('sub_account_code', MAX(CONVERT(SUBSTRING(sub_account_code,16), UNSIGNED))+1)) as subAccountCode, 
-	         from sub_account
-	      </selectKey>
-			INSERT INTO sub_account
-	(sub_account_code, sub_account_flow, total_account_group, sub_account_sum, sub_account_request_date, sub_account_detail, subject_code, sub_client_code, sub_code, sub_staff_code)
-	VALUES (#{subAccountCode}, #{subAccountFlow}, #{totalAccountGroup}, ${subAccountSum}, NOW(), #{subAccountDetail}, #{subjectCode}, #{subClientCode}, #{subCode}, #{subStaffCode})
+	<!-- addSubAccount -->
+	<insert id="addSubAccount"
+			parameterType="java.util.Map">
+		<selectKey resultType="hashmap" keyProperty="subAccountCode" order="BEFORE">
+				select if(isnull(sub_account_code),'sub_account_code200', concat('sub_account_code', MAX(CONVERT(SUBSTRING(sub_account_code,17), UNSIGNED))+1)) as subAccountCode
+				from sub_account
+		</selectKey>
+		INSERT INTO sub_account
+	(
+	sub_account_code, 
+	sub_account_flow, 
+	total_account_group, 
+	sub_account_price, 
+	sub_account_request_date, 
+	sub_account_detail, 
+	subject_code, 
+	sub_code
+	)
+	VALUES 
+	(
+	#{subAccountCode}, 
+	#{subAccount.subAccountFlow}, 
+	#{subAccount.totalAccountGroup}, 
+	${subAccount.subAccountPrice}, 
+	NOW(),
+	#{subAccount.subAccountDetail}, 
+	#{subAccount.subjectCode}, 
+	#{subAccount.subCode}
+	)
 	</insert>
 </mapper>

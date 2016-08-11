@@ -153,7 +153,7 @@
 				<div class="col-sm-1">${subStaffList.subStaffPermitDate}</div>
 				<div class="col-sm-1">${subStaffList.subStaffSalary} 원
 					<c:if test="${subStaffList.subStaffResign == null}">
-						<a href="/subStaffSalary?subStaffCode=${subStaffList.subStaffCode}&subStaffSalary=${subStaffList.subStaffSalary}">
+						<a href="/subStaffSalary?subStaffCode=${subStaffList.subStaffCode}&subStaffSalary=${subStaffList.subStaffSalary}&subCode=${subStaffList.subCode}">
 						<input type="button" class="btn btn-default" value="지급"/></a>
 					</c:if>
 				</div>
@@ -164,7 +164,7 @@
 					</c:if>
 				</div>
 				<div class="col-sm-1">
-					<a href="/subModifySubStaff?subStaffCode=${subStaffList.subStaffCode}">
+					<a href="/subModifySubStaff?subStaffCode=${subStaffList.subStaffCode}&subCode=${subStaffList.subCode}">
 					<input type="button" class="btn btn-default"  value="수정"/></a>
 				</div>
 			<div class="col-sm-2">
