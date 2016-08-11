@@ -257,8 +257,8 @@ public class ReturnsServiceImpl implements ReturnsService {
 		addSharedSubAccount.setSubAccountPrice(returns.getReturnPrice());
 		addSharedSubAccount.setSubCode(returns.getSubCode());
 		addSharedSubAccount.setTotalAccountGroup(returns.getTotalAccountGroup());
-		addSharedSubAccount.setSubAccountDetail("환불");
-		addSharedSubAccount.setSubjectCode("환불");
+		addSharedSubAccount.setSubAccountDetail("상품 환불");
+		addSharedSubAccount.setSubjectCode("상품 환불");
 		
 		//1.회계에 추가
 		Map<String,Object> map = new HashMap<String,Object>();
