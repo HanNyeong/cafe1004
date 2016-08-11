@@ -26,8 +26,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       useGeneratedKeys="true"
       keyProperty="subStaffId">
       <selectKey resultType="hashmap" keyProperty="subStaffCode,totalAccountGroup" order="BEFORE">
-         select if(isnull(sub_staff_code),'sub_staff_code1000', concat('sub_staff_code', MAX(CONVERT(SUBSTRING(sub_staff_code,15), UNSIGNED))+1)) as subStaffCode, 
-         if(isnull(total_account_group),'total_account_group1000', concat('total_account_group', MAX(CONVERT (SUBSTRING(total_account_group,20), UNSIGNED))+1)) as totalAccountGroup 
+         select if(isnull(sub_staff_code),'sub_staff_code1', concat('sub_staff_code', MAX(CONVERT(SUBSTRING(sub_staff_code,15), UNSIGNED))+1)) as subStaffCode, 
+         if(isnull(total_account_group),'total_account_group1', concat('total_account_group', MAX(CONVERT (SUBSTRING(total_account_group,20), UNSIGNED))+1)) as totalAccountGroup 
          from sub_staff
       </selectKey>
       
@@ -102,7 +102,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				AND <![CDATA[date(sub_staff_regit_date) >= #{subStaffSearch.regitDateStart} and date(sub_staff_regit_date) <= #{subStaffSearch.regitDateEnd}]]>  
 			</if>
 			<if test="subStaffSearch.searchKey != null and subStaffSearch.searchKey != '' and subStaffSearch.search != null and subStaffSearch.search != ''">
-					AND  ${subStaffSearch.searchKey} like CONCAT('%',#{subStaffSearch.searchSubStaff},'%') 
+					AND  ${subStaffSearch.searchKey} like CONCAT('%',#{subStaffSearch.search},'%') 
 			</if>
 			<if test="division == 'employee'">
 				AND sub_staff_resign is null
@@ -144,7 +144,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="addSubAccount"
 			parameterType="java.util.Map">
 		<selectKey resultType="hashmap" keyProperty="subAccountCode" order="BEFORE">
-				select if(isnull(sub_account_code),'sub_account_code200', concat('sub_account_code', MAX(CONVERT(SUBSTRING(sub_account_code,17), UNSIGNED))+1)) as subAccountCode
+				select if(isnull(sub_account_code),'sub_account_code1', concat('sub_account_code', MAX(CONVERT(SUBSTRING(sub_account_code,17), UNSIGNED))+1)) as subAccountCode
 				from sub_account
 		</selectKey>
 		INSERT INTO sub_account
@@ -170,4 +170,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	#{subAccount.subCode}
 	)
 	</insert>
+	<select id="subStaffKeeperCheck"
+		parameterType="com.cafe24.seoje1004.subStaff.model.SubStaff"
+		resultMap="subStaffResultMap">
+		SELECT 
+			sub_staff_code,
+			sub_code
+		FROM
+			sub_staff
+		WHERE
+			sub_staff_code = #{subStaffCode} AND sub_Staff_pw = #{subStaffPw} AND sub_staff_level = '점주' AND sub_code = #{subCode}
+	</select>
 </mapper>

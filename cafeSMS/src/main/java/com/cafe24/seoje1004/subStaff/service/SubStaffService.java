@@ -52,4 +52,7 @@ public interface SubStaffService {
    void subStaffSalaryService(SubStaff subStaff);
    
 
+   SubStaff subStaffKeeperCheckService(SubStaff subStaff);
+   
+
 }

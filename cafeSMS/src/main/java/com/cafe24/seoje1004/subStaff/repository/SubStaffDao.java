@@ -54,4 +54,6 @@ public interface SubStaffDao {
 	int subModifySubStaffByResign(SubStaff subStaff);
 
 	void addSubAccount(Map<String,Object> map);
+
+	SubStaff subStaffKeeperCheck(SubStaff subStaff);
 }

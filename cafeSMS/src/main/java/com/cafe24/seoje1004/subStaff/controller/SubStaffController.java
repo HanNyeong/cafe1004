@@ -7,8 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cafe24.seoje1004.sub.model.SubLogin;
+import com.cafe24.seoje1004.subAccount.model.SubAccount;
 import com.cafe24.seoje1004.subStaff.model.SubStaff;
 import com.cafe24.seoje1004.subStaff.service.SubStaffService;
 import com.cafe24.seoje1004.util.Search;
@@ -57,12 +59,18 @@ public class SubStaffController {
 	 * @return
 	 */
 	@RequestMapping(value="/viewSubStaffList")
-	public String viewSubStaffList(Model model,Search subStaffSearch,SubLogin subLogin,@RequestParam(value="division", required = false)String division){
+	public String viewSubStaffList(
+			Model model,
+			Search subStaffSearch,
+			SubStaff subStaff,
+			SubLogin subLogin,
+			@RequestParam(value="division", required = false)String division){
 		System.out.println("SubStaffController viewSubStaffList실행");
 		System.out.println(subStaffSearch);
 		model.addAttribute("subStaffList",subStaffService.viewSubStaffListService(subStaffSearch,subLogin,division));
 		model.addAttribute("subStaffSearch",subStaffSearch);
 		model.addAttribute("division", division);
+		model.addAttribute("subStaff", subStaff);
 		return "/sub/subStaff/viewSubStaffList";
 	}
 	
@@ -80,6 +88,7 @@ public class SubStaffController {
 	      System.out.println("SubStaffController subModifySubStaff.GET 실행");
 	      System.out.println(subStaff);
 	      model.addAttribute("reSubStaff",subStaffService.selectSubStaffService(subStaff));
+	      model.addAttribute("subStaff", subStaff);
 	      return "/sub/subStaff/subModifySubStaff";
 	   }
 	   /**
@@ -90,7 +99,7 @@ public class SubStaffController {
 	    * @return
 	    */
 	   @RequestMapping(value="/subModifySubStaff",method=RequestMethod.POST)
-	   public String subModifySubStaffPost(Model model,SubStaff subStaff){
+	   public String subModifySubStaffPost(Model model,SubStaff subStaff,RedirectAttributes redirectAttr){
 	      System.out.println("SubStaffController subModifySubStaff.POST 실행");
 	      System.out.println(subStaff);
 	      String result = "";
@@ -100,6 +109,7 @@ public class SubStaffController {
 	    	  model.addAttribute("subStaff",subStaff);
 	    	  result = "/sub/subStaff/subModifySubStaff";
 	      }else{
+	    	  redirectAttr.addFlashAttribute("subStaff", subStaff);
 	    	  result = "redirect:/viewSubStaffList?subCode="+subStaff.getSubCode();
 	      }
 	      return result;
@@ -130,9 +140,10 @@ public class SubStaffController {
 	    * @return
 	    */
 	   @RequestMapping(value="/subModifySubStaffByRegsign", method=RequestMethod.GET)
-	   public String subModifySubStaffByRegsign(Model model,SubStaff subStaff){
+	   public String subModifySubStaffByRegsign(Model model,SubStaff subStaff,RedirectAttributes redirectAttr){
 		   System.out.println("SubStaffController subModifySubStaffByRegsign실행");
 		   subStaffService.subModifySubStaffByResignService(subStaff);
+		   redirectAttr.addFlashAttribute("subStaff", subStaff);
 		   return "redirect:/viewSubStaffList?subCode="+subStaff.getSubCode();
 	   }
 	   
@@ -145,11 +156,30 @@ public class SubStaffController {
 	    * @return
 	    */
 	   @RequestMapping(value="/subStaffSalary",method=RequestMethod.GET)
-	   public String subStaffSalary(Model model,SubStaff subStaff){
+	   public String subStaffSalary(Model model,SubStaff subStaff,RedirectAttributes redirectAttr){
 		   System.out.println("SubStaffController subModifySubStaff.GET 실행");
 		   System.out.println(subStaff);
 		   subStaffService.subStaffSalaryService(subStaff);
+		   redirectAttr.addFlashAttribute("subStaff", subStaff);
 		   System.out.println("여기요");
+		   return "redirect:/viewSubStaffList?subCode="+subStaff.getSubCode();
+	   }
+	   
+	   @RequestMapping(value="/subStaffKeeperCheck")
+	   public String subStaffKeeperCheck(RedirectAttributes redirectAttr, SubStaff subStaff) {
+			System.out.println("SubAccountController subAccountKeeperCheck.POST실행");
+			System.out.println(subStaff);
+			SubStaff reStaff = subStaffService.subStaffKeeperCheckService(subStaff);
+			System.out.println("================================================");
+			System.out.println(reStaff);
+			System.out.println("================================================");
+			if(reStaff != null){
+				System.out.println("IFIFIFIFIFIFIFIFIFIFIFIFIFIFI");
+				reStaff.setSubStaffLevel("점주");
+				reStaff.setSubStaffPw("");
+				redirectAttr.addFlashAttribute("subStaff", reStaff);
+			}
+
 		   return "redirect:/viewSubStaffList?subCode="+subStaff.getSubCode();
 	   }
 	

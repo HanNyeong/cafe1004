@@ -81,4 +81,11 @@ public class SubStaffDaoImpl implements SubStaffDao{
 		System.out.println("SubStaffDaoImpl subStaffSalary실행");
 		sqlSessionSubStaff.update(NS+".addSubAccount",map);
 	}
+
+
+	@Override
+	public SubStaff subStaffKeeperCheck(SubStaff subStaff) {
+		System.out.println("SubStaffDaoImpl subStaffKeeperCheck실행");
+		return sqlSessionSubStaff.selectOne(NS+".subStaffKeeperCheck",subStaff);
+	}
 }

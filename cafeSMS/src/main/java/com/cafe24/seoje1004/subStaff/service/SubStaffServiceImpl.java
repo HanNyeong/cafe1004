@@ -120,6 +120,12 @@ public class SubStaffServiceImpl implements SubStaffService{
 		map.put("subAccount", subAccount);
 		subStaffDao.addSubAccount(map);
 	}
+
+	@Override
+	public SubStaff subStaffKeeperCheckService(SubStaff subStaff) {
+		System.out.println("SubAccountSerivceImpl subAccountKeeperCheckService실행");
+		return subStaffDao.subStaffKeeperCheck(subStaff);
+	}
 	
 
 }
