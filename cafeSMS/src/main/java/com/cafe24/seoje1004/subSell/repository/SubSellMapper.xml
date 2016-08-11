@@ -76,5 +76,64 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			sub_sell_code = #{subSellCode}
 	</update>
 	
+	<!-- 해당 SubSellCode에 해당하는 subSell행을 가져오자 -->
+	<select id="selectSubSellBySubSellCode"
+			parameterType="java.lang.String"
+			resultMap="subSellResultMap">
+		SELECT
+			sub_sell_code
+			,menu_code
+			,sub_sell_group
+			,sub_sell_date
+			,sub_sell_practical_selling_price
+			,total_account_group
+			,sub_sell_final
+			,sub_sell_final_date
+			,pay_method
+			,sub_code
+			,event_code
+			,sub_staff_code
+			,sub_sell_final_staff
+			,sub_sell_cost
+		FROM
+			sub_sell
+		WHERE
+			sub_sell_code = #{subSellCode}
+	</select>
+	
+	<!-- 회계테이블에 insert -->
+	<insert id="subSellAccount"
+			parameterType="java.util.Map">
+		<selectKey resultType="hashmap" keyProperty="subAccountCode" order="BEFORE">
+				select if(isnull(sub_account_code),'sub_account_code1', concat('sub_account_code', MAX(CONVERT(SUBSTRING(sub_account_code,17), UNSIGNED))+1)) 
+				as subAccountCode
+				from sub_account
+		</selectKey>
+			
+			
+			INSERT INTO sub_account
+			(sub_account_code, 
+			sub_account_flow, 
+			total_account_group, 
+			sub_account_price,
+			sub_account_request_date, 
+			sub_account_detail, 
+			subject_code, 
+			sub_code 
+			)
+			
+			VALUES(
+			#{subAccountCode}
+			,#{addSharedSubAccount.subAccountFlow}
+			,#{addSharedSubAccount.totalAccountGroup}
+			,#{addSharedSubAccount.subAccountPrice}
+			,NOW()
+			,#{addSharedSubAccount.subAccountDetail}
+			,#{addSharedSubAccount.subjectCode}
+			,#{addSharedSubAccount.subCode}
+			
+			
+			)
+	</insert>
 	
 </mapper>

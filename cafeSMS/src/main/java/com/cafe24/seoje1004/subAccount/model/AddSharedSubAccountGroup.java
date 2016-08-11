@@ -5,9 +5,10 @@ import java.util.List;
 public class AddSharedSubAccountGroup {
 	private List<String> subAccountFlow; //입출 여부
 	private List<String> totalAccountGroup;	//통합회계 그룹코드
-	private List<Integer> subAccountSum;
+	private List<Integer> subAccountPrice;
 	private List<String> subAccountDetail;
 	private List<String> subCode;
+	
 	public List<String> getSubAccountFlow() {
 		return subAccountFlow;
 	}
@@ -20,11 +21,11 @@ public class AddSharedSubAccountGroup {
 	public void setTotalAccountGroup(List<String> totalAccountGroup) {
 		this.totalAccountGroup = totalAccountGroup;
 	}
-	public List<Integer> getSubAccountSum() {
-		return subAccountSum;
+	public List<Integer> getSubAccountPrice() {
+		return subAccountPrice;
 	}
-	public void setSubAccountSum(List<Integer> subAccountSum) {
-		this.subAccountSum = subAccountSum;
+	public void setSubAccountPrice(List<Integer> subAccountPrice) {
+		this.subAccountPrice = subAccountPrice;
 	}
 	public List<String> getSubAccountDetail() {
 		return subAccountDetail;
@@ -41,8 +42,10 @@ public class AddSharedSubAccountGroup {
 	@Override
 	public String toString() {
 		return "AddSharedSubAccountGroup [subAccountFlow=" + subAccountFlow + ", totalAccountGroup=" + totalAccountGroup
-				+ ", subAccountSum=" + subAccountSum + ", subAccountDetail="
-				+ subAccountDetail + ", subCode=" + subCode + "]";
+				+ ", subAccountPrice=" + subAccountPrice + ", subAccountDetail=" + subAccountDetail + ", subCode="
+				+ subCode + "]";
 	}
+	
+	
 	
 }	

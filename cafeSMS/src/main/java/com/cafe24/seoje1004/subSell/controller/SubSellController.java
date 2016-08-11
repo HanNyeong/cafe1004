@@ -60,6 +60,7 @@ public class SubSellController {
 								,@RequestParam(value="YN", required = false)String YN){
 		System.out.println("SubSellController subSellFinals 실행");
 		System.out.println("YN : "+ YN);	
+		System.out.println("subSells : "+subSells);
 		subSellService.subSellFinals(subSells);
 		
 		//redirectAttributes.addFlashAttribute("YN", YN);

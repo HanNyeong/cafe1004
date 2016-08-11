@@ -15,4 +15,8 @@ public interface SubSellDao {
 	public List<SubSell> subViewSubSellList(Map<String,Object> map); 	//가맹 판매 조회
 	
 	public void subSellFinals(SubSell subSell);	//가맹 판매 마감처리s
+	
+	public SubSell selectSubSellBySubSellCode(String subSellCode);			//해당 SubSellCode에 해당하는 subSell행을 가져오자
+	
+	public void subSellAccount(Map<String,Object> map);		//회계테이블에 insert 
 }

@@ -38,5 +38,23 @@ public class SubSellDaoImpl implements SubSellDao {
 		sqlSessionSubSell.update(NS+".subSellFinals", subSell);
 	}
 
+
+	//해당 SubSellCode에 해당하는 subSell행을 가져오자
+	@Override
+	public SubSell selectSubSellBySubSellCode(String subSellCode) {
+		System.out.println("SubSellDaoImpl selectSubSellBySubSellCode 실행");
+		
+		return sqlSessionSubSell.selectOne(NS+".selectSubSellBySubSellCode", subSellCode);
+	}
+
+
+	//회계테이블에 insert
+	@Override
+	public void subSellAccount(Map<String, Object> map) {
+		System.out.println("SubSellDaoImpl subSellAccount 실행");
+		sqlSessionSubSell.insert(NS+".subSellAccount", map);
+		
+	}
+
 	
 }

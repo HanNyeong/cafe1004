@@ -7,6 +7,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cafe24.seoje1004.subAccount.model.AddSharedSubAccount;
+import com.cafe24.seoje1004.subAccount.model.AddSharedSubAccountGroup;
 import com.cafe24.seoje1004.subSell.model.SubSell;
 import com.cafe24.seoje1004.subSell.model.SubSells;
 import com.cafe24.seoje1004.subSell.repository.SubSellDao;
@@ -41,10 +43,34 @@ public class SubSellServiceImpl implements SubSellService{
 	public void subSellFinals(SubSells subSells) {
 		System.out.println("SubSellServiceImpl subSellFinals 실행");
 		
-		for(int i=0; i<subSells.getSubSellCode().size(); i++){
+		/*for(int i=0; i<subSells.getSubSellCode().size(); i++){*/
+		for(int i=0; i<subSells.getSubSellCode().size(); i++){	
+			//판매테이블 내부의 final컬럼 update
 			SubSell subSell = new SubSell();
+			System.out.println("subSell : "+subSells.getSubSellCode().get(i));
 			subSell.setSubSellCode(subSells.getSubSellCode().get(i));
 			subSellDao.subSellFinals(subSell);
+			
+			//해당 SubSellCode에 해당하는 subSell행을 가져오자
+			SubSell subSell2 = new SubSell();
+			subSell2 = 	subSellDao.selectSubSellBySubSellCode(subSells.getSubSellCode().get(i));
+			System.out.println("subSell2 : " + subSell2);
+			
+			//회계테이블에 insert 
+		
+			AddSharedSubAccount addSharedSubAccount = new AddSharedSubAccount();
+			addSharedSubAccount.setSubAccountFlow("입금");
+			addSharedSubAccount.setSubAccountPrice(subSell2.getSubSellPracticalSellingPrice());
+			addSharedSubAccount.setSubAccountDetail("상품 판매");
+			addSharedSubAccount.setSubCode(subSell2.getSubSellCode());
+			addSharedSubAccount.setTotalAccountGroup(subSell2.getTotalAccountGroup());
+			addSharedSubAccount.setSubjectCode("상품 판매");
+			Map<String,Object> map = new HashMap<String,Object>();
+			map.put("addSharedSubAccount", addSharedSubAccount);
+			
+			subSellDao.subSellAccount(map);
+			
+			
 		}
 	}
 
