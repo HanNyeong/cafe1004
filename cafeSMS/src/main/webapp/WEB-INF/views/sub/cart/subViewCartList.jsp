@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>subViewCartList</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script type="text/javascript" src="resources/function/upDownCheck.js"></script>
+<script src="resources/function/upDownCheck.js"></script>
 <script>
 	
 	$(document).ready(function(){
@@ -16,12 +16,12 @@
 
 		$('.up').each(function(index,item){
 			$(item).click(function(){
-				$.list('ASC',columnList[index]);
+				list('ASC',columnList[index],$('#cartList'));
 			});
 		});
 		$('.down').each(function(index,item){
 			$(item).click(function(){
-				$.list('DESC',columnList[index]);
+				list('DESC',columnList[index],$('#cartList'));
 			});
 		});
 		$('#searchBtn').click(function(){

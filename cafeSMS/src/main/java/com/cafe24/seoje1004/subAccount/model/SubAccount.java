@@ -4,7 +4,6 @@ public class SubAccount {
 	private String subAccountCode;
 	private String subAccountFlow;
 	private String totalAccountGroup;
-	private String subAccountTable;
 	private int subAccountPrice;
 	private String subAccountRequestDate;
 	private String subAccountCheck;
@@ -31,12 +30,6 @@ public class SubAccount {
 	}
 	public void setTotalAccountGroup(String totalAccountGroup) {
 		this.totalAccountGroup = totalAccountGroup;
-	}
-	public String getSubAccountTable() {
-		return subAccountTable;
-	}
-	public void setSubAccountTable(String subAccountTable) {
-		this.subAccountTable = subAccountTable;
 	}
 	public int getSubAccountPrice() {
 		return subAccountPrice;
@@ -96,7 +89,7 @@ public class SubAccount {
 	@Override
 	public String toString() {
 		return "SubAccount [subAccountCode=" + subAccountCode + ", subAccountFlow=" + subAccountFlow
-				+ ", totalAccountGroup=" + totalAccountGroup + ", subAccountTable=" + subAccountTable
+				+ ", totalAccountGroup=" + totalAccountGroup 
 				+ ", subAccountPrice=" + subAccountPrice + ", subAccountRequestDate=" + subAccountRequestDate
 				+ ", subAccountCheck=" + subAccountCheck + ", subAccountDetail=" + subAccountDetail + ", subjectCode="
 				+ subjectCode + ", subClientCode=" + subClientCode + ", subCode=" + subCode + ", subStaffCode="

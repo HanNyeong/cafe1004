@@ -11,9 +11,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cafe24.seoje1004.sub.model.SubLogin;
 import com.cafe24.seoje1004.subAccount.model.SubAccount;
-import com.cafe24.seoje1004.subAccount.model.SubAccountSearch;
 import com.cafe24.seoje1004.subAccount.service.SubAccountService;
 import com.cafe24.seoje1004.subStaff.model.SubStaff;
+import com.cafe24.seoje1004.util.Search;
 
 @Controller
 public class SubAccountController {
@@ -79,28 +79,14 @@ public class SubAccountController {
 	 * @return
 	 */
 	@RequestMapping(value = "/viewSubAccountList")
-	public String viewSubAccountList(Model model, SubAccount subAccount,SubAccountSearch subAccountSearch,SubStaff subStaff) {
+	public String viewSubAccountList(Model model, SubAccount subAccount,Search subAccountSearch,SubStaff subStaff) {
 		System.out.println("SubAccountController subAccountList실행");
 		System.out.println(subAccount);
 		System.out.println("확인하자"+subStaff);
-		if(subStaff.getSubStaffLevel() == "점주"){
-			model.addAttribute("subStaff", subStaff);
-			model.addAttribute("subAccountList", subAccountService.viewSubAccountListService(subAccountSearch,subStaff));
-		}
+		model.addAttribute("subStaff", subStaff);
+		model.addAttribute("subAccountList", subAccountService.viewSubAccountListService(subAccountSearch,subStaff));
+		model.addAttribute("subAccountSearch", subAccountSearch);
 		return "/sub/subAccount/viewSubAccountList";
-	}
-	/**
-	 * 
-	 * @param model
-	 * @param subAccount
-	 * @param subStaff
-	 * @return
-	 */
-	@RequestMapping(value="/modifySubAccount",method=RequestMethod.POST)
-	public String modifySubAccount(Model model,SubAccount subAccount,SubStaff subStaff){
-		System.out.println("SubAccountController modifySubAccount실행");
-		subAccountService.modifySubAccountService(subAccount,subStaff);
-		return "redirect:/viewSubAccountList";
 	}
 
 }

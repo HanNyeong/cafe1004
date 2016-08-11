@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.cafe24.seoje1004.sub.model.SubLogin;
 import com.cafe24.seoje1004.subAccount.model.SubAccount;
-import com.cafe24.seoje1004.subAccount.model.SubAccountSearch;
 import com.cafe24.seoje1004.subAccount.repository.SubAccountDao;
 import com.cafe24.seoje1004.subStaff.model.SubStaff;
 import com.cafe24.seoje1004.subStaff.repository.SubStaffDao;
+import com.cafe24.seoje1004.util.Search;
 @Service
 public class SubAccountServiceImpl implements SubAccountService{
 
@@ -45,7 +45,7 @@ public class SubAccountServiceImpl implements SubAccountService{
 	 * 매개변수로 검색정보와 권한정보, 가맹코드를 받아습니다.
 	 */
 	@Override
-	public List<SubAccount> viewSubAccountListService(SubAccountSearch subAccountSearch,SubStaff subStaff) {
+	public List<SubAccount> viewSubAccountListService(Search subAccountSearch,SubStaff subStaff) {
 		System.out.println("SubAccountServiceImpl viewSubAccountListService실행");
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("subAccountSearch", subAccountSearch);

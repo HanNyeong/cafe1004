@@ -7,29 +7,34 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript" src="resources/function/upDownCheck.js"></script>
 <script>
 	$(document).ready(function() {
 		//컬럼 명 지정해주는 배열 
 		//자기입맛에 맛게 고쳐 쓰세요
 		var columnList = [ 'sub_account_code', 'sub_account_flow',
-				'total_account_group', 'sub_account_table',
-				'sub_account_sum', 'sub_account_request_date',
-				'sub_account_check', 'sub_account_detail',
-				'subject_code', 'sub_client_code', 'sub_code',
-				'sub_staff_code', 'sub_staff_keeper' ]
+				'total_account_group', 
+				'sub_account_price', 'sub_account_request_date',
+				 'sub_account_detail',
+				'subject_code', 'sub_client_code', 'sub_code']
 
 		$('.up').each(function(index, item) {
 			$(item).click(function() {
-				$.list('ASC', columnList[index],$('#subAccountList'));
+				list('ASC', columnList[index],$('#subAccountList'));
 			});
 		});
 		$('.down').each(function(index, item) {
 			$(item).click(function() {
-				$.list('DESC', columnList[index],$('#subAccountList'));
+				list('DESC', columnList[index],$('#subAccountList'));
 			});
 		});
+		$('#viewMoreBtn').click(function(){
+			var viewMore = $('#viewMore').val();
+			$('#viewMore').val(viewMore*1+25);
+			$('#subAccountList').submit();
+		});
 		$('#searchBtn').click(function() {
-			if ($('#searchSubAccount').val() == "") {
+			if ($('#search').val() == "") {
 				console.log("검색어입력하세요");
 			} else {
 				$('#subAccountList').submit();
@@ -40,32 +45,9 @@
 			$('#subAccountList').prop('action','/modifySubAccount');
 			$('#subAccountList').submit();
 		});
-		$('#ordersBtn').click(function() {
-			if ($('.cartOrders:checked').size() < 1) {
-				alert("1개 이상 체크해주세요");
-				console.log("orders");
-			} else {
-				$('.cartOrders').each(function(index, item) {
-					if (!$(this).is(":checked")) {
-						console.log("체크안됨");
-						$("input[class=subCode]:eq("+ index + ")").prop('name', '');
-					} else if ($(this).is(":checked")) {
-						console.log("체크됨");
-					} else {
-						console.log("안됨")
-					}
-				});
-				$('#subAccountList').prop('action','/viewSubAccountList');
-				$('#subAccountList').submit();
-			}
-		});
+		
 	});
-	function checkAll(source) {
-		var checkboxes = document.getElementsByName('accountListCheck');
-		for (var i = 0; i < checkboxes.length; i++) {
-			checkboxes[i].checked = source.checked; // '모두 체크'에 체크가 되면 다 체크하고 아니면 다 해제하고!
-		}
-	}
+	
 </script>
 </head>
 <body>
@@ -98,57 +80,94 @@
 
 
 	<c:if test="${subStaff.subStaffLevel == '점주'}">
-		<h1>가맹거래처목록</h1>
-		<form id="subAccountList" action="/viewSubAccountList" method="POST">
-			<input type="hidden" id="upDown" name="upDown" value="" /> 
-			<input type="hidden" id="criteria" name="criteria" value="" /> 
-			<input type="hidden" id="subCode" name="subCode" value="${subLogin.subCode}" /> 
-			<input type="hidden" id="deadLine" name="deadLine" value="${subLogin.subCode}" /> 
-			
-				등록 날짜: <input type="date" name="regitDateStart" value="${subAccountSearch.regitDateStart}" />
-			~ <input type="date" name="regitDateEnd" value="${subAccountSearch.regitDateEnd}" /> 
-			<br/>
-			<br/> 
-			<select name="searchKey" required="required">
-				<option value="">::선택::</option>
-				<option value="sub_account_code" <c:if test="${subAccountSearch.searchKey eq 'sub_account_code'}">selected="selected"</c:if>>통합회계코드</option>
-				<option value="sub_account_flow" <c:if test="${subAccountSearch.searchKey eq 'sub_account_flow'}">selected="selected"</c:if>>입금내역</option>
-				<option value="subject_code" <c:if test="${subAccountSearch.searchKey eq 'subject_code'}">selected="selected"</c:if>>출금내역</option>
-				<option value="sub_account_check" <c:if test="${subAccountSearch.searchKey eq 'sub_account_check'}">selected="selected"</c:if>>가맹거래처명</option>
-			</select> 
-			<input type="text" id="searchSubAccount" name="searchSubAccount" value="${subAccountSearch.searchSubAccount}" />
-		
-		<select id="deadLineSelect">
-			<option value="">전체</option>
-			<option value="deadLineAGo">마감전</option>
-			<option value="deadLine">마감</option>
-		</select>
-		<input type="button" value="마감">
-		<p>
-			<input type="checkbox" id="checkAll" name="checkAll" onclick="checkAll(this)"> 1:가맹 통합 회계 전표 코드<span class="up">▲</span>
-			<span class="down">▼</span> 2:출급/입금 <span class="up">▲</span>
-			<span class="down">▼</span> 3:통합 출/입금관련 그룹 코드<span class="up">▲</span>
-			<span class="down">▼</span> 5:합계(금액)<span class="up">▲</span>
-			<span class="down">▼</span> 6:등록 날짜<span class="up">▲</span>
-			<span class="down">▼</span> 7:마감 날짜<span class="up">▲</span>
-			<span class="down">▼</span> 8:상세 내역<span class="up">▲</span>
-			<span class="down">▼</span> 10:거래처코드<span class="up">▲</span>
-			<span class="down">▼</span>
-		</p>
-
-		
-			<c:forEach var="accountList" items="${subAccountList}">
-				<div>
-					<c:if test="${empty accountList.subStaffKeeper}">
-						<input type="checkbox" class="accountListCheck" name="accountListCheck" value="${accountList.subAccountCode}">
-					</c:if>
-					${accountList.subAccountCode} ${accountList.subAccountFlow}
-					${accountList.totalAccountGroup} ${accountList.subAccountSum}
-					${accountList.subAccountRequestDate} ${accountList.subAccountCheck}
-					${accountList.subAccountDetail} ${accountList.subClientCode}
+		<div class="row">
+			<div class="col-sm-2">
+			</div>	
+			<div class="col-sm-8">
+			<h1>통합회계</h1>
+			<form id="subAccountList" action="/viewSubAccountList" method="POST">
+				<input type="hidden" id="upDown" name="upDown" value="" /> 
+				<input type="hidden" id="criteria" name="criteria" value="" /> 
+				<input type="hidden" id="subCode" name="subCode" value="${subLogin.subCode}" /> 
+				<input type="hidden" id="subStaffLevel" name="subStaffLevel" value="${subStaff.subStaffLevel}" /> 
+				
+					등록 날짜: <input type="date" name="regitDateStart" value="${subAccountSearch.regitDateStart}" />
+				~ <input type="date" name="regitDateEnd" value="${subAccountSearch.regitDateEnd}" /> 
+				<br/>
+				<br/> 
+				<select name="searchKey" required="required">
+					<option value="">::선택::</option>
+					<option value="sub_account_code" <c:if test="${subAccountSearch.searchKey eq 'sub_account_code'}">selected="selected"</c:if>>통합회계코드</option>
+					<option value="sub_account_flow" <c:if test="${subAccountSearch.searchKey eq 'sub_account_flow'}">selected="selected"</c:if>>입금내역</option>
+					<option value="subject_code" <c:if test="${subAccountSearch.searchKey eq 'subject_code'}">selected="selected"</c:if>>출금내역</option>
+					<option value="subject_code" <c:if test="${subAccountSearch.searchKey eq 'subject_code'}">selected="selected"</c:if>>가맹거래처명</option>
+				</select> 
+				<input type="text" id="search" name="search" value="${subAccountSearch.search}" />
+				<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
 				</div>
-			</c:forEach>
-		</form>
-	</c:if>
+				<div class="col-sm-2">
+				</div>
+			</div>
+			<br/>
+			<br/>
+				<div class="row tablediv">
+					<div class="col-sm-2">
+					</div>
+					<div class="col-sm-1 th">
+						통합코드<span class="up">▲</span><span class="down">▼</span>
+					</div>
+					<div class="col-sm-1 th">
+						출급/입금 <span class="up">▲</span><span class="down">▼</span>
+					</div>
+					<div class="col-sm-2 th">
+						통합 출/입금관련 그룹 코드<span class="up">▲</span><span class="down">▼</span> 
+					</div>
+					<div class="col-sm-1 th">
+						 합계(금액)<span class="up">▲</span><span class="down">▼</span>
+					</div>
+					<div class="col-sm-1 th">
+						등록 날짜<span class="up">▲</span><span class="down">▼</span>
+				    </div>
+					<div class="col-sm-1 th">
+						상세 내역<span class="up">▲</span><span class="down">▼</span>
+						 <!-- 급여는 가맹만 조회가능 -->
+					</div>
+					<div class="col-sm-1 th">
+						 거래처코드<span class="up">▲</span><span class="down">▼</span>
+					</div>
+					<div class="col-sm-2">
+					</div>
+				</div>
+	
+			
+				<c:forEach var="accountList" items="${subAccountList}">
+					
+					<div class="row tablediv">
+						<div class="col-sm-2">
+						</div>	
+						<div class="col-sm-1">${accountList.subAccountCode}</div>
+						<div class="col-sm-1">${accountList.subAccountFlow}</div>
+						<div class="col-sm-2">${accountList.totalAccountGroup}</div>
+						<div class="col-sm-1">${accountList.subAccountPrice}원</div>
+						<div class="col-sm-1">${accountList.subAccountRequestDate}</div>
+						<div class="col-sm-1">${accountList.subAccountDetail} </div>
+						<div class="col-sm-1">${accountList.subClientCode}</div>
+						<div class="col-sm-2">
+						</div>
+					</div>
+				</c:forEach>
+			</form>
+			<div class="row tablediv">
+				<div class="col-sm-2">
+				</div>
+				<div class="col-sm-8">
+					<input type="button" class="btn btn-default" id="viewMoreBtn" value="더보기"/>
+				</div>
+				<div class="col-sm-2">
+				</div>
+			</div>
+		</c:if>
+		<jsp:include page="/WEB-INF/module/footer.jsp"/>
+
 </body>
 </html>
