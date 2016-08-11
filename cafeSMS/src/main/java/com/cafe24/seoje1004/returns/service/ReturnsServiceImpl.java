@@ -254,7 +254,7 @@ public class ReturnsServiceImpl implements ReturnsService {
 		
 		AddSharedSubAccount addSharedSubAccount = new AddSharedSubAccount();
 		addSharedSubAccount.setSubAccountFlow("출금");
-		addSharedSubAccount.setSubAccountSum(returns.getReturnPrice());
+		addSharedSubAccount.setSubAccountPrice(returns.getReturnPrice());
 		addSharedSubAccount.setSubCode(returns.getSubCode());
 		addSharedSubAccount.setTotalAccountGroup(returns.getTotalAccountGroup());
 		addSharedSubAccount.setSubAccountDetail("환불");
