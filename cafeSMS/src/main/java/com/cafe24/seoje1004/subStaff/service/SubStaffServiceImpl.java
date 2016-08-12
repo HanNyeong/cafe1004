@@ -44,8 +44,6 @@ public class SubStaffServiceImpl implements SubStaffService{
 	 */
 	@Override
 	public List<SubStaff> viewSubStaffListService(Search subStaffSearch,SubLogin subLogin,String division) {
-		System.out.println("SubStaffServiceImpl viewSubStaffListService실행");
-		System.out.println("SubStaffServiceImpl viewSubListService. 조회 실행");
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("subStaffSearch", subStaffSearch);
 		map.put("subLogin", subLogin);

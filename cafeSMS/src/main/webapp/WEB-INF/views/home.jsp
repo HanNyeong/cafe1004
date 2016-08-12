@@ -100,12 +100,19 @@ $(document).ready(function() {
 <div class="row">
 	<div class="col-sm-2">
 	</div>
-	<div class="col-sm-3">
-		<jsp:include page="/WEB-INF/module/menuChart.jsp"/>	
+	<c:if test="${subLogin eq null}">
+	<div class="col-sm-8">
+		<jsp:include page="menuChart.jsp"/>	
 	</div>
-	<div class="col-sm-5">
-		<jsp:include page="/WEB-INF/module/priceChart.jsp"/>	
-	</div>
+	</c:if>
+	<c:if test="${subLogin ne null}">
+		<div class="col-sm-3">
+			<jsp:include page="menuChart.jsp"/>	
+		</div>
+		<div class="col-sm-5">
+			<jsp:include page="priceChart.jsp"/>	
+		</div>
+	</c:if>
 	<div class="col-sm-2">
 	</div>
 </div>
