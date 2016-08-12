@@ -1,6 +1,7 @@
 package com.cafe24.seoje1004;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -39,7 +40,12 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
+		SimpleDateFormat days = new SimpleDateFormat("dd");
+		System.out.println("날짜 : "+days.format(date));
 		
+		
+		
+		//메뉴차트
 		List<Chart> menuChart = subSellService.menuChart();
 		System.out.println(menuChart);
 		
@@ -47,8 +53,5 @@ public class HomeController {
 		
 		return "home";
 	}
-	//메뉴 차트
-	
 
-	
 }

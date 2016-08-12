@@ -1,6 +1,6 @@
 package com.cafe24.seoje1004.subSell.service;
 
-import java.util.HashMap;
+import java.util.HashMap; 
 import java.util.List;
 import java.util.Map;
 
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.cafe24.seoje1004.menu.model.Menu;
 import com.cafe24.seoje1004.subAccount.model.AddSharedSubAccount;
-import com.cafe24.seoje1004.subAccount.model.AddSharedSubAccountGroup;
 import com.cafe24.seoje1004.subSell.model.SubSell;
 import com.cafe24.seoje1004.subSell.model.SubSells;
 import com.cafe24.seoje1004.subSell.repository.SubSellDao;
+import com.cafe24.seoje1004.util.Chart;
 import com.cafe24.seoje1004.util.Search;
 
 @Service
@@ -81,6 +81,14 @@ public class SubSellServiceImpl implements SubSellService{
 	public List<Menu> viewMenuList() {
 		System.out.println("SubSellServiceImpl viewMenuList 실행");
 		return subSellDao.viewMenuList();
+	}
+
+
+	//메뉴코드 카운트입니다.
+	@Override
+	public List<Chart> menuChart() {
+		System.out.println("SubSellServiceImpl menuChart실행");		
+		return subSellDao.menuChart();
 	}
 
 	

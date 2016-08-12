@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.cafe24.seoje1004.menu.model.Menu;
 import com.cafe24.seoje1004.subSell.model.SubSell;
+import com.cafe24.seoje1004.util.Chart;
 
 public interface SubSellDao {
 	/**
@@ -22,4 +23,6 @@ public interface SubSellDao {
 	public void subSellAccount(Map<String,Object> map);		//회계테이블에 insert 
 	
 	public List<Menu> viewMenuList(); 	//메뉴리스트를 가져오자
+	//메뉴코드 카운트 입니다.
+	public List<Chart> menuChart();
 }
