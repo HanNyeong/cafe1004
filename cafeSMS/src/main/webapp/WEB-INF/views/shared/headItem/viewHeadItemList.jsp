@@ -6,12 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>viewHeadItemList</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="resources/function/upDownCheck.js"></script>
 <script>
-	$.list = function(upDown,criteria){
-		$('#upDown').attr('value',upDown);
-		$('#criteria').attr('value',criteria);
-		$('#headItemForm').submit();	
-	}
 	//삭제 체크 박스 전체 선택/해제
 	function selectHeadItemAll(source) {
 		var checkboxes = document.getElementsByName('headItemCheck');
@@ -23,16 +19,16 @@
 	$(document).ready(function(){
 		//컬럼 명 지정해주는 배열 
 		//자기입맛에 맛게 고쳐 쓰세요
-		var columnList = ['h_item_code','h_item_name','inte_code','h_item_quantity','h_item_unit','h_item_selling_price','h_item_regit_date','head_staff_id','h_item_regit_price','h_item_regit_date','head_staff_id','h_item_regit_price']
+		var columnList = ['h_item_code','h_item_name','h_item_quantity','h_item_selling_price','h_item_regit_date','head_staff_id','h_item_retail_price ']
 
 		$('.up').each(function(index,item){
 			$(item).click(function(){
-				$.list('ASC',columnList[index]);
+				list('ASC',columnList[index],$('#headItemForm'));
 			});
 		});
 		$('.down').each(function(index,item){
 			$(item).click(function(){
-				$.list('DESC',columnList[index]);
+				list('DESC',columnList[index],$('#headItemForm'));
 			});
 		});
 		$('#searchBtn').click(function(){
@@ -95,7 +91,7 @@
 			<option value="h_item_regit_price" <c:if test="${headItemSearch.searchKey eq 'h_item_regit_price'}">selected="selected"</c:if>>소비자가격</option>
 			
 		</select>
-		<input type="text" id="searchHeadItem" name="searchHeadItem" value="${headItemSearch.search}"/>
+		<input type="text" id="searchHeadItem" name="search" value="${headItemSearch.search}"/>
 		<input type="button" class="btn btn-default" id="searchBtn" value="검색" /> <a href="/viewHeadItemList"><input type="button" class="btn btn-default" value="전체보기"/></a>
 	</form>
 	</div>

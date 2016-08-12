@@ -6,12 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>subviewMenuList</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="resources/function/upDownCheck.js"></script>
 <script>
-	$.list = function(upDown,criteria){
-		$('#upDown').attr('value',upDown);
-		$('#criteria').attr('value',criteria);
-		$('#menuList').submit();	
-	}
 	
 	$(document).ready(function(){
 		//컬럼 명 지정해주는 배열 
@@ -20,12 +16,12 @@
 
 		$('.up').each(function(index,item){
 			$(item).click(function(){
-				$.list('ASC',columnList[index]);
+				list('ASC',columnList[index],$("#menuList"));
 			});
 		});
 		$('.down').each(function(index,item){
 			$(item).click(function(){
-				$.list('DESC',columnList[index]);
+				list('DESC',columnList[index],$("#menuList"));
 			});
 		});
 		$('#searchBtn').click(function(){

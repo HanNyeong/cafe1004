@@ -184,11 +184,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="viewOrdersListByHead"
 			resultMap="ordersResultMap">
-		SELECT orders_code, sub_orders_group, sub_orders_quantity, sub_orders_date, sub_orders_head_check,
+		SELECT 
+			orders_code, sub_orders_group, sub_orders_quantity, sub_orders_date, sub_orders_head_check,
 		 sub_orders_status, total_account_group, orders_pay, orders_pay_date, head_item_code, sub_code, 
 		 sub_staff_code, head_staff_id, head_orders_confirm,sub_orders_price
 		FROM sub_orders
-	
+		<if test="ordersSearch.regitDateStart != null and ordersSearch.regitDateEnd != null and ordersSearch.regitDateStart !='' and ordersSearch.regitDateEnd !=''">
+			AND <![CDATA[date(sub_orders_date) >= #{ordersSearch.regitDateStart} and date(sub_orders_date) <= #{ordersSearch.regitDateEnd}]]>
+		</if>
+		<if test="ordersSearch.criteria == null and ordersSearch.upDown == null">
+			order by sub_orders_date desc
+		</if>
+		<if test="ordersSearch.criteria != null and ordersSearch.upDown != null and ordersSearch.criteria != null and ordersSearch.upDown != ''">
+			order by ${ordersSearch.criteria} ${ordersSearch.upDown}
+		</if>
 	</select>
 	
 	<update id="modifyOrdersConfirm"

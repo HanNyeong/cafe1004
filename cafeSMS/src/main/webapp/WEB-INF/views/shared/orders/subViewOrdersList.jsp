@@ -9,11 +9,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript" src="resources/function/upDownCheck.js"></script>
 <script>
-	$.list = function(upDown,criteria){
-		$('#upDown').attr('value',upDown);
-		$('#criteria').attr('value',criteria);
-		$('#ordersListOrderBy').submit();	
-	};
+	
 	$(document).ready(function(){
 		$('#delOrdersBtn').click(function(){
 			$('#ordersListForm').attr('action','/delOrders');
@@ -27,12 +23,12 @@
 
 		$('.up').each(function(index,item){
 			$(item).click(function(){
-				$.list('ASC',columnList[index]);
+				list('ASC',columnList[index],$("#ordersListOrderBy"));
 			});
 		});
 		$('.down').each(function(index,item){
 			$(item).click(function(){
-				$.list('DESC',columnList[index]);
+				list('DESC',columnList[index],$("#ordersListOrderBy"));
 			});
 		});
 		$('#ordersPayBtn').click(function(){

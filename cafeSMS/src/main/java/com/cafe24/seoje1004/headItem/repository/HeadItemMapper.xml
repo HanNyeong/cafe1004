@@ -30,8 +30,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="headItemSearch.regitDateStart != null and headItemSearch.regitDateEnd != null and headItemSearch.regitDateStart !='' and headItemSearch.regitDateEnd !=''">
 				<![CDATA[date(h_item_regit_date) >= #{headItemSearch.regitDateStart} and date(h_item_regit_date) <= #{headItemSearch.regitDateEnd}]]>  
 			</if>
-			<if test="headItemSearch.searchKey != null and headItemSearch.searchKey != '' and headItemSearch.searchHeadItem != null and headItemSearch.searchHeadItem != ''">
-					AND  ${headItemSearch.searchKey} like CONCAT('%',#{headItemSearch.searchHeadItem},'%') 
+			<if test="headItemSearch.searchKey != null and headItemSearch.searchKey != '' and headItemSearch.search != null and headItemSearch.search != ''">
+					AND  ${headItemSearch.searchKey} like CONCAT('%',#{headItemSearch.search},'%') 
 			</if>
 		</where>
 		<if test="headItemSearch.criteria == null and headItemSearch.upDown == null">

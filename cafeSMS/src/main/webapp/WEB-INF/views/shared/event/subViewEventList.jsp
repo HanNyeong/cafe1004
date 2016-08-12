@@ -6,12 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>subViewEventList</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="resources/function/upDownCheck.js"></script>
 <script>
-	$.list = function(upDown,criteria){
-		$('#upDown').attr('value',upDown);
-		$('#criteria').attr('value',criteria);
-		$('#EventList').submit();	
-	}
 	
 	$(document).ready(function(){
 		//컬럼 명 지정해주는 배열 
@@ -20,19 +16,19 @@
 
 		$('.up').each(function(index,item){
 			$(item).click(function(){
-				$.list('ASC',columnList[index]);
+				list('ASC',columnList[index],$("#eventList"));
 			});
 		});
 		$('.down').each(function(index,item){
 			$(item).click(function(){
-				$.list('DESC',columnList[index]);
+				list('DESC',columnList[index],$("#eventList"));
 			});
 		});
 		$('#searchBtn').click(function(){
 			if($('#searchEvent').val() == ""){
 				console.log("검색어입력하세요");
 			}else{
-				$('#EventList').submit();
+				$('#eventList').submit();
 			}
 		});
 	});
@@ -45,7 +41,7 @@
 	</div>
 	
 	<div class="col-sm-8">
-		<form id="EventList" action="/viewEventList" method="POST">
+		<form id="eventList" action="/viewEventList" method="POST">
 			<input type="hidden" id="upDown" name="upDown" value="" />
 			<input type="hidden" id="criteria" name="criteria" value=""/>
 			등록 날짜: 
@@ -57,7 +53,7 @@
 				<option value="event_code" <c:if test="${eventSearch.searchKey eq 'event_code'}">selected="selected"</c:if>>행사코드</option>
 				<option value="event_name" <c:if test="${eventSearch.searchKey eq 'event_name'}">selected="selected"</c:if>>행사명</option>
 			</select>
-			<input type="text" id="searchEvent" name="searchEvent" value="${eventSearch.search}"/>
+			<input type="text" id="searchEvent" name="search" value="${eventSearch.search}"/>
 			<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
 			<a href="/viewEventList"><input type="button" class="btn btn-default" value="전체보기"/></a>
 		</form>
