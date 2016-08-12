@@ -72,4 +72,25 @@ public class SubStockController {
 		
 		return "redirect:/subViewSubStockList?subCode="+subCode;
 	}
+	
+	//가맹재고출하가능리스트
+	@RequestMapping(value="/subViewSubStockOutList")
+	public String subViewSubStockOutList(Model model
+			,@RequestParam(value="subCode")String subCode
+			,Search search
+			,@RequestParam(value="YN", required = false)String YN){
+		System.out.println("SubStockController subViewSubStockOutList 실행");
+		System.out.println("subCode : "+subCode);
+		
+		List<SubStock> subStockList = subStockService.subViewSubStockOutList(subCode, search);
+		
+		System.out.println("subStockList : "+ subStockList);
+		
+		model.addAttribute("YN", YN);
+		model.addAttribute("subCode", subCode);
+		model.addAttribute("search", search);
+		model.addAttribute("subStockList", subStockList);
+		
+		return "/sub/subStock/subViewSubStockOutList";
+	}
 }

@@ -129,6 +129,9 @@ $(document).ready(function(){
 	
 		
 	</div>
+	<div>
+		<a href="/subViewSubStockOutList?subCode=${subCode}">[출하가능리스트]</a>
+	</div>
 	<div class="col-sm-2">
 	</div>
 </div>
@@ -212,12 +215,7 @@ $(document).ready(function(){
 					${subStockList.subStaffCode}
 			</div>
 			<div class="col-sm-1">		
-					<c:if test="${subStockList.subStockOut == 'N' && subStockList.subStockInDate ne null}">
-						<a href="/subStockOutY?subCode=${subStockList.subCode}&subStockCode=${subStockList.subStockCode}">[출하]</a>
-					</c:if>
-					<c:if test="${subStockList.subStockOut == 'Y'&& subStockList.subStockInDate ne null}">
-						[출하완료]
-					</c:if>
+				
 					<c:if test="${subStockList.subStockInDate eq null}">
 						<input type="checkbox" class="checking" name="checking">
 						<input type="hidden" class="subCode" name="" value="${subStockList.subCode}">
@@ -257,12 +255,6 @@ $(document).ready(function(){
 					${subStockList.subStaffCode}
 			</div>
 			<div class="col-sm-1">		
-				<c:if test="${subStockList.subStockOut == 'N' && subStockList.subStockInDate ne null}">
-					<a href="/subStockOutY?subCode=${subStockList.subCode}&subStockCode=${subStockList.subStockCode}">[출하]</a>
-				</c:if>
-				<c:if test="${subStockList.subStockOut == 'Y'&& subStockList.subStockInDate ne null}">
-					[출하완료]
-				</c:if>
 				<c:if test="${subStockList.subStockInDate eq null}">
 					<input type="checkbox" class="checking" name="checking">
 					<input type="hidden" class="subCode" name="" value="${subStockList.subCode}">
@@ -303,12 +295,7 @@ $(document).ready(function(){
 					${subStockList.subStaffCode}
 			</div>
 			<div class="col-sm-1">		
-				<c:if test="${subStockList.subStockOut == 'N' && subStockList.subStockInDate ne null}">
-					<a href="/subStockOutY?subCode=${subStockList.subCode}&subStockCode=${subStockList.subStockCode}">[출하]</a>
-				</c:if>
-				<c:if test="${subStockList.subStockOut == 'Y'&& subStockList.subStockInDate ne null}">
-					[출하완료]
-				</c:if>
+				
 				<c:if test="${subStockList.subStockInDate eq null}">
 					<input type="checkbox" class="checking" name="checking">
 					<input type="hidden" class="subCode" name="" value="${subStockList.subCode}">

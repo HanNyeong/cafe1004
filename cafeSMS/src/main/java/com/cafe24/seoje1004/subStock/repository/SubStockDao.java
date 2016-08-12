@@ -17,4 +17,5 @@ public interface SubStockDao {
 	public void ordersStatus(Map<String,Object> map); //
 	
 	public void subStockOutY(String subStockCode);			//가맹 재고 출하
+	public List<SubStock> subViewSubStockOutList(Map<String,Object> map);		//가맹재고출하가능리스트
 }

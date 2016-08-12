@@ -59,5 +59,12 @@ public class SubStockDaoImpl implements SubStockDao{
 		System.out.println("SubStockDaoImpl subStockOutY 실행");
 		sqlSessionSubStock.update(NS+".subStockOutY", subStockCode);
 	}
+
+	//가맹재고출하가능리스트
+	@Override
+	public List<SubStock> subViewSubStockOutList(Map<String, Object> map) {
+		System.out.println("SubStockDaoImpl subViewSubStockOutList 실행");
+		return sqlSessionSubStock.selectList(NS+".subViewSubStockOutList", map);
+	}
 	
 }

@@ -103,5 +103,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			sub_stock_code = #{subStockCode}	
 	
 	</update>
+	
+	<!-- 가맹재고출하가능리스트 -->
+	<select id="subViewSubStockOutList"
+			parameterType="java.util.Map"
+			resultMap="subStockResultMap">
+		SELECT
+			sub_stock_code
+			,head_stock_in_date
+			,sub_stock_in_date
+			,sub_stock_out
+			,orders_code
+			,sub_code
+			,head_item_code
+			,specific_item_code
+			,sub_staff_code
+		FROM
+			sub_stock
+		<where>
+			sub_code = #{subCode}
+			<if test="search.regitDateStart != null and search.regitDateEnd != null and search.regitDateStart !='' and search.regitDateEnd !=''">
+				AND <![CDATA[date(head_stock_in_date) >= #{search.regitDateStart} and date(head_stock_in_date) <= #{search.regitDateEnd}]]>  
+			</if>
+			<if test="search.searchKey != null and search.searchKey != '' and search.search != null and search.search != ''">
+					AND  ${search.searchKey} like CONCAT('%',#{search.search},'%') 
+			</if>
+			
+		</where>
+		
+		<if test="search.criteria == null and search.criteria == '' and search.upDown == null and search.upDown == ''">
+			order by head_stock_in_date desc
+		</if>
+		<if test="search.criteria != null and search.upDown != null and search.criteria != null and search.upDown != ''">
+			order by ${search.criteria} ${search.upDown}
+		</if>
+		
+		LIMIT 0,${search.viewMore}	
+	</select>
 
 </mapper>

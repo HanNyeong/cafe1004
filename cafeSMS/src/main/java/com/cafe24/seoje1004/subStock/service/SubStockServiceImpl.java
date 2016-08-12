@@ -70,6 +70,18 @@ public class SubStockServiceImpl implements SubStockService{
 		System.out.println("SubStockServiceImpl subStockOutY 실행");
 		subStockDao.subStockOutY(subStockCode);
 	}
+
+	//가맹재고출하가능리스트
+	@Override
+	public List<SubStock> subViewSubStockOutList(String subCode, Search search) {
+		System.out.println("SubStockServiceImpl subViewSubStockOutList 실행");
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("subCode", subCode);
+		map.put("search", search);
+		
+		return subStockDao.subViewSubStockOutList(map);
+	}
 	
 	
 }
