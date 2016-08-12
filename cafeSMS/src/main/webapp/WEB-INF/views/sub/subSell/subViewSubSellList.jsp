@@ -9,26 +9,19 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript" src="resources/function/upDownCheck.js"></script>
 <script>
-	var list = function(upDown,criteria){
-		$('#upDown').attr('value',upDown);
-		$('#criteria').attr('value',criteria);
-		$('#subSellList').submit();	
-	}
-	
-	
 	
 	$(document).ready(function(){
-		var columnList = ['sub_sell_code','sub_sell_group','sub_sell_date','sub_sell_practical_selling_price','total_account_group','sub_sell_final','sub_sell_final_date','pay_method','sub_code','event_code','sub_staff_code','sub_sell_final_staff','sub_sell_cost']
+		var columnList = ['sub_sell_code','menu_code','sub_sell_group','sub_sell_date','sub_sell_practical_selling_price','pay_method','sub_sell_final_staff']
 		
 
 		$('.up').each(function(index,item){
 			$(item).click(function(){
-				list('ASC',columnList[index]);
+				list('ASC',columnList[index],$("#subSellList"));
 			});
 		});
 		$('.down').each(function(index,item){
 			$(item).click(function(){
-				list('DESC',columnList[index]);
+				list('DESC',columnList[index],$("#subSellList"));
 			});
 		});
 		// 더보기
@@ -148,14 +141,14 @@
 <div class="row tablediv">
 	<div class="col-sm-2">
 	</div>
-	<div class="col-sm-1 th">
-		전체선택<input type="checkbox" id="selectAll" class="selectAll" name="selectAll" onclick="selectAll(this)" value="전체 선택">
-	</div>
 	<div class="col-sm-1 th">	
 		판매코드<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">	
 		메뉴코드<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">
+		판매그룹<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">	
 		판매날짜<span class="up">▲</span><span class="down">▼</span>
@@ -170,13 +163,13 @@
 		마감담당자<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">	
-		[마감처리]
+		<input type="checkbox" id="selectAll" class="selectAll" name="selectAll" onclick="selectAll(this)" value="전체 선택">
+		/마감
 	</div>
 	<div class="col-sm-2">
 	</div>
 </div>
 	
-
 	<!-- 	<form id="subSellFinalForm" action="/subSellFinals" method="POST"> -->
 	
 <c:forEach var="subSellList" items="${subSellList}">
@@ -184,24 +177,23 @@
 		<div class="row tablediv">
 			<div class="col-sm-2">
 			</div>	
+			<div class="col-sm-1">${subSellList.subSellCode}</div>
+			<div class="col-sm-1">${subSellList.menuCode}</div>
+			<div class="col-sm-1">${subSellList.subSellGroup}</div>
+			<div class="col-sm-1">${subSellList.subSellDate}</div>
+			<div class="col-sm-1">${subSellList.subSellCost}→${subSellList.subSellPracticalSellingPrice}</div>
+			<div class="col-sm-1">${subSellList.payMethod}</div>
+			<div class="col-sm-1">${subSellList.subSellFinalStaff}	</div>			
 			<div class="col-sm-1">
 				<c:if test="${subSellList.subSellFinal == 'N'}">
 					<input type="checkbox" class="checking" name="checking">
 					<input type="hidden" class="subSellCode" name="" value="${subSellList.subSellCode}">
 					<input type="hidden" class="subCode" name="" value="${subSellList.subCode}">
 				</c:if>					
-				</div>	
-			<div class="col-sm-1">${subSellList.subSellCode}</div>
-			<div class="col-sm-1">${subSellList.menuCode}</div>
-			<div class="col-sm-1">${subSellList.subSellDate}</div>
-			<div class="col-sm-1">${subSellList.subSellCost}→${subSellList.subSellPracticalSellingPrice}</div>
-			<div class="col-sm-1">${subSellList.payMethod}</div>
-			<div class="col-sm-1">${subSellList.subSellFinalStaff}	</div>			
-			<div class="col-sm-1">
 				<c:if test="${subSellList.subSellFinal == 'Y'}">
 					[마감완료]
 				</c:if>					
-			</div>
+			</div>	
 			<div class="col-sm-2">
 			</div>
 		</div>
@@ -210,24 +202,23 @@
 			<div class="row tablediv">
 			<div class="col-sm-2">
 			</div>	
+			<div class="col-sm-1">${subSellList.subSellCode}</div>
+			<div class="col-sm-1">${subSellList.menuCode}</div>
+			<div class="col-sm-1">${subSellList.subSellGroup}</div>
+			<div class="col-sm-1">${subSellList.subSellDate}</div>
+			<div class="col-sm-1">${subSellList.subSellCost}→${subSellList.subSellPracticalSellingPrice}</div>
+			<div class="col-sm-1">${subSellList.payMethod}</div>
+			<div class="col-sm-1">${subSellList.subSellFinalStaff}	</div>			
 			<div class="col-sm-1">
 				<c:if test="${subSellList.subSellFinal == 'N'}">
 					<input type="checkbox" class="checking" name="checking">
 					<input type="hidden" class="subSellCode" name="" value="${subSellList.subSellCode}">
 					<input type="hidden" class="subCode" name="" value="${subSellList.subCode}">
 				</c:if>					
-				</div>	
-			<div class="col-sm-1">${subSellList.subSellCode}</div>
-			<div class="col-sm-1">${subSellList.menuCode}</div>
-			<div class="col-sm-1">${subSellList.subSellDate}</div>
-			<div class="col-sm-1">${subSellList.subSellCost}→${subSellList.subSellPracticalSellingPrice}</div>
-			<div class="col-sm-1">${subSellList.payMethod}</div>
-			<div class="col-sm-1">${subSellList.subSellFinalStaff}	</div>			
-			<div class="col-sm-1">
 				<c:if test="${subSellList.subSellFinal == 'Y'}">
 					[마감완료]
 				</c:if>					
-			</div>
+			</div>	
 			<div class="col-sm-2">
 			</div>
 		</div>
