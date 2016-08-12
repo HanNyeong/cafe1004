@@ -10,26 +10,18 @@
 <script type="text/javascript" src="resources/function/upDownCheck.js"></script>
 <script>
 
-var list = function(upDown,criteria){
-	$('#upDown').attr('value',upDown);
-	$('#criteria').attr('value',criteria);
-	$('#returnsList').submit();	
-}
-
-
-
 $(document).ready(function(){
-	var columnList = ['return_code','return_price','return_report_date','return_head_check','return_head_check_date','total_account_group','return_re_delivery','return_cancel','orders_code','specific_item_code','head_returns_confirm','sub_code','return_re_delivery']
+	var columnList = ['return_code','return_price','return_report_date','return_head_check_date','orders_code','specific_item_code','sub_code','return_re_delivery']
 	
 
 	$('.up').each(function(index,item){
 		$(item).click(function(){
-			list('ASC',columnList[index]);
+			list('ASC',columnList[index],$("#returnsList"));
 		});
 	});
 	$('.down').each(function(index,item){
 		$(item).click(function(){
-			list('DESC',columnList[index]);
+			list('DESC',columnList[index],$("#returnsList"));
 		});
 	});
 	// 더보기

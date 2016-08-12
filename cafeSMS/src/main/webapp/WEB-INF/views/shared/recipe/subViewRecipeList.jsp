@@ -7,7 +7,7 @@
 <title>subviewRecipeList</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
-	$.list = function(upDown,criteria){
+	/* $.list = function(upDown,criteria){
 		$('#upDown').attr('value',upDown);
 		$('#criteria').attr('value',criteria);
 		$('#recipeList').submit();	
@@ -35,7 +35,7 @@
 				$('#recipeList').submit();
 			}
 		});
-	});
+	}); */
 </script>
 </head>
 <body>
@@ -44,8 +44,8 @@
 	<div class="col-sm-2">
 	</div>
 	
-	<div class="col-sm-8">
-	<form id="recipeList" action="/subViewRecipeList" method="POST">
+	<div class="col-sm-6">
+	<%-- <form id="recipeList" action="/subViewRecipeList" method="POST">
 		<input type="hidden" id="upDown" name="upDown" value="" />
 		<input type="hidden" id="criteria" name="criteria" value=""/>
 		<input type="hidden" name="menuCode" value="${menuCode}">
@@ -61,7 +61,11 @@
 		<input type="text" id="searchRecipe" name="searchRecipe" value="${recipeSearch.searchRecipe}"/>
 		<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
 		<a href="/viewrecipeList"><input type="button" class="btn btn-default" value="전체보기"/></a>
-	</form>
+	</form> --%>
+	</div>
+		<div class="col-sm-2">
+		<a href="/subViewMenuList"><input type="button" class="btn btn-default" value="메뉴보기"/></a>
+	</div>
 	</div>
 		<div class="col-sm-2">
 	</div>
@@ -81,19 +85,19 @@
 	<div class="col-sm-2">
 	</div>
 	<div class="col-sm-1 th">
-		레시피 코드<span class="up">▲</span><span class="down">▼</span>
+		레시피 코드
 	</div>
 	<div class="col-sm-1 th">	
-		조리 순서<span class="up">▲</span><span class="down">▼</span>
+		조리 순서
 	</div>
 	<div class="col-sm-2 th">
-		조리 내용<span class="up">▲</span><span class="down">▼</span>
+		조리 내용
 	</div>
 	<div class="col-sm-2 th">	
-		레시피 등록 날짜<span class="up">▲</span><span class="down">▼</span>
+		레시피 등록 날짜
 	</div>
 	<div class="col-sm-1 th">
-		메뉴 코드<span class="up">▲</span><span class="down">▼</span>
+		메뉴 코드
 	</div>
 	<div class="col-sm-1 th">	
 		본사승인직원ID
