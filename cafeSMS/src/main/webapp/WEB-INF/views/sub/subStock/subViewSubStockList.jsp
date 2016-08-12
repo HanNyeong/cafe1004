@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>subViewSubStockList</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript" src="resources/function/upDownCheck.js"></script>
 <script>
@@ -125,14 +125,7 @@ $(document).ready(function(){
 			<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
 			<a href="/subViewSubStockList?subCode=${subCode}"><input type="button" class="btn btn-default"  value="전체보기"/></a>
 		
-	
-			분류 : 
-			<select id="selectYN" required="required">
-				<option value="" <c:if test="${YN eq ''}">selected="selected"</c:if>>::선택::</option>
-				<option value="Y" <c:if test="${YN eq 'Y'}">selected="selected"</c:if>>입고후</option>
-				<option value="N" <c:if test="${YN eq 'N'}">selected="selected"</c:if>>입고전</option>
-			</select>
-
+		</form>
 	
 		
 	</div>
@@ -144,32 +137,87 @@ $(document).ready(function(){
 <div class="row">
 	<div class="col-sm-2">
 	</div>	
-	<div class="col-sm-8">
-		<h3>= 가맹재고리스트 =</h3>
+	<div class="col-sm-3">
+		<h3>= 가맹 재고 관리 =</h3>
+	</div>
+	<div class="col-sm-5 clickBtn">
+			<h4>
+			분류 : 
+			<select id="selectYN" required="required">
+				<option value="" <c:if test="${YN eq ''}">selected="selected"</c:if>>::선택::</option>
+				<option value="Y" <c:if test="${YN eq 'Y'}">selected="selected"</c:if>>입고후</option>
+				<option value="N" <c:if test="${YN eq 'N'}">selected="selected"</c:if>>입고전</option>
+			</select>
+			<input type="button" class="btn btn-default" id="subWarehousingBtn" value="입고"/>
+			</h4>
 	</div>
 	<div class="col-sm-2">
 	</div>	
 </div>
 <br/>
-		subStockList
-	<div>
-		전체선택<input type="checkbox" id="selectAll" class="selectAll" name="selectAll" onclick="selectAll(this)" value="전체 선택">
-		가맹재고코드<span class="up">▲</span><span class="down">▼</span>
-		본사가맹입고날짜<span class="up">▲</span><span class="down">▼</span>
-		가맹확인입고날짜<span class="up">▲</span><span class="down">▼</span>
+<div class="row tablediv">
+	<div class="col-sm-2">
+	</div>
+	<div class="col-sm-1 th">
+		재고코드<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">		
+		확인입고날<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">		
 		판매여부<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">		
 		주문코드<span class="up">▲</span><span class="down">▼</span>
-		가맹대표코드<span class="up">▲</span><span class="down">▼</span>
-		본사상품코드<span class="up">▲</span><span class="down">▼</span>
-		개별상품코드<span class="up">▲</span><span class="down">▼</span>
-		가맹확인담당직원<span class="up">▲</span><span class="down">▼</span>
-		[출하]
-		
+	</div>
+	<div class="col-sm-1 th">	
+		본사상품C<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">		
+		개별상품C<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">		
+		확인직원<span class="up">▲</span><span class="down">▼</span>
+	</div>
+	<div class="col-sm-1 th">		
+		입고/출하<input type="checkbox" id="selectAll" class="selectAll" name="selectAll" onclick="selectAll(this)" value="전체 선택">
 	</div>	
-	<div>
-		<c:forEach var="subStockList" items="${subStockList}">
-			<c:if test="${YN eq '' || YN eq null}">	
-				<div>
+	<div class="col-sm-2">
+	</div>
+</div> 	
+<c:forEach var="subStockList" items="${subStockList}">
+	<c:if test="${YN eq '' || YN eq null}">	
+		<div class="row tablediv">
+			<div class="col-sm-2">
+			</div>
+			<div class="col-sm-1">
+					${subStockList.subStockCode}					
+			</div>
+			<div class="col-sm-1">		
+					${subStockList.subStockInDate}
+			</div>
+			<div class="col-sm-1">		
+					${subStockList.subStockOut}
+			</div>
+			<div class="col-sm-1">		
+					${subStockList.ordersCode}
+			</div>
+			<div class="col-sm-1">		
+					${subStockList.headItemCode}
+			</div>
+			<div class="col-sm-1">		
+					${subStockList.specificItemCode}
+			</div>
+			<div class="col-sm-1">		
+					${subStockList.subStaffCode}
+			</div>
+			<div class="col-sm-1">		
+					<c:if test="${subStockList.subStockOut == 'N' && subStockList.subStockInDate ne null}">
+						<a href="/subStockOutY?subCode=${subStockList.subCode}&subStockCode=${subStockList.subStockCode}">[출하]</a>
+					</c:if>
+					<c:if test="${subStockList.subStockOut == 'Y'&& subStockList.subStockInDate ne null}">
+						[출하완료]
+					</c:if>
 					<c:if test="${subStockList.subStockInDate eq null}">
 						<input type="checkbox" class="checking" name="checking">
 						<input type="hidden" class="subCode" name="" value="${subStockList.subCode}">
@@ -177,88 +225,114 @@ $(document).ready(function(){
 						<input type="hidden" class="ordersCode" name="" value="${subStockList.ordersCode}">
 						<input type="hidden" class="specificItemCode" name="" value="${subStockList.specificItemCode}">
 					</c:if>
-					
-					${subStockList.subStockCode}
-					${subStockList.headStockInDate}
+			</div>
+			<div class="col-sm-2">
+			</div>
+		</div>
+	</c:if>
+<c:if test="${YN eq 'Y'}">	
+	<c:if test="${subStockList.subStockInDate ne null}">
+		<div class="row tablediv">
+			<div class="col-sm-2">
+			</div>
+			<div class="col-sm-1">
+					${subStockList.subStockCode}					
+			</div>
+			<div class="col-sm-1">		
 					${subStockList.subStockInDate}
+			</div>
+			<div class="col-sm-1">		
 					${subStockList.subStockOut}
+			</div>
+			<div class="col-sm-1">		
 					${subStockList.ordersCode}
-					${subStockList.subCode}
+			</div>
+			<div class="col-sm-1">		
 					${subStockList.headItemCode}
+			</div>
+			<div class="col-sm-1">		
 					${subStockList.specificItemCode}
+			</div>
+			<div class="col-sm-1">		
 					${subStockList.subStaffCode}
-					<c:if test="${subStockList.subStockOut == 'N' && subStockList.subStockInDate ne null}">
-						<a href="/subStockOutY?subCode=${subStockList.subCode}&subStockCode=${subStockList.subStockCode}">[출하]</a>
-					</c:if>
-					<c:if test="${subStockList.subStockOut == 'Y'&& subStockList.subStockInDate ne null}">
-						[출하완료]
-					</c:if>
-					
-				</div>
-			</c:if>
-			<c:if test="${YN eq 'Y'}">	
-				<c:if test="${subStockList.subStockInDate ne null}">
-					<div>
-						<c:if test="${subStockList.subStockInDate eq null}">
-							<input type="checkbox" class="checking" name="checking">
-							<input type="hidden" class="subCode" name="" value="${subStockList.subCode}">
-							<input type="hidden" class="subStockCode" name="" value="${subStockList.subStockCode}">
-							<input type="hidden" class="ordersCode" name="" value="${subStockList.ordersCode}">
-							<input type="hidden" class="specificItemCode" name="" value="${subStockList.specificItemCode}">
-						</c:if>
-						${subStockList.subStockCode}
-						${subStockList.headStockInDate}
-						${subStockList.subStockInDate}
-						${subStockList.subStockOut}
-						${subStockList.ordersCode}
-						${subStockList.subCode}
-						${subStockList.headItemCode}
-						${subStockList.specificItemCode}
-						${subStockList.subStaffCode}
-						<c:if test="${subStockList.subStockOut == 'N' && subStockList.subStockInDate ne null}">
-								<a href="/subStockOutY?subCode=${subStockList.subCode}&subStockCode=${subStockList.subStockCode}">[출하]</a>
-						</c:if>
-						<c:if test="${subStockList.subStockOut == 'Y' && subStockList.subStockInDate ne null}">
-							[출하완료]
-						</c:if>
-						</div>
+			</div>
+			<div class="col-sm-1">		
+				<c:if test="${subStockList.subStockOut == 'N' && subStockList.subStockInDate ne null}">
+					<a href="/subStockOutY?subCode=${subStockList.subCode}&subStockCode=${subStockList.subStockCode}">[출하]</a>
 				</c:if>
-			</c:if>
-			<c:if test="${YN eq 'N'}">	
+				<c:if test="${subStockList.subStockOut == 'Y'&& subStockList.subStockInDate ne null}">
+					[출하완료]
+				</c:if>
 				<c:if test="${subStockList.subStockInDate eq null}">
-					<div>
-						<c:if test="${subStockList.subStockInDate eq null}">
-							<input type="checkbox" class="checking" name="checking">
-							<input type="hidden" class="subCode" name="" value="${subStockList.subCode}">
-							<input type="hidden" class="subStockCode" name="" value="${subStockList.subStockCode}">
-							<input type="hidden" class="ordersCode" name="" value="${subStockList.ordersCode}">
-							<input type="hidden" class="specificItemCode" name="" value="${subStockList.specificItemCode}">
-						</c:if>
-						${subStockList.subStockCode}
-						${subStockList.headStockInDate}
-						${subStockList.subStockInDate}
-						${subStockList.subStockOut}
-						${subStockList.ordersCode}
-						${subStockList.subCode}
-						${subStockList.headItemCode}
-						${subStockList.specificItemCode}
-						${subStockList.subStaffCode}
-						<c:if test="${subStockList.subStockOut == 'N' && subStockList.subStockInDate ne null}">
-								<a href="/subStockOutY?subCode=${subStockList.subCode}&subStockCode=${subStockList.subStockCode}">[출하]</a>
-						</c:if>
-						<c:if test="${subStockList.subStockOut == 'Y' && subStockList.subStockInDate ne null}">
-							[출하완료]
-						</c:if>
-					</div>
+					<input type="checkbox" class="checking" name="checking">
+					<input type="hidden" class="subCode" name="" value="${subStockList.subCode}">
+					<input type="hidden" class="subStockCode" name="" value="${subStockList.subStockCode}">
+					<input type="hidden" class="ordersCode" name="" value="${subStockList.ordersCode}">
+					<input type="hidden" class="specificItemCode" name="" value="${subStockList.specificItemCode}">
 				</c:if>
-			</c:if>
-			
-		</c:forEach>
-		
-	</div>
-	<input type="button" class="btn btn-default" id="subWarehousingBtn" value="입고"/>
-	<input type="button" class="btn btn-default" id="viewMoreBtn" value="더보기"/>
-</form>
+			</div>
+			<div class="col-sm-2">
+			</div>
+		</div>
+		</c:if>
+	</c:if>
+<c:if test="${YN eq 'N'}">	
+	<c:if test="${subStockList.subStockInDate eq null}">
+		<div class="row tablediv">
+			<div class="col-sm-2">
+			</div>
+			<div class="col-sm-1">
+					${subStockList.subStockCode}					
+			</div>
+			<div class="col-sm-1">		
+					${subStockList.subStockInDate}
+			</div>
+			<div class="col-sm-1">		
+					${subStockList.subStockOut}
+			</div>
+			<div class="col-sm-1">		
+					${subStockList.ordersCode}
+			</div>
+			<div class="col-sm-1">		
+					${subStockList.headItemCode}
+			</div>
+			<div class="col-sm-1">		
+					${subStockList.specificItemCode}
+			</div>
+			<div class="col-sm-1">		
+					${subStockList.subStaffCode}
+			</div>
+			<div class="col-sm-1">		
+				<c:if test="${subStockList.subStockOut == 'N' && subStockList.subStockInDate ne null}">
+					<a href="/subStockOutY?subCode=${subStockList.subCode}&subStockCode=${subStockList.subStockCode}">[출하]</a>
+				</c:if>
+				<c:if test="${subStockList.subStockOut == 'Y'&& subStockList.subStockInDate ne null}">
+					[출하완료]
+				</c:if>
+				<c:if test="${subStockList.subStockInDate eq null}">
+					<input type="checkbox" class="checking" name="checking">
+					<input type="hidden" class="subCode" name="" value="${subStockList.subCode}">
+					<input type="hidden" class="subStockCode" name="" value="${subStockList.subStockCode}">
+					<input type="hidden" class="ordersCode" name="" value="${subStockList.ordersCode}">
+					<input type="hidden" class="specificItemCode" name="" value="${subStockList.specificItemCode}">
+				</c:if>
+			</div>
+			<div class="col-sm-2">
+			</div>
+		</div>
+	</c:if>
+</c:if>
+	
+</c:forEach>
+<div class="row tablediv">
+		<div class="col-sm-2">
+		</div>
+		<div class="col-sm-8">
+			<input type="button" class="btn btn-default" id="viewMoreBtn" value="더보기"/>
+		</div>
+		<div class="col-sm-2">
+		</div>
+</div>
 <jsp:include page="/WEB-INF/module/footer.jsp"/>
 </body>
 </html>

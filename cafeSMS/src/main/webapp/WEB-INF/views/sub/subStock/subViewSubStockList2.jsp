@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>subViewSubStockList2</title>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script>
 var list = function(upDown,criteria){
@@ -117,7 +117,7 @@ $(document).ready(function(){
 	<div class="col-sm-2">
 	</div>	
 	<div class="col-sm-8">
-		<h3>= 가맹재고리스트 =</h3>
+		<h3>= 재고 입고 유무 =</h3>
 	</div>
 	<div class="col-sm-2">
 	</div>	

@@ -136,7 +136,7 @@ $(document).ready(function() {
 		<!-- Wrapper for slides -->
 		<div class="carousel-inner" role="listbox">
 			<div class="item active">
-				<img src="/resources/img/spring.PNG" alt="spring" width="460" height="345">
+				<img src="/resources/img/latte.PNG" alt="latte" width="460" height="345">
 			</div>
 			
 			<div class="item">
@@ -148,7 +148,7 @@ $(document).ready(function() {
 			</div>
 			
 			<div class="item">
-				<img src="/resources/img/latte.PNG" alt="latte" width="460" height="345">
+				<img src="/resources/img/spring.PNG" alt="spring" width="460" height="345">
 			</div>
 		</div>
 	

@@ -121,8 +121,8 @@
 					<option value="Y" <c:if test="${YN eq 'Y'}">selected="selected"</c:if>>본사승인</option>
 					<option value="N" <c:if test="${YN eq 'N'}">selected="selected"</c:if>>승인대기</option>			
 				</select>
+				<a href="/subAddContract?subCode=${subCode}"><button class="btn btn-default">계약등록</button></a>
 			</h4>
-		<a href="/subAddContract?subCode=${subCode}"><button class="btn btn-default">계약등록</button></a>
 	</div>
 	<div class="col-sm-2">
 	</div>	

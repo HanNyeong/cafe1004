@@ -117,8 +117,9 @@ $(document).ready(function(){
 			<option value="" <c:if test="${YN eq ''}">selected="selected"</c:if>>::선택::</option>
 			<option value="Y" <c:if test="${YN eq 'Y'}">selected="selected"</c:if>>본사확인</option>
 			<option value="N" <c:if test="${YN eq 'N'}">selected="selected"</c:if>>승인대기</option>
-		</select></h4>
+		</select>
 		<a href="/subAddReturnsForm?subCode=${subCode}"><button class="btn btn-default">환불신청</button></a>
+		</h4>
 	</div>
 	<div class="col-sm-2">
 	</div>	

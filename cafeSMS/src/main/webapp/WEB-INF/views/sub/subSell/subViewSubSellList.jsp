@@ -9,19 +9,26 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript" src="resources/function/upDownCheck.js"></script>
 <script>
+	var list = function(upDown,criteria){
+		$('#upDown').attr('value',upDown);
+		$('#criteria').attr('value',criteria);
+		$('#subSellList').submit();	
+	}
+	
+	
 	
 	$(document).ready(function(){
-		var columnList = ['sub_sell_code','menu_code','sub_sell_date','sub_sell_practical_selling_price','pay_method','sub_sell_final_staff']
+		var columnList = ['sub_sell_code','sub_sell_group','sub_sell_date','sub_sell_practical_selling_price','total_account_group','sub_sell_final','sub_sell_final_date','pay_method','sub_code','event_code','sub_staff_code','sub_sell_final_staff','sub_sell_cost']
 		
 
 		$('.up').each(function(index,item){
 			$(item).click(function(){
-				list('ASC',columnList[index],$("#subSellList"));
+				list('ASC',columnList[index]);
 			});
 		});
 		$('.down').each(function(index,item){
 			$(item).click(function(){
-				list('DESC',columnList[index],$("#subSellList"));
+				list('DESC',columnList[index]);
 			});
 		});
 		// 더보기
@@ -132,8 +139,8 @@
 				<option value="Y" <c:if test="${YN eq 'Y'}">selected="selected"</c:if>>마감Y</option>
 				<option value="N" <c:if test="${YN eq 'N'}">selected="selected"</c:if>>마감N</option>
 			</select>
+			<input type="button" class="btn btn-default" id="subSellFinalBtn" value="마감"/>
 		</h4>
-		<input type="button" class="btn btn-default" id="subSellFinalBtn" value="마감"/>
 	</div>
 	<div class="col-sm-2">
 	</div>	
@@ -226,7 +233,7 @@
 		</div>
 	</c:if>
 </c:forEach>
-	</form>
+	
 <div class="row tablediv">
 	<div class="col-sm-2">
 	</div>
