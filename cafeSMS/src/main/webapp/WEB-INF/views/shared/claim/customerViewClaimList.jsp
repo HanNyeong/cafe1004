@@ -112,7 +112,7 @@ $(document).ready(function(){
 					<option value="customer_name" <c:if test="${claimSearch.searchKey eq 'customer_name'}">selected="selected"</c:if>>고객 이름</option>
 					<option value="customer_phone" <c:if test="${claimSearch.searchKey eq 'customer_phone'}">selected="selected"</c:if>>고객 번호</option>
 				</select>
-				<input type="text" id="search" name="search" value="${search.search}"/>
+				<input type="text" id="search" name="search" value="${claimSearch.searchClaim}"/>
 				<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
 				<input type="button" class="btn btn-default"  value="전체보기"/></a>
 				

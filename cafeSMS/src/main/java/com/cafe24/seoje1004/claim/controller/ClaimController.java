@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.seoje1004.claim.model.Claim;
+import com.cafe24.seoje1004.claim.model.ClaimSearch;
 import com.cafe24.seoje1004.claim.service.ClaimService;
 
 import com.cafe24.seoje1004.util.Search;
@@ -34,7 +35,7 @@ public class ClaimController {
 	
 	//본사가 전체 클래임리스트 조회
 	@RequestMapping(value = "/headViewClaimList")
-	public String headViewClaimList(Model model, Search claimSearch) {
+	public String headViewClaimList(Model model, ClaimSearch claimSearch) {
 		System.out.println("contractController headViewClaimList 실행!!");
 		//1.전체클래임리스트 조회
 		//2.status가 N,Y인거 구별
@@ -115,7 +116,7 @@ public class ClaimController {
 	
 	//가맹이 해당점의 클래임리스트 조회
 	@RequestMapping(value = "/subViewClaimList")
-	public String subViewClaimList(Model model,@RequestParam(value="subCode")String subCode,Search claimSearch) {
+	public String subViewClaimList(Model model,@RequestParam(value="subCode")String subCode,ClaimSearch claimSearch) {
 		System.out.println("contractController subViewClaimList 실행!!");
 		System.out.println("subCode : "+subCode);
 		//1.해당가맹의 클래임리스트 조회
@@ -162,7 +163,7 @@ public class ClaimController {
 	
 	//고객이 자신의 클래임을 조회
 	@RequestMapping(value = "/customerViewClaimList")
-	public String customerViewClaimList(Model model,Claim claim,Search claimSearch) {
+	public String customerViewClaimList(Model model,Claim claim,ClaimSearch claimSearch) {
 		System.out.println("contractController customerViewClaimList 실행!!");
 		System.out.println("claim : "+ claim);
 		

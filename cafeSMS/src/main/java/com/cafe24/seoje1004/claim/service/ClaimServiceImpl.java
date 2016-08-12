@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cafe24.seoje1004.claim.model.Claim;
 import com.cafe24.seoje1004.claim.model.ClaimFile;
+import com.cafe24.seoje1004.claim.model.ClaimSearch;
 import com.cafe24.seoje1004.claim.repository.ClaimDao;
 import com.cafe24.seoje1004.contract.model.ContractFile;
 
@@ -35,7 +36,7 @@ public class ClaimServiceImpl implements ClaimService {
 	
 	//본사가 전체클래임리스트 조회
 	@Override
-	public List<Claim> headViewClaimList(Search claimSearch) {
+	public List<Claim> headViewClaimList(ClaimSearch claimSearch) {
 		System.out.println("ClaimServiceImpl headViewClaimList 실행");
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("claimSearch", claimSearch);
@@ -83,7 +84,7 @@ public class ClaimServiceImpl implements ClaimService {
 	
 	//가맹이 해당점의 클래임리스트 조회
 	@Override
-	public List<Claim> subViewClaimList(String subCode, Search claimSearch) {
+	public List<Claim> subViewClaimList(String subCode, ClaimSearch claimSearch) {
 		System.out.println("ClaimServiceImpl subViewClaimList 실행");
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("subCode", subCode);
@@ -103,7 +104,7 @@ public class ClaimServiceImpl implements ClaimService {
 	
 	//고객이 자신의 클래임을 조회
 	@Override
-	public List<Claim> customerViewClaimList(Claim claim,Search claimSearch) {
+	public List<Claim> customerViewClaimList(Claim claim,ClaimSearch claimSearch) {
 		System.out.println("ClaimServiceImpl customerViewClaimList");
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("claim", claim);
