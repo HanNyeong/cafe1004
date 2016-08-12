@@ -23,15 +23,13 @@
 			var quantity = $("input[class=quantity]:eq(" + index + ")").val();
 			var eventDiscountRate = $("input[class=eventDiscountRate]:eq(" + index + ")").val();
 			if($(this).is(':checked')){
-				$("input[class=menuIngrePriceText]:eq(" + index + ")").val(menuIngrePrice*quantity);
 				$("input[class=menuSellingPriceText]:eq(" + index + ")").val(menuSellingPrice*quantity);
-				$("input[class=soonPriceText]:eq(" + index + ")").val(soonPrice*quantity);
 				if($('#payMethod').val() != ""){
 					totalPrice= Number(totalPrice);
 					sum = Number(sum);
-					sum +=Number(soonPrice)*Number(quantity);
+					sum +=Number(menuSellingPrice)*Number(quantity);
 					$('#sum').val(sum);
-					totalPrice+=Number(payMethodValue)*Number(soonPrice)*Number(quantity);
+					totalPrice+=Number(payMethodValue)*Number(menuSellingPrice)*Number(quantity);
 					$('#totalPrice').val(totalPrice);
 				}else{
 					$('#totalPriceHelper').css('color','red');
@@ -134,9 +132,7 @@
 				<input type="checkbox" class="checking" />
 				
 				수량 : <input class="quantity" type="number" min="1" value=""/>
-				원가 : <input type="text" class="menuIngrePriceText" value="" readonly="readonly"/>
 				판매가 : <input type="text" class="menuSellingPriceText" value="" readonly="readonly"/>
-				순이익 : <input type="text" class="soonPriceText" value="" readonly="readonly"/>
 				
 			</div>
 		</c:forEach>

@@ -94,6 +94,7 @@
 			<input type="hidden" id="criteria" name="criteria" value="${search.criteria}"/>
 			<input type="hidden" id="viewMore" name="viewMore" value="${search.viewMore}"/>
 			<input type="hidden" id="subCode" name="subCode" value="${subCode}"/>
+			
 			<input type="hidden" id="YN"  name="YN" value="${YN}"/>
 			
 			
@@ -111,7 +112,7 @@
 			<input type="text" id="search" name="search" value="${search.search}"/>
 			<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
 			<a href="/subViewSubSellList?subCode=${subCode}"><input type="button" class="btn btn-default"  value="전체보기"/></a>
-		</form>
+		
 	</div>
 	<div class="col-sm-2">
 	</div>
@@ -224,7 +225,7 @@
 		</div>
 	</c:if>
 </c:forEach>
-	
+</form>
 <div class="row tablediv">
 	<div class="col-sm-2">
 	</div>
