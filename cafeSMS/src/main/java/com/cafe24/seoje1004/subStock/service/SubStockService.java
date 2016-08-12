@@ -3,7 +3,6 @@ package com.cafe24.seoje1004.subStock.service;
 import java.util.List;
 
 import com.cafe24.seoje1004.subStock.model.SubStock;
-import com.cafe24.seoje1004.subStock.model.SubStockSearch;
 import com.cafe24.seoje1004.subStock.model.SubStocks;
 import com.cafe24.seoje1004.util.Search;
 

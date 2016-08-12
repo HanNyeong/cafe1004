@@ -55,7 +55,7 @@
 				<option value="subject_code" <c:if test="${subjectSearch.searchKey eq 'subject_code'}">selected="selected"</c:if>>가맹거래처코드</option>
 				<option value="subject_name" <c:if test="${subjectSearch.searchKey eq 'subject_name'}">selected="selected"</c:if>>가맹거래처명</option>
 			</select>
-			<input type="text" id="searchSubject" name="searchSubject" value="${subjectSearch.searchSubject}"/>
+			<input type="text" id="searchSubject" name="searchSubject" value="${subjectSearch.search}"/>
 			<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
 			<a href="/viewSubjectList"><input type="button" class="btn btn-default" value="전체보기"/></a>
 		</form>

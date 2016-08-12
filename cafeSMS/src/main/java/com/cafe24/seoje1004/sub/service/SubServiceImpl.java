@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.cafe24.seoje1004.sub.model.Sub;
 import com.cafe24.seoje1004.sub.model.SubLogin;
-import com.cafe24.seoje1004.sub.model.SubSearch;
 import com.cafe24.seoje1004.sub.repository.SubDao;
+
 
 @Service
 public class SubServiceImpl implements SubService{

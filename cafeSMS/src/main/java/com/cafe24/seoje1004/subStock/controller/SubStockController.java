@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.seoje1004.subStock.model.SubStock;
-import com.cafe24.seoje1004.subStock.model.SubStockSearch;
 import com.cafe24.seoje1004.subStock.model.SubStocks;
 import com.cafe24.seoje1004.subStock.service.SubStockService;
 import com.cafe24.seoje1004.util.Search;
+
 
 @Controller
 public class SubStockController {

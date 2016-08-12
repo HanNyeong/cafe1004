@@ -11,10 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cafe24.seoje1004.subSell.model.SubSell;
 import com.cafe24.seoje1004.subStock.model.SubStock;
-import com.cafe24.seoje1004.subStock.model.SubStockSearch;
 import com.cafe24.seoje1004.subStock.model.SubStocks;
 import com.cafe24.seoje1004.subStock.repository.SubStockDao;
 import com.cafe24.seoje1004.util.Search;
+
 
 @Service
 public class SubStockServiceImpl implements SubStockService{

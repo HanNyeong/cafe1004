@@ -61,7 +61,7 @@
 			<option value="h_item_code" <c:if test="${subDumpSearch.searchKey eq 'cart_quantity'}">selected="selected"</c:if>>본사 상품 코드</option>
 			<option value="sub_code" <c:if test="${subDumpSearch.searchKey eq 'sub_code'}">selected="selected"</c:if>>가맹 대표 코드</option>
 		</select>
-		<input type="text" id="searchSubDump" name="searchSubDump" value="${subDumpSearch.searchSubDump}"/>
+		<input type="text" id="searchSubDump" name="searchSubDump" value="${subDumpSearch.search}"/>
 		<input type="button" id="searchBtn" class="btn btn-default"  value="검색" /><a href="/viewsubDumpList"> <input type="button" class="btn btn-default" value="전체보기"/></a>
 	</form>
 	</div>

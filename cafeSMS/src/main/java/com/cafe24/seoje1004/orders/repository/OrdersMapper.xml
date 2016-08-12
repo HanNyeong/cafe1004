@@ -239,7 +239,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectSpecificCode"
 			parameterType="com.cafe24.seoje1004.orders.model.Orders"
 			resultType="java.lang.String">
-			select specific_item_code from specific_item where head_item_code = #{headItemCode} 
+			select 
+				specific_item_code 
+			from 
+				specific_item 
+			where 
+				head_item_code = #{headItemCode} 
 			and NOW() >= specific_item_expiry_date  
 			and specific_item_out = 'N'
 	</select>
