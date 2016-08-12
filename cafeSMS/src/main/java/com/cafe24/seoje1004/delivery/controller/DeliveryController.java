@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.seoje1004.delivery.model.Delivery;
-import com.cafe24.seoje1004.delivery.model.DeliverySearch;
 import com.cafe24.seoje1004.delivery.service.DeliveryService;
 import com.cafe24.seoje1004.util.Search;
 

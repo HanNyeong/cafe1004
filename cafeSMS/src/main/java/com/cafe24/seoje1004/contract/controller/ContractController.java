@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.cafe24.seoje1004.contract.model.Contract;
-import com.cafe24.seoje1004.contract.model.ContractSearch;
 import com.cafe24.seoje1004.contract.service.ContractService;
+
 import com.cafe24.seoje1004.util.Search;
 
 @Controller

@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import com.cafe24.seoje1004.contract.model.Contract;
-import com.cafe24.seoje1004.contract.model.ContractSearch;
+
 import com.cafe24.seoje1004.util.Search;
 
 public interface ContractService {

@@ -8,9 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cafe24.seoje1004.recipe.model.Recipe;
-import com.cafe24.seoje1004.recipe.model.RecipeSearch;
 import com.cafe24.seoje1004.recipe.repository.RecipeDao;
 import com.cafe24.seoje1004.sub.model.SubLogin;
+import com.cafe24.seoje1004.util.Search;
+
 
 @Service
 public class RecipeServiceImpl implements RecipeService {
@@ -24,7 +25,7 @@ public class RecipeServiceImpl implements RecipeService {
 	 * @return
 	 */
 	@Override
-	public List<Recipe> subViewRecipeListService(RecipeSearch recipeSearch, SubLogin subLogin, String menuCode){
+	public List<Recipe> subViewRecipeListService(Search recipeSearch, SubLogin subLogin, String menuCode){
 		System.out.println("RecipeServiceImpl subViewRecipeListService실행");
 		System.out.println("RecipeServiceImpl subViewRecipeListService. 조회 실행");
 	

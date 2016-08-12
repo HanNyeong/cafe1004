@@ -1,7 +1,8 @@
 package com.cafe24.seoje1004.recipe.service;
 
-import com.cafe24.seoje1004.recipe.model.RecipeSearch;
 import com.cafe24.seoje1004.sub.model.SubLogin;
+import com.cafe24.seoje1004.util.Search;
+
 
 public interface RecipeService {
 
@@ -12,5 +13,5 @@ public interface RecipeService {
 	 * @param menuCode
 	 * @return
 	 */
-	Object subViewRecipeListService(RecipeSearch recipeSearch, SubLogin subLogin, String menuCode);
+	Object subViewRecipeListService(Search recipeSearch, SubLogin subLogin, String menuCode);
 }

@@ -5,9 +5,10 @@ import java.util.List;
 import com.cafe24.seoje1004.cart.model.Cart;
 import com.cafe24.seoje1004.cart.model.CartDetail;
 import com.cafe24.seoje1004.cart.model.CartsDetail;
-import com.cafe24.seoje1004.cart.model.CartSearch;
 import com.cafe24.seoje1004.cart.model.Carts;
 import com.cafe24.seoje1004.headItem.model.HeadItem;
+
+import com.cafe24.seoje1004.util.Search;
 
 public interface CartService {
 	/**
@@ -24,7 +25,7 @@ public interface CartService {
 	 * @param cart
 	 * @return
 	 */
-	List<CartsDetail> viewCartListService(CartSearch cartSearch, CartDetail cartdetail);
+	List<CartsDetail> viewCartListService(Search cartSearch, CartDetail cartdetail);
 	
 	/**
 	 * 장바구니 수정을 하는 서비스메서드 입니다.(GET)

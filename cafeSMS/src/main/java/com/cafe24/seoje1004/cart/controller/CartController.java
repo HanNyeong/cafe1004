@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.cafe24.seoje1004.cart.model.Cart;
 import com.cafe24.seoje1004.cart.model.CartDetail;
 import com.cafe24.seoje1004.cart.model.CartsDetail;
-import com.cafe24.seoje1004.cart.model.CartSearch;
 import com.cafe24.seoje1004.cart.model.Carts;
 import com.cafe24.seoje1004.cart.service.CartService;
+import com.cafe24.seoje1004.util.Search;
+;
 
 @Controller
 public class CartController {
@@ -46,7 +47,7 @@ public class CartController {
 	 * @return
 	 */
 	@RequestMapping(value="/subViewCartList")
-	public String subViewCartList(Model model, CartSearch cartSearch,CartDetail cartdetail){
+	public String subViewCartList(Model model, Search cartSearch,CartDetail cartdetail){
 		System.out.println("CartController subViewCartList실행");
 		System.out.println(cartSearch);
 		System.out.println(cartdetail+"====확인");

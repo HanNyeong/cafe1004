@@ -95,7 +95,7 @@
 			<option value="h_item_regit_price" <c:if test="${headItemSearch.searchKey eq 'h_item_regit_price'}">selected="selected"</c:if>>소비자가격</option>
 			
 		</select>
-		<input type="text" id="searchHeadItem" name="searchHeadItem" value="${headItemSearch.searchHeadItem}"/>
+		<input type="text" id="searchHeadItem" name="searchHeadItem" value="${headItemSearch.search}"/>
 		<input type="button" class="btn btn-default" id="searchBtn" value="검색" /> <a href="/viewHeadItemList"><input type="button" class="btn btn-default" value="전체보기"/></a>
 	</form>
 	</div>

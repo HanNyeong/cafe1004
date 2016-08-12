@@ -6,9 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.cafe24.seoje1004.recipe.model.RecipeSearch;
 import com.cafe24.seoje1004.recipe.service.RecipeService;
 import com.cafe24.seoje1004.sub.model.SubLogin;
+import com.cafe24.seoje1004.util.Search;
+
 
 @Controller
 public class RecipeController {
@@ -24,7 +25,7 @@ public class RecipeController {
 	 */
 	@RequestMapping(value="/subViewRecipeList")
 	
-	public String subViewRecipeList(Model model, RecipeSearch recipeSearch,SubLogin subLogin,
+	public String subViewRecipeList(Model model, Search recipeSearch,SubLogin subLogin,
 									@RequestParam("menuCode")String menuCode,
 									@RequestParam("menuName")String menuName){
 		System.out.println("RecipeController subViewRecipeList실행");

@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cafe24.seoje1004.delivery.model.Delivery;
-import com.cafe24.seoje1004.delivery.model.DeliverySearch;
+
 
 @Repository
 public class DeliveryDaoImpl implements DeliveryDao {

@@ -13,10 +13,11 @@ import com.cafe24.seoje1004.cart.model.CartsDetail;
 import com.cafe24.seoje1004.delivery.model.Delivery;
 import com.cafe24.seoje1004.orders.model.OrderGroup;
 import com.cafe24.seoje1004.orders.model.Orders;
-import com.cafe24.seoje1004.orders.model.OrdersSearch;
 import com.cafe24.seoje1004.orders.service.OrdersService;
 import com.cafe24.seoje1004.sub.model.SubLogin;
 import com.cafe24.seoje1004.subAccount.model.SubAccounts;
+import com.cafe24.seoje1004.util.Search;
+
 
 
 @Controller
@@ -40,7 +41,7 @@ public class OrdersController {
 	
 	//주문내역 리스트 컨트롤러
 	@RequestMapping(value="/viewOrdersList")
-	public String viewOrdersList(Model model,OrdersSearch ordersSearch,SubLogin subLogin) {
+	public String viewOrdersList(Model model,Search ordersSearch,SubLogin subLogin) {
 		System.out.println("OrdersController//viewOrdersList실행");
 		List<Orders> ordersList = ordersService.viewOrdersListService(ordersSearch,subLogin);
 		model.addAttribute("ordersList",ordersList);
@@ -67,7 +68,7 @@ public class OrdersController {
 	
 	//본사측 결제 Y인상품 리스트 뿌려주기
 	@RequestMapping(value="/headViewOrdersList")
-	public String headViewOrdersList(Model model,OrdersSearch ordersSearch) {
+	public String headViewOrdersList(Model model,Search ordersSearch) {
 		System.out.println("본사측  ordersList//headViewOrdersList실행");
 		List<Orders> ordersList = ordersService.viewOrdersListByHeadService(ordersSearch);
 		model.addAttribute("ordersList",ordersList);
@@ -76,7 +77,7 @@ public class OrdersController {
 	
 	//결제 페이지로 이동
 	@RequestMapping(value="/subOrdersPayConfirm")
-	public String subOrdersPayConfirm(Model model,OrdersSearch ordersSearch,SubLogin subLogin){
+	public String subOrdersPayConfirm(Model model,Search ordersSearch,SubLogin subLogin){
 		System.out.println("OrdersController//subOrdersPayConfirm실행");
 		List<Orders> ordersList = ordersService.viewOrdersListService(ordersSearch,subLogin);
 		model.addAttribute("ordersList", ordersList);

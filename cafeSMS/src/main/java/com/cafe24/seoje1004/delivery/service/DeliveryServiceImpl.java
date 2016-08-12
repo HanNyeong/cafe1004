@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cafe24.seoje1004.delivery.model.Delivery;
-import com.cafe24.seoje1004.delivery.model.DeliverySearch;
 import com.cafe24.seoje1004.delivery.repository.DeliveryDao;
+
 import com.cafe24.seoje1004.util.Search;
 
 @Service

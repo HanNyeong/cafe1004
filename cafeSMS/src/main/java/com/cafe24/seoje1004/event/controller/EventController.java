@@ -5,8 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.cafe24.seoje1004.event.model.EventSearch;
 import com.cafe24.seoje1004.event.service.EventService;
+
+import com.cafe24.seoje1004.util.Search;
 
 @Controller
 public class EventController {
@@ -14,7 +15,7 @@ public class EventController {
 	private EventService eventService;
 	
 	@RequestMapping(value="/viewEventList")
-	public String viewEventList(Model model,EventSearch eventSearch) {
+	public String viewEventList(Model model,Search eventSearch) {
 		System.out.println("EventController//viewEventList 실행");
 		model.addAttribute(eventService.viewEventService(eventSearch));
 		model.addAttribute("eventSearch",eventSearch);

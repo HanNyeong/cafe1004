@@ -57,7 +57,7 @@
 				<option value="event_code" <c:if test="${eventSearch.searchKey eq 'event_code'}">selected="selected"</c:if>>행사코드</option>
 				<option value="event_name" <c:if test="${eventSearch.searchKey eq 'event_name'}">selected="selected"</c:if>>행사명</option>
 			</select>
-			<input type="text" id="searchEvent" name="searchEvent" value="${eventSearch.searchEvent}"/>
+			<input type="text" id="searchEvent" name="searchEvent" value="${eventSearch.search}"/>
 			<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
 			<a href="/viewEventList"><input type="button" class="btn btn-default" value="전체보기"/></a>
 		</form>

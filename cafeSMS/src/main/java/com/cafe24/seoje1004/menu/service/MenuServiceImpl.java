@@ -8,9 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cafe24.seoje1004.menu.model.Menu;
-import com.cafe24.seoje1004.menu.model.MenuSearch;
 import com.cafe24.seoje1004.menu.repository.MenuDao;
 import com.cafe24.seoje1004.sub.model.SubLogin;
+import com.cafe24.seoje1004.util.Search;
+
 @Service
 public class MenuServiceImpl implements MenuService{
 
@@ -22,7 +23,7 @@ public class MenuServiceImpl implements MenuService{
 	 * @return
 	 */
 	@Override
-	public List<Menu> subViewMenuListService(MenuSearch menuSearch, SubLogin subLogin) {
+	public List<Menu> subViewMenuListService(Search menuSearch, SubLogin subLogin) {
 		System.out.println("MenuServiceImpl subViewMenuListService실행");
 		System.out.println("MenuServiceImpl subViewMenuListService. 조회 실행");
 		

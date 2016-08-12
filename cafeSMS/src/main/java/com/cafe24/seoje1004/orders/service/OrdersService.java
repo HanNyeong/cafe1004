@@ -12,27 +12,28 @@ import com.cafe24.seoje1004.delivery.model.Delivery;
 import com.cafe24.seoje1004.headItem.model.HeadItem;
 import com.cafe24.seoje1004.orders.model.OrderGroup;
 import com.cafe24.seoje1004.orders.model.Orders;
-import com.cafe24.seoje1004.orders.model.OrdersSearch;
 import com.cafe24.seoje1004.sub.model.SubLogin;
 import com.cafe24.seoje1004.subAccount.model.SubAccounts;
 import com.cafe24.seoje1004.subject.model.Subject;
+
+import com.cafe24.seoje1004.util.Search;
 
 @Service
 public interface OrdersService {
 
 	List<CartDetail> viewOrdersInCartService(CartsDetail cartsDetail);
 
-	List<Orders> viewOrdersListService(OrdersSearch ordersSearch, SubLogin subLogin);
+	List<Orders> viewOrdersListService(Search ordersSearch, SubLogin subLogin);
 
 	void addOrdersService(CartsDetail cartDetail, Delivery delivery, Orders orders,SubLogin subLogin);
 
 	void modifyOrdersPayService(OrderGroup orderGroup,SubLogin subLogin,SubAccounts subAccounts);
 
-	List<Orders> subOrdersPayConfirmService(OrdersSearch ordersSearch, SubLogin subLogin);
+	List<Orders> subOrdersPayConfirmService(Search ordersSearch, SubLogin subLogin);
 
 	void subDeleteOrdersCancelService(OrderGroup orderGroup);
 
-	List<Orders> viewOrdersListByHeadService(OrdersSearch ordersSearch);
+	List<Orders> viewOrdersListByHeadService(Search ordersSearch);
 
 	void modifyOrdersConfirmService(OrderGroup orderGroup);
 

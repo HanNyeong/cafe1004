@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.cafe24.seoje1004.returns.model.AddReturns;
 import com.cafe24.seoje1004.returns.model.Returns;
-import com.cafe24.seoje1004.returns.model.ReturnsSearch;
+
 import com.cafe24.seoje1004.returns.model.SubStock;
-import com.cafe24.seoje1004.returns.model.SubStockSearch;
+
 import com.cafe24.seoje1004.util.Search;
 
 public interface ReturnsService {

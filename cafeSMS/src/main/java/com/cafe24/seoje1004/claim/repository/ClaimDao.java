@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.cafe24.seoje1004.claim.model.Claim;
 import com.cafe24.seoje1004.claim.model.ClaimFile;
-import com.cafe24.seoje1004.claim.model.ClaimSearch;
+
 
 public interface ClaimDao {
 	/**

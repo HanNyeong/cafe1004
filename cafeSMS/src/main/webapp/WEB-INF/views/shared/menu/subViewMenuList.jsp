@@ -57,7 +57,7 @@
 				<option value="menu_name" <c:if test="${menuSearch.searchKey eq 'menu_name'}">selected="selected"</c:if>>메뉴 이름</option>
 				<option value="event_code" <c:if test="${menuSearch.searchKey eq 'event_code'}">selected="selected"</c:if>>행사 코드</option>
 			</select>
-			<input type="text" id="searchMenu" name="searchMenu" value="${menuSearch.searchMenu}"/>
+			<input type="text" id="searchMenu" name="searchMenu" value="${menuSearch.search}"/>
 			<input type="button" id="searchBtn" class="btn btn-default" value="검색" /><a href="/viewMenuList">
 			<input type="button" class="btn btn-default" value="전체보기"/></a>
 		</form>

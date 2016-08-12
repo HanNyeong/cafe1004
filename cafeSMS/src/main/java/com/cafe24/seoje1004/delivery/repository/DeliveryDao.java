@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.cafe24.seoje1004.delivery.model.Delivery;
-import com.cafe24.seoje1004.delivery.model.DeliverySearch;
+
 
 public interface DeliveryDao {
 	/**

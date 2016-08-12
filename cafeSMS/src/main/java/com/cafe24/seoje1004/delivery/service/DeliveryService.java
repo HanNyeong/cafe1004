@@ -3,7 +3,7 @@ package com.cafe24.seoje1004.delivery.service;
 import java.util.List;
 
 import com.cafe24.seoje1004.delivery.model.Delivery;
-import com.cafe24.seoje1004.delivery.model.DeliverySearch;
+
 import com.cafe24.seoje1004.util.Search;
 
 public interface DeliveryService {

@@ -19,13 +19,14 @@ import com.cafe24.seoje1004.delivery.model.Delivery;
 import com.cafe24.seoje1004.headItem.model.HeadItem;
 import com.cafe24.seoje1004.orders.model.OrderGroup;
 import com.cafe24.seoje1004.orders.model.Orders;
-import com.cafe24.seoje1004.orders.model.OrdersSearch;
 import com.cafe24.seoje1004.orders.repository.OrdersDao;
 import com.cafe24.seoje1004.sub.model.SubLogin;
 import com.cafe24.seoje1004.subAccount.model.SubAccount;
 import com.cafe24.seoje1004.subAccount.model.SubAccounts;
 import com.cafe24.seoje1004.subStock.model.SubStock;
 import com.cafe24.seoje1004.subject.model.Subject;
+
+import com.cafe24.seoje1004.util.Search;
 
 @Service
 public class OrdersServiceImpl implements OrdersService{
@@ -45,7 +46,7 @@ public class OrdersServiceImpl implements OrdersService{
 	}
 	//주문내역 뿌려주는 List Service 0804 박효민
 	@Override
-	public List<Orders> viewOrdersListService(OrdersSearch ordersSearch, SubLogin subLogin) {
+	public List<Orders> viewOrdersListService(Search ordersSearch, SubLogin subLogin) {
 		System.out.println("OrdersServiceImpl//viewOrdersListService실행");
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("ordersSearch", ordersSearch);
@@ -152,7 +153,7 @@ public class OrdersServiceImpl implements OrdersService{
 	}
 	//결제페이지로이동
 	@Override
-	public List<Orders> subOrdersPayConfirmService(OrdersSearch ordersSearch, SubLogin subLogin) {
+	public List<Orders> subOrdersPayConfirmService(Search ordersSearch, SubLogin subLogin) {
 		System.out.println("OrdersServiceImpl//viewOrdersListService실행");
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("ordersSearch", ordersSearch);
@@ -174,7 +175,7 @@ public class OrdersServiceImpl implements OrdersService{
 	}
 	//본사측 orders승인을위한 service
 	@Override
-	public List<Orders> viewOrdersListByHeadService(OrdersSearch ordersSearch) {
+	public List<Orders> viewOrdersListByHeadService(Search ordersSearch) {
 		System.out.println("viewOrdersListByHeadService실행");
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("ordersSearch", ordersSearch);

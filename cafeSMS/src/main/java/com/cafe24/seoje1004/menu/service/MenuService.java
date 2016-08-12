@@ -3,8 +3,8 @@ package com.cafe24.seoje1004.menu.service;
 import java.util.List;
 
 import com.cafe24.seoje1004.menu.model.Menu;
-import com.cafe24.seoje1004.menu.model.MenuSearch;
 import com.cafe24.seoje1004.sub.model.SubLogin;
+import com.cafe24.seoje1004.util.Search;
 
 public interface MenuService {
 
@@ -14,6 +14,6 @@ public interface MenuService {
 	 * @param subLogin
 	 * @return
 	 */
-	List<Menu> subViewMenuListService(MenuSearch menuSearch,SubLogin subLogin);
+	List<Menu> subViewMenuListService(Search menuSearch,SubLogin subLogin);
 
 }
