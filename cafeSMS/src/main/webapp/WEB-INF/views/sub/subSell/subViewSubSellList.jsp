@@ -9,26 +9,19 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript" src="resources/function/upDownCheck.js"></script>
 <script>
-	var list = function(upDown,criteria){
-		$('#upDown').attr('value',upDown);
-		$('#criteria').attr('value',criteria);
-		$('#subSellList').submit();	
-	}
-	
-	
 	
 	$(document).ready(function(){
-		var columnList = ['sub_sell_code','sub_sell_group','sub_sell_date','sub_sell_practical_selling_price','total_account_group','sub_sell_final','sub_sell_final_date','pay_method','sub_code','event_code','sub_staff_code','sub_sell_final_staff','sub_sell_cost']
+		var columnList = ['sub_sell_code','menu_code','sub_sell_date','sub_sell_practical_selling_price','pay_method','sub_sell_final_staff']
 		
 
 		$('.up').each(function(index,item){
 			$(item).click(function(){
-				list('ASC',columnList[index]);
+				list('ASC',columnList[index],$("#subSellList"));
 			});
 		});
 		$('.down').each(function(index,item){
 			$(item).click(function(){
-				list('DESC',columnList[index]);
+				list('DESC',columnList[index],$("#subSellList"));
 			});
 		});
 		// 더보기
@@ -118,7 +111,7 @@
 			<input type="text" id="search" name="search" value="${search.search}"/>
 			<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
 			<a href="/subViewSubSellList?subCode=${subCode}"><input type="button" class="btn btn-default"  value="전체보기"/></a>
-		
+		</form>
 	</div>
 	<div class="col-sm-2">
 	</div>
