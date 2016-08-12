@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cafe24.seoje1004.sub.model.SubLogin;
-import com.cafe24.seoje1004.subAccount.model.SubAccount;
 import com.cafe24.seoje1004.subStaff.model.SubStaff;
 import com.cafe24.seoje1004.subStaff.service.SubStaffService;
 import com.cafe24.seoje1004.util.Search;
