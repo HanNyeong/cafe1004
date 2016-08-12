@@ -3,7 +3,7 @@ package com.cafe24.seoje1004.subDump.service;
 import java.util.List;
 
 import com.cafe24.seoje1004.subDump.model.SubDump;
-import com.cafe24.seoje1004.subDump.model.SubDumpSearch;
+import com.cafe24.seoje1004.util.Search;
 
 public interface SubDumpService {
 	
@@ -27,6 +27,6 @@ public interface SubDumpService {
 	 * @param subDump
 	 * @return
 	 */
-	List<SubDump> viewSubDumpListService(SubDumpSearch subDumpSearch, SubDump subDump);
+	List<SubDump> viewSubDumpListService(Search subDumpSearch, SubDump subDump);
 
 }

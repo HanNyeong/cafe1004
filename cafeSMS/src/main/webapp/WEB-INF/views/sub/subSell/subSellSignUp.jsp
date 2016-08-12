@@ -9,37 +9,55 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript">
 
+	$.calculator = function(){
+		var totalPrice = $('#totalPrice').val();
+		totalPrice = 0 ;
+		var sum = $('#sum').val();
+		sum = 0;
+		$('.checking').each(function(index,item){
+			var payMethodValue = $('#payMethodValue').val();
+			var menuIngrePrice = $("input[class=menuIngrePrice]:eq(" + index + ")").val();
+			var quantity = $("input[class=quantity]:eq(" + index + ")").val();
+			var menuSellingPrice = $("input[class=menuSellingPrice]:eq(" + index + ")").val();
+			var soonPrice = $("input[class=soonPrice]:eq(" + index + ")").val();
+			if($(this).is(':checked')){
+				$("input[class=menuIngrePriceText]:eq(" + index + ")").val(menuIngrePrice*quantity);
+				$("input[class=menuSellingPriceText]:eq(" + index + ")").val(menuSellingPrice*quantity);
+				$("input[class=soonPriceText]:eq(" + index + ")").val(soonPrice*quantity);
+				if($('#payMethod').val() != ""){
+					totalPrice= Number(totalPrice);
+					sum = Number(sum);
+					console.log(typeof Number(sum));
+					console.log(typeof sum);
+					
+					console.log(typeof totalPrice+"이거");
+					sum +=Number(soonPrice)*Number(quantity);
+					$('#sum').val(sum);
+					totalPrice+=Number(payMethodValue)*Number(soonPrice)*Number(quantity);
+					$('#totalPrice').val(totalPrice);
+				}
+			}else{
+				$("input[class=menuIngrePriceText]:eq(" + index + ")").val();
+				$("input[class=menuSellingPriceText]:eq(" + index + ")").val();
+				$("input[class=soonPriceText]:eq(" + index + ")").val();
+			}
+		});
+	}
+
 	$(document).ready(function(){
 		console.log("ready");
-		
-		
-		//수량을 적용
-
-		$(".totalSoonPriceBtn").click(function(){
-			var quanA = $(".quantity").val();
-			var quanB = $(".soonPrice").val();
-			var quanC = quanA * quanB;
-			$(".totalSoonPrice").val(quanC);
+		$('.checking').click(function(){
+				$.calculator();
 		});
-		
-		
-		//결제방식에따른 가격
-		$("#payMethod").change(function(){
-			if($("#payMethod").val() == "현금"){
-				$("#payMethodValue").val(1);
-				var payA = $("#sum").val();
-				var payB = $("#payMethodValue").val();
-				var payC = payA * payB;
-				$("#totalPrice").val(payC);
-			}else if($("#payMethod").val() == "카드"){
-				$("#payMethodValue").val(0.9);
-				var payA = $("#sum").val();
-				var payB = $("#payMethodValue").val();
-				var payC = payA * payB;
-				$("#totalPrice").val(payC);
-			}	
-		});	
-			
+		$('.totalSoonPriceBtn').click(function(){
+			$.calculator();
+		});
+		$('.quantity').change(function(){
+			$.calculator();
+		});
+		$('#payMethod').change(function(){
+			$.calculator();
+		});
 	});
 </script>
 </head>
@@ -49,15 +67,18 @@
 		<c:set var = "sum" value = "0" />
 		<c:forEach var="menuList" items="${menuList}">
 			<div>
+			
+			
 				${menuList.menuName}
+				<input type="hidden" class="menuIngrePrice" value="${menuList.menuIngrePrice}">
+				<input type="hidden" class="menuSellingPrice" value="${menuList.menuSellingPrice}">
+				<input type="hidden" class="soonPrice" value="${menuList.menuSellingPrice - menuList.menuIngrePrice}">
 				<input type="checkbox" class="checking" name="menuNameChk" value="${menuList.menuCode}"/>
-				수량 : <input class="quantity" type="number" value=""/>
-				<input type="text" name="menuIngrePrice" value="${menuList.menuIngrePrice}" readonly="readonly"/>
-				<input type="text" name="menuSellingPrice" value="${menuList.menuSellingPrice}" readonly="readonly"/>
-				<input type="text" class="soonPrice" name="soonPrice" value="${menuList.menuSellingPrice - menuList.menuIngrePrice}" readonly="readonly"/>
-				<input type="text" class="totalSoonPrice" name="totalSoonPrice" value="" readonly="readonly"/>
-				<input type="button" class="totalSoonPriceBtn" value="합계"/>
-					<c:set var= "sum" value="${sum + (menuList.menuSellingPrice - menuList.menuIngrePrice)}"/>			
+				수량 : <input class="quantity" type="number" min="1" value=""/>
+				원가 : <input type="text" class="menuIngrePriceText" name="menuIngrePrice" value="" readonly="readonly"/>
+				판매가 : <input type="text" class="menuSellingPriceText" name="menuSellingPrice" value="" readonly="readonly"/>
+				순이익 : <input type="text" class="soonPriceText" name="soonPrice" value="" readonly="readonly"/>
+					<c:set var= "sum" value=""/>			
 							
 			</div>
 			
@@ -78,6 +99,7 @@
 			
 				총 합계 : <input id="totalPrice" type="text" value="" readonly="readonly"/>
 			</div>
+			<input type="button" >
 	</form>
 </body>
 </html>

@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cafe24.seoje1004.subDump.model.SubDump;
-import com.cafe24.seoje1004.subDump.model.SubDumpSearch;
 import com.cafe24.seoje1004.subDump.repository.SubDumpDao;
+import com.cafe24.seoje1004.util.Search;
 
 @Service
 public class SubDumpServiceImpl implements SubDumpService {
@@ -42,7 +42,7 @@ public class SubDumpServiceImpl implements SubDumpService {
 	 * 폐기 리스트를 리턴하는 서비스 메서드 입니다.
 	 */
 	@Override
-	public List<SubDump> viewSubDumpListService(SubDumpSearch subDumpSearch, SubDump subDump) {
+	public List<SubDump> viewSubDumpListService(Search subDumpSearch, SubDump subDump) {
 		System.out.println("SubDumpServiceImpl viewSubDumpListService실행");
 		System.out.println("SubDumpServiceImpl viewSubDumpListService. 조회 실행");
 		Map<String,Object> map = new HashMap<String,Object>();
