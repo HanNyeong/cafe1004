@@ -37,6 +37,9 @@ $(document).ready(function() {
 					$('#claimMainForm').submit();
 				}			
 			});
+			
+			
+			
 });
 </script>
 </head>
@@ -94,6 +97,19 @@ $(document).ready(function() {
 	</div>
 </div>
 <br/>
+<div class="row">
+	<div class="col-sm-2">
+	</div>
+	<div class="col-sm-3">
+		<jsp:include page="/WEB-INF/module/menuChart.jsp"/>	
+	</div>
+	<div class="col-sm-5">
+		<jsp:include page="/WEB-INF/module/priceChart.jsp"/>	
+	</div>
+	<div class="col-sm-2">
+	</div>
+</div>
+
 <!-- 행사관리  -->
 <div class="row" id="row">
 	<div class="col-sm-2">
