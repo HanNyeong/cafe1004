@@ -20,7 +20,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	     <result property="subSellFinalStaff" column="sub_sell_final_staff"/>
 	     <result property="subSellCost" column="sub_sell_cost"/>
    	</resultMap>
+	<select id="menuChart"
+			resultType="com.cafe24.seoje1004.util.Chart">
+		SELECT
+			m.menu_name as menuName,
+			count(*) as counts
+		FROM
+			menu m
+			inner join 
+			sub_sell s
 
+		ON m.menu_code = s.menu_code
+
+		GROUP BY m.menu_name 
+
+		ORDER BY counts desc
+		LIMIT 0,5
+	</select>
 	<!-- 가맹 판매 조회[승인처리리스트] -->
 	<select id ="subViewSubSellList"
 			parameterType="java.util.Map"

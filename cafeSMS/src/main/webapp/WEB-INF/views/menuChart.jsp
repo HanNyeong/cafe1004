@@ -16,14 +16,11 @@
 	<section>
 		<div class="pieID pie"></div>
 		<ul class="pieID legend">
-			<li><em>초코봉봉</em></li>
-			<li><em>치즈봉봉</em></li>
-			<li><em>아메리치노</em></li>
-			<li><em>카페라떼</em></li>
-			<li><em>요거통통빙수</em></li>
+		<c:forEach var="chart" items="${menuChart}">
+			<li><em>${chart.menuName}</em><span>${chart.counts}</span></li>
+<%-- 			<li><em>${chart.menuName}</em><span>${chart.counts}</span></li> --%>
+		</c:forEach>
 		</ul>
-		
-		<
 	</section>
 </main>
 
