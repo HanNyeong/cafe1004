@@ -9,62 +9,123 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script>
-var list = function(upDown,criteria){
-	$('#upDown').attr('value',upDown);
-	$('#criteria').attr('value',criteria);
-	$('#subSellList').submit();	
-}
-
-
 
 $(document).ready(function(){
-	var columnList = ['sub_sell_code','inte_code','sub_sell_group','sub_sell_date','sub_sell_practical_selling_price','total_account_group','sub_sell_final','sub_sell_final_date','pay_method','sub_code','event_code','sub_staff_code','sub_sell_final_staff','sub_sell_cost']
 	
-
-	$('.up').each(function(index,item){
-		$(item).click(function(){
-			list('ASC',columnList[index]);
-		});
-	});
-	$('.down').each(function(index,item){
-		$(item).click(function(){
-			list('DESC',columnList[index]);
-		});
-	});
-	// 더보기
-	$('#viewMoreBtn').click(function(){
-		var viewMore = $('#viewMore').val();
-		$('#viewMore').val(viewMore*1+25);
-		$('#subSellList').submit();
-	});
-	$('#searchBtn').click(function(){
-		if($('#searchSubStaff').val() == ""){
-			console.log("검색어입력하세요");
-		}else{
-			$('#subSellList').submit();
-		}
-	});
-	
-	
-	//selectYN
-	$('#selectYN').on('change',function(){
-		if($('#selectYN').val() == ''){
-			$('#YN').val('');
-			$('#subSellList').submit();
-		}else if($('#selectYN').val() == 'Y'){
-			$('#YN').val('Y');
-			$('#subSellList').submit();
-		}else if($('#selectYN').val() == 'N'){
-			$('#YN').val('N');
-			$('#subSellList').submit();
-		}
+	/* 오름차/내림차순 정렬 설정 */
+	$('#claimCodeUp').click(function(){
 		
+		$('#criteria').attr('value','claim_code');
+		$('#upDown').attr('value','DESC');
+		$('#claimList').submit();
+	});
+	$('#claimCodeDown').click(function(){
 		
+		$('#criteria').attr('value','claim_code');
+		$('#upDown').attr('value','ASC');
+		$('#claimList').submit();
 	});
 	
 	
+	$('#claimTypeUp').click(function(){
+		
+		$('#criteria').attr('value','claim_type');
+		$('#upDown').attr('value','DESC');
+		$('#claimList').submit();
+	});
+	$('#claimTypeDown').click(function(){
+		
+		$('#criteria').attr('value','claim_type');
+		$('#upDown').attr('value','ASC');
+		$('#claimList').submit();
+	});
+	
+	
+	$('#claimAskDateUp').click(function(){
+		
+		$('#criteria').attr('value','claim_ask_date');
+		$('#upDown').attr('value','DESC');
+		$('#claimList').submit();
+	});
+	$('#claimAskDateDown').click(function(){
+		
+		$('#criteria').attr('value','claim_ask_date');
+		$('#upDown').attr('value','ASC');
+		$('#claimList').submit();
+	});
+	
+	
+	$('#claimAnswerDateUp').click(function(){
+		
+		$('#criteria').attr('value','claim_answer_date');
+		$('#upDown').attr('value','DESC');
+		$('#claimList').submit();
+	});
+	$('#claimAnswerDateDown').click(function(){
+		
+		$('#criteria').attr('value','claim_answer_date');
+		$('#upDown').attr('value','ASC');
+		$('#claimList').submit();
+	});
+	
+	
+	$('#subCodeUp').click(function(){
+		
+		$('#criteria').attr('value','sub_code');
+		$('#upDown').attr('value','DESC');
+		$('#claimList').submit();
+	});
+	$('#subCodeDown').click(function(){
+		
+		$('#criteria').attr('value','sub_code');
+		$('#upDown').attr('value','ASC');
+		$('#claimList').submit();
+	});
+	
+	$('#customerNameUp').click(function(){
+		
+		$('#criteria').attr('value','customer_name');
+		$('#upDown').attr('value','DESC');
+		$('#claimList').submit();
+	});
+	$('#customerNameDown').click(function(){
+		
+		$('#criteria').attr('value','customer_name');
+		$('#upDown').attr('value','ASC');
+		$('#claimList').submit();
+	});
+	
+	$('#customerPhoneUp').click(function(){
+		
+		$('#criteria').attr('value','customer_phone');
+		$('#upDown').attr('value','DESC');
+		$('#claimList').submit();
+	});
+	$('#customerPhoneDown').click(function(){
+		
+		$('#criteria').attr('value','customer_phone');
+		$('#upDown').attr('value','ASC');
+		$('#claimList').submit();
+	});
+	
+	$('#claimStatusUp').click(function(){
+		
+		$('#criteria').attr('value','claim_status');
+		$('#upDown').attr('value','DESC');
+		$('#claimList').submit();
+	});
+	$('#claimStatusDown').click(function(){
+		
+		$('#criteria').attr('value','claim_status');
+		$('#upDown').attr('value','ASC');
+		$('#claimList').submit();
+	});
 	
 });
+
+	
+	
+
 
 </script>
 </head>
@@ -92,16 +153,14 @@ $(document).ready(function(){
 			<!-- 상품 검색 -->
 			<form name="claimList" id="claimList" action="/customerViewClaimList" method="post">
 				<!-- 오름차/내림차순 정렬을 위한 input 태그 -->
-				<input type="hidden" id="upDown" name="upDown" value="${search.upDown}" />
-				<input type="hidden" id="criteria" name="criteria" value="${search.criteria}"/>
+				<input type="hidden" name="criteria" id="criteria" value=""/>
+				<input type="hidden" name="upDown" id="upDown" value=""/>
 				<input type="hidden" name="customerName" value="${claim.customerName}"/>
 				<input type="hidden" name="customerPhone" value="${claim.customerPhone}"/>
-				<input type="hidden" id="viewMore" name="viewMore" value="${search.viewMore}"/>
-				<input type="hidden" id="YN"  name="YN" value="${YN}"/>
-				
+					
 				등록 날짜: 
-				<input type="date" name="regitDateStart" value="${search.regitDateStart}"/> ~
-				<input type="date" name="regitDateEnd" value="${search.regitDateEnd}"/> 
+				<input type="date" name="regitDateStart" value="${claimSearch.regitDateStart}"/> ~
+				<input type="date" name="regitDateEnd" value="${claimSearch.regitDateEnd}"/> 
 				<br/><br/>
 		
 				<select name="searchKey" required="required">
@@ -112,16 +171,9 @@ $(document).ready(function(){
 					<option value="customer_name" <c:if test="${claimSearch.searchKey eq 'customer_name'}">selected="selected"</c:if>>고객 이름</option>
 					<option value="customer_phone" <c:if test="${claimSearch.searchKey eq 'customer_phone'}">selected="selected"</c:if>>고객 번호</option>
 				</select>
-				<input type="text" id="search" name="search" value="${claimSearch.searchClaim}"/>
-				<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
-				<input type="button" class="btn btn-default"  value="전체보기"/></a>
-				
-				분류 : 
-				<select id="selectYN" required="required">
-					<option value="" <c:if test="${YN eq ''}">selected="selected"</c:if>>::선택::</option>
-					<option value="Y" <c:if test="${YN eq 'Y'}">selected="selected"</c:if>>마감Y</option>
-					<option value="N" <c:if test="${YN eq 'N'}">selected="selected"</c:if>>마감N</option>
-				</select>
+				<input type="text" name="searchClaim" value="${claimSearch.searchClaim}"/>
+				<button class="btn btn-default" >검색</button>
+			
 			
 			</form>
 		</c:if>

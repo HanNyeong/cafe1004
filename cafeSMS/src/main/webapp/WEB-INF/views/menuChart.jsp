@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,12 +16,14 @@
 	<section>
 		<div class="pieID pie"></div>
 		<ul class="pieID legend">
-			<li><em>Humans</em> <span>780</span></li>
-			<li><em>Dogs</em> <span>300</span></li>
-			<li><em>Cats</em> <span>100</span></li>
-			<li><em>Slugs</em> <span>500</span></li>
-			<li><em>Aliens</em> <span>1145</span></li>
+			<li><em>초코봉봉</em></li>
+			<li><em>치즈봉봉</em></li>
+			<li><em>아메리치노</em></li>
+			<li><em>카페라떼</em></li>
+			<li><em>요거통통빙수</em></li>
 		</ul>
+		
+		<
 	</section>
 </main>
 
