@@ -136,4 +136,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			)
 	</insert>
 	
+	<!-- 메뉴리스트를 가져오자 -->
+	<select id="viewMenuList"
+			resultType="com.cafe24.seoje1004.menu.model.Menu">
+		SELECT 
+			menu_code as menuCode,
+			menu_name as menuName,
+			menu_ingre_price as menuIngrePrice,
+			menu_selling_price as menuSellingPrice,
+			menu_regit_date as menuRegitDate,
+			event_code as eventCode,
+			head_staff_id as headStaffId     
+		FROM 
+			menu
+		
+	</select>
+	
 </mapper>

@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cafe24.seoje1004.menu.model.Menu;
 import com.cafe24.seoje1004.subAccount.model.AddSharedSubAccount;
 import com.cafe24.seoje1004.subAccount.model.AddSharedSubAccountGroup;
 import com.cafe24.seoje1004.subSell.model.SubSell;
@@ -72,6 +73,14 @@ public class SubSellServiceImpl implements SubSellService{
 			
 			
 		}
+	}
+
+
+	//메뉴리스트를 가져오자
+	@Override
+	public List<Menu> viewMenuList() {
+		System.out.println("SubSellServiceImpl viewMenuList 실행");
+		return subSellDao.viewMenuList();
 	}
 
 	

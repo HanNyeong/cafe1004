@@ -3,6 +3,7 @@ package com.cafe24.seoje1004.subSell.repository;
 import java.util.List;
 import java.util.Map;
 
+import com.cafe24.seoje1004.menu.model.Menu;
 import com.cafe24.seoje1004.subSell.model.SubSell;
 
 public interface SubSellDao {
@@ -19,4 +20,6 @@ public interface SubSellDao {
 	public SubSell selectSubSellBySubSellCode(String subSellCode);			//해당 SubSellCode에 해당하는 subSell행을 가져오자
 	
 	public void subSellAccount(Map<String,Object> map);		//회계테이블에 insert 
+	
+	public List<Menu> viewMenuList(); 	//메뉴리스트를 가져오자
 }
