@@ -29,11 +29,7 @@
 			$('#subStaffList').submit();
 		});
 		// 더보기
-		$('#viewMoreBtn').click(function(){
-			var viewMore = $('#viewMore').val();
-			$('#viewMore').val(viewMore*1+25);
-			$('#subStaffList').submit();
-		});
+		
 		$('#searchBtn').click(function(){
 			if($('#searchSubStaff').val() == ""){
 				console.log("검색어입력하세요");

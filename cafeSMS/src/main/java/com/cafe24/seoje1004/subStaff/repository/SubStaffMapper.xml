@@ -119,6 +119,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			order by ${subStaffSearch.criteria} ${subStaffSearch.upDown}
 		</if>
 		LIMIT 0,${subStaffSearch.viewMore}
+}
 	
 	</select>
 		
