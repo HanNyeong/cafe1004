@@ -180,8 +180,10 @@
 					</c:if>
 				</div>
 				<div class="col-sm-1">
-					<a href="/subModifySubStaff?subStaffCode=${subStaffList.subStaffCode}&subCode=${subStaffList.subCode}&subStaffLevel=${subStaff.subStaffLevel}">
-					<input type="button" class="btn btn-default"  value="수정"/></a>
+					<c:if test="${subStaffList.subStaffResign == null}">
+						<a href="/subModifySubStaff?subStaffCode=${subStaffList.subStaffCode}&subCode=${subStaffList.subCode}&subStaffLevel=${subStaff.subStaffLevel}">
+						<input type="button" class="btn btn-default"  value="수정"/></a>
+					</c:if>
 				</div>
 			<div class="col-sm-2">
 			</div>

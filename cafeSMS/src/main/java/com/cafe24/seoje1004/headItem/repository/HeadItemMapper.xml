@@ -6,7 +6,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="com.cafe24.seoje1004.headItem.model.HeadItem" id="headItemResultMap">
 		<id property="hItemCode" column="h_item_code"/>
 		<result property="hItemName" column="h_item_name"/>
-		<result property="inteCode" column="inte_code"/>
 		<result property="hItemQuantity" column="h_item_quantity"/>
 		<result property="hItemUnit" column="h_item_unit"/>
 		<result property="hItemSellingPrice" column="h_item_selling_price"/>
@@ -20,7 +19,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultMap="headItemResultMap">
 		SELECT h_item_code, 
 		h_item_name, 
-		inte_code, 
 		h_item_quantity, 
 		h_item_unit, 
 		h_item_selling_price, 
