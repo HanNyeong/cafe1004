@@ -83,12 +83,12 @@ public class ClientController {
 	}
 	
 	//지출폼->>sub_accountAdd
-	@RequestMapping(value="/subAddSubAccount")
-	public String subAddSubAccount(SubAccounts subAccounts) {
+	@RequestMapping(value="/subAddSubAccountByClient")
+	public String subAddSubAccount(SubAccounts subAccounts,SubLogin subLogin) {
 		System.out.println("subAddSubAccount실행");
-		
+		System.out.println(subAccounts+"in Client Controller");
 		clientService.addSubAccount(subAccounts);
 		
-		return "redirect:/subViewSubClientList";
+		return "redirect:/subViewSubClientList?subCode="+subLogin.getSubCode();
 	}
 }

@@ -118,4 +118,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select if(isnull(sub_client_code),'sub_client_code1000', concat('sub_client_code', MAX(CONVERT(SUBSTRING(sub_client_code,16), UNSIGNED))+1)) as subClientCode
 		from sub_client
 	</select>
+	
+	<!-- addSubAccount -->
+	<insert id="addSubAccount"
+			parameterType="java.util.Map">
+		<selectKey resultType="hashmap" keyProperty="subAccountCode" order="BEFORE">
+			select if(isnull(sub_account_code),'sub_account_code300', concat('sub_account_code', MAX(CONVERT(SUBSTRING(sub_account_code,17), UNSIGNED))+1)) as subAccountCode
+			from sub_account
+		</selectKey>
+		INSERT INTO 
+			sub_account
+				(
+				sub_account_code,
+				sub_account_flow, 
+				total_account_group, 
+				sub_account_price, 
+				sub_account_request_date, 
+				sub_account_detail, 
+				subject_code, 
+				sub_client_code, 
+				sub_code
+				)
+		VALUES 
+				(
+				#{subAccountCode},
+				#{subAccount.subAccountFlow}, 
+				#{subAccount.totalAccountGroup}, 
+				${subAccount.subAccountPrice}, 
+				NOW(), 
+				#{subAccount.subAccountDetail}, 
+				#{subAccount.subjectCode}, 
+				#{subAccount.subClientCode}, 
+				#{subAccount.subCode}
+				)
+	</insert>
 </mapper>

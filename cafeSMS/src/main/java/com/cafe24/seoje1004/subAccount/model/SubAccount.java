@@ -6,13 +6,12 @@ public class SubAccount {
 	private String totalAccountGroup;
 	private int subAccountPrice;
 	private String subAccountRequestDate;
-	private String subAccountCheck;
 	private String subAccountDetail;
 	private String subjectCode;
 	private String subClientCode;
 	private String subCode;
 	private String subStaffCode;
-	private String subStaffKeeper;
+	
 	public String getSubAccountCode() {
 		return subAccountCode;
 	}
@@ -43,12 +42,7 @@ public class SubAccount {
 	public void setSubAccountRequestDate(String subAccountRequestDate) {
 		this.subAccountRequestDate = subAccountRequestDate;
 	}
-	public String getSubAccountCheck() {
-		return subAccountCheck;
-	}
-	public void setSubAccountCheck(String subAccountCheck) {
-		this.subAccountCheck = subAccountCheck;
-	}
+
 	public String getSubAccountDetail() {
 		return subAccountDetail;
 	}
@@ -79,21 +73,15 @@ public class SubAccount {
 	public void setSubStaffCode(String subStaffCode) {
 		this.subStaffCode = subStaffCode;
 	}
-	public String getSubStaffKeeper() {
-		return subStaffKeeper;
-	}
-	public void setSubStaffKeeper(String subStaffKeeper) {
-		this.subStaffKeeper = subStaffKeeper;
-	}
+
 	
 	@Override
 	public String toString() {
 		return "SubAccount [subAccountCode=" + subAccountCode + ", subAccountFlow=" + subAccountFlow
-				+ ", totalAccountGroup=" + totalAccountGroup 
-				+ ", subAccountPrice=" + subAccountPrice + ", subAccountRequestDate=" + subAccountRequestDate
-				+ ", subAccountCheck=" + subAccountCheck + ", subAccountDetail=" + subAccountDetail + ", subjectCode="
-				+ subjectCode + ", subClientCode=" + subClientCode + ", subCode=" + subCode + ", subStaffCode="
-				+ subStaffCode + ", subStaffKeeper=" + subStaffKeeper + "]";
+				+ ", totalAccountGroup=" + totalAccountGroup + ", subAccountPrice=" + subAccountPrice
+				+ ", subAccountRequestDate=" + subAccountRequestDate + ", subAccountDetail=" + subAccountDetail
+				+ ", subjectCode=" + subjectCode + ", subClientCode=" + subClientCode + ", subCode=" + subCode
+				+ ", subStaffCode=" + subStaffCode + "]";
 	}
 	
 }

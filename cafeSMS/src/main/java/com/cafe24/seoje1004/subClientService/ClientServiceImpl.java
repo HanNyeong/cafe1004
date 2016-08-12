@@ -73,10 +73,22 @@ public class ClientServiceImpl implements ClientService{
 	public void addSubAccount(SubAccounts subAccounts) {
 		System.out.println("addSubAccount실행");
 		Map<String,Object> map = new HashMap<String,Object>();
-		
+		System.out.println(subAccounts+"=================================================");
 		for(int i = 0; i<subAccounts.getSubAccountDetail().size();i++) {
 			SubAccount subAccount = new SubAccount();
+			String subjectCode = "subject_code6";
 			
+			subAccount.setTotalAccountGroup(subAccounts.getTotalAccountGroup().get(i));
+			subAccount.setSubAccountDetail(subAccounts.getSubAccountDetail().get(i));
+			subAccount.setSubAccountPrice(subAccounts.getSubAccountPrice().get(i));
+			subAccount.setSubCode(subAccounts.getSubCode().get(i));
+			subAccount.setSubClientCode(subAccounts.getSubClientCode().get(i));
+			subAccount.setSubAccountFlow("출금");
+			subAccount.setSubjectCode(subjectCode);
+			System.out.println(subAccount+"<<<<값확인in Service======================================");
+			map.put("subAccount",subAccount);
+			
+			clientDao.addSubAccount(map);
 		}
 	}
 
