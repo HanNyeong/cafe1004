@@ -8,7 +8,21 @@ public class Menu {
 	private String menuRegitDate;
 	private String eventCode;
 	private String headStaffId;
+	private double eventDiscountRate;
+	private String eventName;
 	
+	public String getEventName() {
+		return eventName;
+	}
+	public void setEventName(String eventName) {
+		this.eventName = eventName;
+	}
+	public double getEventDiscountRate() {
+		return eventDiscountRate;
+	}
+	public void setEventDiscountRate(double eventDiscountRate) {
+		this.eventDiscountRate = eventDiscountRate;
+	}
 	public String getMenuCode() {
 		return menuCode;
 	}
@@ -55,7 +69,8 @@ public class Menu {
 	public String toString() {
 		return "Menu [menuCode=" + menuCode + ", menuName=" + menuName + ", menuIngrePrice=" + menuIngrePrice
 				+ ", menuSellingPrice=" + menuSellingPrice + ", menuRegitDate=" + menuRegitDate + ", eventCode="
-				+ eventCode + ", headStaffId=" + headStaffId + "]";
+				+ eventCode + ", headStaffId=" + headStaffId + ", eventDiscountRate=" + eventDiscountRate
+				+ ", eventName=" + eventName + "]";
 	}
 	
 }

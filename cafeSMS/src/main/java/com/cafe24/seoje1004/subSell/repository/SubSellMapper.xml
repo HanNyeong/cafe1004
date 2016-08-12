@@ -140,16 +140,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="viewMenuList"
 			resultType="com.cafe24.seoje1004.menu.model.Menu">
 		SELECT 
-			menu_code as menuCode,
-			menu_name as menuName,
-			menu_ingre_price as menuIngrePrice,
-			menu_selling_price as menuSellingPrice,
-			menu_regit_date as menuRegitDate,
-			event_code as eventCode,
-			head_staff_id as headStaffId     
+			m.menu_code as menuCode,
+			m.menu_name as menuName,
+			m.menu_ingre_price as menuIngrePrice,
+			m.menu_selling_price as menuSellingPrice,
+			m.menu_regit_date as menuRegitDate,
+			m.event_code as eventCode,
+			m.head_staff_id as headStaffId ,
+			e.event_discount_rate as eventDiscountRate,
+			e.event_name as eventName
 		FROM 
-			menu
-		
+			menu m inner join event e
+			
+			ON m.event_code = e.event_code
 	</select>
 	
 </mapper>

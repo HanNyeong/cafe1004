@@ -10,6 +10,7 @@
 <script type="text/javascript">
 
 	$.calculator = function(){
+		$('#totalPriceHelper').text('');
 		var totalPrice = $('#totalPrice').val();
 		totalPrice = 0 ;
 		var sum = $('#sum').val();
@@ -17,9 +18,9 @@
 		$('.checking').each(function(index,item){
 			var payMethodValue = $('#payMethodValue').val();
 			var menuIngrePrice = $("input[class=menuIngrePrice]:eq(" + index + ")").val();
+			var soonPrice = $("input[class=menuSellingPrice]:eq(" + index + ")").val();
+			var menuSellingPrice = $("input[class=soonPrice]:eq(" + index + ")").val();
 			var quantity = $("input[class=quantity]:eq(" + index + ")").val();
-			var menuSellingPrice = $("input[class=menuSellingPrice]:eq(" + index + ")").val();
-			var soonPrice = $("input[class=soonPrice]:eq(" + index + ")").val();
 			if($(this).is(':checked')){
 				$("input[class=menuIngrePriceText]:eq(" + index + ")").val(menuIngrePrice*quantity);
 				$("input[class=menuSellingPriceText]:eq(" + index + ")").val(menuSellingPrice*quantity);
@@ -35,11 +36,11 @@
 					$('#sum').val(sum);
 					totalPrice+=Number(payMethodValue)*Number(soonPrice)*Number(quantity);
 					$('#totalPrice').val(totalPrice);
+				}else{
+					$('#totalPriceHelper').css('color','red');
+					$('#totalPriceHelper').text('결제방식을 등록해주세요');
+					
 				}
-			}else{
-				$("input[class=menuIngrePriceText]:eq(" + index + ")").val();
-				$("input[class=menuSellingPriceText]:eq(" + index + ")").val();
-				$("input[class=soonPriceText]:eq(" + index + ")").val();
 			}
 		});
 	}
@@ -56,36 +57,69 @@
 			$.calculator();
 		});
 		$('#payMethod').change(function(){
+			if($('#payMethod').val()=='현금'){
+				$('#payMethodValue').val(1);
+			}else if($('#payMethod').val()=='카드'){
+				$('#payMethodValue').val(0.9);
+			}else{
+				$('#payMethodValue').val('');
+			}
 			$.calculator();
+		});
+
+		$('#subSellsignUpBtn').click(function(){
+			if($('#totalPrice').val() != ""){
+		    	$('.checking').each(function(index,item){
+		    		if(!$(this).is(":checked")){
+		    			console.log("체크안됨");
+		    		}else if($(this).is(":checked")){
+						$("input[class=menuIngrePrice]:eq(" + index + ")").prop('name','menuIngrePrice');
+						$("input[class=menuSellingPrice]:eq(" + index + ")").prop('name','menuSellingPrice');
+						$("input[class=soonPrice]:eq(" + index + ")").prop('name','soonPrice');
+						$("input[class=quantity]:eq(" + index + ")").prop('name','quantity');
+		    			console.log("체크됨");
+		    		}else{
+		    			console.log("안됨")
+		    		}
+		    	});
+	    		$('#subSellsignUp').submit();
+			}else{
+				$('#totalPriceHelper').css('color','red');
+				$('#totalPriceHelper').text('상품을 등록해주세요');
+			}
+			
 		});
 	});
 </script>
 </head>
 <body>
 	<h1>가맹판매등록!!</h1>
-	<form>
-		<c:set var = "sum" value = "0" />
+	<form action="" method="POST" id="subSellsignUp">
+		<div></div>
 		<c:forEach var="menuList" items="${menuList}">
 			<div>
-			
-			
-				${menuList.menuName}
-				<input type="hidden" class="menuIngrePrice" value="${menuList.menuIngrePrice}">
-				<input type="hidden" class="menuSellingPrice" value="${menuList.menuSellingPrice}">
-				<input type="hidden" class="soonPrice" value="${menuList.menuSellingPrice - menuList.menuIngrePrice}">
+				${menuList.menuName} 
+				<c:if test="${menuList.eventName != '행사없음'}">
+					${menuList.eventName}
+				</c:if>: 
+				<input type="hidden" class="eventName" value="${menuList.eventName}">
+				<input type="hidden" class="eventCode" value="${menuList.eventCode}">
+				<input type="hidden" class="eventDiscountRate" value="${menuList.eventDiscountRate}">
+				<input type="hidden" class="menuIngrePrice" name="menuIngrePrice" value="${menuList.menuIngrePrice}">
+				<input type="hidden" class="menuSellingPrice"  name="menuSellingPrice" value="${menuList.menuSellingPrice}">
+				<input type="hidden" class="soonPrice"  name="soonPrice" value="${menuList.menuSellingPrice - menuList.menuIngrePrice}">
+				<input type="hidden" name="subCode" value="${subLogin.subCode}">
+				<input type="hidden" name="menuCode" value="${menuList.menuCode}">
 				<input type="checkbox" class="checking" name="menuNameChk" value="${menuList.menuCode}"/>
+				
 				수량 : <input class="quantity" type="number" min="1" value=""/>
-				원가 : <input type="text" class="menuIngrePriceText" name="menuIngrePrice" value="" readonly="readonly"/>
-				판매가 : <input type="text" class="menuSellingPriceText" name="menuSellingPrice" value="" readonly="readonly"/>
-				순이익 : <input type="text" class="soonPriceText" name="soonPrice" value="" readonly="readonly"/>
-					<c:set var= "sum" value=""/>			
-							
+				원가 : <input type="text" class="menuIngrePriceText" value="" readonly="readonly"/>
+				판매가 : <input type="text" class="menuSellingPriceText" value="" readonly="readonly"/>
+				순이익 : <input type="text" class="soonPriceText" value="" readonly="readonly"/>
+				
 			</div>
-			
-			
 		</c:forEach>
-			
-			결제수단적용전 총합계  : <input id="sum" type="text" value="${sum}" />
+			결제수단적용전 총합계  : <input id="sum" type="text" value="" />
 			<div>
 				결제수단 : 
 				<select id="payMethod">
@@ -98,8 +132,9 @@
 			<div>
 			
 				총 합계 : <input id="totalPrice" type="text" value="" readonly="readonly"/>
+				<span id="totalPriceHelper"></span>
 			</div>
-			<input type="button" >
+			<input type="button" id="subSellsignUpBtn" value="판매">
 	</form>
 </body>
 </html>
