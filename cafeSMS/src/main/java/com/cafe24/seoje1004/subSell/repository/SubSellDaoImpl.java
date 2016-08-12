@@ -73,6 +73,17 @@ public class SubSellDaoImpl implements SubSellDao {
 		System.out.println("SubSellDaoImpl menuChart 실행");
 		return sqlSessionSubSell.selectList(NS+".menuChart");
 	}
+	
+	@Override
+	public void subAddSubSell(SubSell subSell){
+		System.out.println("SubSellDaoImpl subAddSubSell 실행");
+		sqlSessionSubSell.insert(NS+".subAddSubSell",subSell);
+	}
+	@Override
+	public String selectGroupCode() {
+		System.out.println("SubSellDaoImpl selectGroupCode 실행");
+		return sqlSessionSubSell.selectOne(NS+".selectGroupCode");
+	}
 
 	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cafe24.seoje1004.menu.model.Menu;
 import com.cafe24.seoje1004.subSell.model.SubSell;
+import com.cafe24.seoje1004.subSell.model.SubSellGroup;
 import com.cafe24.seoje1004.subSell.model.SubSells;
 import com.cafe24.seoje1004.util.Chart;
 import com.cafe24.seoje1004.util.Search;
@@ -23,4 +24,6 @@ public interface SubSellService {
 
 	//메뉴 코드 chart 만들때 count 구하는 서비스입니다.
 	public List<Chart> menuChart();
+	
+	void subAddSubSellService(SubSellGroup subSellGroup);
 }

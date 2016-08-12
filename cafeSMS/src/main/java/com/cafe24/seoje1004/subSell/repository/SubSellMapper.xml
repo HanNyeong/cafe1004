@@ -171,4 +171,51 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			ON m.event_code = e.event_code
 	</select>
 	
+	<insert id="subAddSubSell"
+			parameterType="com.cafe24.seoje1004.subSell.model.SubSell">
+	    <selectKey resultType="hashmap" keyProperty="subSellCode,totalAccountGroup" order="BEFORE">
+	       	select 
+	       		if(isnull(sub_sell_code),'sub_sell_code1', concat('sub_sell_code', MAX(CONVERT(SUBSTRING(sub_sell_code,14), UNSIGNED))+1)) 
+				as subSellCode, 
+	    		if(isnull(total_account_group),'sub_sell_account_group1', concat('sub_sell_account_group', MAX(CONVERT (SUBSTRING(total_account_group,23), UNSIGNED))+1)) 
+	    		as totalAccountGroup 
+	    	from 
+	    		sub_sell
+	      </selectKey>
+			INSERT INTO 
+				sub_sell(
+					sub_sell_code, 
+					menu_code, 
+					sub_sell_group, 
+					sub_sell_date, 
+					sub_sell_practical_selling_price,
+					total_account_group, 
+					pay_method, 
+					sub_code, 
+					event_code,  
+					sub_sell_cost
+				)
+				VALUES (
+					#{subSellCode}, 
+					#{menuCode} ,
+					#{subSellGroup},
+					 NOW(),
+					#{subSellPracticalSellingPrice}, 
+					#{totalAccountGroup},
+					#{payMethod}, 
+					#{subCode}, 
+					#{eventCode}, 
+					#{subSellCost}
+				)
+	</insert>
+	
+	<select id="selectGroupCode"
+			resultType="java.lang.String">
+		select 
+			if(isnull(sub_sell_group),'sub_sell_group1', concat('sub_sell_group', MAX(CONVERT(SUBSTRING(sub_sell_group,15), UNSIGNED))+1)) 
+			as subSellCode
+		from 
+			sub_sell
+	</select>
+	
 </mapper>

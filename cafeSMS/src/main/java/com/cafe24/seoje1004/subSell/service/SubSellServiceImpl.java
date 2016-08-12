@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.cafe24.seoje1004.menu.model.Menu;
 import com.cafe24.seoje1004.subAccount.model.AddSharedSubAccount;
 import com.cafe24.seoje1004.subSell.model.SubSell;
+import com.cafe24.seoje1004.subSell.model.SubSellGroup;
 import com.cafe24.seoje1004.subSell.model.SubSells;
 import com.cafe24.seoje1004.subSell.repository.SubSellDao;
 import com.cafe24.seoje1004.util.Chart;
@@ -90,7 +91,24 @@ public class SubSellServiceImpl implements SubSellService{
 		System.out.println("SubSellServiceImpl menuChart실행");		
 		return subSellDao.menuChart();
 	}
-
+	
+	public void subAddSubSellService(SubSellGroup subSellGroup){
+		SubSell subSell = new SubSell();
+		subSell.setSubSellGroup(subSellDao.selectGroupCode());
+		subSell.setPayMethod(subSellGroup.getPayMethod());
+		subSell.setSubCode(subSellGroup.getSubCode().get(0));
+		for(int i = 0; i<subSellGroup.getMenuCode().size(); i++){
+			double d = subSellGroup.getMenuSellingPrice().get(i);
+			subSell.setSubSellPracticalSellingPrice((int)d);
+			subSell.setSubSellCost(subSellGroup.getMenuIngrePrice().get(i));
+			subSell.setEventCode(subSellGroup.getEventCode().get(i));
+			subSell.setMenuCode(subSellGroup.getMenuCode().get(i));
+			for(int j = 0; j<subSellGroup.getQuantity().get(i); j++){
+				subSellDao.subAddSubSell(subSell);
+				
+			}
+		}
+	}
 	
 	
 }

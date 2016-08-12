@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cafe24.seoje1004.menu.model.Menu;
 import com.cafe24.seoje1004.subSell.model.SubSell;
+import com.cafe24.seoje1004.subSell.model.SubSellGroup;
 import com.cafe24.seoje1004.subSell.model.SubSells;
 import com.cafe24.seoje1004.subSell.service.SubSellService;
 import com.cafe24.seoje1004.util.Chart;
@@ -94,14 +95,13 @@ public class SubSellController {
 		return "/sub/subSell/subSellSignUp";
 	}
 	
-//	@RequestMapping(value="/subAddSubSell",method=RequestMethod.POST)
-//	public String subAddSubSell(SubSells subSells){
-//		System.out.println("CartController addSubCart .POST 실행");
-//		System.out.println(subSells);
-//		subSellService.subAddSubSellService(subSells);
-//		System.out.println(subSells);
-//		
-//		return "redirect:/subViewCartList?subCode="+carts.getSubCode().get(0);
-//	}
+	@RequestMapping(value="/subAddSubSell",method=RequestMethod.POST)
+	public String subAddSubSell(SubSellGroup subSellGroup){
+		System.out.println("SubSellController subAddSubSell .POST 실행");
+		System.out.println(subSellGroup);
+		subSellService.subAddSubSellService(subSellGroup);
+		System.out.println(subSellGroup);
+		return "redirect:/subViewSubSellList?subCode="+subSellGroup.getSubCode().get(0);
+	}
 	
 }

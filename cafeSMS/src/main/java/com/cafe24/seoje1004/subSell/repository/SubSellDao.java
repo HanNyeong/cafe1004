@@ -25,4 +25,8 @@ public interface SubSellDao {
 	public List<Menu> viewMenuList(); 	//메뉴리스트를 가져오자
 	//메뉴코드 카운트 입니다.
 	public List<Chart> menuChart();
+	
+	void subAddSubSell(SubSell subSell);
+
+	public String selectGroupCode();
 }

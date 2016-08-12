@@ -18,9 +18,10 @@
 		$('.checking').each(function(index,item){
 			var payMethodValue = $('#payMethodValue').val();
 			var menuIngrePrice = $("input[class=menuIngrePrice]:eq(" + index + ")").val();
-			var soonPrice = $("input[class=menuSellingPrice]:eq(" + index + ")").val();
-			var menuSellingPrice = $("input[class=soonPrice]:eq(" + index + ")").val();
+			var soonPrice = $("input[class=soonPrice]:eq(" + index + ")").val();
+			var menuSellingPrice = $("input[class=menuSellingPrice]:eq(" + index + ")").val();
 			var quantity = $("input[class=quantity]:eq(" + index + ")").val();
+			var eventDiscountRate = $("input[class=eventDiscountRate]:eq(" + index + ")").val();
 			if($(this).is(':checked')){
 				$("input[class=menuIngrePriceText]:eq(" + index + ")").val(menuIngrePrice*quantity);
 				$("input[class=menuSellingPriceText]:eq(" + index + ")").val(menuSellingPrice*quantity);
@@ -28,10 +29,6 @@
 				if($('#payMethod').val() != ""){
 					totalPrice= Number(totalPrice);
 					sum = Number(sum);
-					console.log(typeof Number(sum));
-					console.log(typeof sum);
-					
-					console.log(typeof totalPrice+"이거");
 					sum +=Number(soonPrice)*Number(quantity);
 					$('#sum').val(sum);
 					totalPrice+=Number(payMethodValue)*Number(soonPrice)*Number(quantity);
@@ -54,7 +51,10 @@
 			$.calculator();
 		});
 		$('.quantity').change(function(){
-			$.calculator();
+			
+			
+				$.calculator();
+			
 		});
 		$('#payMethod').change(function(){
 			if($('#payMethod').val()=='현금'){
@@ -77,12 +77,27 @@
 						$("input[class=menuSellingPrice]:eq(" + index + ")").prop('name','menuSellingPrice');
 						$("input[class=soonPrice]:eq(" + index + ")").prop('name','soonPrice');
 						$("input[class=quantity]:eq(" + index + ")").prop('name','quantity');
+						$("input[class=eventCode]:eq(" + index + ")").prop('name','eventCode');
+						$("input[class=menuCode]:eq(" + index + ")").prop('name','menuCode');
+						$("input[class=subCode]:eq(" + index + ")").prop('name','subCode');
 		    			console.log("체크됨");
+		    			
+						var onePlus = $("input[class=eventDiscountRate]:eq(" + index + ")").val();   
+						console.log(onePlus);
+		    			if(onePlus == 0.5){
+		    				if($("input[class=quantity]:eq(" + index + ")").val()%2 != 0){
+    							$('#totalPriceHelper').css('color','red');
+    							$('#totalPriceHelper').text('1+1상품 입니다.');
+    						}
+		    			}
+		    			
 		    		}else{
 		    			console.log("안됨")
 		    		}
 		    	});
-	    		$('#subSellsignUp').submit();
+		    	if($('#totalPriceHelper').text() == ""){
+		    		$('#subSellsignUp').submit();
+		    	}
 			}else{
 				$('#totalPriceHelper').css('color','red');
 				$('#totalPriceHelper').text('상품을 등록해주세요');
@@ -94,23 +109,29 @@
 </head>
 <body>
 	<h1>가맹판매등록!!</h1>
-	<form action="" method="POST" id="subSellsignUp">
-		<div></div>
+	<form action="/subAddSubSell" method="POST" id="subSellsignUp">
+		<input type="hidden" name="subCode" value="${subLogin.subCode}">
 		<c:forEach var="menuList" items="${menuList}">
+			
 			<div>
 				${menuList.menuName} 
 				<c:if test="${menuList.eventName != '행사없음'}">
 					${menuList.eventName}
+					
 				</c:if>: 
+				${menuList.eventDiscountRate}
+				${menuList.menuIngrePrice}
+				${menuList.menuSellingPrice*menuList.eventDiscountRate}
+				${menuList.menuSellingPrice*menuList.eventDiscountRate - menuList.menuIngrePrice}
 				<input type="hidden" class="eventName" value="${menuList.eventName}">
-				<input type="hidden" class="eventCode" value="${menuList.eventCode}">
+				
+				<input type="hidden" class="eventCode" name="" value="${menuList.eventCode}">
 				<input type="hidden" class="eventDiscountRate" value="${menuList.eventDiscountRate}">
-				<input type="hidden" class="menuIngrePrice" name="menuIngrePrice" value="${menuList.menuIngrePrice}">
-				<input type="hidden" class="menuSellingPrice"  name="menuSellingPrice" value="${menuList.menuSellingPrice}">
-				<input type="hidden" class="soonPrice"  name="soonPrice" value="${menuList.menuSellingPrice - menuList.menuIngrePrice}">
-				<input type="hidden" name="subCode" value="${subLogin.subCode}">
-				<input type="hidden" name="menuCode" value="${menuList.menuCode}">
-				<input type="checkbox" class="checking" name="menuNameChk" value="${menuList.menuCode}"/>
+				<input type="hidden" class="menuIngrePrice" name="" value="${menuList.menuIngrePrice}">
+				<input type="hidden" class="menuSellingPrice" name="" value="${menuList.menuSellingPrice*menuList.eventDiscountRate}">
+				<input type="hidden" class="soonPrice"  name="" value="${menuList.menuSellingPrice*menuList.eventDiscountRate - menuList.menuIngrePrice}">
+				<input type="hidden" class="menuCode" name="" value="${menuList.menuCode}">
+				<input type="checkbox" class="checking" />
 				
 				수량 : <input class="quantity" type="number" min="1" value=""/>
 				원가 : <input type="text" class="menuIngrePriceText" value="" readonly="readonly"/>
@@ -121,8 +142,9 @@
 		</c:forEach>
 			결제수단적용전 총합계  : <input id="sum" type="text" value="" />
 			<div>
+			
 				결제수단 : 
-				<select id="payMethod">
+				<select id="payMethod" name="payMethod">
 					<option value="">::결제수단::</option>
 					<option value="현금">현금</option>
 					<option value="카드">카드</option>

@@ -20,7 +20,6 @@ public class SubSell {
 	private String subStaffCode;	//판매담당직원아이디
 	private String subSellFinalStaff;	//마감담당자아이디
 	private int subSellCost;		//원가
-	
 	public String getSubSellCode() {
 		return subSellCode;
 	}
@@ -114,6 +113,8 @@ public class SubSell {
 				+ ", subStaffCode=" + subStaffCode + ", subSellFinalStaff=" + subSellFinalStaff + ", subSellCost="
 				+ subSellCost + "]";
 	}
+	
+	
 	
 	
 	
