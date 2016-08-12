@@ -30,11 +30,12 @@ public class SubSellServiceImpl implements SubSellService{
 	
 	//가맹 판매 조회
 	@Override
-	public List<SubSell> subViewSubSellList(Search search,String subCode) {
+	public List<SubSell> subViewSubSellList(Search search,String subCode,String YN) {
 		System.out.println("SubSellServiceImpl subViewSubSellList 실행");
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("search", search);
 		map.put("subCode", subCode);
+		map.put("YN", YN);
 		return subSellDao.subViewSubSellList(map);
 	}
 

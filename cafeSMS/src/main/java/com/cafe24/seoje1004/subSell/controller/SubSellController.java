@@ -39,7 +39,7 @@ public class SubSellController {
 			,@RequestParam(value="YN", required = false)String YN){
 		System.out.println("SubSellController subViewSubSellList 실행");
 		
-		List<SubSell> subSellList = subSellService.subViewSubSellList(search,subCode);
+		List<SubSell> subSellList = subSellService.subViewSubSellList(search,subCode,YN);
 		
 		System.out.println("subSellList : " + subSellList);
 		System.out.println("search : "+search);

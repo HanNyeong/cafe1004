@@ -174,7 +174,7 @@
 	<!-- 	<form id="subSellFinalForm" action="/subSellFinals" method="POST"> -->
 	
 <c:forEach var="subSellList" items="${subSellList}">
-	<c:if test="${YN eq '' || YN eq null}">
+	
 		<div class="row tablediv">
 			<div class="col-sm-2">
 			</div>	
@@ -198,32 +198,7 @@
 			<div class="col-sm-2">
 			</div>
 		</div>
-	</c:if>
-	<c:if test="${subSellList.subSellFinal eq YN}">	
-			<div class="row tablediv">
-			<div class="col-sm-2">
-			</div>	
-			<div class="col-sm-1">${subSellList.subSellCode}</div>
-			<div class="col-sm-1">${subSellList.menuCode}</div>
-			<div class="col-sm-1">${subSellList.subSellGroup}</div>
-			<div class="col-sm-1">${subSellList.subSellDate}</div>
-			<div class="col-sm-1">${subSellList.subSellCost}→${subSellList.subSellPracticalSellingPrice}</div>
-			<div class="col-sm-1">${subSellList.payMethod}</div>
-			<div class="col-sm-1">${subSellList.subSellFinalStaff}	</div>			
-			<div class="col-sm-1">
-				<c:if test="${subSellList.subSellFinal == 'N'}">
-					<input type="checkbox" class="checking" name="checking">
-					<input type="hidden" class="subSellCode" name="" value="${subSellList.subSellCode}">
-					<input type="hidden" class="subCode" name="" value="${subSellList.subCode}">
-				</c:if>					
-				<c:if test="${subSellList.subSellFinal == 'Y'}">
-					[마감완료]
-				</c:if>					
-			</div>	
-			<div class="col-sm-2">
-			</div>
-		</div>
-	</c:if>
+
 </c:forEach>
 </form>
 <div class="row tablediv">
