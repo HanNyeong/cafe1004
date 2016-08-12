@@ -219,14 +219,54 @@ public class ReturnsServiceImpl implements ReturnsService {
 	//본사에서 재배송처리
 	@Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
 	@Override
-	public void headReturnReDelivery(String ordersCode) {
+	public void headReturnReDelivery(String returnCode) {
 		System.out.println("ReturnsServiceImpl headReturnReDelivery 실행");
 
 		//ordersCode를 기준으로 값을 변경해주면된다.
 		//1.환불테이블의 headReturnsConfirm을 Y로 변경 update
-		returnsDao.updateHeadReturnsConfirmY(ordersCode);
+		returnsDao.updateHeadReturnsConfirmY(returnCode);
 		
-		//2.sub_orders의 기존행의 sub_orders_status = "환불" update
+		//2.returnCode에 해당하는  리턴행의 정보를 가져옴
+		Returns returns = returnsDao.viewReturnsContent(returnCode);
+		
+		//3.returns에 있는 orderCode에 해당하는 정보를 sub_orders에서 꺼내오자 정보를 수정하기 위해서는 기존정보가 필요
+		SubOrders subOrders = returnsDao.selectSubOrdersByOrdersCode(returns.getOrdersCode());
+		
+		//3.returns로부터  sub_orders를 업데이트 하기위해 필요한 정보를 추출
+		int subOrdersPrice =  subOrders.getSubOrdersPrice();
+		int returnPrice = returns.getReturnPrice();
+		int modifyPrice = subOrdersPrice - returnPrice;
+		int subOrdersQuantity = (subOrders.getSubOrdersQuantity() - 1);
+		String ordersCode = subOrders.getOrdersCode();
+		
+		System.out.println("subOrdersPrice : "+subOrdersPrice);
+		System.out.println("returnPrice : "+returnPrice);
+		System.out.println("modifyPrice : "+modifyPrice);
+		System.out.println("subOrdersQuantity : "+subOrdersQuantity);
+		System.out.println("ordersCode : "+ordersCode);
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("ordersCode", ordersCode);
+		map.put("subOrdersPrice", modifyPrice);
+		map.put("subOrdersQuantity", subOrdersQuantity);
+		
+		//4.기존의 sub_orders를 수정
+		returnsDao.updateSubOrders(map);
+		
+		//5.업데이트된 sub_orders를 불러오자
+		SubOrders UpdatedSubOrders = returnsDao.selectSubOrdersByOrdersCode(returns.getOrdersCode());
+		UpdatedSubOrders.setOrdersPay("Y");
+		UpdatedSubOrders.setHeadOrdersConfirm("N");
+		UpdatedSubOrders.setSubOrdersQuantity(1);
+		UpdatedSubOrders.setSubOrdersPrice(returnPrice);
+		UpdatedSubOrders.setHeadStaffId(null);
+		
+		System.out.println("UpdatedSubOrders : "+UpdatedSubOrders);
+		//6.sub_orders에 차감된만큼 인서트
+		returnsDao.addSubOrders(UpdatedSubOrders);
+		
+		
+		/*//2.sub_orders의 기존행의 sub_orders_status = "환불" update
 		returnsDao.updateSubOrdersStatus(ordersCode);
 		
 		//3.sub_orders의 기존행의 정보를 가져옴
@@ -242,7 +282,7 @@ public class ReturnsServiceImpl implements ReturnsService {
 		Delivery delivery = returnsDao.selectDeliveryByOrdersCode(ordersCode);
 		
 		//7.delivery에 새로운행에 insert
-		returnsDao.addDelivery(delivery);
+		returnsDao.addDelivery(delivery);*/
 	}
 	
 	//본사에서 환불 처리 (돈으로 지급)

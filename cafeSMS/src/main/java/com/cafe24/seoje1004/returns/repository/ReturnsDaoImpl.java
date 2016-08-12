@@ -147,12 +147,7 @@ public class ReturnsDaoImpl implements ReturnsDao {
 	/*---------재배송---------------*/
 	
 
-	//sub_orders의 기존행의 sub_orders_status = "환불" update
-	@Override
-	public void updateSubOrdersStatus(String ordersCode) {
-		 System.out.println("ReturnsDaoImpl updateSubOrdersStatus 실행");
-		 sqlSessionReturns.update(NS+".updateSubOrdersStatus", ordersCode);
-	}
+
 	
 	//sub_orders의 기존행의 정보를 가져옴
 	@Override
@@ -175,26 +170,13 @@ public class ReturnsDaoImpl implements ReturnsDao {
 		System.out.println("ReturnsDaoImpl updateOrdersReturns 실행");
 		sqlSessionReturns.update(NS+".updateOrdersReturns", subOrders);
 	}
-	
-	//배송테이블의 deliveryReturn을 Y로 변경 update
-	@Override
-	public void updateDeliveryReturn(String ordersCode) {
-		System.out.println("ReturnsDaoImpl updateDeliveryReturn  실행");
-		sqlSessionReturns.update(NS+".updateDeliveryReturn", ordersCode);
-	}
 
-	//배송테이블의 delivery에 기존행의 정보를 가져옴
-	@Override
-	public Delivery selectDeliveryByOrdersCode(String ordersCode) {
-		System.out.println("ReturnsDaoImpl selectDeliveryByOrdersCode");
-		return sqlSessionReturns.selectOne(NS+".selectDeliveryByOrdersCode", ordersCode);
-	}
 	
-	//delivery에 새로운행에 insert
+	//기존의 sub_orders를 수정
 	@Override
-	public void addDelivery(Delivery delivery) {
-		System.out.println("ReturnsDaoImpl addDelivery");
-		sqlSessionReturns.insert(NS+".addDelivery", delivery);
+	public void updateSubOrders(Map<String, Object> map) {
+		System.out.println("ReturnsDaoImpl updateSubOrders");
+		sqlSessionReturns.update(NS+".updateSubOrders", map);
 		
 	}
 

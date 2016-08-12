@@ -170,14 +170,11 @@ public class ReturnsController {
 	
 	//본사에서 재배송처리
 	@RequestMapping(value="/headReturnReDelivery", method=RequestMethod.GET)
-	public String headReturnReDelivery(@RequestParam(value="ordersCode")String ordersCode){
+	public String headReturnReDelivery(@RequestParam(value="returnCode")String returnCode){
 		System.out.println("ReturnsController headReturnReDelivery 실행");
-		System.out.println("ordersCode : "+ordersCode);
-		System.out.println("미구현");
-		System.out.println("미구현");
-		System.out.println("미구현");
-		System.out.println("미구현");
-		//returnsService.headReturnReDelivery(ordersCode);
+		System.out.println("returnCode : "+returnCode);
+	
+		returnsService.headReturnReDelivery(returnCode);
 		
 		return	"redirect:/headViewReturnsList";
 	}

@@ -197,7 +197,7 @@ $(document).ready(function(){
 						<br/>
 					</c:if>
 					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'N' && returnsList.returnHeadCheck == 'Y'}">
-						<a href="/headReturnReDelivery?ordersCode=${returnsList.ordersCode}">[재배송]</a>
+						<a href="/headReturnReDelivery?returnCode=${returnsList.returnCode}">[재배송]</a>
 						<br/>
 					</c:if>
 					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'Y' && returnsList.returnHeadCheck == 'Y'}">
@@ -236,7 +236,7 @@ $(document).ready(function(){
 						<br/>
 					</c:if>
 					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'N' && returnsList.returnHeadCheck == 'Y'}">
-						<a href="/headReturnReDelivery?ordersCode=${returnsList.ordersCode}">[재배송]</a>
+						<a href="/headReturnReDelivery?returnCode=${returnsList.returnCode}">[재배송]</a>
 						<br/>
 					</c:if>
 					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'Y' && returnsList.returnHeadCheck == 'Y'}">

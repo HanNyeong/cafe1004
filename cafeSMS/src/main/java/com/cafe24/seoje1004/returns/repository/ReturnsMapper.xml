@@ -364,16 +364,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			return_code = #{returnCode}
 	</update>
 	
-	<!-- sub_orders의 기존행의 sub_orders_status = "환불" update -->
-	<update id="updateSubOrdersStatus"
-			parameterType="String">
-		UPDATE
-			sub_orders
-		SET
-			sub_orders_status = "환불"
-		WHERE
-			orders_code = #{ordersCode}
-	</update>
+	
 	
 	<!-- sub_orders의 기존행의 정보를 가져옴 -->
 	<select id="selectSubOrdersByOrdersCode"
@@ -423,7 +414,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			,sub_staff_code
 			,head_staff_id
 			,head_orders_confirm
-			sub_orders_price
+			,sub_orders_price
 			)
 			
 			VALUES(
@@ -445,78 +436,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			
 			)
 	</insert>
-	
-	<!-- 배송테이블의 deliveryReturn을 Y로 변경 update -->
-	<update id="updateDeliveryReturn"
-			parameterType="String">
-		UPDATE
-			delivery
-		SET
-			delivery_return	=	"Y"
-			
-		WHERE
-			orders_code = #{ordersCode}
-	
-	</update>
-	
-	<!-- 배송테이블의 delivery에 기존행의 정보를 가져옴 -->
-	<select id="selectDeliveryByOrdersCode"
-			parameterType="String"
-			resultType="com.cafe24.seoje1004.returns.model.Delivery">
-		SELECT
-			delivery_location as deliveryLocation
-			,delivery_person as deliveryPerson
-			,orders_code as ordersCode
-			,head_staff_id as headStaffId
-			
-		FROM
-			delivery
-		WHERE	
-			orders_code = #{ordersCode}
-	</select>
-	
-	<!-- delivery에 새로운행에 insert -->
-	<insert id="addDelivery"
-			parameterType="com.cafe24.seoje1004.returns.model.Delivery">
-		<selectKey resultType="hashmap" keyProperty="deliveryCode" order="BEFORE">
-			select if(isnull(delivery_code),'delivery_code1', concat('delivery_code',MAX(CONVERT(SUBSTRING(delivery_code,14), UNSIGNED))+1))
-			as deliveryCode
-			from delivery
-		</selectKey>
-		INSERT INTO delivery
-			(delivery_code
-			,delivery_date
-			,delivery_receive
-			,delivery_location
-			,delivery_return
-			,delivery_person
-			,orders_code
-			,head_staff_id
-			)
-			
-			VALUES(
-			#{deliveryCode}
-			,NOW()
-			,"N"
-			,#{deliveryLocation}
-			,"N"
-			,#{deliveryPerson}
-			,#{ordersCode}
-			,#{headStaffId}
-			)
-	</insert>
-	
-	<update id="updateOrdersReturns"
-			parameterType="com.cafe24.seoje1004.returns.model.SubOrders">
-			UPDATE sub_orders
-			SET
-				sub_orders_quantity = ${subOrdersQuantity},
-				sub_orders_price = ${subOrdersPrice}
-			WHERE 
-			orders_code = #{ordersCode}
-	</update>
-	
-	
 	
 	
 	
@@ -558,6 +477,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			
 	</insert>
 	
+	<!-- 기존의 sub_orders를 수정 -->
+	<update id="updateSubOrders"
+			parameterType="java.util.Map">
+		UPDATE
+			sub_orders
+		SET
+			sub_orders_quantity = #{subOrdersQuantity},
+			sub_orders_price = #{subOrdersPrice}
+		WHERE
+			orders_code = #{ordersCode}
+	</update>
 	
 	
 </mapper>
