@@ -55,6 +55,7 @@
 		<input type="hidden" id="upDown" name="upDown" value="" />
 		<input type="hidden" id="criteria" name="criteria" value=""/>
 		<input type="hidden" id="subCode" name="subCode" value="${subLogin.subCode}"/>
+		<input type="hidden" id="viewMore" name="viewMore" value="${clientSearch.viewMore}"/>
 		등록 날짜: 
 		<input type="date" name="regitDateStart" value="${clientSearch.regitDateStart}"/> ~
 		<input type="date" name="regitDateEnd" value="${clientSearch.regitDateEnd}"/> 
@@ -64,7 +65,7 @@
 			<option value="sub_client_code" <c:if test="${clientSearch.searchKey eq 'sub_client_code'}">selected="selected"</c:if>>가맹거래처코드</option>
 			<option value="sub_client_name" <c:if test="${clientSearch.searchKey eq 'sub_client_name'}">selected="selected"</c:if>>가맹거래처명</option>
 		</select>
-		<input type="text" id="searchSubClient" name="searchSubClient" value="${clientSearch.search}"/>
+		<input type="text" id="searchSubClient" name="search" value="${clientSearch.search}"/>
 		<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
 		<a href="/subViewSubClientList?subCode=${subLogin.subCode}">
 			<input type="button" class="btn btn-default" value="전체보기"/></a>

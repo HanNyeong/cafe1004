@@ -198,7 +198,15 @@ $(document).ready(function(){
 		</div>
 	</c:if>
 </c:forEach>
-
+	<div class="row tablediv">
+			<div class="col-sm-2">
+			</div>
+			<div class="col-sm-8">
+				<input type="button" class="btn btn-default" id="viewMoreBtn" value="더보기"/>
+			</div>
+			<div class="col-sm-2">
+			</div>
+	</div>
 </c:if>
 	
 </body>
