@@ -6,10 +6,11 @@ import com.cafe24.seoje1004.sub.model.SubLogin;
 import com.cafe24.seoje1004.subAccount.model.SubAccounts;
 import com.cafe24.seoje1004.subClient.model.Client;
 import com.cafe24.seoje1004.subClient.model.ClientSearch;
+import com.cafe24.seoje1004.util.Search;
 
 public interface ClientService {
 
-	List<Client> viewClientListService(ClientSearch clientSearch, SubLogin subLogin);
+	List<Client> viewClientListService(Search clientSearch, SubLogin subLogin);
 
 	void addClientService(Client client,SubLogin subLogin);
 

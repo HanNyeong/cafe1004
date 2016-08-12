@@ -2,6 +2,7 @@ package com.cafe24.seoje1004.subSell.service;
 
 import java.util.List;
 
+import com.cafe24.seoje1004.menu.model.Menu;
 import com.cafe24.seoje1004.subSell.model.SubSell;
 import com.cafe24.seoje1004.subSell.model.SubSells;
 import com.cafe24.seoje1004.util.Search;
@@ -16,4 +17,6 @@ public interface SubSellService {
 	
 	public void subSellFinals(SubSells subSells);		//가맹 판매 마감처리s
 	
+	
+	public List<Menu> viewMenuList(); 		//메뉴리스트를 가져오자
 }

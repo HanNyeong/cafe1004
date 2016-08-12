@@ -12,9 +12,10 @@
 	</div>
 	<div class="col-sm-3 addForm">
 		<h1>거래처지출내역</h1>
-			<form action="/subAddSubAccount" method=POST>
+			<form action="subAddSubAccountByClient" method=POST>
 				<input type="hidden" name="subCode" value="${subLogin.subCode}">
 				<input type="hidden" name="totalAccountGroup" value="${clientList.totalAccountGroup}">
+				<input type="hidden" name="subClientCode" value="${clientList.subClientCode}">
 				<div>
 					거래처명 : <input type="text" value="${clientList.subClientName}" readonly/>
 				</div>

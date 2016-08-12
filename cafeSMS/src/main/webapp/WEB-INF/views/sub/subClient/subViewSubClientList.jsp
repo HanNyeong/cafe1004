@@ -28,6 +28,13 @@
 				$.list('DESC',columnList[index]);
 			});
 		});
+		// 더보기
+		$('#viewMoreBtn').click(function(){
+			var viewMore = $('#viewMore').val();
+			$('#viewMore').val(viewMore*1+25);
+			$('#subClientList').submit();
+		});
+		
 		$('#searchBtn').click(function(){
 			if($('#searchSubClient').val() == ""){
 				console.log("검색어입력하세요");
@@ -57,7 +64,7 @@
 			<option value="sub_client_code" <c:if test="${clientSearch.searchKey eq 'sub_client_code'}">selected="selected"</c:if>>가맹거래처코드</option>
 			<option value="sub_client_name" <c:if test="${clientSearch.searchKey eq 'sub_client_name'}">selected="selected"</c:if>>가맹거래처명</option>
 		</select>
-		<input type="text" id="searchSubClient" name="searchSubClient" value="${clientSearch.searchSubClient}"/>
+		<input type="text" id="searchSubClient" name="searchSubClient" value="${clientSearch.search}"/>
 		<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
 		<a href="/subViewSubClientList?subCode=${subLogin.subCode}">
 			<input type="button" class="btn btn-default" value="전체보기"/></a>
@@ -134,6 +141,15 @@
 		</div>
 	</div>
 	</c:forEach>
+	<div class="row tablediv">
+		<div class="col-sm-2">
+		</div>
+		<div class="col-sm-8">
+			<input type="button" class="btn btn-default" id="viewMoreBtn" value="더보기"/>
+		</div>
+		<div class="col-sm-2">
+		</div>
+	</div>
 <jsp:include page="/WEB-INF/module/footer.jsp"/>
 </body>
 </html>

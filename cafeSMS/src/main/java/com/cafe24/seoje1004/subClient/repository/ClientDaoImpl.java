@@ -51,7 +51,12 @@ public class ClientDaoImpl implements ClientDao{
 	public String selectClientCode() {
 		return sqlSessionSubClient.selectOne(NS+".selectClientCode");
 	}
-
 	
+	//client --> addSubAccount
+	@Override
+	public void addSubAccount(Map<String, Object> map) {
+		System.out.println("addSubAccount실행");
+		sqlSessionSubClient.insert(NS+".addSubAccount",map);
+	}
 	
 }

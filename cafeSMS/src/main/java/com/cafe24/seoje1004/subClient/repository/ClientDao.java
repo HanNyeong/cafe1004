@@ -17,5 +17,7 @@ public interface ClientDao {
 	void modifyClient(Map<String, Object> map);
 
 	String selectClientCode();
+
+	void addSubAccount(Map<String, Object> map);
 	
 }

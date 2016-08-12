@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cafe24.seoje1004.subDump.model.SubDump;
-import com.cafe24.seoje1004.subDump.model.SubDumpSearch;
 import com.cafe24.seoje1004.subDump.service.SubDumpService;
+import com.cafe24.seoje1004.util.Search;
 
 @Controller
 public class SubDumpController {
@@ -61,7 +61,7 @@ public class SubDumpController {
 		 * @return
 		 */
 		@RequestMapping(value="/subViewSubDumpList")
-		public String subViewSubDumpList(Model model, SubDumpSearch subDumpSearch, SubDump subDump){
+		public String subViewSubDumpList(Model model, Search subDumpSearch, SubDump subDump){
 			System.out.println("SubDumpController subViewSubDumpList실행");
 			System.out.println(subDumpSearch);
 			model.addAttribute("subDumpList", subDumpService.viewSubDumpListService(subDumpSearch,subDump));

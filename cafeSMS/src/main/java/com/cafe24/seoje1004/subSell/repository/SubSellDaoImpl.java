@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cafe24.seoje1004.menu.model.Menu;
 import com.cafe24.seoje1004.subSell.model.SubSell;
 
 @Repository
@@ -54,6 +55,14 @@ public class SubSellDaoImpl implements SubSellDao {
 		System.out.println("SubSellDaoImpl subSellAccount 실행");
 		sqlSessionSubSell.insert(NS+".subSellAccount", map);
 		
+	}
+
+
+	//메뉴리스트를 가져오자
+	@Override
+	public List<Menu> viewMenuList() {
+		System.out.println("SubSellDaoImpl viewMenuList 실행");
+		return sqlSessionSubSell.selectList(NS+".viewMenuList");
 	}
 
 	

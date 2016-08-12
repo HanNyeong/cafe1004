@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cafe24.seoje1004.menu.model.Menu;
 import com.cafe24.seoje1004.subSell.model.SubSell;
 import com.cafe24.seoje1004.subSell.model.SubSellSearch;
 import com.cafe24.seoje1004.subSell.model.SubSells;
@@ -80,6 +81,13 @@ public class SubSellController {
 					,@RequestParam(value="subCode")String subCode){
 		System.out.println("SubSellController subSellSignUp 실행");
 		System.out.println("subCode : "+subCode);
+		
+		//메뉴리스트를 가져오자
+		List<Menu> menuList =  subSellService.viewMenuList();
+		System.out.println("menuList :" +menuList);
+		
+		model.addAttribute("menuList", menuList);
+		
 		return "/sub/subSell/subSellSignUp";
 	}
 	
