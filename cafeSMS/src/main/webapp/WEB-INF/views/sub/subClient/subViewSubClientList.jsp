@@ -6,13 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>subViewSubClientList</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript" src="resources/function/upDownCheck.js"></script>
 <script>
-	$.list = function(upDown,criteria){
-		$('#upDown').attr('value',upDown);
-		$('#criteria').attr('value',criteria);
-		$('#subClientList').submit();	
-	}
-	
+
 	$(document).ready(function(){
 		//컬럼 명 지정해주는 배열 
 		//자기입맛에 맛게 고쳐 쓰세요
@@ -20,12 +16,12 @@
 
 		$('.up').each(function(index,item){
 			$(item).click(function(){
-				$.list('ASC',columnList[index]);
+				list('ASC',columnList[index],$("#subClientList"));
 			});
 		});
 		$('.down').each(function(index,item){
 			$(item).click(function(){
-				$.list('DESC',columnList[index]);
+				list('DESC',columnList[index],$("#subClientList"));
 			});
 		});
 		// 더보기
@@ -64,7 +60,7 @@
 			<option value="sub_client_code" <c:if test="${clientSearch.searchKey eq 'sub_client_code'}">selected="selected"</c:if>>가맹거래처코드</option>
 			<option value="sub_client_name" <c:if test="${clientSearch.searchKey eq 'sub_client_name'}">selected="selected"</c:if>>가맹거래처명</option>
 		</select>
-		<input type="text" id="searchSubClient" name="searchSubClient" value="${clientSearch.search}"/>
+		<input type="text" id="searchSubClient" name="search" value="${clientSearch.search}"/>
 		<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
 		<a href="/subViewSubClientList?subCode=${subLogin.subCode}">
 			<input type="button" class="btn btn-default" value="전체보기"/></a>

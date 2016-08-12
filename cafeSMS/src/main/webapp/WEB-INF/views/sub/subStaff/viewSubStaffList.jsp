@@ -9,7 +9,7 @@
 <script type="text/javascript" src="resources/function/upDownCheck.js"></script>
 <script>
 	$(document).ready(function(){
-		var columnList = ['sub_staff_code','sub_staff_name','sub_staff_join','sub_staff_regit_date','sub_staff_salary','sub_staff_resign','sub_staff_permit_date']
+		var columnList = ['sub_staff_code','sub_staff_name','sub_staff_join','sub_staff_regit_date','sub_staff_permit_date','sub_staff_salary','sub_staff_resign']
 
 		//컬럼별조회 위
 		$('.up').each(function(index,item){
@@ -96,12 +96,12 @@
 			<select name="searchKey" required="required">
 				<option value="">선택</option>
 				<option value="sub_staff_code" <c:if test="${subStaffSearch.searchKey eq 'sub_staff_code'}">selected="selected"</c:if>>가맹 직원 ID</option>
-				<option value="head_staff_id" <c:if test="${subStaffSearch.searchKey eq 'head_staff_id'}">selected="selected"</c:if>>본사 직원 ID</option>
+				<option value="sub_staff_name" <c:if test="${subStaffSearch.searchKey eq 'sub_staff_name'}">selected="selected"</c:if>>가맹 직원 이름</option>
 				<option value="sub_staff_level" <c:if test="${subStaffSearch.searchKey eq 'sub_staff_level'}">selected="selected"</c:if>>직급</option>
 			</select>
 			<input type="text" id="search" name="search" value="${subStaffSearch.search}"/>
 			<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
-			<a href="/viewSubStaffList"><input type="button" class="btn btn-default"  value="전체보기"/></a>
+			<a href="/viewSubStaffList?subCode=${subLogin.subCode}&subStaffLevel=${subStaff.subStaffLevel}"><input type="button" class="btn btn-default"  value="전체보기"/></a>
 		</form>
 		</div>
 		<div class="col-sm-2">

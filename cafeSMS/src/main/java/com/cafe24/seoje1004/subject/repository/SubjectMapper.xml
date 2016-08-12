@@ -25,8 +25,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="subjectSearch.regitDateStart != null and subjectSearch.regitDateEnd != null and subjectSearch.regitDateStart !='' and subjectSearch.regitDateEnd !=''">
 				<![CDATA[date(subject_regit_date) >= #{subjectSearch.regitDateStart} and date(subject_regit_date) <= #{subjectSearch.regitDateEnd}]]> AND
 			</if>
-			<if test="subjectSearch.searchKey != null and subjectSearch.searchKey != '' and subjectSearch.searchSubject!= null and subjectSearch.searchSubject != ''">
-				${subjectSearch.searchKey} like CONCAT('%',#{subjectSearch.searchSubject},'%') 
+			<if test="subjectSearch.searchKey != null and subjectSearch.searchKey != '' and subjectSearch.search!= null and subjectSearch.search != ''">
+				${subjectSearch.searchKey} like CONCAT('%',#{subjectSearch.search},'%') 
 			</if>
 		</where>
 			<if test="subjectSearch.criteria == null and subjectSearch.upDown == null">

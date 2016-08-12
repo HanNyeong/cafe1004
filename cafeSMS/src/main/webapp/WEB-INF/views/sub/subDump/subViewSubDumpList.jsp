@@ -6,25 +6,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>subViewSubDumpList</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript" src="resources/function/upDownCheck.js"></script>
 <script>
-	$.list = function(upDown,criteria){
-		$('#upDown').attr('value',upDown);
-		$('#criteria').attr('value',criteria);
-		$('#subDumpList').submit();	
-	}
 	$(document).ready(function(){
 		//컬럼 명 지정해주는 배열 
 		//자기입맛에 맛게 고쳐 쓰세요
-		var columnList = ['sub_dump_code','sub_dump_reason','sub_dump_date','sub_dump_date','head_item_code','specific_item_code','sub_staff_code','sub_code']
+		var columnList = ['sub_dump_code','sub_dump_reason','sub_dump_date','head_item_code','specific_item_code','sub_staff_code','sub_code']
 
 		$('.up').each(function(index,item){
 			$(item).click(function(){
-				$.list('ASC',columnList[index]);
+				list('ASC',columnList[index],$("#subDumpList"));
 			});
 		});
 		$('.down').each(function(index,item){
 			$(item).click(function(){
-				$.list('DESC',columnList[index]);
+				list('DESC',columnList[index],$("#subDumpList"));
 			});
 		});
 		$('#searchBtn').click(function(){
@@ -61,7 +57,7 @@
 			<option value="h_item_code" <c:if test="${subDumpSearch.searchKey eq 'cart_quantity'}">selected="selected"</c:if>>본사 상품 코드</option>
 			<option value="sub_code" <c:if test="${subDumpSearch.searchKey eq 'sub_code'}">selected="selected"</c:if>>가맹 대표 코드</option>
 		</select>
-		<input type="text" id="searchSubDump" name="searchSubDump" value="${subDumpSearch.search}"/>
+		<input type="text" id="searchSubDump" name="search" value="${subDumpSearch.search}"/>
 		<input type="button" id="searchBtn" class="btn btn-default"  value="검색" /><a href="/viewsubDumpList"> <input type="button" class="btn btn-default" value="전체보기"/></a>
 	</form>
 	</div>

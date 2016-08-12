@@ -69,6 +69,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			sub_code    
 		FROM 
 			sub_dump
+		<where>
+			<if test="subDumpSearch.regitDateStart != null and subDumpSearch.regitDateEnd != null and subDumpSearch.regitDateStart !='' and subDumpSearch.regitDateEnd !=''">
+				<![CDATA[date(sub_ump_date) >= #{subDumpSearch.regitDateStart} and date(sub_dump_date) <= #{subDumpSearch.regitDateEnd}]]>  
+			</if>
+			<if test="subDumpSearch.searchKey != null and subDumpSearch.searchKey != '' and subDumpSearch.search != null and subDumpSearch.search != ''">
+					AND  ${subDumpSearch.searchKey} like CONCAT('%',#{subDumpSearch.search},'%') 
+			</if>
+		</where>
 		<if test="subDumpSearch.criteria == null and subDumpSearch.upDown == null">
 			order by sub_dump_date desc
 		</if>
