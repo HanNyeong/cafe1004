@@ -14,6 +14,7 @@ import com.cafe24.seoje1004.subAccount.model.SubAccounts;
 import com.cafe24.seoje1004.subClient.model.Client;
 import com.cafe24.seoje1004.subClient.model.ClientSearch;
 import com.cafe24.seoje1004.subClientService.ClientService;
+import com.cafe24.seoje1004.util.Search;
 
 @Controller
 public class ClientController {
@@ -22,8 +23,8 @@ public class ClientController {
 	private ClientService clientService;
 	
 	//거래처목록 불러오는 컨트롤러 0729 박효민 search추가후 수정
-	@RequestMapping(value="/subViewSubClientList", method=RequestMethod.GET)
-	public String viewClientList(Model model, ClientSearch clientSearch, SubLogin subLogin) {
+	@RequestMapping(value="/subViewSubClientList")
+	public String viewClientList(Model model, Search clientSearch, SubLogin subLogin) {
 		System.out.println("ClientController//viewClientList실행");
 		List<Client> clientList = clientService.viewClientListService(clientSearch,subLogin);
 		System.out.println("거래처목록//"+clientList);

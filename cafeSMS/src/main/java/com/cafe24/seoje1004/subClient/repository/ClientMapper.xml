@@ -35,8 +35,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="clientSearch.regitDateStart != null and clientSearch.regitDateEnd != null and clientSearch.regitDateStart !='' and clientSearch.regitDateEnd !=''">
 			AND <![CDATA[date(sub_client_regit_date) >= #{clientSearch.regitDateStart} and date(sub_client_regit_date) <= #{clientSearch.regitDateEnd}]]>
 		</if>
-		<if test="clientSearch.searchKey != null and clientSearch.searchKey != '' and clientSearch.searchSubClient!= null and clientSearch.searchSubClient != ''">
-					AND  ${clientSearch.searchKey} like CONCAT('%',#{clientSearch.searchSubClient},'%') 
+		<if test="clientSearch.searchKey != null and clientSearch.searchKey != '' and clientSearch.search!= null and clientSearch.search != ''">
+					AND  ${clientSearch.searchKey} like CONCAT('%',#{clientSearch.search},'%') 
 		</if>
 	</where>
 		<if test="clientSearch.criteria == null and clientSearch.upDown == null">
@@ -45,6 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="clientSearch.criteria != null and clientSearch.upDown != null and clientSearch.criteria != null and clientSearch.upDown != ''">
 			order by ${clientSearch.criteria} ${clientSearch.upDown}
 		</if>
+	LIMIT 0,${clientSearch.viewMore} 
 		
    </select>
    

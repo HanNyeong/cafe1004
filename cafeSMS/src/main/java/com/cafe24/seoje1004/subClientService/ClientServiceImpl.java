@@ -13,6 +13,7 @@ import com.cafe24.seoje1004.subAccount.model.SubAccounts;
 import com.cafe24.seoje1004.subClient.model.Client;
 import com.cafe24.seoje1004.subClient.model.ClientSearch;
 import com.cafe24.seoje1004.subClient.repository.ClientDao;
+import com.cafe24.seoje1004.util.Search;
 
 @Service
 public class ClientServiceImpl implements ClientService{
@@ -22,7 +23,7 @@ public class ClientServiceImpl implements ClientService{
 	
 	//거래처 리스트 service 0729박효민
 	@Override
-	public List<Client> viewClientListService(ClientSearch clientSearch, SubLogin subLogin) {
+	public List<Client> viewClientListService(Search clientSearch, SubLogin subLogin) {
 		System.out.println("subClientService//viewClientListService실행");
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("clientSearch", clientSearch);
