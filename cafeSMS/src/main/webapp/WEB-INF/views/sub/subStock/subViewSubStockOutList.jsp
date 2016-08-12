@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>subViewSubStockOutList</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript" src="resources/function/upDownCheck.js"></script>
 <script>
@@ -105,7 +105,6 @@ $(document).ready(function(){
 	</div>
 	<div>
 		
-		<a href="/subViewSubStockList?subCode=${subCode}">[재고리스트]</a>
 	
 	</div>
 	<div class="col-sm-2">
@@ -117,9 +116,10 @@ $(document).ready(function(){
 	<div class="col-sm-2">
 	</div>	
 	<div class="col-sm-3">
-		<h3>= 가맹 재고 전체 리스트 =</h3>
+		<h2>= 가맹 재고 전체 리스트 =</h2>
 	</div>
 	<div class="col-sm-5 clickBtn">
+			<h4><a href="/subViewSubStockList?subCode=${subCode}">[재고리스트]</a></h4>
 			<h4>
 			분류 : 
 			<select id="selectYN" required="required">

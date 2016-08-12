@@ -130,7 +130,6 @@ $(document).ready(function(){
 		
 	</div>
 	<div>
-		<a href="/subViewSubStockOutList?subCode=${subCode}">[출하가능리스트]</a>
 	</div>
 	<div class="col-sm-2">
 	</div>
@@ -141,9 +140,10 @@ $(document).ready(function(){
 	<div class="col-sm-2">
 	</div>	
 	<div class="col-sm-3">
-		<h3>= 가맹 재고 관리 =</h3>
+		<h2>= 가맹 재고 관리 =</h2>
 	</div>
 	<div class="col-sm-5 clickBtn">
+			<h4><a href="/subViewSubStockOutList?subCode=${subCode}">[출하가능리스트]</a></h4>
 			<h4>
 			분류 : 
 			<select id="selectYN" required="required">
