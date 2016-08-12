@@ -152,9 +152,6 @@ $(document).ready(function(){
 		가맹코드<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">	
-		재배송유무<span class="up">▲</span><span class="down">▼</span>
-	</div>
-	<div class="col-sm-1 th">	
 		비고
 	</div>
 	
@@ -173,7 +170,6 @@ $(document).ready(function(){
 				<div class="col-sm-1">${returnsList.ordersCode}</div>
 				<div class="col-sm-1">${returnsList.specificItemCode}</div>
 				<div class="col-sm-1">${returnsList.subCode}</div>
-				<div class="col-sm-1">${returnsList.returnReDelivery}</div>
 				<div class="col-sm-1">
 					<a href="/viewReturnsContent?returnCode=${returnsList.returnCode}">[상세보기]</a><br/>
 					<c:if test="${returnsList.returnHeadCheck == 'N'}">
@@ -189,11 +185,11 @@ $(document).ready(function(){
 						<br/>
 					</c:if>
 					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'N' && returnsList.returnHeadCheck == 'Y'}">
-						<a href="/headReturnReDelivery?returnCode=${returnsList.returnCode}">[재배송]</a>
+						<a href="/headReturnReDelivery?returnCode=${returnsList.returnCode}">[재배송(${returnsList.returnReDelivery})]</a>
 						<br/>
 					</c:if>
 					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'Y' && returnsList.returnHeadCheck == 'Y'}">
-						[재배송 처리]
+						[재배송 처리(${returnsList.returnReDelivery})]
 					</c:if>
 				</div>
 				<div class="col-sm-2">
@@ -202,7 +198,7 @@ $(document).ready(function(){
 		</c:if>
 		
 		<c:if test="${returnsList.returnHeadCheck == YN}">
-				<div class="row tablediv">
+			<div class="row tablediv">
 				<div class="col-sm-2">
 				</div>					
 				<div class="col-sm-1">${returnsList.returnCode}</div>
@@ -212,7 +208,6 @@ $(document).ready(function(){
 				<div class="col-sm-1">${returnsList.ordersCode}</div>
 				<div class="col-sm-1">${returnsList.specificItemCode}</div>
 				<div class="col-sm-1">${returnsList.subCode}</div>
-				<div class="col-sm-1">${returnsList.returnReDelivery}</div>
 				<div class="col-sm-1">
 					<a href="/viewReturnsContent?returnCode=${returnsList.returnCode}">[상세보기]</a><br/>
 					<c:if test="${returnsList.returnHeadCheck == 'N'}">
@@ -228,11 +223,11 @@ $(document).ready(function(){
 						<br/>
 					</c:if>
 					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'N' && returnsList.returnHeadCheck == 'Y'}">
-						<a href="/headReturnReDelivery?returnCode=${returnsList.returnCode}">[재배송]</a>
+						<a href="/headReturnReDelivery?returnCode=${returnsList.returnCode}">[재배송(${returnsList.returnReDelivery})]</a>
 						<br/>
 					</c:if>
 					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'Y' && returnsList.returnHeadCheck == 'Y'}">
-						[재배송 처리]
+						[재배송 처리(${returnsList.returnReDelivery})]
 					</c:if>
 				</div>
 				<div class="col-sm-2">

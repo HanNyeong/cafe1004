@@ -84,7 +84,6 @@
 			<div class="col-sm-2">
 			</div>	
 			<div class="col-sm-8">
-			<h1>통합회계</h1>
 			<form id="subAccountList" action="/viewSubAccountList" method="POST">
 				<input type="hidden" id="upDown" name="upDown" value="" /> 
 				<input type="hidden" id="criteria" name="criteria" value="" /> 
@@ -104,12 +103,22 @@
 				</select> 
 				<input type="text" id="search" name="search" value="${subAccountSearch.search}" />
 				<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
+				</form>
 				</div>
 				<div class="col-sm-2">
 				</div>
 			</div>
 			<br/>
 			<br/>
+			<div class="row">
+				<div class="col-sm-2">
+				</div>	
+				<div class="col-sm-8">
+					<h3>= 통합회계 =</h3>
+				</div>
+				<div class="col-sm-2">
+				</div>
+			</div>
 				<div class="row tablediv">
 					<div class="col-sm-2">
 					</div>
@@ -156,7 +165,7 @@
 						</div>
 					</div>
 				</c:forEach>
-			</form>
+			
 			<div class="row tablediv">
 				<div class="col-sm-2">
 				</div>
