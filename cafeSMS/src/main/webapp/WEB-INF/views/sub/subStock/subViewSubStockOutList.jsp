@@ -165,7 +165,7 @@ $(document).ready(function(){
 	</div>
 </div> 	
 <c:forEach var="subStockList" items="${subStockList}">
-	<c:if test="${YN eq '' || YN eq null}">	
+
 		<div class="row tablediv">
 			<div class="col-sm-2">
 			</div>
@@ -194,7 +194,7 @@ $(document).ready(function(){
 					<c:if test="${subStockList.subStockOut == 'N' && subStockList.subStockInDate ne null}">
 						<a href="/subStockOutY?subCode=${subStockList.subCode}&subStockCode=${subStockList.subStockCode}">[출하]</a>
 					</c:if>
-					<c:if test="${subStockList.subStockOut == 'Y'&& subStockList.subStockInDate ne null}">
+					<c:if test="${subStockList.subStockOut == 'Y' && subStockList.subStockInDate ne null}">
 						[출하완료]
 					</c:if>
 					
@@ -202,46 +202,8 @@ $(document).ready(function(){
 			<div class="col-sm-2">
 			</div>
 		</div>
-	</c:if>
-<c:if test="${subStockList.subStockOut eq YN}">	
-		<div class="row tablediv">
-			<div class="col-sm-2">
-			</div>
-			<div class="col-sm-1">
-					${subStockList.subStockCode}					
-			</div>
-			<div class="col-sm-1">		
-					${subStockList.subStockInDate}
-			</div>
-			<div class="col-sm-1">		
-					${subStockList.subStockOut}
-			</div>
-			<div class="col-sm-1">		
-					${subStockList.ordersCode}
-			</div>
-			<div class="col-sm-1">		
-					${subStockList.headItemCode}
-			</div>
-			<div class="col-sm-1">		
-					${subStockList.specificItemCode}
-			</div>
-			<div class="col-sm-1">		
-					${subStockList.subStaffCode}
-			</div>
-			<div class="col-sm-1">		
-				<c:if test="${subStockList.subStockOut == 'N' && subStockList.subStockInDate ne null}">
-					<a href="/subStockOutY?subCode=${subStockList.subCode}&subStockCode=${subStockList.subStockCode}">[출하]</a>
-				</c:if>
-				<c:if test="${subStockList.subStockOut == 'Y'&& subStockList.subStockInDate ne null}">
-					[출하완료]
-				</c:if>
-				
-			</div>
-			<div class="col-sm-2">
-			</div>
-		</div>
-		</c:if>
 	
+
 </c:forEach>
 <div class="row tablediv">
 		<div class="col-sm-2">

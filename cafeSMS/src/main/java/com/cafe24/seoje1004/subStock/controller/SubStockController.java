@@ -34,7 +34,7 @@ public class SubStockController {
 		System.out.println("SubStockController subViewSubStockList 실행");
 		System.out.println("subCode : "+subCode);
 		
-		List<SubStock> subStockList = subStockService.subViewSubStockList(subCode, search);
+		List<SubStock> subStockList = subStockService.subViewSubStockList(subCode, search, YN);
 		System.out.println("subStockList : "+ subStockList);
 		
 		model.addAttribute("YN", YN);
@@ -82,7 +82,7 @@ public class SubStockController {
 		System.out.println("SubStockController subViewSubStockOutList 실행");
 		System.out.println("subCode : "+subCode);
 		
-		List<SubStock> subStockList = subStockService.subViewSubStockOutList(subCode, search);
+		List<SubStock> subStockList = subStockService.subViewSubStockOutList(subCode, search, YN);
 		
 		System.out.println("subStockList : "+ subStockList);
 		

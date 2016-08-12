@@ -44,6 +44,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="search.searchKey != null and search.searchKey != '' and search.search != null and search.search != ''">
 					AND  ${search.searchKey} like CONCAT('%',#{search.search},'%') 
 			</if>
+		
+			<if test="YN == 'Y'.toString()">
+				AND sub_stock_in_date is not null
+			</if>
+			<if test="YN == 'N'.toString()">
+				AND sub_stock_in_date is null
+			</if>
 			
 		</where>
 		
@@ -121,14 +128,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM
 			sub_stock
 		<where>
-			sub_code = #{subCode}
+			sub_code = #{subCode} AND sub_stock_in_date is not null
 			<if test="search.regitDateStart != null and search.regitDateEnd != null and search.regitDateStart !='' and search.regitDateEnd !=''">
 				AND <![CDATA[date(head_stock_in_date) >= #{search.regitDateStart} and date(head_stock_in_date) <= #{search.regitDateEnd}]]>  
 			</if>
 			<if test="search.searchKey != null and search.searchKey != '' and search.search != null and search.search != ''">
 					AND  ${search.searchKey} like CONCAT('%',#{search.search},'%') 
 			</if>
-			
+			<if test="YN == 'Y'.toString()">
+				AND sub_stock_out = "Y"
+			</if>
+			<if test="YN == 'N'.toString()">
+				AND sub_stock_out = "N"
+			</if>
 		</where>
 		
 		<if test="search.criteria == null and search.criteria == '' and search.upDown == null and search.upDown == ''">

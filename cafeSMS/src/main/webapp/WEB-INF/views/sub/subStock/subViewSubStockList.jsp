@@ -189,7 +189,7 @@ $(document).ready(function(){
 	</div>
 </div> 	
 <c:forEach var="subStockList" items="${subStockList}">
-	<c:if test="${YN eq '' || YN eq null}">	
+	
 		<div class="row tablediv">
 			<div class="col-sm-2">
 			</div>
@@ -227,88 +227,7 @@ $(document).ready(function(){
 			<div class="col-sm-2">
 			</div>
 		</div>
-	</c:if>
-<c:if test="${YN eq 'Y'}">	
-	<c:if test="${subStockList.subStockInDate ne null}">
-		<div class="row tablediv">
-			<div class="col-sm-2">
-			</div>
-			<div class="col-sm-1">
-					${subStockList.subStockCode}					
-			</div>
-			<div class="col-sm-1">		
-					${subStockList.subStockInDate}
-			</div>
-			<div class="col-sm-1">		
-					${subStockList.subStockOut}
-			</div>
-			<div class="col-sm-1">		
-					${subStockList.ordersCode}
-			</div>
-			<div class="col-sm-1">		
-					${subStockList.headItemCode}
-			</div>
-			<div class="col-sm-1">		
-					${subStockList.specificItemCode}
-			</div>
-			<div class="col-sm-1">		
-					${subStockList.subStaffCode}
-			</div>
-			<div class="col-sm-1">		
-				<c:if test="${subStockList.subStockInDate eq null}">
-					<input type="checkbox" class="checking" name="checking">
-					<input type="hidden" class="subCode" name="" value="${subStockList.subCode}">
-					<input type="hidden" class="subStockCode" name="" value="${subStockList.subStockCode}">
-					<input type="hidden" class="ordersCode" name="" value="${subStockList.ordersCode}">
-					<input type="hidden" class="specificItemCode" name="" value="${subStockList.specificItemCode}">
-				</c:if>
-			</div>
-			<div class="col-sm-2">
-			</div>
-		</div>
-		</c:if>
-	</c:if>
-<c:if test="${YN eq 'N'}">	
-	<c:if test="${subStockList.subStockInDate eq null}">
-		<div class="row tablediv">
-			<div class="col-sm-2">
-			</div>
-			<div class="col-sm-1">
-					${subStockList.subStockCode}					
-			</div>
-			<div class="col-sm-1">		
-					${subStockList.subStockInDate}
-			</div>
-			<div class="col-sm-1">		
-					${subStockList.subStockOut}
-			</div>
-			<div class="col-sm-1">		
-					${subStockList.ordersCode}
-			</div>
-			<div class="col-sm-1">		
-					${subStockList.headItemCode}
-			</div>
-			<div class="col-sm-1">		
-					${subStockList.specificItemCode}
-			</div>
-			<div class="col-sm-1">		
-					${subStockList.subStaffCode}
-			</div>
-			<div class="col-sm-1">		
-				
-				<c:if test="${subStockList.subStockInDate eq null}">
-					<input type="checkbox" class="checking" name="checking">
-					<input type="hidden" class="subCode" name="" value="${subStockList.subCode}">
-					<input type="hidden" class="subStockCode" name="" value="${subStockList.subStockCode}">
-					<input type="hidden" class="ordersCode" name="" value="${subStockList.ordersCode}">
-					<input type="hidden" class="specificItemCode" name="" value="${subStockList.specificItemCode}">
-				</c:if>
-			</div>
-			<div class="col-sm-2">
-			</div>
-		</div>
-	</c:if>
-</c:if>
+	
 	
 </c:forEach>
 <div class="row tablediv">
