@@ -32,7 +32,7 @@ public class DeliveryController {
 		System.out.println("DeliveryController subViewDeliveryList 실행");
 		System.out.println("subCode : "+subCode);
 		System.out.println("deliverySearch : "+search);
-		List<Delivery> deliveryList = deliveryService.subViewDeliveryList(subCode,search);
+		List<Delivery> deliveryList = deliveryService.subViewDeliveryList(subCode,search,YN);
 		System.out.println("deliveryList : "+deliveryList);
 		
 		model.addAttribute("YN", YN);
@@ -50,7 +50,7 @@ public class DeliveryController {
 			,@RequestParam(value="YN", required = false)String YN){
 		System.out.println("DeliveryController headViewDeliveryList 실행");
 		
-		List<Delivery> deliveryList	= deliveryService.headViewDeliveryList(search);
+		List<Delivery> deliveryList	= deliveryService.headViewDeliveryList(search,YN);
 		System.out.println("deliveryList : "+deliveryList);
 		
 		model.addAttribute("YN", YN);

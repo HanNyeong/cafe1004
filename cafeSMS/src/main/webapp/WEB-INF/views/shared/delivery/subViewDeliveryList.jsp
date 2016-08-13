@@ -165,7 +165,7 @@ $(document).ready(function(){
 		</div>
 	</div>
 		<c:forEach var="deliveryList" items="${deliveryList}"> 
-			<c:if test="${YN eq '' || YN eq null}">			
+			
 				<div class="row tablediv">
 					<div class="col-sm-2">
 					</div>
@@ -180,24 +180,19 @@ $(document).ready(function(){
 					<div class="col-sm-2">	
 					</div>
 				</div>
-			</c:if>
-			<c:if test="${deliveryList.deliveryReceive == YN}">			
-				<div class="row tablediv">
-					<div class="col-sm-2">
-					</div>
-					<div class="col-sm-1">${deliveryList.deliveryCode}</div>
-					<div class="col-sm-1">${deliveryList.deliveryDate}</div>
-					<div class="col-sm-1">${deliveryList.deliveryReceive}</div>
-					<div class="col-sm-1">${deliveryList.deliveryLocation}</div>
-					<div class="col-sm-1">${deliveryList.deliveryReturn}</div>
-					<div class="col-sm-1">${deliveryList.deliveryPerson}</div>
-					<div class="col-sm-1">${deliveryList.ordersCode}</div>
-					<div class="col-sm-1">${deliveryList.subOrdersGroup}</div>
-					<div class="col-sm-2">	
-					</div>
-				</div>
-			</c:if>
+		
+			
 		</c:forEach>
+		<div class="row tablediv">
+			<div class="col-sm-2">
+			</div>
+			<div class="col-sm-8">
+				<input type="button" class="btn btn-default" id="viewMoreBtn" value="더보기"/>
+			</div>
+			<div class="col-sm-2">
+			</div>
+	</div>
+		
 	</c:if>
 	
 	

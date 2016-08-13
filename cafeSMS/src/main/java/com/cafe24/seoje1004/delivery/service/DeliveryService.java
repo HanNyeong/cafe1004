@@ -11,7 +11,7 @@ public interface DeliveryService {
 	 * 2016-08-02 오성현
 	 * DeleveryService 인터페이스
 	 */
-	public List<Delivery> subViewDeliveryList(String subCode, Search search);		//가맹이 해당점의 배송 리스트를 조회
+	public List<Delivery> subViewDeliveryList(String subCode, Search search,String YN);		//가맹이 해당점의 배송 리스트를 조회
 	
-	public List<Delivery> headViewDeliveryList(Search search);		//본사가 전체 배송리스트를 조회
+	public List<Delivery> headViewDeliveryList(Search search, String YN);		//본사가 전체 배송리스트를 조회
 }

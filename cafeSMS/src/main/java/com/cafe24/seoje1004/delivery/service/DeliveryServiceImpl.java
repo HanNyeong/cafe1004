@@ -24,21 +24,23 @@ public class DeliveryServiceImpl implements DeliveryService {
 	
 	//가맹이 해당점의 배송 리스트를 조회
 	@Override
-	public List<Delivery> subViewDeliveryList(String subCode, Search search) {
+	public List<Delivery> subViewDeliveryList(String subCode, Search search, String YN) {
 		System.out.println("DeliveryServiceImpl subViewDeliveryList 실행");
 		
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("subCode", subCode);
 		map.put("search", search);
+		map.put("YN", YN);
 		return deliveryDao.subViewDeliveryList(map);
 	}
 
 	//본사가 전체 배송리스트를 조회
 	@Override
-	public List<Delivery> headViewDeliveryList(Search search) {
+	public List<Delivery> headViewDeliveryList(Search search, String YN) {
 		System.out.println("DeliveryServiceImpl headViewDeliveryList 실행");
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("search", search);
+		map.put("YN", YN);
 		
 		return deliveryDao.headViewDeliveryList(map);
 	}
