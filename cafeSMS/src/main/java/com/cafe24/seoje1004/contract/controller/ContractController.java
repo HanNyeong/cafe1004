@@ -50,7 +50,7 @@ public class ContractController {
 		String subCode = subCodes;
 		
 		//가맹의 계약리스트(subCode는 해당가맹, contractSearch는 검색 및 컬럼별조회기능)
-		List<Contract> subContractList = contractService.subViewContractList(subCode, search);
+		List<Contract> subContractList = contractService.subViewContractList(subCode, search,YN);
 		System.out.println("subContractList : "+ subContractList);
 		System.out.println("search : "+ search);
 		
@@ -204,7 +204,7 @@ public class ContractController {
 				,@RequestParam(value="YN", required = false)String YN){
 		System.out.println("contractController headViewContractList");
 		//본사에서 전체 계약진행 리스트 조회
-		List<Contract> headContractList = contractService.headViewContract(search);
+		List<Contract> headContractList = contractService.headViewContract(search,YN);
 		System.out.println("headContractList : "+headContractList);
 		
 		model.addAttribute("YN", YN);

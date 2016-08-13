@@ -163,7 +163,7 @@
 <fmt:formatDate value="${now}" var="nows" pattern="yyyy-MM-dd"/>
 		
 <c:forEach var="subContractList" items="${subContractList}">
-	<c:if test="${YN eq '' || YN eq null}">		
+			
 		<div class="row tablediv">
 			<div class="col-sm-2">
 			</div>
@@ -209,55 +209,8 @@
 			<div class="col-sm-2">
 			</div>
 		</div>
-	</c:if>
-		
-	<c:if test="${subContractList.headContractConfirm eq YN}">		
-			<div class="row tablediv">
-			<div class="col-sm-2">
-			</div>
-			<div class="col-sm-1">
-					<c:if test="${subContractList.headContractConfirm == 'Y'}">
-						[승인]
-					</c:if>
-					<c:if test="${subContractList.headContractConfirm == 'N'}">
-						[대기]
-					</c:if>
-					<br/>	
-					<c:if test="${subContractList.contractExpireDate != null}">
-		 				파기
-			 		</c:if>
-					<c:if test="${subContractList.contractExpireDate == null && subContractList.contractExpiryDate > nows && subContractList.reContractStatus == 'N'}">
-			 			정상
-			 		</c:if>
-			 		<c:if test="${subContractList.contractExpiryDate <= nows}">
-			 			${subContractList.contractN}차 계약 만료
-			 		</c:if>
-			 		<br/>
-			 		<c:if test="${subContractList.reContractStatus == 'Y' && subContractList.contractExpireDate == null}">
-			 			${subContractList.contractN}차 재계약
-			 		</c:if>
-			 </div>		
-			 <div class="col-sm-1">${subContractList.contractCode}</div>	
-			 <div class="col-sm-1">${subContractList.contractName}</div>	
-			 <div class="col-sm-1">${subContractList.contractActualDate}</div>	
-			 <div class="col-sm-1">${subContractList.contractExpiryDate}</div>	
-			 <div class="col-sm-1">${subContractList.contractExpireDate}</div>	
-			 <div class="col-sm-1">		
-				<a href="/subViewContractContent?contractCode=${subContractList.contractCode}">[상세보기]</a>
-			 </div>	
-			 <div class="col-sm-1">
-					<c:if test="${subContractList.reContractStatus == 'N'}">
-						<a href="/subAddRecharterContract?contractCode=${subContractList.contractCode}">[재계약신청]</a>
-					</c:if>
-					<br/>
-					<c:if test="${subContractList.contractExpireDate ==null && subContractList.reContractStatus == 'N'}">
-						<a href="/subExpireContract?contractCode=${subContractList.contractCode}&subCode=${subContractList.subCode}">[계약파기신청]</a>
-					</c:if>			
-			</div>
-			<div class="col-sm-2">
-			</div>
-		</div>
-	</c:if>			
+	
+			
 </c:forEach>
 <div class="row tablediv">
 	<div class="col-sm-2">

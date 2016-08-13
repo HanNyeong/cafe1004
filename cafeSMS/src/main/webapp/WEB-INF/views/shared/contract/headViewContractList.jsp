@@ -157,7 +157,7 @@ var list = function(upDown,criteria){
 
 
 <c:forEach var="headContractList" items="${headContractList}">
-	<c:if test="${YN eq '' || YN eq null}">
+	
 	<div class="row tablediv">
 			<div class="col-sm-2">
 			</div>
@@ -196,47 +196,8 @@ var list = function(upDown,criteria){
 			<div class="col-sm-2">
 			</div>
 		</div>
-	</c:if>
-	<c:if test="${headContractList.headContractConfirm eq YN}">
-	<div class="row tablediv">
-		<div class="col-sm-2">
-		</div>
-		<div class="col-sm-1">
-			<c:if test="${headContractList.headContractConfirm == 'Y'}">
-		 		[승인]
-		 	</c:if>
-		 	<c:if test="${headContractList.headContractConfirm == 'N'}">
-		 		[대기]
-		 	</c:if>		
-	 		<c:if test="${headContractList.contractExpireDate != null}">
-					파기
-	 		</c:if>
-			<c:if test="${headContractList.contractExpireDate == null && headContractList.contractExpiryDate > nows && headContractList.reContractStatus == 'N'}">
-				정상
-	 		</c:if>
-	 		<c:if test="${headContractList.contractExpiryDate <= nows}">
-	 			${headContractList.contractN}차 계약 만료
-	 		</c:if>
-	 		<c:if test="${headContractList.reContractStatus == 'Y' && headContractList.contractExpireDate == null}">
-	 			${headContractList.contractN}차 재계약
-	 		</c:if>
-	 	</div>	
-		<div class="col-sm-1">${headContractList.contractCode}</div>
-		<div class="col-sm-1">${headContractList.contractName}</div>
-		<div class="col-sm-1">${headContractList.contractActualDate}</div>
-		<div class="col-sm-1">${headContractList.contractExpiryDate}</div>
-		<div class="col-sm-1">${headContractList.contractExpireDate}</div>
-		<div class="col-sm-1">${headContractList.subCode}</div>
-		<div class="col-sm-1">
-			<a href="/subViewContractContent?contractCode=${headContractList.contractCode}">[상세보기]</a><br/>
-			<c:if test="${headContractList.headContractConfirm == 'N'}">	
-				<a href="/headApproveContract?contractCode=${headContractList.contractCode}">[계약승인]</a>
-			</c:if>		
-		</div>
-		<div class="col-sm-2">
-		</div>
-	</div>
-	</c:if>
+	
+	
 </c:forEach>
 <div class="row tablediv">
 	<div class="col-sm-2">

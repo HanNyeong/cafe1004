@@ -36,13 +36,14 @@ public class ContractServiceImpl implements ContractService {
 	
 	//가맹점이 해당가맹점의 계약리스트를 리뷰
 	@Override
-	public List<Contract> subViewContractList(String subCode, Search search) {
+	public List<Contract> subViewContractList(String subCode, Search search, String YN) {
 			System.out.println("ContractServiceImpl subViewContractList실행");
 			
 			//맵안에 검색 및 컬럼정렬 정보와 subCode를 담아주자
 			Map<String,Object> map = new HashMap<String,Object>();
 			map.put("subCode", subCode);
 			map.put("search", search);
+			map.put("YN", YN);
 			
 			
 		return contractDao.subViewContractList(map);
@@ -395,10 +396,11 @@ public class ContractServiceImpl implements ContractService {
 	
 	//본사에서 전체 계약진행 리스트 조회
 	@Override
-	public List<Contract> headViewContract(Search search) {
+	public List<Contract> headViewContract(Search search, String YN) {
 		System.out.println("ContractServiceImpl headViewContract 실행");
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("search", search);
+		map.put("YN", YN);
 		
 		return contractDao.headViewContract(map);
 	}

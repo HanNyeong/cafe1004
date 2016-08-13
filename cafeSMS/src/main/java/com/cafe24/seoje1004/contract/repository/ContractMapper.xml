@@ -62,6 +62,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="search.searchKey != null and search.searchKey != '' and search.search != null and search.search != ''">
 					AND  ${search.searchKey} like CONCAT('%',#{search.search},'%') 
 			</if>
+			<if test="YN == 'Y'.toString()">
+				AND head_contract_confirm = "Y"
+			</if>
+			<if test="YN == 'N'.toString()">
+				AND head_contract_confirm = "N"
+			</if>
 			
 		</where>
 		<if test="search.criteria == null and search.criteria == '' and search.upDown == null and search.upDown == ''">
@@ -362,6 +368,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					AND  ${search.searchKey} like CONCAT('%',#{search.search},'%') 
 			</if>
 			
+			<if test="YN == 'Y'.toString()">
+				AND head_contract_confirm = "Y"
+			</if>
+			<if test="YN == 'N'.toString()">
+				AND head_contract_confirm = "N"
+			</if>
 		</where>
 		<if test="search.criteria == null and search.criteria == '' and search.upDown == null and search.upDown == ''">
 			order by sub_sell_date desc
