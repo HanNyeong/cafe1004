@@ -36,11 +36,12 @@ public class ReturnsServiceImpl implements ReturnsService {
 	
 	//가맹측 반품상품관리 조회
 	@Override
-	public List<Returns> subViewReturnsList(String subCode, Search search) {
+	public List<Returns> subViewReturnsList(String subCode, Search search, String YN) {
 		System.out.println("ReturnsServiceImpl subViewReturnsList 실행");
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("subCode", subCode);
 		map.put("search", search);
+		map.put("YN", YN);
 		return returnsDao.subViewReturnsList(map);
 	}
 	
@@ -185,10 +186,11 @@ public class ReturnsServiceImpl implements ReturnsService {
 	
 	//본사측 반품상품관리 조회
 	@Override
-	public List<Returns> headViewReturnsList(Search search) {
+	public List<Returns> headViewReturnsList(Search search, String YN) {
 		System.out.println("ReturnsServiceImpl headViewReturnsList 실행");
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("search", search);
+		map.put("YN", YN);
 		return returnsDao.headViewReturnsList(map);
 	}
 

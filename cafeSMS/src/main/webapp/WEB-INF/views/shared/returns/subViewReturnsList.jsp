@@ -156,7 +156,7 @@ $(document).ready(function(){
 		</div>
 	</div> 		
 	<c:forEach var="returnsList" items="${returnsList}">
-		<c:if test="${YN eq '' || YN eq null}">
+		
 		<div class="row tablediv">
 			<div class="col-sm-2">
 			</div>
@@ -180,31 +180,7 @@ $(document).ready(function(){
 			<div class="col-sm-2">
 			</div>
 		</div>	
-		</c:if>
-		<c:if test="${returnsList.returnHeadCheck == YN}">
-		<div class="row tablediv">
-			<div class="col-sm-2">
-			</div>
-			<div class="col-sm-1">${returnsList.returnCode}</div>
-			<div class="col-sm-1">${returnsList.returnPrice}</div>
-			<div class="col-sm-1">${returnsList.returnReportDate}</div>
-			<div class="col-sm-1">(${returnsList.returnHeadCheck})${returnsList.returnHeadCheckDate}</div>
-			<div class="col-sm-1">${returnsList.returnReDelivery}</div>
-			<div class="col-sm-1">${returnsList.ordersCode}</div>
-			<div class="col-sm-1">${returnsList.headReturnsConfirm}</div>
-			<div class="col-sm-1">
-				<p><a href="/viewReturnsContent?returnCode=${returnsList.returnCode}">[상세보기]</a></p>
-				<c:if test="${returnsList.returnHeadCheck == 'N'}">
-				<a href="/subCancelReturns?returnCode=${returnsList.returnCode}&ordersCode=${returnsList.ordersCode}&subCode=${returnsList.subCode}">[환불취소]</a>
-				</c:if>		
-				<c:if test="${returnsList.headReturnsConfirm == 'Y'}">
-					[환불완료]
-				</c:if>	
-			</div>
-			<div class="col-sm-2">
-			</div>
-		</div>	
-		</c:if>	
+	
 	</c:forEach>
 </c:if>
 <input type="button" class="btn btn-default" id="viewMoreBtn" value="더보기"/>

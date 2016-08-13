@@ -159,45 +159,7 @@ $(document).ready(function(){
 	</div>
 </div>
 	<c:forEach var="returnsList" items="${returnsList}">
-		<c:if test="${YN eq '' || YN eq null }">
-			<div class="row tablediv">
-				<div class="col-sm-2">
-				</div>					
-				<div class="col-sm-1">${returnsList.returnCode}</div>
-				<div class="col-sm-1">${returnsList.returnPrice}</div>
-				<div class="col-sm-1">${returnsList.returnReportDate}</div>
-				<div class="col-sm-1">(${returnsList.returnHeadCheck})${returnsList.returnHeadCheckDate}</div>
-				<div class="col-sm-1">${returnsList.ordersCode}</div>
-				<div class="col-sm-1">${returnsList.specificItemCode}</div>
-				<div class="col-sm-1">${returnsList.subCode}</div>
-				<div class="col-sm-1">
-					<a href="/viewReturnsContent?returnCode=${returnsList.returnCode}">[상세보기]</a><br/>
-					<c:if test="${returnsList.returnHeadCheck == 'N'}">
-						<a href="/approvalReturns?returnCode=${returnsList.returnCode}">[환불승인]</a>
-						<br/>
-					</c:if>	
-					<c:if test="${returnsList.returnReDelivery == 'N' && returnsList.headReturnsConfirm == 'N' && returnsList.returnHeadCheck == 'Y'}">
-						<a href="/headReturns?returnCode=${returnsList.returnCode}">[환불]</a>
-						<br/>
-					</c:if>
-					<c:if test="${returnsList.returnReDelivery == 'N' && returnsList.headReturnsConfirm == 'Y' && returnsList.returnHeadCheck == 'Y'}">
-						[환불 처리]
-						<br/>
-					</c:if>
-					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'N' && returnsList.returnHeadCheck == 'Y'}">
-						<a href="/headReturnReDelivery?returnCode=${returnsList.returnCode}">[재배송(${returnsList.returnReDelivery})]</a>
-						<br/>
-					</c:if>
-					<c:if test="${returnsList.returnReDelivery == 'Y' && returnsList.headReturnsConfirm == 'Y' && returnsList.returnHeadCheck == 'Y'}">
-						[재배송 처리(${returnsList.returnReDelivery})]
-					</c:if>
-				</div>
-				<div class="col-sm-2">
-				</div>
-			</div>
-		</c:if>
 		
-		<c:if test="${returnsList.returnHeadCheck == YN}">
 			<div class="row tablediv">
 				<div class="col-sm-2">
 				</div>					
@@ -233,7 +195,7 @@ $(document).ready(function(){
 				<div class="col-sm-2">
 				</div>
 			</div>
-		</c:if>
+		
 	</c:forEach>
 </c:if> 
 <input type="button" class="btn btn-default" id="viewMoreBtn" value="더보기"/>

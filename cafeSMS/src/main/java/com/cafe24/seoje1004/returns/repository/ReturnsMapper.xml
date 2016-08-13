@@ -77,7 +77,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="search.searchKey != null and search.searchKey != '' and search.search != null and search.search != ''">
 					AND  ${search.searchKey} like CONCAT('%',#{search.search},'%') 
 			</if>
-			
+			<if test="YN == 'Y'.toString()">
+				AND return_head_check = "Y"
+			</if>
+			<if test="YN == 'N'.toString()">
+				AND return_head_check = "N"
+			</if>
 		</where>
 		<if test="search.criteria == null and search.criteria == '' and search.upDown == null and search.upDown == ''">
 			order by return_report_date desc
@@ -119,7 +124,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="search.searchKey != null and search.searchKey != '' and search.search != null and search.search != ''">
 					AND  ${search.searchKey} like CONCAT('%',#{search.search},'%') 
 			</if>
-			
+			<if test="YN == 'Y'.toString()">
+				AND return_head_check = "Y"
+			</if>
+			<if test="YN == 'N'.toString()">
+				AND return_head_check = "N"
+			</if>
 		</where>
 		<if test="search.criteria == null and search.criteria == '' and search.upDown == null and search.upDown == ''">
 			order by return_report_date desc

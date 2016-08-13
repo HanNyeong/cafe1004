@@ -39,7 +39,7 @@ public class ReturnsController {
 				,@RequestParam(value="YN", required = false)String YN){
 		System.out.println("ReturnsController subViewReturnsList 실행");
 		
-		List<Returns> returnsList = returnsService.subViewReturnsList(subCode, search);
+		List<Returns> returnsList = returnsService.subViewReturnsList(subCode, search ,YN);
 		System.out.println("returnsList : "+ returnsList);
 		System.out.println("YN : "+YN);
 		
@@ -131,7 +131,7 @@ public class ReturnsController {
 				,@RequestParam(value="YN", required = false)String YN){
 		System.out.println("ReturnsController headViewReturnsList 실행");
 		
-		List<Returns> returnsList = returnsService.headViewReturnsList(search);
+		List<Returns> returnsList = returnsService.headViewReturnsList(search,YN);
 		System.out.println("returnsList : "+ returnsList);
 		
 		
