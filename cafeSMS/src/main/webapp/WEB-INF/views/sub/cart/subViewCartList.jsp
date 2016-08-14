@@ -104,6 +104,7 @@
 		<input type="hidden" id="upDown" name="upDown" value="" />
 		<input type="hidden" id="criteria" name="criteria" value=""/>
 		<input type="hidden" id="subCode" name="subCode" value="${subLogin.subCode}"/>
+		<input type="hidden" id="viewMore" name="viewMore" value="${cartSearch.viewMore}"/>
 		<br/><br/>
 		<select name="searchKey" required="required">
 			<option value="">::선택::</option>
@@ -194,6 +195,15 @@
 			</div>
 		</div>
 		</c:forEach>
+		<div class="row tablediv">
+			<div class="col-sm-2">
+			</div>
+			<div class="col-sm-8">
+				<input type="button" class="btn btn-default" id="viewMoreBtn" value="더보기"/>
+			</div>
+			<div class="col-sm-2">
+			</div>
+		</div>
 	</form>
 
 <jsp:include page="/WEB-INF/module/footer.jsp"/>

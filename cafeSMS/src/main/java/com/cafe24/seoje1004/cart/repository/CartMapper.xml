@@ -62,7 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="cartSearch.criteria != null and cartSearch.upDown != null and cartSearch.criteria != null and cartSearch.upDown != ''">
 			order by ${cartSearch.criteria} ${cartSearch.upDown}
 		</if>
-	
+		LIMIT 0,${cartSearch.viewMore}
 	</select>
 	
 	<!-- 장바구니 정보를 가져오기 (수정폼으로) -->

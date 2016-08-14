@@ -35,6 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="subjectSearch.criteria != null and subjectSearch.upDown != null and subjectSearch.criteria != null and subjectSearch.upDown != ''">
 				order by ${subjectSearch.criteria} ${subjectSearch.upDown}
 			</if>
+		LIMIT 0,${subjectSearch.viewMore}
 	</select>
 	
 	<insert id="add"

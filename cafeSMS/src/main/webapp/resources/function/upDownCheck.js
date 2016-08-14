@@ -43,7 +43,7 @@
 		}*/
 	$(document).ready(function(){
 		
-		$('#selectAll').click(function(){
+		$('.selectAll').click(function(){
 			
 			var choiceCheck = $(this).prop("checked");
 			
