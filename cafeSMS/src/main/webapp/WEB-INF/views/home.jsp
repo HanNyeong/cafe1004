@@ -46,9 +46,9 @@ $(document).ready(function() {
 <body>
 <jsp:include page="/WEB-INF/module/nav.jsp"/>
 <div class="row">
-	<div class="col-sm-2">
+	<div class="col-xs-2">
 	</div>
-	<div class="col-sm-4">
+	<div class="col-xs-3">
 		<c:if test="${subLogin eq null}">
 			<div class="container">
 				<form role="form" action="/customerViewClaimList" method="get" id="claimMainForm">
@@ -70,8 +70,9 @@ $(document).ready(function() {
 			</div>
 		</c:if>
 	</div>
-	
-	<div class="col-sm-4">
+	<div class="col-xs-2">
+	</div>
+	<div class="col-xs-3">
 		<c:if test="${subLogin eq null}">
 			<div class="container">
 				<form role="form" action="/subLogin" method="POST" id="loginForm">
@@ -93,7 +94,7 @@ $(document).ready(function() {
 			</div>
 		</c:if>
 	</div>
-	<div class="col-sm-2">
+	<div class="col-xs-2">
 	</div>
 </div>
 <br/>
@@ -101,15 +102,15 @@ $(document).ready(function() {
 	<div class="col-sm-2">
 	</div>
 	<c:if test="${subLogin eq null}">
-	<div class="col-sm-8">
-		<jsp:include page="menuChart.jsp"/>	
-	</div>
-	</c:if>
-	<c:if test="${subLogin ne null}">
-		<div class="col-sm-3">
+		<div class="col-sm-8">
 			<jsp:include page="menuChart.jsp"/>	
 		</div>
-		<div class="col-sm-5">
+	</c:if>
+	<c:if test="${subLogin ne null}">
+		<div class="col-sm-4">
+			<jsp:include page="menuChart.jsp"/>	
+		</div>
+		<div class="col-sm-4">
 			<jsp:include page="priceChart.jsp"/>	
 		</div>
 	</c:if>
