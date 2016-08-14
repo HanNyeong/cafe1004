@@ -163,17 +163,21 @@ public class SubStaffController {
 		   System.out.println("여기요");
 		   return "redirect:/viewSubStaffList?subCode="+subStaff.getSubCode();
 	   }
+	   /**
+	    * 직원리스트 조회를 하는데 권한을 체크하는 컨트롤러입니다.
+	    * 매개변수로 직원정보를받아서 점주 유무를 판단해서 직원정보를 리턴합니다.
+	    * @param redirectAttr
+	    * @param subStaff
+	    * @return
+	    */
 	   
 	   @RequestMapping(value="/subStaffKeeperCheck")
 	   public String subStaffKeeperCheck(RedirectAttributes redirectAttr, SubStaff subStaff) {
 			System.out.println("SubAccountController subAccountKeeperCheck.POST실행");
 			System.out.println(subStaff);
 			SubStaff reStaff = subStaffService.subStaffKeeperCheckService(subStaff);
-			System.out.println("================================================");
 			System.out.println(reStaff);
-			System.out.println("================================================");
 			if(reStaff != null){
-				System.out.println("IFIFIFIFIFIFIFIFIFIFIFIFIFIFI");
 				reStaff.setSubStaffLevel("점주");
 				reStaff.setSubStaffPw("");
 				redirectAttr.addFlashAttribute("subStaff", reStaff);
