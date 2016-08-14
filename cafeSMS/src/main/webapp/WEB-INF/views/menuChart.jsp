@@ -16,7 +16,7 @@
 	<section>
 		<div class="pieID pie"></div>
 		<ul class="pieID legend">
-		<c:forEach var="chart" items="${menuChart}">
+		<c:forEach var="chart" items="${map.menuChart}">
 			<li><em>${chart.menuName}</em><span>${chart.counts}</span></li>
 <%-- 			<li><em>${chart.menuName}</em><span>${chart.counts}</span></li> --%>
 		</c:forEach>

@@ -104,7 +104,8 @@ public class SubController {
 			result = "/home";
 		}else{
 			model.addAttribute("subLogin", subLogin);
-			result = "redirect:/";
+			System.out.println(subLogin.getSubCode()+"dsdsdsds");
+			result = "redirect:/?subCode="+subLogin.getSubCode();
 		}
 		return result;
 	}

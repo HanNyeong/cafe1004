@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.cafe24.seoje1004.menu.model.Menu;
 import com.cafe24.seoje1004.subSell.model.SubSell;
 import com.cafe24.seoje1004.util.Chart;
+import com.cafe24.seoje1004.util.Price;
 
 @Repository
 public class SubSellDaoImpl implements SubSellDao {
@@ -83,6 +84,14 @@ public class SubSellDaoImpl implements SubSellDao {
 	public String selectGroupCode() {
 		System.out.println("SubSellDaoImpl selectGroupCode 실행");
 		return sqlSessionSubSell.selectOne(NS+".selectGroupCode");
+	}
+
+
+	//메뉴 차트 + 매출차트
+	@Override
+	public List<Price> priceChart(String subCode) {
+		System.out.println("SubSellDaoImpl priceChart 실행");
+		return sqlSessionSubSell.selectList(NS+".priceChart",subCode);
 	}
 
 	

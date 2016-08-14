@@ -20,6 +20,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	     <result property="subSellFinalStaff" column="sub_sell_final_staff"/>
 	     <result property="subSellCost" column="sub_sell_cost"/>
    	</resultMap>
+   	<!-- 매출차트 -->
+   	<select id="priceChart"
+   			parameterType="java.lang.String"
+   			resultType="com.cafe24.seoje1004.util.Price">
+   			SELECT 
+   				sub_account_price as subAccountPrice, 
+   				sub_account_request_date as subAccountRequestDate
+			FROM 
+				sub_account
+			Where 
+				sub_code = #{subCode} and sub_account_flow = '입금'
+		   	
+   	</select>
+   	<!-- 메뉴 차트  -->
 	<select id="menuChart"
 			resultType="com.cafe24.seoje1004.util.Chart">
 		SELECT

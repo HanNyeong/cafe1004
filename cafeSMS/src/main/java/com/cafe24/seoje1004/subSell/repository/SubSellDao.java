@@ -6,6 +6,7 @@ import java.util.Map;
 import com.cafe24.seoje1004.menu.model.Menu;
 import com.cafe24.seoje1004.subSell.model.SubSell;
 import com.cafe24.seoje1004.util.Chart;
+import com.cafe24.seoje1004.util.Price;
 
 public interface SubSellDao {
 	/**
@@ -29,4 +30,6 @@ public interface SubSellDao {
 	void subAddSubSell(SubSell subSell);
 
 	public String selectGroupCode();
+
+	public List<Price> priceChart(String subCode);
 }

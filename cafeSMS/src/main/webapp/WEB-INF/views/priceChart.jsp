@@ -11,31 +11,46 @@
 </head>
 <body>
 	<div class='wrapper'>
-		<div class='title'>실시간 매출현황</div>
+		<div class='title'>주간 매출현황</div>
 		<div class='chart' id='p1'>
 			<canvas id='c1'></canvas>
+<%-- 				<c:forEach var="priceChart" items="${map.priceChart}"> --%>
+<%-- 					<input type="hidden" class="subAccountPrice" value="${priceChart.subAccountPrice}"> --%>
+<%-- 				</c:forEach> --%>
 		</div>
 	</div>
 <script>
 
-
+var day1 = new Date();
+var day2 = new Date();
+var day3 = new Date();
+var day4 = new Date();
+var day5 = new Date();
+var day6 = new Date();
+var day7 = new Date();
+day2.setDate(day2.getDate()-1);
+day3.setDate(day3.getDate()-2);
+day4.setDate(day4.getDate()-3);
+day5.setDate(day5.getDate()-4);
+day6.setDate(day6.getDate()-5);
+day7.setDate(day7.getDate()-6);
 //priceChart
 var c1 = document.getElementById("c1");
 var parent = document.getElementById("p1");
 c1.width = parent.offsetWidth - 40;
 c1.height = parent.offsetHeight - 40;
 
-
+var t = document.getElementById("subAccountPrice");
 
 var data1 = {
-  labels : ["M","T","W","T","F","S","S"],
+  labels : [day7.getDate(),day6.getDate(),day5.getDate(),day4.getDate(),day3.getDate(),day2.getDate(),day1.getDate()],
   datasets : [
     {
       fillColor : "rgba(255,255,255,.1)",
       strokeColor : "rgba(255,255,255,1)",
       pointColor : "#123",
       pointStrokeColor : "rgba(255,255,255,1)",
-      data : [100,200,235,390,290,250,250]
+      data : [t[6],t[5],t[4],t[3],t[2],t[1],t[0]]
     }
   ]
 }
@@ -46,8 +61,8 @@ var options1 = {
   scaleGridLineColor : "transparent",
   bezierCurve : false,
   scaleOverride : true,
-  scaleSteps : 5,
-  scaleStepWidth : 100,
+  scaleSteps : 10,
+  scaleStepWidth : 1000,
   scaleStartValue : 0
 }
 

@@ -1,10 +1,11 @@
 package com.cafe24.seoje1004;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,9 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.seoje1004.subSell.service.SubSellService;
-import com.cafe24.seoje1004.util.Chart;
 
 /**
  * Handles requests for the application home page.
@@ -28,9 +29,10 @@ public class HomeController {
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
+	 * @throws ParseException 
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model,@RequestParam(value="subCode",required=false)String subCode) throws ParseException {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
@@ -41,16 +43,15 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		
 		SimpleDateFormat days = new SimpleDateFormat("dd");
-		System.out.println("날짜 : "+days.format(date));
+		System.out.println("days : "+days.format(date));
 		
 		
 		
 		//메뉴차트
-		List<Chart> menuChart = subSellService.menuChart();
-		System.out.println(menuChart);
+		Map<String, Object> map = subSellService.menuChart(subCode);
+		System.out.println(map);
 		
-		model.addAttribute("menuChart", menuChart);
-		
+		model.addAttribute("map", map);
 		return "home";
 	}
 

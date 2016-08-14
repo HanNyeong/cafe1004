@@ -6,31 +6,37 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>addSubStaff</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="resources/function/undefinedCheck.js"></script>
 <script>
 //유효성 검사
-$(document).ready(function(){            
-   // 폼 제출
-   $('#subStaffAddBtn').click(function(){
-      if ($('#subStaffName').val() == ""){
-         alert("직원 이름을 입력해주세요.");
-      }else if ($('#subStaffPw').val() == ""){
-         alert("비밀번호를 입력해주세요.");
-      }else if ($('#subStaffPw2').val() == ""){
-          alert("비밀번호 확인을 해주세요.");
-      }else if ($('#subStaffPw').val() != $('#subStaffPw2').val()){
-          alert("비밀번호가 일치하지 않습니다.");
-      }else if ($('#subStaffLevel').val() == ""){
-         alert("직급을 선택해주세요.");
-      }else if ($('#subStaffJoin').val() == ""){
-         alert("입사일를 입력해주세요.");
-      }else if ($('#subStaffSalary').val() == ""){
-          alert("급여를 입력해주세요.");
-      }else {
-         $('#addSubStaffForm').submit();
+$(document).ready(function(){   
+	
+	
+//    // 폼 제출
+//    $('#subStaffAddBtn').click(function(){
+//       if ($('#subStaffName').val() == ""){
+//          alert("직원 이름을 입력해주세요.");
+//       }else if ($('#subStaffPw').val() == ""){
+//          alert("비밀번호를 입력해주세요.");
+//       }else if ($('#subStaffPw2').val() == ""){
+//           alert("비밀번호 확인을 해주세요.");
+//       }else if ($('#subStaffPw').val() != $('#subStaffPw2').val()){
+//           alert("비밀번호가 일치하지 않습니다.");
+//       }else if ($('#subStaffLevel').val() == ""){
+//          alert("직급을 선택해주세요.");
+//       }else if ($('#subStaffJoin').val() == ""){
+//          alert("입사일를 입력해주세요.");
+//       }else if ($('#subStaffSalary').val() == ""){
+//           alert("급여를 입력해주세요.");
+//       }else {
+//          $('#addSubStaffForm').submit();
          
-      }
-   });
+//       }
+//    });
+undefinedEvent($('#subStaffAddBtn'),$('#addSubStaffForm'),$('#valChekMsg'));
 });
+
+
 
 </script>
 </head>
@@ -45,7 +51,7 @@ $(document).ready(function(){
 			<h1> 가맹 직원 등록 </h1>
 			<form action="/subAddSubStaff" method="POST" id="addSubStaffForm">
 				<div>
-					<p>이름 : <input type="text" id="subStaffName" name="subStaffName" /></p>
+					<p>이름 : <input type="text" id="subStaffName" name="subStaffName" value="" valChek="이름을 입력해주세요."/></p>
 					<p>비밀번호 : <input type="password" id="subStaffPw" name="subStaffPw"/></p>
 					<p>비밀번호 확인: <input type="password" id="subStaffPw2" name="subStaffPw2"/></p>
 					<p>직급 :	         
@@ -59,6 +65,7 @@ $(document).ready(function(){
 				</div>
 				<br/>
 				<div class="clickBtn">
+					<span id="valChekMsg"></span>
 					<input type="button" id="subStaffAddBtn" class="btn btn-default" name="subStaffAddBtn" value="등록"/>
 					<a href="/"><input type="button" class="btn btn-default" value="취소"/></a>
 				</div>
