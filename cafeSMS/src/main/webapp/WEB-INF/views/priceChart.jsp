@@ -16,13 +16,10 @@
 			<canvas id='c1'></canvas>
 		</div>
 	</div>
-	<c:forEach items="${priceChart}" var="priceChart">
-		<input type="hidden" class="priceChart" name="priceChart" value="${priceChart.subAccountPrice}" >
+	<c:forEach items="${map.priceChart}" var="priceChart">
+		<input type="hidden" class="priceChart" name="priceChart" value="${priceChart}" >
 	</c:forEach>
 <script>
-
-$(document).ready(function(){
-	
 var day1 = new Date();
 var day2 = new Date();
 var day3 = new Date();
@@ -41,9 +38,11 @@ var c1 = document.getElementById("c1");
 var parent = document.getElementById("p1");
 c1.width = parent.offsetWidth - 40;
 c1.height = parent.offsetHeight - 40;
+var val =document.getElementsByName("priceChart");
 
-var t = $('.priceChart').val();
-console.log(t)
+for(var i=0; i<val.length; i++) {
+	console.log(val[i].value);
+	}
 var data1 = {
   labels : [day7.getDate(),day6.getDate(),day5.getDate(),day4.getDate(),day3.getDate(),day2.getDate(),day1.getDate()],
   datasets : [
@@ -52,7 +51,7 @@ var data1 = {
       strokeColor : "rgba(255,255,255,1)",
       pointColor : "#123",
       pointStrokeColor : "rgba(255,255,255,1)",
-      data : [t[6],t[5],t[4],t[3],t[2],t[1],t[0]]
+      data : [val[6].value,val[5].value,val[4].value,val[3].value,val[2].value,val[1].value,val[0].value]
     }
   ]
 }
@@ -64,12 +63,11 @@ var options1 = {
   bezierCurve : false,
   scaleOverride : true,
   scaleSteps : 10,
-  scaleStepWidth : 1000,
+  scaleStepWidth : 10000,
   scaleStartValue : 0
 }
 
 new Chart(c1.getContext("2d")).Line(data1,options1)
-});
 
 </script>
 </body>
