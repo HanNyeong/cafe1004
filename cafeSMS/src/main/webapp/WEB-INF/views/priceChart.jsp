@@ -14,13 +14,15 @@
 		<div class='title'>주간 매출현황</div>
 		<div class='chart' id='p1'>
 			<canvas id='c1'></canvas>
-<%-- 				<c:forEach var="priceChart" items="${map.priceChart}"> --%>
-<%-- 					<input type="hidden" class="subAccountPrice" value="${priceChart.subAccountPrice}"> --%>
-<%-- 				</c:forEach> --%>
 		</div>
 	</div>
+	<c:forEach items="${priceChart}" var="priceChart">
+		<input type="hidden" class="priceChart" name="priceChart" value="${priceChart.subAccountPrice}" >
+	</c:forEach>
 <script>
 
+$(document).ready(function(){
+	
 var day1 = new Date();
 var day2 = new Date();
 var day3 = new Date();
@@ -40,8 +42,8 @@ var parent = document.getElementById("p1");
 c1.width = parent.offsetWidth - 40;
 c1.height = parent.offsetHeight - 40;
 
-var t = document.getElementById("subAccountPrice");
-
+var t = $('.priceChart').val();
+console.log(t)
 var data1 = {
   labels : [day7.getDate(),day6.getDate(),day5.getDate(),day4.getDate(),day3.getDate(),day2.getDate(),day1.getDate()],
   datasets : [
@@ -67,6 +69,7 @@ var options1 = {
 }
 
 new Chart(c1.getContext("2d")).Line(data1,options1)
+});
 
 </script>
 </body>

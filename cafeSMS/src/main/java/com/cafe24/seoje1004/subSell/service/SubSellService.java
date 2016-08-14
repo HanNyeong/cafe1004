@@ -24,7 +24,7 @@ public interface SubSellService {
 	public List<Menu> viewMenuList(); 		//메뉴리스트를 가져오자
 
 	//메뉴 코드 chart 만들때 count 구하는 서비스입니다.
-	public Map<String,Object> menuChart(String subCode)throws ParseException ;
+	public Map<String,Object> menuChart(String subCode);
 	
 	//메뉴 차트 + 매출차트
 	void subAddSubSellService(SubSellGroup subSellGroup);

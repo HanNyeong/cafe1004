@@ -32,7 +32,7 @@ public class HomeController {
 	 * @throws ParseException 
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model,@RequestParam(value="subCode",required=false)String subCode) throws ParseException {
+	public String home(Locale locale, Model model,@RequestParam(value="subCode",required=false)String subCode){
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
@@ -55,4 +55,5 @@ public class HomeController {
 		return "home";
 	}
 
+	
 }

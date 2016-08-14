@@ -92,66 +92,75 @@ public class SubSellServiceImpl implements SubSellService{
 
 
 	//메뉴 차트 + 매출차트
-	@Override
-	public Map<String,Object> menuChart(String subCode) throws ParseException {
+		@Override
+		public Map<String,Object> menuChart(String subCode){
 
-		Date memDelStartDate; // 삭제 시작일
-		Date currentDate; // 현재날짜 Date
-		String oTime = ""; // 현재날짜
-		System.out.println("SubSellServiceImpl menuChart실행");
-		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("menuChart", subSellDao.menuChart());
-		System.out.println(subCode);
-		if(subCode != ""){
-			List<Price> accounts = subSellDao.priceChart(subCode);
-			System.out.println(accounts);
-			Integer sumPrice1 = 0;
-			Integer sumPrice2 = 0;
-			Integer sumPrice3 = 0;
-			Integer sumPrice4 = 0;
-			Integer sumPrice5 = 0;
-			Integer sumPrice6 = 0;
-			Integer sumPrice7 = 0;
-			for(int i = 0; i < accounts.size(); i++){
-				SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
-				Date currentTime = new Date();
-				oTime = mSimpleDateFormat.format ( currentTime ); //현재시간 (String)
-				System.out.println(accounts.get(i).getSubAccountRequestDate());
-				System.out.println("확인");
-				memDelStartDate = mSimpleDateFormat.parse( accounts.get(i).getSubAccountRequestDate());
-				currentDate =  mSimpleDateFormat.parse( oTime );
-									
-				int compare = currentDate.compareTo( memDelStartDate );
-				// 날짜비교
-				if(compare==0){
-					sumPrice1 += accounts.get(i).getSubAccountPrice();
-				}else if(compare-1==0){
-					sumPrice2 += accounts.get(i).getSubAccountPrice();
-				}else if(compare-2==0){
-					sumPrice3 += accounts.get(i).getSubAccountPrice();
-				}else if(compare-3==0){
-					sumPrice4 += accounts.get(i).getSubAccountPrice();
-				}else if(compare-4==0){
-					sumPrice5 += accounts.get(i).getSubAccountPrice();
-				}else if(compare-5==0){
-					sumPrice6 += accounts.get(i).getSubAccountPrice();
-				}else if(compare-6==0){
-					sumPrice7 += accounts.get(i).getSubAccountPrice();
+			Date memDelStartDate; // 삭제 시작일
+			Date currentDate; // 현재날짜 Date
+			String oTime = ""; // 현재날짜
+			System.out.println("SubSellServiceImpl menuChart실행");
+			Map<String,Object> map = new HashMap<String,Object>();
+			map.put("menuChart", subSellDao.menuChart());
+			System.out.println(subCode);
+			if(subCode != ""){
+				List<Price> accounts = subSellDao.priceChart(subCode);
+				System.out.println(accounts);
+				Integer sumPrice1 = 0;
+				Integer sumPrice2 = 0;
+				Integer sumPrice3 = 0;
+				Integer sumPrice4 = 0;
+				Integer sumPrice5 = 0;
+				Integer sumPrice6 = 0;
+				Integer sumPrice7 = 0;
+				for(int i = 0; i < accounts.size(); i++){
+					SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
+					Date currentTime = new Date();
+					oTime = mSimpleDateFormat.format ( currentTime ); //현재시간 (String)
+					System.out.println(accounts.get(i).getSubAccountRequestDate());
+					System.out.println("확인");
+					try {
+						memDelStartDate = mSimpleDateFormat.parse( accounts.get(i).getSubAccountRequestDate());
+						currentDate =  mSimpleDateFormat.parse( oTime );
+						int compare = currentDate.compareTo( memDelStartDate );
+						if(compare==0){
+							System.out.println(sumPrice1+"=========1번");
+							sumPrice1 += accounts.get(i).getSubAccountPrice();
+							System.out.println(sumPrice1);
+						}else if(compare-1==0){
+							sumPrice2 += accounts.get(i).getSubAccountPrice();
+						}else if(compare-2==0){
+							sumPrice3 += accounts.get(i).getSubAccountPrice();
+						}else if(compare-3==0){
+							sumPrice4 += accounts.get(i).getSubAccountPrice();
+						}else if(compare-4==0){
+							sumPrice5 += accounts.get(i).getSubAccountPrice();
+						}else if(compare-5==0){
+							sumPrice6 += accounts.get(i).getSubAccountPrice();
+						}else if(compare-6==0){
+							sumPrice7 += accounts.get(i).getSubAccountPrice();
+						}
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+										
+					// 날짜비교
 				}
+				
+				List<Integer> priceChart = new ArrayList<Integer>();
+				priceChart.add(sumPrice1);
+				priceChart.add(sumPrice2);
+				priceChart.add(sumPrice3);
+				priceChart.add(sumPrice4);
+				priceChart.add(sumPrice5);
+				priceChart.add(sumPrice6);
+				priceChart.add(sumPrice7);
+				System.out.println(priceChart);
+				map.put("priceChart", priceChart);
 			}
-			
-			List<Integer> priceChart = new ArrayList<Integer>();
-			priceChart.add(sumPrice1);
-			priceChart.add(sumPrice2);
-//			priceChart.add(sumPrice3);
-//			priceChart.add(sumPrice4);
-//			priceChart.add(sumPrice5);
-//			priceChart.add(sumPrice6);
-//			priceChart.add(sumPrice7);
-			map.put("priceChart", priceChart);
+			return map;
 		}
-		return map;
-	}
+		
 	
 	public void subAddSubSellService(SubSellGroup subSellGroup){
 		SubSell subSell = new SubSell();

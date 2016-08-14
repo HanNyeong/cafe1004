@@ -1,14 +1,14 @@
 package com.cafe24.seoje1004.util;
 
 public class Price {
-	private Integer subAccountPrice;
+	private int subAccountPrice;
 	private String subAccountRequestDate;
 	
-	public Integer getSubAccountPrice() {
+	public int getSubAccountPrice() {
 		return subAccountPrice;
 	}
 
-	public void setSubAccountPrice(Integer subAccountPrice) {
+	public void setSubAccountPrice(int subAccountPrice) {
 		this.subAccountPrice = subAccountPrice;
 	}
 
