@@ -12,34 +12,12 @@ $(document).ready(function() {
 	//유효성 검사
 			$('#loginBtn').click(function(){
 				console.log('로그인버튼 클릭');
-				if( $('#subCode').val() == ""){
-					$('#subCodeHelper').css('color', 'red');
-					$('#subCodeHelper').text('가맹 코드를 입력해주세요');
-				}else if( $('#subPassword').val() == ""){
-					$('#subCodeHelper').text('');
-					$('#subPasswordHelper').css('color', 'red');
-					$('#subPasswordHelper').text('비밀번호를 입력해주세요');
-				}else{
-					$('#loginForm').submit();
-				}			
+				var check = undefinedEvent($('#subStaffAddBtn'),$('#addSubStaffForm'),$('#valChekMsg'));			
 			});
 			$('#claimBtn').click(function() {
 				console.log('고객 컴플레인 클릭');
-				//이름,핸드폰번호 검사
-				if( $('#customerName').val() == ""){
-					$('#customerNameHelper').css('color', 'red');
-					$('#customerNameHelper').text('이름을 입력해주세요');
-				}else if( $('#customerPhone').val() == ""){
-					$('#customerNameHelper').text('');
-					$('#customerPhoneHelper').css('color', 'red');
-					$('#customerPhoneHelper').text('전화번호를 입력해주세요');
-				}  else {
-					$('#claimMainForm').submit();
-				}			
-			});
-			
-			
-			
+				var check = undefinedEvent($('#subStaffAddBtn'),$('#addSubStaffForm'),$('#valChekMsg'));		
+			});			
 });
 </script>
 </head>
@@ -56,12 +34,10 @@ $(document).ready(function() {
 					<div class="form-group">
 						<label for="customerName">이름 : </label>
 						<input type="text" class="form-control" id="customerName" name ="customerName" placeholder="이름을 입력해주세요." value="서지연">
-						<span id="customerNameHelper"></span>
 					</div>
 					<div class="form-group">
 						<label for="customerPhone">전화번호:</label>
 						<input type="text" class="form-control" id="customerPhone" name = "customerPhone" placeholder="핸드폰 번호를 입력해주세요." value="01092014268">
-						<span id="customerPhoneHelper"></span>
 					</div>
 					<div class="right">
 						<a href="/customerAddClaim">고객불만등록</a> <input type="button" class="btn btn-default" id="claimBtn" value="검색"/>
@@ -79,13 +55,11 @@ $(document).ready(function() {
 				<h2>로그인</h2>
 					<div class="form-group">
 						<label for="subCode">아이디 : </label>
-						<input type="text" class="form-control" id="subCode" name ="subCode" placeholder="Enter ID" value="sub_code1">
-						<span id="subCodeHelper"></span>
+						<input type="text" class="form-control" id="subCode" name ="subCode" placeholder="Enter ID" value="sub_code1" valChek="아이디를 입력해주세요">
 					</div>
 					<div class="form-group">
 						<label for="staffPw">비밀번호:</label>
-						<input type="password" class="form-control" id="subPassword" name = "subPassword" placeholder="Enter password" value="1234">
-						<span id="subPasswordHelper"></span>
+						<input type="password" class="form-control" id="subPassword" name = "subPassword" placeholder="Enter password" value="1234" valChek="비밀번호를 입력해주세요">
 					</div>
 					<div class="right">
 						<input type="button" class="btn btn-default" id="loginBtn" value="로그인"/>

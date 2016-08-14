@@ -12,28 +12,10 @@
 $(document).ready(function(){   
 	
 	
-//    // 폼 제출
-//    $('#subStaffAddBtn').click(function(){
-//       if ($('#subStaffName').val() == ""){
-//          alert("직원 이름을 입력해주세요.");
-//       }else if ($('#subStaffPw').val() == ""){
-//          alert("비밀번호를 입력해주세요.");
-//       }else if ($('#subStaffPw2').val() == ""){
-//           alert("비밀번호 확인을 해주세요.");
-//       }else if ($('#subStaffPw').val() != $('#subStaffPw2').val()){
-//           alert("비밀번호가 일치하지 않습니다.");
-//       }else if ($('#subStaffLevel').val() == ""){
-//          alert("직급을 선택해주세요.");
-//       }else if ($('#subStaffJoin').val() == ""){
-//          alert("입사일를 입력해주세요.");
-//       }else if ($('#subStaffSalary').val() == ""){
-//           alert("급여를 입력해주세요.");
-//       }else {
-//          $('#addSubStaffForm').submit();
-         
-//       }
-//    });
-undefinedEvent($('#subStaffAddBtn'),$('#addSubStaffForm'),$('#valChekMsg'));
+   // 폼 제출
+   $('#subStaffAddBtn').click(function(){
+    	 var check = undefinedEvent($('#subStaffAddBtn'),$('#addSubStaffForm'),$('#valChekMsg'));
+   });
 });
 
 
@@ -51,17 +33,17 @@ undefinedEvent($('#subStaffAddBtn'),$('#addSubStaffForm'),$('#valChekMsg'));
 			<h1> 가맹 직원 등록 </h1>
 			<form action="/subAddSubStaff" method="POST" id="addSubStaffForm">
 				<div>
-					<p>이름 : <input type="text" id="subStaffName" name="subStaffName" value="" valChek="이름을 입력해주세요."/></p>
-					<p>비밀번호 : <input type="password" id="subStaffPw" name="subStaffPw"/></p>
-					<p>비밀번호 확인: <input type="password" id="subStaffPw2" name="subStaffPw2"/></p>
+					<p>이름 : <input type="text" id="subStaffName" name="subStaffName" value="" valChek="이름을 입력해주세요"/></p>
+					<p>비밀번호 : <input type="password" id="subStaffPw" name="subStaffPw" value="" valChek="비밀번호를 입력해주세요"/></p>
+					<p>비밀번호 확인: <input type="password" id="subStaffPw2" name="subStaffPw2" value="" valChek="비밀번호를  확인해주세요"/></p>
 					<p>직급 :	         
-						<select id="subStaffLevel" name="subStaffLevel">
+						<select id="subStaffLevel" name="subStaffLevel" valChek="직급을 선택해주세요">
 							<option value="">::: 직급 :::</option>
 							<option value="1">점주</option>
 							<option value="2">매니저</option>               
 						</select>
-					<p>입사일 : <input type="date" name="subStaffJoin" id="subStaffJoin" /></p>
-					<p>급여 : <input type="text" name="subStaffSalary" id="subStaffSalary" /></p>
+					<p>입사일 : <input type="date" name="subStaffJoin" id="subStaffJoin" value="" valChek="입사일을 지정해주세요."/></p>
+					<p>급여 : <input type="text" name="subStaffSalary" id="subStaffSalary" value="" valChek="급여를 입력해주세요."/></p>
 				</div>
 				<br/>
 				<div class="clickBtn">
