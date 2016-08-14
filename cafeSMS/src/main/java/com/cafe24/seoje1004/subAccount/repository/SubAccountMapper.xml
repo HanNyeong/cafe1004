@@ -78,6 +78,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="subAccountSearch.criteria != null and subAccountSearch.upDown != null and subAccountSearch.criteria != null and subAccountSearch.upDown != ''">
 			order by ${subAccountSearch.criteria} ${subAccountSearch.upDown}
 		</if>
+		LIMIT 0,${subAccountSearch.viewMore}
 	</select>
 	<update id="modifySubAccount"
 		parameterType="java.util.Map">

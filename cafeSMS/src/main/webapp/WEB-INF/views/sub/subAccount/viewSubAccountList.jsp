@@ -16,7 +16,7 @@
 				'total_account_group', 
 				'sub_account_price', 'sub_account_request_date',
 				 'sub_account_detail',
-				'subject_code', 'sub_client_code', 'sub_code']
+				'sub_client_code']
 
 		$('.up').each(function(index, item) {
 			$(item).click(function() {
@@ -89,6 +89,7 @@
 				<input type="hidden" id="criteria" name="criteria" value="" /> 
 				<input type="hidden" id="subCode" name="subCode" value="${subLogin.subCode}" /> 
 				<input type="hidden" id="subStaffLevel" name="subStaffLevel" value="${subStaff.subStaffLevel}" /> 
+				<input type="hidden" id="viewMore" name="viewMore" value="${subAccountSearch.viewMore}"/>
 				
 					등록 날짜: <input type="date" name="regitDateStart" value="${subAccountSearch.regitDateStart}" />
 				~ <input type="date" name="regitDateEnd" value="${subAccountSearch.regitDateEnd}" /> 

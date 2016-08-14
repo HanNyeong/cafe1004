@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>subViewSubClientList</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="resources/function/upDownCheck.js"></script>
 <script>
 	$.list = function(upDown,criteria){
 		$('#upDown').attr('value',upDown);

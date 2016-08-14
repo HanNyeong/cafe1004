@@ -23,13 +23,21 @@
 				list('DESC',columnList[index],$("#subDumpList"));
 			});
 		});
+		// 더보기
+		$('#viewMoreBtn').click(function(){
+		var viewMore = $('#viewMore').val();
+			$('#viewMore').val(viewMore*1+25);
+			$('#subDumpList').submit();
+		});
+		
 		$('#searchBtn').click(function(){
-			if($('#searchCart').val() == ""){
+			if($('#searchSubDump').val() == ""){
 				console.log("검색어입력하세요");
 			}else{
 				$('#subDumpList').submit();
 			}
 		});
+		
 	});
 		
 </script>
@@ -45,6 +53,7 @@
 		<input type="hidden" id="upDown" name="upDown" value="" />
 		<input type="hidden" id="criteria" name="criteria" value=""/>
 		<input type="hidden" id="subCode" name="subCode" value="${subLogin.subCode}"/>
+		<input type="hidden" id="viewMore" name="viewMore" value="${subDumpSearch.viewMore}"/>
 		등록 날짜: 
 		<input type="date" name="regitDateStart" value="${subDumpSearch.regitDateStart}"/> ~
 		<input type="date" name="regitDateEnd" value="${subDumpSearch.regitDateEnd}"/> 
@@ -124,6 +133,15 @@
 			</div>
 		</div>
 		</c:forEach>
+		<div class="row tablediv">
+			<div class="col-sm-2">
+			</div>
+			<div class="col-sm-8">
+				<input type="button" class="btn btn-default" id="viewMoreBtn" value="더보기"/>
+			</div>
+			<div class="col-sm-2">
+			</div>
+		</div>
 <jsp:include page="/WEB-INF/module/footer.jsp"/>
 </body>
 </html>

@@ -31,6 +31,12 @@
 				$('#cartList').submit();
 			}
 		});
+		// 더보기
+		$('#viewMoreBtn').click(function(){
+		var viewMore = $('#viewMore').val();
+			$('#viewMore').val(viewMore*1+25);
+			$('#cartList').submit();
+		});
 		
 		// 삭제 체크 되어 있는 값 추출
 		$('#cartDeleteBtn').click(function(){

@@ -14,7 +14,7 @@
 		}
 	}
 	*/
-	var undefinedCheck = function(val,msg){
+	/*var undefinedCheck = function(val,msg){
 		if(undefined == val || '' == val){
 			alert(msg)
 			return false;
@@ -22,7 +22,7 @@
 		return true;
 	}
 	
-	$(document).ready(function(){
+	
 		var undefinedEvent = function(btn,form){
 			btn.click(function(){
 				var submitCheck = true;
@@ -40,12 +40,9 @@
 					form.submit();
 				}
 			});
-		}
-		$('#viewMoreBtn').click(function(){
-		var viewMore = $('#viewMore').val();
-			$('#viewMore').val(viewMore*1+25);
-			$('#subStaffList').submit();
-		});
+		}*/
+	$(document).ready(function(){
+		
 		$('#selectAll').click(function(){
 			
 			var choiceCheck = $(this).prop("checked");
