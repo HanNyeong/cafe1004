@@ -31,7 +31,7 @@
 				$('#cartList').submit();
 			}
 		});
-		// 더보기
+		// 더보기 clear
 		$('#viewMoreBtn').click(function(){
 		var viewMore = $('#viewMore').val();
 			$('#viewMore').val(viewMore*1+25);
