@@ -44,6 +44,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="menuSearch.criteria != null and menuSearch.upDown != null and menuSearch.criteria != null and menuSearch.upDown != ''">
 			order by ${menuSearch.criteria} ${menuSearch.upDown}
 		</if>
-
+		LIMIT 0,${menuSearch.viewMore}
 	</select>
 </mapper>

@@ -24,6 +24,12 @@
 				list('DESC',columnList[index],$("#eventList"));
 			});
 		});
+		// 더보기 clear
+		$('#viewMoreBtn').click(function(){
+		var viewMore = $('#viewMore').val();
+			$('#viewMore').val(viewMore*1+25);
+			$('#eventList').submit();
+		});
 		$('#searchBtn').click(function(){
 			if($('#searchEvent').val() == ""){
 				console.log("검색어입력하세요");
@@ -44,6 +50,7 @@
 		<form id="eventList" action="/viewEventList" method="POST">
 			<input type="hidden" id="upDown" name="upDown" value="" />
 			<input type="hidden" id="criteria" name="criteria" value=""/>
+			<input type="hidden" id="viewMore" name="viewMore" value="${eventSearch.viewMore}"/>
 			등록 날짜: 
 			<input type="date" name="regitDateStart" value="${eventSearch.regitDateStart}"/> ~
 			<input type="date" name="regitDateEnd" value="${eventSearch.regitDateEnd}"/> 
@@ -119,6 +126,15 @@
 		</div>
 	</div>
 	</c:forEach>
+	<div class="row tablediv">
+		<div class="col-sm-2">
+		</div>
+		<div class="col-sm-8">
+			<input type="button" class="btn btn-default" id="viewMoreBtn" value="더보기"/>
+		</div>
+		<div class="col-sm-2">
+		</div>
+	</div>
 <jsp:include page="/WEB-INF/module/footer.jsp"/>
 </body>
 </html>

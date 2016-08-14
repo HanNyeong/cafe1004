@@ -41,6 +41,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="eventSearch.criteria != null and eventSearch.upDown != null and eventSearch.criteria != null and eventSearch.upDown != ''">
 			order by ${eventSearch.criteria} ${eventSearch.upDown}
 		</if>
-  			
+  			LIMIT 0,${eventSearch.viewMore}
 	</select>
 </mapper>

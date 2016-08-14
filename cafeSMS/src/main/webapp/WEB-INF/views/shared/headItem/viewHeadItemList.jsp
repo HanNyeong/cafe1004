@@ -38,6 +38,12 @@
 				$('#headItemForm').submit();
 			}
 		});
+		// 더보기 clear
+		$('#viewMoreBtn').click(function(){
+		var viewMore = $('#viewMore').val();
+			$('#viewMore').val(viewMore*1+25);
+			$('#headItemForm').submit();
+		});
 		$('#cartBtn').click(function(){
 			if($('.headItemCheck:checked').size()<1){
 		        alert("1개 이상 체크해주세요");
@@ -74,6 +80,7 @@
 	<form id="headItemForm" action="/viewHeadItemList" method="POST">
 		<input type="hidden" id="upDown" name="upDown" value="" />
 		<input type="hidden" id="criteria" name="criteria" value=""/>
+		<input type="hidden" id="viewMore" name="viewMore" value="${headItemSearch.viewMore}"/>
 		등록 날짜: 
 		<input type="date" name="regitDateStart" value="${headItemSearch.regitDateStart}"/> ~
 		<input type="date" name="regitDateEnd" value="${headItemSearch.regitDateEnd}"/> 
@@ -170,6 +177,15 @@
 			</div>
 		</div>
 		</c:forEach>
+		<div class="row tablediv">
+			<div class="col-sm-2">
+			</div>
+			<div class="col-sm-8">
+				<input type="button" class="btn btn-default" id="viewMoreBtn" value="더보기"/>
+			</div>
+			<div class="col-sm-2">
+			</div>
+		</div>
 		<br/>
 
 	</form>

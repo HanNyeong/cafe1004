@@ -40,5 +40,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="headItemSearch.criteria != null and headItemSearch.upDown != null and headItemSearch.criteria != null and headItemSearch.upDown != ''">
 			order by ${headItemSearch.criteria} ${headItemSearch.upDown}
 		</if>
+		LIMIT 0,${headItemSearch.viewMore}
 	</select>
 </mapper>

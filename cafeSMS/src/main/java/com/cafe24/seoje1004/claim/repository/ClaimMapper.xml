@@ -293,7 +293,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="claimSearch.criteria != null or claimSearch.criteria != ''">
 				${claimSearch.criteria} ${claimSearch.upDown}
 			</if>
-		</trim>	
+		</trim>
+		
 	</select>
 	
 	
