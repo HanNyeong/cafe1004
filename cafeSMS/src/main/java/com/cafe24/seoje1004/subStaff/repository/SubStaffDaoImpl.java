@@ -73,17 +73,30 @@ public class SubStaffDaoImpl implements SubStaffDao{
 		
 	}
 
-
+	/**
+	 * 직원급여 지급내용을 통합회계에 등록하는 dao메서드입니다
+	 */
 	@Override
 	public void addSubAccount(Map<String,Object> map) {
 		System.out.println("SubStaffDaoImpl subStaffSalary실행");
 		sqlSessionSubStaff.update(NS+".addSubAccount",map);
 	}
 
-
+	/**
+	 * 직원관리 권한체크하는 dao 메서드입니다
+	 */
 	@Override
 	public SubStaff subStaffKeeperCheck(SubStaff subStaff) {
 		System.out.println("SubStaffDaoImpl subStaffKeeperCheck실행");
 		return sqlSessionSubStaff.selectOne(NS+".subStaffKeeperCheck",subStaff);
+	}
+
+	/**
+	 * 직원 마지막급여날짜를 구하는 dao 메서드입니다.
+	 */
+	@Override
+	public String selectSalaryDate(String totalAccountGroup) {
+		System.out.println("SubStaffDaoImpl selectSalaryDate실행");
+		return sqlSessionSubStaff.selectOne(NS+".selectSalaryDate",totalAccountGroup);
 	}
 }

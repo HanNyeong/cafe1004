@@ -1,10 +1,33 @@
 /**
  * 
  */
+	var dateChecked = function(regitDateStart,regitDateEnd,span){
+		var startDateArr = regitDateStart.split('-');
+        var endDateArr = regitDateEnd.split('-');
+                 
+        var startDateCompare = new Date(startDateArr[0], startDateArr[1], startDateArr[2]);
+        var endDateCompare = new Date(endDateArr[0], endDateArr[1], endDateArr[2]);
+         
+        if(startDateCompare.getTime() > endDateCompare.getTime()) {
+        	span.css('color','red')
+			span.text("날짜를 확인해주세요.")
+            return false;
+        }
+        return true;
+	}
 	var list = function(upDown,criteria,form){
 		$('#upDown').attr('value',upDown);
 		$('#criteria').attr('value',criteria);
-		form.submit();	
+		var dateCheck = true;
+		var dateBooleans = dateChecked($('#regitDateStart').val(),$('#regitDateEnd').val(),$('#valChekMsg'));
+		console.log(dateBooleans);
+		if(!dateBooleans){
+			dateCheck = dateBooleans;
+		}
+		
+		if(dateCheck){ 
+			form.submit();
+		}
 	}
 	//삭제 체크 박스 전체 선택/해제
 /*	var selectAll = function(source) {

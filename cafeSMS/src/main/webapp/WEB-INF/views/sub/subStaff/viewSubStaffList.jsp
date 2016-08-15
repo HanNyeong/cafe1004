@@ -39,9 +39,16 @@
 		$('#keeperCheckBtn').click(function(){
 			$('#subStaffKeeperCheck').submit();
 		});
+		console.log($('#regitDateStart').val());
 		//폼 제출 유효성
 			undefinedEvent($('#keeperCheckBtn'),$('#subStaffKeeperCheck'),$('#keeperCheckMsg'));			
 			undefinedEvent($('#searchBtn'),$('#subStaffList'),$('#valChekMsg'));	
+		
+         
+//         $("#frmSearch").submit();
+
+
+
 	});
 </script>
 </head>
@@ -77,7 +84,7 @@
 <c:if test="${subStaff.subStaffLevel == '점주'}">
 	<div class="row">
 		<div class="col-sm-2">
-		</div>	
+		</div>
 		<div class="col-sm-8">
 		<form id="subStaffList" action="/viewSubStaffList" method="POST">
 			<input type="hidden" id="upDown" name="upDown" value="${subStaffSearch.upDown}" />
@@ -88,8 +95,8 @@
 			<input type="hidden" id="subStaffLevel" name="subStaffLevel" value="${subStaff.subStaffLevel}"/>
 			
 			등록 날짜: 
-			<input type="date" name="regitDateStart" value="${subStaffSearch.regitDateStart}"/> ~
-			<input type="date" name="regitDateEnd" value="${subStaffSearch.regitDateEnd}"/> 
+			<input type="date" id="regitDateStart" name="regitDateStart" value="${subStaffSearch.regitDateStart}"/> ~
+			<input type="date" id="regitDateEnd" name="regitDateEnd" value="${subStaffSearch.regitDateEnd}"/> 
 			<br/><br/>
 			<select name="searchKey" required="required" valChek="검색 종류를 선택해주세요">
 				<option value="">선택</option>

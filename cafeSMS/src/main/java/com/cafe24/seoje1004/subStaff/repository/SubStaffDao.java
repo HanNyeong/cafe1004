@@ -51,7 +51,21 @@ public interface SubStaffDao {
 	 */
 	int subModifySubStaffByResign(SubStaff subStaff);
 
+	/**
+	 * 통합회계에 직원급여 지급을 등록하는 dao 메서드입니다
+	 * @param map
+	 */
 	void addSubAccount(Map<String,Object> map);
 
+	/**
+	 * 직원관리페이지 권한체크를 하는 dao 메서드입니다.
+	 * @param subStaff
+	 * @return
+	 */
 	SubStaff subStaffKeeperCheck(SubStaff subStaff);
+	
+	/**
+	 * 직원급여를 받은날을 찾는 메서드 입니다.
+	 */
+	String selectSalaryDate(String totalAccountGroup);
 }

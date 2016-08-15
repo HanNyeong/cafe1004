@@ -40,10 +40,18 @@ public class SubStaffServiceImpl implements SubStaffService{
 	 */
 	@Override
 	public List<SubStaff> viewSubStaffListService(Search subStaffSearch,SubLogin subLogin,String division) {
+		System.out.println("SubStaffServiceImpl viewSubStaffListService실행");
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("subStaffSearch", subStaffSearch);
 		map.put("subLogin", subLogin);
 		map.put("division", division);
+		List<SubStaff> list = subStaffDao.viewSubStaffList(map);
+		for(int i=0; i < list.size(); i++){
+			String st = subStaffDao.selectSalaryDate(list.get(i).getTotalAccountGroup());
+			System.out.println(st);
+			System.out.println("이거얌");
+			System.out.println();System.out.println();
+		}
 		return subStaffDao.viewSubStaffList(map);
 	}
 	/**
@@ -94,6 +102,10 @@ public class SubStaffServiceImpl implements SubStaffService{
 		return subStaffDao.subModifySubStaffByResign(subStaff);
 	}
 
+	/**
+	 * 직원 급여 지급 하는 서비스 메서드입니다
+	 * 매개변수로 직원정보를 받습니다
+	 */
 	@Override
 	public void subStaffSalaryService(SubStaff subStaff) {
 		System.out.println("SubStaffServiceImpl subStaffSalary실행");
@@ -115,6 +127,9 @@ public class SubStaffServiceImpl implements SubStaffService{
 		subStaffDao.addSubAccount(map);
 	}
 
+	/**
+	 * 권한체크하는 서비스 메서드입니다.
+	 */
 	@Override
 	public SubStaff subStaffKeeperCheckService(SubStaff subStaff) {
 		System.out.println("SubAccountSerivceImpl subAccountKeeperCheckService실행");
