@@ -78,8 +78,8 @@
 					$('#subSellList').submit();
 		    }
 		});
-		
-		
+		//폼 제출 유효성
+		 var check = undefinedEvent($('#searchBtn'),$('#subSellList'),$('#valChekMsg'));
 	});
 </script>
 </head>
@@ -102,16 +102,17 @@
 			<input type="date" name="regitDateStart" value="${search.regitDateStart}"/> ~
 			<input type="date" name="regitDateEnd" value="${search.regitDateEnd}"/> 
 			<br/><br/>
-			<select name="searchKey" required="required">
+			<select name="searchKey" required="required" valChek="검색 종류를 선택해주세요">
 				<option value="">::선택::</option>
 				<option value="sub_sell_code" <c:if test="${search.searchKey eq 'sub_sell_code'}">selected="selected"</c:if>>판매코드</option>
 				<option value="menu_code" <c:if test="${search.searchKey eq 'menu_code'}">selected="selected"</c:if>>메뉴코드</option>
 				<option value="pay_method" <c:if test="${search.searchKey eq 'pay_method'}">selected="selected"</c:if>>결제방식</option>
 				<option value="sub_sell_final_staff" <c:if test="${search.searchKey eq 'sub_sell_final_staff'}">selected="selected"</c:if>>마감담당자</option>
 			</select>
-			<input type="text" id="search" name="search" value="${search.search}"/>
+			<input type="text" id="search" name="search" value="${search.search}"  valChek="검색어를 입력해주세요"/>
 			<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
 			<a href="/subViewSubSellList?subCode=${subCode}"><input type="button" class="btn btn-default"  value="전체보기"/></a>
+			<br/><span id="valChekMsg"></span>
 		</form>
 	</div>
 	<div class="col-sm-2">

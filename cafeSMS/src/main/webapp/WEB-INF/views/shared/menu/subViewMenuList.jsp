@@ -24,13 +24,7 @@
 				list('DESC',columnList[index],$("#menuList"));
 			});
 		});
-		$('#searchBtn').click(function(){
-			if($('#searchMenu').val() == ""){
-				console.log("검색어입력하세요");
-			}else{
-				$('#menuList').submit();
-			}
-		});
+		
 		// 더보기 clear
 		$('#viewMoreBtn').click(function(){
 		var viewMore = $('#viewMore').val();

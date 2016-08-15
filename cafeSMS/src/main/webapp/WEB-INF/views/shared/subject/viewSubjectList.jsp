@@ -28,14 +28,6 @@
 			$('#viewMore').val(viewMore*1+25);
 			$('#subjectList').submit();
 		});
-		
-		$('#searchBtn').click(function(){
-			if($('#searchSubject').val() == ""){
-				console.log("검색어입력하세요");
-			}else{
-				$('#subjectList').submit();
-			}
-		});
 		//폼 제출 유효성
 		 var check = undefinedEvent($('#searchBtn'),$('#subjectList'),$('#valChekMsg'));
 	});

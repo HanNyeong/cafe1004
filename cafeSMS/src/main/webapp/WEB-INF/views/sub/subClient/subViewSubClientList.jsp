@@ -35,14 +35,6 @@
 			$('#viewMore').val(viewMore*1+25);
 			$('#subClientList').submit();
 		});
-		
-		$('#searchBtn').click(function(){
-			if($('#searchSubClient').val() == ""){
-				console.log("검색어입력하세요");
-			}else{
-				$('#subClientList').submit();
-			}
-		});
 		//폼 제출 유효성
 		 var check = undefinedEvent($('#searchBtn'),$('#subClientList'),$('#valChekMsg'));
 	});

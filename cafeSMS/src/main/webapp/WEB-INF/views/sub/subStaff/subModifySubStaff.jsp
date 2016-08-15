@@ -8,11 +8,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-    $('#headModifySubStaffBtn').click(function(){
-    	
-       $('#headModifySubStaffForm').submit();
-    });
- });
+	//폼 제출 유효성
+	 var check = undefinedEvent($('#headModifySubStaffBtn'),$('#headModifySubStaffForm'),$('#valChekMsg'));
+});
 </script>
 </head>
 <body>
@@ -28,20 +26,21 @@ $(document).ready(function(){
 		   <input type="hidden" name="subCode" value="${subLogin.subCode}" />
 		<div>
 		   	<p>가맹 직원 ID : ${reSubStaff.subStaffCode}</p>
-		 	<p>이름 : <input type="text" id="subStaffName" name="subStaffName" value="${reSubStaff.subStaffName}"/></p>
+		 	<p>이름 : <input type="text" id="subStaffName" name="subStaffName" value="${reSubStaff.subStaffName}" valChek="이름을 입력해주세요"/></p>
 			<p>가맹대표코드 : ${reSub.subCode}</p>
-			<p>직급 : <input type="text" name="subStaffLevel" id="subStaffLevel" value="${reSubStaff.subStaffLevel}"/></p>
+			<p>직급 : <input type="text" name="subStaffLevel" id="subStaffLevel" value="${reSubStaff.subStaffLevel}"  valChek="직급을 입력해주세요"/></p>
 			<p>입사일 : ${reSubStaff.subStaffJoin}</p>
 			<p>퇴사일 : ${reSubStaff.subStaffResign}</p>
 			<p>승인 본사 직원 ID : ${headStaff.headStaffId}</p>
 			<p>승인 날짜 : ${reSubStaff.subStaffPermitDate}</p>
 			<p>등록일자 : ${reSubStaff.subStaffRegitDate}</p>
-			<p>급여 :<input type="text" name="subStaffSalary" id="subStaffSalary" value="${reSubStaff.subStaffSalary}"/></p>
+			<p>급여 :<input type="text" name="subStaffSalary" id="subStaffSalary" value="${reSubStaff.subStaffSalary}"  valChek="급여를 입력해주세요"/></p>
 		</div>
 		<br/>
 			<div class="clickBtn">
-			<input type="button" class="btn btn-default" id="headModifySubStaffBtn" name="headModifySubStaffBtn" value="수정"/>     
-		</div>
+				<span id="valChekMsg"></span>
+				<input type="button" class="btn btn-default" id="headModifySubStaffBtn" name="headModifySubStaffBtn" value="수정"/>     
+			</div>
 		<br/>
 		</form> 
 	</div>

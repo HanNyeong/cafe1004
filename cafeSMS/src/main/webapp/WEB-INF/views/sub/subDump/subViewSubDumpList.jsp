@@ -31,7 +31,7 @@
 		});
 
 		//폼 제출 유효성
-		 var check = undefinedEvent($('#addSubDumpBtn'),$('#subDumpList'),$('#valChekMsg'));
+		 var check = undefinedEvent($('#searchBtn'),$('#subDumpList'),$('#valChekMsg'));
 	});
 		
 </script>

@@ -40,16 +40,6 @@
 			$('#viewMore').val(viewMore*1+25);
 			$('#contractList').submit();
 		});
-		
-		$('#searchBtn').click(function(){
-			if($('#search').val() == ""){
-				console.log("검색어입력하세요");
-			}else{
-				$('#contractList').submit();
-			}
-		});
-		
-		
 	
 		//selectYN
 		$('#selectYN').change(function(){

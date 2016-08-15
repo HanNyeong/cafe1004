@@ -35,17 +35,13 @@
 			$('#subStaffList').submit();
 		});
 		
-		$('#searchBtn').click(function(){
-			if($('#searchSubStaff').val() == ""){
-				console.log("검색어입력하세요");
-			}else{
-				$('#subStaffList').submit();
-			}
-		});
 		//권한체크
 		$('#keeperCheckBtn').click(function(){
 			$('#subStaffKeeperCheck').submit();
 		});
+		//폼 제출 유효성
+			undefinedEvent($('#keeperCheckBtn'),$('#subStaffKeeperCheck'),$('#keeperCheckMsg'));			
+			undefinedEvent($('#searchBtn'),$('#subStaffList'),$('#valChekMsg'));	
 	});
 </script>
 </head>
@@ -61,13 +57,14 @@
 					<div class="form-group">
 						<input type="hidden" name="subCode" value="${subLogin.subCode}">
 						<label for="subStaffCode">코드 : </label> 
-						<input type="text" class="form-control" id="keeperCheck" name="subStaffCode" value="sub_staff_code1" />
+						<input type="text" class="form-control" id="keeperCheck" name="subStaffCode" value="sub_staff_code1" valChek="코드를 입력 해주세요"/>
 					</div>
 					<div class="form-group">
 						<label for="subStaffPw">비밀번호 : </label> 
-						<input type="text" class="form-control" id="keeperCheck" name="subStaffPw" value="1234" />
+						<input type="text" class="form-control" id="keeperCheck" name="subStaffPw" value="1234" valChek="비밀번호를 입력 해주세요"/>
 					</div>
 					<div class="rightKeeperCheck">
+						<span id="keeperCheckMsg"></span>
 						<input type="button" class="btn btn-default" id="keeperCheckBtn" value="확인">
 					</div>
 				</form>
@@ -94,15 +91,17 @@
 			<input type="date" name="regitDateStart" value="${subStaffSearch.regitDateStart}"/> ~
 			<input type="date" name="regitDateEnd" value="${subStaffSearch.regitDateEnd}"/> 
 			<br/><br/>
-			<select name="searchKey" required="required">
+			<select name="searchKey" required="required" valChek="검색 종류를 선택해주세요">
 				<option value="">선택</option>
 				<option value="sub_staff_code" <c:if test="${subStaffSearch.searchKey eq 'sub_staff_code'}">selected="selected"</c:if>>가맹 직원 ID</option>
 				<option value="sub_staff_name" <c:if test="${subStaffSearch.searchKey eq 'sub_staff_name'}">selected="selected"</c:if>>가맹 직원 이름</option>
 				<option value="sub_staff_level" <c:if test="${subStaffSearch.searchKey eq 'sub_staff_level'}">selected="selected"</c:if>>직급</option>
 			</select>
-			<input type="text" id="search" name="search" value="${subStaffSearch.search}"/>
+			<input type="text" id="search" name="search" value="${subStaffSearch.search}" valChek="검색어를 입력해주세요"/>
 			<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
-			<a href="/viewSubStaffList?subCode=${subLogin.subCode}&subStaffLevel=${subStaff.subStaffLevel}"><input type="button" class="btn btn-default"  value="전체보기"/></a>
+			<a href="/viewSubStaffList?subCode=${subLogin.subCode}&subStaffLevel=${subStaff.subStaffLevel}">
+			<input type="button" class="btn btn-default"  value="전체보기"/></a>
+			<br/><span id="valChekMsg"></span>
 		</form>
 		</div>
 		<div class="col-sm-2">

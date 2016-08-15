@@ -31,13 +31,6 @@
 				list('DESC',columnList[index],$('#headItemForm'));
 			});
 		});
-		$('#searchBtn').click(function(){
-			if($('#searchHeadItem').val() == ""){
-				console.log("검색어입력하세요");
-			}else{
-				$('#headItemForm').submit();
-			}
-		});
 		// 더보기 clear
 		$('#viewMoreBtn').click(function(){
 		var viewMore = $('#viewMore').val();

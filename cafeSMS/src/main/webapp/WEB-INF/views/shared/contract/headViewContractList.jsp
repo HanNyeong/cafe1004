@@ -40,16 +40,6 @@ var list = function(upDown,criteria){
 			$('#contractList').submit();
 		});
 		
-		$('#searchBtn').click(function(){
-			if($('#searchSubStaff').val() == ""){
-				console.log("검색어입력하세요");
-			}else{
-				$('#contractList').submit();
-			}
-		});
-		
-		
-	
 		//selectYN
 		$('#selectYN').change(function(){
 			if($('#selectYN').val() == ''){

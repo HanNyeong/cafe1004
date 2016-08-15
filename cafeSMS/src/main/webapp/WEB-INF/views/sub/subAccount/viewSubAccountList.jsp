@@ -33,13 +33,6 @@
 			$('#viewMore').val(viewMore*1+25);
 			$('#subAccountList').submit();
 		});
-		$('#searchBtn').click(function() {
-			if ($('#search').val() == "") {
-				console.log("검색어입력하세요");
-			} else {
-				$('#subAccountList').submit();
-			}
-		});
 		//폼 제출 유효성
 			 undefinedEvent($('#subAccountBtn'),$('#accountKeeperForm'),$('#accountKeeperMsg'));			
 			 undefinedEvent($('#searchBtn'),$('#subAccountList'),$('#valChekMsg'));	

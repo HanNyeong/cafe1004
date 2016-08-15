@@ -24,13 +24,6 @@
 				list('DESC',columnList[index],$('#cartList'));
 			});
 		});
-		$('#searchBtn').click(function(){
-			if($('#searchCart').val() == ""){
-				console.log("검색어입력하세요");
-			}else{
-				$('#cartList').submit();
-			}
-		});
 		// 더보기 clear
 		$('#viewMoreBtn').click(function(){
 		var viewMore = $('#viewMore').val();

@@ -36,13 +36,7 @@ $(document).ready(function(){
 		$('#viewMore').val(viewMore*1+25);
 		$('#subStockList').submit();
 	});
-	$('#searchBtn').click(function(){
-		if($('#search').val() == ""){
-			console.log("검색어입력하세요");
-		}else{
-			$('#subStockList').submit();
-		}
-	});
+
 	//폼 제출 유효성
 	 var check = undefinedEvent($('#searchBtn'),$('#subStockList'),$('#valChekMsg'));
 });

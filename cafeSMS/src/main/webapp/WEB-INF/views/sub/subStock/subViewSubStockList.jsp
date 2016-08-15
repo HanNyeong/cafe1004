@@ -37,14 +37,6 @@ $(document).ready(function(){
 		$('#viewMore').val(viewMore*1+25);
 		$('#subStockList').submit();
 	});
-	$('#searchBtn').click(function(){
-		if($('#search').val() == ""){
-			console.log("검색어입력하세요");
-		}else{
-			$('#subStockList').submit();
-		}
-	});
-	
 	
 	//selectYN
 	$('#selectYN').on('change',function(){
@@ -88,9 +80,8 @@ $(document).ready(function(){
 				$('#subStockList').submit();
 	    }
 	});
-	
-	
-	
+	//폼 제출 유효성
+	 var check = undefinedEvent($('#searchBtn'),$('#subStockList'),$('#valChekMsg'));
 });
 
 </script>
@@ -113,18 +104,19 @@ $(document).ready(function(){
 			<input type="date" name="regitDateStart" value="${search.regitDateStart}"/> ~
 			<input type="date" name="regitDateEnd" value="${search.regitDateEnd}"/> 
 			<br/><br/>
-			<select name="searchKey" required="required">
+			<select name="searchKey" required="required" valChek="검색 종류를 선택해주세요">
 				<option value="">::선택::</option>
-				<option value="sub_stock_code" <c:if test="${search.searchKey eq 'sub_stock_code'}">selected="selected"</c:if>>sub_stock_code</option>
-				<option value="orders_code" <c:if test="${search.searchKey eq 'orders_code'}">selected="selected"</c:if>>orders_code</option>
-				<option value="head_item_code" <c:if test="${search.searchKey eq 'head_item_code'}">selected="selected"</c:if>>head_item_code</option>
-				<option value="specific_item_code" <c:if test="${search.searchKey eq 'specific_item_code'}">selected="selected"</c:if>>specific_item_code</option>
-				<option value="sub_staff_code" <c:if test="${search.searchKey eq 'sub_staff_code'}">selected="selected"</c:if>>sub_staff_code</option>
+				<option value="sub_stock_code" <c:if test="${search.searchKey eq 'sub_stock_code'}">selected="selected"</c:if>>재고코드</option>
+				<option value="orders_code" <c:if test="${search.searchKey eq 'orders_code'}">selected="selected"</c:if>>주문코드</option>
+				<option value="head_item_code" <c:if test="${search.searchKey eq 'head_item_code'}">selected="selected"</c:if>>본사상품코드</option>
+				<option value="specific_item_code" <c:if test="${search.searchKey eq 'specific_item_code'}">selected="selected"</c:if>>개별상품코드</option>
+				<option value="sub_staff_code" <c:if test="${search.searchKey eq 'sub_staff_code'}">selected="selected"</c:if>>본사확인직원</option>
 			</select>
-			<input type="text" id="search" name="search" value="${search.search}"/>
+			<input type="text" id="search" name="search" value="${search.search}" valChek="검색어를  입력해주세요"/>
 			<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
 			<a href="/subViewSubStockList?subCode=${subCode}"><input type="button" class="btn btn-default"  value="전체보기"/></a>
-		
+			<br/>
+			<span id="valChekMsg"></span>	
 		</form>
 	
 		

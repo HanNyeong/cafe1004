@@ -30,13 +30,6 @@
 			$('#viewMore').val(viewMore*1+25);
 			$('#eventList').submit();
 		});
-		$('#searchBtn').click(function(){
-			if($('#searchEvent').val() == ""){
-				console.log("검색어입력하세요");
-			}else{
-				$('#eventList').submit();
-			}
-		});
 		//폼 제출 유효성
 		 var check = undefinedEvent($('#searchBtn'),$('#eventList'),$('#valChekMsg'));
 	});

@@ -37,14 +37,6 @@ $(document).ready(function(){
 		$('#viewMore').val(viewMore*1+25);
 		$('#deliveryList').submit();
 	});
-	$('#searchBtn').click(function(){
-		if($('#search').val() == ""){
-			console.log("검색어입력하세요");
-		}else{
-			$('#deliveryList').submit();
-		}
-	});
-	
 	
 	//selectYN
 	$('#selectYN').change(function(){

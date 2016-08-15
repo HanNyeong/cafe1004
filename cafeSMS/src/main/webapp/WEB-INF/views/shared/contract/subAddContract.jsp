@@ -9,60 +9,16 @@
 <script>
  $(document).on("ready",function(){
 	console.log("ready");
-// 	var id = null;
-	
+
 	//계약서 파일 추가
 	$("#contractFileBtn").on("click",function(){
 		console.log("contractFileBtn click");
 		$("#contractFileAdd").append('<div><input id = "contractFile" class="btn btn-default" type="file" name="contractFile"/></div>');	
 	});
-	
-// 	//가맹대표코드 중복체크
-// 	$('#subCodeCheck').click(function(){
-// 		$.ajax({
-// 		      type		: "POST",
-// 		      url		: "/subCodeCheck",
-// 		      data		: { subCode	: $('#subCode').val() },
-// 		      dataType	: "JSON",
-// 		      success	: function(str) {
-// 					console.log("성공");
-// 					if(str.result=="true"){
-// 						alert('사용할 수 있는 가맹대표코드입니다');
-// 						id = "OK";
-// 					}else{ 
-// 						alert('이미 계약한 가맹대표코드입니다');
-// 						id = "NO";
-// 					}
-// 		      }
-// 	  });
-// 	});
 
-// 	if(id == "NO"){
-// 		$("#contractNameMsg").text("");
-// 		$("#contractActualDateMsg").text("");
-// 		$("#contractExpiryDateMsg").text("");
-// 		$("#contractDepositMsg").text("");
-// 		$("#contractProfitPercentMsg").text("");
-// 		$("#headStaffIdMsg").text("");
-// 		$("#subCodeMsg").text("");
-// 		$("#subCodeMsg").text("이미존재하는 subCode입니다.");
-// 	}else if(id =="OK"){
-// 		$("#contractNameMsg").text("");
-// 		$("#contractActualDateMsg").text("");
-// 		$("#contractExpiryDateMsg").text("");
-// 		$("#contractDepositMsg").text("");
-// 		$("#contractProfitPercentMsg").text("");
-// 		$("#headStaffIdMsg").text("");
-// 		$("#subCodeMsg").text("");
-// 	}else{
-// 		$("#subCodeMsg").text("");
-// 		$("#subCodeMsg").text("중복체크를 해주세요");
-// 	}
 //폼 제출 유효성
 	 var check = undefinedEvent($('#contractAddBtn'),$('#contractAddForm'),$('#valChekMsg'));
    });
-
-	
 
 </script>
 

@@ -11,14 +11,11 @@
 //유효성 검사
 $(document).ready(function(){   
 	
-	
    // 폼 제출
    $('#subStaffAddBtn').click(function(){
     	 var check = undefinedEvent($('#subStaffAddBtn'),$('#addSubStaffForm'),$('#valChekMsg'));
    });
 });
-
-
 
 </script>
 </head>
