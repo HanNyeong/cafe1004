@@ -1,8 +1,6 @@
 package com.cafe24.seoje1004.contract.model;
 
 import java.sql.Timestamp;
-import java.time.DateTimeException;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;

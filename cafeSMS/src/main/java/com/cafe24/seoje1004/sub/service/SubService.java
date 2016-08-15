@@ -1,6 +1,5 @@
 package com.cafe24.seoje1004.sub.service;
 
-import java.util.List;
 
 import com.cafe24.seoje1004.sub.model.Sub;
 import com.cafe24.seoje1004.sub.model.SubLogin;

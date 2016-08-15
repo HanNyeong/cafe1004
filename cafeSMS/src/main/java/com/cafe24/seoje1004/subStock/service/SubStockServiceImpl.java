@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cafe24.seoje1004.subSell.model.SubSell;
 import com.cafe24.seoje1004.subStock.model.SubStock;
 import com.cafe24.seoje1004.subStock.model.SubStocks;
 import com.cafe24.seoje1004.subStock.repository.SubStockDao;

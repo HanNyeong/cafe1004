@@ -6,13 +6,9 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.cafe24.seoje1004.sub.model.SubLogin;
 import com.cafe24.seoje1004.subAccount.model.AddSharedSubAccount;
-import com.cafe24.seoje1004.subAccount.model.SubAccount;
-import com.cafe24.seoje1004.subAccount.repository.SubAccountDao;
 import com.cafe24.seoje1004.subStaff.model.SubStaff;
 import com.cafe24.seoje1004.subStaff.repository.SubStaffDao;
 import com.cafe24.seoje1004.util.Search;

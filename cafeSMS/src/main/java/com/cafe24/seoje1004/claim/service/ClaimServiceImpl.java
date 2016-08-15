@@ -19,9 +19,7 @@ import com.cafe24.seoje1004.claim.model.Claim;
 import com.cafe24.seoje1004.claim.model.ClaimFile;
 import com.cafe24.seoje1004.claim.model.ClaimSearch;
 import com.cafe24.seoje1004.claim.repository.ClaimDao;
-import com.cafe24.seoje1004.contract.model.ContractFile;
 
-import com.cafe24.seoje1004.util.Search;
 
 /**
  * 최종수정일 2016-07-30 오성현

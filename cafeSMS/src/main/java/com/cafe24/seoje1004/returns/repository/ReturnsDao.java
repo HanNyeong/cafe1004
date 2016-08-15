@@ -4,12 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.cafe24.seoje1004.returns.model.AddReturns;
-import com.cafe24.seoje1004.returns.model.Delivery;
 import com.cafe24.seoje1004.returns.model.Returns;
 import com.cafe24.seoje1004.returns.model.ReturnsFile;
 import com.cafe24.seoje1004.returns.model.SubOrders;
 import com.cafe24.seoje1004.returns.model.SubStock;
-import com.cafe24.seoje1004.subAccount.model.AddSharedSubAccount;
 
 public interface ReturnsDao {
 	/**
@@ -28,11 +26,6 @@ public interface ReturnsDao {
 	public void updateSubStockOutN(String ordersCode);		//orders_code에 해당하는 subStock가맹재고의 subStockOut출고여부를 Y->N으로 수정
 	
 	
-	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
-	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
-	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
-	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
-	/*---------------------------------------------------------- 구분선 ----------------------------------------------------------*/
 	
 	public List<Returns> headViewReturnsList(Map<String, Object> map);	//본사측 반품상품관리 조회
 	public Returns viewReturnsContent(String returnCode);			//해당 반품상품의 상세정보

@@ -1,6 +1,5 @@
 package com.cafe24.seoje1004.sub.repository;
 
-import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;

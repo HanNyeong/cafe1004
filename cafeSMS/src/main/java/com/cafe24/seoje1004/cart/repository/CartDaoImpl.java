@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.cafe24.seoje1004.cart.model.Cart;
 import com.cafe24.seoje1004.cart.model.CartsDetail;
-import com.cafe24.seoje1004.cart.model.Carts;
 
 @Repository
 public class CartDaoImpl implements CartDao {

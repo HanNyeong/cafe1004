@@ -5,7 +5,6 @@ import java.util.Map;
 
 import com.cafe24.seoje1004.cart.model.Cart;
 import com.cafe24.seoje1004.cart.model.CartsDetail;
-import com.cafe24.seoje1004.cart.model.Carts;
 
 public interface CartDao {
 	/**
