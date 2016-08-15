@@ -16,8 +16,8 @@
 		$("#contractFileAdd").append('<div><input id = "contractFile" class="btn btn-default" type="file" name="contractFile"/></div>');	
 	});
 
-//폼 제출 유효성
-	 var check = undefinedEvent($('#contractAddBtn'),$('#contractAddForm'),$('#valChekMsg'));
+	//폼 제출 유효성
+	undefinedEvent($('#contractAddBtn'),$('#contractAddForm'),$('#valChekMsg'));
    });
 
 </script>
@@ -38,11 +38,11 @@
 					</div>	
 					<div>
 						<label>계약 날짜 : </label>
-						<input id="contractActualDate" type="date" name="contractActualDate" value="" valChek="계약 날짜를 입력해주세요"/>
+						<input id="regitDateStart" type="date" name="contractActualDate" value="" valChek="계약 날짜를 입력해주세요"/>
 					</div>	
 					<div>
 						<label>계약 만료일 : </label>
-						<input id="contractExpiryDate" type="date" name="contractExpiryDate" value="" valChek="만료일을 입력해주세요"/>
+						<input id="regitDateEnd" type="date" name="contractExpiryDate" value="" valChek="만료일을 입력해주세요"/>
 					</div>	
 					<div>
 						<label>가맹 금액 : </label>
