@@ -45,7 +45,9 @@
 			$('#subAccountList').prop('action','/modifySubAccount');
 			$('#subAccountList').submit();
 		});
-		
+		//폼 제출 유효성
+			 undefinedEvent($('#subAccountBtn'),$('#accountKeeperForm'),$('#accountKeeperMsg'));			
+			 undefinedEvent2($('#searchBtn'),$('#subAccountList'),$('#valChekMsg'));	
 	});
 	
 </script>
@@ -57,17 +59,18 @@
 		<div class="col-sm-4">
 			<c:if test="${subLogin == null or subStaff.subStaffLevel != '점주'}">
 				<div class="container">
-					<form role="form" action="/subAccountKeeperCheck" method="POST">
+					<form role="form" action="/subAccountKeeperCheck" id="accountKeeperForm" method="POST">
 						<h2>1급 제한 구역입니다.</h2>
 						<div class="form-group">
 							<input type="hidden" name="subCode" value="${subLogin.subCode}">
 							<label for="subStaffCode">코드 : </label> 
-							<input type="text" class="form-control" id="keeperCheck" name="subStaffCode" value="sub_staff_code1" />
+							<input type="text" class="form-control" id="keeperCheck" name="subStaffCode" value="sub_staff_code1"  valChek="코드를 입력 해주세요"/>
 						</div>
 						<div class="form-group">
-							<label for="subStaffPw">비밀번호 : </label> <input type="text" class="form-control" id="keeperCheck" name="subStaffPw" value="1234" />
+							<label for="subStaffPw">비밀번호 : </label> <input type="text" class="form-control" id="keeperCheck" name="subStaffPw" value="1234"  valChek="비밀번호를 입력해주세요"/>
 						</div>
 						<div class="rightKeeperCheck">
+							<span id="accountKeeperMsg"></span>
 							<input type="submit" class="btn btn-default" id="subAccountBtn" value="확인">
 						</div>
 					</form>
@@ -95,15 +98,15 @@
 				~ <input type="date" name="regitDateEnd" value="${subAccountSearch.regitDateEnd}" /> 
 				<br/>
 				<br/> 
-				<select name="searchKey" required="required">
+				<select name="searchKey" required="required" valChek="검색 종류를 선택해주세요">
 					<option value="">::선택::</option>
 					<option value="sub_account_code" <c:if test="${subAccountSearch.searchKey eq 'sub_account_code'}">selected="selected"</c:if>>통합회계코드</option>
 					<option value="sub_account_flow" <c:if test="${subAccountSearch.searchKey eq 'sub_account_flow'}">selected="selected"</c:if>>입금내역</option>
 					<option value="subject_code" <c:if test="${subAccountSearch.searchKey eq 'subject_code'}">selected="selected"</c:if>>출금내역</option>
-					<option value="subject_code" <c:if test="${subAccountSearch.searchKey eq 'subject_code'}">selected="selected"</c:if>>가맹거래처명</option>
+					<option value="subject_code" <c:if test="${subAccountSearch.searchKey eq 'subject_code'}">selected="selected"</c:if>>가맹거래처코드</option>
 				</select> 
-				<input type="text" id="search" name="search" value="${subAccountSearch.search}" />
-				<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
+				<input type="text" id="search" name="search" value="${subAccountSearch.search}" valChek="검색어를 입력해주세요"/>
+				<input type="button" id="searchBtn" class="btn btn-default" value="검색" /><span id="valChekMsg"></span>
 				</form>
 				</div>
 				<div class="col-sm-2">

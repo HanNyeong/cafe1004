@@ -89,6 +89,8 @@
 					$('#cartListForm').submit();
 		    }
 		});
+		//폼 제출 유효성
+		 var check = undefinedEvent($('#searchBtn'),$('#cartList'),$('#valChekMsg'));
 	});
 	
 </script>
@@ -106,15 +108,17 @@
 		<input type="hidden" id="subCode" name="subCode" value="${subLogin.subCode}"/>
 		<input type="hidden" id="viewMore" name="viewMore" value="${cartSearch.viewMore}"/>
 		<br/><br/>
-		<select name="searchKey" required="required">
+		<select name="searchKey" required="required" valChek="검색 종류를 선택해주세요">
 			<option value="">::선택::</option>
 			<option value="cart_code" <c:if test="${cartSearch.searchKey eq 'cart_code'}">selected="selected"</c:if>>장바구니 코드</option>
 			<option value="h_item_code" <c:if test="${cartSearch.searchKey eq 'cart_quantity'}">selected="selected"</c:if>>본사 상품 코드</option>
 			<option value="sub_code" <c:if test="${cartSearch.searchKey eq 'sub_code'}">selected="selected"</c:if>>가맹 대표 코드</option>
 		</select>
-		<input type="text" id="searchCart" name="searchCart" value="${cartSearch.search}"/>
+		<input type="text" id="searchCart" name="searchCart" value="${cartSearch.search}" valChek="검색어를 입력해주세요"/>
 		<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
 		<a href="/viewcartList"><input type="button" class="btn btn-default" value="전체보기"/></a>
+		<br/>
+		<span id="valChekMsg"></span>
 	</form>
 	</div>
 	<div class="col-sm-2">
