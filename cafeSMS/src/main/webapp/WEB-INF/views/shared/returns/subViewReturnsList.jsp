@@ -86,9 +86,8 @@ $(document).ready(function(){
 				<br/><br/>
 				<select name="searchKey" required="required" valChek="검색 종류를 선택해주세요">
 					<option value="">::선택::</option>
-					<option value="return_code" <c:if test="${search.searchKey eq 'return_code'}">selected="selected"</c:if>>환불코드</option>
+					<option value="return_code" <c:if test="${search.searchKey eq 'return_code'}">selected="selected"</c:if>>반품코드</option>
 					<option value="orders_code" <c:if test="${search.searchKey eq 'orders_code'}">selected="selected"</c:if>>주문코드</option>
-					<option value="specific_item_code" <c:if test="${search.searchKey eq 'specific_item_code'}">selected="selected"</c:if>>개별상품코드</option>	
 				</select>
 				
 				<input type="text" id="search" name="search" value="${search.search}" valChek="검색어를  입력해주세요"/>

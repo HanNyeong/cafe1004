@@ -25,7 +25,7 @@
 			});
 			
 			if(submitCheck){ 
-					if ($('#subStaffPw').val() != $('#subStaffPw2').val()){
+					if ($('#Pw').val() != $('#Pw2').val()){
 						span.css('color','red')
 						span.text("비밀번호가 일치하지 않습니다.")
 					}else{
@@ -49,7 +49,7 @@
 			});
 			
 			if(submitCheck){ 
-					if ($('#subStaffPw').val() != $('#subStaffPw2').val()){
+					if ($('#Pw').val() != $('#Pw2').val()){
 						span.css('color','red')
 						span.text("비밀번호가 일치하지 않습니다.")
 					}else{

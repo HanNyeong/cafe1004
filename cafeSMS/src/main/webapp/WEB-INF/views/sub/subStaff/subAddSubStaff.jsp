@@ -34,8 +34,8 @@ $(document).ready(function(){
 			<form action="/subAddSubStaff" method="POST" id="addSubStaffForm">
 				<div>
 					<p>이름 : <input type="text" id="subStaffName" name="subStaffName" value="" valChek="이름을 입력해주세요"/></p>
-					<p>비밀번호 : <input type="password" id="subStaffPw" name="subStaffPw" value="" valChek="비밀번호를 입력해주세요"/></p>
-					<p>비밀번호 확인: <input type="password" id="subStaffPw2" name="subStaffPw2" value="" valChek="비밀번호를  확인해주세요"/></p>
+					<p>비밀번호 : <input type="password" id="Pw" name="subStaffPw" value="" valChek="비밀번호를 입력해주세요"/></p>
+					<p>비밀번호 확인: <input type="password" id="Pw2" name="subStaffPw2" value="" valChek="비밀번호를  확인해주세요"/></p>
 					<p>직급 :	         
 						<select id="subStaffLevel" name="subStaffLevel" valChek="직급을 선택해주세요">
 							<option value="">::: 직급 :::</option>
