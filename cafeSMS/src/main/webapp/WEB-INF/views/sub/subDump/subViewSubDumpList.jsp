@@ -29,15 +29,9 @@
 			$('#viewMore').val(viewMore*1+25);
 			$('#subDumpList').submit();
 		});
-		
-		$('#searchBtn').click(function(){
-			if($('#searchSubDump').val() == ""){
-				console.log("검색어입력하세요");
-			}else{
-				$('#subDumpList').submit();
-			}
-		});
-		
+
+		//폼 제출 유효성
+		 var check = undefinedEvent($('#addSubDumpBtn'),$('#subDumpList'),$('#valChekMsg'));
 	});
 		
 </script>
@@ -58,7 +52,7 @@
 		<input type="date" name="regitDateStart" value="${subDumpSearch.regitDateStart}"/> ~
 		<input type="date" name="regitDateEnd" value="${subDumpSearch.regitDateEnd}"/> 
 		<br/><br/>
-		<select name="searchKey" required="required">
+		<select name="searchKey" required="required" valChek="검색 종류를 선택해주세요">
 			<option value="">::선택::</option>
 			<option value="sub_dump_code" <c:if test="${subDumpSearch.searchKey eq 'sub_dump_code'}">selected="selected"</c:if>>폐기 코드</option>
 			<option value="sub_staff_code" <c:if test="${subDumpSearch.searchKey eq 'sub_staff_code'}">selected="selected"</c:if>>가맹 폐기 담당 직원</option>
@@ -66,8 +60,10 @@
 			<option value="h_item_code" <c:if test="${subDumpSearch.searchKey eq 'cart_quantity'}">selected="selected"</c:if>>본사 상품 코드</option>
 			<option value="sub_code" <c:if test="${subDumpSearch.searchKey eq 'sub_code'}">selected="selected"</c:if>>가맹 대표 코드</option>
 		</select>
-		<input type="text" id="searchSubDump" name="search" value="${subDumpSearch.search}"/>
-		<input type="button" id="searchBtn" class="btn btn-default"  value="검색" /><a href="/viewsubDumpList"> <input type="button" class="btn btn-default" value="전체보기"/></a>
+		<input type="text" id="searchSubDump" name="search" value="${subDumpSearch.search}" valChek="검색어를 입력해주세요"/>
+		<input type="button" id="searchBtn" class="btn btn-default"  value="검색" />
+		<a href="/viewsubDumpList"> <input type="button" class="btn btn-default" value="전체보기"/></a><br/>
+		<span id="valChekMsg"></span>
 	</form>
 	</div>
 		<div class="col-sm-2">
