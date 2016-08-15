@@ -10,17 +10,15 @@
 $(document).on("ready",function(){
 	console.log("ready");
 	
+	//폼 제출 유효성
+   	 var check = undefinedEvent($('#claimBtn'),$('#claimForm'),$('#valChekMsg'));
+	   });
 	//파일 추가
 	$("#addClaimFileBtn").on("click",function(){
 		console.log("addClaimFileBtn click");
 		$("#addClaimFile").append('<div><input id = "claimFile" type="file" class="btn btn-default" name="claimFile"/></div>');	
 	});
-	//폼 제출 유효성
-	$("#claimBtn").on("click", function(){
-	console.log("claimBtn click");
-   	 var check = undefinedEvent($('#subStaffAddBtn'),$('#addSubStaffForm'),$('#valChekMsg'));
-	   });
-	});
+
 </script>
 </head>
 <body>

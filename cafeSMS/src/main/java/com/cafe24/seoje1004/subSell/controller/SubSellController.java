@@ -15,7 +15,6 @@ import com.cafe24.seoje1004.subSell.model.SubSell;
 import com.cafe24.seoje1004.subSell.model.SubSellGroup;
 import com.cafe24.seoje1004.subSell.model.SubSells;
 import com.cafe24.seoje1004.subSell.service.SubSellService;
-import com.cafe24.seoje1004.util.Chart;
 import com.cafe24.seoje1004.util.Search;
 
 

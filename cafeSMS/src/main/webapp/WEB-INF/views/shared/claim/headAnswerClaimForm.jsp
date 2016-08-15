@@ -10,17 +10,9 @@
 $(document).on("ready",function(){
 	console.log("ready");
 	
-	$("#answerBtn").on("click", function(){
-		console.log("answerBtn click");
-		
-		if($("#claimAnswerContent").val() == ""){
-			$("#claimAnswerContentMsg").text("답변을 작성해주세요")
-		}else{
-			$("#answerForm").attr("action", "/headAnswerClaim");
-			$("#answerForm").submit();
-		}
-	});
-})
+	//폼 제출 유효성
+ 	 var check = undefinedEvent($('#answerBtn'),$('#answerForm'),$('#valChekMsg'));
+	   });
 </script>
 
 </head>
@@ -32,7 +24,7 @@ $(document).on("ready",function(){
 	
 	<div class="col-sm-6">
 	<h1>= 클래임 답변하기 =</h1>
-	<form id="answerForm" method="post" enctype="multipart/form-data">
+	<form id="answerForm" action="/headAnswerClaim" method="post" enctype="multipart/form-data">
 		<div>
 			<label>클래임 코드 : </label>
 			<input type="text" name="claimCode" class="ffffNoLine" value="${claim.claimCode}" readonly="readonly"/>
@@ -57,10 +49,10 @@ $(document).on("ready",function(){
 		
 		<div>
 			<label class="topLabel">본사 측 답변 : </label>
-			<textarea id="claimAnswerContent" name="claimAnswerContent" class="textereaContent" rows="5" cols="100">${claim.claimAnswerContent}</textarea>
-			<span id="claimAnswerContentMsg"></span>
+			<textarea id="claimAnswerContent" name="claimAnswerContent" class="textereaContent" rows="5" cols="100" valChek="답변을 입력해주세요">${claim.claimAnswerContent}</textarea>
 		</div>
 		<div class="clickBtn">
+			<span id="valChekMsg"></span>
 			<input id="answerBtn" class="btn btn-default" type="button" value="등록"	/>
 		</div>		
 	</form>

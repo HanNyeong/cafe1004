@@ -126,11 +126,11 @@ public class SubSellServiceImpl implements SubSellService{
 			for(int i = 0; i<week; i++){
 				sumPrice[i] = 0;//0으로 초기화
 				calendar[i] = Calendar.getInstance();//현재날짜로 초기화
-				calendar[i].add(Calendar.DAY_OF_MONTH, -i);//어제그제끄제끄끄제 구하기
+				calendar[i].add(Calendar.DAY_OF_MONTH, -i);//어제그제엊그제... 구하기
 				date[i] = calendar[i].getTime();//구해진날짜 date에 대입
 				fomat[i] = mSimpleDateFormat.format(date[i]);//날짜를 string형으로 바꿈
 				//date가 일주일전까지 Date 객체 입니다.
-				//일주일전까지 날짜가 찍히겠지요
+				//일주일전까지 날짜가 찍히게 됩니다.
 			}
 			//가맹매출정보(날짜)를 일주일전까지의 날짜와 비교후 배열에 매출액 담기  
 			for(int i = 0; i < accounts.size(); i++){
