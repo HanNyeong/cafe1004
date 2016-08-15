@@ -7,9 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script type="text/javascript">
+<script>
 
-	$.calculator = function(){
+	var calculator = function(){
 		$('#totalPriceHelper').text('');
 		var totalPrice = $('#totalPrice').val();
 		totalPrice = 0 ;
@@ -43,16 +43,13 @@
 	$(document).ready(function(){
 		console.log("ready");
 		$('.checking').click(function(){
-				$.calculator();
+				calculator();
 		});
 		$('.totalSoonPriceBtn').click(function(){
-			$.calculator();
+			calculator();
 		});
 		$('.quantity').change(function(){
-			
-			
-				$.calculator();
-			
+				calculator();
 		});
 		$('#payMethod').change(function(){
 			if($('#payMethod').val()=='현금'){
@@ -62,7 +59,7 @@
 			}else{
 				$('#payMethodValue').val('');
 			}
-			$.calculator();
+			calculator();
 		});
 
 		$('#subSellsignUpBtn').click(function(){
@@ -106,35 +103,43 @@
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/module/nav.jsp"/>
+<div class="row">
+	<div class="col-sm-3">
+	</div>
+		<div class="col-sm-5 addForm">
 	<h1>가맹판매등록!!</h1>
 	<form action="/subAddSubSell" method="POST" id="subSellsignUp">
 		<input type="hidden" name="subCode" value="${subLogin.subCode}">
 		<c:forEach var="menuList" items="${menuList}">
+			<input type="hidden" class="eventName" value="${menuList.eventName}">
+			<input type="hidden" class="eventCode" name="" value="${menuList.eventCode}">
+			<input type="hidden" class="eventDiscountRate" value="${menuList.eventDiscountRate}">
+			<input type="hidden" class="menuIngrePrice" name="" value="${menuList.menuIngrePrice}">
+			<input type="hidden" class="menuSellingPrice" name="" value="${menuList.menuSellingPrice*menuList.eventDiscountRate}">
+			<input type="hidden" class="soonPrice"  name="" value="${menuList.menuSellingPrice*menuList.eventDiscountRate - menuList.menuIngrePrice}">
+			<input type="hidden" class="menuCode" name="" value="${menuList.menuCode}">
 			
-			<div>
-				${menuList.menuName} 
-				<c:if test="${menuList.eventName != '행사없음'}">
-					${menuList.eventName}
-					
-				</c:if>: 
-				${menuList.eventDiscountRate}
-				${menuList.menuIngrePrice}
-				${menuList.menuSellingPrice*menuList.eventDiscountRate}
-				${menuList.menuSellingPrice*menuList.eventDiscountRate - menuList.menuIngrePrice}
-				<input type="hidden" class="eventName" value="${menuList.eventName}">
+			<div class="row">
+				<div class="col-sm-1">
+					${menuList.menuName} 
+				</div>
+				<div class="col-sm-1">
+					<c:if test="${menuList.eventName != '행사없음'}">
+						${menuList.eventName}
+					</c:if>
+				</div>
+				<div class="col-sm-1"> 
 				
-				<input type="hidden" class="eventCode" name="" value="${menuList.eventCode}">
-				<input type="hidden" class="eventDiscountRate" value="${menuList.eventDiscountRate}">
-				<input type="hidden" class="menuIngrePrice" name="" value="${menuList.menuIngrePrice}">
-				<input type="hidden" class="menuSellingPrice" name="" value="${menuList.menuSellingPrice*menuList.eventDiscountRate}">
-				<input type="hidden" class="soonPrice"  name="" value="${menuList.menuSellingPrice*menuList.eventDiscountRate - menuList.menuIngrePrice}">
-				<input type="hidden" class="menuCode" name="" value="${menuList.menuCode}">
-				<input type="checkbox" class="checking" />
-				
+					<input type="checkbox" class="checking" />
+				</div>
+				</div>
+				<div class="col-sm-1"> 
 				수량 : <input class="quantity" type="number" min="1" value=""/>
-				판매가 : <input type="text" class="menuSellingPriceText" value="" readonly="readonly"/>
-				
-			</div>
+				</div>
+				<div class="col-sm-1"> 
+					판매가 : <input type="text" class="menuSellingPriceText" value="" readonly="readonly"/>
+				</div>
 		</c:forEach>
 			결제수단적용전 총합계  : <input id="sum" type="text" value="" />
 			<div>
@@ -145,7 +150,7 @@
 					<option value="현금">현금</option>
 					<option value="카드">카드</option>
 				</select>
-				<input id="payMethodValue" type="text" name="payMethodValue" value="">
+				<input id="payMethodValue" type="hidden" name="payMethodValue" value="">
 			</div>
 			<div>
 			
@@ -154,5 +159,10 @@
 			</div>
 			<input type="button" id="subSellsignUpBtn" value="판매">
 	</form>
+	</div>
+	<div class="col-sm-4">
+	</div>
+</div>
+<jsp:include page="/WEB-INF/module/footer.jsp"/>
 </body>
 </html>
