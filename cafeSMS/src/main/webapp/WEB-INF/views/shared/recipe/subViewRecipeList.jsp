@@ -69,7 +69,7 @@
 	</div>
 		<div class="col-sm-2">
 	</div>
-</div>
+
 <br/>
 <br/>
 <div class="row">

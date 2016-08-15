@@ -50,7 +50,7 @@ $(document).on("ready",function(){
 	<div class="col-sm-5">
 	<h1>= 재고상품 반품신청 =</h1>
 		<form  id="addReturnForm" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="subStockCode", value="${addReturns.subStockCode}"/>
+			<input type="hidden" name="subStockCode" value="${addReturns.subStockCode}"/>
 			<div>
 				<!-- 직접기입 -->
 				<label class="topLabel">반품사유 : </label>

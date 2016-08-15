@@ -20,7 +20,6 @@ import com.cafe24.seoje1004.claim.model.Claim;
 import com.cafe24.seoje1004.claim.model.ClaimSearch;
 import com.cafe24.seoje1004.claim.service.ClaimService;
 
-import com.cafe24.seoje1004.util.Search;
 
 @Controller
 public class ClaimController {

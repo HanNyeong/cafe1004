@@ -29,7 +29,7 @@ $(document).on("ready",function(){
 	
 	<div class="col-sm-6">
 	<h1>= 고객클래임접수등록 =</h1>
-		<form id="claimForm" method="post" enctype="multipart/form-data">
+		<form id="claimForm" action="/customerAddClaim" method="post" enctype="multipart/form-data">
 			<div>
 				<label>클래임 종류 : </label>
 				<select id ="claimType" name="claimType" valChek="클래임 종류를 선택해주세요">

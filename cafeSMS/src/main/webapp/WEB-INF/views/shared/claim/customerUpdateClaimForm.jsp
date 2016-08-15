@@ -29,7 +29,7 @@ $(document).on("ready",function(){
 	
 	<div class="col-sm-6">
 	<h1>= 클래임 수정 =</h1>
-		<form id="claimUpdateForm" method="post" enctype="multipart/form-data">
+		<form id="claimUpdateForm" action="/customerUpdateClaim" method="post" enctype="multipart/form-data">
 			<div>
 				<input type="hidden" name="claimCode" value="${map.claimContent.claimCode}"/>
 				<label>클래임 종류 : </label>

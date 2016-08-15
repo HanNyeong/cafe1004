@@ -120,8 +120,9 @@
 			$('#upDown').attr('value','ASC');
 			$('#claimList').submit();
 		});
-		
-	});
+	//폼 제출 유효성
+ 	 var check = undefinedEvent($('#searchBtn'),$('#claimList'),$('#valChekMsg'));
+	   });
 
 </script>
 </head>
@@ -142,7 +143,7 @@
 			<input type="date" name="regitDateStart" value="${claimSearch.regitDateStart}"/> ~
 			<input type="date" name="regitDateEnd" value="${claimSearch.regitDateEnd}"/> 
 			<br/><br/>
-			<select name="searchKey" required="required">
+			<select name="searchKey" required="required" valChek="검색 종류를 선택해주세요">
 				<option value="">::선택::</option>
 				<option value="claim_code" <c:if test="${claimSearch.searchKey eq 'claim_code'}">selected="selected"</c:if>>클래임접수코드</option>
 				<option value="claim_type" <c:if test="${claimSearch.searchKey eq 'claim_type'}">selected="selected"</c:if>>클래임 종류</option>
@@ -150,8 +151,8 @@
 				<option value="customer_name" <c:if test="${claimSearch.searchKey eq 'customer_name'}">selected="selected"</c:if>>고객 이름</option>
 				<option value="customer_phone" <c:if test="${claimSearch.searchKey eq 'customer_phone'}">selected="selected"</c:if>>고객 번호</option>
 			</select>
-			<input type="text" name="searchClaim" value="${claimSearch.searchClaim}"/>
-			<button class="btn btn-default">검색</button>
+			<input type="text" name="searchClaim" value="${claimSearch.searchClaim}" valChek="검색어를 입력해주세요"/>
+			<button id="searchBtn" class="btn btn-default" >검색</button><span id="valChekMsg"></span>
 		</form>
 	</div>
 	<div class="col-sm-2">

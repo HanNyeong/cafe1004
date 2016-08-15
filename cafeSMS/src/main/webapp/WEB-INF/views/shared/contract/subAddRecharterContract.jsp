@@ -17,84 +17,8 @@
 		$("#contractFileAdd").append('<div><input id = "contractFile" type="file" class="btn btn-default" name="contractFile"/></div>');	
 	});
 	
-	//계약등록 버튼
-	$("#reContractAddBtn").on("click", function(){
-		console.log("reContractAddBtn click");
-		
-		if($("#contractName").val() == ""){
-			$("#contractNameMsg").text("계약이름을 입력하시오.");
-			
-		}else if($("#contractActualDate").val() ==""){
-			$("#contractNameMsg").text("");
-			$("#contractActualDateMsg").text("실계약일자를 입력하시오.");
-		
-		}else if($("#contractActualDate").val() <= $("#preContractExpiryDate").val() ){
-			$("#contractNameMsg").text("");
-			$("#contractActualDateMsg").text("");
-			$("#contractActualDateMsg").text("계약이전 만료일 보다 이후이어야합니다.");
-			
-		}else if($("#contractExpiryDate").val() ==""){
-			$("#contractNameMsg").text("");
-			$("#contractActualDateMsg").text("");
-			$("#contractExpiryDateMsg").text("만료일자를 입력하시오.");
-		
-		}else if($("#contractExpiryDate").val() <= $("#preContractExpiryDate").val() ){
-			$("#contractNameMsg").text("");
-			$("#contractActualDateMsg").text("");
-			$("#contractExpiryDateMsg").text("계약이전 만료일 보다 이후이어야합니다.");	
-			
-		}else if($("#contractExpiryDate").val() <= $("#contractActualDate").val()){
-			$("#contractNameMsg").text("");
-			$("#contractActualDateMsg").text("");
-			$("#contractExpiryDateMsg").text("만료일자는 실계약보다 더 커야합니다.");
-			
-		}else if($("#contractDeposit").val() == "" || isNaN($("#contractDeposit").val())){
-			$("#contractNameMsg").text("");
-			$("#contractActualDateMsg").text("");
-			$("#contractExpiryDateMsg").text("");
-			$("#contractDepositMsg").text("가맹금액을 입력하시오. 숫자를 입력하시오");
-			
-		}else if($("#contractProfitPercent").val() == "" || isNaN($("#contractProfitPercent").val())){
-			$("#contractNameMsg").text("");
-			$("#contractActualDateMsg").text("");
-			$("#contractExpiryDateMsg").text("");
-			$("#contractDepositMsg").text("");
-			$("#contractProfitPercentMsg").text("이익배분율을 입력하시오. 숫자를 입력하시오");
-		
-		}else if($("#contractFile").val()==""){
-			
-			$("#contractNameMsg").text("");
-			$("#contractActualDateMsg").text("");
-			$("#contractExpiryDateMsg").text("");
-			$("#contractDepositMsg").text("");
-			$("#contractFileMsg").text("파일을 하나이상 등록해주세요");	
-			
-		}else if($("#headStaffId").val() == ""){
-			$("#contractNameMsg").text("");
-			$("#contractActualDateMsg").text("");
-			$("#contractExpiryDateMsg").text("");
-			$("#contractDepositMsg").text("");
-			$("#contractProfitPercentMsg").text("");
-			$("#headStaffIdMsg").text("본사계약담당직원 아이디를 입력하시오.");
-			
-		}else if($("#subCode").val() == ""){
-			$("#contractNameMsg").text("");
-			$("#contractActualDateMsg").text("");
-			$("#contractExpiryDateMsg").text("");
-			$("#contractDepositMsg").text("");
-			$("#contractProfitPercentMsg").text("");
-			$("#headStaffIdMsg").text("");
-			$("#subCodeMsg").text("가맹대표코드를 입력하시오.");
-			
-		}else{
-			$("#reContractAddForm").attr("action","/subAddRecharterContract");
-			$("#reContractAddForm").submit();	
-		
-		}
-	
-	});
-	
-	
+	//폼 제출 유효성
+	 var check = undefinedEvent($('#reContractAddBtn'),$('#reContractAddForm'),$('#valChekMsg'));
  });
 
 </script>
@@ -108,13 +32,12 @@
 		<div class="col-sm-3 addForm">
 		<h1>= 재계약 신청 폼 =</h1>
 		<div>
-			<form id="reContractAddForm" method="post" enctype="multipart/form-data">
+			<form id="reContractAddForm" action="/subAddRecharterContract" method="post" enctype="multipart/form-data">
 					<input id="contractCode" type="hidden" name="contractCode" value="${contract.contractCode}">
 				
 				<div>
 					<label>계약자 이름  : </label>
-					<input id="contractName" type="text" name="contractName" value="${contract.contractName}"/>
-					<span id="contractNameMsg"></span>
+					<input id="contractName" type="text" name="contractName" value="${contract.contractName}" valChek="이름을  입력해주세요"/>
 				</div>	
 				
 				<div>
@@ -123,8 +46,7 @@
 				</div>	
 				<div>	
 					<label>계약 날짜 : </label>
-					<input id="contractActualDate" type="date" name="contractActualDate"/>
-					<span id="contractActualDateMsg"></span>
+					<input id="contractActualDate" type="date" name="contractActualDate" valChek="계약 날짜를  입력해주세요"/>
 				</div>	
 				<div>
 					<label>이전 계약 만료일 : </label>
@@ -132,24 +54,20 @@
 				</div>	
 				<div>	
 					<label>계약 만료일  : </label>
-					<input id="contractExpiryDate" type="date" name="contractExpiryDate"/>
-					<span id="contractExpiryDateMsg"></span>
+					<input id="contractExpiryDate" type="date" name="contractExpiryDate" valChek="계약 만료일을  입력해주세요"/>
 				</div>	
 				<div>
 					<label>가맹 금액  : </label>
-					<input id="contractDeposit" type="text" name="contractDeposit" value="${contract.contractDeposit}"/>
-					<span id="contractDepositMsg"></span>
+					<input id="contractDeposit" type="text" name="contractDeposit" value="${contract.contractDeposit}" valChek="가맹 금액을  입력해주세요"/>
 				</div>	
 				<div>
 					<label>이익 배분율 : </label>
-					<input id="contractProfitPercent" type="text" name="contractProfitPercent" value="${contract.contractProfitPercent}"/>
-					<span id="contractProfitPercentMsg"></span>
+					<input id="contractProfitPercent" type="text" name="contractProfitPercent" value="${contract.contractProfitPercent}" valChek="이익배분율을  입력해주세요"/>
 				</div>	
 				<div>
 					<label>계약 첨부파일 : </label>
 					<input id="contractFileBtn" type="button" class="btn btn-default"value="파일추가"/>
-					<input id="contractFile" type="file" class="btn btn-default" name="contractFile"/>
-					<span id="contractFileMsg"></span>
+					<input id="contractFile" type="file" class="btn btn-default" name="contractFile" valChek="파일을 추가해주세요"/>
 					
 				</div>	
 				<span id="contractFileAdd"></span>
@@ -159,16 +77,15 @@
 				</div>	
 				<div>
 					<label>본사 계약 담당 직원 : </label>
-					<input id="headStaffId" type="text" name="headStaffId" value="${contract.headStaffId}"/>
-					<span id="headStaffIdMsg"></span>
+					<input id="headStaffId" type="text" name="headStaffId" value="${contract.headStaffId}" valChek="본사계약 담당직원 아이디를 입력해주세요"/>
 				</div>	
 				<div>
 					<label>가맹 대표 코드 : </label>
 					<input id="subCode" type="text" name="subCode" value="${contract.subCode}" readonly="readonly"/>
-					<span id="subCodeMsg"></span>
 				</div>
 				<br/>	
 				<div class="clickBtn">
+					<span id="valChekMsg"></span>
 					<input id="reContractAddBtn" type="button" class="btn btn-default" value="계약등록"/>
 				</div>
 				<br/>

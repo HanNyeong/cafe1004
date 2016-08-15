@@ -112,7 +112,7 @@
 			<input type="text" id="search" name="search" value="${search.search}"/>
 			<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
 			<a href="/subViewSubSellList?subCode=${subCode}"><input type="button" class="btn btn-default"  value="전체보기"/></a>
-		
+		</form>
 	</div>
 	<div class="col-sm-2">
 	</div>
@@ -200,7 +200,7 @@
 		</div>
 
 </c:forEach>
-</form>
+
 <div class="row tablediv">
 	<div class="col-sm-2">
 	</div>

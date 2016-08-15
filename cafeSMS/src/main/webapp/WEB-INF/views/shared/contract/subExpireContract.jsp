@@ -14,20 +14,9 @@
 			console.log("contractExpireFileBtn");
 			$("#contractExpireFileAdd").append('<div><input id = "contractExpireFile"  class="btn btn-default" type="file" name="contractExpireFile"/></div>');	
 		});
-		
-		$("#addExpireFile").on("click", function(){
-			if($("#contractExpireFile").val() == ""){
-				$("#contractExpireFileMsg").text("파기사유서를 첨부하세요");
-			}else{
-				$("#contractExpireFileMsg").text("");
-				$("#contractExpireForm").attr("action","/subExpireContract");
-				$("#contractExpireForm").submit();	
-			}	
-		});
-		
-		
-			
-	});
+		//폼 제출 유효성
+		 var check = undefinedEvent($('#addExpireFile'),$('#contractExpireForm'),$('#valChekMsg'));
+	 });
 
 </script>
 
@@ -41,7 +30,7 @@
 			<h1>계약파기</h1>
 			 <p>파기서유서를 첨부하세요. </p>
 			 <p>※파기시 되돌릴 수 없으니 다시 한번 더 검토해주세요※</p>
-			 	<form  id="contractExpireForm"  method="post" enctype="multipart/form-data">
+			 	<form  id="contractExpireForm" action="/subExpireContract" method="post" enctype="multipart/form-data">
 		 			<div>
 						<label>계약 코드 : </label> 			
 		 				<input type="text" name="contractCode" value="${contractCode}" readonly="readonly"/>
@@ -51,12 +40,13 @@
 		 			<div>
 		 				<label>계약파기 파일 : </label>
 		 				<input id="contractExpireFileBtn" type="button"  class="btn btn-default" value="파일추가"/>
-		 				<input id = "contractExpireFile"  class="btn btn-default" type="file" name="contractExpireFile"/>
+		 				<input id = "contractExpireFile"  class="btn btn-default" type="file" name="contractExpireFile"  valChek="파일을 추가해주세요"/>
 		 				<span id="contractExpireFileMsg"></span>
 		 			</div>
 		 			<span id="contractExpireFileAdd"></span>
 		 			<br/>
 					<div class="clickBtn">	
+						<span id="valChekMsg"></span>
 		 				<input id="addExpireFile" type="button"  class="btn btn-default" value="파기"/>
 		 			</div>				
 					<br/>
