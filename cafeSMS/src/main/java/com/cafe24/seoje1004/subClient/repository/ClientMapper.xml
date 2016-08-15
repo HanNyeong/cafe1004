@@ -73,7 +73,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    		parameterType="java.util.Map">
    		<selectKey resultType="hashmap" keyProperty="subClientCode,totalAccountGroup" order="BEFORE">
         	select 
-        	if(isnull(sub_client_code),'sub_client_code1000', concat('sub_client_code', MAX(CONVERT(SUBSTRING(sub_client_code,16), UNSIGNED))+1)) as subClientCode,
+        	if(isnull(sub_client_code),'sub_client_code1', concat('sub_client_code', MAX(CONVERT(SUBSTRING(sub_client_code,16), UNSIGNED))+1)) as subClientCode,
         	if(isnull(total_account_group),'client_total_account1', concat('client_total_account', MAX(CONVERT(SUBSTRING(total_account_group,21), UNSIGNED))+1)) as totalAccountGroup
         	from sub_client
       	</selectKey>
@@ -89,13 +89,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					total_account_group
 					)
 				VALUES (
-					#{client.subClientCode},
+					#{subClientCode},
 		 			#{client.subClientName}, 
-					 NOW(), 
+					NOW(), 
 		 			#{client.subClientInCharge},
 		 			#{client.subClientPhone},
 		 			#{client.subClientAddr},
-		 			#{subLogin.subCode}
+		 			#{subLogin.subCode},
 		 			#{totalAccountGroup}
 		 			)
    </insert>
