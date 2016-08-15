@@ -6,12 +6,12 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://seoje1004.cafe24.com/seoje1004?useUnicode=true&amp;characterEncoding=utf-8" /> 
-        <property name="username" value="seoje1004" /> 
-        <property name="password" value="ghgh930317" />  
-    </bean>
+<!-- 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"> -->
+<!--         <property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
+<!--         <property name="url" value="jdbc:mysql://seoje1004.cafe24.com/seoje1004?useUnicode=true&amp;characterEncoding=utf-8" />  -->
+<!--         <property name="username" value="seoje1004" />  -->
+<!--         <property name="password" value="ghgh930317" />   -->
+<!--     </bean> -->
    <!--  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://seoje1004.cafe24.com/seoje1004?useUnicode=true&amp;characterEncoding=utf-8" /> 
@@ -19,12 +19,12 @@
         <property name="password" value="ghgh930317" />  
     </bean>	
      -->
-<!--       <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"> -->
-<!--          <property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
-<!--          <property name="url" value="jdbc:mysql://localhost:3306/seoje1004?useUnicode=true&amp;characterEncoding=utf-8" />  -->
-<!--          <property name="username" value="root" />  -->
-<!--          <property name="password" value="java0000" />   -->
-<!--       </bean>	 -->
+      <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+         <property name="url" value="jdbc:mysql://localhost:3306/seoje1004?useUnicode=true&amp;characterEncoding=utf-8" /> 
+         <property name="username" value="root" /> 
+         <property name="password" value="java0000" />  
+      </bean>	
     
      
     

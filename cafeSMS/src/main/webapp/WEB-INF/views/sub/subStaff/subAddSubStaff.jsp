@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>addSubStaff</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script src="resources/function/undefinedCheck.js"></script>
+
 <script>
 //유효성 검사
 $(document).ready(function(){   

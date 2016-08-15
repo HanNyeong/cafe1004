@@ -10,14 +10,8 @@
 <script>
 $(document).ready(function() {
 	//유효성 검사
-			$('#loginBtn').click(function(){
-				console.log('로그인버튼 클릭');
-				var check = undefinedEvent($('#subStaffAddBtn'),$('#addSubStaffForm'),$('#valChekMsg'));			
-			});
-			$('#claimBtn').click(function() {
-				console.log('고객 컴플레인 클릭');
-				var check = undefinedEvent($('#subStaffAddBtn'),$('#addSubStaffForm'),$('#valChekMsg'));		
-			});			
+				undefinedEvent($('#loginBtn'),$('#loginForm'),$('#valChekMsg'));			
+				undefinedEvent($('#claimBtn'),$('#claimMainForm'),$('#valChekMsg'));		
 });
 </script>
 </head>

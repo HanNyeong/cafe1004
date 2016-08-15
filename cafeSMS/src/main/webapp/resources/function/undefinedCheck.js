@@ -17,7 +17,6 @@
 				var msg = $(this).attr('valChek');
 				
 				var val = $(this).val();
-				console.log(val);
 				var booleans = undefinedCheck(val,msg,span);
 				if(!booleans){
 					submitCheck = booleans;

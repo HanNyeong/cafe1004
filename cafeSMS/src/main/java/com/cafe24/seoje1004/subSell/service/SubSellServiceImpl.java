@@ -98,21 +98,22 @@ public class SubSellServiceImpl implements SubSellService{
 		public Map<String,Object> menuChart(String subCode){
 
 			System.out.println("SubSellServiceImpl menuChart실행");
-			Map<String,Object> map = new HashMap<String,Object>();
+			Map<String,Object> map = new HashMap<>();
 			map.put("menuChart", subSellDao.menuChart());
 			System.out.println(subCode);
 			List<Integer> priceChart = new ArrayList<Integer>();
+			int week = 7;
 			if(subCode != ""){
 				List<Price> accounts = subSellDao.priceChart(subCode);
 				System.out.println(accounts);
-				Integer[] sumPrice = new Integer[7];
-				Calendar[] calendar = new Calendar[7];
-				Date[] date = new Date[7];
-				String[] fomat = new String[7];
+				Integer[] sumPrice = new Integer[week];
+				Calendar[] calendar = new Calendar[week];
+				Date[] date = new Date[week];
+				String[] fomat = new String[week];
 				SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
 				
 				
-				for(int i = 0; i<7; i++){
+				for(int i = 0; i<week; i++){
 					sumPrice[i] = 0;
 					
 					calendar[i] = Calendar.getInstance();
@@ -128,31 +129,15 @@ public class SubSellServiceImpl implements SubSellService{
 					
 					String RequestDate = accounts.get(i).getSubAccountRequestDate().substring(0, 10);
 					
-						System.out.println(accounts.get(i).getSubAccountRequestDate().substring(0, 10));
-						if(RequestDate.equals(fomat[0])){
-							System.out.println("111111111111111111");	
-							sumPrice[0] += accounts.get(i).getSubAccountPrice();
-						}else if(RequestDate.equals(fomat[1])){
-							System.out.println("144444114111");
-							sumPrice[1] += accounts.get(i).getSubAccountPrice();
-						}else if(RequestDate.equals(fomat[2])){
-							System.out.println("12221");	
-							sumPrice[2] += accounts.get(i).getSubAccountPrice();
-						}else if(RequestDate.equals(fomat[3])){
-							System.out.println("31");	
-							sumPrice[3] += 
-									accounts.get(i).getSubAccountPrice();
-						}else if(RequestDate.equals(fomat[4])){
-							System.out.println("41");	
-							sumPrice[4] += accounts.get(i).getSubAccountPrice();
-						}else if(RequestDate.equals(fomat[5])){
-							System.out.println("51111");	
-							sumPrice[5] += accounts.get(i).getSubAccountPrice();
-						}else if(RequestDate.equals(fomat[6])){
-							System.out.println("16111");	
-							sumPrice[6] += accounts.get(i).getSubAccountPrice();
+						System.out.println(RequestDate);
+						for(int j = 0; j < week; j++){
+							if(RequestDate.equals(fomat[j])){
+								System.out.println("111111111111111111");	
+								sumPrice[j] += accounts.get(i).getSubAccountPrice();
+							}
 						}
-						}
+						
+				}
 //						
 				for(int i=0; i<7;i++){
 					priceChart.add(sumPrice[i]);
