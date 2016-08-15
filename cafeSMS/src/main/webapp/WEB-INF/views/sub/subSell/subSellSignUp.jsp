@@ -121,7 +121,7 @@
 			<input type="hidden" class="menuCode" name="" value="${menuList.menuCode}">
 			
 			<div class="row">
-				<div class="col-sm-1">
+				<div class="col-sm-2">
 					${menuList.menuName} 
 				</div>
 				<div class="col-sm-1">
@@ -133,31 +133,37 @@
 				
 					<input type="checkbox" class="checking" />
 				</div>
+				<div class="col-sm-4"> 
+					수량 : <input class="quantity" type="number" min="1" value=""/>
 				</div>
-				<div class="col-sm-1"> 
-				수량 : <input class="quantity" type="number" min="1" value=""/>
-				</div>
-				<div class="col-sm-1"> 
+				<div class="col-sm-4"> 
 					판매가 : <input type="text" class="menuSellingPriceText" value="" readonly="readonly"/>
 				</div>
+			</div>
+			<br/>
 		</c:forEach>
-			결제수단적용전 총합계  : <input id="sum" type="text" value="" />
-			<div>
-			
-				결제수단 : 
+		<input id="payMethodValue" type="hidden" name="payMethodValue" value="">
+		<input id="totalPrice" type="hidden" value="" readonly="readonly"/>
+		<br/>
+		<div class="row">
+			<div class="col-sm-5"></div>
+			<div class="col-sm-3">
+				결제방식 : 
 				<select id="payMethod" name="payMethod">
-					<option value="">::결제수단::</option>
+					<option value="">::결제::</option>
 					<option value="현금">현금</option>
 					<option value="카드">카드</option>
 				</select>
-				<input id="payMethodValue" type="hidden" name="payMethodValue" value="">
 			</div>
-			<div>
-			
-				총 합계 : <input id="totalPrice" type="text" value="" readonly="readonly"/>
-				<span id="totalPriceHelper"></span>
+			<div class="col-sm-4">	
+				총합  : <input id="sum" type="text" value="" />
 			</div>
+		</div>
+		<br/>
+		<div  class="clickBtn">
+			<span id="totalPriceHelper"></span>
 			<input type="button" id="subSellsignUpBtn" value="판매">
+		</div>
 	</form>
 	</div>
 	<div class="col-sm-4">

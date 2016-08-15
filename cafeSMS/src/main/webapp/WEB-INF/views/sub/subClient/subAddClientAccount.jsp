@@ -7,7 +7,7 @@
 <script>
 $(document).ready(function(){
 	//폼 제출 유효성
-	 var check = undefinedEvent($('#SubAccountByClientBtn'),$('#SubAccountByClientForm'),$('#valChekMsg'));
+	 undefinedEvent($('#SubAccountByClientBtn'),$('#SubAccountByClientForm'),$('#valChekMsg'));
 });
 </script>
 </head>
