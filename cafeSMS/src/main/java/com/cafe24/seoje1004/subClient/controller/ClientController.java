@@ -71,7 +71,7 @@ public class ClientController {
 		
 		clientService.modifyClientService(client,subClientCode);
 		
-		return "redirect:/subViewSubClientList";
+		return "redirect:/subViewSubClientList?subCode="+client.getSubCode();
 	}
 	
 	//지출폼 이동 컨트롤러

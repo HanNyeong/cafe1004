@@ -5,10 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>subModifySubClient</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
 	//폼 제출 유효성
-	 var check = undefinedEvent($('#modifyClientBtn'),$('#modifyClientForm'),$('#valChekMsg'));
+	 undefinedEvent($('#modifyClientBtn'),$('#modifyClientForm'),$('#valChekMsg'));
 });
 </script>
 </head>
@@ -20,6 +21,7 @@ $(document).ready(function(){
 	<div class="col-sm-3 addForm">
 		<h1>가맹거래처수정</h1>
 			<form action="/modifyClient" id="modifyClientForm" method=POST>
+				<input type="hidden" name="subCode" value="${subLogin.subCode}">
 				<div>
 					거래처코드 : <input type="text" class="inputNoLine" name="subClientCode" readonly="readonly" value="${reClient.subClientCode}">
 				</div>
