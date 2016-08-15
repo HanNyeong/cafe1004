@@ -1,6 +1,5 @@
 package com.cafe24.seoje1004.subSell.service;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -10,7 +9,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import org.junit.internal.matchers.SubstringMatcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -94,61 +92,70 @@ public class SubSellServiceImpl implements SubSellService{
 
 
 	//메뉴 차트 + 매출차트
-		@Override
-		public Map<String,Object> menuChart(String subCode){
+	@Override
+	public Map<String,Object> menuChart(String subCode){
 
-			System.out.println("SubSellServiceImpl menuChart실행");
-			Map<String,Object> map = new HashMap<>();
-			map.put("menuChart", subSellDao.menuChart());
-			System.out.println(subCode);
-			List<Integer> priceChart = new ArrayList<Integer>();
-			int week = 7;
-			if(subCode != ""){
-				List<Price> accounts = subSellDao.priceChart(subCode);
-				System.out.println(accounts);
-				Integer[] sumPrice = new Integer[week];
-				Calendar[] calendar = new Calendar[week];
-				Date[] date = new Date[week];
-				String[] fomat = new String[week];
-				SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
-				
-				
-				for(int i = 0; i<week; i++){
-					sumPrice[i] = 0;
-					
-					calendar[i] = Calendar.getInstance();
-					calendar[i].add(Calendar.DAY_OF_MONTH, -i);
-					date[i] = calendar[i].getTime();
-					fomat[i] = mSimpleDateFormat.format(date[i]);
-					//date가 일주일전 Date 객체 입니다.
-					System.out.println(mSimpleDateFormat.format(date[i])+"이가ㅓ뭔데");
-					//일주일전 날짜가 찍히겠지요
-				}
-				for(int i = 0; i < accounts.size(); i++){
-					
-					
-					String RequestDate = accounts.get(i).getSubAccountRequestDate().substring(0, 10);
-					
-						System.out.println(RequestDate);
-						for(int j = 0; j < week; j++){
-							if(RequestDate.equals(fomat[j])){
-								System.out.println("111111111111111111");	
-								sumPrice[j] += accounts.get(i).getSubAccountPrice();
-							}
-						}
-						
-				}
-//						
-				for(int i=0; i<7;i++){
-					priceChart.add(sumPrice[i]);
-				}
-				System.out.println(priceChart);
-				map.put("priceChart", priceChart);
-			}
-			return map;
-		}
+		System.out.println("SubSellServiceImpl menuChart실행");
+		Map<String,Object> map = new HashMap<>();
+		//메뉴 차트 리스트
+		map.put("menuChart", subSellDao.menuChart());
+		System.out.println(subCode);
 		
-	
+		int week = 7;	// 일주일
+		
+		//로그인 성공일시 실행
+		if(subCode != "" && subCode !=null){
+			//가맹 매출 정보(금액과 날짜를 가져옴)
+			List<Price> accounts = subSellDao.priceChart(subCode);
+//			System.out.println(accounts);
+			//날짜별 매출금액
+			Integer[] sumPrice = new Integer[week];
+			
+			//오늘~1주일전 날짜 
+			Calendar[] calendar = new Calendar[week];
+			
+			//날짜 포맷용
+			Date[] date = new Date[week];
+			
+			//for문에서 날짜 비교용
+			String[] fomat = new String[week];
+			
+			//한국시간구하기
+			SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
+			
+			for(int i = 0; i<week; i++){
+				sumPrice[i] = 0;//0으로 초기화
+				calendar[i] = Calendar.getInstance();//현재날짜로 초기화
+				calendar[i].add(Calendar.DAY_OF_MONTH, -i);//어제그제끄제끄끄제 구하기
+				date[i] = calendar[i].getTime();//구해진날짜 date에 대입
+				fomat[i] = mSimpleDateFormat.format(date[i]);//날짜를 string형으로 바꿈
+				//date가 일주일전까지 Date 객체 입니다.
+				//일주일전까지 날짜가 찍히겠지요
+			}
+			//가맹매출정보(날짜)를 일주일전까지의 날짜와 비교후 배열에 매출액 담기  
+			for(int i = 0; i < accounts.size(); i++){
+				
+				String RequestDate = accounts.get(i).getSubAccountRequestDate().substring(0, 10);
+//				System.out.println(RequestDate);
+				for(int j = 0; j < week; j++){
+					if(RequestDate.equals(fomat[j])){
+						sumPrice[j] += accounts.get(i).getSubAccountPrice();
+					}
+				}
+			}
+			//구해진 매출액을 List에 담기
+			List<Integer> priceChart = new ArrayList<Integer>();			
+			for(int i=0; i<week;i++){
+				priceChart.add(sumPrice[i]);
+			}
+//			System.out.println(priceChart);
+			//list를 map에 담기
+			map.put("priceChart", priceChart);
+		}
+		return map;
+	}
+		
+	@Override
 	public void subAddSubSellService(SubSellGroup subSellGroup){
 		SubSell subSell = new SubSell();
 		subSell.setSubSellGroup(subSellDao.selectGroupCode());

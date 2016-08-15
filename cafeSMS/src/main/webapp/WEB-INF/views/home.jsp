@@ -10,8 +10,8 @@
 <script>
 $(document).ready(function() {
 	//유효성 검사
-				undefinedEvent($('#loginBtn'),$('#loginForm'),$('#valChekMsg'));			
-				undefinedEvent($('#claimBtn'),$('#claimMainForm'),$('#valChekMsg'));		
+				undefinedEvent($('#loginBtn'),$('#loginForm'),$('#loginValChekMsg'));			
+				undefinedEvent2($('#claimBtn'),$('#claimMainForm'),$('#claimValChekMsg'));		
 });
 </script>
 </head>
@@ -27,13 +27,14 @@ $(document).ready(function() {
 					<h2>고객  센터</h2>
 					<div class="form-group">
 						<label for="customerName">이름 : </label>
-						<input type="text" class="form-control" id="customerName" name ="customerName" placeholder="이름을 입력해주세요." value="서지연">
+						<input type="text" class="form-control" id="customerName" name ="customerName" placeholder="이름을 입력해주세요." value="서지연" valChek2="이름을 입력해주세요">
 					</div>
 					<div class="form-group">
 						<label for="customerPhone">전화번호:</label>
-						<input type="text" class="form-control" id="customerPhone" name = "customerPhone" placeholder="핸드폰 번호를 입력해주세요." value="01092014268">
+						<input type="text" class="form-control" id="customerPhone" name = "customerPhone" placeholder="핸드폰 번호를 입력해주세요." value="01092014268" valChek2="전화번호를 입력해주세요">
 					</div>
 					<div class="right">
+						<span id="claimValChekMsg"></span>
 						<a href="/customerAddClaim">고객불만등록</a> <input type="button" class="btn btn-default" id="claimBtn" value="검색"/>
 					</div>
 				</form>
@@ -56,6 +57,7 @@ $(document).ready(function() {
 						<input type="password" class="form-control" id="subPassword" name = "subPassword" placeholder="Enter password" value="1234" valChek="비밀번호를 입력해주세요">
 					</div>
 					<div class="right">
+						<span id="loginValChekMsg"></span>
 						<input type="button" class="btn btn-default" id="loginBtn" value="로그인"/>
 					</div>
 				</form>
