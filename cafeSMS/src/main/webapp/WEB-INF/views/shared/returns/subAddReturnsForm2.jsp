@@ -16,30 +16,9 @@ $(document).on("ready",function(){
 		console.log("addReturnFileBtn click");
 		$("#addReturnFile").append('<div><input id = "returnFile" class="btn btn-default" type="file" name="returnFile"/></div>');	
 	});
-	
-	
-	//반품 등록
-	$("#addReturnBtn").on("click",function(){
-		console.log("addReturnBtn click");
-		
-		if($("#returnReason").val()==""){
-			$("#returnReasonMsg").text("반품사유를 적어주세요");
-		}else if($("#returnFile").val()==""){
-			$("#returnReasonMsg").text("");
-			$("#returnFileMsg").text("첨부파일을 하나이상 첨부해주세요")	
-		}else{
-			$("#addReturnForm").attr("action","/subAddReturns");
-			$("#addReturnForm").submit();
-		}
-			
-	});
-		
-	
-	
-	
-	
+	//폼 제출 유효성
+	 var check = undefinedEvent($('#addReturnBtn'),$('#addReturnForm'),$('#valChekMsg'));
 });
-
 </script>
 </head>
 <body>
@@ -49,13 +28,12 @@ $(document).on("ready",function(){
 	</div>
 	<div class="col-sm-5">
 	<h1>= 재고상품 반품신청 =</h1>
-		<form  id="addReturnForm" method="post" enctype="multipart/form-data">
+		<form  id="addReturnForm" action="/subAddReturns" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="subStockCode" value="${addReturns.subStockCode}"/>
 			<div>
 				<!-- 직접기입 -->
 				<label class="topLabel">반품사유 : </label>
-				<textarea id="returnReason"  class="textereaContent" name="returnReason" cols="50" rows="5"></textarea>
-				<span id="returnReasonMsg"></span>
+				<textarea id="returnReason"  class="textereaContent" name="returnReason" cols="50" rows="5" value ="" valChek="반품 사유를  입력해주세요"></textarea>
 			</div>
 			<div>
 				<!-- 자동 -->
@@ -72,8 +50,7 @@ $(document).on("ready",function(){
 				<!-- 직접기입 -->
 				<label>반품첨부파일 : </label>
 				<input id="addReturnFileBtn" type="button" class="btn btn-default" value="파일추가"/>
-				<input id="returnFile" type="file" name="returnFile" class="btn btn-default"/>
-				<span id="returnFileMsg"></span>
+				<input id="returnFile" type="file" name="returnFile" class="btn btn-default" value="" valChek="파일을 추가해주세요"/>
 			</div>
 			<div>
 				<span id="addReturnFile"></span>
@@ -100,6 +77,7 @@ $(document).on("ready",function(){
 				<input type="radio" name="returnReDelivery" value="N"/>
 			</div>
 			<div class="clickCenterBtn">
+				<span id="valChekMsg"></span>	
 				<input id="addReturnBtn" class="btn btn-default" type="button" value="환불신청"/>
 			</div>
 		</form>

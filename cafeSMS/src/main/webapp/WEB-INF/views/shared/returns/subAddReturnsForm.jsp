@@ -43,11 +43,8 @@ $(document).ready(function(){
 			$('#subStockList').submit();
 		}
 	});
-	
-	
-	
-
-	
+	//폼 제출 유효성
+	 var check = undefinedEvent($('#searchBtn'),$('#subStockList'),$('#valChekMsg'));
 });
 </script>
 
@@ -71,7 +68,7 @@ $(document).ready(function(){
 			<input type="date" name="regitDateStart" value="${search.regitDateStart}"/> ~
 			<input type="date" name="regitDateEnd" value="${search.regitDateEnd}"/> 
 			<br/><br/>
-			<select name="searchKey" required="required">
+			<select name="searchKey" required="required" valChek="검색 종류를 선택해주세요">
 				<option value="">::선택::</option>
 				<option value="sub_stock_code" <c:if test="${search.searchKey eq 'sub_stock_code'}">selected="selected"</c:if>>재고코드</option>
 				<option value="orders_code" <c:if test="${search.searchKey eq 'orders_code'}">selected="selected"</c:if>>주문코드</option>
@@ -79,9 +76,10 @@ $(document).ready(function(){
 				<option value="specific_item_code" <c:if test="${search.searchKey eq 'specific_item_code'}">selected="selected"</c:if>>개별상품코드</option>
 				<option value="sub_staff_code" <c:if test="${search.searchKey eq 'sub_staff_code'}">selected="selected"</c:if>>가맹직원코드</option>
 			</select>
-			<input type="text" id="search" name="search" value="${search.search}"/>
+			<input type="text" id="search" name="search" value="${search.search}" valChek="검색어를  입력해주세요"/>
 			<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
-			<a href="/subAddReturnsForm?subCode=${subCode}"><input type="button" class="btn btn-default"  value="전체보기"/></a>
+			<a href="/subAddReturnsForm?subCode=${subCode}"><input type="button" class="btn btn-default"  value="전체보기"/></a><br/>
+			<span id="valChekMsg"></span>			
 			<br/>
 		</form>
 		</div>

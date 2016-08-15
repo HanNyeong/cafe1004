@@ -38,7 +38,7 @@
 			}
 		});
 		//폼 제출 유효성
-		 var check = undefinedEvent($('#searchBtn'),$('#deliveryList'),$('#valChekMsg'));
+		 var check = undefinedEvent($('#searchBtn'),$('#eventList'),$('#valChekMsg'));
 	});
 </script>
 </head>
