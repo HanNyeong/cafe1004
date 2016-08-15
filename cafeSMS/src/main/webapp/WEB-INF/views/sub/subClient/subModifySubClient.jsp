@@ -5,6 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>subModifySubClient</title>
+<script>
+$(document).ready(function(){
+	//폼 제출 유효성
+	 var check = undefinedEvent($('#modifyClientBtn'),$('#modifyClientForm'),$('#valChekMsg'));
+});
+</script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/module/nav.jsp"/>
@@ -13,7 +19,7 @@
 	</div>
 	<div class="col-sm-3 addForm">
 		<h1>가맹거래처수정</h1>
-			<form action="/modifyClient" method=POST>
+			<form action="/modifyClient" id="modifyClientForm" method=POST>
 				<div>
 					거래처코드 : <input type="text" class="inputNoLine" name="subClientCode" readonly="readonly" value="${reClient.subClientCode}">
 				</div>
@@ -21,17 +27,18 @@
 					거래처명 : <input type="text" class="inputNoLine" name="subClientName" readonly="readonly" value="${reClient.subClientName}">
 				</div>
 				<div>
-					거래처담당자명 : <input type="text" name="subClientInCharge" value="${reClient.subClientInCharge}">
+					거래처담당자명 : <input type="text" name="subClientInCharge" value="${reClient.subClientInCharge}" valChek="거래처 담당자 명을 입력 해주세요">
 				</div>
 				<div>
-					거래처연락처 : <input type="text" name="subClientPhone" value="${reClient.subClientPhone}">
+					거래처연락처 : <input type="text" name="subClientPhone" value="${reClient.subClientPhone}" valChek="거래처 역락처를 입력 해주세요">
 				</div>
 				<div>
-					거래처주소 : <input type="text" name="subClientAddr" value="${reClient.subClientPhone}">
+					거래처주소 : <input type="text" name="subClientAddr" value="${reClient.subClientPhone}" valChek="거래처 주소를 입력 해주세요">
 				</div>
 				<br/>
 				<div class="clickBtn">
-					<button class="btn btn-default">수정</button>
+					<span id="valChekMsg"></span>
+					<button type="button" id="modifyClientBtn" class="btn btn-default">수정</button>
 				</div>
 				<br/>
 			</form>

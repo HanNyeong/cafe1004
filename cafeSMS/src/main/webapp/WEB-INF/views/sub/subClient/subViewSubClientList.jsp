@@ -43,6 +43,8 @@
 				$('#subClientList').submit();
 			}
 		});
+		//폼 제출 유효성
+		 var check = undefinedEvent($('#searchBtn'),$('#subClientList'),$('#valChekMsg'));
 	});
 </script>
 </head>
@@ -61,15 +63,17 @@
 		<input type="date" name="regitDateStart" value="${clientSearch.regitDateStart}"/> ~
 		<input type="date" name="regitDateEnd" value="${clientSearch.regitDateEnd}"/> 
 		<br/><br/>
-		<select name="searchKey" required="required">
+		<select name="searchKey" required="required" valChek="검색 종류를  입력해주세요">
 			<option value="">::선택::</option>
 			<option value="sub_client_code" <c:if test="${clientSearch.searchKey eq 'sub_client_code'}">selected="selected"</c:if>>가맹거래처코드</option>
 			<option value="sub_client_name" <c:if test="${clientSearch.searchKey eq 'sub_client_name'}">selected="selected"</c:if>>가맹거래처명</option>
 		</select>
-		<input type="text" id="searchSubClient" name="search" value="${clientSearch.search}"/>
+		<input type="text" id="searchSubClient" name="search" value="${clientSearch.search}" valChek="검색어를  입력해주세요"/>
 		<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
 		<a href="/subViewSubClientList?subCode=${subLogin.subCode}">
 			<input type="button" class="btn btn-default" value="전체보기"/></a>
+			<br/>
+			<span id="valChekMsg"></span>
 	</form>
 	</div>
 		<div class="col-sm-2">

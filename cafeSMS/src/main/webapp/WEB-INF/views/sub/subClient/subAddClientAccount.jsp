@@ -4,6 +4,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>subAddClientAccount</title>
+<script>
+$(document).ready(function(){
+	//폼 제출 유효성
+	 var check = undefinedEvent($('#SubAccountByClientBtn'),$('#SubAccountByClientForm'),$('#valChekMsg'));
+});
+</script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/module/nav.jsp"/>
@@ -12,22 +18,23 @@
 	</div>
 	<div class="col-sm-3 addForm">
 		<h1>거래처지출내역</h1>
-			<form action="subAddSubAccountByClient" method=POST>
+			<form action="subAddSubAccountByClient" id="SubAccountByClientForm" method=POST>
 				<input type="hidden" name="subCode" value="${subLogin.subCode}">
 				<input type="hidden" name="totalAccountGroup" value="${clientList.totalAccountGroup}">
 				<input type="hidden" name="subClientCode" value="${clientList.subClientCode}">
 				<div>
-					거래처명 : <input type="text" value="${clientList.subClientName}" readonly/>
+					거래처명 : <input type="text" value="${clientList.subClientName}" readonly="readonly"/>
 				</div>
 				<div>
 					지출금액 : <input type="number" name="subAccountPrice" min="1">
 				</div>
 				<div>
-					지출내역 : <input type="text" name="subAccountDetail">
+					지출내역 : <input type="text" name="subAccountDetail" value="" valChek="지출 내역을 입력 해주세요">
 				</div>
 				<br/>
 				<div class="clickBtn">
-					<button class="btn btn-default">등록</button>
+					<span id="valChekMsg"></span>
+					<button type="button" id="SubAccountByClientBtn" class="btn btn-default">등록</button>
 				</div>
 				<br/>
 			</form>
