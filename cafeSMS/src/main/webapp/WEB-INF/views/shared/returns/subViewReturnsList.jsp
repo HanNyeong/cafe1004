@@ -48,7 +48,7 @@ $(document).ready(function(){
 		}	
 	});
 	//폼 제출 유효성
-	 var check = undefinedEvent($('#searchBtn'),$('#returnsList'),$('#valChekMsg'));
+	undefinedEvent($('#searchBtn'),$('#returnsList'),$('#valChekMsg'));
 });
 </script>
 </head>
@@ -73,8 +73,8 @@ $(document).ready(function(){
 				
 				
 				등록 날짜: 
-				<input type="date" name="regitDateStart" value="${search.regitDateStart}"/> ~
-				<input type="date" name="regitDateEnd" value="${search.regitDateEnd}"/> 
+				<input type="date" id="regitDateStart" name="regitDateStart" value="${search.regitDateStart}"/> ~
+				<input type="date" id="regitDateEnd" name="regitDateEnd" value="${search.regitDateEnd}"/> 
 				<br/><br/>
 				<select name="searchKey" required="required" valChek="검색 종류를 선택해주세요">
 					<option value="">::선택::</option>

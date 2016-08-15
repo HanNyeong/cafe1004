@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>viewSubStaffList</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script type="text/javascript" src="resources/function/upDownCheck.js"></script>
+
 <script>
 	$(document).ready(function(){
 		var columnList = ['sub_staff_code','sub_staff_name','sub_staff_join','sub_staff_regit_date','sub_staff_permit_date','sub_staff_salary','sub_staff_resign']
@@ -41,8 +41,8 @@
 		});
 		console.log($('#regitDateStart').val());
 		//폼 제출 유효성
-			undefinedEvent($('#keeperCheckBtn'),$('#subStaffKeeperCheck'),$('#keeperCheckMsg'));			
-			undefinedEvent($('#searchBtn'),$('#subStaffList'),$('#valChekMsg'));	
+		undefinedEvent($('#keeperCheckBtn'),$('#subStaffKeeperCheck'),$('#keeperCheckMsg'));			
+		undefinedEvent($('#searchBtn'),$('#subStaffList'),$('#valChekMsg'));	
 		
          
 //         $("#frmSearch").submit();

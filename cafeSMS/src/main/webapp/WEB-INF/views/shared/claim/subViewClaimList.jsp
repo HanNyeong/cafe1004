@@ -7,121 +7,30 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>subViewClaimList</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script>
 	
 	$(document).ready(function(){
-		
-		/* 오름차/내림차순 정렬 설정 */
-		$('#claimCodeUp').click(function(){
-			
-			$('#criteria').attr('value','claim_code');
-			$('#upDown').attr('value','DESC');
-			$('#claimList').submit();
+
+		var columnList = ['claim_code','claim_type','claim_ask_date','claim_answer_date','customer_name','customer_phone','claim_status']
+		$('.up').each(function(index,item){
+			$(item).click(function(){
+				list('ASC',columnList[index],$("#claimList"));
+			});
 		});
-		$('#claimCodeDown').click(function(){
-			
-			$('#criteria').attr('value','claim_code');
-			$('#upDown').attr('value','ASC');
-			$('#claimList').submit();
+		$('.down').each(function(index,item){
+			$(item).click(function(){
+				list('DESC',columnList[index],$("#claimList"));
+			});
 		});
-		
-		
-		$('#claimTypeUp').click(function(){
-			
-			$('#criteria').attr('value','claim_type');
-			$('#upDown').attr('value','DESC');
-			$('#claimList').submit();
+		// 더보기
+		$('#viewMoreBtn').click(function(){
+			var viewMore = $('#viewMore').val();
+			$('#viewMore').val(viewMore*1+25);
+			$('#contractList').submit();
 		});
-		$('#claimTypeDown').click(function(){
-			
-			$('#criteria').attr('value','claim_type');
-			$('#upDown').attr('value','ASC');
-			$('#claimList').submit();
-		});
-		
-		
-		$('#claimAskDateUp').click(function(){
-			
-			$('#criteria').attr('value','claim_ask_date');
-			$('#upDown').attr('value','DESC');
-			$('#claimList').submit();
-		});
-		$('#claimAskDateDown').click(function(){
-			
-			$('#criteria').attr('value','claim_ask_date');
-			$('#upDown').attr('value','ASC');
-			$('#claimList').submit();
-		});
-		
-		
-		$('#claimAnswerDateUp').click(function(){
-			
-			$('#criteria').attr('value','claim_answer_date');
-			$('#upDown').attr('value','DESC');
-			$('#claimList').submit();
-		});
-		$('#claimAnswerDateDown').click(function(){
-			
-			$('#criteria').attr('value','claim_answer_date');
-			$('#upDown').attr('value','ASC');
-			$('#claimList').submit();
-		});
-		
-		
-		$('#subCodeUp').click(function(){
-			
-			$('#criteria').attr('value','sub_code');
-			$('#upDown').attr('value','DESC');
-			$('#claimList').submit();
-		});
-		$('#subCodeDown').click(function(){
-			
-			$('#criteria').attr('value','sub_code');
-			$('#upDown').attr('value','ASC');
-			$('#claimList').submit();
-		});
-		
-		$('#customerNameUp').click(function(){
-			
-			$('#criteria').attr('value','customer_name');
-			$('#upDown').attr('value','DESC');
-			$('#claimList').submit();
-		});
-		$('#customerNameDown').click(function(){
-			
-			$('#criteria').attr('value','customer_name');
-			$('#upDown').attr('value','ASC');
-			$('#claimList').submit();
-		});
-		
-		$('#customerPhoneUp').click(function(){
-			
-			$('#criteria').attr('value','customer_phone');
-			$('#upDown').attr('value','DESC');
-			$('#claimList').submit();
-		});
-		$('#customerPhoneDown').click(function(){
-			
-			$('#criteria').attr('value','customer_phone');
-			$('#upDown').attr('value','ASC');
-			$('#claimList').submit();
-		});
-		
-		$('#claimStatusUp').click(function(){
-			
-			$('#criteria').attr('value','claim_status');
-			$('#upDown').attr('value','DESC');
-			$('#claimList').submit();
-		});
-		$('#claimStatusDown').click(function(){
-			
-			$('#criteria').attr('value','claim_status');
-			$('#upDown').attr('value','ASC');
-			$('#claimList').submit();
-		});
-	//폼 제출 유효성
- 	 var check = undefinedEvent($('#searchBtn'),$('#claimList'),$('#valChekMsg'));
+	
+		//폼 제출 유효성
+ 		 undefinedEvent($('#searchBtn'),$('#claimList'),$('#valChekMsg'));
 	   });
 
 </script>
@@ -140,8 +49,8 @@
 			<input type="hidden" name="subCode" value="${subCode}"/>
 
 			등록 날짜: 
-			<input type="date" name="regitDateStart" value="${claimSearch.regitDateStart}"/> ~
-			<input type="date" name="regitDateEnd" value="${claimSearch.regitDateEnd}"/> 
+			<input type="date" id="regitDateStart" name="regitDateStart" value="${claimSearch.regitDateStart}"/> ~
+			<input type="date" id="regitDateEnd" name="regitDateEnd" value="${claimSearch.regitDateEnd}"/> 
 			<br/><br/>
 			<select name="searchKey" required="required" valChek="검색 종류를 선택해주세요">
 				<option value="">::선택::</option>
@@ -173,25 +82,25 @@
 		<div class="col-sm-2">
 		</div>
 		<div class="col-sm-1 th">
-			접수코드<span id="claimCodeUp">▲</span><span id="claimCodeDown">▼</span>
+			접수코드<span class="up">▲</span><span class="down">▼</span>
 		</div>
 		<div class="col-sm-1 th">	
-			클래임 종류<span id="claimTypeUp">▲</span><span id="claimTypeDown">▼</span>
+			클래임 종류<span class="up">▲</span><span class="down">▼</span>
 		</div>
 		<div class="col-sm-1 th">	
-			접수 날짜<span id="claimAskDateUp">▲</span><span id="claimAskDateDown">▼</span>
+			접수 날짜<span class="up">▲</span><span class="down">▼</span>
 		</div>
 		<div class="col-sm-1 th">	
-			답변 일자<span id="claimAnswerDateUp">▲</span><span id="claimAnswerDateDown">▼</span>
+			답변 일자<span class="up">▲</span><span class="down">▼</span>
 		</div>
 		<div class="col-sm-1 th">	
-			고객 이름<span id="customerNameUp">▲</span><span id="customerNameDown">▼</span>
+			고객 이름<span class="up">▲</span><span class="down">▼</span>
 		</div>
 		<div class="col-sm-1 th">	
-			고객 번호<span id="customerPhoneUp">▲</span><span id="customerPhoneDown">▼</span>
+			고객 번호<span class="up">▲</span><span class="down">▼</span>
 		</div>
 		<div class="col-sm-1 th">	
-			처리 상태<span id="claimStatusUp">▲</span><span id="claimStatusDown">▼</span>
+			처리 상태<span class="up">▲</span><span class="down">▼</span>
 		</div>
 		<div class="col-sm-1 th">	
 			[상세보기]

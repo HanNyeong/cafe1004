@@ -31,7 +31,7 @@
 			$('#eventList').submit();
 		});
 		//폼 제출 유효성
-		 var check = undefinedEvent($('#searchBtn'),$('#eventList'),$('#valChekMsg'));
+		undefinedEvent($('#searchBtn'),$('#eventList'),$('#valChekMsg'));
 	});
 </script>
 </head>
@@ -47,8 +47,8 @@
 			<input type="hidden" id="criteria" name="criteria" value=""/>
 			<input type="hidden" id="viewMore" name="viewMore" value="${eventSearch.viewMore}"/>
 			등록 날짜: 
-			<input type="date" name="regitDateStart" value="${eventSearch.regitDateStart}"/> ~
-			<input type="date" name="regitDateEnd" value="${eventSearch.regitDateEnd}"/> 
+			<input type="date" id="regitDateStart" name="regitDateStart" value="${eventSearch.regitDateStart}"/> ~
+			<input type="date" id="regitDateEnd" name="regitDateEnd" value="${eventSearch.regitDateEnd}"/> 
 			<br/><br/>
 			<select name="searchKey" required="required" valChek="검색 종류를 선택해주세요">
 				<option value="">::선택::</option>

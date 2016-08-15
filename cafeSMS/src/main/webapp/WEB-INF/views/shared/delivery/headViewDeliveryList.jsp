@@ -7,15 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>headViewDeliveryList</title>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-<script type="text/javascript" src="resources/function/upDownCheck.js"></script>
 <script>
-var list = function(upDown,criteria){
-	$('#upDown').attr('value',upDown);
-	$('#criteria').attr('value',criteria);
-	$('#deliveryList').submit();	
-}
-
-
 
 $(document).ready(function(){
 	var columnList = ['delivery_code','delivery_date','delivery_receive','delivery_location','delivery_return','delivery_person','orders_code','sub_orders_group','head_staff_id','sub_code']
@@ -23,12 +15,12 @@ $(document).ready(function(){
 
 	$('.up').each(function(index,item){
 		$(item).click(function(){
-			list('ASC',columnList[index]);
+			list('ASC',columnList[index],$("#deliveryList"));
 		});
 	});
 	$('.down').each(function(index,item){
 		$(item).click(function(){
-			list('DESC',columnList[index]);
+			list('DESC',columnList[index],$("#deliveryList"));
 		});
 	});
 	// 더보기
@@ -56,7 +48,7 @@ $(document).ready(function(){
 	});
 	
 	//폼 제출 유효성
-	 var check = undefinedEvent($('#searchBtn'),$('#deliveryList'),$('#valChekMsg'));
+	undefinedEvent($('#searchBtn'),$('#deliveryList'),$('#valChekMsg'));
  });
 
 </script>
@@ -81,8 +73,8 @@ $(document).ready(function(){
 			<input type="hidden" id="YN"  name="YN" value="${YN}"/>
 						
 			등록 날짜: 
-			<input type="date" name="regitDateStart" value="${search.regitDateStart}"/> ~
-			<input type="date" name="regitDateEnd" value="${search.regitDateEnd}"/> 
+			<input type="date" id="regitDateStart" name="regitDateStart" value="${search.regitDateStart}"/> ~
+			<input type="date" id="regitDateEnd" name="regitDateEnd" value="${search.regitDateEnd}"/> 
 			<br/><br/>
 			<select name="searchKey" required="required" valChek="검색 종류를 선택해주세요">
 				<option value="">::선택::</option>

@@ -9,13 +9,7 @@
 <title>headViewContractList</title>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script>
-var list = function(upDown,criteria){
-	$('#upDown').attr('value',upDown);
-	$('#criteria').attr('value',criteria);
-	$('#contractList').submit();	
-	}
 
 	$(document).ready(function(){
 		var columnList = ['contract_code','contract_name','contract_regit_date','contract_actual_date','contract_expiry_date','contract_n','contract_expire_date','sub_code','pay_method','sub_code','re_contract_status']
@@ -23,12 +17,12 @@ var list = function(upDown,criteria){
 
 		$('.up').each(function(index,item){
 			$(item).click(function(){
-				list('ASC',columnList[index]);
+				list('ASC',columnList[index],$("#contractList"));
 			});
 		});
 		$('.down').each(function(index,item){
 			$(item).click(function(){
-				list('DESC',columnList[index]);
+				list('DESC',columnList[index],$("#contractList"));
 			});
 		});
 
@@ -54,7 +48,7 @@ var list = function(upDown,criteria){
 			}
 		});		
 		//폼 제출 유효성
-		 var check = undefinedEvent($('#searchBtn'),$('#contractList'),$('#valChekMsg'));
+		undefinedEvent($('#searchBtn'),$('#contractList'),$('#valChekMsg'));
 	  });
 </script>
 
@@ -73,8 +67,8 @@ var list = function(upDown,criteria){
 			<input type="hidden" id="YN"  name="YN" value="${YN}"/>
 			<%-- <input type="hidden" name="subCode" value="${subCode}"/> --%>
 			등록 날짜: 
-			<input type="date" name="regitDateStart" value="${search.regitDateStart}"/> ~
-			<input type="date" name="regitDateEnd" value="${search.regitDateEnd}"/> 
+			<input type="date" id="regitDateStart" name="regitDateStart" value="${search.regitDateStart}"/> ~
+			<input type="date" id="regitDateEnd" name="regitDateEnd" value="${search.regitDateEnd}"/>  
 			<br/><br/>
 			<select name="searchKey" required="required" valChek="검색 종류를 선택해주세요">
 				<option value="">::선택::</option>

@@ -7,7 +7,6 @@
 <title>headViewOrdersList</title>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script type="text/javascript" src="resources/function/upDownCheck.js"></script>
 <script>
 	$(document).ready(function(){
 		$('#delOrdersBtn').click(function(){
@@ -67,8 +66,8 @@
 			<input type="hidden" id="criteria" name="criteria" value=""/>
 			<input type="hidden" id="subCode" name="subCode" value="${subLogin.subCode}"/>
 			등록 날짜: 
-			<input type="date" name="regitDateStart" value="${clientSearch.regitDateStart}"/> ~
-			<input type="date" name="regitDateEnd" value="${clientSearch.regitDateEnd}"/> 
+			<input type="date" id="regitDateStart" name="regitDateStart" value="${clientSearch.regitDateStart}"/> ~
+			<input type="date" id="regitDateEnd" name="regitDateEnd" value="${clientSearch.regitDateEnd}"/> 
 			<br/><br/>
 			<a href="/headViewOrdersList"><input type="button" id="ordersList" class="btn btn-default" value="전체보기"></a>
 		</form>

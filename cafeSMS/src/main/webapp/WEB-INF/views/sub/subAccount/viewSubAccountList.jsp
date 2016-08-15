@@ -7,7 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script type="text/javascript" src="resources/function/upDownCheck.js"></script>
 <script>
 	$(document).ready(function() {
 		//컬럼 명 지정해주는 배열 
@@ -34,8 +33,8 @@
 			$('#subAccountList').submit();
 		});
 		//폼 제출 유효성
-			 undefinedEvent($('#subAccountBtn'),$('#accountKeeperForm'),$('#accountKeeperMsg'));			
-			 undefinedEvent($('#searchBtn'),$('#subAccountList'),$('#valChekMsg'));	
+		 undefinedEvent($('#subAccountBtn'),$('#accountKeeperForm'),$('#accountKeeperMsg'));			
+		 undefinedEvent($('#searchBtn'),$('#subAccountList'),$('#valChekMsg'));	
 	});
 	
 </script>
@@ -82,8 +81,9 @@
 				<input type="hidden" id="subStaffLevel" name="subStaffLevel" value="${subStaff.subStaffLevel}" /> 
 				<input type="hidden" id="viewMore" name="viewMore" value="${subAccountSearch.viewMore}"/>
 				
-					등록 날짜: <input type="date" name="regitDateStart" value="${subAccountSearch.regitDateStart}" />
-				~ <input type="date" name="regitDateEnd" value="${subAccountSearch.regitDateEnd}" /> 
+				등록 날짜: 
+				<input type="date" id="regitDateStart" name="regitDateStart" value="${subAccountSearch.regitDateStart}" />
+				~ <input type="date" id="regitDateEnd" name="regitDateEnd" value="${subAccountSearch.regitDateEnd}" /> 
 				<br/>
 				<br/> 
 				<select name="searchKey" required="required" valChek="검색 종류를 선택해주세요">

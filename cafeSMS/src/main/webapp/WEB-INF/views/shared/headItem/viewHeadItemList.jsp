@@ -6,7 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>viewHeadItemList</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script src="resources/function/upDownCheck.js"></script>
 <script>
 	//삭제 체크 박스 전체 선택/해제
 	function selectHeadItemAll(source) {
@@ -61,7 +60,7 @@
 		    }
 		});
 		//폼 제출 유효성
-		 var check = undefinedEvent($('#searchBtn'),$('#headItemForm'),$('#valChekMsg'));
+		undefinedEvent($('#searchBtn'),$('#headItemForm'),$('#valChekMsg'));
 	 });
 </script>
 </head>
@@ -77,8 +76,8 @@
 		<input type="hidden" id="criteria" name="criteria" value=""/>
 		<input type="hidden" id="viewMore" name="viewMore" value="${headItemSearch.viewMore}"/>
 		등록 날짜: 
-		<input type="date" name="regitDateStart" value="${headItemSearch.regitDateStart}"/> ~
-		<input type="date" name="regitDateEnd" value="${headItemSearch.regitDateEnd}"/> 
+		<input type="date" id="regitDateStart" name="regitDateStart" value="${headItemSearch.regitDateStart}"/> ~
+		<input type="date" id="regitDateEnd" name="regitDateEnd" value="${headItemSearch.regitDateEnd}"/> 
 		<br/><br/>
 		<select name="searchKey" required="required" valChek="검색 종류를 선택해주세요">
 			<option value="">::선택::</option>

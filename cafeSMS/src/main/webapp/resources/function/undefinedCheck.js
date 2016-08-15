@@ -38,10 +38,12 @@
 					return valBooleans;
 				}
 			});
-			var dateBooleans = dateChecked($('#regitDateStart').val(),$('#regitDateEnd').val(),span);
-			console.log(dateBooleans);
-			if(!dateBooleans){
-				dateCheck = dateBooleans;
+			if($('#regitDateStart').val() != undefined){
+				var dateBooleans = dateChecked($('#regitDateStart').val(),$('#regitDateEnd').val(),span);
+				console.log(dateBooleans);
+				if(!dateBooleans){
+					dateCheck = dateBooleans;
+				}
 			}
 			
 			if(valCheck && dateCheck){ 

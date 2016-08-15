@@ -6,7 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>subViewSubDumpList</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script type="text/javascript" src="resources/function/upDownCheck.js"></script>
 <script>
 	$(document).ready(function(){
 		//컬럼 명 지정해주는 배열 
@@ -31,7 +30,7 @@
 		});
 
 		//폼 제출 유효성
-		 var check = undefinedEvent($('#searchBtn'),$('#subDumpList'),$('#valChekMsg'));
+		undefinedEvent($('#searchBtn'),$('#subDumpList'),$('#valChekMsg'));
 	});
 		
 </script>
@@ -49,16 +48,14 @@
 		<input type="hidden" id="subCode" name="subCode" value="${subLogin.subCode}"/>
 		<input type="hidden" id="viewMore" name="viewMore" value="${subDumpSearch.viewMore}"/>
 		등록 날짜: 
-		<input type="date" name="regitDateStart" value="${subDumpSearch.regitDateStart}"/> ~
-		<input type="date" name="regitDateEnd" value="${subDumpSearch.regitDateEnd}"/> 
+		<input type="date" id="regitDateStart" name="regitDateStart" value="${subDumpSearch.regitDateStart}"/> ~
+		<input type="date" id="regitDateEnd" name="regitDateEnd" value="${subDumpSearch.regitDateEnd}"/> 
 		<br/><br/>
 		<select name="searchKey" required="required" valChek="검색 종류를 선택해주세요">
 			<option value="">::선택::</option>
 			<option value="sub_dump_code" <c:if test="${subDumpSearch.searchKey eq 'sub_dump_code'}">selected="selected"</c:if>>폐기 코드</option>
 			<option value="sub_staff_code" <c:if test="${subDumpSearch.searchKey eq 'sub_staff_code'}">selected="selected"</c:if>>가맹 폐기 담당 직원</option>
 			<option value="specific_item_code" <c:if test="${subDumpSearch.searchKey eq 'specific_item_code'}">selected="selected"</c:if>>개별 상품 코드</option>
-			<option value="h_item_code" <c:if test="${subDumpSearch.searchKey eq 'cart_quantity'}">selected="selected"</c:if>>본사 상품 코드</option>
-			<option value="sub_code" <c:if test="${subDumpSearch.searchKey eq 'sub_code'}">selected="selected"</c:if>>가맹 대표 코드</option>
 		</select>
 		<input type="text" id="searchSubDump" name="search" value="${subDumpSearch.search}" valChek="검색어를 입력해주세요"/>
 		<input type="button" id="searchBtn" class="btn btn-default"  value="검색" />

@@ -6,27 +6,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>subViewSubClientList</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script src="resources/function/upDownCheck.js"></script>
 <script>
-	$.list = function(upDown,criteria){
-		$('#upDown').attr('value',upDown);
-		$('#criteria').attr('value',criteria);
-		$('#subClientList').submit();	
-	}
+
 	
 	$(document).ready(function(){
 		//컬럼 명 지정해주는 배열 
 		//자기입맛에 맛게 고쳐 쓰세요
 		var columnList = ['sub_client_code','sub_client_name','sub_client_regit_date','sub_client_in_charge','sub_client_contract','sub_client_phone','sub_client_addr']
-
 		$('.up').each(function(index,item){
 			$(item).click(function(){
-				$.list('ASC',columnList[index]);
+				list('ASC',columnList[index],$("#subClientList"));
 			});
 		});
 		$('.down').each(function(index,item){
 			$(item).click(function(){
-				$.list('DESC',columnList[index]);
+				list('DESC',columnList[index],$("#subClientList"));
 			});
 		});
 		// 더보기
@@ -36,7 +30,7 @@
 			$('#subClientList').submit();
 		});
 		//폼 제출 유효성
-		 var check = undefinedEvent($('#searchBtn'),$('#subClientList'),$('#valChekMsg'));
+		undefinedEvent($('#searchBtn'),$('#subClientList'),$('#valChekMsg'));
 	});
 </script>
 </head>
@@ -52,8 +46,8 @@
 		<input type="hidden" id="subCode" name="subCode" value="${subLogin.subCode}"/>
 		<input type="hidden" id="viewMore" name="viewMore" value="${clientSearch.viewMore}"/>
 		등록 날짜: 
-		<input type="date" name="regitDateStart" value="${clientSearch.regitDateStart}"/> ~
-		<input type="date" name="regitDateEnd" value="${clientSearch.regitDateEnd}"/> 
+		<input type="date" id="regitDateStart" name="regitDateStart" value="${clientSearch.regitDateStart}"/> ~
+		<input type="date" id="regitDateEnd" name="regitDateEnd" value="${clientSearch.regitDateEnd}"/> 
 		<br/><br/>
 		<select name="searchKey" required="required" valChek="검색 종류를  입력해주세요">
 			<option value="">::선택::</option>

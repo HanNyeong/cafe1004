@@ -7,13 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>subViewSubStockOutList</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script type="text/javascript" src="resources/function/upDownCheck.js"></script>
 <script>
-var list = function(upDown,criteria){
-	$('#upDown').attr('value',upDown);
-	$('#criteria').attr('value',criteria);
-	$('#subStockList').submit();	
-}
 
 
 
@@ -21,14 +15,16 @@ $(document).ready(function(){
 	var columnList = ['sub_stock_code','head_stock_in_date','sub_stock_in_date','sub_stock_out','orders_code','sub_code','head_item_code','specific_item_code','sub_staff_code']
 	
 
+	//컬럼별조회 위
 	$('.up').each(function(index,item){
 		$(item).click(function(){
-			list('ASC',columnList[index]);
+			list('ASC',columnList[index],$('#subStockList'));
 		});
 	});
+	//컬럼별조회 아래
 	$('.down').each(function(index,item){
 		$(item).click(function(){
-			list('DESC',columnList[index]);
+			list('DESC',columnList[index],$('#subStockList'));
 		});
 	});
 	// 더보기
@@ -54,7 +50,7 @@ $(document).ready(function(){
 		
 	});
 	//폼 제출 유효성
-	 var check = undefinedEvent($('#searchBtn'),$('#subStockList'),$('#valChekMsg'));
+	 undefinedEvent($('#searchBtn'),$('#subStockList'),$('#valChekMsg'));
 });
 
 </script>
@@ -74,8 +70,8 @@ $(document).ready(function(){
 			<input type="hidden" id="subCode" name="subCode" value="${subCode}"/>
 			<input type="hidden" id="YN"  name="YN" value="${YN}"/>			
 			등록 날짜: 
-			<input type="date" name="regitDateStart" value="${search.regitDateStart}"/> ~
-			<input type="date" name="regitDateEnd" value="${search.regitDateEnd}"/> 
+			<input type="date" id="regitDateStart" name="regitDateStart" value="${search.regitDateStart}"/> ~
+			<input type="date" id="regitDateEnd" name="regitDateEnd" value="${search.regitDateEnd}"/> 
 			<br/><br/>
 			<select name="searchKey" required="required" valChek="검색 종류를 선택해주세요">
 				<option value="">::선택::</option>
