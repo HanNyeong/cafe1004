@@ -18,12 +18,12 @@
 	</div>
 	<div class="col-sm-8">
 		<div id="mainpng">
-			<a href="/"><img src="/resources/img/main.png" ></a>
+			<a href="/?subCode=${subLogin.subCode}"><img src="/resources/img/main.png" ></a>
 		</div>
 		<div class="container">
 			<ul class="nav nav-tabs" role="tablist">
 			
-			<li class="active"><a href="/">Home</a></li> 
+			<li class="active"><a href="/?subCode=${subLogin.subCode}">Home</a></li> 
 			<c:if test="${subLogin ne null}">	 
 			<!-- 상품관리 -->
 				<li class="dropdown">
