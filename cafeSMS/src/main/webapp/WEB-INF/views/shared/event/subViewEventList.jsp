@@ -37,6 +37,8 @@
 				$('#eventList').submit();
 			}
 		});
+		//폼 제출 유효성
+		 var check = undefinedEvent($('#searchBtn'),$('#deliveryList'),$('#valChekMsg'));
 	});
 </script>
 </head>
@@ -55,14 +57,15 @@
 			<input type="date" name="regitDateStart" value="${eventSearch.regitDateStart}"/> ~
 			<input type="date" name="regitDateEnd" value="${eventSearch.regitDateEnd}"/> 
 			<br/><br/>
-			<select name="searchKey" required="required">
+			<select name="searchKey" required="required" valChek="검색 종류를 선택해주세요">
 				<option value="">::선택::</option>
 				<option value="event_code" <c:if test="${eventSearch.searchKey eq 'event_code'}">selected="selected"</c:if>>행사코드</option>
 				<option value="event_name" <c:if test="${eventSearch.searchKey eq 'event_name'}">selected="selected"</c:if>>행사명</option>
 			</select>
-			<input type="text" id="searchEvent" name="search" value="${eventSearch.search}"/>
+			<input type="text" id="searchEvent" name="search" value="${eventSearch.search}" valChek="검색어를  입력해주세요"/>
 			<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
-			<a href="/viewEventList"><input type="button" class="btn btn-default" value="전체보기"/></a>
+			<a href="/viewEventList"><input type="button" class="btn btn-default" value="전체보기"/></a><br/>
+			<span id="valChekMsg"></span>
 		</form>
 	</div>
 	<div class="col-sm-2">

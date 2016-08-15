@@ -94,8 +94,6 @@
 				<option value="">::선택::</option>
 				<option value="contract_code" <c:if test="${search.searchKey eq 'contract_code'}">selected="selected"</c:if>>계약코드</option>
 				<option value="contract_name" <c:if test="${search.searchKey eq 'contract_name'}">selected="selected"</c:if>>계약자명</option>
-				<option value="sub_code" <c:if test="${search.searchKey eq 'sub_code'}">selected="selected"</c:if>>가맹코드</option>
-				
 			</select>
 			<input type="text" id="search" name="search" value="${search.search}" valChek="검색어를  입력해주세요"/>
 			<input type="button" id="searchBtn" class="btn btn-default" value="검색" />

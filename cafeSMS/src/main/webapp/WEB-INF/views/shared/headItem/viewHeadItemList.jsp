@@ -67,7 +67,9 @@
 					$('#cartAndOrders').submit();
 		    }
 		});
-	});
+		//폼 제출 유효성
+		 var check = undefinedEvent($('#searchBtn'),$('#deliveryList'),$('#valChekMsg'));
+	 });
 </script>
 </head>
 <body>
@@ -85,21 +87,20 @@
 		<input type="date" name="regitDateStart" value="${headItemSearch.regitDateStart}"/> ~
 		<input type="date" name="regitDateEnd" value="${headItemSearch.regitDateEnd}"/> 
 		<br/><br/>
-		<select name="searchKey" required="required">
+		<select name="searchKey" required="required" valChek="검색 종류를 선택해주세요">
 			<option value="">::선택::</option>
 			<option value="h_item_code" <c:if test="${headItemSearch.searchKey eq 'h_item_code'}">selected="selected"</c:if>>아이템 코드</option>
 			<option value="h_item_name" <c:if test="${headItemSearch.searchKey eq 'h_item_name'}">selected="selected"</c:if>>아이템 이름</option>
-			<option value="inte_code" <c:if test="${headItemSearch.searchKey eq 'inte_code'}">selected="selected"</c:if>>상품메뉴통합코드</option>
 			<option value="h_item_quantity" <c:if test="${headItemSearch.searchKey eq 'h_item_quantity'}">selected="selected"</c:if>>아이템 갯수</option>
-			<option value="h_item_unit" <c:if test="${headItemSearch.searchKey eq 'h_item_unit'}">selected="selected"</c:if>>박스 또는 개별</option>
 			<option value="h_item_selling_price" <c:if test="${headItemSearch.searchKey eq 'h_item_selling_price'}">selected="selected"</c:if>>가맹에 파는 가격</option>
 			<option value="h_item_regit_date" <c:if test="${headItemSearch.searchKey eq 'h_item_regit_date'}">selected="selected"</c:if>>등록 날짜</option>
 			<option value="head_staff_id" <c:if test="${headItemSearch.searchKey eq 'head_staff_id'}">selected="selected"</c:if>>등록한 사람</option>
 			<option value="h_item_regit_price" <c:if test="${headItemSearch.searchKey eq 'h_item_regit_price'}">selected="selected"</c:if>>소비자가격</option>
-			
 		</select>
-		<input type="text" id="searchHeadItem" name="search" value="${headItemSearch.search}"/>
-		<input type="button" class="btn btn-default" id="searchBtn" value="검색" /> <a href="/viewHeadItemList"><input type="button" class="btn btn-default" value="전체보기"/></a>
+		<input type="text" id="searchHeadItem" name="search" value="${headItemSearch.search}" valChek="검색어를  입력해주세요"/>
+		<input type="button" class="btn btn-default" id="searchBtn" value="검색" /> 
+		<a href="/viewHeadItemList"><input type="button" class="btn btn-default" value="전체보기"/></a><br/>
+		<span id="valChekMsg"></span>
 	</form>
 	</div>
 		<div class="col-sm-2">
