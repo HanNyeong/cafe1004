@@ -40,14 +40,9 @@
 				$('#subAccountList').submit();
 			}
 		});
-		$('#deadLine').change(function(){
-			$('#deadLine').val($('#deadLineSelect').val());
-			$('#subAccountList').prop('action','/modifySubAccount');
-			$('#subAccountList').submit();
-		});
 		//폼 제출 유효성
 			 undefinedEvent($('#subAccountBtn'),$('#accountKeeperForm'),$('#accountKeeperMsg'));			
-			 undefinedEvent2($('#searchBtn'),$('#subAccountList'),$('#valChekMsg'));	
+			 undefinedEvent($('#searchBtn'),$('#subAccountList'),$('#valChekMsg'));	
 	});
 	
 </script>
