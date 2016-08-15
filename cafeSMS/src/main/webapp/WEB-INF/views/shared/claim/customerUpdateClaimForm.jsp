@@ -10,14 +10,14 @@
 <script>
 $(document).on("ready",function(){
 	console.log("ready");
-	//폼 제출 유효성
-  	 var check = undefinedEvent($('#claimBtn'),$('#claimUpdateForm'),$('#valChekMsg'));
-	   });
 	//파일 추가
 	$("#addClaimFileBtn").on("click",function(){
 		console.log("addClaimFileBtn click");
 		$("#addClaimFile").append('<div><input id = "claimFile" type="file" class="btn btn-default" name="claimFile"/></div>');	
 	});
+//폼 제출 유효성
+ 	 var check = undefinedEvent($('#claimBtn'),$('#claimUpdateForm'),$('#valChekMsg'));
+   });
 	
 </script>
 </head>
@@ -72,11 +72,13 @@ $(document).on("ready",function(){
 				<input id="customerPhone" type="text" name="customerPhone" value="${map.claimContent.customerPhone}" readonly="readonly"/>
 			</div>
 			<div>
+				<label>첨부파일 : </label>
+				<input id="addClaimFileBtn" type="button" class="btn btn-default" value="파일추가"/>
+				<span id="addClaimFile"></span>
 				<input id="claimFile" type="file" class="btn btn-default" name="claimFile"/>
 			</div>
 			<div class="clickCenterBtn">
 				<span id="valChekMsg"></span>
-				<input id="addClaimFileBtn" type="button" class="btn btn-default" value="파일추가"/>
 				<input id="claimBtn" type="button" class="btn btn-default" value="수정"	/>
 			</div>
 		
