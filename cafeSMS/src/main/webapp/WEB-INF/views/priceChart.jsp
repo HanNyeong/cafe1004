@@ -20,19 +20,12 @@
 		<input type="hidden" class="priceChart" name="priceChart" value="${priceChart}" >
 	</c:forEach>
 <script>
-var day1 = new Date();
-var day2 = new Date();
-var day3 = new Date();
-var day4 = new Date();
-var day5 = new Date();
-var day6 = new Date();
-var day7 = new Date();
-day2.setDate(day2.getDate()-1);
-day3.setDate(day3.getDate()-2);
-day4.setDate(day4.getDate()-3);
-day5.setDate(day5.getDate()-4);
-day6.setDate(day6.getDate()-5);
-day7.setDate(day7.getDate()-6);
+var week = 7;
+var day = Array();
+for(var i= 0; i<week; i++){
+	day[i] = new Date();
+	day[i].setDate(day[i].getDate()-i);
+}
 //priceChart
 var c1 = document.getElementById("c1");
 var parent = document.getElementById("p1");
@@ -44,7 +37,7 @@ for(var i=0; i<val.length; i++) {
 	console.log(val[i].value);
 	}
 var data1 = {
-  labels : [day7.getDate(),day6.getDate(),day5.getDate(),day4.getDate(),day3.getDate(),day2.getDate(),day1.getDate()],
+  labels : [day[6].getDate(),day[5].getDate(),day[4].getDate(),day[3].getDate(),day[2].getDate(),day[1].getDate(),day[0].getDate()],
   datasets : [
     {
       fillColor : "rgba(255,255,255,.1)",

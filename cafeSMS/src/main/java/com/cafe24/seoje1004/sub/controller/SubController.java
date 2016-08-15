@@ -51,10 +51,7 @@ public class SubController {
 		// sub에 subCode가 셋팅됫다면 model에담아서 view던져줍니다
 		subService.addSubService(sub);
 		System.out.println(sub);
-		if(sub.getSubCode() != null){
-			model.addAttribute("sub", sub);
-		}
-		return "/shared/sub/headAddSub";
+		return "redirect:/";
 	}
 	
 	/**

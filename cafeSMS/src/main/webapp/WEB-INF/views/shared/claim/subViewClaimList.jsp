@@ -152,7 +152,7 @@
 				<option value="customer_phone" <c:if test="${claimSearch.searchKey eq 'customer_phone'}">selected="selected"</c:if>>고객 번호</option>
 			</select>
 			<input type="text" name="searchClaim" value="${claimSearch.searchClaim}" valChek="검색어를 입력해주세요"/>
-			<button id="searchBtn" class="btn btn-default" >검색</button><span id="valChekMsg"></span>
+			<button id="searchBtn"  type="button" class="btn btn-default" >검색</button><span id="valChekMsg"></span>
 		</form>
 	</div>
 	<div class="col-sm-2">
