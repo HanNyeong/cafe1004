@@ -70,12 +70,7 @@
 			<input type="hidden" id="upDown" name="upDown" value="${ordersSearch.upDown}" />
 			<input type="hidden" id="criteria" name="criteria" value="${ordersSearch.criteria}"/>
 			<input type="hidden" id="subCode" name="subCode" value="${subLogin.subCode}"/>
-			<input type="hidden" id="viewMore" name="viewMore" value="${ordersSearch.viewMore}"/>
-			등록 날짜: 
-			<input type="date" id="regitDateStart" name="regitDateStart" value="${ordersSearch.regitDateStart}"/> ~
-			<input type="date" id="regitDateEnd" name="regitDateEnd" value="${ordersSearch.regitDateEnd}"/> 
 			<br/><br/>
-			<a href="/headViewOrdersList"><input type="button" id="ordersList" class="btn btn-default" value="전체보기"></a>
 		</form>
 	</div>
 	<div class="col-sm-2">

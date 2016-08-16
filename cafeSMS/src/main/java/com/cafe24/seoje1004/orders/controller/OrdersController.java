@@ -84,6 +84,7 @@ public class OrdersController {
 	public String subOrdersPayConfirm(Model model,Search ordersSearch,SubLogin subLogin){
 		System.out.println("OrdersController//subOrdersPayConfirm실행");
 		List<Orders> ordersList = ordersService.viewOrdersListService(ordersSearch,subLogin);
+		model.addAttribute("ordersSearch",ordersSearch);
 		model.addAttribute("ordersList", ordersList);
 		return "/shared/orders/subOrdersPayConfirm";
 	}

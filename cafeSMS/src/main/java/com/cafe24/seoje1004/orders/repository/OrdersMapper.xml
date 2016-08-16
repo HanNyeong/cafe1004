@@ -63,9 +63,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			sub_orders
 		<where>
 			sub_code = #{subLogin.subCode}
-		<if test="ordersSearch.regitDateStart != null and ordersSearch.regitDateEnd != null and ordersSearch.regitDateStart !='' and ordersSearch.regitDateEnd !=''">
-			AND <![CDATA[date(sub_orders_date) >= #{ordersSearch.regitDateStart} and date(sub_orders_date) <= #{ordersSearch.regitDateEnd}]]>
-		</if>
 	</where>
 		<if test="ordersSearch.criteria == null and ordersSearch.upDown == null">
 			order by sub_orders_date desc
@@ -203,9 +200,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 	head_orders_confirm,
 		 	sub_orders_price
 		FROM sub_orders
-		<if test="ordersSearch.regitDateStart != null and ordersSearch.regitDateEnd != null and ordersSearch.regitDateStart !='' and ordersSearch.regitDateEnd !=''">
-			AND <![CDATA[date(sub_orders_date) >= #{ordersSearch.regitDateStart} and date(sub_orders_date) <= #{ordersSearch.regitDateEnd}]]>
-		</if>
 		<if test="ordersSearch.criteria == null and ordersSearch.upDown == null">
 			order by orders_code desc
 		</if>
