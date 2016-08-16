@@ -75,6 +75,7 @@ public class OrdersController {
 		System.out.println("본사측  ordersList//headViewOrdersList실행");
 		List<Orders> ordersList = ordersService.viewOrdersListByHeadService(ordersSearch);
 		model.addAttribute("ordersList",ordersList);
+		model.addAttribute("ordersSearch", ordersSearch);
 		return "/shared/orders/headViewOrdersList";
 	}
 	

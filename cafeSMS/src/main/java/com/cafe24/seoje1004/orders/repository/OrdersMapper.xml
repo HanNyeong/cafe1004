@@ -207,7 +207,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			AND <![CDATA[date(sub_orders_date) >= #{ordersSearch.regitDateStart} and date(sub_orders_date) <= #{ordersSearch.regitDateEnd}]]>
 		</if>
 		<if test="ordersSearch.criteria == null and ordersSearch.upDown == null">
-			order by sub_orders_date desc
+			order by orders_code desc
 		</if>
 		<if test="ordersSearch.criteria != null and ordersSearch.upDown != null and ordersSearch.criteria != null and ordersSearch.upDown != ''">
 			order by ${ordersSearch.criteria} ${ordersSearch.upDown}
