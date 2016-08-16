@@ -120,6 +120,7 @@ public class SubStaffServiceImpl implements SubStaffService{
 		subAccount.setTotalAccountGroup(reSubStaff.getTotalAccountGroup());
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("subAccount", subAccount);
+		map.put("subStaff", subStaff);
 		subStaffDao.addSubAccount(map);
 		subStaffDao.modifyFinalSalaryDate(map);
 	}
