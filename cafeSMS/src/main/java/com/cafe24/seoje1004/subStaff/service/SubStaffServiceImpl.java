@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cafe24.seoje1004.sub.model.SubLogin;
 import com.cafe24.seoje1004.subAccount.model.AddSharedSubAccount;
@@ -99,6 +101,7 @@ public class SubStaffServiceImpl implements SubStaffService{
 	 * 직원 급여 지급 하는 서비스 메서드입니다
 	 * 매개변수로 직원정보를 받습니다
 	 */
+	@Transactional(propagation=Propagation.REQUIRED,rollbackFor=Exception.class)
 	@Override
 	public void subStaffSalaryService(SubStaff subStaff) {
 		System.out.println("SubStaffServiceImpl subStaffSalary실행");
@@ -118,6 +121,7 @@ public class SubStaffServiceImpl implements SubStaffService{
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("subAccount", subAccount);
 		subStaffDao.addSubAccount(map);
+		subStaffDao.modifyFinalSalaryDate(map);
 	}
 
 	/**

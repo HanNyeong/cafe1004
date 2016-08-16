@@ -184,19 +184,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			sub_staff_code = #{subStaffCode} AND sub_Staff_pw = #{subStaffPw} AND sub_staff_level = '점주' AND sub_code = #{subCode}
 	</select>
 	
-	<select id="selectSalaryDate"
-			parameterType="String"
-			resultType="String">
-		select 
-			sub_account_request_date
-		from 
-			sub_account
-		where 
-			total_account_group = #{totalAccountGroup}
-		order by 
-			sub_account_request_date desc
-		limit
-			0,1
-	</select>
+	<update id="modifyFinalSalaryDate"
+			parameterType="java.util.Map">
+		UPDATE sub_staff
+		SET
+			sub_final_salary_date = NOW()
+		WHERE 
+			sub_staff_code = #{subStaff.subStaffCode}
+		</update>
 </mapper>
 

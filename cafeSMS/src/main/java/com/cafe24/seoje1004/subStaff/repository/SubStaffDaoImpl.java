@@ -90,13 +90,14 @@ public class SubStaffDaoImpl implements SubStaffDao{
 		System.out.println("SubStaffDaoImpl subStaffKeeperCheck실행");
 		return sqlSessionSubStaff.selectOne(NS+".subStaffKeeperCheck",subStaff);
 	}
-
+	
 	/**
-	 * 직원 마지막급여날짜를 구하는 dao 메서드입니다.
+	 * 직원최종 급여일 업데이트하는 dao 메서드 입니다.
 	 */
 	@Override
-	public String selectSalaryDate(String totalAccountGroup) {
-		System.out.println("SubStaffDaoImpl selectSalaryDate실행");
-		return sqlSessionSubStaff.selectOne(NS+".selectSalaryDate",totalAccountGroup);
+	public void modifyFinalSalaryDate(Map<String,Object> map){
+		System.out.println("SubStaffDaoImpl subStaffKeeperCheck실행");
+		sqlSessionSubStaff.update(NS+".modifyFinalSalaryDate",map);
 	}
+
 }

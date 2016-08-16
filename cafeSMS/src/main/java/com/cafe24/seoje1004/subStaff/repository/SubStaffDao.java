@@ -63,9 +63,9 @@ public interface SubStaffDao {
 	 * @return
 	 */
 	SubStaff subStaffKeeperCheck(SubStaff subStaff);
-	
 	/**
-	 * 직원급여를 받은날을 찾는 메서드 입니다.
+	 *  직원최종 급여일 업데이트하는 dao 메서드 입니다.
+	 * @param map
 	 */
-	String selectSalaryDate(String totalAccountGroup);
+	void modifyFinalSalaryDate(Map<String, Object> map);
 }
