@@ -18,6 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <result property="subStaffPermitDate" column="sub_staff_permit_date"/>
       <result property="subCode" column="sub_code"/>
       <result property="headStaffId" column="head_staff_id"/>
+      <result property="subFinalSalaryDate" column="sub_final_salary_date"/>
    </resultMap>
    
    <!-- 가맹직원을 등록하는 inst 쿼리 자동으로 subStaffId를 생성해줌 -->
@@ -93,7 +94,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		parameterType="java.util.Map"
 		resultMap="subStaffResultMap">
 		SELECT 
-			sub_staff_code,sub_staff_name,sub_code, sub_staff_level,sub_staff_join,sub_staff_resign,head_staff_id,sub_staff_permit_date,sub_staff_regit_date,sub_staff_salary,total_account_group      
+			sub_staff_code,sub_staff_name,sub_code, sub_staff_level,sub_staff_join,sub_staff_resign,head_staff_id,sub_staff_permit_date,sub_staff_regit_date,sub_staff_salary,total_account_group,sub_final_salary_date      
 		FROM 
 			sub_staff
 		<where>

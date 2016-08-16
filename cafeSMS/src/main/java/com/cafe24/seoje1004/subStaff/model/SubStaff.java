@@ -15,7 +15,14 @@ private String totalAccountGroup;
 private String subStaffPermitDate;
 private String subCode;
 private String headStaffId;
+private String subFinalSalaryDate;
 
+public String getSubFinalSalaryDate() {
+	return subFinalSalaryDate;
+}
+public void setSubFinalSalaryDate(String subFinalSalaryDate) {
+	this.subFinalSalaryDate = subFinalSalaryDate;
+}
 public String getSubStaffCode() {
 	return subStaffCode;
 }
@@ -94,7 +101,7 @@ public String toString() {
 			+ ", subStaffLevel=" + subStaffLevel + ", subStaffJoin=" + subStaffJoin + ", subStaffResign="
 			+ subStaffResign + ", subStaffRegitDate=" + subStaffRegitDate + ", subStaffSalary=" + subStaffSalary
 			+ ", totalAccountGroup=" + totalAccountGroup + ", subStaffPermitDate=" + subStaffPermitDate + ", subCode="
-			+ subCode + ", headStaffId=" + headStaffId + "]";
+			+ subCode + ", headStaffId=" + headStaffId + ", subFinalSalaryDate=" + subFinalSalaryDate + "]";
 }
 
 }

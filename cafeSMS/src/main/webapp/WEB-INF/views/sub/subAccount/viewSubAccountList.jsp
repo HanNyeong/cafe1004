@@ -75,8 +75,8 @@
 			</div>	
 			<div class="col-sm-8">
 			<form id="subAccountList" action="/viewSubAccountList" method="POST">
-				<input type="hidden" id="upDown" name="upDown" value="" /> 
-				<input type="hidden" id="criteria" name="criteria" value="" /> 
+				<input type="hidden" id="upDown" name="upDown" value="${subAccountSearch.upDown}" /> 
+				<input type="hidden" id="criteria" name="criteria" value="${subAccountSearch.criteria}" /> 
 				<input type="hidden" id="subCode" name="subCode" value="${subLogin.subCode}" /> 
 				<input type="hidden" id="subStaffLevel" name="subStaffLevel" value="${subStaff.subStaffLevel}" /> 
 				<input type="hidden" id="viewMore" name="viewMore" value="${subAccountSearch.viewMore}"/>

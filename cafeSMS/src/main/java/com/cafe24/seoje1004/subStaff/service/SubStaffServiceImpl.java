@@ -45,13 +45,6 @@ public class SubStaffServiceImpl implements SubStaffService{
 		map.put("subStaffSearch", subStaffSearch);
 		map.put("subLogin", subLogin);
 		map.put("division", division);
-		List<SubStaff> list = subStaffDao.viewSubStaffList(map);
-		for(int i=0; i < list.size(); i++){
-			String st = subStaffDao.selectSalaryDate(list.get(i).getTotalAccountGroup());
-			System.out.println(st);
-			System.out.println("이거얌");
-			System.out.println();System.out.println();
-		}
 		return subStaffDao.viewSubStaffList(map);
 	}
 	/**
