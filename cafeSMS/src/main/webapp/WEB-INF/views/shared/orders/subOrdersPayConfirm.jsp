@@ -7,7 +7,6 @@
 <title>subOrdersPayConfirm</title>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script type="text/javascript" src="resources/function/upDownCheck.js"></script>
 <script>
 	$(document).ready(function(){
 		$('#delOrdersBtn').click(function(){
@@ -30,6 +29,11 @@
 				list('DESC',columnList[index],$("#ordersListOrderBy"));
 			});
 		});
+		$('#viewMoreBtn').click(function(){
+			var viewMore = $('#viewMore').val();
+			$('#viewMore').val(viewMore*1+25);
+			$('#ordersListOrderBy').submit();
+		});
 		$('#searchBtn').click(function(){
 			$('#ordersListOrderBy').submit();
 		});
@@ -42,14 +46,11 @@
 	</div>	
 	<div class="col-sm-8">
 		<form id="ordersListOrderBy" action="/subOrdersPayConfirm" method="POST">
-			<input type="hidden" id="upDown" name="upDown" value="" />
-			<input type="hidden" id="criteria" name="criteria" value=""/>
+			<input type="hidden" id="upDown" name="upDown" value="${ordersSearch.upDown}" />
+			<input type="hidden" id="criteria" name="criteria" value="${ordersSearch.criteria}"/>
 			<input type="hidden" id="subCode" name="subCode" value="${subLogin.subCode}"/>
-			등록 날짜: 
-			<input type="date" name="regitDateStart" value="${clientSearch.regitDateStart}"/> ~
-			<input type="date" name="regitDateEnd" value="${clientSearch.regitDateEnd}"/> 
-			<br/><br/>
-		<input type="button" class="btn btn-default" id="searchBtn" value="검색" /> 
+			<input type="hidden" id="viewMore" name="viewMore" value="${ordersSearch.viewMore}"/>
+			<br/><br/> 
 		<a href="/viewOrdersList?subCode=${subLogin.subCode}"><input type="button" class="btn btn-default" value="미결제보기"/></a>
 		</form>
 	</div>
@@ -122,6 +123,15 @@
 				</div>
 			</c:if>
 		</c:forEach>
+		<div class="row tablediv">
+			<div class="col-sm-2">
+			</div>
+			<div class="col-sm-8">
+				<input type="button" class="btn btn-default" id="viewMoreBtn" value="더보기"/>
+			</div>
+			<div class="col-sm-2">
+			</div>
+		</div>
 	</form>
 <jsp:include page="/WEB-INF/module/footer.jsp"/>
 
