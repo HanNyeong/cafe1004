@@ -104,7 +104,9 @@
 					<option value="Y" <c:if test="${YN eq 'Y'}">selected="selected"</c:if>>본사승인</option>
 					<option value="N" <c:if test="${YN eq 'N'}">selected="selected"</c:if>>승인대기</option>			
 				</select>
+				<c:if test="${empty subContractList}">
 				<a href="/subAddContract?subCode=${subCode}"><button class="btn btn-default">계약등록</button></a>
+				</c:if>
 			</h4>
 	</div>
 	<div class="col-sm-2">
