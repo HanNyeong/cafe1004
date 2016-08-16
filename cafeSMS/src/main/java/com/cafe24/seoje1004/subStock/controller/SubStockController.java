@@ -62,14 +62,16 @@ public class SubStockController {
 	//가맹 재고 출하
 	@RequestMapping(value="/subStockOutY")
 	public String subStockOutY(@RequestParam(value="subCode")String subCode
-							,@RequestParam(value="subStockCode")String subStockCode){
+							,@RequestParam(value="subStockCode")String subStockCode
+							,@RequestParam(value="YN", required = false)String YN){
 		System.out.println("SubStockController subStockOutY 실행");
 		System.out.println("subCode : "+subCode);
 		System.out.println("subStockCode : "+subStockCode);
 		
 		subStockService.subStockOutY(subStockCode);
 		
-		return "redirect:/subViewSubStockList?subCode="+subCode;
+		
+		return "redirect:/subViewSubStockOutList?subCode="+subCode;
 	}
 	
 	//가맹재고출하가능리스트
@@ -92,4 +94,5 @@ public class SubStockController {
 		
 		return "/sub/subStock/subViewSubStockOutList";
 	}
+	
 }

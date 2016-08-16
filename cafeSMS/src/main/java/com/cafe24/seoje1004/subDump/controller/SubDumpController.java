@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cafe24.seoje1004.subDump.model.SubDump;
 import com.cafe24.seoje1004.subDump.service.SubDumpService;
+import com.cafe24.seoje1004.subStock.repository.SubStockDao;
+import com.cafe24.seoje1004.subStock.repository.SubStockDaoImpl;
+import com.cafe24.seoje1004.subStock.service.SubStockService;
 import com.cafe24.seoje1004.util.Search;
 
 @Controller
@@ -15,6 +18,8 @@ public class SubDumpController {
 
 		@Autowired
 		private SubDumpService subDumpService;
+		@Autowired
+		private SubStockService subStockService;
 		
 		/**
 		 * 폐기 등록 화면으로 이동하는 컨트롤러입니다.
@@ -26,7 +31,7 @@ public class SubDumpController {
 		public String addSubDump(Model model, SubDump subDump){
 			System.out.println("SubDumpController addSubDump.GET 실행");
 		    System.out.println(subDump);
-		    model.addAttribute("reSubDump", subDumpService.selectSubDumpService(subDump));
+		    model.addAttribute("subDump", subDump);
 			return "/sub/subDump/subAddSubDump";
 		}
 		
@@ -41,14 +46,19 @@ public class SubDumpController {
 		public String addSubDumpPost(Model model, SubDump subDump){
 			System.out.println("SubDumpController addSubDump.POST 실행");
 			System.out.println(subDump);
+			System.out.println("subStockCode : "+subDump.getSubStockCode());
 			String result="";
 			//1. 서비스 메서드 실행 결과에 따른 결과값입니다.
 		    //2. 성공하면 폐기관리 리스트로 이동하고 실패하면 원래 등록페이지를 유지합니다.
 		    if(subDumpService.addSubDumpService(subDump) == 0){
-		    	model.addAttribute("reSubDump",subDump);
+		    	model.addAttribute("subDump",subDump);
 		    	result = "/sub/subDump/subAddSubDump";
 		    }else{
 		    	result="redirect:/subViewSubDumpList?subCode="+subDump.getSubCode();
+		    	System.out.println("subStockCode : "+subDump.getSubStockCode());
+		    	
+		    	subStockService.subStockOutY(subDump.getSubStockCode());
+		    	
 		    }
 			return result;
 		}

@@ -75,9 +75,7 @@
 			<h3>= 폐기 관리 리스트 =</h3>
 		</div>
 		<div class="col-sm-6 clickBtn">
-			<a href="/subAddSubDump?subCode=${subLogin.subCode}">
-				<input type="button" class="btn btn-default" id="subDumpAddBtn" name="subDumpAddBtn" value="폐기등록">
-			</a>
+			
 		</div>
 	<div class="col-sm-2">
 	</div>
@@ -117,7 +115,7 @@
 				<div class="col-sm-1">${subDumpList.subDumpCode}<input type="hidden" class="subDumpCode" name="subDumpCode" value="${subDumpList.subDumpCode}"></div>
 				<div class="col-sm-1">${subDumpList.subDumpReason}<input type="hidden" class="subDumpReason" name="subDumpReason" value="${subDumpList.subDumpReason}"></div>
 				<div class="col-sm-2">${subDumpList.subDumpDate}<input type="hidden" class="subDumpDate" name="subDumpDate" value="${subDumpList.subDumpDate}"></div>
-				<div class="col-sm-1">${subDumpList.hItemCode}<input type="hidden" class="hItemCode" name="hItemCode" value="${subDumpList.hItemCode}"></div>
+				<div class="col-sm-1">${subDumpList.headItemCode}<input type="hidden" class="headItemCode" name="headItemCode" value="${subDumpList.headItemCode}"></div>
 				<div class="col-sm-1">${subDumpList.specificItemCode}<input type="hidden" class="specificItemCode" name="specificItemCode" value="${subDumpList.specificItemCode}"></div>
 				<div class="col-sm-1">${subDumpList.subStaffCode}<input type="hidden" class="subStaffCode" name="subStaffCode" value="${subDumpList.subStaffCode}"></div>
 				<div class="col-sm-1">${subDumpList.subCode}<input type="hidden" class="subCode" name="subCode" value="${subDumpList.subCode}"></div>

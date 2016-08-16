@@ -22,11 +22,12 @@ $(document).ready(function(){
 			<h1> 폐기 등록 </h1>
 		<form action="/subAddSubDump" method="POST" id="addSubDumpForm">
 		 	<div>
+			   	<input type="hidden" name="subStockCode" value="${subDump.subStockCode}"/>
 			   	<p>폐기 사유 : <input type="text" id="subDumpReason" name="subDumpReason" value="" valChek="폐기 사유를 입력해주세요"></p>
-				<p>본사 상품 코드 : <input type="text" id="hItemCode" name="headItemCode" readonly="readonly" value="${reSubDump.hItemCode}"/></p>
-				<p>개별 상품 코드: <input type="text" id="specificItemCode" name="specificItemCode" readonly="readonly" value="${reSubDump.specificItemCode}"/></p>
+				<p>본사 상품 코드 : <input type="text" id="headItemCode" name="headItemCode" readonly="readonly" value="${subDump.headItemCode}"/></p>
+				<p>개별 상품 코드: <input type="text" id="specificItemCode" name="specificItemCode" readonly="readonly" value="${subDump.specificItemCode}"/></p>
 				<p>가맹 담당 직원 : <input type="text" id="subStaffCode" name="subStaffCode" value="" valChek="담당 직원 아이디를 입력해주세요"/></p>
-				<p>가맹대표코드 : <input type="text" id="subCode" name="subCode" readonly="readonly" value="${reSubDump.subCode}"/></p>
+				<p>가맹대표코드 : <input type="text" id="subCode" name="subCode" readonly="readonly" value="${subDump.subCode}"/></p>
 			</div>	
 			<br/>
 			<div class="clickBtn">

@@ -174,11 +174,15 @@ $(document).ready(function(){
 			</div>
 			<div class="col-sm-1">		
 					<c:if test="${subStockList.subStockOut == 'N' && subStockList.subStockInDate ne null}">
+						<a href="/subAddSubDump?subCode=${subStockList.subCode}&subStockCode=${subStockList.subStockCode}&specificItemCode=${subStockList.specificItemCode}&headItemCode=${subStockList.headItemCode}">[폐기]</a>
+					</c:if>
+					<c:if test="${subStockList.subStockOut == 'N' && subStockList.subStockInDate ne null}">
 						<a href="/subStockOutY?subCode=${subStockList.subCode}&subStockCode=${subStockList.subStockCode}">[출하]</a>
 					</c:if>
 					<c:if test="${subStockList.subStockOut == 'Y' && subStockList.subStockInDate ne null}">
 						[출하완료]
 					</c:if>
+					
 					
 			</div>
 			<div class="col-sm-2">

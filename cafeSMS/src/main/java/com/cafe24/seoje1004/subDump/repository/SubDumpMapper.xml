@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <id property="subDumpCode" column="sub_dump_code"/>
       <result property="subDumpReason" column="sub_dump_reason"/>    
       <result property="subDumpDate" column="sub_dump_date"/>
-      <result property="hItemCode" column="head_item_code"/>
+      <result property="headItemCode" column="head_item_code"/>
       <result property="specificItemCode" column="specific_item_code"/>
       <result property="subStaffCode" column="sub_staff_code"/>
       <result property="subCode" column="sub_code"/>
@@ -49,7 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				#{subDumpCode},
 				#{subDump.subDumpReason},
 				NOW(),
-				#{subDump.hItemCode},
+				#{subDump.headItemCode},
 				#{subDump.specificItemCode},
 				#{subDump.subStaffCode},
 				#{subDump.subCode}
