@@ -68,9 +68,8 @@ $(document).ready(function(){
 	    				console.log("안됨")
 	    			}
 	    	});
-				$('#subStockList').prop('action','/subWarehousing');
-				$('#subStockList').prop('method','POST');
-				$('#subStockList').submit();
+				
+				$('#subWarehousing').submit();
 	    }
 	});
 	//폼 제출 유효성
@@ -173,6 +172,7 @@ $(document).ready(function(){
 	<div class="col-sm-2">
 	</div>
 </div> 	
+<form action="/subWarehousing" method="POST" id="subWarehousing">
 <c:forEach var="subStockList" items="${subStockList}">
 	
 		<div class="row tablediv">
@@ -201,13 +201,14 @@ $(document).ready(function(){
 			</div>
 			<div class="col-sm-1">		
 				
-					<c:if test="${subStockList.subStockInDate eq null}">
-						<input type="checkbox" class="checking" name="checking">
-						<input type="hidden" class="subCode" name="" value="${subStockList.subCode}">
-						<input type="hidden" class="subStockCode" name="" value="${subStockList.subStockCode}">
-						<input type="hidden" class="ordersCode" name="" value="${subStockList.ordersCode}">
-						<input type="hidden" class="specificItemCode" name="" value="${subStockList.specificItemCode}">
-					</c:if>
+				<c:if test="${subStockList.subStockInDate eq null}">
+					<input type="checkbox" class="checking" name="checking">
+					<input type="hidden" class="subCode" name="" value="${subStockList.subCode}">
+					<input type="hidden" class="subStockCode" name="" value="${subStockList.subStockCode}">
+					<input type="hidden" class="ordersCode" name="" value="${subStockList.ordersCode}">
+					<input type="hidden" class="specificItemCode" name="" value="${subStockList.specificItemCode}">
+				</c:if>
+				
 			</div>
 			<div class="col-sm-2">
 			</div>
@@ -215,6 +216,7 @@ $(document).ready(function(){
 	
 	
 </c:forEach>
+</form>
 <div class="row tablediv">
 		<div class="col-sm-2">
 		</div>

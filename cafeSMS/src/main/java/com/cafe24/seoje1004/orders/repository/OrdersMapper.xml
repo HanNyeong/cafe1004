@@ -269,7 +269,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				specific_item 
 			where 
 				head_item_code = #{headItemCode} 
-			and NOW() >= specific_item_expiry_date  
+			and date(specific_item_expiry_date) >=  NOW()
 			and specific_item_out = 'N'
 	</select>
 	

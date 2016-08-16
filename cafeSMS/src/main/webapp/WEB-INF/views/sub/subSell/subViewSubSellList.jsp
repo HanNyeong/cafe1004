@@ -64,9 +64,8 @@
 		    				console.log("안됨")
 		    			}
 		    	});
-					$('#subSellList').prop('action','/subSellFinals');
-					$('#subSellList').prop('method','POST');
-					$('#subSellList').submit();
+					
+					$('#subSellFinals').submit();
 		    }
 		});
 		//폼 제출 유효성
@@ -163,10 +162,9 @@
 	</div>
 </div>
 	
-	<!-- 	<form id="subSellFinalForm" action="/subSellFinals" method="POST"> -->
-	
-<c:forEach var="subSellList" items="${subSellList}">
-	
+<form action="/subSellFinals" method="post" id="subSellFinals">
+	<c:forEach var="subSellList" items="${subSellList}">
+		
 		<div class="row tablediv">
 			<div class="col-sm-2">
 			</div>	
@@ -190,9 +188,9 @@
 			<div class="col-sm-2">
 			</div>
 		</div>
-
-</c:forEach>
-
+	
+	</c:forEach>
+</form>
 <div class="row tablediv">
 	<div class="col-sm-2">
 	</div>

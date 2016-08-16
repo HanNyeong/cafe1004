@@ -32,6 +32,24 @@ public class SubjectServiceImpl implements SubjectService{
 		Map<String,Object> map = new HashMap<String,Object>();
 		for(int i = 0; i<100 ; i++) {
 			specificItem.setHeadStaffRegistration("head_staff_id1");
+			specificItem.setHeadItemCode("head_item_code1");
+			map.put("specificItem", specificItem);
+			subjectDao.add(map);
+		}
+		for(int i = 0; i<100 ; i++) {
+			specificItem.setHeadStaffRegistration("head_staff_id1");
+			specificItem.setHeadItemCode("head_item_code2");
+			map.put("specificItem", specificItem);
+			subjectDao.add(map);
+		}
+		for(int i = 0; i<100 ; i++) {
+			specificItem.setHeadStaffRegistration("head_staff_id1");
+			specificItem.setHeadItemCode("head_item_code3");
+			map.put("specificItem", specificItem);
+			subjectDao.add(map);
+		}
+		for(int i = 0; i<100 ; i++) {
+			specificItem.setHeadStaffRegistration("head_staff_id1");
 			specificItem.setHeadItemCode("head_item_code4");
 			map.put("specificItem", specificItem);
 			subjectDao.add(map);
