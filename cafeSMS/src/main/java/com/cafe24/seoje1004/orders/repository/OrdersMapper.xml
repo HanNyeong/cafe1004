@@ -129,7 +129,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="addOrders"
 			parameterType="java.util.Map">
 			<selectKey resultType="hashmap" keyProperty="ordersCode" order="BEFORE">
-			select if(isnull(orders_code),'orders_code1000', concat('orders_code', MAX(CONVERT(SUBSTRING(orders_code,12), UNSIGNED))+1)) as ordersCode
+			select if(isnull(orders_code),'orders_code1', concat('orders_code', MAX(CONVERT(SUBSTRING(orders_code,12), UNSIGNED))+1)) as ordersCode
 			from sub_orders
 			</selectKey>
 		insert into
@@ -184,6 +184,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<select id="viewOrdersListByHead"
+			parameterType="java.util.Map"
 			resultMap="ordersResultMap">
 		SELECT 
 			orders_code, 

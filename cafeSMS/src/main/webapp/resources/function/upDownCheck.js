@@ -41,11 +41,6 @@
 	
 	$(document).ready(function(){
 		
-		$('#viewMoreBtn').click(function(){
-		var viewMore = $('#viewMore').val();
-			$('#viewMore').val(viewMore*1+25);
-			$('#subStaffList').submit();
-		});
 		$('#selectAll').click(function(){
 			
 			var choiceCheck = $(this).prop("checked");

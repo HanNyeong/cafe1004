@@ -30,6 +30,12 @@
 				list('DESC',columnList[index],$("#ordersListOrderBy"));
 			});
 		});
+		// 더보기
+		$('#viewMoreBtn').click(function(){
+			var viewMore = $('#viewMore').val();
+			$('#viewMore').val(viewMore*1+25);
+			$('#ordersListOrderBy').submit();
+		});
 		$('#ordersPayBtn').click(function(){
 			if($('.checking:checked').size()<1){
 		        alert("1개 이상 체크해주세요");
@@ -62,9 +68,10 @@
 	</div>	
 	<div class="col-sm-8">
 	<form id="ordersListOrderBy" action="/viewOrdersList" method="POST">
-		<input type="hidden" id="upDown" name="upDown" value="" />
-		<input type="hidden" id="criteria" name="criteria" value=""/>
+		<input type="hidden" id="upDown" name="upDown" value="${ordersSearch.upDown}" />
+		<input type="hidden" id="criteria" name="criteria" value="${ordersSearch.criteria}"/>
 		<input type="hidden" id="subCode" name="subCode" value="${subLogin.subCode}"/>
+		<input type="hidden" id="viewMore" name="viewMore" value="${ordersSearch.viewMore}"/>
 		등록 날짜: 
 		<input type="date" id="regitDateStart" name="regitDateStart" value="${ordersSearch.regitDateStart}"/> ~
 		<input type="date" id="regitDateEnd" name="regitDateEnd" value="${ordersSearch.regitDateEnd}"/> 
@@ -162,6 +169,15 @@
 			</div>
 		</c:if>
 		</c:forEach>
+		<div class="row tablediv">
+			<div class="col-sm-2">
+			</div>
+			<div class="col-sm-8">
+				<input type="button" class="btn btn-default" id="viewMoreBtn" value="더보기"/>
+			</div>
+			<div class="col-sm-2">
+			</div>
+		</div>
 	</form>
 <jsp:include page="/WEB-INF/module/footer.jsp"/>
 </body>

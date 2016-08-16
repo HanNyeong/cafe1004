@@ -45,6 +45,7 @@ public class OrdersController {
 		System.out.println("OrdersController//viewOrdersList실행");
 		List<Orders> ordersList = ordersService.viewOrdersListService(ordersSearch,subLogin);
 		System.out.println(subLogin.getSubCode());
+		System.out.println(ordersList);
 		model.addAttribute("ordersList",ordersList);
 		model.addAttribute("ordersSearch",ordersSearch);
 		return "/shared/orders/subViewOrdersList";
