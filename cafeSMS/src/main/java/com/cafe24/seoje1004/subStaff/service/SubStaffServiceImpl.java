@@ -31,7 +31,6 @@ public class SubStaffServiceImpl implements SubStaffService{
 	public void addSubStaffService(SubStaff subStaff) {
 		System.out.println("SubStaffServiceImpl addSubStaffService실행");
 		subStaff.setHeadStaffId("head_staff1");
-		subStaff.setSubCode("sub_code20");
 		subStaffDao.addSubStaff(subStaff);
 		System.out.println(subStaff);
 	}

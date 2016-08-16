@@ -29,6 +29,7 @@ $(document).ready(function(){
 		<div class="col-sm-3 addForm">
 			<h1> 가맹 직원 등록 </h1>
 			<form action="/subAddSubStaff" method="POST" id="addSubStaffForm">
+			<input type="hidden" name="subCode" value="${subLogin.subCode}">
 				<div>
 					<p>이름 : <input type="text" id="subStaffName" name="subStaffName" value="" valChek="이름을 입력해주세요"/></p>
 					<p>비밀번호 : <input type="password" id="Pw" name="subStaffPw" value="" valChek="비밀번호를 입력해주세요"/></p>

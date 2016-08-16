@@ -26,7 +26,7 @@
 		</div>
 		<div class="col-sm-3 addForm">
 			<h1> 가맹 수정 </h1>
-				<form action="/headModifySub" method="POST" id="modifySubForm">
+				<form action="/modifySub" method="POST" id="modifySubForm">
 					<input type="hidden" name="subCode" value="${reSub.subCode}" />
 					<div>
 						<p>가맹코드 : ${reSub.subCode}</p>
