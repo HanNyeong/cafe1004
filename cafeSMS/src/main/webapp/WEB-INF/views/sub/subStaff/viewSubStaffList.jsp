@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -164,18 +165,25 @@
 		<div class="col-sm-2">
 		</div>
 	</div>   
+	
+	
+	
+	
+	
 	<c:forEach var="subStaffList" items="${subStaffList}">
 		<c:if test="${subLogin != null}">
 			<div class="row tablediv">
 			<div class="col-sm-2">
 			</div>	
+				
 				<div class="col-sm-1">${subStaffList.subStaffCode}</div>
 				<div class="col-sm-1">${subStaffList.subStaffName}(${subStaffList.subStaffLevel})</div>
 				<div class="col-sm-1">${subStaffList.subStaffJoin}</div>
 				<div class="col-sm-1">${subStaffList.subStaffRegitDate}</div>
 				<div class="col-sm-1">${subStaffList.subStaffPermitDate}</div>
 				<div class="col-sm-1">${subStaffList.subStaffSalary} 원
-					<c:if test="${subStaffList.subStaffResign == null}">
+					
+					<c:if test="${subStaffList.subStaffResign == null && (subStaffList.subFinalSalaryDate == null || subStaffList.diffDate > 30)}">
 						<a href="/subStaffSalary?subStaffCode=${subStaffList.subStaffCode}&subStaffSalary=${subStaffList.subStaffSalary}&subCode=${subStaffList.subCode}&subStaffLevel=${subStaff.subStaffLevel}">
 						<input type="button" class="btn btn-default" value="지급"/></a>
 					</c:if>

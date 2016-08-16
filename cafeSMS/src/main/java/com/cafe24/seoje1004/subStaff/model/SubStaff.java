@@ -1,5 +1,7 @@
 package com.cafe24.seoje1004.subStaff.model;
 
+import java.util.Date;
+
 public class SubStaff {
 
 
@@ -16,13 +18,8 @@ private String subStaffPermitDate;
 private String subCode;
 private String headStaffId;
 private String subFinalSalaryDate;
+private int diffDate;
 
-public String getSubFinalSalaryDate() {
-	return subFinalSalaryDate;
-}
-public void setSubFinalSalaryDate(String subFinalSalaryDate) {
-	this.subFinalSalaryDate = subFinalSalaryDate;
-}
 public String getSubStaffCode() {
 	return subStaffCode;
 }
@@ -95,13 +92,28 @@ public String getHeadStaffId() {
 public void setHeadStaffId(String headStaffId) {
 	this.headStaffId = headStaffId;
 }
+public String getSubFinalSalaryDate() {
+	return subFinalSalaryDate;
+}
+public void setSubFinalSalaryDate(String subFinalSalaryDate) {
+	this.subFinalSalaryDate = subFinalSalaryDate;
+}
+public int getDiffDate() {
+	return diffDate;
+}
+public void setDiffDate(int diffDate) {
+	this.diffDate = diffDate;
+}
 @Override
 public String toString() {
 	return "SubStaff [subStaffCode=" + subStaffCode + ", subStaffPw=" + subStaffPw + ", subStaffName=" + subStaffName
 			+ ", subStaffLevel=" + subStaffLevel + ", subStaffJoin=" + subStaffJoin + ", subStaffResign="
 			+ subStaffResign + ", subStaffRegitDate=" + subStaffRegitDate + ", subStaffSalary=" + subStaffSalary
 			+ ", totalAccountGroup=" + totalAccountGroup + ", subStaffPermitDate=" + subStaffPermitDate + ", subCode="
-			+ subCode + ", headStaffId=" + headStaffId + ", subFinalSalaryDate=" + subFinalSalaryDate + "]";
+			+ subCode + ", headStaffId=" + headStaffId + ", subFinalSalaryDate=" + subFinalSalaryDate + ", diffDate="
+			+ diffDate + "]";
 }
+
+
 
 }
