@@ -49,7 +49,7 @@ public class SubStaffController {
 			// 2-1 아이디를 화면에 보여줄거임
 			model.addAttribute("subStaff",subStaff);
 		}
-		return "/sub/subStaff/subAddSubStaff";
+		return "redirect:/viewSubStaffList?subCode="+subStaff.getSubCode();
 	}
 	/**
 	 * 가맹직원조회하는 컨트로러입니다.

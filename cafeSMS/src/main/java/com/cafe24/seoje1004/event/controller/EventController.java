@@ -14,6 +14,7 @@ public class EventController {
 	@Autowired
 	private EventService eventService;
 	
+	//행사내용 조회
 	@RequestMapping(value="/viewEventList")
 	public String viewEventList(Model model,Search eventSearch) {
 		System.out.println("EventController//viewEventList 실행");

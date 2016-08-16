@@ -94,6 +94,8 @@ public class SubSellController {
 		return "/sub/subSell/subSellSignUp";
 	}
 	
+	
+	//판매 등록 처리 
 	@RequestMapping(value="/subAddSubSell",method=RequestMethod.POST)
 	public String subAddSubSell(SubSellGroup subSellGroup){
 		System.out.println("SubSellController subAddSubSell .POST 실행");

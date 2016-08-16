@@ -14,6 +14,7 @@ public class HeadItemController {
 	@Autowired
 	private HeadItemService headItemService;
 	
+	//상품리스트 조회
 	@RequestMapping(value="/viewHeadItemList")
 	public String viewHeadItemList(Model model,Search headItemSearch){
 		System.out.println("HeadItemController viewHeadItemList");
