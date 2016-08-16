@@ -12,7 +12,7 @@
 
 
 $(document).ready(function(){
-	var columnList = ['sub_stock_code','head_stock_in_date','sub_stock_in_date','sub_stock_out','orders_code','sub_code','head_item_code','specific_item_code','sub_staff_code']
+	var columnList = ['sub_stock_code','head_stock_in_date','sub_stock_in_date','sub_stock_out','head_item_code','specific_item_code']
 	
 
 	//컬럼별조회 위
@@ -127,7 +127,7 @@ $(document).ready(function(){
 	<div class="col-sm-1 th">
 		재고코드<span class="up">▲</span><span class="down">▼</span>
 	</div>
-	<div class="col-sm-1 th">		
+	<div class="col-sm-2 th">		
 		확인입고날<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">		
@@ -142,9 +142,7 @@ $(document).ready(function(){
 	<div class="col-sm-1 th">		
 		개별상품C<span class="up">▲</span><span class="down">▼</span>
 	</div>
-	<div class="col-sm-1 th">		
-		확인직원<span class="up">▲</span><span class="down">▼</span>
-	</div>
+	
 	<div class="col-sm-1 th">		
 		[출하여부]
 	</div>	
@@ -159,7 +157,7 @@ $(document).ready(function(){
 			<div class="col-sm-1">
 					${subStockList.subStockCode}					
 			</div>
-			<div class="col-sm-1">		
+			<div class="col-sm-2">		
 					${subStockList.subStockInDate}
 			</div>
 			<div class="col-sm-1">		
@@ -173,9 +171,6 @@ $(document).ready(function(){
 			</div>
 			<div class="col-sm-1">		
 					${subStockList.specificItemCode}
-			</div>
-			<div class="col-sm-1">		
-					${subStockList.subStaffCode}
 			</div>
 			<div class="col-sm-1">		
 					<c:if test="${subStockList.subStockOut == 'N' && subStockList.subStockInDate ne null}">
