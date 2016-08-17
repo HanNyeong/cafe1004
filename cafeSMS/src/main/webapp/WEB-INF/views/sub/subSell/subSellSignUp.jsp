@@ -108,7 +108,7 @@
 	<div class="col-sm-3">
 	</div>
 		<div class="col-sm-5 addForm">
-	<h1>가맹판매등록!!</h1>
+	<h1>= 가맹판매등록 =</h1>
 	<form action="/subAddSubSell" method="POST" id="subSellsignUp">
 		<input type="hidden" name="subCode" value="${subLogin.subCode}">
 		<c:forEach var="menuList" items="${menuList}">
@@ -134,7 +134,7 @@
 					<input type="checkbox" class="checking" />
 				</div>
 				<div class="col-sm-4"> 
-					수량 : <input class="quantity" type="number" min="1" value=""/>
+					수량 : <input class="quantity" type="number" min="1" value="1"/>
 				</div>
 				<div class="col-sm-4"> 
 					판매가 : <input type="text" class="menuSellingPriceText" value="" readonly="readonly"/>
@@ -162,8 +162,9 @@
 		<br/>
 		<div  class="clickBtn">
 			<span id="totalPriceHelper"></span>
-			<input type="button" id="subSellsignUpBtn" value="판매">
+			<input type="button" id="subSellsignUpBtn" class="btn btn-default" value="판매">
 		</div>
+			<br/>
 	</form>
 	</div>
 	<div class="col-sm-4">

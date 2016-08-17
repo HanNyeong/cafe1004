@@ -42,12 +42,11 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
+		//날짜에서 오늘날짜 일(day)만 구하기
 		SimpleDateFormat days = new SimpleDateFormat("dd");
-		System.out.println("days : "+days.format(date));
+		System.out.println("days : "+days.format(date));		
 		
-		
-		
-		//메뉴차트
+		//메뉴차트+매출차트
 		Map<String, Object> map = subSellService.menuChart(subCode);
 		System.out.println(map);
 		

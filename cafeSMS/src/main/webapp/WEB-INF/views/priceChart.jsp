@@ -11,7 +11,9 @@
 </head>
 <body>
 	<div class='wrapper'>
-		<div class='title'>주간 매출현황</div>
+		<div class='title'>
+			<h2>주간 매출현황	<small>(<a href="/subSellSignUp?subCode=${subCode}">판매등록</a>)</small></h2>
+		</div>
 		<div class='chart' id='p1'>
 			<canvas id='c1'></canvas>
 		</div>

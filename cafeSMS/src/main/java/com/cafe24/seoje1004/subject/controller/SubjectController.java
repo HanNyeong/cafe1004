@@ -2,7 +2,6 @@ package com.cafe24.seoje1004.subject.controller;
 
 
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,9 +18,7 @@ public class SubjectController {
 	@Autowired
 	private SubjectService subjectService;
 	
-	@Autowired
-	private SqlSessionTemplate sqlSessionSubject;
-	//계정과목 리스트 controller 0801 박효민
+	//계정과목 리스트 controller
 	@RequestMapping(value="/viewSubjectList")
 	public String viewSubjectList(Model model, Search subjectSearch) {
 		System.out.println("SubjectController//viewSubjectList");

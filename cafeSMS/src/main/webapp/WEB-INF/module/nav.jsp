@@ -9,7 +9,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="resources/function/undefinedCheck.js"></script>
-  <script src="resources/function/upDownCheck.js"></script>
+<script src="resources/function/upDownCheck.js"></script>
 <title>nav.jsp</title>
 </head>
 <body>
@@ -76,19 +76,6 @@
 					</ul>
 				</li>
 				
-			<!-- 본사측 승인 관리 -->
-				<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-				본사관리 <span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="/headAddSub">가맹추가</a></li>
-						<li><a href="/headViewOrdersList">발주조회</a></li>
-						<li><a href="/headViewClaimList">클래임조회</a></li>
-						<li><a href="/headViewDeliveryList">배송조회</a></li>
-						<li><a href="/headViewReturnsList">반품조회</a></li>
-						<li><a href="/headViewContractList">계약조회</a></li>
-					</ul>
-				</li>
 				
 			<!-- 기타 -->
 				<li class="dropdown">
@@ -102,17 +89,21 @@
 				
 			<!-- 로그아웃 -->
 				<li><a href="/logout">로그아웃</a></li>
+				
 			</c:if>
-			
-			
-<!-- 			본사 네비바-->
-<!-- 			<li><a href="/headAddSub">가맹추가</a></li> -->
-<!-- 			<li><a href="/headViewOrdersList">발주조회</a></li> -->
-<!-- 			<li><a href="/headViewClaimList">클래임조회</a></li> -->
-<!-- 			<li><a href="/headViewDeliveryList">배송조회</a></li> -->
-<!-- 			<li><a href="/headViewReturnsList">반품조회</a></li> -->
-<!-- 			<li><a href="/headViewContractList">계약조회</a></li> -->
-<!-- 			<li><a href="/logout">로그아웃</a></li> -->
+			<!-- 본사측 승인 관리 -->
+				<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+				본사관리(본사만)<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="/headAddSub">가맹추가</a></li>
+						<li><a href="/headViewOrdersList">발주조회</a></li>
+						<li><a href="/headViewClaimList">클래임조회</a></li>
+						<li><a href="/headViewDeliveryList">배송조회</a></li>
+						<li><a href="/headViewReturnsList">반품조회</a></li>
+						<li><a href="/headViewContractList">계약조회</a></li>
+					</ul>
+				</li>
 			</ul>
 		</div>
 	</div>

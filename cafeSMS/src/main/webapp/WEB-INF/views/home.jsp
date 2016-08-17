@@ -23,6 +23,7 @@ $(document).ready(function() {
 	<div class="col-xs-3">
 		<c:if test="${subLogin eq null}">
 			<div class="container">
+			<!-- 클래임 조회 및 등록  -->
 				<form role="form" action="/customerViewClaimList" method="get" id="claimMainForm">
 					<h2>고객  센터</h2>
 					<div class="form-group">
@@ -46,6 +47,7 @@ $(document).ready(function() {
 	<div class="col-xs-3">
 		<c:if test="${subLogin eq null}">
 			<div class="container">
+			<!-- 로그인 폼  -->
 				<form role="form" action="/subLogin" method="POST" id="loginForm">
 				<h2>로그인</h2>
 					<div class="form-group">
@@ -71,17 +73,19 @@ $(document).ready(function() {
 <div class="row">
 	<div class="col-sm-2">
 	</div>
+	<!-- 비회원 : 고객도 볼 수 있는 인기 메뉴 차트  -->
 	<c:if test="${subLogin eq null}">
 		<div class="col-sm-8">
-			<jsp:include page="menuChart.jsp"/>	
+			<jsp:include page="menuChart.jsp"/>
 		</div>
 	</c:if>
+	<!-- 회원 : 인기 메뉴 차트 + 나의 가맹 매출 현황 + 판매등록 -->
 	<c:if test="${subLogin ne null}">
 		<div class="col-sm-4">
-			<jsp:include page="menuChart.jsp"/>	
+			<a href="/subViewMenuList"><jsp:include page="menuChart.jsp"/></a>
 		</div>
 		<div class="col-sm-4">
-			<jsp:include page="priceChart.jsp"/>	
+			<a href="/subViewSubSellList?subCode=${subLogin.subCode}"><jsp:include page="priceChart.jsp"/></a>
 		</div>
 	</c:if>
 	<div class="col-sm-2">
@@ -107,19 +111,19 @@ $(document).ready(function() {
 		<!-- Wrapper for slides -->
 		<div class="carousel-inner" role="listbox">
 			<div class="item active">
-				<img src="/resources/img/latte.PNG" alt="latte" width="460" height="345">
+				<a href="/viewEventList"><img src="/resources/img/latte.PNG" alt="latte" width="460" height="345"></a>
 			</div>
 			
 			<div class="item">
-				<img src="/resources/img/bingsu.PNG" alt="bingsu" width="460" height="345">
+				<a href="/viewEventList"><img src="/resources/img/bingsu.PNG" alt="bingsu" width="460" height="345"></a>
 			</div>
 			
 			<div class="item">
-				<img src="/resources/img/tea.PNG" alt="tea" width="460" height="345">
+				<a href="/viewEventList"><img src="/resources/img/tea.PNG" alt="tea" width="460" height="345"></a>
 			</div>
 			
 			<div class="item">
-				<img src="/resources/img/spring.PNG" alt="spring" width="460" height="345">
+				<a href="/viewEventList"><img src="/resources/img/spring.PNG" alt="spring" width="460" height="345"></a>
 			</div>
 		</div>
 	
