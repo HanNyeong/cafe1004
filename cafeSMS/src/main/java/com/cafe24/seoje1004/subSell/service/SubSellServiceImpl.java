@@ -72,7 +72,7 @@ public class SubSellServiceImpl implements SubSellService{
 			addSharedSubAccount.setSubAccountDetail("상품 판매");
 			addSharedSubAccount.setSubCode(subSell2.getSubCode());
 			addSharedSubAccount.setTotalAccountGroup(subSell2.getTotalAccountGroup());
-			addSharedSubAccount.setSubjectCode("상품 판매");
+			addSharedSubAccount.setSubjectCode("subject_code1");
 			Map<String,Object> map = new HashMap<String,Object>();
 			map.put("addSharedSubAccount", addSharedSubAccount);
 			
