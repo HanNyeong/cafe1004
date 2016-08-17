@@ -42,11 +42,6 @@ $(document).on("ready",function(){
 				<span id="returnPriceMsg"></span>
 			</div>
 			<div>
-				<!-- 자동 -->
-				<label>통합회계그룹 : </label>
-				<input id="totalAccountGroup" type="text" name="totalAccountGroup" class="ffffNoLine" value="${addReturns.totalAccountGroup}" readonly="readonly"/>
-			</div>
-			<div>
 				<!-- 직접기입 -->
 				<label>반품첨부파일 : </label>
 				<input id="addReturnFileBtn" type="button" class="btn btn-default" value="파일추가"/>

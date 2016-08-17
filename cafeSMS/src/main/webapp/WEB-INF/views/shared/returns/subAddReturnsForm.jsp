@@ -142,7 +142,15 @@ $(document).ready(function(){
 		</div>
 	</div>
 </c:forEach>
-<input type="button" class="btn btn-default" id="viewMoreBtn" value="더보기"/>
+<div class="row tablediv">
+	<div class="col-sm-2">
+	</div>
+	<div class="col-sm-8">
+		<input type="button" class="btn btn-default" id="viewMoreBtn" value="더보기"/>
+	</div>
+	<div class="col-sm-2">
+	</div>
+</div>		
 <jsp:include page="/WEB-INF/module/footer.jsp"/>	
 </body>
 </html>
