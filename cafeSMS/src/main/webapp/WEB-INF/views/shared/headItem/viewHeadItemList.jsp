@@ -18,7 +18,7 @@
 	$(document).ready(function(){
 		//컬럼 명 지정해주는 배열 
 		//자기입맛에 맛게 고쳐 쓰세요
-		var columnList = ['h_item_code','h_item_name','h_item_quantity','h_item_selling_price','h_item_regit_date','head_staff_id','h_item_retail_price ']
+		var columnList = ['h_item_code','h_item_name','h_item_quantity','h_item_selling_price','h_item_regit_date','head_staff_id']
 
 		$('.up').each(function(index,item){
 			$(item).click(function(){
@@ -87,7 +87,6 @@
 			<option value="h_item_selling_price" <c:if test="${headItemSearch.searchKey eq 'h_item_selling_price'}">selected="selected"</c:if>>가맹에 파는 가격</option>
 			<option value="h_item_regit_date" <c:if test="${headItemSearch.searchKey eq 'h_item_regit_date'}">selected="selected"</c:if>>등록 날짜</option>
 			<option value="head_staff_id" <c:if test="${headItemSearch.searchKey eq 'head_staff_id'}">selected="selected"</c:if>>등록한 사람</option>
-			<option value="h_item_regit_price" <c:if test="${headItemSearch.searchKey eq 'h_item_regit_price'}">selected="selected"</c:if>>소비자가격</option>
 		</select>
 		<input type="text" id="searchHeadItem" name="search" value="${headItemSearch.search}" valChek="검색어를  입력해주세요"/>
 		<input type="button" class="btn btn-default" id="searchBtn" value="검색" /> 
@@ -125,6 +124,9 @@
 		아이템 갯수<span class="up">▲</span><span class="down">▼</span>	
 	</div>
 	<div class="col-sm-1 th">	
+		아이템 단위<span class="up">▲</span><span class="down">▼</span>	
+	</div>
+	<div class="col-sm-1 th">	
 		가맹 판매가<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">	
@@ -132,9 +134,6 @@
 	</div>
 	<div class="col-sm-1 th">	
 		등록한 사람<span class="up">▲</span><span class="down">▼</span>
-	</div>
-	<div class="col-sm-1 th">	
-		소비자가격<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">	
 		수량 <input type="checkbox" id="cartDeleteAll" class="cartCodeChk" name="cartDeleteAll" onclick="selectHeadItemAll(this)" value="전체 선택">
@@ -152,11 +151,11 @@
 			
 				<div class="col-sm-1">${headItemList.hItemCode}</div>
 				<div class="col-sm-1">${headItemList.hItemName}</div>
-				<div class="col-sm-1">${headItemList.hItemQuantity}(${headItemList.hItemUnit})</div>
+				<div class="col-sm-1">${headItemList.hItemQuantity}</div>
+				<div class="col-sm-1">${headItemList.hItemUnit}</div>
 				<div class="col-sm-1">${headItemList.hItemSellingPrice}</div>
 				<div class="col-sm-1">${headItemList.hItemRegitDate}</div>
 				<div class="col-sm-1">${headItemList.headStaffId}</div>
-				<div class="col-sm-1">${headItemList.hItemRetailPrice}</div>
 				<div class="col-sm-1">
 					<c:if test="${subLogin != null}">
 						<input type="hidden" class="subCode" name="subCode" value="${subLogin.subCode}">
