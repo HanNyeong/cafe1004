@@ -10,10 +10,10 @@
 <script>
 	
 	$(document).ready(function(){
-		$('#delOrdersBtn').click(function(){
-			$('#ordersListForm').attr('action','/delOrders');
-			$('#ordersListForm').submit();
-		});
+// 		$('#delOrdersBtn').click(function(){
+// 			$('#ordersListForm').attr('action','/subDeleteOrdersCancel');
+// 			$('#ordersListForm').submit();
+// 		});
 		$('#modifyPayBtn').click(function(){
 			$('#ordersListForm').attr('action','/modifyOrdersPay');
 			$('#ordersListForm').submit();
@@ -58,6 +58,28 @@
 	    		$('#ordersListForm').submit();
 		    }
 		});
+		$('#delOrdersBtn').click(function(){
+			if($('.checking:checked').size()<1){
+		        alert("1개 이상 체크해주세요");
+		        console.log("delete");
+		    }else{
+		    	$('.checking').each(function(index,item){
+		    		if(!$(this).is(":checked")){
+		    			console.log("체크안됨");
+		    		}else if($(this).is(":checked")){
+		    			console.log("체크됨");
+						$("input[class=ordersCode]:eq(" + index + ")").prop('name','ordersCode');
+						$("input[class=subCode]:eq(" + index + ")").prop('name','subCode');
+						$("input[class=subOrdersPrice]:eq(" + index + ")").prop('name','subOrdersPrice');
+						$("input[class=totalAccountGroup]:eq(" + index + ")").prop('name','totalAccountGroup');
+		    		}else{
+		    			console.log("안됨")
+		    		}
+		    	});
+	    		$('#ordersListForm').prop('action','/subDeleteOrdersCancel');
+	    		$('#ordersListForm').submit();
+		    }
+		});
 		
 	});
 </script>
@@ -97,7 +119,7 @@
 	</div>	
 	<div class="col-sm-8 clickBtn">		
 		<input type="button" id="ordersPayBtn" class="btn btn-default" value="결제">
-		<input type="button" id="ordersPayBtn" class="btn btn-default" value="결제취소">
+		<input type="button" id="delOrdersBtn" class="btn btn-default" value="결제취소">
 	</div>
 	<div class="col-sm-2">
 	</div>	

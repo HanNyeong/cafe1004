@@ -124,7 +124,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- ordersAdd -->
 	<insert id="addOrders"
-			parameterType="java.util.Map">
+			parameterType="com.cafe24.seoje1004.orders.model.Orders"
+			useGeneratedKeys="true"
+			keyProperty="ordersCode">
 			<selectKey resultType="hashmap" keyProperty="ordersCode,totalAccountGroup" order="BEFORE">
 			select if(isnull(orders_code),'orders_code1', concat('orders_code', MAX(CONVERT(SUBSTRING(orders_code,12), UNSIGNED))+1)) as ordersCode,
 			if(isnull(total_account_group),'total_account_group1', concat('total_account_group', MAX(CONVERT(SUBSTRING(total_account_group,20), UNSIGNED))+1)) as totalAccountGroup
@@ -147,14 +149,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			values
 				(
 				#{ordersCode},
-				#{orders.subOrdersGroup},
-				${cartDetail.cartQuantity},
+				#{subOrdersGroup},
+				${subOrdersQuantity},
 				now(),
 				#{totalAccountGroup},
-				#{cartDetail.hItemCode},
-				#{orders.subCode},
-				#{orders.subStaffCode},
-				#{orders.subOrdersPrice}
+				#{headItemCode},
+				#{subCode},
+				#{subStaffCode},
+				#{subOrdersPrice}
 				)
 	</insert>
 	<!-- addOrdersForTransaction End -->

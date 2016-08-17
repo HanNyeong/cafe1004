@@ -12,7 +12,7 @@ public interface OrdersDao {
 
 	List<Orders> viewOrdersList(Map<String, Object> map);
 
-	void addOrders(Map<String, Object> map);
+	void addOrders(Orders orders);
 
 	void addDelivery(Map<String, Object> map);
 

@@ -31,21 +31,21 @@ public class OrdersDaoImpl implements OrdersDao{
 	
 	//orders add
 	@Override
-	public void addOrders(Map<String, Object> map) {
+	public void addOrders(Orders orders) {
 		System.out.println("OrdersDaoImpl//addOrders실행");
-		sqlSessionOrders.insert(NS+".addOrders",map);
+		sqlSessionOrders.insert(NS+".addOrders",orders);
 	}
 	//cart del
 	@Override
 	public void addDelivery(Map<String, Object> map) {
 		System.out.println("OrdersDaoImpl//addDelivery실행");
-		sqlSessionOrders.insert(NS+".delCartForAddOrders",map);
+		sqlSessionOrders.insert(NS+".addDeliveryForAddOrders",map);
 	}
 	//delivery add
 	@Override
 	public void delCart(Map<String, Object> map) {
 		System.out.println("OrdersDaoImpl//delCart실행");
-		sqlSessionOrders.insert(NS+".addDeliveryForAddOrders",map);
+		sqlSessionOrders.insert(NS+".delCartForAddOrders",map);
 	}
 	/*//selec specific
 	@Override

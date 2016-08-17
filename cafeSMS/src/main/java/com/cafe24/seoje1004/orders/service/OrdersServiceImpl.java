@@ -81,13 +81,14 @@ public class OrdersServiceImpl implements OrdersService{
 			orders.setSubStaffCode("sub_staff_code1000");
 			orders.setSubOrdersPrice((cartDetail.getCartQuantity().get(i))*(cartDetail.gethItemSellingPrice().get(i)));
 			orders.setOrdersCode(ordersDao.selectOrdersCode());
-			
+			orders.setHeadItemCode(c.gethItemCode());
+			orders.setSubOrdersQuantity(c.getCartQuantity());
 			map.put("cartDetail", c);
-			map.put("orders", orders);
 			map.put("delivery", delivery);
 			map.put("subLogin", subLogin);
 
-			ordersDao.addOrders(map);
+			ordersDao.addOrders(orders);
+			map.put("orders", orders);
 			ordersDao.addDelivery(map);
 			ordersDao.delCart(map);
 			

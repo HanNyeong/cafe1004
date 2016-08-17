@@ -51,7 +51,7 @@
 			<input type="hidden" id="subCode" name="subCode" value="${subLogin.subCode}"/>
 			<input type="hidden" id="viewMore" name="viewMore" value="${ordersSearch.viewMore}"/>
 			<br/><br/> 
-		<a href="/viewOrdersList?subCode=${subLogin.subCode}"><input type="button" class="btn btn-default" value="미결제보기"/></a>
+		
 		</form>
 	</div>
 	<div class="col-sm-2">
