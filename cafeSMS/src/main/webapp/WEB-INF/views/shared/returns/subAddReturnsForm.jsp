@@ -99,7 +99,7 @@ $(document).ready(function(){
 	<div class="col-sm-1 th">
 		재고코드<span class="up">▲</span><span class="down">▼</span>
 	</div>
-	<div class="col-sm-1 th">	
+	<div class="col-sm-2 th">	
 		가맹입고날짜<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">	
@@ -115,9 +115,6 @@ $(document).ready(function(){
 		개별상품코드<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">	
-		가맹확인담당<span class="up">▲</span><span class="down">▼</span>
-	</div>
-	<div class="col-sm-1 th">	
 		[환불신청]
 	</div>
 	<div class="col-sm-2">
@@ -129,12 +126,11 @@ $(document).ready(function(){
 		<div class="col-sm-2">
 		</div>	
 		<div class="col-sm-1">${subStockList.subStockCode}</div>		
-		<div class="col-sm-1">${subStockList.subStockInDate}</div>
+		<div class="col-sm-2">${subStockList.subStockInDate}</div>
 		<div class="col-sm-1">${subStockList.subStockOut}</div>
 		<div class="col-sm-1">${subStockList.ordersCode}</div>	
 		<div class="col-sm-1">${subStockList.headItemCode}</div>
 		<div class="col-sm-1">${subStockList.specificItemCode}</div>
-		<div class="col-sm-1">${subStockList.subStaffCode}</div>
 		<div class="col-sm-1">
 			<a href="/subAddReturnsForm2?subStockCode=${subStockList.subStockCode}">[환불신청]</a>
 		</div>
