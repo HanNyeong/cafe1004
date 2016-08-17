@@ -102,7 +102,6 @@ $(document).ready(function(){
 				<option value="orders_code" <c:if test="${search.searchKey eq 'orders_code'}">selected="selected"</c:if>>주문코드</option>
 				<option value="head_item_code" <c:if test="${search.searchKey eq 'head_item_code'}">selected="selected"</c:if>>본사상품코드</option>
 				<option value="specific_item_code" <c:if test="${search.searchKey eq 'specific_item_code'}">selected="selected"</c:if>>개별상품코드</option>
-				<option value="sub_staff_code" <c:if test="${search.searchKey eq 'sub_staff_code'}">selected="selected"</c:if>>본사확인직원</option>
 			</select>
 			<input type="text" id="search" name="search" value="${search.search}" valChek="검색어를  입력해주세요"/>
 			<input type="button" id="searchBtn" class="btn btn-default" value="검색" />
@@ -164,7 +163,7 @@ $(document).ready(function(){
 		개별상품C<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">		
-		입고/출하<input type="checkbox" id="selectAll" class="selectAll" name="selectAll" onclick="selectAll(this)" value="전체 선택">
+		입고<input type="checkbox" id="selectAll" class="selectAll" name="selectAll" onclick="selectAll(this)" value="전체 선택">
 	</div>	
 	<div class="col-sm-2">
 	</div>
@@ -194,18 +193,13 @@ $(document).ready(function(){
 					${subStockList.specificItemCode}
 			</div>
 			<div class="col-sm-1">		
-					${subStockList.subStaffCode}
-			</div>
-			<div class="col-sm-1">		
-				
 				<c:if test="${subStockList.subStockInDate eq null}">
 					<input type="checkbox" class="checking" name="checking">
 					<input type="hidden" class="subCode" name="" value="${subStockList.subCode}">
 					<input type="hidden" class="subStockCode" name="" value="${subStockList.subStockCode}">
 					<input type="hidden" class="ordersCode" name="" value="${subStockList.ordersCode}">
 					<input type="hidden" class="specificItemCode" name="" value="${subStockList.specificItemCode}">
-				</c:if>
-				
+				</c:if>					
 			</div>
 			<div class="col-sm-2">
 			</div>

@@ -168,6 +168,7 @@
 		
 		
 	</dependencies>
+    <!-- maven plugin -->
     <build>
         <plugins>
             <plugin>

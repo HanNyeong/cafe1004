@@ -5,20 +5,6 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 	
-	<!-- Root Context: defines shared resources visible to all other web components -->
-<!-- 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"> -->
-<!--         <property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
-<!--         <property name="url" value="jdbc:mysql://seoje1004.cafe24.com/seoje1004?useUnicode=true&amp;characterEncoding=utf-8" />  -->
-<!--         <property name="username" value="seoje1004" />  -->
-<!--         <property name="password" value="ghgh930317" />   -->
-<!--     </bean> -->
-   <!--  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://seoje1004.cafe24.com/seoje1004?useUnicode=true&amp;characterEncoding=utf-8" /> 
-        <property name="username" value="seoje1004" /> 
-        <property name="password" value="ghgh930317" />  
-    </bean>	
-     -->
       <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
          <property name="driverClassName" value="com.mysql.jdbc.Driver" />
          <property name="url" value="jdbc:mysql://localhost:3306/seoje1004?useUnicode=true&amp;characterEncoding=utf-8" /> 
@@ -26,23 +12,12 @@
          <property name="password" value="ghgh930317" />  
       </bean>	
     
-     
-    
     <!-- transaction manager -->    
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>
     
     <tx:annotation-driven transaction-manager="transactionManager"/>
-    
-	<!--본사 직원관리 -->
-<!--  	<bean id="sqlSessionFactoryHeadStaff" class="org.mybatis.spring.SqlSessionFactoryBean"> -->
-<!-- 		<property name="dataSource" ref="dataSource" />  -->
-<!-- 		<property name="mapperLocations" value="classpath:org/ksmart02/cafe/headStaff/repository/HeadStaffMapper.xml" />  -->
-<!--  	</bean>  -->
-<!--  	<bean id="sqlSessionHeadStaff" class="org.mybatis.spring.SqlSessionTemplate"> -->
-<!--        <constructor-arg index="0" ref="sqlSessionFactoryHeadStaff" /> -->
-<!--      </bean> -->
 
 	<!-- 계약관리 -->
 		<bean id="sqlSessionFactoryContract" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -150,16 +125,7 @@
 		<bean id="sqlSessionOrders" class="org.mybatis.spring.SqlSessionTemplate">
 			<constructor-arg index="0" ref="sqlSessionFactoryOrders" />
 		</bean>
-		
-	<!-- 판매 관리 -->
-		<!-- <bean id="sqlSessionFactorySubSell" class="org.mybatis.spring.SqlSessionFactoryBean">
-			<property name="dataSource" ref="dataSource" />
-			<property name="mapperLocations" value="classpath:com/cafe24/seoje1004/subSell/repository/SubSellMapper.xml" />
-		</bean>
-		<bean id="sqlSessionSubSell" class="org.mybatis.spring.SqlSessionTemplate">
-			<constructor-arg index="0" ref="sqlSessionFactorySubSell" />
-		</bean> -->
-		
+
 	<!-- 배송 관리 -->
 		<bean id="sqlSessionFactoryDelivery" class="org.mybatis.spring.SqlSessionFactoryBean">
 			<property name="dataSource" ref="dataSource" />
@@ -185,21 +151,21 @@
 			<constructor-arg index="0" ref="sqlSessionFactoryReturns" />
 		</bean>
 	<!-- 재고 관리 -->
-	<bean id="sqlSessionFactorySubStock" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" value="classpath:com/cafe24/seoje1004/subStock/repository/SubStockMapper.xml" />
-	</bean>
-	<bean id="sqlSessionSubStock" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg index="0" ref="sqlSessionFactorySubStock" />
-	</bean>
+		<bean id="sqlSessionFactorySubStock" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			<property name="mapperLocations" value="classpath:com/cafe24/seoje1004/subStock/repository/SubStockMapper.xml" />
+		</bean>
+		<bean id="sqlSessionSubStock" class="org.mybatis.spring.SqlSessionTemplate">
+			<constructor-arg index="0" ref="sqlSessionFactorySubStock" />
+		</bean>
 	
 	<!-- 판매 관리 -->
-	<bean id="sqlSessionFactorySubSell" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" value="classpath:com/cafe24/seoje1004/subSell/repository/SubSellMapper.xml" />
-	</bean>
-	<bean id="sqlSessionSubSell" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg index="0" ref="sqlSessionFactorySubSell" />
-	</bean>
+		<bean id="sqlSessionFactorySubSell" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			<property name="mapperLocations" value="classpath:com/cafe24/seoje1004/subSell/repository/SubSellMapper.xml" />
+		</bean>
+		<bean id="sqlSessionSubSell" class="org.mybatis.spring.SqlSessionTemplate">
+			<constructor-arg index="0" ref="sqlSessionFactorySubSell" />
+		</bean>
 	
 </beans>
