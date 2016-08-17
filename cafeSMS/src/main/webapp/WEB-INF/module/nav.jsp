@@ -89,7 +89,9 @@
 				
 			<!-- 로그아웃 -->
 				<li><a href="/logout">로그아웃</a></li>
-				
+			<!-- 구분을 위한 공백  -->	
+				<li><a href="/"></a></li>
+				<li><a href="/"></a></li>
 			</c:if>
 			<!-- 본사측 승인 관리 -->
 				<li class="dropdown">

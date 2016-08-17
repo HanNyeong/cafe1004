@@ -58,7 +58,7 @@ var options1 = {
   bezierCurve : false,
   scaleOverride : true,
   scaleSteps : 10,
-  scaleStepWidth : 10000,
+  scaleStepWidth : 100000,
   scaleStartValue : 0
 }
 
