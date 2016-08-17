@@ -37,8 +37,9 @@ $(document).ready(function(){
 					<p>직급 :	         
 						<select id="subStaffLevel" name="subStaffLevel" valChek="직급을 선택해주세요">
 							<option value="">::: 직급 :::</option>
-							<option value="1">점주</option>
-							<option value="2">매니저</option>               
+							<option value="점주">점주</option>
+							<option value="매니저">매니저</option>
+							<option value="직원">직원</option>               
 						</select>
 					<p>입사일 : <input type="date" name="subStaffJoin" id="subStaffJoin" value="" valChek="입사일을 지정해주세요."/></p>
 					<p>급여 : <input type="text" name="subStaffSalary" id="subStaffSalary" value="" valChek="급여를 입력해주세요."/></p>

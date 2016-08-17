@@ -60,10 +60,7 @@
 					<label>가맹 금액  : </label>
 					<input id="contractDeposit" type="text" name="contractDeposit" value="${contract.contractDeposit}" valChek="가맹 금액을  입력해주세요"/>
 				</div>	
-				<div>
-					<label>이익 배분율 : </label>
-					<input id="contractProfitPercent" type="text" name="contractProfitPercent" value="${contract.contractProfitPercent}" valChek="이익배분율을  입력해주세요"/>
-				</div>	
+					
 				<div>
 					<label>계약 첨부파일 : </label>
 					<input id="contractFileBtn" type="button" class="btn btn-default"value="파일추가"/>

@@ -183,11 +183,11 @@
 				<a href="/subViewContractContent?contractCode=${subContractList.contractCode}">[상세보기]</a>
 			 </div>	
 			 <div class="col-sm-1">
-					<c:if test="${subContractList.reContractStatus == 'N'}">
+					<c:if test="${subContractList.reContractStatus == 'N' && subContractList.headContractConfirm == 'Y'}">
 						<a href="/subAddRecharterContract?contractCode=${subContractList.contractCode}">[재계약신청]</a>
 					</c:if>
 					<br/>
-					<c:if test="${subContractList.contractExpireDate ==null && subContractList.reContractStatus == 'N'}">
+					<c:if test="${subContractList.contractExpireDate ==null && subContractList.reContractStatus == 'N' && subContractList.headContractConfirm == 'Y'}">
 						<a href="/subExpireContract?contractCode=${subContractList.contractCode}&subCode=${subContractList.subCode}">[계약파기신청]</a>
 					</c:if>			
 			</div>
