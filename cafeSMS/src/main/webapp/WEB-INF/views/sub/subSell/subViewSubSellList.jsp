@@ -142,7 +142,7 @@
 	<div class="col-sm-1 th">
 		판매그룹<span class="up">▲</span><span class="down">▼</span>
 	</div>
-	<div class="col-sm-1 th">	
+	<div class="col-sm-2 th">	
 		판매날짜<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">	
@@ -151,9 +151,7 @@
 	<div class="col-sm-1 th">	
 		결제방식<span class="up">▲</span><span class="down">▼</span>
 	</div>
-	<div class="col-sm-1 th">	
-		마감담당자<span class="up">▲</span><span class="down">▼</span>
-	</div>
+
 	<div class="col-sm-1 th">	
 		<input type="checkbox" id="selectAll" class="selectAll" name="selectAll" onclick="selectAll(this)" value="전체 선택">
 		/마감
@@ -171,10 +169,10 @@
 			<div class="col-sm-1">${subSellList.subSellCode}</div>
 			<div class="col-sm-1">${subSellList.menuCode}</div>
 			<div class="col-sm-1">${subSellList.subSellGroup}</div>
-			<div class="col-sm-1">${subSellList.subSellDate}</div>
+			<div class="col-sm-2">${subSellList.subSellDate}</div>
 			<div class="col-sm-1">${subSellList.subSellCost}→${subSellList.subSellPracticalSellingPrice}</div>
 			<div class="col-sm-1">${subSellList.payMethod}</div>
-			<div class="col-sm-1">${subSellList.subSellFinalStaff}	</div>			
+				
 			<div class="col-sm-1">
 				<c:if test="${subSellList.subSellFinal == 'N'}">
 					<input type="checkbox" class="checking" name="checking">

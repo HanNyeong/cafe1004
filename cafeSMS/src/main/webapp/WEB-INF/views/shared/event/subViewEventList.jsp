@@ -81,22 +81,17 @@
 	<div class="col-sm-1 th">
 		행사코드<span class="up">▲</span><span class="down">▼</span>
 	</div>
-	<div class="col-sm-1 th">	
+	<div class="col-sm-2 th">	
 		행사명<span class="up">▲</span><span class="down">▼</span>
 	</div>
-	<div class="col-sm-1 th">	
-		행사시작일<span class="up">▲</span><span class="down">▼</span>
-	</div>
-	<div class="col-sm-1 th">	
-		행사종료일<span class="up">▲</span><span class="down">▼</span>
-	</div>
+	
 	<div class="col-sm-1 th">	
 		행사종류<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">	
 		행사할인율<span class="up">▲</span><span class="down">▼</span>
 	</div>
-	<div class="col-sm-1 th">	
+	<div class="col-sm-2 th">	
 		행사등록날짜<span class="up">▲</span><span class="down">▼</span>
 	</div>
 	<div class="col-sm-1 th">	
@@ -111,12 +106,10 @@
 		<div class="col-sm-2">
 		</div>	
 			<div class="col-sm-1">${eventList.eventCode}</div>
-			<div class="col-sm-1">${eventList.eventName}</div>
-			<div class="col-sm-1">${eventList.eventBegin}</div>
-			<div class="col-sm-1">${eventList.eventEnd}</div>
+			<div class="col-sm-2">${eventList.eventName}</div>
 			<div class="col-sm-1">${eventList.eventType}</div>
 			<div class="col-sm-1">${eventList.eventDiscountRate}</div>
-			<div class="col-sm-1">${eventList.eventRegitDate}</div>
+			<div class="col-sm-2">${eventList.eventRegitDate}</div>
 			<div class="col-sm-1">${eventList.headStaffId}</div>
 		<div class="col-sm-2">
 		</div>

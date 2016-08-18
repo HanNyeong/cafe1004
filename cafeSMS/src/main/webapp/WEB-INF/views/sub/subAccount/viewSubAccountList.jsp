@@ -54,7 +54,7 @@
 							<input type="text" class="form-control" id="keeperCheck" name="subStaffCode" value="sub_staff_code1"  valChek="코드를 입력 해주세요"/>
 						</div>
 						<div class="form-group">
-							<label for="subStaffPw">비밀번호 : </label> <input type="text" class="form-control" id="keeperCheck" name="subStaffPw" value="1234"  valChek="비밀번호를 입력해주세요"/>
+							<label for="subStaffPw">비밀번호 : </label> <input type="password" class="form-control" id="keeperCheck" name="subStaffPw" value="1234"  valChek="비밀번호를 입력해주세요"/>
 						</div>
 						<div class="rightKeeperCheck">
 							<span id="accountKeeperMsg"></span>

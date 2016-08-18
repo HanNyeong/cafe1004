@@ -35,7 +35,7 @@ $(document).ready(function(){
 					거래처연락처 : <input type="text" name="subClientPhone" value="${reClient.subClientPhone}" valChek="거래처 역락처를 입력 해주세요">
 				</div>
 				<div>
-					거래처주소 : <input type="text" name="subClientAddr" value="${reClient.subClientPhone}" valChek="거래처 주소를 입력 해주세요">
+					거래처주소 : <input type="text" name="subClientAddr" value="${reClient.subClientAddr}" valChek="거래처 주소를 입력 해주세요">
 				</div>
 				<br/>
 				<div class="clickBtn">
