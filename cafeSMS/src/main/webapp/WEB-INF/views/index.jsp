@@ -13,8 +13,9 @@
 		<div id="mainpng">
 			<a href="/?subCode=${subLogin.subCode}"><img src="/resources/img/main.png" ></a>
 		</div>
-		<div style="text-align: center;">
-			<h2><img src="/resources/img/Chrome.png" width="5%">크롬 사용을 부탁드립니다<img src="/resources/img/Chrome.png" width="5%"></h2>
+		<div style="text-align: center">
+			<h3 style="margin-top: 5px; margin-bottom: 5px;" >
+			<img src="/resources/img/Chrome.png" width="5%">크롬 사용을 부탁드립니다<img src="/resources/img/Chrome.png" width="5%"></h3>
 		</div>
 	</div>
 	<div class="col-sm-2">
