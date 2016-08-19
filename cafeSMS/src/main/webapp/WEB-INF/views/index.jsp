@@ -11,7 +11,7 @@
 	</div>
 	<div class="col-sm-8">
 		<div id="mainpng">
-			<a href="/?subCode=${subLogin.subCode}"><img src="/resources/img/main.png" ></a>
+			<a href=""><img src="/resources/img/main.png" ></a>
 		</div>
 		<div style="text-align: center">
 			<h3 style="margin-top: 5px; margin-bottom: 5px;" >
