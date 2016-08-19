@@ -27,7 +27,7 @@
 		<div class="col-sm-10">
 			<h3> = 본사-가맹 시스템 구조도 <small>이미지를<span style="color: red; font-size:x-large;">클릭</span>하시면 해당 기능 페이지로 이동이 가능합니다.</small> =</h3>
 			
-			<a href="/"><img src="resources/img/bon.png"></a>
+			<a href="/logout"><img src="resources/img/bon.png"></a>
 			<a href="/subLogin?subCode=sub_code1&subPassword=1234"><img src="resources/img/rkaod.png"></a>
 		</div>
 		<div class="col-sm-1">

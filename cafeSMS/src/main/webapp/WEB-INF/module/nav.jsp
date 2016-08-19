@@ -19,7 +19,7 @@
 	</div>
 	<div class="col-sm-8">
 		<div id="mainpng">
-			<a href="/?subCode=${subLogin.subCode}"><img src="/resources/img/main.png" ></a>
+			<a href="/index"><img src="/resources/img/main.png" ></a>
 		</div>
 		<div class="container">
 			<ul class="nav nav-tabs" role="tablist">
