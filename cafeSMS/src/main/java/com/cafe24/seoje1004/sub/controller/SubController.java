@@ -90,7 +90,7 @@ public class SubController {
 	 * 매개변수로 
 	 */
    
-	@RequestMapping(value="/subLogin",method=RequestMethod.POST)
+	@RequestMapping(value="/subLogin")
 	public String loginSub(Model model ,Sub sub){
 		System.out.println("SubController loginSub실행");
 		String result = "";

@@ -13,12 +13,13 @@
 <footer class="container-fluid text-center">
 	<address>
 			<p><strong>(주)FireCoding</strong> 불코 <span><strong>주제 :</strong> 카페 관리 시스템 (Café Store Management System)</span></p>
-			<p><strong>소속 : ksmart</strong><span> 한국 스마트 정보 교육원</span></p>
+			<p><span>교육기관 : </span><strong><a href="http://www.ksmart.or.kr">한국스마트정보교육원 : http://www.ksmart.or.kr</a></strong> 
+			<span>대표번호 : 063-717-1008</span></p>
 			<p><strong>팀원</strong> 오성현 박효민 이한녕 서지연 </p>
 			<p><span><strong>개발 환경</strong>  
-			java Jdk1.8, Spring Framework 4.0.9, tomcat 8.0, mybatis, jquery, jstl, spring tool suite(STS)</span></p>
+			java Jdk1.8, Spring Framework 4.0.9, tomcat 8.0, mybatis, jquery, jstl, heidiSql, mySql, spring tool suite(STS)</span></p>
 	</address>
-	<div>(주)FireCoding은 신선한 재료와 최고의 서비스로 고객을 만족시켜드립니다!!</div>
+	<div><strong>(주)FireCoding은 크롬을 기본으로 사용하고 있습니다.</strong> </div>
 	<div>Copyright ⓒ Seojiyeon Co, Ltd. All rights reserved</div>
 </footer>
 </body>

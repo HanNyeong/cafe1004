@@ -92,8 +92,7 @@
 			<!-- 구분을 위한 공백  -->	
 				<li><a href="/"></a></li>
 				<li><a href="/"></a></li>
-			</c:if>
-			<!-- 본사측 승인 관리 -->
+				
 				<li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 				본사관리(본사만)<span class="caret"></span></a>
@@ -106,6 +105,17 @@
 						<li><a href="/headViewContractList">계약조회</a></li>
 					</ul>
 				</li>
+			</c:if>
+			<!-- 본사측 승인 관리 -->
+			<c:if test="${subLogin eq null}">
+				<li><a href="/headAddSub">가맹추가</a></li>
+				<li><a href="/headViewOrdersList">발주조회</a></li>
+				<li><a href="/headViewClaimList">클래임조회</a></li>
+				<li><a href="/headViewDeliveryList">배송조회</a></li>
+				<li><a href="/headViewReturnsList">반품조회</a></li>
+				<li><a href="/headViewContractList">계약조회</a></li>
+				<li><a href="/">← 본사관리(본사만)</a></li>
+			</c:if>
 			</ul>
 		</div>
 	</div>
